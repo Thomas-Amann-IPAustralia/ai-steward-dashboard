@@ -18,13 +18,16 @@ HASHES_FILE = 'hashes.json'
 # Directory for content snapshots
 SNAPSHOTS_DIR = 'snapshots'
 
+# Directory to store analysis files
+ANALYSIS_DIR = 'analysis'
+
 # Configure the Gemini API
 # Best practice: Store your API key in GitHub Secrets (e.g., GEMINI_API_KEY)
 # The script will access it as an environment variable in the GitHub Action
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 model = genai.GenerativeModel('gemini-1.5-flash') # Using the specified model
 
-# --- Helper Functions ---
+# --- Helper Functions (get_content_from_url, generate_md5, load_hashes, save_hashes) ---
 
 def get_content_from_url(url):
     """Fetches and extracts the main text content from a URL."""
@@ -95,12 +98,14 @@ def get_gemini_analysis(old_content, new_content):
 # --- Main Logic ---
 
 def main():
-    if not os.path.exists(SNAPSHOTS_DIR):
-        os.makedirs(SNAPSHOTS_DIR)
+    # Create directories if they don't exist
+    for dir_path in [SNAPSHOTS_DIR, ANALYSIS_DIR]:
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
 
     previous_hashes = load_hashes()
     current_hashes = {}
-    changes_detected = False
+    changes_made = False
 
     for url in URLS_TO_CHECK:
         print(f"Processing {url}...")
@@ -108,34 +113,35 @@ def main():
 
         if content:
             current_hash = generate_md5(content)
-            current_hashes[url] = current_hash
-            snapshot_filename = f"{hashlib.md5(url.encode()).hexdigest()}.txt"
-            snapshot_path = os.path.join(SNAPSHOTS_DIR, snapshot_filename)
+            url_hash = hashlib.md5(url.encode()).hexdigest() # Consistent hash for filenames
+            snapshot_path = os.path.join(SNAPSHOTS_DIR, f"{url_hash}.txt")
+            analysis_path = os.path.join(ANALYSIS_DIR, f"{url_hash}.json")
 
             previous_hash = previous_hashes.get(url)
 
             if current_hash != previous_hash:
-                changes_detected = True
+                changes_made = True
                 print(f"Change detected for {url}!")
 
                 old_content = ""
                 if os.path.exists(snapshot_path):
-                    with open(snapshot_path, 'r') as f:
+                    with open(snapshot_path, 'r', encoding='utf-8') as f:
                         old_content = f.read()
 
-                # Save the new snapshot
-                with open(snapshot_path, 'w') as f:
+                # Save new snapshot
+                with open(snapshot_path, 'w', encoding='utf-8') as f:
                     f.write(content)
 
-                # Get analysis if there was previous content to compare against
+                # Get and save analysis
                 if old_content:
                     analysis_result = get_gemini_analysis(old_content, content)
-                    # You would integrate this result into your notification or dashboard data
-                    print("Gemini Analysis:", json.dumps(analysis_result, indent=2))
-            else:
-                print(f"No change for {url}.")
+                    with open(analysis_path, 'w', encoding='utf-8') as f:
+                        json.dump(analysis_result, f, indent=4)
+                    print(f"Analysis saved to {analysis_path}")
 
-    if changes_detected:
+            current_hashes[url] = current_hash # Always update to the latest hash
+
+    if changes_made:
         print("Changes were detected. Updating hashes file.")
         save_hashes(current_hashes)
     else:
