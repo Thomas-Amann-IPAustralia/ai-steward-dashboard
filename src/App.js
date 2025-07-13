@@ -12,7 +12,6 @@ function App() {
   const [error, setError] = useState(null);
 
   // Base URL for fetching data from the GitHub repo
-  // This will work both in development and production
   const baseUrl = process.env.NODE_ENV === 'development' 
     ? 'https://raw.githubusercontent.com/Thomas-Amann-IPAustralia/ai-steward-dashboard/main'
     : 'https://raw.githubusercontent.com/Thomas-Amann-IPAustralia/ai-steward-dashboard/main';
