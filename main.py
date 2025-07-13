@@ -10,6 +10,7 @@ from datetime import datetime, timezone, timedelta
 # URLs to monitor
 URLS_TO_CHECK = [
     "https://www.tomamann.com/about",
+    "https://www.dss.gov.au/doing-business-us/corporate-policies/artificial-intelligence-ai-transparency-statement"
     # Add other relevant Australian AI policy or platform ToS pages here
 ]
 
