@@ -28,6 +28,14 @@ ANALYSIS_DIR = 'analysis'
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 model = genai.GenerativeModel('gemini-1.5-flash') # Using the specified model
 
+# Save history of any overwritten snapshots
+LOG_DIR = 'logs'
+
+# Create directories if they don't exist
+for dir_path in [SNAPSHOTS_DIR, ANALYSIS_DIR, LOG_DIR]:
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+
 # --- Helper Functions (get_content_from_url, generate_md5, load_hashes, save_hashes) ---
 
 def get_content_from_url(url):
@@ -101,6 +109,27 @@ def get_gemini_analysis(old_content, new_content):
             "analysis": "Could not determine the difference due to an API or parsing error."
         }
 
+# Defining what the log append function does
+def append_to_log(url, url_hash, summary, timestamp):
+    """Appends a change summary to the log file for the given URL."""
+    log_path = os.path.join(LOG_DIR, f"{url_hash}.json")
+
+    entry = {
+        "url": url,
+        "summary": summary,
+        "timestamp": timestamp
+    }
+
+    if os.path.exists(log_path):
+        with open(log_path, 'r', encoding='utf-8') as f:
+            log_entries = json.load(f)
+    else:
+        log_entries = []
+
+    log_entries.append(entry)
+
+    with open(log_path, 'w', encoding='utf-8') as f:
+        json.dump(log_entries, f, indent=4)
 
 # --- Main Logic ---
 
@@ -146,6 +175,14 @@ def main():
                     with open(analysis_path, 'w', encoding='utf-8') as f:
                         json.dump(analysis_result, f, indent=4)
                     print(f"Analysis saved to {analysis_path}")
+                    # Save a summary log entry
+                if "summary" in analysis_result:
+                    append_to_log(
+                        url=url,
+                        url_hash=url_hash,
+                        summary=analysis_result["summary"],
+                        timestamp=analysis_result.get("date_time", timestamp)
+                    )
                 
             # Always update to the latest hash
             timestamp = datetime.now(utc_plus_10).isoformat()
