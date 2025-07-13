@@ -68,18 +68,24 @@ def get_gemini_analysis(old_content, new_content):
     Analyze the difference between the OLD and NEW text from a webpage.
     Explain the key changes in a clear, neutral tone.
 
-    Your response MUST be a JSON object with two keys: 'summary' and 'analysis'.
+    Your response MUST be a JSON object with four keys: 'summary', 'analysis', 'date_time', 'priority'.
     - 'summary': A concise, one-sentence overview of the change (e.g., "The policy was updated to include new guidelines on data privacy.").
-    - 'analysis': A more detailed explanation of what was added, removed, or modified.
-
+    - 'analysis': A more detailed explanation of what was added, removed, or modified. Try to direct the reader to the locations of the changes.
+    - 'date_time': A time stamp indicating the date and time the query was processed by Gemini. Timestamp should follow the ISO 8601 with a time zone offset of +10:00 (e.g., "2025-07-13T19:00:00+10:00").
+    - 'priority': Select exactly one of these values: "critical", "high", "medium", or "low"
+  - Use "critical" for changes that could immediately impact government compliance or data sovereignty
+  - Use "high" for changes requiring prompt review and potential policy updates
+  - Use "medium" for changes that should be monitored but may not require immediate action
+  - Use "low" for changes for awareness but minimal operational impact
+  
     OLD CONTENT:
     ---
-    {old_content[:2000]}
+    {old_content}
     ---
 
     NEW CONTENT:
     ---
-    {new_content[:2000]}
+    {new_content}
     ---
     """
     try:
