@@ -8,7 +8,7 @@ import google.generativeai as genai
 # --- Configuration ---
 # URLs to monitor
 URLS_TO_CHECK = [
-    "https://www.industry.gov.au/topic/industry-science-and-resources/artificial-intelligence",
+    "https://www.tomamann.com/about",
     # Add other relevant Australian AI policy or platform ToS pages here
 ]
 
