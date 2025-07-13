@@ -10,7 +10,8 @@ from datetime import datetime, timezone, timedelta
 # URLs to monitor
 URLS_TO_CHECK = [
     "https://www.tomamann.com/about",
-    # Add your 3 new URLs here
+    "https://www.tomamann.com/life-in-silicon",
+    "https://www.tomamann.com/hiwthi"
 ]
 
 # File to store hashes
