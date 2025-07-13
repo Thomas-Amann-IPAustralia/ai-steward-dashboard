@@ -2,61 +2,48 @@
 name: Build and Deploy to GitHub Pages
 
 on:
-  # Triggers when the update_checker workflow completes successfully
-  workflow_run:
-    workflows: ["Check for Website Updates"]
-    types:
-      - completed
-  
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-  
-  # Triggers on push to main branch ONLY for frontend code changes
+  # Triggers on push to the main branch when ANY relevant files change
   push:
     branches: [ main ]
-    paths: 
+    paths:
+      # Frontend source code that requires a rebuild
       - 'src/**'
       - 'public/**'
       - 'package.json'
       - 'package-lock.json'
+      # Data files that require the app to be redeployed with the new data
+      - 'analysis/**'
+      - 'snapshots/**'
+      - 'hashes.json'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
-    # This condition ensures the job only runs if the update checker succeeded,
-    # or if the deployment was triggered manually or by a push.
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
-    
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-    
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        
-    # ADDED: Caching for npm dependencies to speed up future builds
-    - name: Cache node modules
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    
+        # This caches npm packages to speed up future builds
+        cache: 'npm'
+
     - name: Install dependencies
       run: npm install
-    
+
     - name: Build React app
-      # The PUBLIC_URL is correctly set from your package.json homepage field.
-      # No need to set it here manually.
+      # The 'homepage' field in your package.json correctly sets the public URL
       run: npm run build
       env:
         # This prevents the build from failing on non-critical warnings
         CI: false
-    
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
