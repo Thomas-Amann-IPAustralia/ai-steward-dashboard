@@ -10,10 +10,7 @@ from datetime import datetime, timezone, timedelta
 # URLs to monitor
 URLS_TO_CHECK = [
     "https://www.tomamann.com/about",
-    "https://www.tomamann.com/medbay",
-    "https://www.tomamann.com/life-in-silicon"
-    
-    # Add other relevant Australian AI policy or platform ToS pages here
+    # Add your 3 new URLs here
 ]
 
 # File to store hashes
@@ -224,7 +221,123 @@ def get_default_value(field, timestamp):
         'priority': 'medium'
     }
     return defaults.get(field, '')
-        
+
+# --- DIAGNOSTIC FUNCTIONS ---
+
+def diagnose_issue():
+    """Diagnoses the issue with hash updates and file creation."""
+    print("=== AI STEWARD DASHBOARD DIAGNOSTIC ===\n")
+    
+    # Check 1: Environment setup
+    print("1. CHECKING ENVIRONMENT SETUP:")
+    api_key = os.environ.get("GEMINI_API_KEY")
+    print(f"   - GEMINI_API_KEY present: {'✓' if api_key else '✗'}")
+    
+    if not api_key:
+        print("   - WARNING: GEMINI_API_KEY not found in environment variables")
+    
+    # Check 2: Directory structure
+    print("\n2. CHECKING DIRECTORY STRUCTURE:")
+    for dir_path in [SNAPSHOTS_DIR, ANALYSIS_DIR, LOG_DIR]:
+        exists = os.path.exists(dir_path)
+        print(f"   - {dir_path}/: {'✓' if exists else '✗'}")
+        if not exists:
+            print(f"     Creating {dir_path}/...")
+            os.makedirs(dir_path)
+    
+    # Check 3: Hashes file
+    print("\n3. CHECKING HASHES FILE:")
+    if os.path.exists(HASHES_FILE):
+        print(f"   - {HASHES_FILE} exists: ✓")
+        with open(HASHES_FILE, 'r') as f:
+            hashes = json.load(f)
+        print(f"   - Number of URLs tracked: {len(hashes)}")
+        for url, data in hashes.items():
+            print(f"     - {url}: {data.get('hash', 'NO HASH')[:10]}...")
+    else:
+        print(f"   - {HASHES_FILE} exists: ✗")
+        print("   - This is expected for first run")
+    
+    # Check 4: Existing snapshots
+    print("\n4. CHECKING EXISTING SNAPSHOTS:")
+    if os.path.exists(SNAPSHOTS_DIR):
+        snapshot_files = [f for f in os.listdir(SNAPSHOTS_DIR) if f.endswith('.txt')]
+        print(f"   - Number of snapshot files: {len(snapshot_files)}")
+        for file in snapshot_files:
+            print(f"     - {file}")
+    
+    # Check 5: Test URL fetching
+    print("\n5. TESTING URL FETCHING:")
+    for url in URLS_TO_CHECK:
+        print(f"   - Testing {url}...")
+        content = get_content_from_url(url)
+        if content:
+            print(f"     ✓ Successfully fetched {len(content)} characters")
+            current_hash = generate_md5(content)
+            print(f"     ✓ Generated hash: {current_hash[:10]}...")
+        else:
+            print(f"     ✗ Failed to fetch content")
+    
+    # Check 6: Compare with existing hashes
+    print("\n6. COMPARING WITH EXISTING HASHES:")
+    if os.path.exists(HASHES_FILE):
+        previous_hashes = load_hashes()
+        for url in URLS_TO_CHECK:
+            print(f"   - Checking {url}...")
+            content = get_content_from_url(url)
+            if content:
+                current_hash = generate_md5(content)
+                previous_hash = previous_hashes.get(url, {}).get("hash")
+                
+                if previous_hash is None:
+                    print(f"     → No previous hash found (first time)")
+                elif current_hash != previous_hash:
+                    print(f"     → CHANGE DETECTED!")
+                    print(f"       Previous: {previous_hash[:10]}...")
+                    print(f"       Current:  {current_hash[:10]}...")
+                else:
+                    print(f"     → No changes detected")
+            else:
+                print(f"     → Failed to fetch content")
+    
+    print("\n=== DIAGNOSTIC COMPLETE ===")
+
+def force_update_test():
+    """Force a test update to see if the system works."""
+    print("\n=== FORCE UPDATE TEST ===")
+    
+    test_url = URLS_TO_CHECK[0] if URLS_TO_CHECK else "https://www.tomamann.com/about"
+    print(f"Testing with URL: {test_url}")
+    
+    # Get current content
+    content = get_content_from_url(test_url)
+    if not content:
+        print("✗ Failed to fetch content for test")
+        return
+    
+    url_hash = hashlib.md5(test_url.encode()).hexdigest()
+    current_hash = generate_md5(content)
+    
+    # Load existing hashes
+    previous_hashes = load_hashes()
+    
+    # Create a fake "old" hash to trigger change detection
+    fake_old_hash = "fake_hash_to_trigger_change"
+    previous_hashes[test_url] = {
+        "hash": fake_old_hash,
+        "last_checked": datetime.now().isoformat()
+    }
+    
+    # Save the fake hash
+    save_hashes(previous_hashes)
+    print(f"✓ Set fake previous hash: {fake_old_hash}")
+    
+    # Now run the main function to trigger change detection
+    print("✓ Running main function to trigger change detection...")
+    main()
+    
+    print("✓ Force update test complete")
+
 # --- Main Logic ---
 
 def main():
@@ -281,4 +394,12 @@ def main():
         print("No changes detected across all URLs.")
 
 if __name__ == "__main__":
-    main()
+    # Run diagnostic first
+    diagnose_issue()
+    
+    # Ask user if they want to run a force update test
+    choice = input("\nWould you like to run a force update test? (y/n): ").lower().strip()
+    if choice == 'y':
+        force_update_test()
+    else:
+        print("Run 'python main.py' normally to check for updates.")
