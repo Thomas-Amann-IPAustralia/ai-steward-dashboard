@@ -1,1 +1,10 @@
-
+{
+  "https://example.com/page1": {
+    "hash": "e3b0c44298fc1c149afbf4c8996fb924...",
+    "last_checked": "2025-07-13T19:02:00+10:00"
+  },
+  "https://example.com/page2": {
+    "hash": "1f3870be274f6c49b3e31a0c6728957f...",
+    "last_checked": "2025-07-13T18:59:12+10:00"
+  }
+}
