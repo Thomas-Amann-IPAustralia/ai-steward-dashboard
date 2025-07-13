@@ -114,88 +114,173 @@ def append_to_log(url, url_hash, summary, timestamp):
     """Appends a change summary to the log file for the given URL."""
     log_path = os.path.join(LOG_DIR, f"{url_hash}.json")
 
+     # Create timestamp in this function's scope
+    utc_plus_10 = timezone(timedelta(hours=10))
+    current_timestamp = datetime.now(utc_plus_10).isoformat()
+    
     entry = {
         "url": url,
         "summary": summary,
-        "timestamp": timestamp
+        "timestamp": analysis_result.get("date_time", current_timestamp)  # Use local timestamp as fallback
     }
-
+    
     if os.path.exists(log_path):
         with open(log_path, 'r', encoding='utf-8') as f:
             log_entries = json.load(f)
     else:
         log_entries = []
-
+    
     log_entries.append(entry)
-
+    
     with open(log_path, 'w', encoding='utf-8') as f:
         json.dump(log_entries, f, indent=4)
+        
+def save_initial_snapshot(url, content, url_hash):
+    """Saves initial snapshot without analysis."""
+    snapshot_path = os.path.join(SNAPSHOTS_DIR, f"{url_hash}.txt")
+    analysis_path = os.path.join(ANALYSIS_DIR, f"{url_hash}.json")
+    
+    # Save snapshot
+    with open(snapshot_path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    
+    # Create initial analysis entry
+    utc_plus_10 = timezone(timedelta(hours=10))
+    timestamp = datetime.now(utc_plus_10).isoformat()
+    
+    initial_analysis = {
+        "summary": "Initial snapshot captured",
+        "analysis": "This is the first time this page has been monitored. No comparison available.",
+        "date_time": timestamp,
+        "priority": "low"
+    }
+    
+    with open(analysis_path, 'w', encoding='utf-8') as f:
+        json.dump(initial_analysis, f, indent=4)
 
+def handle_content_change(url, new_content, url_hash, timestamp):
+    """Handles when content changes are detected."""
+    snapshot_path = os.path.join(SNAPSHOTS_DIR, f"{url_hash}.txt")
+    analysis_path = os.path.join(ANALYSIS_DIR, f"{url_hash}.json")
+    
+    # Load old content
+    old_content = ""
+    if os.path.exists(snapshot_path):
+        with open(snapshot_path, 'r', encoding='utf-8') as f:
+            old_content = f.read()
+    
+    # Save new snapshot
+    with open(snapshot_path, 'w', encoding='utf-8') as f:
+        f.write(new_content)
+    
+    # Generate analysis only if we have old content
+    if old_content:
+        try:
+            analysis_result = get_gemini_analysis(old_content, new_content)
+            
+            # Validate analysis result
+            if not isinstance(analysis_result, dict):
+                raise ValueError("Analysis result is not a dictionary")
+            
+            # Ensure required fields exist
+            required_fields = ['summary', 'analysis', 'date_time', 'priority']
+            for field in required_fields:
+                if field not in analysis_result:
+                    analysis_result[field] = get_default_value(field, timestamp)
+            
+            # Save analysis
+            with open(analysis_path, 'w', encoding='utf-8') as f:
+                json.dump(analysis_result, f, indent=4)
+            
+            # Log the change
+            if "summary" in analysis_result:
+                append_to_log(
+                    url=url,
+                    url_hash=url_hash,
+                    summary=analysis_result["summary"],
+                    timestamp=analysis_result.get("date_time", timestamp)
+                )
+            
+        except Exception as e:
+            print(f"Error generating analysis for {url}: {e}")
+            # Create fallback analysis
+            fallback_analysis = {
+                "summary": "Content changed but analysis failed",
+                "analysis": f"Unable to generate detailed analysis due to error: {str(e)}",
+                "date_time": timestamp,
+                "priority": "medium"
+            }
+            
+            with open(analysis_path, 'w', encoding='utf-8') as f:
+                json.dump(fallback_analysis, f, indent=4)
+    else:
+        print(f"No previous content found for {url}, treating as initial run")
+        save_initial_snapshot(url, new_content, url_hash)
+
+def get_default_value(field, timestamp):
+    """Returns default values for missing analysis fields."""
+    defaults = {
+        'summary': 'Analysis incomplete',
+        'analysis': 'Detailed analysis could not be generated',
+        'date_time': timestamp,
+        'priority': 'medium'
+    }
+    return defaults.get(field, '')
+        
 # --- Main Logic ---
 
 def main():
     # Create directories if they don't exist
-    for dir_path in [SNAPSHOTS_DIR, ANALYSIS_DIR]:
+    for dir_path in [SNAPSHOTS_DIR, ANALYSIS_DIR, LOG_DIR]:
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
 
     previous_hashes = load_hashes()
     current_hashes = {}
-    changes_made = False
+    any_changes_detected = False
     utc_plus_10 = timezone(timedelta(hours=10))
     
     for url in URLS_TO_CHECK:
         print(f"Processing {url}...")
         content = get_content_from_url(url)
+        timestamp = datetime.now(utc_plus_10).isoformat()
 
         if content:
             current_hash = generate_md5(content)
-            url_hash = hashlib.md5(url.encode()).hexdigest() # Consistent hash for filenames
-            snapshot_path = os.path.join(SNAPSHOTS_DIR, f"{url_hash}.txt")
-            analysis_path = os.path.join(ANALYSIS_DIR, f"{url_hash}.json")
-
-            previous_hash = previous_hashes.get(url, {}).get("hash")
-
-            if current_hash != previous_hash:
-                changes_made = True
-                print(f"Change detected for {url}!")
-
-                old_content = ""
-                if os.path.exists(snapshot_path):
-                    with open(snapshot_path, 'r', encoding='utf-8') as f:
-                        old_content = f.read()
-
-                # Save new snapshot
-                with open(snapshot_path, 'w', encoding='utf-8') as f:
-                    f.write(content)
-
-                # Get and save analysis
-                if old_content:
-                    analysis_result = get_gemini_analysis(old_content, content)
-                    with open(analysis_path, 'w', encoding='utf-8') as f:
-                        json.dump(analysis_result, f, indent=4)
-                    print(f"Analysis saved to {analysis_path}")
-                    # Save a summary log entry
-                if "summary" in analysis_result:
-                    append_to_log(
-                        url=url,
-                        url_hash=url_hash,
-                        summary=analysis_result["summary"],
-                        timestamp=analysis_result.get("date_time", timestamp)
-                    )
-                
-            # Always update to the latest hash
-            timestamp = datetime.now(utc_plus_10).isoformat()
+            url_hash = hashlib.md5(url.encode()).hexdigest()
+            
+            # Always update current_hashes
             current_hashes[url] = {
                 "hash": current_hash,
                 "last_checked": timestamp
-                 }
-    if changes_made:
-        print("Changes were detected. Updating hashes file.")
-        save_hashes(current_hashes)
+            }
+            
+            previous_hash = previous_hashes.get(url, {}).get("hash")
+
+            if previous_hash is None:
+                # First time checking this URL
+                print(f"First time checking {url} - saving initial snapshot")
+                save_initial_snapshot(url, content, url_hash)
+            elif current_hash != previous_hash:
+                # Change detected
+                any_changes_detected = True
+                print(f"Change detected for {url}!")
+                handle_content_change(url, content, url_hash, timestamp)
+            else:
+                print(f"No changes detected for {url}")
+        else:
+            print(f"Failed to fetch content for {url}")
+            # Keep the previous hash if fetch failed
+            if url in previous_hashes:
+                current_hashes[url] = previous_hashes[url]
+    
+    # Always save current hashes
+    save_hashes(current_hashes)
+    
+    if any_changes_detected:
+        print("Changes were detected and processed.")
     else:
         print("No changes detected across all URLs.")
-
 
 if __name__ == "__main__":
     main()
