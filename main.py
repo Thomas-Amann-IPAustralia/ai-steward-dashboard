@@ -4,6 +4,7 @@ import hashlib
 import requests
 from bs4 import BeautifulSoup
 import google.generativeai as genai
+from datetime import datetime, timezone, timedelta
 
 # --- Configuration ---
 # URLs to monitor
@@ -112,7 +113,8 @@ def main():
     previous_hashes = load_hashes()
     current_hashes = {}
     changes_made = False
-
+    utc_plus_10 = timezone(timedelta(hours=10))
+    
     for url in URLS_TO_CHECK:
         print(f"Processing {url}...")
         content = get_content_from_url(url)
@@ -123,7 +125,7 @@ def main():
             snapshot_path = os.path.join(SNAPSHOTS_DIR, f"{url_hash}.txt")
             analysis_path = os.path.join(ANALYSIS_DIR, f"{url_hash}.json")
 
-            previous_hash = previous_hashes.get(url)
+            previous_hash = previous_hashes.get(url, {}).get("hash")
 
             if current_hash != previous_hash:
                 changes_made = True
@@ -144,9 +146,13 @@ def main():
                     with open(analysis_path, 'w', encoding='utf-8') as f:
                         json.dump(analysis_result, f, indent=4)
                     print(f"Analysis saved to {analysis_path}")
-
-            current_hashes[url] = current_hash # Always update to the latest hash
-
+                
+            # Always update to the latest hash
+            timestamp = datetime.now(utc_plus_10).isoformat()
+            current_hashes[url] = {
+                "hash": current_hash,
+                "last_checked": timestamp
+                 }
     if changes_made:
         print("Changes were detected. Updating hashes file.")
         save_hashes(current_hashes)
