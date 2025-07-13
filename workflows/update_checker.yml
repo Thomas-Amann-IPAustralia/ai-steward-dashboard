@@ -8,12 +8,12 @@ on:
     - cron: '0 0 */3 * *'
 
 jobs:
-  build:
+  check-updates:
     runs-on: ubuntu-latest
 
     steps:
     - name: Check out repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         # We need to fetch all history to be able to push back to the repo
         fetch-depth: 0
@@ -21,7 +21,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
@@ -38,5 +38,10 @@ jobs:
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update content snapshots and hashes" && git push)
-        echo "Changes committed and pushed."
+        if git diff --quiet && git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update content snapshots and analysis [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
+          git push
+          echo "Changes committed and pushed."
+        fi
