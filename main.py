@@ -23,10 +23,8 @@ SNAPSHOTS_DIR = 'snapshots'
 ANALYSIS_DIR = 'analysis'
 
 # Configure the Gemini API
-# Best practice: Store your API key in GitHub Secrets (e.g., GEMINI_API_KEY)
-# The script will access it as an environment variable in the GitHub Action
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
-model = genai.GenerativeModel('gemini-1.5-flash') # Using the specified model
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 # Save history of any overwritten snapshots
 LOG_DIR = 'logs'
@@ -36,7 +34,7 @@ for dir_path in [SNAPSHOTS_DIR, ANALYSIS_DIR, LOG_DIR]:
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
 
-# --- Helper Functions (get_content_from_url, generate_md5, load_hashes, save_hashes) ---
+# --- Helper Functions ---
 
 def get_content_from_url(url):
     """Fetches and extracts the main text content from a URL."""
@@ -44,8 +42,6 @@ def get_content_from_url(url):
         response = requests.get(url, timeout=15)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
-        # This is a generic selector. You may need to inspect each site
-        # to find a more specific and reliable selector for the main content.
         main_content = soup.find('body')
         if main_content:
             return main_content.get_text(separator='\n', strip=True)
@@ -82,10 +78,10 @@ def get_gemini_analysis(old_content, new_content):
     - 'analysis': A more detailed explanation of what was added, removed, or modified. Try to direct the reader to the locations of the changes.
     - 'date_time': A time stamp indicating the date and time the query was processed by Gemini. Timestamp should follow the ISO 8601 with a time zone offset of +10:00 (e.g., "2025-07-13T19:00:00+10:00").
     - 'priority': Select exactly one of these values: "critical", "high", "medium", or "low"
-  - Use "critical" for changes that could immediately impact government compliance or data sovereignty
-  - Use "high" for changes requiring prompt review and potential policy updates
-  - Use "medium" for changes that should be monitored but may not require immediate action
-  - Use "low" for changes for awareness but minimal operational impact
+      - Use "critical" for changes that could immediately impact government compliance or data sovereignty
+      - Use "high" for changes requiring prompt review and potential policy updates
+      - Use "medium" for changes that should be monitored but may not require immediate action
+      - Use "low" for changes for awareness but minimal operational impact
   
     OLD CONTENT:
     ---
@@ -104,24 +100,23 @@ def get_gemini_analysis(old_content, new_content):
     except Exception as e:
         print(f"Error calling Gemini API or parsing JSON: {e}")
         # Fallback in case of an error
+        utc_plus_10 = timezone(timedelta(hours=10))
+        timestamp = datetime.now(utc_plus_10).isoformat()
         return {
             "summary": "Analysis failed.",
-            "analysis": "Could not determine the difference due to an API or parsing error."
+            "analysis": "Could not determine the difference due to an API or parsing error.",
+            "date_time": timestamp,
+            "priority": "medium"
         }
 
-# Defining what the log append function does
 def append_to_log(url, url_hash, summary, timestamp):
     """Appends a change summary to the log file for the given URL."""
     log_path = os.path.join(LOG_DIR, f"{url_hash}.json")
-
-     # Create timestamp in this function's scope
-    utc_plus_10 = timezone(timedelta(hours=10))
-    current_timestamp = datetime.now(utc_plus_10).isoformat()
     
     entry = {
         "url": url,
         "summary": summary,
-        "timestamp": analysis_result.get("date_time", current_timestamp)  # Use local timestamp as fallback
+        "timestamp": timestamp
     }
     
     if os.path.exists(log_path):
@@ -169,10 +164,6 @@ def handle_content_change(url, new_content, url_hash, timestamp):
         with open(snapshot_path, 'r', encoding='utf-8') as f:
             old_content = f.read()
     
-    # Save new snapshot
-    with open(snapshot_path, 'w', encoding='utf-8') as f:
-        f.write(new_content)
-    
     # Generate analysis only if we have old content
     if old_content:
         try:
@@ -216,6 +207,10 @@ def handle_content_change(url, new_content, url_hash, timestamp):
     else:
         print(f"No previous content found for {url}, treating as initial run")
         save_initial_snapshot(url, new_content, url_hash)
+    
+    # Always save new snapshot
+    with open(snapshot_path, 'w', encoding='utf-8') as f:
+        f.write(new_content)
 
 def get_default_value(field, timestamp):
     """Returns default values for missing analysis fields."""
