@@ -1,14 +1,17 @@
 /* --- Global Styles & Variables --- */
 :root {
-  --primary-bg: #f4f7fa; /* Light grey background */
+  --primary-bg: #f4f7fa;
   --sidebar-bg: #ffffff;
-  --header-bg: #00529B; /* Australian Government blue */
+  --header-bg: #00529B;
   --text-color: #333333;
   --heading-color: #1d3557;
   --primary-accent: #00529B;
   --light-accent: #eaf4ff;
   --border-color: #d1d5db;
   --shadow-color: rgba(0, 0, 0, 0.1);
+  --error-color: #dc2626;
+  --success-color: #16a34a;
+  --warning-color: #d97706;
 }
 
 body {
@@ -32,7 +35,7 @@ body {
 .container {
   display: flex;
   flex-grow: 1;
-  overflow: hidden; /* Prevents whole page from scrolling */
+  overflow: hidden;
 }
 
 /* --- Header --- */
@@ -62,7 +65,7 @@ body {
   background-color: var(--sidebar-bg);
   border-right: 1px solid var(--border-color);
   padding: 1.5rem;
-  overflow-y: auto; /* Allow sidebar to scroll if content overflows */
+  overflow-y: auto;
 }
 
 .sidebar h2 {
@@ -86,7 +89,6 @@ body {
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   font-size: 0.95rem;
-  word-break: break-all; /* Break long URLs */
 }
 
 .sidebar li:hover {
@@ -99,11 +101,49 @@ body {
   font-weight: 600;
 }
 
+.page-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.page-url {
+  word-break: break-all;
+  font-weight: 500;
+}
+
+.page-meta {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.sidebar li.active .page-meta {
+  opacity: 0.9;
+}
+
+/* --- Status Messages --- */
+.loading-message {
+  padding: 1rem;
+  text-align: center;
+  color: var(--primary-accent);
+  font-style: italic;
+}
+
+.error-message {
+  padding: 1rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: var(--error-color);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
 /* --- Main Content Area --- */
 .content {
   flex-grow: 1;
   padding: 2rem;
-  overflow-y: auto; /* The main content area is scrollable */
+  overflow-y: auto;
 }
 
 .content h2 {
@@ -122,6 +162,18 @@ body {
   text-decoration: underline;
 }
 
+.content h3 {
+  color: var(--heading-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.content h4 {
+  color: var(--heading-color);
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
 .placeholder {
   display: flex;
   flex-direction: column;
@@ -136,6 +188,12 @@ body {
   color: var(--heading-color);
 }
 
+.placeholder p {
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
 /* --- Analysis Card --- */
 .analysis-card {
   background-color: #ffffff;
@@ -146,27 +204,95 @@ body {
   box-shadow: 0 1px 3px var(--shadow-color);
 }
 
-.analysis-card h3 {
-  margin-top: 0;
-  color: var(--heading-color);
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5rem;
+.analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.analysis-header h3 {
+  margin: 0;
+  color: var(--heading-color);
+}
+
+.analysis-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.priority-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.analysis-date {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.analysis-summary {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--light-accent);
+  border-left: 4px solid var(--primary-accent);
+  border-radius: 0 4px 4px 0;
+}
+
+.analysis-content {
+  line-height: 1.6;
+}
+
+.analysis-content ul {
+  padding-left: 1.5rem;
+}
+
+.analysis-content li {
+  margin-bottom: 0.5rem;
+}
+
+.analysis-content code {
+  background-color: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.analysis-content pre {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.9em;
 }
 
 /* --- Snapshot Content Box --- */
+.snapshot-container {
+  margin-top: 1rem;
+}
+
 .snapshot-content {
-  background-color: #282c34; /* Dark background for code/text */
+  background-color: #282c34;
   color: #f8f8f2;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1rem;
-  white-space: pre-wrap; /* Wrap long lines */
-  word-wrap: break-word; /* Break long words */
-  max-height: 600px; /* Limit height and make scrollable */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 600px;
   overflow-y: auto;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 hr {
@@ -183,7 +309,7 @@ hr {
 
   .sidebar {
     width: 100%;
-    max-height: 40vh; /* Limit height on mobile */
+    max-height: 40vh;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
   }
@@ -198,5 +324,26 @@ hr {
 
   .App-header h1 {
     font-size: 1.4rem;
+  }
+
+  .analysis-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .analysis-meta {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .page-item {
+    gap: 0.125rem;
+  }
+
+  .page-meta {
+    font-size: 0.75rem;
   }
 }
