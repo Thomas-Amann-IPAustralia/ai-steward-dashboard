@@ -1,0 +1,38 @@
+{
+  "name": "ai-steward-dashboard",
+  "version": "1.0.0",
+  "description": "AI Steward Dashboard for Australian Public Servants - Tracking AI Policy and Terms of Service Updates",
+  "private": true,
+  "homepage": "https://thomas-amann-ipaustralia.github.io/ai-steward-dashboard",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
+    "md5": "^2.3.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
