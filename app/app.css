@@ -1,0 +1,202 @@
+/* --- Global Styles & Variables --- */
+:root {
+  --primary-bg: #f4f7fa; /* Light grey background */
+  --sidebar-bg: #ffffff;
+  --header-bg: #00529B; /* Australian Government blue */
+  --text-color: #333333;
+  --heading-color: #1d3557;
+  --primary-accent: #00529B;
+  --light-accent: #eaf4ff;
+  --border-color: #d1d5db;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+}
+
+/* --- Main App Layout --- */
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden; /* Prevents whole page from scrolling */
+}
+
+/* --- Header --- */
+.App-header {
+  background-color: var(--header-bg);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  z-index: 10;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.App-header p {
+  margin: 0.25rem 0 0;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+/* --- Sidebar Navigation --- */
+.sidebar {
+  width: 350px;
+  flex-shrink: 0;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 1.5rem;
+  overflow-y: auto; /* Allow sidebar to scroll if content overflows */
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  color: var(--heading-color);
+  margin-top: 0;
+  border-bottom: 2px solid var(--primary-accent);
+  padding-bottom: 0.5rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  font-size: 0.95rem;
+  word-break: break-all; /* Break long URLs */
+}
+
+.sidebar li:hover {
+  background-color: var(--light-accent);
+}
+
+.sidebar li.active {
+  background-color: var(--primary-accent);
+  color: white;
+  font-weight: 600;
+}
+
+/* --- Main Content Area --- */
+.content {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto; /* The main content area is scrollable */
+}
+
+.content h2 {
+  color: var(--heading-color);
+  margin-top: 0;
+}
+
+.content h2 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.content h2 a:hover {
+  color: var(--primary-accent);
+  text-decoration: underline;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  color: #6b7280;
+}
+
+.placeholder h2 {
+  color: var(--heading-color);
+}
+
+/* --- Analysis Card --- */
+.analysis-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.analysis-card h3 {
+  margin-top: 0;
+  color: var(--heading-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* --- Snapshot Content Box --- */
+.snapshot-content {
+  background-color: #282c34; /* Dark background for code/text */
+  color: #f8f8f2;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  white-space: pre-wrap; /* Wrap long lines */
+  word-wrap: break-word; /* Break long words */
+  max-height: 600px; /* Limit height and make scrollable */
+  overflow-y: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 2rem 0;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-height: 40vh; /* Limit height on mobile */
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .content {
+    padding: 1.5rem;
+  }
+
+  .App-header {
+    padding: 1rem;
+  }
+
+  .App-header h1 {
+    font-size: 1.4rem;
+  }
+}
