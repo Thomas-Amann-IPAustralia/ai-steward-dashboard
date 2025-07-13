@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import './App.css';
+import './dashboard.css';
 
 // Hashing function to get the filename (must match Python's)
 import md5 from 'md5';
