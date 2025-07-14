@@ -351,48 +351,51 @@ def main():
     current_hashes = {}
     any_changes_detected = False
     utc_plus_10 = timezone(timedelta(hours=10))
-    
+
     for url in URLS_TO_CHECK:
         print(f"Processing {url}...")
         content = get_content_from_url(url)
         timestamp = datetime.now(utc_plus_10).isoformat()
 
-        if content:
-            current_hash = generate_md5(content)
-            url_hash = hashlib.md5(url.encode()).hexdigest()
-            
-            # Always update current_hashes
-            current_hashes[url] = {
-                "hash": current_hash,
-                "last_checked": timestamp
-            }
-            
-            previous_hash = previous_hashes.get(url, {}).get("hash")
-
-            if previous_hash is None:
-                # First time checking this URL
-                print(f"First time checking {url} - saving initial snapshot")
-                save_initial_snapshot(url, content, url_hash)
-            elif current_hash != previous_hash:
-                # Change detected
-                any_changes_detected = True
-                print(f"Change detected for {url}!")
-                handle_content_change(url, content, url_hash, timestamp)
-            else:
-                print(f"No changes detected for {url}")
-        else:
+        if not content:
             print(f"Failed to fetch content for {url}")
-            # Keep the previous hash if fetch failed
+            # Preserve prior hash if fetch failed
             if url in previous_hashes:
                 current_hashes[url] = previous_hashes[url]
-    
-    # Always save current hashes
+            continue
+
+        current_hash  = generate_md5(content)
+        url_hash      = hashlib.md5(url.encode()).hexdigest()
+        previous_hash = previous_hashes.get(url, {}).get("hash")
+
+        if previous_hash is None:
+            # First time seeing this URL
+            print(f"First scan for {url} – saving snapshot and analysis")
+            handle_content_change(url, "", content, url_hash, timestamp)
+            save_initial_snapshot(url, content, url_hash)
+            current_hashes[url] = {"hash": current_hash, "last_checked": timestamp}
+
+        elif current_hash != previous_hash:
+            # Content has changed
+            print(f"Change detected for {url} – analysing")
+            old_content = load_snapshot(url)
+            handle_content_change(url, old_content, content, url_hash, timestamp)
+            current_hashes[url] = {"hash": current_hash, "last_checked": timestamp}
+            any_changes_detected = True
+
+        else:
+            # No change
+            print(f"No changes detected for {url}")
+            current_hashes[url] = {"hash": previous_hash, "last_checked": timestamp}
+
+    # Persist updated hashes
     save_hashes(current_hashes)
-    
+
     if any_changes_detected:
         print("Changes were detected and processed.")
     else:
         print("No changes detected across all URLs.")
+
 
 if __name__ == "__main__":
     # Run diagnostic first
