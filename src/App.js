@@ -22,13 +22,15 @@ function App() {
       try {
         setLoading(true);
         setError(null);
-        
-        const response = await fetch(`${baseUrl}/hashes.json?cachebust=${new Date().getTime()}`);
-        
+        }
+        const response = await fetch(`${baseUrl}/hashes.json`);
+        if (response.status === 403) {
+          throw new Error("Rate limit reached — please wait a moment and retry");
+        }
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
         
         const pageList = Object.keys(data).map(url => ({
