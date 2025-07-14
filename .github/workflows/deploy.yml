@@ -50,3 +50,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         # This tells the action to deploy the contents of the 'build' folder
         publish_dir: ./build
+        publish_branch: gh-pages
