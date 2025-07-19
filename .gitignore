@@ -58,10 +58,6 @@ Thumbs.db
 *.swo
 *~
 
-# Logs
-logs
-*.log
-
 # Runtime data
 pids
 *.pid
