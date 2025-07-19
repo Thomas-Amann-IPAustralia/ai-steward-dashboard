@@ -1,26 +1,39 @@
 # .github/workflows/update_checker.yml
-name: Check for Website Updates
+name: Check for Updates, Build, and Deploy
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  # Runs on a schedule (every day at midnight UTC)
   schedule:
     - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  check-updates:
+  check-and-build:
     runs-on: ubuntu-latest
-
-    # IMPORTANT: Add permissions for the job to be able to write to the repo.
-    permissions:
-      contents: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
       with:
-        # We need to fetch all history to be able to push back to the repo
         fetch-depth: 0
 
     - name: Set up Python
@@ -36,29 +49,67 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: Install dependencies
+    - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
     - name: Run update script
+      id: run_script
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      # The script is now non-interactive and safe to run in an action.
       run: python main.py
 
     - name: Commit and push if changed
+      id: commit_push
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        # Only add the specific files/directories that should be updated
-        git add analysis/ snapshots/ hashes.json
+        git add analysis/ snapshots/ hashes.json logs/
         
-        # Check if there are any staged changes
         if git diff --staged --quiet; then
           echo "No changes to commit."
+          echo "changes_detected=false" >> $GITHUB_OUTPUT
         else
           git commit -m "Update content snapshots and analysis [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
           git push
           echo "Changes committed and pushed."
+          echo "changes_detected=true" >> $GITHUB_OUTPUT
         fi
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install Node.js dependencies
+      run: npm ci
+
+    - name: Build React app
+      run: npm run build
+      env:
+        CI: true
+        GENERATE_SOURCEMAP: false
+
+    - name: Copy data files to build directory
+      run: |
+        echo "Copying data files to build directory..."
+        mkdir -p build/analysis build/snapshots build/logs
+        cp hashes.json build/
+        # Use find to handle cases where directories might be empty
+        find analysis -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/analysis/
+        find snapshots -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/snapshots/
+        find logs -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/logs/
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: './build'
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
