@@ -14,7 +14,8 @@ import re
 URLS_TO_CHECK = [
     "https://www.tomamann.com/about",
     "https://www.tomamann.com/life-in-silicon",
-    "https://www.tomamann.com/hiwthi"
+    "https://www.tomamann.com/hiwthi",
+    "https://www.tomamann.com/medbay"
 ]
 
 # --- Constants for File and Directory Paths ---
