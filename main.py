@@ -1,13 +1,14 @@
 import os
 import json
 import hashlib
-import requests
+import cloudscraper
 from bs4 import BeautifulSoup
 import google.generativeai as genai
 from datetime import datetime, timezone, timedelta
 import sys
 import shutil
 import re
+import time
 
 # --- Configuration ---
 # The script now reads from this JSON file instead of a hardcoded list.
@@ -30,14 +31,14 @@ def slugify_set_name(set_name):
     """Converts a policy set name into a filesystem-safe string."""
     return re.sub(r'[^a-zA-Z0-9\-]+', '_', set_name).strip('_')
 
-def get_smarter_content_from_url(url):
+def get_smarter_content_from_url(url, scraper):
     """
-    Fetches content from a URL, trying to find the main content block before
-    falling back to the whole body.
+    Fetches content from a URL using cloudscraper to bypass anti-bot measures,
+    trying to find the main content block before falling back to the whole body.
     """
     try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
-        response = requests.get(url, timeout=30, headers=headers)
+        # Use the cloudscraper session to make the request; increased timeout for reliability.
+        response = scraper.get(url, timeout=60)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
         
@@ -65,7 +66,8 @@ def get_smarter_content_from_url(url):
         if main_content:
             return main_content.get_text(separator='\n', strip=True)
         return ""
-    except requests.exceptions.RequestException as e:
+    # Catch a broad exception as cloudscraper can raise various error types.
+    except Exception as e:
         print(f"Error fetching {url}: {e}")
         return None
 
@@ -104,7 +106,6 @@ def get_gemini_analysis(set_name, old_content, new_content):
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel('gemini-1.5-flash')
 
-    # Corrected the closing """ to be on a new, unindented line for robustness.
     prompt = f"""You are an AI assistant for Australian public servants. Your role is to analyze changes between an OLD and NEW version of a policy document's text content. The document is named "{set_name}".
 The content has been aggregated from multiple web pages. Your analysis should be neutral, factual, and concise.
 
@@ -126,7 +127,6 @@ NEW CONTENT:
 """
     try:
         response = model.generate_content(prompt)
-        # A robust way to clean potential markdown formatting from the response
         cleaned_text = re.sub(r'^```json\s*|\s*```$', '', response.text, flags=re.MULTILINE | re.DOTALL).strip()
         return json.loads(cleaned_text)
     except Exception as e:
@@ -184,6 +184,16 @@ def main():
         print(f"Error: {POLICY_SETS_FILE} is empty or not found. Exiting.")
         return
 
+    # Create a single cloudscraper instance to reuse for all requests.
+    # This is more efficient and preserves session cookies.
+    scraper = cloudscraper.create_scraper(
+        browser={
+            'browser': 'chrome',
+            'platform': 'windows',
+            'mobile': False
+        }
+    )
+
     previous_hashes = load_json_file(HASHES_FILE)
     current_hashes = previous_hashes.copy()
     aest_tz = timezone(timedelta(hours=10))
@@ -193,9 +203,14 @@ def main():
         print(f"Processing Policy Set: {set_name}...")
         
         aggregated_content = []
-        for url in policy_set["urls"]:
+        for i, url in enumerate(policy_set["urls"]):
+            # Add a polite 2-second delay between requests to the same site.
+            if i > 0:
+                time.sleep(2)
+            
             print(f"  -> Fetching {url}")
-            content = get_smarter_content_from_url(url)
+            # Pass the shared scraper instance to the fetching function.
+            content = get_smarter_content_from_url(url, scraper)
             if content:
                 aggregated_content.append(f"--- Content from {url} ---\n\n{content}")
             else:
@@ -233,7 +248,8 @@ def main():
             }
         elif new_hash != previous_hash:
             print(f"  -> Change detected for '{set_name}'. Analyzing...")
-            log_previous_version(file_id, file_id, previous_entry.get("last_checked"))
+            if previous_entry.get("last_checked"):
+                log_previous_version(file_id, file_id, previous_entry.get("last_checked"))
             
             old_content = load_snapshot(file_id)
             analysis_result = get_gemini_analysis(set_name, old_content, full_content)
