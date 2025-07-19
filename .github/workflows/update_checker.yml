@@ -4,7 +4,7 @@ name: Check for Updates, Build, and Deploy
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
   push:
     branches:
       - main
@@ -13,6 +13,7 @@ on:
       - 'public/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'policy_sets.json' # Trigger build if policy sets change
 
 permissions:
   contents: write
@@ -71,22 +72,20 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        # Add files that are not ignored
-        git add analysis/ snapshots/ hashes.json
+        # Add all relevant data files that might change
+        git add analysis/ snapshots/ hashes.json policy_sets.json
         # Force add the logs directory, which is likely in .gitignore
         git add -f logs/
         
         if git diff --staged --quiet; then
-          echo "No changes to commit."
+          echo "No content changes detected by the script."
           echo "changes_detected=false" >> $GITHUB_OUTPUT
         else
-          # Commit the local changes
           git commit -m "Update content snapshots and analysis [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
           # Pull remote changes and rebase our local commit on top
           git pull --rebase
-          # Push the rebased changes
           git push
-          echo "Changes committed and pushed."
+          echo "Content changes committed and pushed."
           echo "changes_detected=true" >> $GITHUB_OUTPUT
         fi
 
@@ -116,6 +115,7 @@ jobs:
         echo "Copying data files to build directory..."
         mkdir -p build/analysis build/snapshots build/logs
         cp hashes.json build/
+        cp policy_sets.json build/
         # Use find to handle cases where directories might be empty
         find analysis -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/analysis/ || echo "No analysis files to copy"
         find snapshots -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/snapshots/ || echo "No snapshot files to copy"
