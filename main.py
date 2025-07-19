@@ -7,6 +7,7 @@ import google.generativeai as genai
 from datetime import datetime, timezone, timedelta
 import sys
 import shutil
+import re
 
 # --- Configuration ---
 # List of URLs to monitor for changes.
@@ -29,6 +30,12 @@ def setup_directories():
     for dir_path in [SNAPSHOTS_DIR, ANALYSIS_DIR, LOG_DIR]:
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
+
+def slugify_url(url):
+    """Converts a URL into a filesystem-safe string."""
+    url = re.sub(r'^https?://(www\.)?', '', url)
+    url = re.sub(r'[^a-zA-Z0-9\-]+', '_', url).strip('_')
+    return url
 
 def get_content_from_url(url):
     """Fetches and extracts the main text content from a URL."""
@@ -133,20 +140,21 @@ def save_analysis(url_hash, analysis_data):
     with open(analysis_path, 'w', encoding='utf-8') as f:
         json.dump(analysis_data, f, indent=4, ensure_ascii=False)
 
-def log_previous_version(url_hash, timestamp):
+def log_previous_version(url, url_hash, timestamp):
     """Copies the old analysis and snapshot to the logs directory."""
+    url_slug = slugify_url(url)
     log_timestamp = datetime.fromisoformat(timestamp).strftime('%Y%m%d_%H%M%S')
     
     old_analysis_path = os.path.join(ANALYSIS_DIR, f"{url_hash}.json")
     old_snapshot_path = os.path.join(SNAPSHOTS_DIR, f"{url_hash}.txt")
 
     if os.path.exists(old_analysis_path):
-        dest_path = os.path.join(LOG_DIR, f"{url_hash}_{log_timestamp}_analysis.json")
+        dest_path = os.path.join(LOG_DIR, f"{url_slug}_{log_timestamp}_analysis.json")
         shutil.copy(old_analysis_path, dest_path)
         print(f"  -> Logged old analysis to {dest_path}")
 
     if os.path.exists(old_snapshot_path):
-        dest_path = os.path.join(LOG_DIR, f"{url_hash}_{log_timestamp}_snapshot.txt")
+        dest_path = os.path.-join(LOG_DIR, f"{url_slug}_{log_timestamp}_snapshot.txt")
         shutil.copy(old_snapshot_path, dest_path)
         print(f"  -> Logged old snapshot to {dest_path}")
 
@@ -191,9 +199,8 @@ def main():
         elif new_hash != previous_hash:
             print(f"  -> Change detected for {url}. Analyzing...")
             
-            # **FIX**: Safely check for a dict and a timestamp before trying to log.
             if isinstance(previous_entry, dict) and previous_entry.get("last_checked"):
-                log_previous_version(url_hash, previous_entry.get("last_checked"))
+                log_previous_version(url, url_hash, previous_entry.get("last_checked"))
             else:
                 print("  -> Could not log previous version (no last_checked timestamp found).")
 
