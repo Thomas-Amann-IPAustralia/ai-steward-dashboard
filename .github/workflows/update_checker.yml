@@ -37,6 +37,11 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Install Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
     - name: Clean up old logs
       run: |
         echo "Deleting logs older than 365 days..."
@@ -72,9 +77,7 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        # Add all relevant data files that might change
         git add analysis/ snapshots/ hashes.json policy_sets.json
-        # Force add the logs directory, which is likely in .gitignore
         git add -f logs/
         
         if git diff --staged --quiet; then
@@ -82,14 +85,12 @@ jobs:
           echo "changes_detected=false" >> $GITHUB_OUTPUT
         else
           git commit -m "Update content snapshots and analysis [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
-          # Pull remote changes and rebase our local commit on top
           git pull --rebase
           git push
           echo "Content changes committed and pushed."
           echo "changes_detected=true" >> $GITHUB_OUTPUT
         fi
 
-    # The following steps will only run if the python script detected changes OR if the workflow was triggered by a push to the frontend code.
     - name: Setup Node.js
       if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       uses: actions/setup-node@v4
@@ -116,7 +117,6 @@ jobs:
         mkdir -p build/analysis build/snapshots build/logs
         cp hashes.json build/
         cp policy_sets.json build/
-        # Use find to handle cases where directories might be empty
         find analysis -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/analysis/ || echo "No analysis files to copy"
         find snapshots -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/snapshots/ || echo "No snapshot files to copy"
         find logs -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/logs/ || echo "No log files to copy"
