@@ -12,6 +12,7 @@
   {
     "setName": "OpenAI Terms & Policies",
     "category": "Private Sector",
+    "force_proxy": true,
     "urls": [
       "https://openai.com/policies/terms-of-use",
       "https://openai.com/policies/privacy-policy",
