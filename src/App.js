@@ -16,20 +16,29 @@ function App() {
       setLoading(true);
       setError(null);
       try {
-        // Using a cache-busting query parameter to ensure we get the latest version
         const response = await fetch(`/ai-steward-dashboard/hashes.json?v=${new Date().getTime()}`);
         if (!response.ok) {
           throw new Error(`Failed to load monitored policies. Status: ${response.status}`);
         }
         const data = await response.json();
-        const setList = Object.keys(data).map(setName => ({
-          setName,
-          ...data[setName]
-        }));
+
+        // Robustly process the data, filtering out any malformed or old-format entries.
+        // A valid entry must have a 'file_id' and a 'urls' array.
+        const setList = Object.keys(data)
+          .map(setName => ({
+            setName,
+            ...data[setName]
+          }))
+          .filter(item => item.file_id && Array.isArray(item.urls) && item.urls.length > 0);
+        
+        if (setList.length === 0 && Object.keys(data).length > 0) {
+            console.warn("Data in hashes.json appears to be in an old or invalid format and was filtered out.");
+        }
+
         setPolicySets(setList);
       } catch (err) {
-        console.error("Failed to load hashes.json:", err);
-        setError("Could not load the list of monitored policies. There might be an issue with the backend script or deployment.");
+        console.error("Failed to load or parse hashes.json:", err);
+        setError("Could not load the list of monitored policies. The data file may be missing or corrupt.");
       } finally {
         setLoading(false);
       }
@@ -71,7 +80,7 @@ function App() {
       } else {
         setAnalysis({ 
           summary: "No analysis found for this policy set.", 
-          analysis: "This could be because it's the first time this set has been scanned or an error occurred during analysis.",
+          analysis: "This could be the first scan or an error might have occurred during analysis.",
           date_time: "Unknown",
           priority: "low"
         });
@@ -91,7 +100,6 @@ function App() {
     }
   };
 
-  // Helper to format dates for an Australian audience
   const formatDate = (dateString) => {
     if (!dateString || dateString === 'Unknown') return 'Unknown';
     try {
@@ -100,12 +108,9 @@ function App() {
         year: 'numeric', month: 'short', day: 'numeric',
         hour: '2-digit', minute: '2-digit'
       });
-    } catch {
-      return dateString;
-    }
+    } catch { return dateString; }
   };
 
-  // Helper to get priority color
   const getPriorityColor = (priority) => {
     switch (priority?.toLowerCase()) {
       case 'critical': return '#dc2626';
@@ -126,8 +131,12 @@ function App() {
       <div className="container">
         <nav className="sidebar">
           {loading && policySets.length === 0 && <div className="loading-message">Loading policies...</div>}
-          {error && policySets.length === 0 && <div className="error-message">{error}</div>}
+          {error && <div className="error-message">{error}</div>}
           
+          {!loading && !error && policySets.length === 0 && (
+             <div className="placeholder">No valid policies found to display. Please check the configuration.</div>
+          )}
+
           {Object.keys(groupedSets).sort().map(category => (
             <div key={category} className="category-group">
               <h2>{category}</h2>
@@ -142,7 +151,7 @@ function App() {
                       <div className="page-title">
                         <img 
                           src={`https://www.google.com/s2/favicons?sz=16&domain_url=${policySet.urls[0]}`} 
-                          alt="favicon" 
+                          alt="" 
                           className="favicon"
                           onError={(e) => { e.target.style.display = 'none'; }}
                         />
@@ -162,7 +171,6 @@ function App() {
         
         <main className="content">
           {loading && <div className="loading-message">Loading page data...</div>}
-          {error && !loading && <div className="error-message">{error}</div>}
           
           {!selectedSet && !loading && !error && (
             <div className="placeholder">
@@ -171,7 +179,7 @@ function App() {
             </div>
           )}
           
-          {selectedSet && !loading && !error && (
+          {selectedSet && !loading && (
             <div>
               <div className="content-header">
                 <h2>Analysis for: {selectedSet.setName}</h2>
