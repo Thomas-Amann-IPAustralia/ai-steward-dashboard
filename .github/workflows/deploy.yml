@@ -91,6 +91,18 @@ jobs:
       env:
         CI: true
         GENERATE_SOURCEMAP: false
+
+    - name: Copy data files to build directory
+      run: |
+        echo "Copying data files to build directory..."
+        # Create the directories if they don't exist
+        mkdir -p build/analysis
+        mkdir -p build/snapshots
+        
+        # Copy the files
+        cp hashes.json build/
+        cp -r analysis/* build/analysis/
+        cp -r snapshots/* build/snapshots/
         
     - name: Verify build output
       run: |
