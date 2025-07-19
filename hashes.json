@@ -16,5 +16,16 @@
         "hash": "b37eac7b16497277d7088b7171246173",
         "last_checked": "2025-07-20T01:25:58.552572+10:00",
         "last_amended": "2025-07-20T01:22:56.933370+10:00"
+    },
+    "Google AI Policies": {
+        "hash": "37f9f3eff1507ee53106c2562eb2b305",
+        "category": "Private Sector",
+        "urls": [
+            "https://policies.google.com/terms",
+            "https://ai.google/responsibility/principles/"
+        ],
+        "file_id": "Google_AI_Policies",
+        "last_checked": "2025-07-20T02:42:45.096145+10:00",
+        "last_amended": "2025-07-20T02:42:45.096145+10:00"
     }
 }
