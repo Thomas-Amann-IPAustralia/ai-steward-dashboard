@@ -11,47 +11,43 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Base URL for fetching data from the GitHub repo
-  const baseUrl = process.env.NODE_ENV === 'development' 
-    ? 'https://raw.githubusercontent.com/Thomas-Amann-IPAustralia/ai-steward-dashboard/main'
-    : 'https://raw.githubusercontent.com/Thomas-Amann-IPAustralia/ai-steward-dashboard/main';
-
+  // Fetch the list of URLs from the hashes.json file in the public folder.
+  // This runs once when the component mounts.
   useEffect(() => {
-    // Fetch the list of URLs from hashes.json
     const fetchPages = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        setLoading(true);
-        setError(null);
-    
-        const response = await fetch(`${baseUrl}/hashes.json`);
-        if (response.status === 403) {
-          throw new Error("Rate limit reached — please wait a moment and retry");
-        }
+        // Fetch from a relative path. On GitHub Pages, this will be relative to the domain root.
+        const response = await fetch(`/ai-steward-dashboard/hashes.json`);
+        
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`Failed to load monitored pages. Status: ${response.status}`);
         }
 
         const data = await response.json();
         
         const pageList = Object.keys(data).map(url => ({
           url,
-          hash: data[url].hash || data[url], // Handle both old and new format
-          lastChecked: data[url].last_checked || 'Unknown',
-          filename: md5(url)
+          hash: data[url].hash,
+          lastChecked: data[url].last_checked,
+          // Generate a consistent filename based on the URL's MD5 hash
+          filename: md5(url) 
         }));
         
         setPages(pageList);
       } catch (err) {
-        console.error("Failed to load hashes:", err);
-        setError(`Failed to load monitored pages: ${err.message}`);
+        console.error("Failed to load hashes.json:", err);
+        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchPages();
-  }, [baseUrl]);
+  }, []); // Empty dependency array means this runs only once.
 
+  // This function is called when a user clicks on a page in the sidebar.
   const handleSelectPage = async (page) => {
     setSelectedPage(page);
     setLoading(true);
@@ -60,39 +56,41 @@ function App() {
     setError(null);
 
     try {
-      // Fetch analysis data
-      const analysisResponse = await fetch(`${baseUrl}/analysis/${page.filename}.json?cachebust=${new Date().getTime()}`);
-      
+      // Fetch analysis and snapshot data for the selected page in parallel.
+      const [analysisResponse, snapshotResponse] = await Promise.all([
+        fetch(`/ai-steward-dashboard/analysis/${page.filename}.json`),
+        fetch(`/ai-steward-dashboard/snapshots/${page.filename}.txt`)
+      ]);
+
       if (analysisResponse.ok) {
         const analysisData = await analysisResponse.json();
         setAnalysis(analysisData);
       } else {
+        // Provide a default message if analysis is not found.
         setAnalysis({ 
           summary: "No analysis found.", 
-          analysis: "This may be the first time this page has been scanned.",
+          analysis: "This might be the first time this page has been scanned, or an error occurred.",
           date_time: "Unknown",
           priority: "low"
         });
       }
 
-      // Fetch snapshot data
-      const snapshotResponse = await fetch(`${baseUrl}/snapshots/${page.filename}.txt?cachebust=${new Date().getTime()}`);
-      
       if (snapshotResponse.ok) {
         const snapshotData = await snapshotResponse.text();
         setSnapshot(snapshotData);
       } else {
-        setSnapshot("Could not load snapshot. This may be the first time this page has been scanned.");
+        setSnapshot("Could not load the content snapshot.");
       }
       
     } catch (err) {
       console.error("Error loading page data:", err);
-      setError(`Error loading page data: ${err.message}`);
+      setError(`Error loading data for ${page.url}: ${err.message}`);
     } finally {
       setLoading(false);
     }
   };
 
+  // Helper function to format date strings nicely for an Australian audience.
   const formatDate = (dateString) => {
     if (!dateString || dateString === 'Unknown') return 'Unknown';
     try {
@@ -105,17 +103,19 @@ function App() {
         minute: '2-digit'
       });
     } catch {
+      // Fallback for invalid date formats.
       return dateString;
     }
   };
 
+  // Determines the color of the priority badge based on the priority level.
   const getPriorityColor = (priority) => {
     switch (priority?.toLowerCase()) {
-      case 'critical': return '#dc2626';
-      case 'high': return '#ea580c';
-      case 'medium': return '#d97706';
-      case 'low': return '#16a34a';
-      default: return '#6b7280';
+      case 'critical': return '#dc2626'; // Red
+      case 'high': return '#ea580c';     // Orange
+      case 'medium': return '#d97706';   // Amber
+      case 'low': return '#16a34a';      // Green
+      default: return '#6b7280';         // Gray
     }
   };
 
@@ -130,16 +130,12 @@ function App() {
         <nav className="sidebar">
           <h2>Monitored Pages ({pages.length})</h2>
           
-          {error && (
-            <div className="error-message">
-              {error}
-            </div>
+          {loading && pages.length === 0 && (
+            <div className="loading-message">Loading monitored pages...</div>
           )}
-          
-          {loading && !selectedPage && (
-            <div className="loading-message">
-              Loading monitored pages...
-            </div>
+
+          {error && pages.length === 0 && (
+            <div className="error-message">{error}</div>
           )}
           
           <ul>
@@ -161,27 +157,22 @@ function App() {
         </nav>
         
         <main className="content">
-          {loading && selectedPage && (
-            <div className="loading-message">
-              Loading page data...
-            </div>
+          {loading && (
+            <div className="loading-message">Loading page data...</div>
           )}
           
-          {error && selectedPage && (
-            <div className="error-message">
-              {error}
-            </div>
+          {error && (
+            <div className="error-message">{error}</div>
           )}
           
-          {!selectedPage && !loading && (
+          {!selectedPage && !loading && !error && (
             <div className="placeholder">
               <h2>Welcome to the AI Steward Dashboard</h2>
               <p>Select a page from the left sidebar to view its latest analysis and content snapshot.</p>
-              <p>This dashboard monitors changes to AI policies and terms of service relevant to Australian public servants.</p>
             </div>
           )}
           
-          {selectedPage && !loading && (
+          {selectedPage && !loading && !error && (
             <div>
               <h2>
                 Analysis for{' '}
