@@ -31,17 +31,15 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        # This caches npm packages to speed up future builds
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci # Use npm ci for faster, more reliable installs in CI
 
     - name: Build React app
-      # The 'homepage' field in your package.json correctly sets the public URL
       run: npm run build
       env:
-        # This prevents the build from failing on non-critical warnings
+        # This prevents the build from failing on non-critical warnings, but consider fixing them.
         CI: false
 
     - name: Deploy to GitHub Pages
@@ -50,4 +48,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         # This tells the action to deploy the contents of the 'build' folder
         publish_dir: ./build
+        # The branch the action should deploy to.
         publish_branch: gh-pages
