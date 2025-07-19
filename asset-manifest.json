@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ai-steward-dashboard/static/css/main.885ba8ac.css",
-    "main.js": "/ai-steward-dashboard/static/js/main.285456ce.js",
+    "main.js": "/ai-steward-dashboard/static/js/main.f70c3e94.js",
     "index.html": "/ai-steward-dashboard/index.html",
     "main.885ba8ac.css.map": "/ai-steward-dashboard/static/css/main.885ba8ac.css.map",
-    "main.285456ce.js.map": "/ai-steward-dashboard/static/js/main.285456ce.js.map"
+    "main.f70c3e94.js.map": "/ai-steward-dashboard/static/js/main.f70c3e94.js.map"
   },
   "entrypoints": [
     "static/css/main.885ba8ac.css",
-    "static/js/main.285456ce.js"
+    "static/js/main.f70c3e94.js"
   ]
 }
