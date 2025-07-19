@@ -154,7 +154,6 @@ def log_previous_version(url, url_hash, timestamp):
         print(f"  -> Logged old analysis to {dest_path}")
 
     if os.path.exists(old_snapshot_path):
-        # This is the corrected line
         dest_path = os.path.join(LOG_DIR, f"{url_slug}_{log_timestamp}_snapshot.txt")
         shutil.copy(old_snapshot_path, dest_path)
         print(f"  -> Logged old snapshot to {dest_path}")
@@ -195,7 +194,11 @@ def main():
                 "priority": "low"
             }
             save_analysis(url_hash, initial_analysis)
-            current_hashes[url] = {"hash": new_hash, "last_checked": timestamp}
+            current_hashes[url] = {
+                "hash": new_hash, 
+                "last_checked": timestamp,
+                "last_amended": timestamp # Set on initial scan
+            }
 
         elif new_hash != previous_hash:
             print(f"  -> Change detected for {url}. Analyzing...")
@@ -211,14 +214,21 @@ def main():
             save_analysis(url_hash, analysis_result)
             save_snapshot(url_hash, new_content)
             
-            current_hashes[url] = {"hash": new_hash, "last_checked": timestamp}
+            current_hashes[url] = {
+                "hash": new_hash, 
+                "last_checked": timestamp,
+                "last_amended": timestamp # Set on change detection
+            }
             print(f"  -> Analysis complete. Priority: {analysis_result.get('priority', 'N/A')}")
 
         else:
             print(f"  -> No changes detected for {url}.")
-            if isinstance(current_hashes.get(url), str):
-                current_hashes[url] = {"hash": current_hashes[url]}
+            # Ensure the entry is a dictionary and carry over existing data
+            if not isinstance(current_hashes.get(url), dict):
+                 current_hashes[url] = {"hash": current_hashes.get(url)}
+            
             current_hashes[url]["last_checked"] = timestamp
+            # Do not update "last_amended" if no change was detected
 
     save_hashes(current_hashes)
     print("\nUpdate check complete.")
