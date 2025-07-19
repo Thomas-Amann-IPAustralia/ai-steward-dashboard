@@ -1,0 +1,27 @@
+[
+  {
+    "setName": "Digital.gov.au AI Policy",
+    "category": "Australian Government",
+    "urls": [
+      "https://www.digital.gov.au/policy/ai-ethics-framework/ai-ethics-principles",
+      "https://www.digital.gov.au/policy/interim-guidance-government-agencies-use-generative-ai"
+    ]
+  },
+  {
+    "setName": "OpenAI Terms & Policies",
+    "category": "Private Sector",
+    "urls": [
+      "https://openai.com/policies/terms-of-use",
+      "https://openai.com/policies/privacy-policy",
+      "https://openai.com/policies/usage-policies"
+    ]
+  },
+  {
+    "setName": "Google AI Policies",
+    "category": "Private Sector",
+    "urls": [
+        "https://policies.google.com/terms",
+        "https://ai.google/responsibility/principles/"
+    ]
+  }
+]
