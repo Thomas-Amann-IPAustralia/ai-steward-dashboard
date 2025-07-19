@@ -65,51 +65,66 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add analysis/ snapshots/ hashes.json logs/
+        # Add files that are not ignored
+        git add analysis/ snapshots/ hashes.json
+        # Force add the logs directory, which is likely in .gitignore
+        git add -f logs/
         
         if git diff --staged --quiet; then
           echo "No changes to commit."
           echo "changes_detected=false" >> $GITHUB_OUTPUT
         else
+          # Commit the local changes
           git commit -m "Update content snapshots and analysis [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
+          # Pull remote changes and rebase our local commit on top
+          git pull --rebase
+          # Push the rebased changes
           git push
           echo "Changes committed and pushed."
           echo "changes_detected=true" >> $GITHUB_OUTPUT
         fi
 
+    # The following steps will only run if the python script detected changes OR if the workflow was triggered by a push to the frontend code.
     - name: Setup Node.js
+      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       uses: actions/setup-node@v4
       with:
         node-version: '20'
         cache: 'npm'
         
     - name: Install Node.js dependencies
+      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       run: npm ci
 
     - name: Build React app
+      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       run: npm run build
       env:
         CI: true
         GENERATE_SOURCEMAP: false
 
     - name: Copy data files to build directory
+      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       run: |
         echo "Copying data files to build directory..."
         mkdir -p build/analysis build/snapshots build/logs
         cp hashes.json build/
         # Use find to handle cases where directories might be empty
-        find analysis -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/analysis/
-        find snapshots -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/snapshots/
-        find logs -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/logs/
+        find analysis -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/analysis/ || echo "No analysis files to copy"
+        find snapshots -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/snapshots/ || echo "No snapshot files to copy"
+        find logs -mindepth 1 -print0 | xargs -0 -I {} cp -r {} build/logs/ || echo "No log files to copy"
         
     - name: Setup Pages
+      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       uses: actions/configure-pages@v4
       
     - name: Upload artifact
+      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       uses: actions/upload-pages-artifact@v3
       with:
         path: './build'
         
     - name: Deploy to GitHub Pages
+      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       id: deployment
       uses: actions/deploy-pages@v4
