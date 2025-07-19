@@ -1,3 +1,5 @@
+// App.js
+
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './App.css';
@@ -31,6 +33,7 @@ function App() {
           url,
           hash: data[url].hash,
           lastChecked: data[url].last_checked,
+          lastAmended: data[url].last_amended, // <-- Add lastAmended
           // Generate a consistent filename based on the URL's MD5 hash
           filename: md5(url) 
         }));
@@ -148,7 +151,13 @@ function App() {
                 <div className="page-item">
                   <div className="page-url">{page.url}</div>
                   <div className="page-meta">
-                    Last checked: {formatDate(page.lastChecked)}
+                    {/* Updated to show both dates */}
+                    <span>
+                      <strong>Last amended:</strong> {page.lastAmended ? formatDate(page.lastAmended) : 'N/A'}
+                    </span>
+                    <span>
+                      Last checked: {formatDate(page.lastChecked)}
+                    </span>
                   </div>
                 </div>
               </li>
