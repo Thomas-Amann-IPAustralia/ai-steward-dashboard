@@ -36,6 +36,12 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Clean up old logs
+      run: |
+        echo "Deleting logs older than 365 days..."
+        find logs/ -type f -mtime +365 -exec echo "Deleting {}" \; -delete
+        echo "Cleanup complete."
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
