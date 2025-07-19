@@ -33,17 +33,14 @@ def setup_directories():
 def get_content_from_url(url):
     """Fetches and extracts the main text content from a URL."""
     try:
-        # Use a reasonable timeout and headers to mimic a browser.
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
         response = requests.get(url, timeout=20, headers=headers)
-        response.raise_for_status()  # Raises an exception for bad status codes (4xx or 5xx).
+        response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
-        # Find the main body content, which is usually the most relevant part.
         main_content = soup.find('body')
         if main_content:
-            # Extract text, using newline as a separator and stripping whitespace.
             return main_content.get_text(separator='\n', strip=True)
-        return "" # Return empty string if no body is found
+        return ""
     except requests.exceptions.RequestException as e:
         print(f"Error fetching {url}: {e}")
         return None
@@ -64,19 +61,15 @@ def load_hashes():
     return {}
 
 def save_hashes(hashes):
-    """Saves the hashes to the JSON file with indentation."""
+    """Saves the hashes to the JSON file."""
     with open(HASHES_FILE, 'w', encoding='utf-8') as f:
         json.dump(hashes, f, indent=4, ensure_ascii=False)
 
 def get_gemini_analysis(old_content, new_content):
-    """
-    Sends content to the Gemini API for analysis and returns a structured JSON object.
-    """
-    # Configure the Gemini API Key from environment variables.
+    """Sends content to the Gemini API for analysis."""
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         print("Error: GEMINI_API_KEY environment variable not set.")
-        # Return a failure object so the process can continue gracefully.
         return {
             "summary": "Analysis failed: API key not configured.",
             "analysis": "The Gemini API key was not provided, so no analysis could be performed.",
@@ -92,14 +85,10 @@ def get_gemini_analysis(old_content, new_content):
     Your analysis should be neutral, factual, and concise.
 
     Your response MUST be a valid JSON object with four keys: 'summary', 'analysis', 'date_time', and 'priority'.
-    - 'summary': A one-sentence summary of the most significant change (e.g., "The privacy policy was updated to include a new clause on data sharing.").
-    - 'analysis': A detailed, markdown-formatted explanation of what was added, removed, or modified. Use bullet points for clarity.
-    - 'date_time': The current timestamp in ISO 8601 format with a +10:00 timezone offset (e.g., "2025-07-13T19:00:00+10:00").
-    - 'priority': Assign a priority level from the following options: "critical", "high", "medium", or "low".
-      - "critical": For changes with immediate legal, security, or compliance implications (e.g., changes to data sovereignty clauses).
-      - "high": For significant policy changes requiring prompt review.
-      - "medium": For notable changes that are not urgent.
-      - "low": For minor changes like typo fixes, formatting, or clarifications.
+    - 'summary': A one-sentence summary of the most significant change.
+    - 'analysis': A detailed, markdown-formatted explanation of what was added, removed, or modified.
+    - 'date_time': The current timestamp in ISO 8601 format with a +10:00 timezone offset.
+    - 'priority': Assign a priority level: "critical", "high", "medium", or "low".
 
     OLD CONTENT:
     ---
@@ -113,12 +102,10 @@ def get_gemini_analysis(old_content, new_content):
     """
     try:
         response = model.generate_content(prompt)
-        # Clean the response text to ensure it's valid JSON.
         cleaned_text = response.text.strip().replace('```json', '').replace('```', '')
         return json.loads(cleaned_text)
     except Exception as e:
         print(f"Error calling Gemini API or parsing JSON: {e}")
-        # Provide a fallback error object in case of API or parsing failure.
         return {
             "summary": "Analysis failed.",
             "analysis": f"Could not determine the difference due to an API or parsing error: {e}",
@@ -138,7 +125,7 @@ def load_snapshot(url_hash):
     if os.path.exists(snapshot_path):
         with open(snapshot_path, 'r', encoding='utf-8') as f:
             return f.read()
-    return "" # Return empty string if no snapshot exists
+    return ""
 
 def save_analysis(url_hash, analysis_data):
     """Saves the analysis JSON object to a file."""
@@ -163,14 +150,10 @@ def log_previous_version(url_hash, timestamp):
         shutil.copy(old_snapshot_path, dest_path)
         print(f"  -> Logged old snapshot to {dest_path}")
 
-
 # --- Main Logic ---
 
 def main():
-    """
-    Main function to check websites for updates, analyze changes,
-    and save the results.
-    """
+    """Main function to check websites for updates, analyze changes, and save results."""
     setup_directories()
     previous_hashes = load_hashes()
     current_hashes = previous_hashes.copy()
@@ -191,10 +174,7 @@ def main():
         new_hash = generate_md5(new_content)
         previous_entry = previous_hashes.get(url)
 
-        if isinstance(previous_entry, dict):
-            previous_hash = previous_entry.get("hash")
-        else:
-            previous_hash = previous_entry
+        previous_hash = previous_entry.get("hash") if isinstance(previous_entry, dict) else previous_entry
 
         if previous_hash is None:
             print(f"  -> First scan for {url}. Saving initial snapshot.")
@@ -211,11 +191,13 @@ def main():
         elif new_hash != previous_hash:
             print(f"  -> Change detected for {url}. Analyzing...")
             
-            # Log the old version before overwriting
-            log_previous_version(url_hash, previous_entry.get("last_checked"))
+            # **FIX**: Safely check for a dict and a timestamp before trying to log.
+            if isinstance(previous_entry, dict) and previous_entry.get("last_checked"):
+                log_previous_version(url_hash, previous_entry.get("last_checked"))
+            else:
+                print("  -> Could not log previous version (no last_checked timestamp found).")
 
             old_content = load_snapshot(url_hash)
-            
             analysis_result = get_gemini_analysis(old_content, new_content)
             
             save_analysis(url_hash, analysis_result)
@@ -226,15 +208,12 @@ def main():
 
         else:
             print(f"  -> No changes detected for {url}.")
-            
             if isinstance(current_hashes.get(url), str):
                 current_hashes[url] = {"hash": current_hashes[url]}
-
             current_hashes[url]["last_checked"] = timestamp
 
     save_hashes(current_hashes)
     print("\nUpdate check complete.")
 
-# --- Script Execution ---
 if __name__ == "__main__":
     main()
