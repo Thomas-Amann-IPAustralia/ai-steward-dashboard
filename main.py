@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import google.generativeai as genai
 from datetime import datetime, timezone, timedelta
 import sys
+import shutil
 
 # --- Configuration ---
 # List of URLs to monitor for changes.
@@ -145,6 +146,24 @@ def save_analysis(url_hash, analysis_data):
     with open(analysis_path, 'w', encoding='utf-8') as f:
         json.dump(analysis_data, f, indent=4, ensure_ascii=False)
 
+def log_previous_version(url_hash, timestamp):
+    """Copies the old analysis and snapshot to the logs directory."""
+    log_timestamp = datetime.fromisoformat(timestamp).strftime('%Y%m%d_%H%M%S')
+    
+    old_analysis_path = os.path.join(ANALYSIS_DIR, f"{url_hash}.json")
+    old_snapshot_path = os.path.join(SNAPSHOTS_DIR, f"{url_hash}.txt")
+
+    if os.path.exists(old_analysis_path):
+        dest_path = os.path.join(LOG_DIR, f"{url_hash}_{log_timestamp}_analysis.json")
+        shutil.copy(old_analysis_path, dest_path)
+        print(f"  -> Logged old analysis to {dest_path}")
+
+    if os.path.exists(old_snapshot_path):
+        dest_path = os.path.join(LOG_DIR, f"{url_hash}_{log_timestamp}_snapshot.txt")
+        shutil.copy(old_snapshot_path, dest_path)
+        print(f"  -> Logged old snapshot to {dest_path}")
+
+
 # --- Main Logic ---
 
 def main():
@@ -156,7 +175,6 @@ def main():
     previous_hashes = load_hashes()
     current_hashes = previous_hashes.copy()
     
-    # SUGGESTION IMPLEMENTED: Moved timezone object creation out of the loop.
     aest_tz = timezone(timedelta(hours=10))
 
     for url in URLS_TO_CHECK:
@@ -173,14 +191,12 @@ def main():
         new_hash = generate_md5(new_content)
         previous_entry = previous_hashes.get(url)
 
-        # SUGGESTION IMPLEMENTED: Handle both old (string) and new (dict) hash formats.
         if isinstance(previous_entry, dict):
             previous_hash = previous_entry.get("hash")
         else:
-            previous_hash = previous_entry  # Handles string or None
+            previous_hash = previous_entry
 
         if previous_hash is None:
-            # This is the first time we've seen this URL.
             print(f"  -> First scan for {url}. Saving initial snapshot.")
             save_snapshot(url_hash, new_content)
             initial_analysis = {
@@ -193,37 +209,32 @@ def main():
             current_hashes[url] = {"hash": new_hash, "last_checked": timestamp}
 
         elif new_hash != previous_hash:
-            # The content has changed.
             print(f"  -> Change detected for {url}. Analyzing...")
+            
+            # Log the old version before overwriting
+            log_previous_version(url_hash, previous_entry.get("last_checked"))
+
             old_content = load_snapshot(url_hash)
             
-            # Get analysis from Gemini
             analysis_result = get_gemini_analysis(old_content, new_content)
             
-            # Save the new analysis and snapshot
             save_analysis(url_hash, analysis_result)
             save_snapshot(url_hash, new_content)
             
-            # Update the hash and timestamp
             current_hashes[url] = {"hash": new_hash, "last_checked": timestamp}
             print(f"  -> Analysis complete. Priority: {analysis_result.get('priority', 'N/A')}")
 
         else:
-            # No change detected.
             print(f"  -> No changes detected for {url}.")
             
-            # SUGGESTION IMPLEMENTED: Gracefully upgrade old string format to new dict format.
             if isinstance(current_hashes.get(url), str):
                 current_hashes[url] = {"hash": current_hashes[url]}
 
-            # Just update the 'last_checked' timestamp.
             current_hashes[url]["last_checked"] = timestamp
 
-    # Save the updated hashes file at the end.
     save_hashes(current_hashes)
     print("\nUpdate check complete.")
 
 # --- Script Execution ---
 if __name__ == "__main__":
-    # This ensures the main function runs when the script is executed.
     main()
