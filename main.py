@@ -154,7 +154,8 @@ def log_previous_version(url, url_hash, timestamp):
         print(f"  -> Logged old analysis to {dest_path}")
 
     if os.path.exists(old_snapshot_path):
-        dest_path = os.path.-join(LOG_DIR, f"{url_slug}_{log_timestamp}_snapshot.txt")
+        # This is the corrected line
+        dest_path = os.path.join(LOG_DIR, f"{url_slug}_{log_timestamp}_snapshot.txt")
         shutil.copy(old_snapshot_path, dest_path)
         print(f"  -> Logged old snapshot to {dest_path}")
 
