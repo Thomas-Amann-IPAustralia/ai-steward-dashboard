@@ -9,7 +9,10 @@ import sys
 import shutil
 import re
 import time
-from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import WebDriverException, TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 # --- Configuration ---
 POLICY_SETS_FILE = 'policy_sets.json'
@@ -33,14 +36,35 @@ def slugify_set_name(set_name):
 
 def get_smarter_content_from_url(url, driver):
     """
-    Fetches content from a URL using a Selenium-driven undetected-chromedriver instance.
+    Fetches content from a URL using a Selenium-driven undetected-chromedriver instance,
+    with explicit waits and better error checking.
     """
     try:
         print(f"    -> Navigating to {url}")
         driver.get(url)
-        # Wait for the page and any dynamic/anti-bot scripts to load.
-        time.sleep(8)
+        
+        # Use an explicit wait to ensure the page's body is loaded before proceeding.
+        # This is more reliable than a fixed sleep time.
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.TAG_NAME, "body"))
+        )
+        
+        # A short additional sleep can help for pages that load content dynamically after the body is present.
+        time.sleep(5)
+
         html = driver.page_source
+        
+        # Check for common blocking/error messages in the raw HTML.
+        failure_signatures = [
+            "Enable JavaScript and cookies to continue",
+            "Waiting for openai.com to respond",
+            "ERR_HTTP2_PROTOCOL_ERROR",
+            "This site can’t be reached"
+        ]
+        if any(sig in html for sig in failure_signatures):
+            print(f"    -> Failed: Detected block page or connection error for {url}")
+            return None
+
         soup = BeautifulSoup(html, 'html.parser')
         
         content_selectors = ['main', 'article', 'div[role="main"]', '#content', '#main-content', '.content', '.post-content']
@@ -56,6 +80,9 @@ def get_smarter_content_from_url(url, driver):
         if main_content:
             return main_content.get_text(separator='\n', strip=True)
         return ""
+    except TimeoutException:
+        print(f"    -> Failed: Timed out waiting for page content to load at {url}")
+        return None
     except WebDriverException as e:
         print(f"Error fetching {url} with Selenium: {e}")
         return None
@@ -151,12 +178,15 @@ def main():
     setup_directories()
     driver = None
     try:
-        print("Initializing WebDriver...")
+        print("Initializing WebDriver with enhanced options...")
         options = uc.ChromeOptions()
-        options.add_argument('--headless')
+        options.add_argument('--headless=new') # Recommended headless mode
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
-        # Removed the version_main argument to allow auto-detection
+        options.add_argument('--disable-extensions')
+        options.add_argument('--disable-gpu')
+        options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
+        
         driver = uc.Chrome(options=options) 
         print("WebDriver initialized successfully.")
 
