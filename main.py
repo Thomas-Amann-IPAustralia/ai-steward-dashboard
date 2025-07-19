@@ -56,12 +56,10 @@ def get_smarter_content_from_url(url):
         for selector in content_selectors:
             main_content = soup.select_one(selector)
             if main_content:
-                # print(f"  -> Found content with selector: '{selector}'")
                 break
         
         # Fallback to the body if no specific content block is found.
         if not main_content:
-            # print("  -> No specific content block found, falling back to <body>.")
             main_content = soup.find('body')
 
         if main_content:
@@ -106,26 +104,26 @@ def get_gemini_analysis(set_name, old_content, new_content):
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel('gemini-1.5-flash')
 
-    prompt = f"""
-    You are an AI assistant for Australian public servants. Your role is to analyze changes between an OLD and NEW version of a policy document's text content. The document is named "{set_name}".
-    The content has been aggregated from multiple web pages. Your analysis should be neutral, factual, and concise.
+    # Corrected the closing """ to be on a new, unindented line for robustness.
+    prompt = f"""You are an AI assistant for Australian public servants. Your role is to analyze changes between an OLD and NEW version of a policy document's text content. The document is named "{set_name}".
+The content has been aggregated from multiple web pages. Your analysis should be neutral, factual, and concise.
 
-    Your response MUST be a valid JSON object with four keys: 'summary', 'analysis', 'date_time', and 'priority'.
-    - 'summary': A one-sentence summary of the most significant change.
-    - 'analysis': A detailed, markdown-formatted explanation of what was added, removed, or modified. Focus on substantive changes.
-    - 'date_time': The current timestamp in ISO 8601 format with a +10:00 timezone offset.
-    - 'priority': Assign a priority level based on the likely impact to a government user: "critical", "high", "medium", or "low". (e.g., changes to liability, data usage, or core terms are high/critical).
+Your response MUST be a valid JSON object with four keys: 'summary', 'analysis', 'date_time', and 'priority'.
+- 'summary': A one-sentence summary of the most significant change.
+- 'analysis': A detailed, markdown-formatted explanation of what was added, removed, or modified. Focus on substantive changes.
+- 'date_time': The current timestamp in ISO 8601 format with a +10:00 timezone offset.
+- 'priority': Assign a priority level based on the likely impact to a government user: "critical", "high", "medium", or "low". (e.g., changes to liability, data usage, or core terms are high/critical).
 
-    OLD CONTENT:
-    ---
-    {old_content}
-    ---
+OLD CONTENT:
+---
+{old_content}
+---
 
-    NEW CONTENT:
-    ---
-    {new_content}
-    ---
-
+NEW CONTENT:
+---
+{new_content}
+---
+"""
     try:
         response = model.generate_content(prompt)
         # A robust way to clean potential markdown formatting from the response
