@@ -4,13 +4,17 @@ name: Check for Website Updates
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  # Runs on a schedule (every day at midnight UTC for more timely updates)
+  # Runs on a schedule (every day at midnight UTC)
   schedule:
     - cron: '0 0 * * *'
 
 jobs:
   check-updates:
     runs-on: ubuntu-latest
+
+    # IMPORTANT: Add permissions for the job to be able to write to the repo.
+    permissions:
+      contents: write
 
     steps:
     - name: Check out repository
@@ -24,7 +28,6 @@ jobs:
       with:
         python-version: '3.11'
 
-    # ADDED: Caching for pip dependencies to speed up future runs
     - name: Cache pip dependencies
       uses: actions/cache@v3
       with:
@@ -41,16 +44,19 @@ jobs:
     - name: Run update script
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      # The script is now non-interactive and safe to run in an action.
       run: python main.py
 
     - name: Commit and push if changed
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add -A
-        # This checks if there are any changes to commit
+        # Only add the specific files/directories that should be updated
+        git add analysis/ snapshots/ hashes.json
+        
+        # Check if there are any staged changes
         if git diff --staged --quiet; then
-          echo "No changes to commit"
+          echo "No changes to commit."
         else
           git commit -m "Update content snapshots and analysis [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
           git push
