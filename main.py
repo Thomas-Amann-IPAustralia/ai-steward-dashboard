@@ -156,7 +156,8 @@ def main():
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
-        driver = uc.Chrome(options=options, version_main=126) # Pinning version can help stability
+        # Removed the version_main argument to allow auto-detection
+        driver = uc.Chrome(options=options) 
         print("WebDriver initialized successfully.")
 
         policy_sets = load_json_file(POLICY_SETS_FILE)
