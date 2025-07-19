@@ -1,124 +1,118 @@
-// App.js
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './App.css';
-import md5 from 'md5';
 
 function App() {
-  const [pages, setPages] = useState([]);
-  const [selectedPage, setSelectedPage] = useState(null);
+  const [policySets, setPolicySets] = useState([]);
+  const [selectedSet, setSelectedSet] = useState(null);
   const [analysis, setAnalysis] = useState(null);
   const [snapshot, setSnapshot] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch the list of URLs from the hashes.json file in the public folder.
-  // This runs once when the component mounts.
+  // Fetch the list of policy sets from hashes.json
   useEffect(() => {
-    const fetchPages = async () => {
+    const fetchPolicySets = async () => {
       setLoading(true);
       setError(null);
       try {
-        // Fetch from a relative path. On GitHub Pages, this will be relative to the domain root.
-        const response = await fetch(`/ai-steward-dashboard/hashes.json`);
-        
+        // Using a cache-busting query parameter to ensure we get the latest version
+        const response = await fetch(`/ai-steward-dashboard/hashes.json?v=${new Date().getTime()}`);
         if (!response.ok) {
-          throw new Error(`Failed to load monitored pages. Status: ${response.status}`);
+          throw new Error(`Failed to load monitored policies. Status: ${response.status}`);
         }
-
         const data = await response.json();
-        
-        const pageList = Object.keys(data).map(url => ({
-          url,
-          hash: data[url].hash,
-          lastChecked: data[url].last_checked,
-          lastAmended: data[url].last_amended, // <-- Add lastAmended
-          // Generate a consistent filename based on the URL's MD5 hash
-          filename: md5(url) 
+        const setList = Object.keys(data).map(setName => ({
+          setName,
+          ...data[setName]
         }));
-        
-        setPages(pageList);
+        setPolicySets(setList);
       } catch (err) {
         console.error("Failed to load hashes.json:", err);
-        setError(err.message);
+        setError("Could not load the list of monitored policies. There might be an issue with the backend script or deployment.");
       } finally {
         setLoading(false);
       }
     };
+    fetchPolicySets();
+  }, []);
 
-    fetchPages();
-  }, []); // Empty dependency array means this runs only once.
+  // Group policy sets by category for rendering
+  const groupedSets = useMemo(() => {
+    return policySets.reduce((acc, currentSet) => {
+      const category = currentSet.category || 'Uncategorized';
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(currentSet);
+      return acc;
+    }, {});
+  }, [policySets]);
 
-  // This function is called when a user clicks on a page in the sidebar.
-  const handleSelectPage = async (page) => {
-    setSelectedPage(page);
+  // Handle selecting a policy set from the sidebar
+  const handleSelectSet = async (policySet) => {
+    if (selectedSet?.setName === policySet.setName) return;
+
+    setSelectedSet(policySet);
     setLoading(true);
     setAnalysis(null);
     setSnapshot('');
     setError(null);
 
     try {
-      // Fetch analysis and snapshot data for the selected page in parallel.
+      const cacheBuster = `?v=${new Date().getTime()}`;
       const [analysisResponse, snapshotResponse] = await Promise.all([
-        fetch(`/ai-steward-dashboard/analysis/${page.filename}.json`),
-        fetch(`/ai-steward-dashboard/snapshots/${page.filename}.txt`)
+        fetch(`/ai-steward-dashboard/analysis/${policySet.file_id}.json${cacheBuster}`),
+        fetch(`/ai-steward-dashboard/snapshots/${policySet.file_id}.txt${cacheBuster}`)
       ]);
 
       if (analysisResponse.ok) {
-        const analysisData = await analysisResponse.json();
-        setAnalysis(analysisData);
+        setAnalysis(await analysisResponse.json());
       } else {
-        // Provide a default message if analysis is not found.
         setAnalysis({ 
-          summary: "No analysis found.", 
-          analysis: "This might be the first time this page has been scanned, or an error occurred.",
+          summary: "No analysis found for this policy set.", 
+          analysis: "This could be because it's the first time this set has been scanned or an error occurred during analysis.",
           date_time: "Unknown",
           priority: "low"
         });
       }
 
       if (snapshotResponse.ok) {
-        const snapshotData = await snapshotResponse.text();
-        setSnapshot(snapshotData);
+        setSnapshot(await snapshotResponse.text());
       } else {
-        setSnapshot("Could not load the content snapshot.");
+        setSnapshot("Could not load the content snapshot for this policy set.");
       }
       
     } catch (err) {
-      console.error("Error loading page data:", err);
-      setError(`Error loading data for ${page.url}: ${err.message}`);
+      console.error("Error loading policy set data:", err);
+      setError(`An error occurred while loading data for ${policySet.setName}.`);
     } finally {
       setLoading(false);
     }
   };
 
-  // Helper function to format date strings nicely for an Australian audience.
+  // Helper to format dates for an Australian audience
   const formatDate = (dateString) => {
     if (!dateString || dateString === 'Unknown') return 'Unknown';
     try {
       return new Date(dateString).toLocaleString('en-AU', {
         timeZone: 'Australia/Sydney',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
       });
     } catch {
-      // Fallback for invalid date formats.
       return dateString;
     }
   };
 
-  // Determines the color of the priority badge based on the priority level.
+  // Helper to get priority color
   const getPriorityColor = (priority) => {
     switch (priority?.toLowerCase()) {
-      case 'critical': return '#dc2626'; // Red
-      case 'high': return '#ea580c';     // Orange
-      case 'medium': return '#d97706';   // Amber
-      case 'low': return '#16a34a';      // Green
-      default: return '#6b7280';         // Gray
+      case 'critical': return '#dc2626';
+      case 'high': return '#ea580c';
+      case 'medium': return '#d97706';
+      case 'low': return '#16a34a';
+      default: return '#6b7280';
     }
   };
 
@@ -131,96 +125,86 @@ function App() {
       
       <div className="container">
         <nav className="sidebar">
-          <h2>Monitored Pages ({pages.length})</h2>
+          {loading && policySets.length === 0 && <div className="loading-message">Loading policies...</div>}
+          {error && policySets.length === 0 && <div className="error-message">{error}</div>}
           
-          {loading && pages.length === 0 && (
-            <div className="loading-message">Loading monitored pages...</div>
-          )}
-
-          {error && pages.length === 0 && (
-            <div className="error-message">{error}</div>
-          )}
-          
-          <ul>
-            {pages.map(page => (
-              <li
-                key={page.url}
-                className={selectedPage?.url === page.url ? 'active' : ''}
-                onClick={() => handleSelectPage(page)}
-              >
-                <div className="page-item">
-                  <div className="page-url">{page.url}</div>
-                  <div className="page-meta">
-                    {/* Updated to show both dates */}
-                    <span>
-                      <strong>Last amended:</strong> {page.lastAmended ? formatDate(page.lastAmended) : 'N/A'}
-                    </span>
-                    <span>
-                      Last checked: {formatDate(page.lastChecked)}
-                    </span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+          {Object.keys(groupedSets).sort().map(category => (
+            <div key={category} className="category-group">
+              <h2>{category}</h2>
+              <ul>
+                {groupedSets[category].map(policySet => (
+                  <li
+                    key={policySet.setName}
+                    className={selectedSet?.setName === policySet.setName ? 'active' : ''}
+                    onClick={() => handleSelectSet(policySet)}
+                  >
+                    <div className="page-item">
+                      <div className="page-title">
+                        <img 
+                          src={`https://www.google.com/s2/favicons?sz=16&domain_url=${policySet.urls[0]}`} 
+                          alt="favicon" 
+                          className="favicon"
+                          onError={(e) => { e.target.style.display = 'none'; }}
+                        />
+                        <span>{policySet.setName}</span>
+                      </div>
+                      <div className="page-meta">
+                        <span><strong>Last amended:</strong> {policySet.lastAmended ? formatDate(policySet.lastAmended) : 'N/A'}</span>
+                        <span>Last checked: {formatDate(policySet.lastChecked)}</span>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </nav>
         
         <main className="content">
-          {loading && (
-            <div className="loading-message">Loading page data...</div>
-          )}
+          {loading && <div className="loading-message">Loading page data...</div>}
+          {error && !loading && <div className="error-message">{error}</div>}
           
-          {error && (
-            <div className="error-message">{error}</div>
-          )}
-          
-          {!selectedPage && !loading && !error && (
+          {!selectedSet && !loading && !error && (
             <div className="placeholder">
               <h2>Welcome to the AI Steward Dashboard</h2>
-              <p>Select a page from the left sidebar to view its latest analysis and content snapshot.</p>
+              <p>Select a policy set from the sidebar to view its latest analysis and content snapshot.</p>
             </div>
           )}
           
-          {selectedPage && !loading && !error && (
+          {selectedSet && !loading && !error && (
             <div>
-              <h2>
-                Analysis for{' '}
-                <a href={selectedPage.url} target="_blank" rel="noopener noreferrer">
-                  {selectedPage.url}
-                </a>
-              </h2>
+              <div className="content-header">
+                <h2>Analysis for: {selectedSet.setName}</h2>
+                <div className="source-urls">
+                  <strong>Source URL(s):</strong>
+                  <ul>
+                    {selectedSet.urls.map(url => (
+                      <li key={url}><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
               
               {analysis && (
                 <div className="analysis-card">
                   <div className="analysis-header">
                     <h3>Analysis Summary</h3>
                     <div className="analysis-meta">
-                      <span 
-                        className="priority-badge"
-                        style={{ backgroundColor: getPriorityColor(analysis.priority) }}
-                      >
+                      <span className="priority-badge" style={{ backgroundColor: getPriorityColor(analysis.priority) }}>
                         {analysis.priority?.toUpperCase() || 'UNKNOWN'}
                       </span>
-                      <span className="analysis-date">
-                        {formatDate(analysis.date_time)}
-                      </span>
+                      <span className="analysis-date">{formatDate(analysis.date_time)}</span>
                     </div>
                   </div>
-                  
-                  <div className="analysis-summary">
-                    <strong>{analysis.summary}</strong>
-                  </div>
-                  
+                  <div className="analysis-summary"><strong>{analysis.summary}</strong></div>
                   <h4>Detailed Analysis</h4>
-                  <div className="analysis-content">
-                    <ReactMarkdown>{analysis.analysis}</ReactMarkdown>
-                  </div>
+                  <div className="analysis-content"><ReactMarkdown>{analysis.analysis}</ReactMarkdown></div>
                 </div>
               )}
               
               <hr />
               
-              <h3>Current Content Snapshot</h3>
+              <h3>Aggregated Content Snapshot</h3>
               <div className="snapshot-container">
                 <pre className="snapshot-content">{snapshot}</pre>
               </div>
