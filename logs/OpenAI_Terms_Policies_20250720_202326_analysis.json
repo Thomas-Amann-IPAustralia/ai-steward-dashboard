@@ -1,0 +1,6 @@
+{
+    "summary": "The most significant change is the update of the PEM encoded certificate chain in all sections of the OpenAI Terms & Policies document.",
+    "analysis": "The provided text shows updates to the `OpenAI Terms & Policies` document.  The core change across all sections (Terms of Use, Privacy Policy, and Usage Policies) is the replacement of the `PEM encoded chain` with a new certificate. \n\nSpecifically:\n\n* **OLD PEM encoded chain:**  The old certificate data is significantly different from the new one.  The change indicates a rotation of the SSL/TLS certificate used to secure the `openai.com` domain. This is a standard security practice.  The old certificate is replaced completely in all three sections of the document.\n\n* **NEW PEM encoded chain:** A new PEM encoded certificate chain was added, represented by a different string of characters. This new certificate is identical across all three sections.\n\nNo other changes were observed in the provided text.  All other elements such as the security warning, the issuer, subject, expiration and current date remain the same.",
+    "date_time": "2024-07-26T10:30:00+10:00",
+    "priority": "medium"
+}
