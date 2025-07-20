@@ -12,27 +12,15 @@
         "last_checked": "2025-07-20T20:38:55.223428+10:00",
         "last_amended": "2025-07-20T20:38:55.223428+10:00"
     },
-    "OpenAI Terms & Policies": {
-        "hash": "12cdaa6c817dac55cddb8f5f3fcdb4f5",
-        "category": "Private Sector",
-        "urls": [
-            "https://openai.com/policies/terms-of-use",
-            "https://openai.com/policies/privacy-policy",
-            "https://openai.com/policies/usage-policies"
-        ],
-        "file_id": "OpenAI_Terms_Policies",
-        "last_checked": "2025-07-20T20:39:37.997489+10:00",
-        "last_amended": "2025-07-20T20:39:37.997489+10:00"
-    },
     "Google AI Policies": {
-        "hash": "1c87f016be9d50c3ac23345806f9b204",
+        "hash": "37f9f3eff1507ee53106c2562eb2b305",
         "category": "Private Sector",
         "urls": [
             "https://policies.google.com/terms",
             "https://ai.google/responsibility/principles/"
         ],
         "file_id": "Google_AI_Policies",
-        "last_checked": "2025-07-21T00:44:56.442122+10:00",
-        "last_amended": "2025-07-20T23:23:46.926574+10:00"
+        "last_checked": "2025-07-21T00:49:17.693938+10:00",
+        "last_amended": "2025-07-21T00:49:17.693938+10:00"
     }
 }

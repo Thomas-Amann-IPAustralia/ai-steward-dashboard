@@ -1,6 +1,6 @@
 {
-    "summary": "No changes detected between the old and new versions of the Google AI Principles document.  Both versions present the same text regarding Google's AI principles, their application, and related resources.",
-    "analysis": "A direct comparison of the provided text shows no substantive differences. The content, structure, and formatting remain identical.  This suggests either no update has been made, or the change is not reflected in the provided text snippets.",
-    "date_time": "2025-07-20T23:23:48.699735+10:00",
-    "priority": "low"
+    "summary": "The Google AI Policies document has been replaced with Google's Terms of Service.  The old document outlined Google's AI Principles focusing on bold innovation, responsible development and deployment, and collaborative progress. The new document is a comprehensive legal agreement covering user responsibilities, content usage, intellectual property, dispute resolution, and more.  It includes a Generative AI Prohibited Use Policy, indicating a shift towards addressing the specific challenges of generative AI technologies.  There is no direct replacement for the detailed AI principles in the new terms of service.",
+    "analysis": "The change represents a shift from a high-level statement of ethical AI principles to a legally binding contract defining user rights and responsibilities within Google's service ecosystem. While the old document focused on aspirational goals for AI development, the new Terms of Service emphasizes the legal framework for the use of Google's services, including those incorporating AI.  The inclusion of a Generative AI Prohibited Use Policy suggests a recognition of the specific risks and challenges posed by generative AI technologies.  The absence of a dedicated section on AI ethics within the new document indicates a potential need for a separate policy document outlining responsible AI practices.",
+    "date_time": "2025-07-21T00:49:20.563339+10:00",
+    "priority": "High"
 }
