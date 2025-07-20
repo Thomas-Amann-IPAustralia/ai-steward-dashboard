@@ -1,8 +1,7 @@
 import os
 import json
 import hashlib
-from seleniumwire.undetected_chromedriver import Chrome as uc_Chrome
-from seleniumwire.undetected_chromedriver import ChromeOptions as uc_ChromeOptions
+import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
 import google.generativeai as genai
 from datetime import datetime, timezone, timedelta
@@ -10,6 +9,7 @@ import sys
 import shutil
 import re
 import time
+import zipfile
 from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -37,18 +37,16 @@ def slugify_set_name(set_name):
 
 def get_smarter_content_from_url(url, driver, driver_type="Direct"):
     """
-    Fetches content from a URL using a Selenium-driven undetected-chromedriver instance,
-    with explicit waits and better error checking.
+    Fetches content from a URL using a Selenium-driven undetected-chromedriver instance.
     """
     try:
         print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
-        # Increased wait time for very complex sites like OpenAI
         WebDriverWait(driver, 45).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
         time.sleep(10)
         html = driver.page_source
         
-        failure_signatures = ["Enable JavaScript and cookies to continue", "Waiting for openai.com to respond", "ERR_HTTP2_PROTOCOL_ERROR", "This site can’t be reached", "Checking if the site connection is secure", "net::ERR_CERT_AUTHORITY_INVALID"]
+        failure_signatures = ["Enable JavaScript and cookies to continue", "This site can’t be reached", "Checking if the site connection is secure"]
         if any(sig in html for sig in failure_signatures):
             print(f"    -> [{driver_type}] Block page or error detected.")
             return None
@@ -115,29 +113,84 @@ def log_previous_version(set_name, file_id, timestamp):
     if os.path.exists(old_snapshot_path): shutil.copy(old_snapshot_path, os.path.join(LOG_DIR, f"{set_name}_{log_timestamp}_snapshot.txt"))
 
 def initialize_driver(with_proxy=False):
-    selenium_wire_options = {}
-    if with_proxy:
-        proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
-        if all([proxy_host, proxy_port, proxy_user, proxy_pass]):
-            print("    -> Configuring WebDriver with proxy.")
-            selenium_wire_options['proxy'] = {'http': f'http://{proxy_user}:{proxy_pass}@{proxy_host}:{proxy_port}', 'https': f'https://{proxy_user}:{proxy_pass}@{proxy_host}:{proxy_port}'}
-        else:
-            print("    -> Proxy requested but credentials not found.")
-            return None
-
-    chrome_options = uc_ChromeOptions()
+    """Initializes a WebDriver, creating and loading a proxy extension if requested."""
+    chrome_options = uc.ChromeOptions()
     chrome_options.add_argument('--headless=new')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--ignore-certificate-errors')
-    # Add more stealth options
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--window-size=1920,1080')
     chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
+
+    if with_proxy:
+        proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
+        if all([proxy_host, proxy_port, proxy_user, proxy_pass]):
+            print("    -> Creating and loading proxy authentication extension.")
+            
+            manifest_json = """
+            {
+                "version": "1.0.0",
+                "manifest_version": 2,
+                "name": "Chrome Proxy",
+                "permissions": [
+                    "proxy",
+                    "tabs",
+                    "unlimitedStorage",
+                    "storage",
+                    "<all_urls>",
+                    "webRequest",
+                    "webRequestBlocking"
+                ],
+                "background": {
+                    "scripts": ["background.js"]
+                },
+                "minimum_chrome_version":"22.0.0"
+            }
+            """
+
+            background_js = f"""
+            var config = {{
+                    mode: "fixed_servers",
+                    rules: {{
+                      singleProxy: {{
+                        scheme: "http",
+                        host: "{proxy_host}",
+                        port: parseInt({proxy_port})
+                      }},
+                      bypassList: ["localhost"]
+                    }}
+                  }};
+
+            chrome.proxy.settings.set({{value: config, scope: "regular"}}, function() {{}});
+
+            function callbackFn(details) {{
+                return {{
+                    authCredentials: {{
+                        username: "{proxy_user}",
+                        password: "{proxy_pass}"
+                    }}
+                }};
+            }}
+
+            chrome.webRequest.onAuthRequired.addListener(
+                        callbackFn,
+                        {{urls: ["<all_urls>"]}},
+                        ['blocking']
+            );
+            """
+            
+            plugin_file = 'proxy_auth_plugin.zip'
+            with zipfile.ZipFile(plugin_file, 'w') as zp:
+                zp.writestr("manifest.json", manifest_json)
+                zp.writestr("background.js", background_js)
+            chrome_options.add_extension(plugin_file)
+        else:
+            print("    -> Proxy requested but credentials not found.")
+            return None
     
     try:
-        driver = uc_Chrome(options=chrome_options, seleniumwire_options=selenium_wire_options)
+        driver = uc.Chrome(options=chrome_options)
         return driver
     except Exception as e:
         print(f"    -> Failed to initialize WebDriver: {e}")
@@ -168,18 +221,15 @@ def main():
             for url in policy_set["urls"]:
                 content = None
                 
-                # Logic to decide which driver to use and handle fallbacks
                 if policy_set.get("force_proxy"):
                     if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                    if driver_proxy:
-                        content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
+                    if driver_proxy: content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
                 else:
                     content = get_smarter_content_from_url(url, driver_direct, "Direct")
                     if content is None:
                         print(f"  -> Direct failed. Retrying with proxy...")
                         if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                        if driver_proxy:
-                            content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
+                        if driver_proxy: content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
 
                 if content:
                     aggregated_content.append(f"--- Content from {url} ---\n\n{content}")
