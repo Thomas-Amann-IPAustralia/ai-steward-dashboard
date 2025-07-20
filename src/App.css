@@ -47,18 +47,38 @@ body {
   padding: 1rem 2rem;
   box-shadow: 0 2px 4px var(--shadow-color);
   z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.App-header h1 {
+.header-content h1 {
   margin: 0;
   font-size: 1.75rem;
 }
 
-.App-header p {
+.header-content p {
   margin: 0.25rem 0 0;
   opacity: 0.9;
   font-size: 0.9rem;
 }
+
+.about-button {
+  background-color: #ffffff;
+  color: var(--primary-accent);
+  border: 1px solid var(--primary-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.about-button:hover {
+  background-color: var(--light-accent);
+}
+
 
 /* --- Sidebar Navigation --- */
 .sidebar {
@@ -336,10 +356,86 @@ hr {
   margin: 2rem 0;
 }
 
+/* --- Modal Styles --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--heading-color);
+}
+
+.modal-content h3 {
+    color: var(--primary-accent);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.modal-content p, .modal-content li {
+    line-height: 1.7;
+}
+
+.modal-content ul {
+    padding-left: 20px;
+}
+
+.modal-content code {
+  background-color: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #aaa;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close-button:hover {
+    color: #333;
+}
+
+
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+  }
+  
+  .App-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   .sidebar {
