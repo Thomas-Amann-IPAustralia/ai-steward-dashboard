@@ -42,9 +42,9 @@ def get_content_with_selenium(url, driver, driver_type="Direct"):
         time.sleep(10)
         html = driver.page_source
         
-        failure_signatures = ["Enable JavaScript and cookies to continue", "This site can’t be reached", "Checking if the site connection is secure"]
+        failure_signatures = ["Enable JavaScript and cookies to continue", "This site can’t be reached", "Checking if the site connection is secure", "net::ERR_CERT_AUTHORITY_INVALID"]
         if any(sig in html for sig in failure_signatures):
-            print(f"    -> [{driver_type}] Block page or error detected.")
+            print(f"    -> [{driver_type}] Block page or certificate error detected.")
             return None
 
         soup = BeautifulSoup(html, 'html.parser')
@@ -108,6 +108,8 @@ def initialize_driver(with_proxy=False):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    # This is the key change: Allow insecure connections from localhost, which is how the proxy extension communicates.
+    chrome_options.add_argument('--allow-insecure-localhost')
 
     if with_proxy:
         proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
