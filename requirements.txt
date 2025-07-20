@@ -1,5 +1,6 @@
 requests
 beautifulsoup4
 google-generativeai
-selenium
+# Upgrading selenium to a modern version that supports wss connections
+selenium>=4.15.0
 undetected-chromedriver
