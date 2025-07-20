@@ -9,8 +9,7 @@ import sys
 import shutil
 import re
 import time
-# We use seleniumwire's webdriver to connect to BrightData
-from seleniumwire import webdriver
+import zipfile
 from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -40,7 +39,7 @@ def get_content_with_selenium(url, driver, driver_type="Direct"):
         print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
         WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-        time.sleep(5)
+        time.sleep(10)
         html = driver.page_source
         
         failure_signatures = ["Enable JavaScript and cookies to continue", "This site can’t be reached", "Checking if the site connection is secure", "net::ERR_CERT_AUTHORITY_INVALID"]
@@ -106,42 +105,30 @@ def log_previous_version(set_name, file_id, timestamp):
     if os.path.exists(old_snapshot_path): shutil.copy(old_snapshot_path, os.path.join(LOG_DIR, f"{set_name}_{log_timestamp}_snapshot.txt"))
 
 def initialize_driver(with_proxy=False):
-    """Initializes a WebDriver, either locally or connecting to BrightData."""
-    try:
-        if with_proxy:
-            print("    -> Connecting to BrightData Scraping Browser...")
-            proxy_user = os.environ.get("PROXY_USER")
-            proxy_pass = os.environ.get("PROXY_PASS")
-            proxy_host = os.environ.get("PROXY_HOST")
-            if not all([proxy_user, proxy_pass, proxy_host]):
-                print("    -> BrightData credentials not found.")
-                return None
-            
-            auth = f'{proxy_user}:{proxy_pass}'
-            browser_url = f'wss://{auth}@{proxy_host}'
-            
-            options = webdriver.ChromeOptions()
-            
-            # This is the corrected implementation based on your friend's advice.
-            # We embed the selenium-wire options directly into the ChromeOptions object.
-            seleniumwire_options = {
-                'verify_ssl': False
-            }
-            options.set_capability('se:wire:options', seleniumwire_options)
-            
-            driver = webdriver.Remote(
-                command_executor=browser_url, 
-                options=options
-            )
-            print("    -> Connected to BrightData successfully.")
-            return driver
+    """Initializes a WebDriver, creating and loading a proxy extension if requested."""
+    chrome_options = uc.ChromeOptions()
+    chrome_options.add_argument('--headless=new')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    chrome_options.add_argument('--allow-insecure-localhost')
+
+    if with_proxy:
+        proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
+        if all([proxy_host, proxy_port, proxy_user, proxy_pass]):
+            print("    -> Creating and loading proxy authentication extension.")
+            plugin_file = 'proxy_auth_plugin.zip'
+            manifest_json = """{"version": "1.0.0", "manifest_version": 2, "name": "Chrome Proxy", "permissions": ["proxy", "tabs", "unlimitedStorage", "storage", "<all_urls>", "webRequest", "webRequestBlocking"], "background": {"scripts": ["background.js"]}, "minimum_chrome_version":"22.0.0"}"""
+            background_js = f"""var config={{mode:"fixed_servers",rules:{{singleProxy:{{scheme:"http",host:"{proxy_host}",port:parseInt({proxy_port})}},bypassList:["localhost"]}}}};chrome.proxy.settings.set({{value:config,scope:"regular"}},function(){{}});function callbackFn(details){{return{{authCredentials:{{username:"{proxy_user}",password:"{proxy_pass}"}}}}}}chrome.webRequest.onAuthRequired.addListener(callbackFn,{{urls:["<all_urls>"]}},['blocking']);"""
+            with zipfile.ZipFile(plugin_file, 'w') as zp:
+                zp.writestr("manifest.json", manifest_json)
+                zp.writestr("background.js", background_js)
+            chrome_options.add_extension(plugin_file)
         else:
-            print("    -> Initializing local direct WebDriver...")
-            options = uc.ChromeOptions()
-            options.add_argument('--headless=new')
-            options.add_argument('--no-sandbox')
-            options.add_argument('--disable-dev-shm-usage')
-            return uc.Chrome(options=options)
+            print("    -> Proxy requested, but credentials not found.")
+            return None
+    try:
+        return uc.Chrome(options=chrome_options)
     except Exception as e:
         print(f"    -> Failed to initialize WebDriver: {e}")
         return None
@@ -166,15 +153,15 @@ def main():
                 
                 if policy_set.get("force_proxy"):
                     if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                    if driver_proxy: content = get_content_with_selenium(url, driver_proxy, "BrightData")
+                    if driver_proxy: content = get_content_with_selenium(url, driver_proxy, "Proxy")
                 else:
                     if not driver_direct: driver_direct = initialize_driver()
                     if driver_direct: content = get_content_with_selenium(url, driver_direct, "Direct")
                     
                     if content is None:
-                        print(f"  -> Direct failed. Retrying with BrightData...")
+                        print(f"  -> Direct failed. Retrying with proxy...")
                         if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                        if driver_proxy: content = get_content_with_selenium(url, driver_proxy, "BrightData")
+                        if driver_proxy: content = get_content_with_selenium(url, driver_proxy, "Proxy")
 
                 if content:
                     aggregated_content.append(f"--- Content from {url} ---\n\n{content}")
@@ -210,7 +197,7 @@ def main():
 
     finally:
         if driver_direct: print("Closing direct WebDriver."); driver_direct.quit()
-        if driver_proxy: print("Closing BrightData WebDriver."); driver_proxy.quit()
+        if driver_proxy: print("Closing proxy WebDriver."); driver_proxy.quit()
 
 if __name__ == "__main__":
     main()
