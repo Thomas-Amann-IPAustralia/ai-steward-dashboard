@@ -15,6 +15,8 @@ from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+# Import DesiredCapabilities to build the capabilities object manually
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 # --- Configuration ---
 POLICY_SETS_FILE = 'policy_sets.json'
@@ -120,17 +122,14 @@ def initialize_driver(with_proxy=False):
             auth = f'{proxy_user}:{proxy_pass}'
             browser_url = f'wss://{auth}@{proxy_host}'
             
-            options = webdriver.ChromeOptions()
-            seleniumwire_options = {'verify_ssl': False}
-            
-            # This is the key change, implementing your friend's suggestion
-            # Convert the options object to the older capabilities format
-            caps = options.to_capabilities()
+            # This is the key change, implementing your friend's suggestion in the most robust way.
+            # We create a capabilities dictionary and embed the selenium-wire options within it.
+            capabilities = DesiredCapabilities.CHROME.copy()
+            capabilities['seleniumwire_options'] = {'verify_ssl': False}
             
             driver = webdriver.Remote(
                 command_executor=browser_url, 
-                desired_capabilities=caps,
-                seleniumwire_options=seleniumwire_options
+                desired_capabilities=capabilities
             )
             print("    -> Connected to BrightData successfully.")
             return driver
