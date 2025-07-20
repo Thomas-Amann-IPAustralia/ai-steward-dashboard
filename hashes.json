@@ -21,7 +21,7 @@
             }
         ],
         "file_id": "Digital_gov_au_AI_Policy",
-        "last_checked": "2025-07-21T03:38:15.976617+10:00",
+        "last_checked": "2025-07-21T03:49:31.788356+10:00",
         "last_amended": "2025-07-21T03:05:00.778963+10:00"
     },
     "National Archives of Australia - AI Policy": {
@@ -34,7 +34,7 @@
             }
         ],
         "file_id": "National_Archives_of_Australia_-_AI_Policy",
-        "last_checked": "2025-07-21T03:38:23.838758+10:00",
+        "last_checked": "2025-07-21T03:49:39.633744+10:00",
         "last_amended": "2025-07-21T03:05:10.295891+10:00"
     },
     "Google AI Policies": {
@@ -50,7 +50,85 @@
             }
         ],
         "file_id": "Google_AI_Policies",
-        "last_checked": "2025-07-21T03:38:35.609260+10:00",
+        "last_checked": "2025-07-21T03:49:49.495772+10:00",
         "last_amended": "2025-07-21T02:44:36.463780+10:00"
+    },
+    "Anthropic Legal Policies": {
+        "hash": "881fb5c97b78a51968e183622f9c41a2",
+        "category": "Private Sector",
+        "urls": [
+            {
+                "url": "https://www.anthropic.com/legal/consumer-terms"
+            },
+            {
+                "url": "https://www.anthropic.com/legal/aup"
+            },
+            {
+                "url": "https://www.anthropic.com/legal/privacy"
+            }
+        ],
+        "file_id": "Anthropic_Legal_Policies",
+        "last_checked": "2025-07-21T03:50:10.423745+10:00",
+        "last_amended": "2025-07-21T03:50:10.423745+10:00"
+    },
+    "Perplexity AI Legal Policies": {
+        "hash": "e21b3cfbc4b6bea5b3f8fcbfc17b9cd9",
+        "category": "Private Sector",
+        "urls": [
+            {
+                "url": "https://www.perplexity.ai/hub/legal/terms-of-service"
+            },
+            {
+                "url": "https://www.perplexity.ai/hub/legal/privacy-policy"
+            },
+            {
+                "url": "https://www.perplexity.ai/hub/legal/aup"
+            }
+        ],
+        "file_id": "Perplexity_AI_Legal_Policies",
+        "last_checked": "2025-07-21T03:50:34.504864+10:00",
+        "last_amended": "2025-07-21T03:50:34.504864+10:00"
+    },
+    "Midjourney Legal Policies": {
+        "hash": "3a40a43ab8139a34fb2d902a2acc3392",
+        "category": "Private Sector",
+        "urls": [
+            {
+                "url": "https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service"
+            },
+            {
+                "url": "https://docs.midjourney.com/hc/en-us/articles/32083472637453-Privacy-Policy"
+            }
+        ],
+        "file_id": "Midjourney_Legal_Policies",
+        "last_checked": "2025-07-21T03:50:50.842297+10:00",
+        "last_amended": "2025-07-21T03:50:50.842297+10:00"
+    },
+    "ACSC Information Security Manual (ISM)": {
+        "hash": "8221f40bc5499f45bbefd7cd3e04bcfa",
+        "category": "Australian Government",
+        "urls": [
+            {
+                "url": "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism"
+            }
+        ],
+        "file_id": "ACSC_Information_Security_Manual_ISM",
+        "last_checked": "2025-07-21T03:50:58.887179+10:00",
+        "last_amended": "2025-07-21T03:50:58.887179+10:00"
+    },
+    "NSW Government AI Guidance": {
+        "hash": "a754dbbe1d756cf8c01b63c94aa2a855",
+        "category": "State Government",
+        "urls": [
+            {
+                "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/generative-ai-basic-guidance"
+            },
+            {
+                "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework"
+            }
+        ],
+        "file_id": "NSW_Government_AI_Guidance",
+        "last_checked": "2025-07-21T03:51:12.070756+10:00",
+        "last_amended": "2025-07-21T03:51:12.070756+10:00"
     }
 }
