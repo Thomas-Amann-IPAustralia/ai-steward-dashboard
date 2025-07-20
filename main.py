@@ -35,33 +35,47 @@ def slugify_set_name(set_name):
     """Converts a policy set name into a filesystem-safe string."""
     return re.sub(r'[^a-zA-Z0-9\-]+', '_', set_name).strip('_')
 
-def get_smarter_content_from_url(url, driver, driver_type="Direct"):
+def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
     """
-    Fetches content from a URL using a Selenium-driven undetected-chromedriver instance.
+    Fetches content from a URL using a Selenium-driven undetected-chromedriver instance,
+    waiting for a specific selector to ensure the page has loaded correctly.
     """
+    url = url_data['url']
+    selector = url_data.get('selector', 'body') # Default to 'body' if no selector is provided
+
     try:
         print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
-        WebDriverWait(driver, 45).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-        time.sleep(10)
-        html = driver.page_source
+        # **MODIFICATION**: Wait for the specific selector for that URL. This is more reliable.
+        # Increased timeout to 60 seconds for slow-loading pages or bot checks.
+        WebDriverWait(driver, 60).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, selector))
+        )
+        # Give the page a moment for any dynamic content to render after the element is present.
+        time.sleep(5)
         
-        failure_signatures = ["Enable JavaScript and cookies to continue", "This site can’t be reached", "Checking if the site connection is secure"]
-        if any(sig in html for sig in failure_signatures):
-            print(f"    -> [{driver_type}] Block page or error detected.")
-            return None
-
+        html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
-        content_selectors = ['main', 'article', 'div[role="main"]', '#content', '#main-content', '.content', '.post-content']
-        main_content = next((soup.select_one(s) for s in content_selectors if soup.select_one(s)), soup.find('body'))
+        
+        # Use the specific selector to find the content. Fallback to common selectors if it fails.
+        main_content = soup.select_one(selector)
+        if not main_content:
+             content_selectors = ['main', 'article', 'div[role="main"]', '#content', '#main-content', '.content', '.post-content']
+             main_content = next((soup.select_one(s) for s in content_selectors if soup.select_one(s)), soup.find('body'))
 
         return main_content.get_text(separator='\n', strip=True) if main_content else ""
-    except (TimeoutException, WebDriverException) as e:
+
+    except TimeoutException:
+        # This is now the primary failure indicator. It means the selector never appeared.
+        print(f"    -> [{driver_type}] Timed out waiting for selector '{selector}' at {url}")
+        return None
+    except WebDriverException as e:
         print(f"    -> [{driver_type}] WebDriver error for {url}: {type(e).__name__}")
         return None
     except Exception as e:
         print(f"    -> [{driver_type}] An unexpected error occurred while fetching {url}: {e}")
         return None
+
 
 def generate_md5(text):
     return hashlib.md5(text.encode('utf-8')).hexdigest()
@@ -218,27 +232,25 @@ def main():
             print(f"\nProcessing Policy Set: {set_name}...")
             
             aggregated_content = []
-            # MODIFICATION: Ensure 'url_item' is checked to be a dictionary or a string
-            for url_item in policy_set["urls"]:
-                # Extract the URL if it's a dictionary, otherwise use the string directly
-                url = url_item['url'] if isinstance(url_item, dict) else url_item
-
+            # **MODIFICATION**: Loop through the list of URL data objects
+            for url_data in policy_set["urls"]:
                 content = None
                 
+                # Pass the entire url_data dictionary to the scraping function
                 if policy_set.get("force_proxy"):
                     if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                    if driver_proxy: content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
+                    if driver_proxy: content = get_smarter_content_from_url(url_data, driver_proxy, "Proxy")
                 else:
-                    content = get_smarter_content_from_url(url, driver_direct, "Direct")
+                    content = get_smarter_content_from_url(url_data, driver_direct, "Direct")
                     if content is None:
                         print(f"  -> Direct failed. Retrying with proxy...")
                         if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                        if driver_proxy: content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
+                        if driver_proxy: content = get_smarter_content_from_url(url_data, driver_proxy, "Proxy")
 
                 if content:
-                    aggregated_content.append(f"--- Content from {url} ---\n\n{content}")
+                    aggregated_content.append(f"--- Content from {url_data['url']} ---\n\n{content}")
                 else:
-                    print(f"  -> WARNING: All attempts to fetch content for {url} failed.")
+                    print(f"  -> WARNING: All attempts to fetch content for {url_data['url']} failed.")
 
             if not aggregated_content:
                 print(f"Skipping set '{set_name}' as no content could be fetched.")
