@@ -10,6 +10,7 @@ import shutil
 import re
 import time
 import zipfile
+import random
 from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -37,27 +38,27 @@ def slugify_set_name(set_name):
 
 def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
     """
-    Fetches content from a URL using a Selenium-driven undetected-chromedriver instance,
-    waiting for a specific selector to ensure the page has loaded correctly.
+    Fetches content from a URL, waiting for a specific selector to be visible.
     """
     url = url_data['url']
-    selector = url_data.get('selector', 'body') # Default to 'body' if no selector is provided
+    selector = url_data.get('selector', 'body')
 
     try:
         print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
-        # **MODIFICATION**: Wait for the specific selector for that URL. This is more reliable.
-        # Increased timeout to 60 seconds for slow-loading pages or bot checks.
-        WebDriverWait(driver, 60).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, selector))
+        
+        # Wait for the primary selector to be VISIBLE. This is a stronger check.
+        # It ensures the element is not hidden and has a height and width greater than 0.
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, selector))
         )
-        # Give the page a moment for any dynamic content to render after the element is present.
-        time.sleep(5)
+        
+        # Add a small, random delay to mimic human reading time before capturing the source.
+        time.sleep(random.uniform(2, 5))
         
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
         
-        # Use the specific selector to find the content. Fallback to common selectors if it fails.
         main_content = soup.select_one(selector)
         if not main_content:
              content_selectors = ['main', 'article', 'div[role="main"]', '#content', '#main-content', '.content', '.post-content']
@@ -66,8 +67,7 @@ def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
         return main_content.get_text(separator='\n', strip=True) if main_content else ""
 
     except TimeoutException:
-        # This is now the primary failure indicator. It means the selector never appeared.
-        print(f"    -> [{driver_type}] Timed out waiting for selector '{selector}' at {url}")
+        print(f"    -> [{driver_type}] Timed out waiting for selector '{selector}' to be visible at {url}")
         return None
     except WebDriverException as e:
         print(f"    -> [{driver_type}] WebDriver error for {url}: {type(e).__name__}")
@@ -135,7 +135,12 @@ def initialize_driver(with_proxy=False):
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--window-size=1920,1080')
+    # Enhance stealth by providing more realistic user-agent and language settings
     chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
+    chrome_options.add_argument('--lang=en-US,en;q=0.9')
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option('useAutomationExtension', False)
+
 
     if with_proxy:
         proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
@@ -204,7 +209,9 @@ def initialize_driver(with_proxy=False):
             return None
     
     try:
-        driver = uc.Chrome(options=chrome_options)
+        # Use a specific version of chromedriver if available
+        driver = uc.Chrome(options=chrome_options, version_main=126)
+        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         return driver
     except Exception as e:
         print(f"    -> Failed to initialize WebDriver: {e}")
@@ -212,83 +219,85 @@ def initialize_driver(with_proxy=False):
 
 def main():
     setup_directories()
-    driver_direct = None
-    driver_proxy = None
     
-    try:
-        print("Initializing direct WebDriver...")
-        driver_direct = initialize_driver(with_proxy=False)
-        if not driver_direct:
-            print("FATAL: Could not initialize the direct WebDriver. Exiting.")
-            return
+    policy_sets = load_json_file(POLICY_SETS_FILE)
+    previous_hashes = load_json_file(HASHES_FILE)
+    current_hashes = {}
+    aest_tz = timezone(timedelta(hours=10))
 
-        policy_sets = load_json_file(POLICY_SETS_FILE)
-        previous_hashes = load_json_file(HASHES_FILE)
-        current_hashes = {}
-        aest_tz = timezone(timedelta(hours=10))
+    for policy_set in policy_sets:
+        set_name = policy_set["setName"]
+        print(f"\nProcessing Policy Set: {set_name}...")
+        
+        aggregated_content = []
+        for url_data in policy_set["urls"]:
+            content = None
+            driver = None
 
-        for policy_set in policy_sets:
-            set_name = policy_set["setName"]
-            print(f"\nProcessing Policy Set: {set_name}...")
-            
-            aggregated_content = []
-            # **MODIFICATION**: Loop through the list of URL data objects
-            for url_data in policy_set["urls"]:
-                content = None
-                
-                # Pass the entire url_data dictionary to the scraping function
-                if policy_set.get("force_proxy"):
-                    if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                    if driver_proxy: content = get_smarter_content_from_url(url_data, driver_proxy, "Proxy")
-                else:
-                    content = get_smarter_content_from_url(url_data, driver_direct, "Direct")
-                    if content is None:
-                        print(f"  -> Direct failed. Retrying with proxy...")
-                        if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                        if driver_proxy: content = get_smarter_content_from_url(url_data, driver_proxy, "Proxy")
+            # --- Attempt 1: Direct Connection ---
+            # The driver is initialized and quit within the 'try/finally' block
+            # to ensure it's always a fresh instance and is properly closed.
+            try:
+                if not policy_set.get("force_proxy"):
+                    print(f"  -> Attempting direct connection for {url_data['url']}")
+                    driver = initialize_driver(with_proxy=False)
+                    if driver:
+                        content = get_smarter_content_from_url(url_data, driver, "Direct")
+            finally:
+                if driver:
+                    driver.quit()
 
-                if content:
-                    aggregated_content.append(f"--- Content from {url_data['url']} ---\n\n{content}")
-                else:
-                    print(f"  -> WARNING: All attempts to fetch content for {url_data['url']} failed.")
+            # --- Attempt 2: Proxy Connection (if direct failed) ---
+            if content is None:
+                driver = None # Reset driver variable
+                try:
+                    print(f"  -> Attempting proxy connection for {url_data['url']}")
+                    driver = initialize_driver(with_proxy=True)
+                    # Check if proxy driver was successfully initialized before proceeding
+                    if driver:
+                        content = get_smarter_content_from_url(url_data, driver, "Proxy")
+                finally:
+                    if driver:
+                        driver.quit()
 
-            if not aggregated_content:
-                print(f"Skipping set '{set_name}' as no content could be fetched.")
-                if set_name in previous_hashes: current_hashes[set_name] = previous_hashes[set_name]
-                continue
-
-            full_content = "\n\n".join(aggregated_content)
-            new_hash = generate_md5(full_content)
-            timestamp = datetime.now(aest_tz).isoformat()
-            file_id = slugify_set_name(set_name)
-            previous_entry = previous_hashes.get(set_name, {})
-            previous_hash = previous_entry.get("hash")
-
-            current_hashes[set_name] = {"hash": new_hash, "category": policy_set["category"], "urls": policy_set["urls"], "file_id": file_id, "last_checked": timestamp, "last_amended": previous_entry.get("last_amended")}
-
-            if not previous_hash:
-                print(f"  -> First scan for '{set_name}'.")
-                current_hashes[set_name]["last_amended"] = timestamp
-                save_snapshot(file_id, full_content)
-                save_analysis(file_id, {"summary": "Initial snapshot captured.", "analysis": f"This is the first time the '{set_name}' policy set has been monitored.", "date_time": timestamp, "priority": "low"})
-            elif new_hash != previous_hash:
-                print(f"  -> Change detected for '{set_name}'. Analyzing...")
-                current_hashes[set_name]["last_amended"] = timestamp
-                if previous_entry.get("last_checked"): log_previous_version(file_id, file_id, previous_entry.get("last_checked"))
-                old_content = load_snapshot(file_id)
-                analysis_result = get_gemini_analysis(set_name, old_content, full_content)
-                save_analysis(file_id, analysis_result)
-                save_snapshot(file_id, full_content)
-                print(f"  -> Analysis complete. Priority: {analysis_result.get('priority', 'N/A')}")
+            if content:
+                aggregated_content.append(f"--- Content from {url_data['url']} ---\n\n{content}")
             else:
-                print(f"  -> No changes detected for '{set_name}'.")
+                print(f"  -> WARNING: All attempts to fetch content for {url_data['url']} failed.")
 
-        save_json_file(current_hashes, HASHES_FILE)
-        print("\nUpdate check complete.")
+        if not aggregated_content:
+            print(f"Skipping set '{set_name}' as no content could be fetched.")
+            if set_name in previous_hashes: current_hashes[set_name] = previous_hashes[set_name]
+            continue
 
-    finally:
-        if driver_direct: print("Closing direct WebDriver."); driver_direct.quit()
-        if driver_proxy: print("Closing proxy WebDriver."); driver_proxy.quit()
+        full_content = "\n\n".join(aggregated_content)
+        new_hash = generate_md5(full_content)
+        timestamp = datetime.now(aest_tz).isoformat()
+        file_id = slugify_set_name(set_name)
+        previous_entry = previous_hashes.get(set_name, {})
+        previous_hash = previous_entry.get("hash")
+
+        current_hashes[set_name] = {"hash": new_hash, "category": policy_set["category"], "urls": policy_set["urls"], "file_id": file_id, "last_checked": timestamp, "last_amended": previous_entry.get("last_amended")}
+
+        if not previous_hash:
+            print(f"  -> First scan for '{set_name}'.")
+            current_hashes[set_name]["last_amended"] = timestamp
+            save_snapshot(file_id, full_content)
+            save_analysis(file_id, {"summary": "Initial snapshot captured.", "analysis": f"This is the first time the '{set_name}' policy set has been monitored.", "date_time": timestamp, "priority": "low"})
+        elif new_hash != previous_hash:
+            print(f"  -> Change detected for '{set_name}'. Analyzing...")
+            current_hashes[set_name]["last_amended"] = timestamp
+            if previous_entry.get("last_checked"): log_previous_version(file_id, file_id, previous_entry.get("last_checked"))
+            old_content = load_snapshot(file_id)
+            analysis_result = get_gemini_analysis(set_name, old_content, full_content)
+            save_analysis(file_id, analysis_result)
+            save_snapshot(file_id, full_content)
+            print(f"  -> Analysis complete. Priority: {analysis_result.get('priority', 'N/A')}")
+        else:
+            print(f"  -> No changes detected for '{set_name}'.")
+
+    save_json_file(current_hashes, HASHES_FILE)
+    print("\nUpdate check complete.")
 
 if __name__ == "__main__":
     main()
