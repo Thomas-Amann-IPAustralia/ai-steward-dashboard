@@ -3,28 +3,45 @@
     "setName": "Digital.gov.au AI Policy",
     "category": "Australian Government",
     "urls": [
-      "https://www.digital.gov.au/policy/ai/implementation",
-      "https://www.digital.gov.au/policy/ai/enable-and-prepare",
-      "https://www.digital.gov.au/policy/ai/engage-responsibly",
-      "https://www.digital.gov.au/policy/ai/evolve-and-integrate"
+      {
+        "url": "https://www.digital.gov.au/policy/ai/implementation",
+        "selector": "article"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
+        "selector": "article"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
+        "selector": "article"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
+        "selector": "article"
+      }
     ]
   },
   {
-    "setName": "OpenAI Terms & Policies",
-    "category": "Private Sector",
-    "force_proxy": true,
+    "setName": "National Archives of Australia - AI Policy",
+    "category": "Australian Government",
     "urls": [
-      "https://openai.com/policies/terms-of-use",
-      "https://openai.com/policies/privacy-policy",
-      "https://openai.com/policies/usage-policies"
+      {
+        "url": "https://www.naa.gov.au/information-management/information-and-data-governance/ai-and-information-management/building-trust-australian-governments-use-artificial-intelligence",
+        "selector": "div.main-content"
+      }
     ]
   },
   {
     "setName": "Google AI Policies",
     "category": "Private Sector",
     "urls": [
-        "https://policies.google.com/terms",
-        "https://ai.google/responsibility/principles/"
+      {
+        "url": "https://policies.google.com/terms",
+        "selector": "div[jsname='v2d3Ub']"
+      },
+      {
+        "url": "https://ai.google/responsibility/principles/"
+      }
     ]
   }
 ]
