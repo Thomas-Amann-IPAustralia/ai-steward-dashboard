@@ -48,12 +48,10 @@ def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
         driver.get(url)
         
         # Wait for the primary selector to be VISIBLE. This is a stronger check.
-        # It ensures the element is not hidden and has a height and width greater than 0.
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, selector))
         )
         
-        # Add a small, random delay to mimic human reading time before capturing the source.
         time.sleep(random.uniform(2, 5))
         
         html = driver.page_source
@@ -135,12 +133,12 @@ def initialize_driver(with_proxy=False):
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--window-size=1920,1080')
-    # Enhance stealth by providing more realistic user-agent and language settings
     chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
     chrome_options.add_argument('--lang=en-US,en;q=0.9')
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    chrome_options.add_experimental_option('useAutomationExtension', False)
-
+    
+    # **REMOVED** the following two lines which were causing the crash.
+    # chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    # chrome_options.add_experimental_option('useAutomationExtension', False)
 
     if with_proxy:
         proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
@@ -209,8 +207,9 @@ def initialize_driver(with_proxy=False):
             return None
     
     try:
-        # Use a specific version of chromedriver if available
-        driver = uc.Chrome(options=chrome_options, version_main=126)
+        # **REMOVED** version_main argument to let the library handle it automatically.
+        driver = uc.Chrome(options=chrome_options)
+        # We can still try to remove the 'webdriver' flag from the navigator object.
         driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         return driver
     except Exception as e:
@@ -235,8 +234,6 @@ def main():
             driver = None
 
             # --- Attempt 1: Direct Connection ---
-            # The driver is initialized and quit within the 'try/finally' block
-            # to ensure it's always a fresh instance and is properly closed.
             try:
                 if not policy_set.get("force_proxy"):
                     print(f"  -> Attempting direct connection for {url_data['url']}")
@@ -249,11 +246,10 @@ def main():
 
             # --- Attempt 2: Proxy Connection (if direct failed) ---
             if content is None:
-                driver = None # Reset driver variable
+                driver = None 
                 try:
                     print(f"  -> Attempting proxy connection for {url_data['url']}")
                     driver = initialize_driver(with_proxy=True)
-                    # Check if proxy driver was successfully initialized before proceeding
                     if driver:
                         content = get_smarter_content_from_url(url_data, driver, "Proxy")
                 finally:
