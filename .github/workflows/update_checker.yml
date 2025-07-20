@@ -69,7 +69,7 @@ jobs:
     - name: Run update script
       id: run_script
       env:
-        # This block is crucial - it passes your secrets to the python script
+        # This is the key change: Make all secrets available to the script
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         PROXY_HOST: ${{ secrets.PROXY_HOST }}
         PROXY_PORT: ${{ secrets.PROXY_PORT }}
