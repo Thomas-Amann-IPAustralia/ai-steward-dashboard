@@ -121,15 +121,16 @@ def initialize_driver(with_proxy=False):
             browser_url = f'wss://{auth}@{proxy_host}'
             
             options = webdriver.ChromeOptions()
-            
-            # This is the corrected, modern way to pass selenium-wire options
-            # to avoid the 'desired_capabilities' error, as suggested by your friend.
             seleniumwire_options = {'verify_ssl': False}
-            options.set_capability('seleniumwire_options', seleniumwire_options)
+            
+            # This is the key change, implementing your friend's suggestion
+            # Convert the options object to the older capabilities format
+            caps = options.to_capabilities()
             
             driver = webdriver.Remote(
                 command_executor=browser_url, 
-                options=options
+                desired_capabilities=caps,
+                seleniumwire_options=seleniumwire_options
             )
             print("    -> Connected to BrightData successfully.")
             return driver
