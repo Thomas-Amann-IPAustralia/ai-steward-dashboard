@@ -43,5 +43,68 @@
         "url": "https://ai.google/responsibility/principles/"
       }
     ]
+  },
+  {
+    "setName": "Anthropic Legal Policies",
+    "category": "Private Sector",
+    "urls": [
+      {
+        "url": "https://www.anthropic.com/legal/consumer-terms"
+      },
+      {
+        "url": "https://www.anthropic.com/legal/aup"
+      },
+      {
+        "url": "https://www.anthropic.com/legal/privacy"
+      }
+    ]
+  },
+  {
+    "setName": "Perplexity AI Legal Policies",
+    "category": "Private Sector",
+    "urls": [
+      {
+        "url": "https://www.perplexity.ai/hub/legal/terms-of-service"
+      },
+      {
+        "url": "https://www.perplexity.ai/hub/legal/privacy-policy"
+      },
+      {
+        "url": "https://www.perplexity.ai/hub/legal/aup"
+      }
+    ]
+  },
+  {
+    "setName": "Midjourney Legal Policies",
+    "category": "Private Sector",
+    "urls": [
+      {
+        "url": "https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service"
+      },
+      {
+        "url": "https://docs.midjourney.com/hc/en-us/articles/32083472637453-Privacy-Policy"
+      }
+    ]
+  },
+  {
+    "setName": "ACSC Information Security Manual (ISM)",
+    "category": "Australian Government",
+    "urls": [
+      {
+        "url": "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism"
+      }
+    ]
+  },
+  {
+    "setName": "NSW Government AI Guidance",
+    "category": "State Government",
+    "urls": [
+      {
+        "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/generative-ai-basic-guidance"
+      },
+      {
+        "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework"
+      }
+    ]
   }
 ]
