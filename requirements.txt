@@ -1,7 +1,8 @@
 requests
 beautifulsoup4
 google-generativeai
-selenium
+# Pinning library versions to a known-compatible set to resolve the constructor error
+selenium==4.18.1
+selenium-wire==5.1.0
 undetected-chromedriver
-selenium-wire
 blinker==1.7.0
