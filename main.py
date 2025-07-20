@@ -35,20 +35,22 @@ def slugify_set_name(set_name):
     """Converts a policy set name into a filesystem-safe string."""
     return re.sub(r'[^a-zA-Z0-9\-]+', '_', set_name).strip('_')
 
-def get_smarter_content_from_url(url, driver):
+def get_smarter_content_from_url(url, driver, driver_type="Direct"):
     """
     Fetches content from a URL using a Selenium-driven undetected-chromedriver instance,
     with explicit waits and better error checking.
     """
     try:
+        print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
-        WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-        time.sleep(5)
+        # Increased wait time for very complex sites like OpenAI
+        WebDriverWait(driver, 45).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+        time.sleep(10)
         html = driver.page_source
         
         failure_signatures = ["Enable JavaScript and cookies to continue", "Waiting for openai.com to respond", "ERR_HTTP2_PROTOCOL_ERROR", "This site can’t be reached", "Checking if the site connection is secure", "net::ERR_CERT_AUTHORITY_INVALID"]
         if any(sig in html for sig in failure_signatures):
-            print(f"    -> Block page or certificate error detected for {url}")
+            print(f"    -> [{driver_type}] Block page or error detected.")
             return None
 
         soup = BeautifulSoup(html, 'html.parser')
@@ -57,10 +59,10 @@ def get_smarter_content_from_url(url, driver):
 
         return main_content.get_text(separator='\n', strip=True) if main_content else ""
     except (TimeoutException, WebDriverException) as e:
-        print(f"    -> WebDriver error for {url}: {type(e).__name__}")
+        print(f"    -> [{driver_type}] WebDriver error for {url}: {type(e).__name__}")
         return None
     except Exception as e:
-        print(f"    -> An unexpected error occurred while fetching {url}: {e}")
+        print(f"    -> [{driver_type}] An unexpected error occurred while fetching {url}: {e}")
         return None
 
 def generate_md5(text):
@@ -69,10 +71,8 @@ def generate_md5(text):
 def load_json_file(file_path):
     if os.path.exists(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
-            try:
-                return json.load(f)
-            except json.JSONDecodeError:
-                return {} if file_path == HASHES_FILE else []
+            try: return json.load(f)
+            except json.JSONDecodeError: return {} if file_path == HASHES_FILE else []
     return {} if file_path == HASHES_FILE else []
 
 def save_json_file(data, file_path):
@@ -81,23 +81,13 @@ def save_json_file(data, file_path):
 
 def get_gemini_analysis(set_name, old_content, new_content):
     api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        return {"summary": "Analysis failed: API key not configured.", "analysis": "The Gemini API key was not provided.", "date_time": datetime.now(timezone(timedelta(hours=10))).isoformat(), "priority": "critical"}
+    if not api_key: return {"summary": "Analysis failed: API key not configured.", "analysis": "The Gemini API key was not provided.", "date_time": datetime.now(timezone(timedelta(hours=10))).isoformat(), "priority": "critical"}
     
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel('gemini-1.5-flash')
     prompt = f"""Analyze changes for a policy document named "{set_name}". Your response MUST be a valid JSON object with four keys: 'summary', 'analysis', 'date_time', and 'priority'.
-
-OLD CONTENT:
----
-{old_content}
----
-
-NEW CONTENT:
----
-{new_content}
----
-"""
+OLD CONTENT: --- {old_content} ---
+NEW CONTENT: --- {new_content} ---"""
     try:
         response = model.generate_content(prompt)
         cleaned_text = re.sub(r'^```json\s*|\s*```$', '', response.text, flags=re.MULTILINE | re.DOTALL).strip()
@@ -120,14 +110,11 @@ def save_analysis(file_id, analysis_data):
 def log_previous_version(set_name, file_id, timestamp):
     log_timestamp = datetime.fromisoformat(timestamp).strftime('%Y%m%d_%H%M%S')
     old_analysis_path = os.path.join(ANALYSIS_DIR, f"{file_id}.json")
-    if os.path.exists(old_analysis_path):
-        shutil.copy(old_analysis_path, os.path.join(LOG_DIR, f"{set_name}_{log_timestamp}_analysis.json"))
+    if os.path.exists(old_analysis_path): shutil.copy(old_analysis_path, os.path.join(LOG_DIR, f"{set_name}_{log_timestamp}_analysis.json"))
     old_snapshot_path = os.path.join(SNAPSHOTS_DIR, f"{file_id}.txt")
-    if os.path.exists(old_snapshot_path):
-        shutil.copy(old_snapshot_path, os.path.join(LOG_DIR, f"{set_name}_{log_timestamp}_snapshot.txt"))
+    if os.path.exists(old_snapshot_path): shutil.copy(old_snapshot_path, os.path.join(LOG_DIR, f"{set_name}_{log_timestamp}_snapshot.txt"))
 
 def initialize_driver(with_proxy=False):
-    """Initializes and returns a WebDriver instance, with or without a proxy."""
     selenium_wire_options = {}
     if with_proxy:
         proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
@@ -135,15 +122,19 @@ def initialize_driver(with_proxy=False):
             print("    -> Configuring WebDriver with proxy.")
             selenium_wire_options['proxy'] = {'http': f'http://{proxy_user}:{proxy_pass}@{proxy_host}:{proxy_port}', 'https': f'https://{proxy_user}:{proxy_pass}@{proxy_host}:{proxy_port}'}
         else:
-            print("    -> Proxy requested but credentials not found. Cannot initialize proxy driver.")
+            print("    -> Proxy requested but credentials not found.")
             return None
 
     chrome_options = uc_ChromeOptions()
     chrome_options.add_argument('--headless=new')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    # This is the key change: tell the browser to ignore SSL certificate errors.
     chrome_options.add_argument('--ignore-certificate-errors')
+    # Add more stealth options
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--window-size=1920,1080')
+    chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
     
     try:
         driver = uc_Chrome(options=chrome_options, seleniumwire_options=selenium_wire_options)
@@ -176,29 +167,19 @@ def main():
             aggregated_content = []
             for url in policy_set["urls"]:
                 content = None
-                use_proxy_on_fail = True
                 
+                # Logic to decide which driver to use and handle fallbacks
                 if policy_set.get("force_proxy"):
-                    print(f"  -> {url} is flagged to force proxy.")
                     if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                    
                     if driver_proxy:
-                        content = get_smarter_content_from_url(url, driver_proxy)
-                    else:
-                        print("    -> Skipping proxy attempt as proxy driver failed to initialize.")
-                    use_proxy_on_fail = False
+                        content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
                 else:
-                    print(f"  -> Attempting direct connection for {url}...")
-                    content = get_smarter_content_from_url(url, driver_direct)
-
-                if content is None and use_proxy_on_fail:
-                    print(f"  -> Direct connection failed. Retrying with proxy for {url}...")
-                    if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                    
-                    if driver_proxy:
-                        content = get_smarter_content_from_url(url, driver_proxy)
-                    else:
-                        print("    -> Skipping proxy attempt as proxy driver failed to initialize.")
+                    content = get_smarter_content_from_url(url, driver_direct, "Direct")
+                    if content is None:
+                        print(f"  -> Direct failed. Retrying with proxy...")
+                        if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
+                        if driver_proxy:
+                            content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
 
                 if content:
                     aggregated_content.append(f"--- Content from {url} ---\n\n{content}")
@@ -207,8 +188,7 @@ def main():
 
             if not aggregated_content:
                 print(f"Skipping set '{set_name}' as no content could be fetched.")
-                if set_name in previous_hashes:
-                    current_hashes[set_name] = previous_hashes[set_name]
+                if set_name in previous_hashes: current_hashes[set_name] = previous_hashes[set_name]
                 continue
 
             full_content = "\n\n".join(aggregated_content)
@@ -241,12 +221,8 @@ def main():
         print("\nUpdate check complete.")
 
     finally:
-        if driver_direct:
-            print("Closing direct WebDriver.")
-            driver_direct.quit()
-        if driver_proxy:
-            print("Closing proxy WebDriver.")
-            driver_proxy.quit()
+        if driver_direct: print("Closing direct WebDriver."); driver_direct.quit()
+        if driver_proxy: print("Closing proxy WebDriver."); driver_proxy.quit()
 
 if __name__ == "__main__":
     main()
