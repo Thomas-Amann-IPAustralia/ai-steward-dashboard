@@ -121,13 +121,14 @@ def initialize_driver(with_proxy=False):
             browser_url = f'wss://{auth}@{proxy_host}'
             
             options = webdriver.ChromeOptions()
-            # This option is for selenium-wire to ignore SSL issues
+            
+            # This is the corrected, modern way to pass selenium-wire options
             seleniumwire_options = {'verify_ssl': False}
+            options.set_capability('seleniumwire_options', seleniumwire_options)
             
             driver = webdriver.Remote(
                 command_executor=browser_url, 
-                options=options,
-                seleniumwire_options=seleniumwire_options
+                options=options
             )
             print("    -> Connected to BrightData successfully.")
             return driver
