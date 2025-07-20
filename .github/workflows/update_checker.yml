@@ -13,7 +13,7 @@ on:
       - 'public/**'
       - 'package.json'
       - 'package-lock.json'
-      - 'policy_sets.json' # Trigger build if policy sets change
+      - 'policy_sets.json' 
 
 permissions:
   contents: write
@@ -66,10 +66,34 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    # --- New Debugging Step ---
+    - name: Verify Secrets are Loaded
+      run: |
+        echo "--- Verifying secrets ---"
+        if [ -n "${{ secrets.PROXY_HOST }}" ]; then
+          echo "PROXY_HOST secret: Loaded"
+        else
+          echo "PROXY_HOST secret: NOT FOUND"
+        fi
+        if [ -n "${{ secrets.PROXY_USER }}" ]; then
+          echo "PROXY_USER secret: Loaded"
+        else
+          echo "PROXY_USER secret: NOT FOUND"
+        fi
+        if [ -n "${{ secrets.PROXY_PASS }}" ]; then
+          echo "PROXY_PASS secret: Loaded"
+        else
+          echo "PROXY_PASS secret: NOT FOUND"
+        fi
+        echo "-------------------------"
+
     - name: Run update script
       id: run_script
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        PROXY_HOST: ${{ secrets.PROXY_HOST }}
+        PROXY_USER: ${{ secrets.PROXY_USER }}
+        PROXY_PASS: ${{ secrets.PROXY_PASS }}
       run: python main.py
 
     - name: Commit and push if changed
