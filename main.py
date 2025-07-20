@@ -195,13 +195,6 @@ def initialize_driver(with_proxy=False):
         return None
 
 def main():
-    # Add webdriver-manager to requirements.txt if not present
-    try:
-        import webdriver_manager
-    except ImportError:
-        print("Installing webdriver-manager...")
-        os.system(f"{sys.executable} -m pip install webdriver-manager")
-        
     setup_directories()
     
     policy_sets = load_json_file(POLICY_SETS_FILE)
