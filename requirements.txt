@@ -2,6 +2,6 @@ requests
 beautifulsoup4
 google-generativeai
 selenium
-undetected-chromedriver
 blinker==1.7.0
 selenium-stealth
+webdriver-manager
