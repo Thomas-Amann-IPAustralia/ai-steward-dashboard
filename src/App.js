@@ -23,7 +23,6 @@ function App() {
         const data = await response.json();
 
         // Robustly process the data, filtering out any malformed or old-format entries.
-        // A valid entry must have a 'file_id' and a 'urls' array.
         const setList = Object.keys(data)
           .map(setName => ({
             setName,
@@ -150,7 +149,8 @@ function App() {
                     <div className="page-item">
                       <div className="page-title">
                         <img 
-                          src={`https://www.google.com/s2/favicons?sz=16&domain_url=${policySet.urls[0]}`} 
+                          // **FIX**: Correctly access the 'url' property from the first item in the urls array
+                          src={`https://www.google.com/s2/favicons?sz=16&domain_url=${policySet.urls[0].url}`} 
                           alt="" 
                           className="favicon"
                           onError={(e) => { e.target.style.display = 'none'; }}
@@ -186,8 +186,13 @@ function App() {
                 <div className="source-urls">
                   <strong>Source URL(s):</strong>
                   <ul>
-                    {selectedSet.urls.map(url => (
-                      <li key={url}><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></li>
+                    {/* **FIX**: The 'url' variable is an object. We need to access its 'url' property. */}
+                    {selectedSet.urls.map(urlObj => (
+                      <li key={urlObj.url}>
+                        <a href={urlObj.url} target="_blank" rel="noopener noreferrer">
+                          {urlObj.url}
+                        </a>
+                      </li>
                     ))}
                   </ul>
                 </div>
