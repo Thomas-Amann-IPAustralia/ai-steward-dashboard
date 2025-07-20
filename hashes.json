@@ -1,19 +1,44 @@
 {
     "Digital.gov.au AI Policy": {
-        "hash": "661235462cfc8e7a59e0108ddf35166e",
+        "hash": "410df52bff37b974881f3db16f1e5160",
         "category": "Australian Government",
         "urls": [
-            "https://www.digital.gov.au/policy/ai/implementation",
-            "https://www.digital.gov.au/policy/ai/enable-and-prepare",
-            "https://www.digital.gov.au/policy/ai/engage-responsibly",
-            "https://www.digital.gov.au/policy/ai/evolve-and-integrate"
+            {
+                "url": "https://www.digital.gov.au/policy/ai/implementation",
+                "selector": "article"
+            },
+            {
+                "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
+                "selector": "article"
+            },
+            {
+                "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
+                "selector": "article"
+            },
+            {
+                "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
+                "selector": "article"
+            }
         ],
         "file_id": "Digital_gov_au_AI_Policy",
-        "last_checked": "2025-07-20T20:38:55.223428+10:00",
-        "last_amended": "2025-07-20T20:38:55.223428+10:00"
+        "last_checked": "2025-07-21T02:44:16.467791+10:00",
+        "last_amended": "2025-07-21T02:44:16.467791+10:00"
+    },
+    "National Archives of Australia - AI Policy": {
+        "hash": "028c204ee25eaa0b38c8c4a1a2d2d0be",
+        "category": "Australian Government",
+        "urls": [
+            {
+                "url": "https://www.naa.gov.au/information-management/manage-information-assets/types-information/information-management-records-created-using-artificial-intelligence-ai-technologies",
+                "selector": "div.main-content"
+            }
+        ],
+        "file_id": "National_Archives_of_Australia_-_AI_Policy",
+        "last_checked": "2025-07-21T02:44:25.466485+10:00",
+        "last_amended": "2025-07-21T02:44:25.466485+10:00"
     },
     "Google AI Policies": {
-        "hash": "80579d1783c9d671140fd53a995d71f2",
+        "hash": "44c732efb1fa76fa14dfeb8e2e8104a8",
         "category": "Private Sector",
         "urls": [
             {
@@ -25,7 +50,7 @@
             }
         ],
         "file_id": "Google_AI_Policies",
-        "last_checked": "2025-07-21T02:36:41.280651+10:00",
-        "last_amended": "2025-07-21T02:19:28.735925+10:00"
+        "last_checked": "2025-07-21T02:44:36.463780+10:00",
+        "last_amended": "2025-07-21T02:44:36.463780+10:00"
     }
 }
