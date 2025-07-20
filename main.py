@@ -33,8 +33,10 @@ def setup_directories():
 def slugify_set_name(set_name):
     return re.sub(r'[^a-zA-Z0-9\-]+', '_', set_name).strip('_')
 
-def get_content_with_selenium(url, driver, driver_type="Direct"):
-    """Fetches content using a Selenium-driven browser."""
+def get_content_with_selenium(url, driver, selector=None, driver_type="Direct"):
+    """
+    Fetches content using a Selenium-driven browser, prioritizing a specific selector if provided.
+    """
     try:
         print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
@@ -48,7 +50,29 @@ def get_content_with_selenium(url, driver, driver_type="Direct"):
             return None
 
         soup = BeautifulSoup(html, 'html.parser')
-        main_content = next((soup.select_one(s) for s in ['main', 'article', 'div[role="main"]', '#content']), soup.find('body'))
+        main_content = None
+
+        # 1. Prioritize the user-provided specific selector
+        if selector:
+            print(f"    -> Searching for specific selector: '{selector}'")
+            main_content = soup.select_one(selector)
+            if not main_content:
+                print(f"    -> WARNING: Specific selector '{selector}' not found. Falling back to generic search.")
+
+        # 2. If no specific selector or it failed, try the generic list
+        if not main_content:
+            generic_selectors = ['main', 'article', 'div[role="main"]', '#content', '#main-content', '.content', '.main-content']
+            for generic_selector in generic_selectors:
+                main_content = soup.select_one(generic_selector)
+                if main_content:
+                    print(f"    -> Found content with generic selector: '{generic_selector}'")
+                    break
+        
+        # 3. Final fallback to the body if all else fails
+        if not main_content:
+            print("    -> No specific or generic content blocks found. Falling back to <body>.")
+            main_content = soup.find('body')
+
         return main_content.get_text(separator='\n', strip=True) if main_content else ""
     except (TimeoutException, WebDriverException) as e:
         print(f"    -> [{driver_type}] WebDriver error for {url}: {type(e).__name__}")
@@ -148,20 +172,23 @@ def main():
             print(f"\nProcessing Policy Set: {set_name}...")
             
             aggregated_content = []
-            for url in policy_set["urls"]:
+            for url_item in policy_set["urls"]:
+                # Handle both old (string) and new (object) URL formats
+                url = url_item if isinstance(url_item, str) else url_item.get("url")
+                selector = None if isinstance(url_item, str) else url_item.get("selector")
                 content = None
                 
                 if policy_set.get("force_proxy"):
                     if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                    if driver_proxy: content = get_content_with_selenium(url, driver_proxy, "Proxy")
+                    if driver_proxy: content = get_content_with_selenium(url, driver_proxy, selector=selector, driver_type="Proxy")
                 else:
                     if not driver_direct: driver_direct = initialize_driver()
-                    if driver_direct: content = get_content_with_selenium(url, driver_direct, "Direct")
+                    if driver_direct: content = get_content_with_selenium(url, driver_direct, selector=selector, driver_type="Direct")
                     
                     if content is None:
                         print(f"  -> Direct failed. Retrying with proxy...")
                         if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                        if driver_proxy: content = get_content_with_selenium(url, driver_proxy, "Proxy")
+                        if driver_proxy: content = get_content_with_selenium(url, driver_proxy, selector=selector, driver_type="Proxy")
 
                 if content:
                     aggregated_content.append(f"--- Content from {url} ---\n\n{content}")
@@ -178,7 +205,7 @@ def main():
             file_id = slugify_set_name(set_name)
             previous_entry = previous_hashes.get(set_name, {})
 
-            current_hashes[set_name] = {"hash": new_hash, "category": policy_set["category"], "urls": policy_set["urls"], "file_id": file_id, "last_checked": timestamp, "last_amended": previous_entry.get("last_amended")}
+            current_hashes[set_name] = {"hash": new_hash, "category": policy_set["category"], "urls": [u if isinstance(u, str) else u.get("url") for u in policy_set["urls"]], "file_id": file_id, "last_checked": timestamp, "last_amended": previous_entry.get("last_amended")}
 
             if not previous_entry.get("hash"):
                 current_hashes[set_name]["last_amended"] = timestamp
