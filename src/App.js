@@ -170,8 +170,8 @@ function App() {
       
       <header className="App-header">
         <div className="header-content">
-          <h1>AI Steward Dashboard</h1>
-          <p>Tracking AI Policy and Terms of Service Updates for Australian Public Servants</p>
+          <h1>The Vigilant Bureaucrat</h1>
+          <p>Tracking AI Policy and Terms of Service Updates for Australian Public Servants - IM2025</p>
         </div>
         <button className="about-button" onClick={() => setIsAboutModalOpen(true)}>
           How This Works
