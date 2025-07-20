@@ -1,6 +1,6 @@
 requests
 beautifulsoup4
 google-generativeai
-selenium==4.18.1
+selenium
 undetected-chromedriver
 blinker==1.7.0
