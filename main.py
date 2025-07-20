@@ -38,34 +38,40 @@ def slugify_set_name(set_name):
 
 def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
     """
-    Fetches content from a URL, waiting for a specific selector to be visible.
+    Fetches content from a URL, then cleans it by removing common irrelevant tags.
     """
     url = url_data['url']
-    selector = url_data.get('selector', 'body')
-
+    
     try:
         print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
         
-        # Wait for the primary selector to be VISIBLE. This is a stronger check.
+        # Wait for the `body` tag to be present as a baseline check.
         WebDriverWait(driver, 20).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, selector))
+            EC.presence_of_element_located((By.TAG_NAME, 'body'))
         )
         
-        time.sleep(random.uniform(2, 5))
+        time.sleep(random.uniform(3, 6))
         
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
         
-        main_content = soup.select_one(selector)
-        if not main_content:
-             content_selectors = ['main', 'article', 'div[role="main"]', '#content', '#main-content', '.content', '.post-content']
-             main_content = next((soup.select_one(s) for s in content_selectors if soup.select_one(s)), soup.find('body'))
-
-        return main_content.get_text(separator='\n', strip=True) if main_content else ""
+        # **MODIFICATION**: Implement an exclusion-based strategy.
+        # Find the body, and if it exists, remove common irrelevant tags.
+        page_body = soup.body
+        if page_body:
+            # List of tags to remove
+            tags_to_exclude = ['nav', 'footer', 'header', 'script', 'style', 'aside', '.noprint', '#sidebar']
+            for tag_selector in tags_to_exclude:
+                for tag in page_body.select(tag_selector):
+                    tag.decompose() # Remove the tag and its contents
+            
+            return page_body.get_text(separator='\n', strip=True)
+        else:
+            return "" # Return empty string if no body is found
 
     except TimeoutException:
-        print(f"    -> [{driver_type}] Timed out waiting for selector '{selector}' to be visible at {url}")
+        print(f"    -> [{driver_type}] Timed out waiting for page body to load at {url}")
         return None
     except WebDriverException as e:
         print(f"    -> [{driver_type}] WebDriver error for {url}: {type(e).__name__}")
@@ -135,10 +141,6 @@ def initialize_driver(with_proxy=False):
     chrome_options.add_argument('--window-size=1920,1080')
     chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
     chrome_options.add_argument('--lang=en-US,en;q=0.9')
-    
-    # **REMOVED** the following two lines which were causing the crash.
-    # chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    # chrome_options.add_experimental_option('useAutomationExtension', False)
 
     if with_proxy:
         proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
@@ -207,9 +209,7 @@ def initialize_driver(with_proxy=False):
             return None
     
     try:
-        # **REMOVED** version_main argument to let the library handle it automatically.
         driver = uc.Chrome(options=chrome_options)
-        # We can still try to remove the 'webdriver' flag from the navigator object.
         driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         return driver
     except Exception as e:
