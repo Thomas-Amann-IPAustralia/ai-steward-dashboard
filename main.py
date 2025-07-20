@@ -18,7 +18,7 @@ from selenium.webdriver.common.by import By
 # --- Configuration ---
 POLICY_SETS_FILE = 'policy_sets.json'
 
-# --- Constants for File and Directory Paths ---
+# --- Constants ---
 HASHES_FILE = 'hashes.json'
 SNAPSHOTS_DIR = 'snapshots'
 ANALYSIS_DIR = 'analysis'
@@ -27,18 +27,14 @@ LOG_DIR = 'logs'
 # --- Helper Functions ---
 
 def setup_directories():
-    """Ensures that all necessary directories exist."""
     for dir_path in [SNAPSHOTS_DIR, ANALYSIS_DIR, LOG_DIR]:
         os.makedirs(dir_path, exist_ok=True)
 
 def slugify_set_name(set_name):
-    """Converts a policy set name into a filesystem-safe string."""
     return re.sub(r'[^a-zA-Z0-9\-]+', '_', set_name).strip('_')
 
-def get_smarter_content_from_url(url, driver, driver_type="Direct"):
-    """
-    Fetches content from a URL using a Selenium-driven undetected-chromedriver instance.
-    """
+def get_content_with_selenium(url, driver, driver_type="Direct"):
+    """Fetches content using a local Selenium-driven browser."""
     try:
         print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
@@ -52,15 +48,10 @@ def get_smarter_content_from_url(url, driver, driver_type="Direct"):
             return None
 
         soup = BeautifulSoup(html, 'html.parser')
-        content_selectors = ['main', 'article', 'div[role="main"]', '#content', '#main-content', '.content', '.post-content']
-        main_content = next((soup.select_one(s) for s in content_selectors if soup.select_one(s)), soup.find('body'))
-
+        main_content = next((soup.select_one(s) for s in ['main', 'article', 'div[role="main"]', '#content']), soup.find('body'))
         return main_content.get_text(separator='\n', strip=True) if main_content else ""
     except (TimeoutException, WebDriverException) as e:
         print(f"    -> [{driver_type}] WebDriver error for {url}: {type(e).__name__}")
-        return None
-    except Exception as e:
-        print(f"    -> [{driver_type}] An unexpected error occurred while fetching {url}: {e}")
         return None
 
 def generate_md5(text):
@@ -70,8 +61,8 @@ def load_json_file(file_path):
     if os.path.exists(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
             try: return json.load(f)
-            except json.JSONDecodeError: return {} if file_path == HASHES_FILE else []
-    return {} if file_path == HASHES_FILE else []
+            except json.JSONDecodeError: return {}
+    return {}
 
 def save_json_file(data, file_path):
     with open(file_path, 'w', encoding='utf-8') as f:
@@ -79,19 +70,18 @@ def save_json_file(data, file_path):
 
 def get_gemini_analysis(set_name, old_content, new_content):
     api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key: return {"summary": "Analysis failed: API key not configured.", "analysis": "The Gemini API key was not provided.", "date_time": datetime.now(timezone(timedelta(hours=10))).isoformat(), "priority": "critical"}
-    
+    if not api_key: return {"summary": "Analysis failed: API key not configured.", "priority": "critical"}
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel('gemini-1.5-flash')
-    prompt = f"""Analyze changes for a policy document named "{set_name}". Your response MUST be a valid JSON object with four keys: 'summary', 'analysis', 'date_time', and 'priority'.
-OLD CONTENT: --- {old_content} ---
-NEW CONTENT: --- {new_content} ---"""
+    prompt = f"""Analyze changes for a policy document named "{set_name}". Respond in valid JSON with keys: 'summary', 'analysis', 'date_time', 'priority'.
+OLD: --- {old_content} ---
+NEW: --- {new_content} ---"""
     try:
         response = model.generate_content(prompt)
         cleaned_text = re.sub(r'^```json\s*|\s*```$', '', response.text, flags=re.MULTILINE | re.DOTALL).strip()
         return json.loads(cleaned_text)
     except Exception as e:
-        return {"summary": "Analysis failed.", "analysis": f"API or parsing error: {e}", "date_time": datetime.now(timezone(timedelta(hours=10))).isoformat(), "priority": "medium"}
+        return {"summary": "Analysis failed.", "analysis": f"API or parsing error: {e}", "priority": "medium"}
 
 def save_snapshot(file_id, content):
     with open(os.path.join(SNAPSHOTS_DIR, f"{file_id}.txt"), 'w', encoding='utf-8') as f: f.write(content)
@@ -113,101 +103,35 @@ def log_previous_version(set_name, file_id, timestamp):
     if os.path.exists(old_snapshot_path): shutil.copy(old_snapshot_path, os.path.join(LOG_DIR, f"{set_name}_{log_timestamp}_snapshot.txt"))
 
 def initialize_driver(with_proxy=False):
-    """Initializes a WebDriver, creating and loading a proxy extension if requested."""
     chrome_options = uc.ChromeOptions()
     chrome_options.add_argument('--headless=new')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--window-size=1920,1080')
-    chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
 
     if with_proxy:
         proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
         if all([proxy_host, proxy_port, proxy_user, proxy_pass]):
-            print("    -> Creating and loading proxy authentication extension.")
-            
-            manifest_json = """
-            {
-                "version": "1.0.0",
-                "manifest_version": 2,
-                "name": "Chrome Proxy",
-                "permissions": [
-                    "proxy",
-                    "tabs",
-                    "unlimitedStorage",
-                    "storage",
-                    "<all_urls>",
-                    "webRequest",
-                    "webRequestBlocking"
-                ],
-                "background": {
-                    "scripts": ["background.js"]
-                },
-                "minimum_chrome_version":"22.0.0"
-            }
-            """
-
-            background_js = f"""
-            var config = {{
-                    mode: "fixed_servers",
-                    rules: {{
-                      singleProxy: {{
-                        scheme: "http",
-                        host: "{proxy_host}",
-                        port: parseInt({proxy_port})
-                      }},
-                      bypassList: ["localhost"]
-                    }}
-                  }};
-
-            chrome.proxy.settings.set({{value: config, scope: "regular"}}, function() {{}});
-
-            function callbackFn(details) {{
-                return {{
-                    authCredentials: {{
-                        username: "{proxy_user}",
-                        password: "{proxy_pass}"
-                    }}
-                }};
-            }}
-
-            chrome.webRequest.onAuthRequired.addListener(
-                        callbackFn,
-                        {{urls: ["<all_urls>"]}},
-                        ['blocking']
-            );
-            """
-            
             plugin_file = 'proxy_auth_plugin.zip'
+            manifest_json = """{"version": "1.0.0", "manifest_version": 2, "name": "Chrome Proxy", "permissions": ["proxy", "tabs", "unlimitedStorage", "storage", "<all_urls>", "webRequest", "webRequestBlocking"], "background": {"scripts": ["background.js"]}, "minimum_chrome_version":"22.0.0"}"""
+            background_js = f"""var config={{mode:"fixed_servers",rules:{{singleProxy:{{scheme:"http",host:"{proxy_host}",port:parseInt({proxy_port})}},bypassList:["localhost"]}}}};chrome.proxy.settings.set({{value:config,scope:"regular"}},function(){{}});function callbackFn(details){{return{{authCredentials:{{username:"{proxy_user}",password:"{proxy_pass}"}}}}}}chrome.webRequest.onAuthRequired.addListener(callbackFn,{{urls:["<all_urls>"]}},['blocking']);"""
             with zipfile.ZipFile(plugin_file, 'w') as zp:
                 zp.writestr("manifest.json", manifest_json)
                 zp.writestr("background.js", background_js)
             chrome_options.add_extension(plugin_file)
         else:
-            print("    -> Proxy requested but credentials not found.")
             return None
-    
     try:
-        driver = uc.Chrome(options=chrome_options)
-        return driver
+        return uc.Chrome(options=chrome_options)
     except Exception as e:
         print(f"    -> Failed to initialize WebDriver: {e}")
         return None
 
 def main():
     setup_directories()
-    driver_direct = None
-    driver_proxy = None
+    driver_direct, driver_proxy = None, None
     
     try:
-        print("Initializing direct WebDriver...")
-        driver_direct = initialize_driver(with_proxy=False)
-        if not driver_direct:
-            print("FATAL: Could not initialize the direct WebDriver. Exiting.")
-            return
-
         policy_sets = load_json_file(POLICY_SETS_FILE)
         previous_hashes = load_json_file(HASHES_FILE)
         current_hashes = {}
@@ -223,13 +147,15 @@ def main():
                 
                 if policy_set.get("force_proxy"):
                     if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                    if driver_proxy: content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
+                    if driver_proxy: content = get_content_with_selenium(url, driver_proxy, "Proxy")
                 else:
-                    content = get_smarter_content_from_url(url, driver_direct, "Direct")
+                    if not driver_direct: driver_direct = initialize_driver()
+                    if driver_direct: content = get_content_with_selenium(url, driver_direct, "Direct")
+                    
                     if content is None:
                         print(f"  -> Direct failed. Retrying with proxy...")
                         if not driver_proxy: driver_proxy = initialize_driver(with_proxy=True)
-                        if driver_proxy: content = get_smarter_content_from_url(url, driver_proxy, "Proxy")
+                        if driver_proxy: content = get_content_with_selenium(url, driver_proxy, "Proxy")
 
                 if content:
                     aggregated_content.append(f"--- Content from {url} ---\n\n{content}")
@@ -237,7 +163,6 @@ def main():
                     print(f"  -> WARNING: All attempts to fetch content for {url} failed.")
 
             if not aggregated_content:
-                print(f"Skipping set '{set_name}' as no content could be fetched.")
                 if set_name in previous_hashes: current_hashes[set_name] = previous_hashes[set_name]
                 continue
 
@@ -246,27 +171,21 @@ def main():
             timestamp = datetime.now(aest_tz).isoformat()
             file_id = slugify_set_name(set_name)
             previous_entry = previous_hashes.get(set_name, {})
-            previous_hash = previous_entry.get("hash")
 
             current_hashes[set_name] = {"hash": new_hash, "category": policy_set["category"], "urls": policy_set["urls"], "file_id": file_id, "last_checked": timestamp, "last_amended": previous_entry.get("last_amended")}
 
-            if not previous_hash:
-                print(f"  -> First scan for '{set_name}'.")
+            if not previous_entry.get("hash"):
                 current_hashes[set_name]["last_amended"] = timestamp
                 save_snapshot(file_id, full_content)
-                save_analysis(file_id, {"summary": "Initial snapshot captured.", "analysis": f"This is the first time the '{set_name}' policy set has been monitored.", "date_time": timestamp, "priority": "low"})
-            elif new_hash != previous_hash:
-                print(f"  -> Change detected for '{set_name}'. Analyzing...")
+                save_analysis(file_id, {"summary": "Initial snapshot captured.", "priority": "low"})
+            elif new_hash != previous_entry.get("hash"):
                 current_hashes[set_name]["last_amended"] = timestamp
                 if previous_entry.get("last_checked"): log_previous_version(file_id, file_id, previous_entry.get("last_checked"))
                 old_content = load_snapshot(file_id)
                 analysis_result = get_gemini_analysis(set_name, old_content, full_content)
                 save_analysis(file_id, analysis_result)
                 save_snapshot(file_id, full_content)
-                print(f"  -> Analysis complete. Priority: {analysis_result.get('priority', 'N/A')}")
-            else:
-                print(f"  -> No changes detected for '{set_name}'.")
-
+            
         save_json_file(current_hashes, HASHES_FILE)
         print("\nUpdate check complete.")
 
