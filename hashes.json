@@ -1,33 +1,4 @@
 {
-    "https://www.tomamann.com/about": {
-        "hash": "863cf09f9dae11ac21b9d1b4524b7dd7",
-        "last_checked": "2025-07-20T01:25:58.159500+10:00"
-    },
-    "https://www.tomamann.com/medbay": {
-        "hash": "c7dd8321b7282ab338ec4dd25b870db1",
-        "last_checked": "2025-07-20T01:25:58.675590+10:00",
-        "last_amended": "2025-07-20T01:22:58.675748+10:00"
-    },
-    "https://www.tomamann.com/life-in-silicon": {
-        "hash": "4e765ab171ab75b52ea20aa8d5c198b7",
-        "last_checked": "2025-07-20T01:25:58.322764+10:00"
-    },
-    "https://www.tomamann.com/hiwthi": {
-        "hash": "b37eac7b16497277d7088b7171246173",
-        "last_checked": "2025-07-20T01:25:58.552572+10:00",
-        "last_amended": "2025-07-20T01:22:56.933370+10:00"
-    },
-    "Google AI Policies": {
-        "hash": "ac5e3e77ef959e790dc3ddda02166ef0",
-        "category": "Private Sector",
-        "urls": [
-            "https://policies.google.com/terms",
-            "https://ai.google/responsibility/principles/"
-        ],
-        "file_id": "Google_AI_Policies",
-        "last_checked": "2025-07-20T18:21:08.361463+10:00",
-        "last_amended": "2025-07-20T18:21:08.361463+10:00"
-    },
     "Digital.gov.au AI Policy": {
         "hash": "f2e63a2a8fccd23daca395a455814672",
         "category": "Australian Government",
@@ -52,5 +23,16 @@
         "file_id": "OpenAI_Terms_Policies",
         "last_checked": "2025-07-20T18:20:49.209912+10:00",
         "last_amended": "2025-07-20T18:20:49.209912+10:00"
+    },
+    "Google AI Policies": {
+        "hash": "37f9f3eff1507ee53106c2562eb2b305",
+        "category": "Private Sector",
+        "urls": [
+            "https://policies.google.com/terms",
+            "https://ai.google/responsibility/principles/"
+        ],
+        "file_id": "Google_AI_Policies",
+        "last_checked": "2025-07-20T18:31:30.160592+10:00",
+        "last_amended": "2025-07-20T18:31:30.160592+10:00"
     }
 }
