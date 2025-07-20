@@ -1,6 +1,6 @@
 {
-    "summary": "Initial snapshot captured.",
-    "analysis": "This is the first time the 'Digital.gov.au AI Policy' policy set has been monitored.",
-    "date_time": "2025-07-20T03:12:48.725728+10:00",
-    "priority": "low"
+    "summary": "The 'Digital.gov.au AI Policy' document is now inaccessible due to a certificate authority error, replacing previous errors indicating the site was down or moved.",
+    "analysis": "The most significant change is that the previous `ERR_HTTP2_PROTOCOL_ERROR` messages indicating website unavailability have been replaced with `net::ERR_CERT_AUTHORITY_INVALID` errors.  This suggests that the website is accessible but experiencing a security certificate issue.\n\nSpecifically:\n\n* **Old Content:** Reported `ERR_HTTP2_PROTOCOL_ERROR` across all four sections of the policy (Implementation, Enable and Prepare, Engage Responsibly, Evolve and Integrate). This error usually indicates network problems.\n* **New Content:** Shows a consistent `net::ERR_CERT_AUTHORITY_INVALID` error across all sections. This indicates a problem with the SSL/TLS certificate used by the website.  The certificate is issued by \"Selenium Wire CA\" and is noted to expire on Jul 20, 2026 while the current date is Jul 20, 2025, indicating a possible self-signed certificate problem or incorrect certificate installation.  The PEM-encoded certificate chain is also shown, which is not typically part of a public-facing policy document. The Google Chrome security warning is also present, asking users to provide telemetry data to improve web security.\n\nNo actual policy content changes are evident; the difference lies entirely in the website access error messages displayed.",
+    "date_time": "2024-08-07T10:15:00+10:00",
+    "priority": "critical"
 }

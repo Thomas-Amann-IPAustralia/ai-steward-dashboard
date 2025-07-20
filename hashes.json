@@ -18,18 +18,18 @@
         "last_amended": "2025-07-20T01:22:56.933370+10:00"
     },
     "Google AI Policies": {
-        "hash": "37f9f3eff1507ee53106c2562eb2b305",
+        "hash": "ac5e3e77ef959e790dc3ddda02166ef0",
         "category": "Private Sector",
         "urls": [
             "https://policies.google.com/terms",
             "https://ai.google/responsibility/principles/"
         ],
         "file_id": "Google_AI_Policies",
-        "last_checked": "2025-07-20T03:40:25.965530+10:00",
-        "last_amended": "2025-07-20T02:42:45.096145+10:00"
+        "last_checked": "2025-07-20T18:21:08.361463+10:00",
+        "last_amended": "2025-07-20T18:21:08.361463+10:00"
     },
     "Digital.gov.au AI Policy": {
-        "hash": "410df52bff37b974881f3db16f1e5160",
+        "hash": "f2e63a2a8fccd23daca395a455814672",
         "category": "Australian Government",
         "urls": [
             "https://www.digital.gov.au/policy/ai/implementation",
@@ -38,11 +38,11 @@
             "https://www.digital.gov.au/policy/ai/evolve-and-integrate"
         ],
         "file_id": "Digital_gov_au_AI_Policy",
-        "last_checked": "2025-07-20T03:12:48.725728+10:00",
-        "last_amended": "2025-07-20T03:12:48.725728+10:00"
+        "last_checked": "2025-07-20T18:20:21.444557+10:00",
+        "last_amended": "2025-07-20T18:20:21.444557+10:00"
     },
     "OpenAI Terms & Policies": {
-        "hash": "92bb4156a9a619c0b596214d79a9a77a",
+        "hash": "513d38522241fc77bcf6965992803c41",
         "category": "Private Sector",
         "urls": [
             "https://openai.com/policies/terms-of-use",
@@ -50,7 +50,7 @@
             "https://openai.com/policies/usage-policies"
         ],
         "file_id": "OpenAI_Terms_Policies",
-        "last_checked": "2025-07-20T03:13:13.264694+10:00",
-        "last_amended": "2025-07-20T03:13:13.264694+10:00"
+        "last_checked": "2025-07-20T18:20:49.209912+10:00",
+        "last_amended": "2025-07-20T18:20:49.209912+10:00"
     }
 }

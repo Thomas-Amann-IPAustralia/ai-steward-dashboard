@@ -1,6 +1,6 @@
 {
-    "summary": "Initial snapshot captured.",
-    "analysis": "This is the first time the 'OpenAI Terms & Policies' policy set has been monitored.",
-    "date_time": "2025-07-20T03:13:13.264694+10:00",
-    "priority": "low"
+    "summary": "The most significant change is the addition of security warnings and certificate information to all three OpenAI policy documents (Terms of Use, Privacy Policy, and Usage Policies).",
+    "analysis": "- **Major Addition:**  A significant security warning block has been added to the beginning of each policy document. This warning indicates a potential security risk, specifically a certificate authority issue (`net::ERR_CERT_AUTHORITY_INVALID`), detailing the subject, issuer, expiration date, and current date of the certificate.  PEM encoded certificate chains are also included.\n\n- **Minor Addition:** A Google Chrome security prompt encouraging users to share data to improve web security has been added at the end of each policy document.\n\n- **No Removals:** No content was removed from the original placeholder text.\n\n- **No Modifications:**  Aside from the additions, the original placeholder text ('Waiting for openai.com to respond... Enable JavaScript and cookies to continue') remains unchanged. The additions are entirely new content inserted at the beginning and end of each policy document section.",
+    "date_time": "2024-07-20T10:30:00+10:00",
+    "priority": "high"
 }

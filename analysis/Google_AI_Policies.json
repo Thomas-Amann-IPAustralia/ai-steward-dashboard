@@ -1,6 +1,6 @@
 {
-    "summary": "Initial snapshot captured.",
-    "analysis": "This is the first time the 'Google AI Policies' policy set has been monitored. Future changes will be analyzed.",
-    "date_time": "2025-07-20T02:42:45.096145+10:00",
-    "priority": "low"
+    "summary": "The most significant change is the addition of a security warning and certificate information at the beginning of both the 'Google AI Policies' and 'Google Terms of Service' documents, indicating a potential security breach.",
+    "analysis": "The primary change introduced is the prepending of a security warning block to both the Google Terms of Service and Google AI Principles documents. This block alerts users to a potential security risk, indicating that attackers might attempt to steal their information.  It provides details such as the error message (`net::ERR_CERT_AUTHORITY_INVALID`), subject, issuer, expiry and current date of the certificate, and the PEM encoded certificate chain. This strongly suggests a certificate issue affecting the security of the Google policies website.\n\nSpecifically, the following elements were added:\n\n* **Security Warning Block:** This block is identical in both documents, warning users about a potential attack and provides details of a certificate error.\n* **Certificate Information:**  Detailed certificate data, including the subject, issuer, expiry date, current date, and PEM encoded certificate chain, were added.  The certificate information differs slightly between the two documents reflecting the different domains (`*.google.com` vs `*.ai.google`).\n\nNo content was removed from either document, though the added security warning and certificate information appear at the start, changing the order of existing content.",
+    "date_time": "2024-07-20T10:00:00+10:00",
+    "priority": "critical"
 }
