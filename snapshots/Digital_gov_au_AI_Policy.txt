@@ -1,331 +1,317 @@
 --- Content from https://www.digital.gov.au/policy/ai/implementation ---
 
-Your connection is not private
-Attackers might be trying to steal your information from
-www.digital.gov.au
-(for example, passwords, messages, or credit cards).
-Learn more about this warning
-net::ERR_CERT_AUTHORITY_INVALID
-Subject:
-www.digital.gov.au
-Issuer:
-Selenium Wire CA
-Expires on:
-Jul 20, 2026
-Current date:
-Jul 20, 2025
-PEM encoded chain:
------BEGIN CERTIFICATE-----
-MIIE+DCCAuCgAwIBAgIGD/GFLm/yMA0GCSqGSIb3DQEBCwUAMBsxGTAXBgNVBAMM
-EFNlbGVuaXVtIFdpcmUgQ0EwHhcNMjUwNzE4MDgxOTU0WhcNMjYwNzIwMDgxOTU0
-WjAdMRswGQYDVQQDDBJ3d3cuZGlnaXRhbC5nb3YuYXUwggIiMA0GCSqGSIb3DQEB
-AQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qBXsfeMAbsA7x4blJk
-MGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5JlnJSZuGEzUUAnrwhT
-HTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WIHCFUClQaJ7sVVzAi
-kaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZTZ75GwvsT1ohH4YS
-RM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciSLEGEi4SaaC6Nhap3
-sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4XIlgm4xcuhhBvcsgo
-b/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YHZGn4RunJAO/J7toq
-J7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6WfUkHM+tgXHKqSMcf
-VVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9JT71vh6sDo/Ys+4H
-K5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BHYZdviXRqCxpiudmn
-N+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R49jhAZGJFiHK/vE+X
-wwIDAQABo0AwPjAdBgNVHREEFjAUghJ3d3cuZGlnaXRhbC5nb3YuYXUwHQYDVR0l
-BBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMA0GCSqGSIb3DQEBCwUAA4ICAQCpzH4s
-hOsYNnFAuDFi2vm9JDOthheLr8wOVkPCFASreZafZpWrvTlxSHgq0adxuYqAfpdZ
-A4c0I98pfogEQIsGECKXr8HoUYgAh6CPchYmPLcrzEg04iXOLgBZidte2t55Wv+V
-tlpLlF5miVJtrq7F+Zxc0zgSMe5vqQByP+6r2lj0dn58S7BWvdZQiRQy8+np8APa
-dvE8xWLFKGLXW23kx63zmaFKu/0kE8UdDi8F6ChTOMChh/XptDPCWHlvMk5VpcmB
-NVRMV5pRnUhNWxdBA/DFxdH0XN/Im9oo+D2/MCRK5OATtOhQQyOlQjGbOFwUETjz
-R+njWmqTJ8Xro+Q5jef2eI9CRYLxtj1NCQUJuc0zWVAHzPy7+LJWm9k+SHznwqQ5
-oZ8Zy57Xe4o5AJroHEATgl8GKzLWCHMRDklhvhT6g4nVaVOlEZfx0/+VdoShadbA
-a4CTcMoypy6rJFrJvCgZaERA5786ZVBRR8xQEv3yqpHb4v/vpfOxQVSR+r6UHoG2
-GP/lllF23qzvlj+oqlrSojD2EXkS107MIU+UYbBw/lFYmgMj0ARnd6SFWTjJogVz
-Gtk5Arg/A24KVj4peonAiiXreQocO7p7e5oTe9uBT5lmbrXI5P1c2gEXrDBfsYvq
-4uzsRBpjuNjKtuae7NTM9nbNpY8IH+5bDwS5oA==
------END CERTIFICATE-----
------BEGIN CERTIFICATE-----
-MIIFFzCCAv+gAwIBAgIUIUc6dnnqhYX3ZYXQzpZyJ1gtUwcwDQYJKoZIhvcNAQEL
-BQAwGzEZMBcGA1UEAwwQU2VsZW5pdW0gV2lyZSBDQTAeFw0xODA3MjAxMDQxMDNa
-Fw0yODA3MTcxMDQxMDNaMBsxGTAXBgNVBAMMEFNlbGVuaXVtIFdpcmUgQ0EwggIi
-MA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qB
-XsfeMAbsA7x4blJkMGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5Jl
-nJSZuGEzUUAnrwhTHTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WI
-HCFUClQaJ7sVVzAikaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZ
-TZ75GwvsT1ohH4YSRM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciS
-LEGEi4SaaC6Nhap3sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4X
-Ilgm4xcuhhBvcsgob/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YH
-ZGn4RunJAO/J7toqJ7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6W
-fUkHM+tgXHKqSMcfVVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9
-JT71vh6sDo/Ys+4HK5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BH
-YZdviXRqCxpiudmnN+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R4
-9jhAZGJFiHK/vE+XwwIDAQABo1MwUTAdBgNVHQ4EFgQUPvrTydSlYhMQJy8lvBvh
-nLeQsvQwHwYDVR0jBBgwFoAUPvrTydSlYhMQJy8lvBvhnLeQsvQwDwYDVR0TAQH/
-BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAgEAmIvadNtFca9vuMuSewSXHlOd9p7d
-9xYkp8Yj5RvFUGL32zYUatH9YsRh5K9Wz5jifjwBLMRDZIm48xhxYjqVvTZoQpL6
-Qyzbu2EsRCbmQ+861U4SfcP2uetJuFM6Ug0/CKviyNpUaX/8YWupFXsEiCRJM9pk
-sh2b+dqljy9kvrOosfehz8CRbxUfgPsL2IVZa0mHsuOZDa/XHAAW9ns5TdBlFHwo
-W/2KDvvPGL/3t7Zah2jwu8D8w397looMXxqyT/DAjH6+bd5Kg/7mELaqbg/pM3EJ
-mENd5ButBkhpVbyAKLn7TvpZYSEF/VMNPcZHOKoKrx1utZwLFuVIb07WDMRov0GO
-hg/rrIBWvA1ySi/4yrnRDc7GBHSUh0Krx6LLZ/ZtE3j7/4rwj51MwqqNhQrCxGhz
-ksqn8V6XY7UUKnlTlAWRyuBLiA+yvf9GdgNJxUblZYMNpPbeLwe2Be/utROuMqwr
-G4RA1sfPuEdyfdXB/7c8ViOPxKYFH0POXuwB+Z1JlXDtR8rbjyVPUwqQarAuNIbw
-NC8P+GWSzviG544BQyW1xKqLgQcEMSU73icDOOb9COcl1h7URSO9WB6CZXykpQSk
-hceDiwojCDsyM84uXyyXKXCRPtseCIRsA1zZwrXU7NDDBXrIC7moVbxkDu2G4V1g
-b5JFYe4FNI0yw/o=
------END CERTIFICATE-----
-Help improve security on the web for everyone by sending
-URLs of some pages you visit, limited system information, and some page content
-to Google.
-Privacy policy
-Turn on enhanced protection
-to get Chrome's highest level of security
+Skip navigation
+Artificial intelligence
+Trial of Microsoft 365 Copilot
+Summary report
+Executive summary
+Evaluation findings, methodology and approach
+Appendix
+Full report
+Executive summary and glossary
+Employee-related outcomes
+Productivity
+Whole-of-government adoption of generative AI
+Unintended outcomes
+Appendix A
+Appendix B
+Appendix C
+Appendix D
+Appendix E
+Survey questions
+Evaluation briefing
+AI in government policy
+Policy aim
+Implementation
+Enable and prepare
+Engage responsibly
+Evolve and integrate
+Accountable officials
+Transparency statements
+Staff training
+Resources
+Pilot AI assurance framework
+Introduction
+1. Basic information
+2. Purpose and expected benefits
+3. Threshold assessment
+4. Fairness
+5. Reliability and safety
+6. Privacy protection and security
+7. Transparency and explainability
+8. Contestability
+9. Accountability
+10. Human-centred values
+11. Internal review and next steps
+Pilot AI assurance framework guidance
+Guidance 1. Basic information
+Guidance 2. Purpose and expected benefits
+Guidance 3. Threshold assessment
+Guidance 4. Fairness
+Guidance 5. Reliability and safety
+Guidance 6. Privacy protection and security
+Guidance 7. Transparency and explainability
+Guidance 8. Contestability
+Guidance 9. Accountability
+Guidance 10. Human-centred values
+Guidance 11. Internal review and next steps
+Attachment
+Risk matrix
+Related frameworks
+Use classification
+Insights
+Implementation
+Application
+This policy took effect on
+1 September 2024
+.
+Consistent with other whole-of-government digital policies, all
+non-corporate Commonwealth entities
+(NCEs), as defined by the
+Public Governance, Performance and Accountability Act 2013
+, must apply this policy.
+Corporate Commonwealth entities
+are also encouraged to apply this policy.
+National security carveouts
+This policy does not apply to the use of AI in the defence portfolio.
+This policy does not apply to the ‘national intelligence community’ (NIC) as defined by Section 4 of the
+Office of National Intelligence Act 2018
+.
+The NIC includes:
+Office of National Intelligence (ONI)
+Australian Signals Directorate (ASD)
+Australian Security Intelligence Organisation (ASIO)
+Australian Secret Intelligence Service (ASIS)
+Australian Geospatial-Intelligence Organisation (AGO)
+Defence Intelligence Organisation (DIO)
+Australian Criminal Intelligence Commission (ACIC)
+the intelligence role and functions of the Australian Transaction Reports and Analysis Centre (AUSTRAC), Australian Federal Police (AFP), the Department of Home Affairs and the Department of Defence.
+Defence and members of the NIC may voluntarily adopt elements of this policy where they are able to do so without compromising national security capabilities or interests.
+Existing frameworks
+The challenges raised by government use of AI are complex and inherently linked with other issues, such as:
+the APS Code of Conduct
+data governance
+cyber security
+privacy
+ethics practices.
+This policy has been designed to complement and strengthen – not duplicate – existing frameworks, legislation and practices that touch upon government’s use of AI.
+This policy must be read and applied alongside existing frameworks and laws to ensure agencies meet all their obligations.
+Explore related frameworks
+A non-exhaustive list of existing frameworks related to AI.
+Artificial intelligence definition
+While there are various definitions of what constitutes AI, for the purposes of this policy agencies should apply the definition provided by the Organisation for Economic Co-operation and Development (OECD):
+An AI system is a machine-based system that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments. Different AI systems vary in their levels of autonomy and adaptiveness after deployment.
+Agencies may refer to further
+explanatory material on the OECD website
+.
+Given the rapidly changing nature of AI, agencies should keep up to date on any updates or changes to this definition. The definition in this policy will be reviewed as the broader, whole-of-economy regulatory environment matures to ensure an aligned approach.
+Principles and requirements
+The following sections outline the policy principles and requirements under the ‘
+enable, engage
+and
+evolve
+’ framework.
+Next: Enable and prepare
+Principles and requirements
+Connect with the digital community
+Share, build or learn digital experience and skills with training and events, and collaborate with peers across government.
+Join the Digital Profession
 
 --- Content from https://www.digital.gov.au/policy/ai/enable-and-prepare ---
 
-Your connection is not private
-Attackers might be trying to steal your information from
-www.digital.gov.au
-(for example, passwords, messages, or credit cards).
-Learn more about this warning
-net::ERR_CERT_AUTHORITY_INVALID
-Subject:
-www.digital.gov.au
-Issuer:
-Selenium Wire CA
-Expires on:
-Jul 20, 2026
-Current date:
-Jul 20, 2025
-PEM encoded chain:
------BEGIN CERTIFICATE-----
-MIIE+DCCAuCgAwIBAgIGD/GFLm/yMA0GCSqGSIb3DQEBCwUAMBsxGTAXBgNVBAMM
-EFNlbGVuaXVtIFdpcmUgQ0EwHhcNMjUwNzE4MDgxOTU0WhcNMjYwNzIwMDgxOTU0
-WjAdMRswGQYDVQQDDBJ3d3cuZGlnaXRhbC5nb3YuYXUwggIiMA0GCSqGSIb3DQEB
-AQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qBXsfeMAbsA7x4blJk
-MGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5JlnJSZuGEzUUAnrwhT
-HTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WIHCFUClQaJ7sVVzAi
-kaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZTZ75GwvsT1ohH4YS
-RM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciSLEGEi4SaaC6Nhap3
-sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4XIlgm4xcuhhBvcsgo
-b/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YHZGn4RunJAO/J7toq
-J7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6WfUkHM+tgXHKqSMcf
-VVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9JT71vh6sDo/Ys+4H
-K5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BHYZdviXRqCxpiudmn
-N+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R49jhAZGJFiHK/vE+X
-wwIDAQABo0AwPjAdBgNVHREEFjAUghJ3d3cuZGlnaXRhbC5nb3YuYXUwHQYDVR0l
-BBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMA0GCSqGSIb3DQEBCwUAA4ICAQCpzH4s
-hOsYNnFAuDFi2vm9JDOthheLr8wOVkPCFASreZafZpWrvTlxSHgq0adxuYqAfpdZ
-A4c0I98pfogEQIsGECKXr8HoUYgAh6CPchYmPLcrzEg04iXOLgBZidte2t55Wv+V
-tlpLlF5miVJtrq7F+Zxc0zgSMe5vqQByP+6r2lj0dn58S7BWvdZQiRQy8+np8APa
-dvE8xWLFKGLXW23kx63zmaFKu/0kE8UdDi8F6ChTOMChh/XptDPCWHlvMk5VpcmB
-NVRMV5pRnUhNWxdBA/DFxdH0XN/Im9oo+D2/MCRK5OATtOhQQyOlQjGbOFwUETjz
-R+njWmqTJ8Xro+Q5jef2eI9CRYLxtj1NCQUJuc0zWVAHzPy7+LJWm9k+SHznwqQ5
-oZ8Zy57Xe4o5AJroHEATgl8GKzLWCHMRDklhvhT6g4nVaVOlEZfx0/+VdoShadbA
-a4CTcMoypy6rJFrJvCgZaERA5786ZVBRR8xQEv3yqpHb4v/vpfOxQVSR+r6UHoG2
-GP/lllF23qzvlj+oqlrSojD2EXkS107MIU+UYbBw/lFYmgMj0ARnd6SFWTjJogVz
-Gtk5Arg/A24KVj4peonAiiXreQocO7p7e5oTe9uBT5lmbrXI5P1c2gEXrDBfsYvq
-4uzsRBpjuNjKtuae7NTM9nbNpY8IH+5bDwS5oA==
------END CERTIFICATE-----
------BEGIN CERTIFICATE-----
-MIIFFzCCAv+gAwIBAgIUIUc6dnnqhYX3ZYXQzpZyJ1gtUwcwDQYJKoZIhvcNAQEL
-BQAwGzEZMBcGA1UEAwwQU2VsZW5pdW0gV2lyZSBDQTAeFw0xODA3MjAxMDQxMDNa
-Fw0yODA3MTcxMDQxMDNaMBsxGTAXBgNVBAMMEFNlbGVuaXVtIFdpcmUgQ0EwggIi
-MA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qB
-XsfeMAbsA7x4blJkMGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5Jl
-nJSZuGEzUUAnrwhTHTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WI
-HCFUClQaJ7sVVzAikaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZ
-TZ75GwvsT1ohH4YSRM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciS
-LEGEi4SaaC6Nhap3sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4X
-Ilgm4xcuhhBvcsgob/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YH
-ZGn4RunJAO/J7toqJ7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6W
-fUkHM+tgXHKqSMcfVVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9
-JT71vh6sDo/Ys+4HK5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BH
-YZdviXRqCxpiudmnN+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R4
-9jhAZGJFiHK/vE+XwwIDAQABo1MwUTAdBgNVHQ4EFgQUPvrTydSlYhMQJy8lvBvh
-nLeQsvQwHwYDVR0jBBgwFoAUPvrTydSlYhMQJy8lvBvhnLeQsvQwDwYDVR0TAQH/
-BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAgEAmIvadNtFca9vuMuSewSXHlOd9p7d
-9xYkp8Yj5RvFUGL32zYUatH9YsRh5K9Wz5jifjwBLMRDZIm48xhxYjqVvTZoQpL6
-Qyzbu2EsRCbmQ+861U4SfcP2uetJuFM6Ug0/CKviyNpUaX/8YWupFXsEiCRJM9pk
-sh2b+dqljy9kvrOosfehz8CRbxUfgPsL2IVZa0mHsuOZDa/XHAAW9ns5TdBlFHwo
-W/2KDvvPGL/3t7Zah2jwu8D8w397looMXxqyT/DAjH6+bd5Kg/7mELaqbg/pM3EJ
-mENd5ButBkhpVbyAKLn7TvpZYSEF/VMNPcZHOKoKrx1utZwLFuVIb07WDMRov0GO
-hg/rrIBWvA1ySi/4yrnRDc7GBHSUh0Krx6LLZ/ZtE3j7/4rwj51MwqqNhQrCxGhz
-ksqn8V6XY7UUKnlTlAWRyuBLiA+yvf9GdgNJxUblZYMNpPbeLwe2Be/utROuMqwr
-G4RA1sfPuEdyfdXB/7c8ViOPxKYFH0POXuwB+Z1JlXDtR8rbjyVPUwqQarAuNIbw
-NC8P+GWSzviG544BQyW1xKqLgQcEMSU73icDOOb9COcl1h7URSO9WB6CZXykpQSk
-hceDiwojCDsyM84uXyyXKXCRPtseCIRsA1zZwrXU7NDDBXrIC7moVbxkDu2G4V1g
-b5JFYe4FNI0yw/o=
------END CERTIFICATE-----
-Help improve security on the web for everyone by sending
-URLs of some pages you visit, limited system information, and some page content
-to Google.
-Privacy policy
-Turn on enhanced protection
-to get Chrome's highest level of security
+Skip navigation
+Artificial intelligence
+Trial of Microsoft 365 Copilot
+Summary report
+Executive summary
+Evaluation findings, methodology and approach
+Appendix
+Full report
+Executive summary and glossary
+Employee-related outcomes
+Productivity
+Whole-of-government adoption of generative AI
+Unintended outcomes
+Appendix A
+Appendix B
+Appendix C
+Appendix D
+Appendix E
+Survey questions
+Evaluation briefing
+AI in government policy
+Policy aim
+Implementation
+Enable and prepare
+Engage responsibly
+Evolve and integrate
+Accountable officials
+Transparency statements
+Staff training
+Resources
+Pilot AI assurance framework
+Introduction
+1. Basic information
+2. Purpose and expected benefits
+3. Threshold assessment
+4. Fairness
+5. Reliability and safety
+6. Privacy protection and security
+7. Transparency and explainability
+8. Contestability
+9. Accountability
+10. Human-centred values
+11. Internal review and next steps
+Pilot AI assurance framework guidance
+Guidance 1. Basic information
+Guidance 2. Purpose and expected benefits
+Guidance 3. Threshold assessment
+Guidance 4. Fairness
+Guidance 5. Reliability and safety
+Guidance 6. Privacy protection and security
+Guidance 7. Transparency and explainability
+Guidance 8. Contestability
+Guidance 9. Accountability
+Guidance 10. Human-centred values
+Guidance 11. Internal review and next steps
+Attachment
+Risk matrix
+Related frameworks
+Use classification
+Insights
+Enable and prepare
+Principles
+Safely engage with AI to enhance productivity, decision-making, policy outcomes and government service delivery for the benefit of Australians.
+APS officers need to be able to explain, justify and take ownership of advice and decisions when utilising AI.
+Have clear accountabilities for the adoption of AI and understand its use.
+Build AI capability for the long term.
+Mandatory requirements
+Accountable officials
+Agencies
+must
+designate accountability for implementing this policy to accountable official(s) within 90 days of this policy taking effect.
+The responsibilities may be vested in an individual or in the chair of a body. The responsibilities may also be split across officials or existing roles (such as Chief Information Officer, Chief Technology Officer or Chief Data Officer) to suit agency preferences.
+The responsibilities of the accountable officials are to:
+be accountable for implementation of this policy within their agencies
+notify the Digital Transformation Agency (DTA) where the agency has identified a new high-risk use case by emailing
+ai@dta.gov.au
+. This information will be used by the DTA to build visibility and inform the development of further risk mitigation approaches. Agencies may wish to use the
+risk matrix
+to determine risk ratings.
+be a contact point for whole-of-government AI coordination
+engage in whole-of-government AI forums and processes
+keep up to date with changing requirements as they evolve over time.
+Agencies are to email the DTA when they designate and make any changes to their accountable official(s) by emailing
+ai@dta.gov.au
+Standard for accountable officials
+Find further information at the standard for accountable officials.
+Recommended actions
+Staff training on AI
+It is
+strongly recommended
+that agencies implement:
+AI fundamentals training for all staff, aligned to the approach under the policy guidance, within 6 months of this policy taking effect
+additional training for staff as required, in consideration of their roles and responsibilities, such as those responsible for the procurement, development, training and deployment of AI systems.
+Guidance for staff training on AI
+Guidance for providing staff with training on AI is available at the link below.
+View the guidance on staff training on AI
+Agencies should consider
+Understanding AI use
+Understanding where and how AI is being used within agencies and developing an internal register with this information.
+Existing frameworks
+Integrating AI considerations into
+existing frameworks
+such as privacy, protective security, record keeping, cyber and data.
+Next: Engage responsibly
+Principles and requirements
+Connect with the digital community
+Share, build or learn digital experience and skills with training and events, and collaborate with peers across government.
+Join the Digital Profession
 
 --- Content from https://www.digital.gov.au/policy/ai/engage-responsibly ---
 
-Your connection is not private
-Attackers might be trying to steal your information from
+This page isn’t working
 www.digital.gov.au
-(for example, passwords, messages, or credit cards).
-Learn more about this warning
-net::ERR_CERT_AUTHORITY_INVALID
-Subject:
+is currently unable to handle this request.
+HTTP ERROR 502
+Reload
 www.digital.gov.au
-Issuer:
-Selenium Wire CA
-Expires on:
-Jul 20, 2026
-Current date:
-Jul 20, 2025
-PEM encoded chain:
------BEGIN CERTIFICATE-----
-MIIE+DCCAuCgAwIBAgIGD/GFLm/yMA0GCSqGSIb3DQEBCwUAMBsxGTAXBgNVBAMM
-EFNlbGVuaXVtIFdpcmUgQ0EwHhcNMjUwNzE4MDgxOTU0WhcNMjYwNzIwMDgxOTU0
-WjAdMRswGQYDVQQDDBJ3d3cuZGlnaXRhbC5nb3YuYXUwggIiMA0GCSqGSIb3DQEB
-AQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qBXsfeMAbsA7x4blJk
-MGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5JlnJSZuGEzUUAnrwhT
-HTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WIHCFUClQaJ7sVVzAi
-kaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZTZ75GwvsT1ohH4YS
-RM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciSLEGEi4SaaC6Nhap3
-sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4XIlgm4xcuhhBvcsgo
-b/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YHZGn4RunJAO/J7toq
-J7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6WfUkHM+tgXHKqSMcf
-VVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9JT71vh6sDo/Ys+4H
-K5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BHYZdviXRqCxpiudmn
-N+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R49jhAZGJFiHK/vE+X
-wwIDAQABo0AwPjAdBgNVHREEFjAUghJ3d3cuZGlnaXRhbC5nb3YuYXUwHQYDVR0l
-BBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMA0GCSqGSIb3DQEBCwUAA4ICAQCpzH4s
-hOsYNnFAuDFi2vm9JDOthheLr8wOVkPCFASreZafZpWrvTlxSHgq0adxuYqAfpdZ
-A4c0I98pfogEQIsGECKXr8HoUYgAh6CPchYmPLcrzEg04iXOLgBZidte2t55Wv+V
-tlpLlF5miVJtrq7F+Zxc0zgSMe5vqQByP+6r2lj0dn58S7BWvdZQiRQy8+np8APa
-dvE8xWLFKGLXW23kx63zmaFKu/0kE8UdDi8F6ChTOMChh/XptDPCWHlvMk5VpcmB
-NVRMV5pRnUhNWxdBA/DFxdH0XN/Im9oo+D2/MCRK5OATtOhQQyOlQjGbOFwUETjz
-R+njWmqTJ8Xro+Q5jef2eI9CRYLxtj1NCQUJuc0zWVAHzPy7+LJWm9k+SHznwqQ5
-oZ8Zy57Xe4o5AJroHEATgl8GKzLWCHMRDklhvhT6g4nVaVOlEZfx0/+VdoShadbA
-a4CTcMoypy6rJFrJvCgZaERA5786ZVBRR8xQEv3yqpHb4v/vpfOxQVSR+r6UHoG2
-GP/lllF23qzvlj+oqlrSojD2EXkS107MIU+UYbBw/lFYmgMj0ARnd6SFWTjJogVz
-Gtk5Arg/A24KVj4peonAiiXreQocO7p7e5oTe9uBT5lmbrXI5P1c2gEXrDBfsYvq
-4uzsRBpjuNjKtuae7NTM9nbNpY8IH+5bDwS5oA==
------END CERTIFICATE-----
------BEGIN CERTIFICATE-----
-MIIFFzCCAv+gAwIBAgIUIUc6dnnqhYX3ZYXQzpZyJ1gtUwcwDQYJKoZIhvcNAQEL
-BQAwGzEZMBcGA1UEAwwQU2VsZW5pdW0gV2lyZSBDQTAeFw0xODA3MjAxMDQxMDNa
-Fw0yODA3MTcxMDQxMDNaMBsxGTAXBgNVBAMMEFNlbGVuaXVtIFdpcmUgQ0EwggIi
-MA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qB
-XsfeMAbsA7x4blJkMGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5Jl
-nJSZuGEzUUAnrwhTHTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WI
-HCFUClQaJ7sVVzAikaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZ
-TZ75GwvsT1ohH4YSRM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciS
-LEGEi4SaaC6Nhap3sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4X
-Ilgm4xcuhhBvcsgob/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YH
-ZGn4RunJAO/J7toqJ7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6W
-fUkHM+tgXHKqSMcfVVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9
-JT71vh6sDo/Ys+4HK5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BH
-YZdviXRqCxpiudmnN+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R4
-9jhAZGJFiHK/vE+XwwIDAQABo1MwUTAdBgNVHQ4EFgQUPvrTydSlYhMQJy8lvBvh
-nLeQsvQwHwYDVR0jBBgwFoAUPvrTydSlYhMQJy8lvBvhnLeQsvQwDwYDVR0TAQH/
-BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAgEAmIvadNtFca9vuMuSewSXHlOd9p7d
-9xYkp8Yj5RvFUGL32zYUatH9YsRh5K9Wz5jifjwBLMRDZIm48xhxYjqVvTZoQpL6
-Qyzbu2EsRCbmQ+861U4SfcP2uetJuFM6Ug0/CKviyNpUaX/8YWupFXsEiCRJM9pk
-sh2b+dqljy9kvrOosfehz8CRbxUfgPsL2IVZa0mHsuOZDa/XHAAW9ns5TdBlFHwo
-W/2KDvvPGL/3t7Zah2jwu8D8w397looMXxqyT/DAjH6+bd5Kg/7mELaqbg/pM3EJ
-mENd5ButBkhpVbyAKLn7TvpZYSEF/VMNPcZHOKoKrx1utZwLFuVIb07WDMRov0GO
-hg/rrIBWvA1ySi/4yrnRDc7GBHSUh0Krx6LLZ/ZtE3j7/4rwj51MwqqNhQrCxGhz
-ksqn8V6XY7UUKnlTlAWRyuBLiA+yvf9GdgNJxUblZYMNpPbeLwe2Be/utROuMqwr
-G4RA1sfPuEdyfdXB/7c8ViOPxKYFH0POXuwB+Z1JlXDtR8rbjyVPUwqQarAuNIbw
-NC8P+GWSzviG544BQyW1xKqLgQcEMSU73icDOOb9COcl1h7URSO9WB6CZXykpQSk
-hceDiwojCDsyM84uXyyXKXCRPtseCIRsA1zZwrXU7NDDBXrIC7moVbxkDu2G4V1g
-b5JFYe4FNI0yw/o=
------END CERTIFICATE-----
-Help improve security on the web for everyone by sending
-URLs of some pages you visit, limited system information, and some page content
-to Google.
-Privacy policy
-Turn on enhanced protection
-to get Chrome's highest level of security
+is currently unable to handle this request.
 
 --- Content from https://www.digital.gov.au/policy/ai/evolve-and-integrate ---
 
-Your connection is not private
-Attackers might be trying to steal your information from
-www.digital.gov.au
-(for example, passwords, messages, or credit cards).
-Learn more about this warning
-net::ERR_CERT_AUTHORITY_INVALID
-Subject:
-www.digital.gov.au
-Issuer:
-Selenium Wire CA
-Expires on:
-Jul 20, 2026
-Current date:
-Jul 20, 2025
-PEM encoded chain:
------BEGIN CERTIFICATE-----
-MIIE+DCCAuCgAwIBAgIGD/GFLm/yMA0GCSqGSIb3DQEBCwUAMBsxGTAXBgNVBAMM
-EFNlbGVuaXVtIFdpcmUgQ0EwHhcNMjUwNzE4MDgxOTU0WhcNMjYwNzIwMDgxOTU0
-WjAdMRswGQYDVQQDDBJ3d3cuZGlnaXRhbC5nb3YuYXUwggIiMA0GCSqGSIb3DQEB
-AQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qBXsfeMAbsA7x4blJk
-MGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5JlnJSZuGEzUUAnrwhT
-HTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WIHCFUClQaJ7sVVzAi
-kaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZTZ75GwvsT1ohH4YS
-RM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciSLEGEi4SaaC6Nhap3
-sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4XIlgm4xcuhhBvcsgo
-b/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YHZGn4RunJAO/J7toq
-J7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6WfUkHM+tgXHKqSMcf
-VVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9JT71vh6sDo/Ys+4H
-K5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BHYZdviXRqCxpiudmn
-N+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R49jhAZGJFiHK/vE+X
-wwIDAQABo0AwPjAdBgNVHREEFjAUghJ3d3cuZGlnaXRhbC5nb3YuYXUwHQYDVR0l
-BBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMA0GCSqGSIb3DQEBCwUAA4ICAQCpzH4s
-hOsYNnFAuDFi2vm9JDOthheLr8wOVkPCFASreZafZpWrvTlxSHgq0adxuYqAfpdZ
-A4c0I98pfogEQIsGECKXr8HoUYgAh6CPchYmPLcrzEg04iXOLgBZidte2t55Wv+V
-tlpLlF5miVJtrq7F+Zxc0zgSMe5vqQByP+6r2lj0dn58S7BWvdZQiRQy8+np8APa
-dvE8xWLFKGLXW23kx63zmaFKu/0kE8UdDi8F6ChTOMChh/XptDPCWHlvMk5VpcmB
-NVRMV5pRnUhNWxdBA/DFxdH0XN/Im9oo+D2/MCRK5OATtOhQQyOlQjGbOFwUETjz
-R+njWmqTJ8Xro+Q5jef2eI9CRYLxtj1NCQUJuc0zWVAHzPy7+LJWm9k+SHznwqQ5
-oZ8Zy57Xe4o5AJroHEATgl8GKzLWCHMRDklhvhT6g4nVaVOlEZfx0/+VdoShadbA
-a4CTcMoypy6rJFrJvCgZaERA5786ZVBRR8xQEv3yqpHb4v/vpfOxQVSR+r6UHoG2
-GP/lllF23qzvlj+oqlrSojD2EXkS107MIU+UYbBw/lFYmgMj0ARnd6SFWTjJogVz
-Gtk5Arg/A24KVj4peonAiiXreQocO7p7e5oTe9uBT5lmbrXI5P1c2gEXrDBfsYvq
-4uzsRBpjuNjKtuae7NTM9nbNpY8IH+5bDwS5oA==
------END CERTIFICATE-----
------BEGIN CERTIFICATE-----
-MIIFFzCCAv+gAwIBAgIUIUc6dnnqhYX3ZYXQzpZyJ1gtUwcwDQYJKoZIhvcNAQEL
-BQAwGzEZMBcGA1UEAwwQU2VsZW5pdW0gV2lyZSBDQTAeFw0xODA3MjAxMDQxMDNa
-Fw0yODA3MTcxMDQxMDNaMBsxGTAXBgNVBAMMEFNlbGVuaXVtIFdpcmUgQ0EwggIi
-MA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qB
-XsfeMAbsA7x4blJkMGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5Jl
-nJSZuGEzUUAnrwhTHTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WI
-HCFUClQaJ7sVVzAikaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZ
-TZ75GwvsT1ohH4YSRM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciS
-LEGEi4SaaC6Nhap3sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4X
-Ilgm4xcuhhBvcsgob/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YH
-ZGn4RunJAO/J7toqJ7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6W
-fUkHM+tgXHKqSMcfVVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9
-JT71vh6sDo/Ys+4HK5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BH
-YZdviXRqCxpiudmnN+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R4
-9jhAZGJFiHK/vE+XwwIDAQABo1MwUTAdBgNVHQ4EFgQUPvrTydSlYhMQJy8lvBvh
-nLeQsvQwHwYDVR0jBBgwFoAUPvrTydSlYhMQJy8lvBvhnLeQsvQwDwYDVR0TAQH/
-BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAgEAmIvadNtFca9vuMuSewSXHlOd9p7d
-9xYkp8Yj5RvFUGL32zYUatH9YsRh5K9Wz5jifjwBLMRDZIm48xhxYjqVvTZoQpL6
-Qyzbu2EsRCbmQ+861U4SfcP2uetJuFM6Ug0/CKviyNpUaX/8YWupFXsEiCRJM9pk
-sh2b+dqljy9kvrOosfehz8CRbxUfgPsL2IVZa0mHsuOZDa/XHAAW9ns5TdBlFHwo
-W/2KDvvPGL/3t7Zah2jwu8D8w397looMXxqyT/DAjH6+bd5Kg/7mELaqbg/pM3EJ
-mENd5ButBkhpVbyAKLn7TvpZYSEF/VMNPcZHOKoKrx1utZwLFuVIb07WDMRov0GO
-hg/rrIBWvA1ySi/4yrnRDc7GBHSUh0Krx6LLZ/ZtE3j7/4rwj51MwqqNhQrCxGhz
-ksqn8V6XY7UUKnlTlAWRyuBLiA+yvf9GdgNJxUblZYMNpPbeLwe2Be/utROuMqwr
-G4RA1sfPuEdyfdXB/7c8ViOPxKYFH0POXuwB+Z1JlXDtR8rbjyVPUwqQarAuNIbw
-NC8P+GWSzviG544BQyW1xKqLgQcEMSU73icDOOb9COcl1h7URSO9WB6CZXykpQSk
-hceDiwojCDsyM84uXyyXKXCRPtseCIRsA1zZwrXU7NDDBXrIC7moVbxkDu2G4V1g
-b5JFYe4FNI0yw/o=
------END CERTIFICATE-----
-Help improve security on the web for everyone by sending
-URLs of some pages you visit, limited system information, and some page content
-to Google.
-Privacy policy
-Turn on enhanced protection
-to get Chrome's highest level of security
+Skip navigation
+Artificial intelligence
+Trial of Microsoft 365 Copilot
+Summary report
+Executive summary
+Evaluation findings, methodology and approach
+Appendix
+Full report
+Executive summary and glossary
+Employee-related outcomes
+Productivity
+Whole-of-government adoption of generative AI
+Unintended outcomes
+Appendix A
+Appendix B
+Appendix C
+Appendix D
+Appendix E
+Survey questions
+Evaluation briefing
+AI in government policy
+Policy aim
+Implementation
+Enable and prepare
+Engage responsibly
+Evolve and integrate
+Accountable officials
+Transparency statements
+Staff training
+Resources
+Pilot AI assurance framework
+Introduction
+1. Basic information
+2. Purpose and expected benefits
+3. Threshold assessment
+4. Fairness
+5. Reliability and safety
+6. Privacy protection and security
+7. Transparency and explainability
+8. Contestability
+9. Accountability
+10. Human-centred values
+11. Internal review and next steps
+Pilot AI assurance framework guidance
+Guidance 1. Basic information
+Guidance 2. Purpose and expected benefits
+Guidance 3. Threshold assessment
+Guidance 4. Fairness
+Guidance 5. Reliability and safety
+Guidance 6. Privacy protection and security
+Guidance 7. Transparency and explainability
+Guidance 8. Contestability
+Guidance 9. Accountability
+Guidance 10. Human-centred values
+Guidance 11. Internal review and next steps
+Attachment
+Risk matrix
+Related frameworks
+Use classification
+Insights
+Evolve and integrate
+Principles
+Flexibility and adaptability to accommodate technological advances.
+Ongoing review and evaluation of AI uses and the policy ecosystem.
+Feedback mechanisms embedded throughout government.
+Agencies should consider
+Monitoring and evaluation approaches
+Reviewing on an ongoing basis the internal policies and governance approaches to AI to ensure they remain fit for purpose.
+Monitoring AI use cases to assess for unintended impacts.
+Integrating AI with a whole-of-government approach
+Keeping up to date with changes in the policy and governance environment and pivot quickly to ensure ongoing compliance.
+Engaging with whole-of-government capacity building to encourage APS-wide capability uplift over time.
+Connect with the digital community
+Share, build or learn digital experience and skills with training and events, and collaborate with peers across government.
+Join the Digital Profession
