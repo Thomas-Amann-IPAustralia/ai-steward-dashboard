@@ -9,7 +9,8 @@ import sys
 import shutil
 import re
 import time
-from selenium import webdriver
+# We use seleniumwire's webdriver to connect to BrightData
+from seleniumwire import webdriver
 from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -38,19 +39,17 @@ def get_content_with_selenium(url, driver, driver_type="Direct"):
     try:
         print(f"    -> [{driver_type}] Navigating to {url}")
         driver.get(url)
-        # Wait for the page body to be present, with a generous timeout.
         WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-        time.sleep(5) # A short, final wait for any dynamic content to settle.
+        time.sleep(5)
         html = driver.page_source
         
-        failure_signatures = ["Enable JavaScript and cookies to continue", "This site can’t be reached", "Checking if the site connection is secure"]
+        failure_signatures = ["Enable JavaScript and cookies to continue", "This site can’t be reached", "Checking if the site connection is secure", "net::ERR_CERT_AUTHORITY_INVALID"]
         if any(sig in html for sig in failure_signatures):
             print(f"    -> [{driver_type}] Block page or error detected.")
             return None
 
         soup = BeautifulSoup(html, 'html.parser')
-        content_selectors = ['main', 'article', 'div[role="main"]', '#content', '#main-content', '.content', '.post-content']
-        main_content = next((soup.select_one(s) for s in content_selectors if soup.select_one(s)), soup.find('body'))
+        main_content = next((soup.select_one(s) for s in ['main', 'article', 'div[role="main"]', '#content']), soup.find('body'))
         return main_content.get_text(separator='\n', strip=True) if main_content else ""
     except (TimeoutException, WebDriverException) as e:
         print(f"    -> [{driver_type}] WebDriver error for {url}: {type(e).__name__}")
@@ -113,17 +112,23 @@ def initialize_driver(with_proxy=False):
             print("    -> Connecting to BrightData Scraping Browser...")
             proxy_user = os.environ.get("PROXY_USER")
             proxy_pass = os.environ.get("PROXY_PASS")
-            proxy_host = os.environ.get("PROXY_HOST") # This should be brd.superproxy.io
+            proxy_host = os.environ.get("PROXY_HOST")
             if not all([proxy_user, proxy_pass, proxy_host]):
-                print("    -> BrightData credentials (PROXY_USER, PROXY_PASS, PROXY_HOST) not found.")
+                print("    -> BrightData credentials not found.")
                 return None
             
             auth = f'{proxy_user}:{proxy_pass}'
-            # Correctly formatted URL for BrightData Scraping Browser
-            browser_url = f'wss://{auth}@{proxy_host}:9515'
+            browser_url = f'wss://{auth}@{proxy_host}'
             
             options = webdriver.ChromeOptions()
-            driver = webdriver.Remote(command_executor=browser_url, options=options)
+            # This option is for selenium-wire to ignore SSL issues
+            seleniumwire_options = {'verify_ssl': False}
+            
+            driver = webdriver.Remote(
+                command_executor=browser_url, 
+                options=options,
+                seleniumwire_options=seleniumwire_options
+            )
             print("    -> Connected to BrightData successfully.")
             return driver
         else:
