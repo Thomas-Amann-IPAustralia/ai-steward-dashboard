@@ -218,7 +218,11 @@ def main():
             print(f"\nProcessing Policy Set: {set_name}...")
             
             aggregated_content = []
-            for url in policy_set["urls"]:
+            # MODIFICATION: Ensure 'url_item' is checked to be a dictionary or a string
+            for url_item in policy_set["urls"]:
+                # Extract the URL if it's a dictionary, otherwise use the string directly
+                url = url_item['url'] if isinstance(url_item, dict) else url_item
+
                 content = None
                 
                 if policy_set.get("force_proxy"):
