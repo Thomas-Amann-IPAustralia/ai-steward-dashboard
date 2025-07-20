@@ -38,7 +38,7 @@ def slugify_set_name(set_name):
 
 def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
     """
-    Fetches content from a URL, then cleans it by removing common irrelevant tags.
+    Fetches content from a URL, checks for block/error pages, then cleans it.
     """
     url = url_data['url']
     
@@ -54,13 +54,30 @@ def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
         time.sleep(random.uniform(3, 6))
         
         html = driver.page_source
+
+        # **MODIFICATION**: Re-introduce and enhance the failure signature check.
+        # This looks for common browser errors or bot-check pages.
+        failure_signatures = [
+            "This site can’t be reached", 
+            "ERR_HTTP2_PROTOCOL_ERROR",
+            "Enable JavaScript and cookies to continue",
+            "Checking if the site connection is secure",
+            "Just a moment...", # Common Cloudflare "checking browser" page
+            "Verifying you are human",
+            "DDoS protection by Cloudflare"
+        ]
+        
+        # Check against the raw HTML (lowercased) to be case-insensitive and thorough.
+        page_text_lower = html.lower()
+        if any(sig.lower() in page_text_lower for sig in failure_signatures):
+            print(f"    -> [{driver_type}] Block page or browser error detected.")
+            return None
+
         soup = BeautifulSoup(html, 'html.parser')
         
-        # **MODIFICATION**: Implement an exclusion-based strategy.
-        # Find the body, and if it exists, remove common irrelevant tags.
         page_body = soup.body
         if page_body:
-            # List of tags to remove
+            # Clean the content by removing common irrelevant tags.
             tags_to_exclude = ['nav', 'footer', 'header', 'script', 'style', 'aside', '.noprint', '#sidebar']
             for tag_selector in tags_to_exclude:
                 for tag in page_body.select(tag_selector):
@@ -68,7 +85,9 @@ def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
             
             return page_body.get_text(separator='\n', strip=True)
         else:
-            return "" # Return empty string if no body is found
+            # This case is unlikely if the body tag wait succeeded, but good to have.
+            print(f"    -> [{driver_type}] Page loaded but no body content found.")
+            return ""
 
     except TimeoutException:
         print(f"    -> [{driver_type}] Timed out waiting for page body to load at {url}")
