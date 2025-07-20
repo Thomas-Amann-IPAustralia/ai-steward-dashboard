@@ -1,6 +1,6 @@
 {
-    "summary": "No changes detected between the old and new versions of the Google AI Principles document.  Both versions contain the same text regarding Google's three AI principles: Bold Innovation, Responsible Development and Deployment, and Collaborative Progress.",
-    "analysis": "A direct comparison of the text reveals no substantive differences. The formatting might vary slightly depending on the webpage rendering, but the content itself remains identical.  This suggests either no updates were made to the policy or the update was not reflected in the provided text snippets.",
-    "date_time": "2023-10-27T16:30:00Z",
-    "priority": "low"
+    "summary": "The most significant change is the replacement of the Google AI Principles document content with a security warning about a certificate authority issue on the ai.google and policies.google domains.",
+    "analysis": "The new content completely replaces the old content.  The old content consisted of Google's AI Principles document, detailing their approach to AI development and deployment. This included a statement of principles, elaboration on each principle, and links to further resources on responsible AI.  The new content is a security warning indicating a certificate authority issue.  It displays an `net::ERR_CERT_AUTHORITY_INVALID` error, certificate details (subject, issuer, expiry date), and the PEM encoded certificate chain for both `*.ai.google` and `*.google.com`.  It also includes a prompt to help improve web security by sending data to Google, along with links to the privacy policy and enhanced protection settings in Chrome.  In essence, the old document was replaced by a completely unrelated security warning page.",
+    "date_time": "2024-07-20T10:30:00+10:00",
+    "priority": "critical"
 }

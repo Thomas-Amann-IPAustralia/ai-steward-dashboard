@@ -1,74 +1,218 @@
+--- Content from https://policies.google.com/terms ---
+
+Your connection is not private
+Attackers might be trying to steal your information from
+policies.google.com
+(for example, passwords, messages, or credit cards).
+Learn more about this warning
+net::ERR_CERT_AUTHORITY_INVALID
+Subject:
+*.google.com
+Issuer:
+Selenium Wire CA
+Expires on:
+Jul 20, 2026
+Current date:
+Jul 20, 2025
+PEM encoded chain:
+-----BEGIN CERTIFICATE-----
+MIIO4DCCDMigAwIBAgIGD/GJmf+lMA0GCSqGSIb3DQEBCwUAMBsxGTAXBgNVBAMM
+EFNlbGVuaXVtIFdpcmUgQ0EwHhcNMjUwNzE4MTAyMzMwWhcNMjYwNzIwMTAyMzMw
+WjAXMRUwEwYDVQQDDAwqLmdvb2dsZS5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4IC
+DwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qBXsfeMAbsA7x4blJkMGyHGx9B
+8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5JlnJSZuGEzUUAnrwhTHTqMhM9p
+fT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WIHCFUClQaJ7sVVzAikaPfg4WU
+XLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZTZ75GwvsT1ohH4YSRM+BxwBu
+BUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciSLEGEi4SaaC6Nhap3sd80npJU
+Qff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4XIlgm4xcuhhBvcsgob/bwEvDT
+rXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YHZGn4RunJAO/J7toqJ7upjx66
+Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6WfUkHM+tgXHKqSMcfVVp46o/4
+HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9JT71vh6sDo/Ys+4HK5rwrwke
+P7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BHYZdviXRqCxpiudmnN+cMKAdJ
+gRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R49jhAZGJFiHK/vE+XwwIDAQAB
+o4IKLDCCCigwggoFBgNVHREEggn8MIIJ+IIEZy5jb4IUZ29vZ2xlLWFuYWx5dGlj
+cy5jb22CBiouZy5jb4ITKi5hbXBwcm9qZWN0Lm9yZy5jboIYZ29vZ2xlc3luZGlj
+YXRpb24tY24uY29tghUqLm9yaWdpbi10ZXN0LmJkbi5kZXaCCyouZ29vZ2xlLnB0
+ggsqLmdvb2dsZS5mcoIRZ29vZ2xlYXBpcy1jbi5jb22CEHJlY2FwdGNoYS5uZXQu
+Y26CBiouZy5jboIRKi5nb29nbGVjbmFwcHMuY26CCiouZ3Z0Mi5jb22CGSouZ29v
+Z2xlYWRzZXJ2aWNlcy1jbi5jb22CESouZ2NwY2RuLmd2dDEuY29tggwqLmdvb2ds
+ZS5jb22CGmFuZHJvaWQuY2xpZW50cy5nb29nbGUuY29tghMqLmdvb2dsZXZhZHMt
+Y24uY29tggsybWRuLWNuLm5ldIILZ3Z0Mi1jbi5jb22CEioucmVjYXB0Y2hhLWNu
+Lm5ldIIKdXJjaGluLmNvbYIeKi5zYWZlbnVwLmdvb2dsZXNhbmRib3gtY24uY29t
+ghMqLmdvb2dsZWFwaXMtY24uY29tggsqLmdvb2dsZS5jbIINKi5nc3RhdGljLmNv
+bYIPKi5nb29nbGUuY29tLmJyghMqLmdvb2dsZWFwcHMtY24uY29tggh5b3V0dS5i
+ZYITKi5tdXNpYy55b3V0dWJlLmNvbYIYZ29vZ2xldGFnc2VydmljZXMtY24uY29t
+gg8qLmdvb2dsZS5jb20uYXKCByoueXQuYmWCFGdvb2dsZXNhbmRib3gtY24uY29t
+ghAqLmRvdWJsZWNsaWNrLmNuggsqLmdvb2dsZS5jYYIUKi5kb3VibGVjbGljay1j
+bi5uZXSCDSouYW5kcm9pZC5jb22CCnd3dy5nb28uZ2yCC2d2dDEtY24uY29tgg4q
+LmFkbW9iLWNuLmNvbYIRZGFydHNlYXJjaC1jbi5uZXSCCyouZ29vZ2xlLmRlghgq
+LmFwcC1tZWFzdXJlbWVudC1jbi5jb22CCyouZ29vZ2xlLmVzghoqLmdvb2dsZXRh
+Z3NlcnZpY2VzLWNuLmNvbYIRbXVzaWMueW91dHViZS5jb22CESoueW91dHViZWtp
+ZHMuY29tgg8qLmdvb2dsZS5jb20udHKCCyouZ29vZ2xlLml0ghByZWNhcHRjaGEt
+Y24ubmV0ghIqLmNocm9tZS5nb29nbGUuY26CFCoubWV0cmljLmdzdGF0aWMuY29t
+ghkqLmdvb2dsZS1hbmFseXRpY3MtY24uY29tggwqLnVyY2hpbi5jb22CDiouZ2Nw
+Lmd2dDIuY29tghkqLmdvb2dsZXRhZ21hbmFnZXItY24uY29tghYqLmcuZG91Ymxl
+Y2xpY2stY24ubmV0ghYqLmdvb2dsZXNhbmRib3gtY24uY29tghMqLmZsYXNoLmFu
+ZHJvaWQuY29tghIqLmcuZG91YmxlY2xpY2suY26CEyouZGFydHNlYXJjaC1jbi5u
+ZXSCDyouZ29vZ2xlYXBpcy5jboIRZ29vZ2xldmFkcy1jbi5jb22CFCouZ29vZ2xl
+Y29tbWVyY2UuY29tgg8qLmdvb2dsZS5jb20ubXiCFCouZ29vZ2xlZG93bmxvYWRz
+LmNuggt3aWRldmluZS5jboIWKi55b3V0dWJlZWR1Y2F0aW9uLmNvbYINKi53aWRl
+dmluZS5jboITKi5hbmRyb2lkLmdvb2dsZS5jboIPKi5nb29nbGUuY29tLmF1ghgq
+LmZscy5kb3VibGVjbGljay1jbi5uZXSCEWFtcHByb2plY3QubmV0LmNuggsqLmdv
+b2dsZS5ubIIQKi51cmwuZ29vZ2xlLmNvbYIKYWkuYW5kcm9pZIIPeW91dHViZWtp
+ZHMuY29tghdnb29nbGV0YWdtYW5hZ2VyLWNuLmNvbYIYKi5kYXRhY29tcHV0ZS5n
+b29nbGUuY29tghYqLmdvb2dsZWZsaWdodHMtY24ubmV0gh8qLmdvb2dsZXRyYXZl
+bGFkc2VydmljZXMtY24uY29tghJnb29nbGVkb3dubG9hZHMuY26CGiouZ29vZ2xl
+c3luZGljYXRpb24tY24uY29tghNwb2xpY2llcy5nb29nbGUuY29tghYqLmRldmVs
+b3BlcnMuZ29vZ2xlLmNugg5kb3VibGVjbGljay5jboIRKi5nb29nbGV2aWRlby5j
+b22CGCouY3Jvd2Rzb3VyY2UuZ29vZ2xlLmNvbYIQKi5nc3RhdGljLWNuLmNvbYIK
+Ki5ndnQxLmNvbYISKi5jbG91ZC5nb29nbGUuY29tggsqLmdvb2dsZS5wbIIkKi5z
+YWZlZnJhbWUuZ29vZ2xlc3luZGljYXRpb24tY24uY29tggsqLnl0aW1nLmNvbYIL
+eW91dHViZS5jb22CEWFtcHByb2plY3Qub3JnLmNuggwqLmdzdGF0aWMuY26CFGdv
+b2dsZWZsaWdodHMtY24ubmV0gh1nb29nbGV0cmF2ZWxhZHNlcnZpY2VzLWNuLmNv
+bYINKi55b3V0dWJlLmNvbYIOKi5nb29nbGUuY28uaW6CCiouZ2dwaHQuY26CDSou
+Z3Z0Mi1jbi5jb22CF2dvb2dsZWFkc2VydmljZXMtY24uY29tghYqLnlvdXR1YmUt
+bm9jb29raWUuY29tghFnb29nbGVhcHBzLWNuLmNvbYISKi5yZWNhcHRjaGEubmV0
+LmNughdnb29nbGUtYW5hbHl0aWNzLWNuLmNvbYIVZ29vZ2xlb3B0aW1pemUtY24u
+Y29tghYqLmdvb2dsZS1hbmFseXRpY3MuY29tghJnb29nbGVjb21tZXJjZS5jb22C
+DGFkbW9iLWNuLmNvbYIUKi5mbHMuZG91YmxlY2xpY2suY26CCSouYmRuLmRldoIT
+Ki5hbXBwcm9qZWN0Lm5ldC5jboINKi4ybWRuLWNuLm5ldIIVKi5haXN0dWRpby5n
+b29nbGUuY29tggRnLmNugg4qLmdvb2dsZS5jby51a4IMZ2tlY25hcHBzLmNughcq
+Lmdvb2dsZW9wdGltaXplLWNuLmNvbYILKi5nb29nbGUuaHWCFHlvdXR1YmVlZHVj
+YXRpb24uY29tghYqLmFwcGVuZ2luZS5nb29nbGUuY29tggV5dC5iZYIGZ29vLmds
+gg8qLmdvb2dsZS5jb20uY2+CDiouZ29vZ2xlLmNvLmpwghJkb3VibGVjbGljay1j
+bi5uZXSCC2FuZHJvaWQuY29tgg0qLmd2dDEtY24uY29tghZhcHAtbWVhc3VyZW1l
+bnQtY24uY29tggpnb29nbGUuY29tgg4qLmdrZWNuYXBwcy5jboIPZ29vZ2xlY25h
+cHBzLmNugghnZ3BodC5jboIPKi5nb29nbGUuY29tLnZuMB0GA1UdJQQWMBQGCCsG
+AQUFBwMBBggrBgEFBQcDAjANBgkqhkiG9w0BAQsFAAOCAgEAdFBqazktqaPBbHhA
+3jRejC5jy6498dMbVWOnxZAb4IfTC/3Sgfpg2LZAGlNoSVfJsXELTQEUiv24IDto
+Sq8JVoqYmlg5ChaGdeU/rq3I5WDyk5in+InhX4WBHtO0XKStk6gWvyHhcyPPr9eg
+o53vpFpqXLknwDm1bkp9ZuPMX8j6dLQUAALST6DEN6jM2Bt7WIgMr+gArSyytpOS
+3cIgKpa9dIcc5/rXjDj5hvFHKUdqTofRRwwjujie36+9EL7R0GORm8eXLNk/WxSJ
+obJllhbqG27UTef6grpl5dhv+Ecm4PF+ACG6OEoNB7HIhe/GFCam77yReLoWNp74
+xyibhPIWP1cin3PZunkusK1QzHuYjIq6CScsdFOHD3sdp8vdvEmSzbjoDF3rBeYB
+Un1yj8GOVOw88RNe+XxZDUjSnIRLNq+iQEi88lmDd7QByKSDTa/3VL39qXLVnHkK
+Z/x1NjI5QN9OqqyY2TgO59eAXydwmN6P1YaWXxuikX/TYmlzJrviskUhbLU+wkMF
+3w+xoCIeu0QfTls3T/+b7kAYUoyn4ZxnYS7aXod4MuT47/RtD9nkUnh8kp+Jb3Q0
+vKhQHJ4WMtCYkShdOa6IAlfTvoDudoEgEmG5LeChr3AiPvbQ320G2Y89IHzepBiW
+SXue+5JJKh517J+CzFbTvjhpNb4=
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIFFzCCAv+gAwIBAgIUIUc6dnnqhYX3ZYXQzpZyJ1gtUwcwDQYJKoZIhvcNAQEL
+BQAwGzEZMBcGA1UEAwwQU2VsZW5pdW0gV2lyZSBDQTAeFw0xODA3MjAxMDQxMDNa
+Fw0yODA3MTcxMDQxMDNaMBsxGTAXBgNVBAMMEFNlbGVuaXVtIFdpcmUgQ0EwggIi
+MA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qB
+XsfeMAbsA7x4blJkMGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5Jl
+nJSZuGEzUUAnrwhTHTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WI
+HCFUClQaJ7sVVzAikaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZ
+TZ75GwvsT1ohH4YSRM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciS
+LEGEi4SaaC6Nhap3sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4X
+Ilgm4xcuhhBvcsgob/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YH
+ZGn4RunJAO/J7toqJ7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6W
+fUkHM+tgXHKqSMcfVVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9
+JT71vh6sDo/Ys+4HK5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BH
+YZdviXRqCxpiudmnN+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R4
+9jhAZGJFiHK/vE+XwwIDAQABo1MwUTAdBgNVHQ4EFgQUPvrTydSlYhMQJy8lvBvh
+nLeQsvQwHwYDVR0jBBgwFoAUPvrTydSlYhMQJy8lvBvhnLeQsvQwDwYDVR0TAQH/
+BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAgEAmIvadNtFca9vuMuSewSXHlOd9p7d
+9xYkp8Yj5RvFUGL32zYUatH9YsRh5K9Wz5jifjwBLMRDZIm48xhxYjqVvTZoQpL6
+Qyzbu2EsRCbmQ+861U4SfcP2uetJuFM6Ug0/CKviyNpUaX/8YWupFXsEiCRJM9pk
+sh2b+dqljy9kvrOosfehz8CRbxUfgPsL2IVZa0mHsuOZDa/XHAAW9ns5TdBlFHwo
+W/2KDvvPGL/3t7Zah2jwu8D8w397looMXxqyT/DAjH6+bd5Kg/7mELaqbg/pM3EJ
+mENd5ButBkhpVbyAKLn7TvpZYSEF/VMNPcZHOKoKrx1utZwLFuVIb07WDMRov0GO
+hg/rrIBWvA1ySi/4yrnRDc7GBHSUh0Krx6LLZ/ZtE3j7/4rwj51MwqqNhQrCxGhz
+ksqn8V6XY7UUKnlTlAWRyuBLiA+yvf9GdgNJxUblZYMNpPbeLwe2Be/utROuMqwr
+G4RA1sfPuEdyfdXB/7c8ViOPxKYFH0POXuwB+Z1JlXDtR8rbjyVPUwqQarAuNIbw
+NC8P+GWSzviG544BQyW1xKqLgQcEMSU73icDOOb9COcl1h7URSO9WB6CZXykpQSk
+hceDiwojCDsyM84uXyyXKXCRPtseCIRsA1zZwrXU7NDDBXrIC7moVbxkDu2G4V1g
+b5JFYe4FNI0yw/o=
+-----END CERTIFICATE-----
+Help improve security on the web for everyone by sending
+URLs of some pages you visit, limited system information, and some page content
+to Google.
+Privacy policy
+Turn on enhanced protection
+to get Chrome's highest level of security
+
 --- Content from https://ai.google/responsibility/principles/ ---
 
-AI PRINCIPLES
-Our AI Principles
-Our approach to developing and harnessing the potential of AI is grounded in our founding mission — to organize the world’s information and make it universally accessible and useful.
-We believe
-our approach
-to AI must be both bold and responsible. Bold in rapidly innovating and deploying AI in groundbreaking products used by and benefiting people everywhere, contributing to scientific advances that deepen our understanding of the world, and helping humanity address its most pressing challenges and opportunities. And responsible in developing and deploying AI that addresses both user needs and broader responsibilities, while safeguarding user safety, security, and privacy.
-We approach this work together, by collaborating with a broad range of partners to make breakthroughs and maximize the broad benefits of AI, while empowering others to build their own bold and responsible solutions.
-Our approach to AI is grounded in these three principles:
-1.
-Bold
-innovation
-We develop AI that assists, empowers, and inspires people in almost every field of human endeavor; drives economic progress; and improves lives, enables scientific breakthroughs, and helps address humanity’s biggest challenges.
-a. Developing and deploying models and applications where the likely overall benefits substantially outweigh the foreseeable risks.
-b. Advancing the frontier of AI research and innovation through rigorous application of the scientific method, rapid iteration, and open inquiry.
-c. Using AI to accelerate scientific discovery and breakthroughs in areas like biology, medicine, chemistry, physics, and mathematics.
-d. Focusing on solving real world problems, measuring the tangible outcomes of our work, and making breakthroughs broadly available, enabling humanity to achieve its most ambitious and beneficial goals.
-2.
-Responsible
-development and deployment
-Because we understand that AI, as a still-emerging transformative technology, poses evolving complexities and risks, we pursue AI responsibly throughout the AI development and deployment lifecycle, from design to testing to deployment to iteration, learning as AI advances and uses evolve.
-a. Implementing appropriate human oversight, due diligence, and feedback mechanisms to align with user goals, social responsibility, and widely accepted principles of international law and human rights.
-b. Investing in industry-leading approaches to advance safety and security research and benchmarks, pioneering technical solutions to address risks, and sharing our learnings with the ecosystem.
-c. Employing rigorous design, testing, monitoring, and safeguards to mitigate unintended or harmful outcomes and avoid unfair bias.
-d. Promoting privacy and security, and respecting intellectual property rights.
-3. Collaborative progress,
-together
-We make tools that empower others to harness AI for individual and collective benefit.
-a. Developing AI as a foundational technology capable of driving creativity, productivity, and innovation across a wide array of fields, and also as a tool that enables others to innovate boldly.
-b. Collaborating with researchers across industry and academia to make breakthroughs in AI, while engaging with governments and civil society to address challenges that can’t be solved by any single stakeholder.
-c. Fostering and enabling a vibrant ecosystem that empowers others to build innovative tools and solutions and contribute to progress in the field.
-Other languages
-Download in English
-Descargar en Español (España)
-Descargar en Español (Latinoamérica)
-Auf Deutsch herunterladen
-Télécharger en Français
-हिन्दी में डाउनलोड करें
-Download dalam bahasa Indonesia
-日本語でダウンロード
-한국어로 다운로드
-Baixe em Portugues
-Our AI Principles in action
-Our AI Principles guide the development and deployment of our AI systems. These Principles inform our frameworks and policies, such as the Secure AI Framework for security and privacy, and the Frontier Safety Framework for evolving model capabilities. Our governance process covers model development, application deployment, and post-launch monitoring. We identify and assess AI risks through research, external expert input, and red teaming. We then evaluate our systems against safety, privacy, and security benchmarks. Finally, we build mitigations with techniques such as safety tuning, security controls, and robust provenance solutions.
-Learn about how we develop and deploy responsible AI
-Learn more
-Responsible Generative AI toolkit
-Learn more
-People + AI Guidebook
-Learn more
-AI Responsibility Reports
-2024 (Published February 2025)
-2024 (Published June 2024)
-2023
-2022
-2021
-2020
-2019
-2024 (Published February 2025)
-2024 (Published June 2024)
-2023
-2022
-2021
-2020
-2019
-Open Research on Responsible AI
-Learn more
-Google’s AI products and services: Guided by our AI Principles
-Learn more
-Simple, structured model information
-Learn more
-Responsible AI: Our 2024 report and ongoing work
-Learn more
+Your connection is not private
+Attackers might be trying to steal your information from
+ai.google
+(for example, passwords, messages, or credit cards).
+Learn more about this warning
+net::ERR_CERT_AUTHORITY_INVALID
+Subject:
+*.ai.google
+Issuer:
+Selenium Wire CA
+Expires on:
+Jul 20, 2026
+Current date:
+Jul 20, 2025
+PEM encoded chain:
+-----BEGIN CERTIFICATE-----
+MIIE9TCCAt2gAwIBAgIGD/GJmz3gMA0GCSqGSIb3DQEBCwUAMBsxGTAXBgNVBAMM
+EFNlbGVuaXVtIFdpcmUgQ0EwHhcNMjUwNzE4MTAyMzM4WhcNMjYwNzIwMTAyMzM4
+WjAWMRQwEgYDVQQDDAsqLmFpLmdvb2dsZTCCAiIwDQYJKoZIhvcNAQEBBQADggIP
+ADCCAgoCggIBAMoqmbXgAeIlviicYRLgRyGzaoFex94wBuwDvHhuUmQwbIcbH0Hw
+6leqVG1w2dYPYkaeNzT+T3a65lpXamsOdnAfkmWclJm4YTNRQCevCFMdOoyEz2l9
+PxGmW0TSXKmVCeLyuMfmiyEGvPMAcgub+ICbVYgcIVQKVBonuxVXMCKRo9+DhZRc
+sc/v8CPEh6On9JUjxhyfUE8iUPCnWkirhZrAmhlNnvkbC+xPWiEfhhJEz4HHAG4F
+SqO6xpgmJbCmdHzTVdXb3SLf9sE6RLZ8Rrj5yJIsQYSLhJpoLo2Fqnex3zSeklRB
+9/iW1UZrFfSMIb/OzB/ZcYQO2zDYUXzjwp4+PhciWCbjFy6GEG9yyChv9vAS8NOt
+c+TfxhAQkQofy4Z/fsA6/ZNCaqPjlZm3uNJnZgdkafhG6ckA78nu2ionu6mPHro+
+rxaRdDp9pJ5M0Q2ZdyVg9FAW6NVsWQQJFw61LpZ9SQcz62BccqpIxx9VWnjqj/gd
+8fOhPK+tQOvIckHeH8iupYrXjfetindsnOSmMz0lPvW+HqwOj9iz7gcrmvCvCR4/
+tv7p1THWcc6A9fzyeNUjpy7GeN7HoB9KV3l3gEdhl2+JdGoLGmK52ac35wwoB0mB
+FkWZU0f92NCq2rfL+CaPAqfJb3nLe4m7hfPn5Hj2OEBkYkWIcr+8T5fDAgMBAAGj
+RDBCMCEGA1UdEQQaMBiCCWFpLmdvb2dsZYILKi5haS5nb29nbGUwHQYDVR0lBBYw
+FAYIKwYBBQUHAwEGCCsGAQUFBwMCMA0GCSqGSIb3DQEBCwUAA4ICAQDC1pKI/2mO
+CpOiVcCtzxHsWARFsmC1fmMiI/2qi5G9nnAvvEZfZ8YKgh1f9NY6gYCKejlvFjEI
+hiNIRli1n5uTx2xgFNejZr0FrZpB4GYvE4yfz3wL6LUyv+3aRzLClgwlK2Lb7WKf
+dHIOt+xYBhB0TOfKY+1IoFkMmOvIVlYusnYCGAH4qgx9U7cyM6K2L3DrRnKge2ny
+QZvjEZdDjNDaHUwjWFNlERx8sHj7TzWMQ5O4WuiPiXETu33ZP3ZiDjA/DSGUr7yT
+9XTPhJ1zBdXqPm1eEFQvV7b32VqvzQW8s62Mb67itkuv0vzey5a1TiCUwyj8n5Kl
+OjkZL8g0X7Fwk+6RvxEwQEHxA0Io4Yo5K5Wrq9ClYlr7mAD+rfAbW2KoV4GTKcGc
+txgvmR80LWdrIL6L1t0HRKZDyHjp86FrAt4CcC4ompjFSay0iK3aVdCEinWe4XPh
+BP9MxhG00zGWTfltyGq+78GgmMmCrmf1Jcw70txeXrdGqDh63cbAVaDF5XdxmyWt
+3BevFI3+osiJ+lq8JPZx77I9pKdQSQ0pmuOLvcOAygvCtmEC+M4nqd+u+SYDh+V2
+KQCUYqIg/UCf6il/0B4zF1xBRWM/47d+bjNpKdWAFDhmHWdupMfUKxFgLaPJxzJG
+c6Qa1dx9AxpBjCCS3wEfWoF5Exga0vQAWQ==
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIFFzCCAv+gAwIBAgIUIUc6dnnqhYX3ZYXQzpZyJ1gtUwcwDQYJKoZIhvcNAQEL
+BQAwGzEZMBcGA1UEAwwQU2VsZW5pdW0gV2lyZSBDQTAeFw0xODA3MjAxMDQxMDNa
+Fw0yODA3MTcxMDQxMDNaMBsxGTAXBgNVBAMMEFNlbGVuaXVtIFdpcmUgQ0EwggIi
+MA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDKKpm14AHiJb4onGES4Echs2qB
+XsfeMAbsA7x4blJkMGyHGx9B8OpXqlRtcNnWD2JGnjc0/k92uuZaV2prDnZwH5Jl
+nJSZuGEzUUAnrwhTHTqMhM9pfT8RpltE0lyplQni8rjH5oshBrzzAHILm/iAm1WI
+HCFUClQaJ7sVVzAikaPfg4WUXLHP7/AjxIejp/SVI8Ycn1BPIlDwp1pIq4WawJoZ
+TZ75GwvsT1ohH4YSRM+BxwBuBUqjusaYJiWwpnR801XV290i3/bBOkS2fEa4+ciS
+LEGEi4SaaC6Nhap3sd80npJUQff4ltVGaxX0jCG/zswf2XGEDtsw2FF848KePj4X
+Ilgm4xcuhhBvcsgob/bwEvDTrXPk38YQEJEKH8uGf37AOv2TQmqj45WZt7jSZ2YH
+ZGn4RunJAO/J7toqJ7upjx66Pq8WkXQ6faSeTNENmXclYPRQFujVbFkECRcOtS6W
+fUkHM+tgXHKqSMcfVVp46o/4HfHzoTyvrUDryHJB3h/IrqWK1433rYp3bJzkpjM9
+JT71vh6sDo/Ys+4HK5rwrwkeP7b+6dUx1nHOgPX88njVI6cuxnjex6AfSld5d4BH
+YZdviXRqCxpiudmnN+cMKAdJgRZFmVNH/djQqtq3y/gmjwKnyW95y3uJu4Xz5+R4
+9jhAZGJFiHK/vE+XwwIDAQABo1MwUTAdBgNVHQ4EFgQUPvrTydSlYhMQJy8lvBvh
+nLeQsvQwHwYDVR0jBBgwFoAUPvrTydSlYhMQJy8lvBvhnLeQsvQwDwYDVR0TAQH/
+BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAgEAmIvadNtFca9vuMuSewSXHlOd9p7d
+9xYkp8Yj5RvFUGL32zYUatH9YsRh5K9Wz5jifjwBLMRDZIm48xhxYjqVvTZoQpL6
+Qyzbu2EsRCbmQ+861U4SfcP2uetJuFM6Ug0/CKviyNpUaX/8YWupFXsEiCRJM9pk
+sh2b+dqljy9kvrOosfehz8CRbxUfgPsL2IVZa0mHsuOZDa/XHAAW9ns5TdBlFHwo
+W/2KDvvPGL/3t7Zah2jwu8D8w397looMXxqyT/DAjH6+bd5Kg/7mELaqbg/pM3EJ
+mENd5ButBkhpVbyAKLn7TvpZYSEF/VMNPcZHOKoKrx1utZwLFuVIb07WDMRov0GO
+hg/rrIBWvA1ySi/4yrnRDc7GBHSUh0Krx6LLZ/ZtE3j7/4rwj51MwqqNhQrCxGhz
+ksqn8V6XY7UUKnlTlAWRyuBLiA+yvf9GdgNJxUblZYMNpPbeLwe2Be/utROuMqwr
+G4RA1sfPuEdyfdXB/7c8ViOPxKYFH0POXuwB+Z1JlXDtR8rbjyVPUwqQarAuNIbw
+NC8P+GWSzviG544BQyW1xKqLgQcEMSU73icDOOb9COcl1h7URSO9WB6CZXykpQSk
+hceDiwojCDsyM84uXyyXKXCRPtseCIRsA1zZwrXU7NDDBXrIC7moVbxkDu2G4V1g
+b5JFYe4FNI0yw/o=
+-----END CERTIFICATE-----
+Help improve security on the web for everyone by sending
+URLs of some pages you visit, limited system information, and some page content
+to Google.
+Privacy policy
+Turn on enhanced protection
+to get Chrome's highest level of security
