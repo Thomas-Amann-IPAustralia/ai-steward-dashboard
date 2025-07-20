@@ -1,7 +1,8 @@
 import os
 import json
 import hashlib
-import undetected_chromedriver as uc
+from selenium import webdriver # Use standard Selenium
+from selenium_stealth import stealth # Import the stealth library
 from bs4 import BeautifulSoup
 import google.generativeai as genai
 from datetime import datetime, timezone, timedelta
@@ -15,6 +16,8 @@ from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 
 # --- Configuration ---
 POLICY_SETS_FILE = 'policy_sets.json'
@@ -47,27 +50,29 @@ def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
         driver.get(url)
         
         # Wait for the `body` tag to be present as a baseline check.
-        WebDriverWait(driver, 20).until(
+        WebDriverWait(driver, 25).until(
             EC.presence_of_element_located((By.TAG_NAME, 'body'))
         )
         
-        time.sleep(random.uniform(3, 6))
+        # More "human" interaction: scroll down the page a bit
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 4);")
+        time.sleep(random.uniform(2, 4))
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 2);")
+        time.sleep(random.uniform(1, 3))
         
         html = driver.page_source
 
-        # **MODIFICATION**: Re-introduce and enhance the failure signature check.
-        # This looks for common browser errors or bot-check pages.
         failure_signatures = [
             "This site can’t be reached", 
             "ERR_HTTP2_PROTOCOL_ERROR",
             "Enable JavaScript and cookies to continue",
             "Checking if the site connection is secure",
-            "Just a moment...", # Common Cloudflare "checking browser" page
+            "Just a moment...", 
             "Verifying you are human",
-            "DDoS protection by Cloudflare"
+            "DDoS protection by Cloudflare",
+            "Access denied"
         ]
         
-        # Check against the raw HTML (lowercased) to be case-insensitive and thorough.
         page_text_lower = html.lower()
         if any(sig.lower() in page_text_lower for sig in failure_signatures):
             print(f"    -> [{driver_type}] Block page or browser error detected.")
@@ -77,15 +82,13 @@ def get_smarter_content_from_url(url_data, driver, driver_type="Direct"):
         
         page_body = soup.body
         if page_body:
-            # Clean the content by removing common irrelevant tags.
             tags_to_exclude = ['nav', 'footer', 'header', 'script', 'style', 'aside', '.noprint', '#sidebar']
             for tag_selector in tags_to_exclude:
                 for tag in page_body.select(tag_selector):
-                    tag.decompose() # Remove the tag and its contents
+                    tag.decompose()
             
             return page_body.get_text(separator='\n', strip=True)
         else:
-            # This case is unlikely if the body tag wait succeeded, but good to have.
             print(f"    -> [{driver_type}] Page loaded but no body content found.")
             return ""
 
@@ -150,8 +153,8 @@ def log_previous_version(set_name, file_id, timestamp):
     if os.path.exists(old_snapshot_path): shutil.copy(old_snapshot_path, os.path.join(LOG_DIR, f"{set_name}_{log_timestamp}_snapshot.txt"))
 
 def initialize_driver(with_proxy=False):
-    """Initializes a WebDriver, creating and loading a proxy extension if requested."""
-    chrome_options = uc.ChromeOptions()
+    """Initializes a stealth-configured WebDriver."""
+    chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless=new')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
@@ -160,82 +163,45 @@ def initialize_driver(with_proxy=False):
     chrome_options.add_argument('--window-size=1920,1080')
     chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
     chrome_options.add_argument('--lang=en-US,en;q=0.9')
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option('useAutomationExtension', False)
 
     if with_proxy:
         proxy_host, proxy_port, proxy_user, proxy_pass = (os.environ.get(k) for k in ["PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS"])
         if all([proxy_host, proxy_port, proxy_user, proxy_pass]):
-            print("    -> Creating and loading proxy authentication extension.")
-            
-            manifest_json = """
-            {
-                "version": "1.0.0",
-                "manifest_version": 2,
-                "name": "Chrome Proxy",
-                "permissions": [
-                    "proxy",
-                    "tabs",
-                    "unlimitedStorage",
-                    "storage",
-                    "<all_urls>",
-                    "webRequest",
-                    "webRequestBlocking"
-                ],
-                "background": {
-                    "scripts": ["background.js"]
-                },
-                "minimum_chrome_version":"22.0.0"
-            }
-            """
-
-            background_js = f"""
-            var config = {{
-                    mode: "fixed_servers",
-                    rules: {{
-                      singleProxy: {{
-                        scheme: "http",
-                        host: "{proxy_host}",
-                        port: parseInt({proxy_port})
-                      }},
-                      bypassList: ["localhost"]
-                    }}
-                  }};
-
-            chrome.proxy.settings.set({{value: config, scope: "regular"}}, function() {{}});
-
-            function callbackFn(details) {{
-                return {{
-                    authCredentials: {{
-                        username: "{proxy_user}",
-                        password: "{proxy_pass}"
-                    }}
-                }};
-            }}
-
-            chrome.webRequest.onAuthRequired.addListener(
-                        callbackFn,
-                        {{urls: ["<all_urls>"]}},
-                        ['blocking']
-            );
-            """
-            
-            plugin_file = 'proxy_auth_plugin.zip'
-            with zipfile.ZipFile(plugin_file, 'w') as zp:
-                zp.writestr("manifest.json", manifest_json)
-                zp.writestr("background.js", background_js)
-            chrome_options.add_extension(plugin_file)
+            chrome_options.add_argument(f'--proxy-server=http://{proxy_user}:{proxy_pass}@{proxy_host}:{proxy_port}')
         else:
             print("    -> Proxy requested but credentials not found.")
             return None
     
     try:
-        driver = uc.Chrome(options=chrome_options)
-        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        # Use webdriver-manager to handle the chromedriver binary
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+
+        # Apply stealth measures
+        stealth(driver,
+                languages=["en-US", "en"],
+                vendor="Google Inc.",
+                platform="Win32",
+                webgl_vendor="Intel Inc.",
+                renderer="Intel Iris OpenGL Engine",
+                fix_hairline=True,
+                )
+        
         return driver
     except Exception as e:
         print(f"    -> Failed to initialize WebDriver: {e}")
         return None
 
 def main():
+    # Add webdriver-manager to requirements.txt if not present
+    try:
+        import webdriver_manager
+    except ImportError:
+        print("Installing webdriver-manager...")
+        os.system(f"{sys.executable} -m pip install webdriver-manager")
+        
     setup_directories()
     
     policy_sets = load_json_file(POLICY_SETS_FILE)
