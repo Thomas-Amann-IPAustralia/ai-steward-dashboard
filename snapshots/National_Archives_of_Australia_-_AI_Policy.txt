@@ -1,10 +1,328 @@
 --- Content from https://www.naa.gov.au/information-management/manage-information-assets/types-information/information-management-records-created-using-artificial-intelligence-ai-technologies ---
 
-This site can’t be reached
-The webpage at
-https://www.naa.gov.au/information-management/manage-information-assets/types-information/information-management-records-created-using-artificial-intelligence-ai-technologies
-might be temporarily down or it may have moved permanently to a new web address.
-ERR_HTTP2_PROTOCOL_ERROR
-The webpage at
-https://www.naa.gov.au/information-management/manage-information-assets/types-information/information-management-records-created-using-artificial-intelligence-ai-technologies
-might be temporarily down or it may have moved permanently to a new web address.
+Menu
+MAIN MENU
+Open submenu (Explore the collection)
+Explore the collection
+Open submenu (Help with your research)
+Help with your research
+Open submenu (Students and teachers)
+Students and teachers
+Open submenu (Information management)
+Information management
+Open submenu (Visit us)
+Visit us
+Open submenu (About us)
+About us
+Close submenu
+Explore the collection
+What's in the collection
+Defence and war service records
+First Australians
+Immigration and citizenship
+Cabinet
+Intelligence and security
+Prime ministers
+Search for people
+Visit our other websites
+#ArchivesAtHome
+Stories from the archives
+Close submenu
+Help with your research
+Getting started
+What's in the collection
+Using the collection
+International movement records
+Research centres
+Research guides
+Research grants and scholarships
+Research agents
+Ask us about the collection
+Close submenu
+Students and teachers
+Classroom resources
+School visits
+Teacher professional learning
+Virtual excursions
+Student research portal
+Competitions and special programs
+Close submenu
+Information management
+Getting started
+Building trust in the public record
+Public release schedule
+Ask for advice
+Information governance
+Build data interoperability
+Check-up survey
+Legislation
+Manage information assets
+GAIN Australia
+Standards
+Metadata
+Records authorities
+Federal election 2025
+Learning and skills
+Close submenu
+Visit us
+Events and exhibitions
+Research centres
+Our locations
+Cafe Constitution
+Venue hire
+Contact us
+Close submenu
+About us
+What we do
+Support us
+Employment
+Who we are
+Partnerships
+Volunteer
+Our services
+Members
+Media and publications
+Contact us
+Skip to main content
+Announcement
+On Tuesday 22 July, our online reference inquiry forms will be unavailable while we upgrade RefTracker. Thank you for your patience.
+Close announcement
+Information management for records created using Artificial Intelligence
+(AI) technologies
+On this page
+What are the types of AI technologies?
+What are the types of AI records?
+General principles
+Determining how long to keep AI generated records
+Managing records created with generative AI assistants (including Microsoft 365…
+Managing AI technologies incorporated into business systems
+Records supporting development and implementation of AI systems
+More information on the use of AI in Australian Government
+Further advice
+This advice provides guidance on identifying and managing Commonwealth records created by, or relating to, Artificial Intelligence (AI) technologies employed by Australian Government agencies.
+Artificial Intelligence is a rapidly developing field that presents new information management challenges. We will periodically update this advice to reflect the continuing evolution of AI technologies and their incorporation into agency business and information management practices.
+January 2025
+What are the types of AI technologies?
+For the purposes of this advice AI technologies have been broadly categorised as generative AI and traditional AI (or non-generative AI).
+Generative AI technologies
+are the most recent generation of artificial intelligence and involve applying advanced deep learning models to vast training datasets in order to create new content – such as text, images, video, code or audio. The models learn underlying patterns and structures of the training data and use them to produce new data based on user inputs (usually natural language text prompts). Generative AI technologies are creative and highly adaptable.
+Examples of generative AI technologies include AI virtual assistants, such as Microsoft 365 Copilot, chatbots like ChatGPT, and text-to-image generators, such as Stable Diffusion.
+Generative AI technologies should not be considered just as facilitative tools, but rather as autonomous agents which can interact with their environment and collect and use data to perform tasks on behalf of humans or other systems.
+Traditional AI technologies
+apply machine learning and analyse data, using pre-programmed rules and algorithms to learn from input data and generate recommendations or make decisions based on that data. They are pre-designed to perform specific tasks, such as data classification, pattern recognition, anomaly detection, optimisation and predictive analysis.
+Examples of traditional AI technologies include recommendation engines, fraud detection algorithms, and spam filtering and email categorisation applications.
+Increasingly we are seeing the release of AI systems that combine both generative and traditional AI technologies. For example, Google's new Generative AI in Search combines traditional AI search algorithm results with generative AI summaries of search result content.
+What are the types of AI records?
+Record types commonly generated by, or related to the use of AI technologies include:
+output records and data, such as generative AI created content or traditional AI generated recommendations or data analysis results
+prompts, instructions, parameters and other inputs
+source datasets, including training datasets
+administrative records supporting development, implementation and management of AI systems, such as system design documentation and AI policies and procedures.
+General principles for managing records generated by AI
+Information management requirements and obligations associated with records generated by AI will differ depending on the type of AI technologies employed, the purpose for which they are used and the corresponding value of the records generated.
+The following general principles will apply to the management of AI generated records.
+Al generated content created or received by Australian Government agencies constitutes Commonwealth records for the purposes of the
+Archives Act 1983
+and must be managed as such.
+The
+Archives Act 1983
+is technology and format neutral, with the information management standards and obligations stemming from the Act applying to all Commonwealth records regardless of the type of technology used to create them.
+Commonwealth records created using AI technologies will be subject to the same requirements and obligations as other Commonwealth records created for similar business purposes with similar content and value.
+For example, a routine financial report created using generative AI will be subject to the same retention and disposal requirements as an equivalent routine financial report created by a project officer without AI assistance.
+The principles outlined in the
+Information Management Standard for Australian Government
+will apply to AI generated and related records created or received by agencies. These principles set out requirements and obligations for the management of all Commonwealth records, including AI records, and address:
+creating
+,
+capturing
+and
+describing records
+;
+information governance
+;
+storage
+and
+preservation
+;
+security and integrity
+;
+appraisal and sentencing
+; and
+disposal of information
+.
+AI generated records must be actively managed to retain their authenticity, reliability, integrity and useability, and ensure they can be found, accessed and understood. This is necessary to support business activities, preserve evidence of decision making, and ensure transparency and accountability.
+Agencies should take a risk-based approach when determining which AI outputs and associated prompts, inputs and sources need to be retained to meet their ongoing business needs and legal requirements, and ensure they satisfy the retention requirements identified in any applicable records authorities issued by National Archives before authorising the destruction of these records.
+AI systems that create records are not designed as recordkeeping systems and generally lack adequate records management functionality. Where AI generated records are required to be kept they should be captured and retained in
+systems where they can be appropriately managed
+, such as an agency's approved records management system.
+Where AI generated records are required to be retained agencies should ensure that adequate metadata is identified, exported and captured with these outputs in the appropriate system, so that the records are complete, accurate and have appropriate context.
+Agencies should ensure that the management of AI related records is adequately addressed in their
+information governance framework
+, including clearly establishing responsibilities for identifying, capturing and managing AI generated records. Agency staff who create or receive AI generated records must ensure that where necessary these records and associated metadata are captured into the appropriate system, such as an agency's approved records management system, where they can be accountably managed and eventually disposed of.
+Agencies should ensure that all staff who create or receive records generated by AI technologies in connection with the performance of their duties, receive adequate training to inform them of their records management responsibilities and enable them to adequately identify, capture and manage these records.
+AI generated and related records must be
+protected
+and maintained securely to preserve their integrity and evidential value, and ensure that they cannot be tampered with or inappropriately altered or destroyed, or accessed by unauthorised individuals.
+Where AI technologies access input or source data that contains sensitive or privileged information, or generate outputs from such content, the original sensitivity requirements will continue to apply unless the sensitivity is downgraded. These records should be treated in accordance with the requirements of the
+Protective Security Policy Framework
+.
+The technologies and processes involved in the creation of AI content must be documented wherever possible to ensure accountability and transparency. This is particularly important where the outputs of AI technologies are directly relied upon to inform agency decision-making.
+Determining how long to keep AI generated records
+As with any business record, your agency must determine the value of AI generated records by assessing their overall significance based on their purpose and content, and any ongoing business needs or legal requirements to retain the records – including identifying retention requirements for these records in applicable
+agency-specific records authorities
+or
+general records authorities
+issued by National Archives.
+AI generated records that are considered to have ongoing business value or that need to be retained to meet legal requirements, must be properly managed along with all relevant associated metadata. Records that provide evidence of agency business activity involving the use of AI, such as records of decisions and the reasoning behind those decisions, need to be retained in accordance with National Archives' records authorities to ensure transparency and accountability.
+Your agency should adopt a consistent, risk-based approach when determining which AI related records need to be kept to meet agency business needs and legal requirements, and these should be reflected in your agency's business rules and practices. Where AI generated records are deemed to be of high-value, it may be necessary to also retain supporting AI related records (such as related prompts and source data) and additional record metadata around the AI process, to provide greater context, transparency and accountability.
+Where AI generated content does not have ongoing business or legal value and is not covered by a relevant records authority, it may be eligible for destruction as a
+normal administrative practice
+(NAP) when no longer required for business purposes.
+For example, preliminary draft transcripts generated by Microsoft 365 Copilot for routine low-level meetings may be disposed of as a NAP after the formal minutes are accepted and captured into the agency's approved records management system.
+For more information on identifying the value of records see our advice on
+appraisal and sentencing
+.
+For assistance in determining appropriate retention periods for AI generated records, contact the
+Agency Service Centre
+.
+Managing records created with generative AI assistants (including Microsoft 365 Copilot)
+Generative AI virtual assistants, such as Microsoft 365 Copilot, are the most common form of generative AI technologies currently used by Australian Government agencies. These tools assist agency staff in the creation of record content and are often integrated into common office applications.
+They can perform tasks such as:
+creating draft content for office documents in response to user prompts
+summarising meetings or documents into concise text
+creating new image, video, code and audio content
+auto generating responses to emails
+transcribing recordings of meetings.
+While generative AI assistants can create or recommend content as an output in response to user prompts, it is the responsibility of the user to review the content created and ensure that it is accurate, appropriate and fit-for-purpose – amending and rewriting the AI generated content as needed, and in accordance with business requirements, to create the final business record.
+The retention requirements for the final versions of business records created and for the related generative AI outputs and associated prompts and inputs, will depend on the value and purpose of the final records created using generative AI outputs, the associated risk profile, and the overall contribution of the AI outputs to the development of the final records.
+Final versions of business records created using generative AI outputs
+Where generative AI assistants are used as a content creation tool to support the development of final versions of business records, the generative AI outputs that provide this content will often be considered transitory and facilitative in nature.
+Generative AI outputs such as draft document text in response to prompts, or transcripts for meetings, may be considered the equivalent of rough drafts, initial notes or working papers from which more substantive records can be constructed by human users. In such cases, it is the final record created by the human user that has the greatest value and that will generally need to be captured into your agency's approved records system and retained in accordance with the relevant records authorities.
+Not all content created by generative AI technologies will necessarily contribute to the creation of final business records that need to be captured in your agency's approved records system. There may be circumstances where low value facilitative or transitory final records may be created using generative AI outputs. In such cases your agency's
+NAP policy
+may allow for the destruction of the final record when it is no longer required for business purposes.
+Generative AI assistants' outputs that must be retained
+In some situations, generative AI outputs will be required to be captured into your agency's approved records system and retained in accordance with the relevant National Archives' approved records authorities. This will apply to:
+outputs which support the creation of final versions of business records that are high-value or significant in nature, or otherwise relate to high-risk or sensitive matters, or are relied upon to support decision-making. In such cases the AI outputs may be treated as major drafts or supporting research and should be retained if they contribute significantly to the formation of the final record and/or provide evidence of the decisions taken in the final record; and
+outputs which are relied upon as the primary evidence of business activities, particularly those that make recommendations or contribute to decision making or provide the best available evidence of the performance of a business activity. This includes generative AI outputs that are retained as final versions of business records in their own right, particularly where there is little or no human user intervention in their creation or acceptance as a final record.
+Generative AI assistant outputs that may be destroyed
+Generative AI assistant outputs that do not have ongoing business or legal value for your agency and are not required to be retained in accordance with a records authority issued by National Archives, will likely be eligible for destruction as a normal administrative practice when no longer required. This will apply to:
+generative AI assistant outputs that are essentially minor drafts and working papers supporting the creation of low-value or routine business records, or otherwise relating to low-risk matters where no decision-making is involved – such as where AI output content is created but either not included in the final record or edited and altered before inclusion; and
+generative AI outputs that are created for reference purposes only and do not contribute to the creation of a final record.
+Note: In some instances generative AI outputs that support the creation of final versions of low value or routine business records, may be considered major drafts or supporting research and retained if they provide a substantial basis for the development of the final record (e.g. substantial AI generated draft content is created that is of good quality and requires little work to finalise; or, a generative AI summary is relied upon to develop a final document). Agencies should take a risk-based approach when determining whether to capture and retain AI outputs in these situations.
+Disposal of generative AI assistant prompts and inputs
+Where generative AI outputs are captured and retained as business records, it may also be necessary to keep the prompts and other inputs to ensure there is credible evidence to demonstrate how the AI outputs were created and thereby support transparency and accountability.
+Agencies will need to make risk-based decisions on which AI prompts and inputs are required to be retained as supporting evidence. These decisions will be determined by the value of the final record that results from the AI outputs, legal requirements and business needs, and the degree to which the prompts and inputs can support understanding and provide relevant evidence to demonstrate how the AI outputs were created.
+In some instances, there may be technical difficulties in capturing the relevant prompts and inputs relating to the generative AI outputs, in which case steps should be taken to at least indicate the input sources in the relevant record metadata (even if the actual inputs cannot be captured and retained). Where it is not possible for an agency to retain prompts and inputs identified in its risk-assessment as being required as supporting evidence, it may be necessary to consider whether the use of AI is appropriate in the given situation.
+For example, where generative AI assistant output is retained as a major draft the prompts and inputs may also be required to be retained and captured into your agency's approved records management system. This will be determined based on the risk profile and importance of the matter to which they relate. In such cases the generative AI output should be clearly linked to the relevant prompts and inputs – particularly if the output is to be retained as a final document or decision-making document where there has been little or no human input.
+Where it is determined that the prompts and inputs used to create the AI assistant outputs are not required to be recorded and retained, these records should be eligible for disposal Iin accordance as your agency's NAP policy when they are no longer required for business purposes. This will likely be the case for most generative AI assistant prompts and inputs, particularly those creating AI outputs relating to low value final records.
+Considerations for managing generative AI related records
+As generative AI technologies continue to advance and the quality of outputs generated by AI assistants improves, it is likely that these AI outputs will increasingly be used as the final record, with little or no review or alteration by human users. Agencies should monitor the use of generative AI by their staff and where AI outputs are relied upon as final versions or for decision-making, the implementation of increased controls should be considered. Such decisions should also be informed by the relevant Australian Government policies and frameworks (see
+More information on the use of AI in Australian Government
+).
+The following considerations apply to the management of records created by generative AI technologies:
+Agencies that use generative AI technologies, such as Microsoft 365 Copilot, to assist in content creation should ensure that their NAP policies adequately provide for the disposal of low-value, facilitative AI generated draft content and associated prompts and inputs.
+Prompts given to AI assistants to inform creation of outputs, will generally not be required to be retained, unless your agency has specific business requirements to do so – such as to provide supporting evidence to demonstrate the origin of AI outputs that contribute to particularly high-value records. Any such requirements should be reflected in the agency's business practices and procedures.
+Agency AI policies and procedures should clearly inform staff of their responsibilities and require that all generative AI outputs are reviewed and amended as necessary by a human user, as part of normal business practice to ensure accuracy and reliability of information.
+Agencies rolling-out generative AI assistants should ensure that agency staff are trained in their obligations regarding managing AI outputs and that they are made aware when it is, and is not, appropriate to destroy these records.
+Where content created by AI technologies is accepted as a final record, without further human review or input to verify accuracy, the AI generated status of the content should be added to the record metadata. For example, where an AI generated transcript is captured directly into the agency's approved records management system without review or amendment, there should be an indication in the record title and/or 'notes' field that the record is AI generated and the content is unconfirmed.
+When using generative AI assistants to record meetings and generate transcripts, care should be taken to ensure that consent to record has been obtained from participants. Where meetings are of a particularly sensitive nature, it may be necessary to ensure that participant consent is obtained and recorded prior to the meeting commencing.
+Example: AI assistant created draft document content
+Use case:
+A project officer uses Microsoft 365 Copilot to assist in the creation of a report. This involves an interactive process where the project officer enters prompts describing the content of each chapter of the report for Copilot to generate the initial draft content, which is then reviewed, edited and refined by the project officer to create the final version of the report.
+Records management obligations:
+In this example Copilot performs as an editorial assistant and the content it generates may or may not be retained in the final version of the document. The draft content (both AI and human generated) will be captured into the agency's records management system when the project officer determines it is appropriate to do so. This will usually involve the capture of major drafts and the final version. Minor drafts and AI generated content that is not substantially used in the final version of the record will be eligible for destruction as a
+normal administrative practice
+(NAP).
+Example: AI assistant generated transcripts of meetings
+Use case:
+During a Microsoft Teams meeting of a committee the meeting organiser activates Copilot in Microsoft Teams to record the meeting and transcribe the discussion. At the end of the meeting the organiser is presented with two records, the speech-to-text data generated by Copilot and the video recording of the meeting. The transcript is used by the meeting organiser to create a final version that accurately reflects what was said.
+The meeting organiser may also use Copilot to analyse the recording of the meeting and produce a draft meeting summary and draft list of action items, as well as other outputs. These Copilot outputs can be reviewed, edited and retained as final records, or used by the meeting organiser as an aide memoir to facilitate the manual drafting of formal meeting minutes.
+Records management obligations:
+The final edited and amended version of the transcript based on speech-to-text data generated by Copilot can be captured by the meeting organiser into the agency's approved records management system as the official transcript of the meeting.
+When determining which Copilot meeting records to generate, edit and capture into the records management system, the meeting organiser will need to consider the agency's business needs, the importance of the meeting and the associated risk profile. For a meeting of high importance the agency's business practices may require creation and retention of the final user edited version of the minutes and transcript, while for a low-level meeting the finalised meeting notes or action items alone may be sufficient.
+In some high-importance or high-risk meetings it may be prudent to retain the original unedited Copilot generated transcript that supported development of the formal minutes – which may be captured with the final version of the minutes and retained as a working paper supporting the meeting.
+Copilot records created during a meeting that are not required to be retained, such as the meeting recording, transcript or initial AI generated draft content that has facilitated the creation of the final records of the meeting, may be disposed of by the meeting organiser in accordance with the agency's NAP policy.
+Note:
+If the decision is taken to capture into the agency's records management system a Copilot generated meeting transcript that has not been reviewed and verified, the unedited status of the transcript should be noted in the record description to indicate that it is AI generated content that may be unreliable.
+Managing AI technologies incorporated into business systems
+Traditional and generative AI technologies may be incorporated into agency business systems to enable the automation or semi-automation of tasks such as data analysis and decision-making activities.
+Where agency business systems incorporating AI technologies are making business decisions or generating final content with minimal oversight from which agency staff are making business decisions, a higher level of rigour in information management will be required.
+To ensure accountability and transparency steps should be taken to document as far as possible the decision-making process undertaken by the AI system, both generally in terms of understanding the AI system and algorithm design, and with regard to specific individual decisions made.
+Where specific individual decisions or recommendations are made by the AI system, it will be necessary to capture these AI generated outputs and associated metadata into systems where they can be
+appropriately managed
+, such as your agency’s approved records management system. It may also be necessary to capture the prompts and record the source content, inputs and other factors contributing to these AI outputs, to preserve adequate evidence to demonstrate how business decisions were made. Depending on the technology used, there may be limitations on the degree to which such evidence can be identified and retained. In such cases, a thorough risk analysis should be undertaken to evaluate the suitability of AI technology.
+Agencies should undertake a
+Business System Assessment Framework
+(BSAF) process for their business systems that incorporate AI technologies, as a first step to identifying and managing the AI generated records these systems create. A BSAF assessment can ensure that adequate records management functionality is in place to manage these records in a manner that will preserve the authenticity, integrity, reliability and usability to protect their evidential and business value.
+The greater the reliance placed on the decision-making capabilities of the AI system, the greater the need to retain comprehensive supporting records – potentially including:
+prompts, inputs and sources employed
+records of system design, development and testing
+decision-making criteria and other supporting records required to provide evidence to demonstrate how AI system outputs have been achieved.
+Example: AI decision making incorporated into personnel recruitment platforms
+Use case:
+An agency acquires a third-party personnel recruitment platform that incorporates AI technologies to support the automated grading of job applicants. A recruitment process is undertaken and the traditional AI is used to review the submitted resumes against the selection criteria and agency values, to identify and rank the candidates. The system also employs generative AI technology to summarise each application into key dot points. Following the AI ranking of candidates the recruitment panel briefly review the summaries before shortlisting the highest ranked candidates – relying on the AI recommendations.
+Records management obligations:
+In this example, AI generated records supporting decision-making will be required to be retained as evidence of the selection process. This will include the AI output ranking the candidates and scores assigned, as well as the records of the AI generated application summaries, and any other supporting AI generated reports provided to the selection panel. The source data in the form of the applicant submissions and resumes, and the position selection criteria and agency values, will also need to be retained. Supporting metadata may take the form of relevant system and audit logs, particularly if these record user prompts to guide the selection process.
+The operation of the algorithm will not be apparent to the users, but some understanding of how decisions are reached may be found in the system design documentation and operational manuals which are retained for the life of the system under
+AFDA Express Version 2
+. There may also be HR policies and procedures for the use of the system that are created and retained independent of the system, but nevertheless provide evidence of its operation.
+The platform may have sufficient in-built records management functionality to retain and manage the identified records in-place within the system, until they have reached their minimum retention periods in accordance with
+AFDA Express Version 2
+. If the system does not have this functionality, it will be necessary to export the identified records along with associated metadata (including system and audit logs) and capture them in systems where they can be appropriately managed, such as the agency recordkeeping system.
+Example: AI technologies incorporated into a regulatory compliance assessment business system
+Use case:
+An agency implements a business system that incorporates AI technologies to automate the review of regulatory compliance submissions. The AI system analyses submitted application documentation against agency compliance requirements and assessment matrix, identifies potential errors, summarises strengths and weaknesses of each application, and generates a preliminary assessment report that includes a pass/fail recommendation. Business rules require that the AI generated outputs are reviewed by an assessment officer to ensure their accuracy and adherence to agency policy and determine if the AI recommendation is accepted. Compliance submissions that are rejected may result in penalties being applied to the regulated entity.
+The agency conducted a BSAF assessment of the business system, which determined that it had insufficient information management functionality to securely and reliably retain, manage and dispose of the records being created.
+Records management obligations:
+As the AI system is generating outputs that provide important evidence of the agency's compliance assessment process, these records and associated metadata will need to be captured into a system where they can be appropriately managed, such as the agency's records management system – as the business system does not have sufficient in-built records management functionality. In addition to capturing the AI generated outputs such as the preliminary assessment report and recommendation, the agency will also need to retain the AI system inputs and source data for the assessments – which will consist of the application submission documentation, the agency's assessment matrix, and any other outputs that are required to provide evidence of the assessment process.
+In addition to the records of individual decisions, the application design documentation detailing the operational specifications for the system and providing insights into the algorithms underpinning the AI system will also be captured and recorded at the time the system is created – in the application development records for the system. This may include details about the AI model and rules framework, its configuration and information on the datasets and rules used to train the AI system. The policies and procedures documenting the assessment protocol and the correct usage of the AI generated reports by the assessment officer, will also be required to be retained as supporting evidence of the operation of the system.
+Records of the individual assessment process and AI related records required as evidence, will need to be retained and disposed of in accordance with the relevant classes in the agency-specific records authority covering the compliance assessment process. Records of the systems development, operation and governance will generally be covered under
+AFDA Express Version 2
+.
+Records supporting development and implementation of AI systems
+In addition to the records generated by AI technologies, Australian Government agencies will create a wide range of AI related records documenting the various administrative activities associated with acquiring, implementing, managing, using and decommissioning AI systems.
+These supporting activities include:
+acquisition of AI systems, including tender and evaluation processes
+application development, including designing and building in-house AI systems and customising purchased systems
+deploying, configuring and maintaining AI systems
+establishing governance frameworks and business rules, including AI policies and procedures
+developing and providing staff training in the use of AI technologies.
+Commonwealth records created and received by agencies in undertaking these supporting administrative activities will need to be identified, retained, managed and disposed of in an accountable manner in accordance with the provisions of the
+Archives Act 1983
+.
+Minimum retention periods for these supporting administrative records can generally be found in
+AFDA Express Version 2
+, though in some cases disposal coverage for highly specialised AI systems may be included in
+agency-specific records authorities
+.
+More information on the use of AI in Australian Government
+This advice by National Archives should be used in conjunction with the following Australian Government policies and frameworks:
+A
+National framework for the assurance of artificial intelligence in government
+was agreed by the Data and Digital Ministers Meeting on 21 June 2024, setting the AI governance framework and ethics principles that federal, state and territory government agencies are expected to implement.
+The Digital Transformation Agency released the
+Policy for the responsible use of AI in government
+in September 2024, to provide a coordinated approach to the Australian Government’s use of AI.
+The Department of Industry, Science and Resources'
+Voluntary AI Safety Standard
+offers practical guidance on how to safely and responsibly use AI, including guardrails emphasising data governance and maintaining records to help assess compliance. This guidance will be iterative.
+The Commonwealth Ombudsman’s
+Automated decision-making: Better practice guide
+is a practical tool to help your agency design and implement automated systems. Note that the guide does not specifically mention recordkeeping and disposal in relation to the
+Archives Act 1983
+.
+The Australian Cyber Security Centre provides guidance on
+artificial intelligence
+, addresses securely developing and deploying AI systems and identifies strategies for mitigating risks associated with engaging with AI.
+National Archive’s
+Business Systems Assessment Framework
+provides a streamlined, risk-based approach to the assessment of information management functionality in business systems - including business systems that incorporate AI technologies.
+Information Management Standard for Australian Government
+applies to AI generated and related records created or received by agencies. These principles set out requirements and obligations for the management of all Commonwealth records, including AI records.
+Further advice
+The adoption and use of AI technologies by the Australian Government and wider society is expected to continue to increase in coming years. As AI technologies mature and become increasingly prevalent, the use of these capabilities is expected to be more commonplace as they become imbedded in agency work practices.
+The National Archives will continue to monitor the uptake of AI technologies in Australian Government agencies and to advise on approaches to resolve AI related information management challenges as they arise. Consequently, the above advice is expected to evolve over-time as AI technologies mature and will be reviewed periodically to ensure it remains relevant to developments in the field.
+Australian Government agencies seeking advice and guidance for AI related information management issues, are advised to contact the
+Agency Service Centre
+.
