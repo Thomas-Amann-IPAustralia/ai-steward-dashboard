@@ -14,6 +14,8 @@
   --error-color: #dc2626;
   --success-color: #16a34a;
   --warning-color: #d97706;
+  --tech-button-bg: #4a5568;
+  --tech-button-hover-bg: #2d3748;
 }
 
 body {
@@ -50,6 +52,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .header-content h1 {
@@ -61,6 +65,12 @@ body {
   margin: 0.25rem 0 0;
   opacity: 0.9;
   font-size: 0.9rem;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .about-button {
@@ -77,6 +87,16 @@ body {
 
 .about-button:hover {
   background-color: var(--light-accent);
+}
+
+.about-button.tech-button {
+    background-color: var(--tech-button-bg);
+    color: white;
+    border-color: var(--tech-button-bg);
+}
+
+.about-button.tech-button:hover {
+    background-color: var(--tech-button-hover-bg);
 }
 
 
@@ -307,19 +327,20 @@ body {
   line-height: 1.6;
 }
 
-.analysis-content ul {
+.analysis-content ul, .modal-content ol {
   padding-left: 1.5rem;
 }
 
-.analysis-content li {
+.analysis-content li, .modal-content li {
   margin-bottom: 0.5rem;
 }
 
-.analysis-content code {
+.analysis-content code, .modal-content code {
   background-color: #f3f4f6;
   padding: 0.125rem 0.25rem;
   border-radius: 3px;
   font-size: 0.9em;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .analysis-content pre {
@@ -368,6 +389,7 @@ hr {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 1rem;
 }
 
 .modal-content {
@@ -375,7 +397,7 @@ hr {
   padding: 2rem 2.5rem;
   border-radius: 8px;
   max-width: 800px;
-  width: 90%;
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -400,13 +422,6 @@ hr {
 
 .modal-content ul {
     padding-left: 20px;
-}
-
-.modal-content code {
-  background-color: #f3f4f6;
-  padding: 0.125rem 0.25rem;
-  border-radius: 3px;
-  font-size: 0.9em;
 }
 
 .modal-close-button {
@@ -453,7 +468,7 @@ hr {
     padding: 1rem;
   }
 
-  .App-header h1 {
+  .header-content h1 {
     font-size: 1.4rem;
   }
 
