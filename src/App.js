@@ -235,8 +235,8 @@ function App() {
       
       <header className="App-header">
         <div className="header-content">
-          <h1>AI Steward Dashboard</h1>
-          <p>Tracking AI Policy and Terms of Service Updates for Australian Public Servants</p>
+          <h1>Vigilant Bureaucrat dashboard</h1>
+          <p>Tracking AI Policy and Terms of Service Updates for Australian Public Servants - IM2025 </p>
         </div>
         <div className="header-buttons">
             <button className="about-button" onClick={() => setIsAboutModalOpen(true)}>
@@ -294,7 +294,7 @@ function App() {
           
           {!selectedSet && !loading && !error && (
             <div className="placeholder">
-              <h2>Welcome to the AI Steward Dashboard</h2>
+              <h2>Welcome to the The Vigilant Bureaucrat Dashboard</h2>
               <p>Select a policy set from the sidebar to view its latest analysis and content snapshot.</p>
               <p>Click the "How This Works" button in the top right to learn more about this tool.</p>
             </div>
