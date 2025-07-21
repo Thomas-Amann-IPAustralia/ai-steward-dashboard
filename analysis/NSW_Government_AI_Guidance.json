@@ -1,6 +1,6 @@
 {
-    "summary": "Initial snapshot captured.",
-    "analysis": "This is the first time the 'NSW Government AI Guidance' policy set has been monitored.",
-    "date_time": "2025-07-21T03:51:12.070756+10:00",
-    "priority": "low"
+    "summary": "The NSW Government's AI guidance has undergone a significant revision. The previous version, playfully styled as a pirate's code, has been replaced with a more formal and concise document focusing on responsible and ethical use of Generative AI.  The new guidance emphasizes avoiding sensitive data input, verifying AI-generated information, acknowledging biases, and adhering to intellectual property rights.  The playful tone and nautical metaphors are entirely absent from the updated version.",
+    "analysis": "The updated \"Generative AI: basic guidance\" is a substantial improvement in clarity and professionalism. The old document, while memorable, was not suitable for official government policy. The new version effectively addresses key concerns around data privacy, accuracy, bias, and intellectual property.  It provides clear examples of appropriate and inappropriate use cases, making it practical for government employees. The omission of the NSW AI Assessment Framework link in the new document is a potential oversight, as responsible decision-making with AI is crucial. The addition of links to related resources is helpful.",
+    "date_time": "2023-10-27T16:14:00Z",
+    "priority": "High"
 }

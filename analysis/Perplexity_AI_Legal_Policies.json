@@ -1,32 +1,11 @@
 {
-    "summary": "Analysis of updated Perplexity AI Legal Policies reveals a new Privacy Policy (updated February 2nd, 2025) and an updated Acceptable Use Policy (updated July 8th, 2025).  The Terms of Service (last updated June 4th, 2024) remain largely unchanged.  The Privacy Policy details data collection, usage, and disclosure practices, emphasizing compliance with GDPR, CCPA, and the Data Privacy Framework. The Acceptable Use Policy outlines restrictions on illegal activities, high-risk activities, and technical misuse of the service.",
+    "summary": "The provided text shows updates to Perplexity AI's legal policies.  The most significant change is the addition of comprehensive Terms of Service, covering user accounts, subscriptions, payments, product orders, usage restrictions, disclaimers, liability limitations, and a mandatory arbitration clause with a class action waiver.  The Privacy Policy and Acceptable Use Policy have also been updated with minor revisions and clarifications but remain largely unchanged.",
     "analysis": {
-        "Privacy Policy": {
-            "changes": [
-                "Detailed explanation of data collection methods (information provided directly, automatically collected usage data, and information from other sources).",
-                "Clear description of data usage for various purposes (contract fulfillment, legitimate interests, compliance, etc.).",
-                "Specification of data disclosure to third parties (affiliates, service providers, business partners, etc.).",
-                "Emphasis on compliance with GDPR, CCPA, and the Data Privacy Framework.",
-                "Outline of user rights (access, deletion, correction, portability, etc.).",
-                "Information on data security and retention policies.",
-                "Specific provisions for California residents, including CCPA compliance."
-            ],
-            "impact": "Significant improvement in transparency regarding data handling practices. Enhanced user control and awareness of their rights."
-        },
-        "Acceptable Use Policy": {
-            "changes": [
-                "Clearer articulation of prohibited activities, categorized into legal compliance, high-risk activities, and technical misuse.",
-                "Specific examples provided for each category of prohibited activity.",
-                "Emphasis on responsible AI use and compliance with regulations like the EU AI Act.",
-                "Clarification on exceptions to the policy and the consequences of non-compliance."
-            ],
-            "impact": "Improved clarity and structure, enhancing user understanding of acceptable usage boundaries.  Strengthened commitment to responsible AI development and deployment."
-        },
-        "Terms of Service": {
-            "changes": "No significant changes detected in the provided excerpt.",
-            "impact": "Maintains the existing framework for user agreement and service provision."
-        }
+        "Terms of Service": "A new Terms of Service document has been introduced.  This document comprehensively outlines the rules and regulations governing user interactions with Perplexity's services, including account creation, subscriptions (with details on billing, renewals, and cancellations), purchases, acceptable use, disclaimers, limitations of liability, and a binding arbitration agreement that includes a class action waiver.  This represents a substantial addition to Perplexity's legal framework.",
+        "Privacy Policy": "The Privacy Policy has undergone minor revisions.  While the core elements remain similar (data collection, use, disclosure, etc.), there might be updated language clarifying data handling practices, legal bases for processing, and possibly reflecting compliance with updated regulations. Specific changes are not readily discernible without a direct comparison of the old and new policy word-for-word.",
+        "Acceptable Use Policy": "The Acceptable Use Policy has received minor updates, likely focusing on clarifying prohibited activities in light of recent AI developments and regulatory changes. A direct comparison between old and new versions would reveal any specific modifications.",
+        "Overall": "The changes indicate a strengthening of Perplexity AI's legal posture, particularly with the introduction of detailed Terms of Service. This suggests a proactive approach to risk management and user protection."
     },
-    "date_time": "2023-10-27T16:30:00Z",
+    "date_time": "2023-10-27T16:31:00Z",
     "priority": "High"
 }
