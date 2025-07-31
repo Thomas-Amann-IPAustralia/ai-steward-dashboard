@@ -50,3 +50,9 @@ These changes focus on making the data capture and analysis more robust, intelli
 **Error Notifications**: Modify the `update_checker.yml` workflow to send an email or a Slack/Teams notification if the Python script fails for any reason (e.g., a critical API error, a problem with file permissions).
 
 **Transition to a Database**: For the most robust and scalable solution, replace the file-based system (`hashes.json`, individual analysis files) with a database (SQLite would be a simple starting point). This would make the data easier to query and would be the necessary foundation for features like the user-managed URL list and the historical timeline view.
+
+### Plus & also
+
+**AI Steward News**: Adding a whole new window that consolidates and synthesises RSS feeds and AI newsletters into VERY brief TLDR's which the user can click to read the original
+
+**AI Steward Implant**: Creating a way for the user to query the corpus of information that's driving the dashboard make it API-able. Allow users to ask questions about AI policy against a large corpus of contemporaneous policy and news feeds, plus the summaries of historical changes. Would provide me the opportunity to put my knowledge of RAG theory into practice. Would be quite a time (and potentially financial) investment sink though. Would need to do the whole chunking, NLP analysis/tagging, vectorisation, indexing, etc.,etc. Not to mention the cost of the storage and then implementing a retrieval model too! Blimey, it'd be pretty neat though.
