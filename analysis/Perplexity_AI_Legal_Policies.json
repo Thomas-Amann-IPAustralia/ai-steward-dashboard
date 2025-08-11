@@ -1,6 +1,6 @@
 {
-    "summary": "The provided text shows no changes in the \"Perplexity AI Legal Policies\" documents.  All four documents (Terms of Service, Acceptable Use Policy, Privacy Policy, and an un-named fourth document) are identical in both the 'OLD CONTENT' and 'NEW CONTENT' sections. The only differences are the inclusion of the 'OLD CONTENT' and 'NEW CONTENT' headers and the dates in the headers, which are not part of the actual policy documents themselves.",
-    "analysis": "There is no evidence of any updates or revisions to the Perplexity AI legal policies.  The 'Last Updated' dates vary in the headers, but the content itself remains unchanged. This suggests either an error in the provided data or that no policy updates occurred between the presumed times indicated.",
-    "date_time": "2023-10-27T16:34:00Z",
-    "priority": "Low"
+    "summary": "The provided text consists of Perplexity AI's Privacy Policy and Acceptable Use Policy.  No changes are detected between the old and new content for the Privacy Policy and Acceptable Use Policy. The Terms of Service were not included in the new content. ",
+    "analysis": "The Privacy Policy and Acceptable Use Policy documents show no difference between the 'old' and 'new' content provided.  The analysis cannot be performed completely since the 'old' content also included Perplexity's Terms of Service, which is absent from the 'new' content.  Therefore, a full comparison is not possible.  To provide a complete analysis, please provide the new version of the Terms of Service.",
+    "date_time": "2023-10-27T16:31:00Z",
+    "priority": "low"
 }
