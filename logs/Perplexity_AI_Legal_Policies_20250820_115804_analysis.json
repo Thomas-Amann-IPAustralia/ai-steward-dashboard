@@ -1,0 +1,19 @@
+{
+    "summary": "The Perplexity AI Legal Policies show minor updates across Terms of Service, Privacy Policy, and Acceptable Use Policy documents.  The Terms of Service has an updated 'last updated' date (June 4th, 2024), reflecting a relatively unchanged document.  The Privacy Policy's last update is February 2nd, 2025, and the Acceptable Use Policy's last update is July 8th, 2025. The most significant change is the addition of 'Comet Browser' to the product list in both the Privacy and Acceptable Use Policies.",
+    "analysis": {
+        "Terms_of_Service": {
+            "changes": "No significant content changes detected.  Only the 'Last updated' date has been modified.",
+            "date_time": "June 4th, 2024"
+        },
+        "Privacy_Policy": {
+            "changes": "No significant content changes detected. 'Comet Browser' has been added to the product list. 'Last updated' date is February 02, 2025.",
+            "date_time": "February 02, 2025"
+        },
+        "Acceptable_Use_Policy": {
+            "changes": "'Comet Browser' added to product list. No other material changes detected. 'Last updated' date is July 8th, 2025.",
+            "date_time": "July 8th, 2025"
+        }
+    },
+    "date_time": "2023-10-27T16:30:00Z",
+    "priority": "Low"
+}
