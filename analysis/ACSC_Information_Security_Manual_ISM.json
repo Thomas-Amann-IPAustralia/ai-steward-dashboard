@@ -1,6 +1,6 @@
 {
-    "summary": "No substantive changes were detected between the old and new content of the ACSC Information Security Manual (ISM).  The only difference is a minor wording change in the call to action for reporting security incidents; 'cyber security' is now consistently written as two words instead of one in some places.",
-    "analysis": "A comparison of the provided text reveals almost no difference. The alteration in the phrasing of \"cyber security\" is superficial and unlikely to have any impact on the policy's content or implementation.  Further analysis would require access to the actual PDF documents themselves to confirm if any unapparent changes exist within the document content.",
+    "summary": "The ACSC Information Security Manual (ISM) has been updated from the June 2025 version to the September 2025 version.  The primary changes are a revised manual PDF (smaller file size), updated change document (significantly smaller file size), and slightly larger supporting templates.  The content of the manual itself appears unchanged based on the provided snippets.",
+    "analysis": "The update reflects a minor revision to the ISM.  The reduction in the size of the 'ISM September 2025 changes' document suggests potential streamlining or minor edits rather than substantial content additions.  The slight increase in size of the templates could indicate minor additions or adjustments to their functionality. The core structure and purpose of the ISM remain the same.",
     "date_time": "2023-10-27T16:30:00Z",
-    "priority": "low"
+    "priority": "Low"
 }
