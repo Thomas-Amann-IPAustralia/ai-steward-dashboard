@@ -1,6 +1,6 @@
 {
-    "summary": "The ACSC Information Security Manual (ISM) has been updated from the June 2025 version to the September 2025 version.  The primary changes are a revised manual PDF (smaller file size), updated change document (significantly smaller file size), and slightly larger supporting templates.  The content of the manual itself appears unchanged based on the provided snippets.",
-    "analysis": "The update reflects a minor revision to the ISM.  The reduction in the size of the 'ISM September 2025 changes' document suggests potential streamlining or minor edits rather than substantial content additions.  The slight increase in size of the templates could indicate minor additions or adjustments to their functionality. The core structure and purpose of the ISM remain the same.",
+    "summary": "Minimal changes detected between the old and new content of the ACSC Information Security Manual (ISM).  The only discernible difference is a 1KB reduction in the size of the 'System security plan annex template' file, from 157KB to 156KB. The content of the manual itself appears identical.",
+    "analysis": "A thorough comparison reveals virtually no substantive changes to the ACSC ISM document. The file size discrepancy in the annex template is insignificant and could be attributed to minor formatting adjustments or version control differences.  There are no apparent alterations to the main manual text, cybersecurity principles, guidelines, or terminology sections.",
     "date_time": "2023-10-27T16:30:00Z",
     "priority": "Low"
 }
