@@ -1,6 +1,6 @@
 {
-    "summary": "The main change between the old and new versions of the \"National Archives of Australia - AI Policy\" document is the addition of a brief announcement regarding temporary unavailability of the RefTracker system due to maintenance.  The core content of the AI policy document itself remains unchanged.",
-    "analysis": "The updated document includes a temporary announcement at the top regarding system maintenance impacting RefTracker. This is a minor, non-substantial change and does not affect the policy's guidance on managing AI-generated records. The rest of the document, including sections on types of AI technologies, record types, general principles, retention policies, and managing AI in business systems, remains identical.  The date remains January 2025, indicating that the policy itself hasn't been updated.",
+    "summary": "The National Archives of Australia's AI Policy document has undergone a minor update. The primary change is in the announcement section, where the description of the system maintenance affecting RefTracker has been replaced with an announcement regarding intermittent unavailability of online reference inquiry forms.  The content related to AI record management remains largely unchanged.",
+    "analysis": "The changes are superficial and do not affect the core guidance on managing AI-generated records. The update to the announcement suggests a shift in the systems experiencing maintenance. The core policy on AI records management, including the handling of generative AI outputs, traditional AI data, and associated metadata, remains the same.  No substantive changes to the policy's recommendations or principles were identified.",
     "date_time": "2023-10-27T16:30:00Z",
     "priority": "low"
 }
