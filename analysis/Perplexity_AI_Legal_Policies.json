@@ -1,6 +1,6 @@
 {
-    "summary": "The main change is the addition of a comprehensive \"Perplexity Terms of Service\" document.  This document details user rights and responsibilities, payment and subscription terms, intellectual property rights, disclaimers, limitations of liability, and a mandatory arbitration clause with a class action waiver.  The previously existing Privacy Policy and Acceptable Use Policy remain largely unchanged, though the Terms of Service clarifies some aspects of data usage and acceptable behavior previously mentioned in these policies.  Specifically, the Terms of Service adds details about the use of user input and AI generated output, as well as the purchase of products and services through the platform.",
-    "analysis": "The addition of the Terms of Service signifies a significant step towards strengthening Perplexity AI's legal framework. The detailed sections on user rights, liabilities, and dispute resolution provide a more robust legal protection for both the company and its users.  The inclusion of a mandatory arbitration clause and class action waiver is a standard practice for many tech companies, but it's important for users to understand the implications of these clauses.  The last updated dates of the documents show that the Terms of Service was last updated on June 4th, 2024, whereas the Privacy Policy and Acceptable Use Policy have been updated more recently (February 2, 2025 and July 8, 2025 respectively). This suggests the Terms of Service might need to be revisited and updated to maintain consistency with other policies.",
-    "date_time": "2023-10-27T16:34:00Z",
-    "priority": "High"
+    "summary": "Analysis failed.",
+    "analysis": "API or parsing error: 404 Publisher Model `projects/generativelanguage-ga/locations/us-central1/publishers/google/models/gemini-1.5-flash-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions",
+    "date_time": "2025-09-26T11:51:42.836173+10:00",
+    "priority": "medium"
 }
