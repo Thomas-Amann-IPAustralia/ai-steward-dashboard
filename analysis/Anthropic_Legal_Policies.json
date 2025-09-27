@@ -1,48 +1,6 @@
 {
-    "summary": "Anthropic updated its legal policies, effective September 28, 2025, or upon user acknowledgement.  Key changes include clarifying user data usage for model training (with an opt-out option), adding a 7-day cancellation period for subscriptions in certain regions (Brazil, Mexico, South Korea, and Taiwan),  and prohibiting the use of services for financial advice related to securities.",
-    "analysis": {
-        "Terms_of_Service": [
-            {
-                "section": "3. Use of our Services",
-                "change": "Added a clause prohibiting the use of services for financial advice related to securities.",
-                "impact": "Reduces Anthropic's liability related to financial decisions made based on their AI."
-            },
-            {
-                "section": "4. Inputs, Outputs, Actions, and Materials",
-                "change": "Clarified data usage for model training; users can now opt out.",
-                "impact": "Increases user control over their data and improves transparency."
-            },
-            {
-                "section": "6. Subscriptions, fees and payment",
-                "change": "Added a 7-day cancellation period for subscriptions in Brazil, Mexico, South Korea, and Taiwan.",
-                "impact": "Improves consumer protection in these regions."
-            }
-        ],
-        "Acceptable_Use_Policy": [
-            {
-                "section": "No significant changes detected.",
-                "change": "No major changes were observed in the Acceptable Use Policy.",
-                "impact": "Maintains existing restrictions on harmful uses."
-            }
-        ],
-        "Privacy_Policy": [
-            {
-                "section": "General",
-                "change": "Added a Non-User Privacy Policy link and updated model training data sources.",
-                "impact": "Improved transparency regarding how non-user data is used for model training."
-            },
-            {
-                "section": "4. Rights and Choices",
-                "change": "Added Privacy Settings link.",
-                "impact": "Improves accessibility to data management tools."
-            },
-            {
-                "section": "1. Collection of Personal Data",
-                "change": "Added more specific detail on the types of inputs collected.",
-                "impact": "Increases transparency regarding the types of data collected."
-            }
-        ]
-    },
-    "date_time": "2023-10-27T16:34:00Z",
-    "priority": "High"
+    "summary": "Analysis failed.",
+    "analysis": "API or parsing error: 404 Publisher Model `projects/generativelanguage-ga/locations/us-central1/publishers/google/models/gemini-1.5-flash-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions",
+    "date_time": "2025-09-27T11:46:59.176563+10:00",
+    "priority": "medium"
 }
