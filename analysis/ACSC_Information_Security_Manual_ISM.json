@@ -1,6 +1,6 @@
 {
-    "summary": "Minor changes detected in the ACSC Information Security Manual (ISM) webpage.  The only discernible difference is a reduction in the size of the main Information Security Manual PDF file (from 2.27MB to 2.17MB), while the System Security Plan Annex template saw a 1KB decrease.  All other content remains identical.",
-    "analysis": "The observed changes are insignificant and likely related to minor updates or corrections within the PDF document itself, rather than substantive alterations to the policy's content. The reduction in file sizes suggests minor edits or optimizations, potentially involving image compression or text formatting, without impacting the core information.",
-    "date_time": "2024-01-26T16:30:00Z",
-    "priority": "Low"
+    "summary": "Analysis failed.",
+    "analysis": "API or parsing error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "date_time": "2025-10-03T11:49:50.680318+10:00",
+    "priority": "medium"
 }
