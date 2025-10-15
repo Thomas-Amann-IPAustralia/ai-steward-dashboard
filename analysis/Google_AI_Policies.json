@@ -1,6 +1,6 @@
 {
-    "summary": "The Google AI Policies document remains largely unchanged, with the most significant difference being an increase in the number of language options available on the main Google Terms of Service page.  The AI Principles document is unchanged.",
-    "analysis": "The core content of the Google Terms of Service document shows no material changes.  The only notable alteration is the expansion of language options from a limited list to 65 languages, indicating an effort to improve accessibility and inclusivity.  There are no apparent changes to the specifics of user agreements, responsibilities, or liability clauses.  The AI Principles document also shows no changes.  This suggests a focus on maintaining existing policies rather than introducing substantial updates.",
-    "date_time": "2023-10-27T16:30:00Z",
-    "priority": "Low"
+    "summary": "Analysis failed.",
+    "analysis": "API or parsing error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "date_time": "2025-10-15T11:55:03.080995+10:00",
+    "priority": "medium"
 }
