@@ -21,7 +21,7 @@
             }
         ],
         "file_id": "Digital_gov_au_AI_Policy",
-        "last_checked": "2025-11-07T11:57:48.397723+10:00",
+        "last_checked": "2025-11-08T11:51:48.592323+10:00",
         "last_amended": "2025-07-21T03:05:00.778963+10:00"
     },
     "National Archives of Australia - AI Policy": {
@@ -34,7 +34,7 @@
             }
         ],
         "file_id": "National_Archives_of_Australia_-_AI_Policy",
-        "last_checked": "2025-11-07T11:57:56.166843+10:00",
+        "last_checked": "2025-11-08T11:51:55.045622+10:00",
         "last_amended": "2025-10-03T11:48:35.620206+10:00"
     },
     "Google AI Policies": {
@@ -50,7 +50,7 @@
             }
         ],
         "file_id": "Google_AI_Policies",
-        "last_checked": "2025-11-07T11:58:06.933083+10:00",
+        "last_checked": "2025-11-08T11:52:06.894194+10:00",
         "last_amended": "2025-11-04T11:58:24.973944+10:00"
     },
     "Anthropic Legal Policies": {
@@ -68,11 +68,11 @@
             }
         ],
         "file_id": "Anthropic_Legal_Policies",
-        "last_checked": "2025-11-07T11:58:29.530131+10:00",
+        "last_checked": "2025-11-08T11:52:29.822386+10:00",
         "last_amended": "2025-10-09T11:51:26.353224+10:00"
     },
     "Perplexity AI Legal Policies": {
-        "hash": "b9bea08e467c3cc1d2317302e601ff98",
+        "hash": "bcf11639b877e1fab961248551f72217",
         "category": "Private Sector",
         "urls": [
             {
@@ -86,11 +86,11 @@
             }
         ],
         "file_id": "Perplexity_AI_Legal_Policies",
-        "last_checked": "2025-11-07T11:58:55.771266+10:00",
-        "last_amended": "2025-11-07T11:58:55.771266+10:00"
+        "last_checked": "2025-11-08T11:52:45.361827+10:00",
+        "last_amended": "2025-11-08T11:52:45.361827+10:00"
     },
     "Midjourney Legal Policies": {
-        "hash": "dface06468c10079114b5f117f608639",
+        "hash": "4dd1a592f25e925a2dee2d33da4823a0",
         "category": "Private Sector",
         "urls": [
             {
@@ -101,8 +101,8 @@
             }
         ],
         "file_id": "Midjourney_Legal_Policies",
-        "last_checked": "2025-11-07T11:59:08.267770+10:00",
-        "last_amended": "2025-07-31T12:21:07.673442+10:00"
+        "last_checked": "2025-11-08T11:52:59.210403+10:00",
+        "last_amended": "2025-11-08T11:52:59.210403+10:00"
     },
     "ACSC Information Security Manual (ISM)": {
         "hash": "6bc3dd591d5b00786398625cb739cb8e",
@@ -113,7 +113,7 @@
             }
         ],
         "file_id": "ACSC_Information_Security_Manual_ISM",
-        "last_checked": "2025-11-07T11:59:14.736438+10:00",
+        "last_checked": "2025-11-08T11:53:06.298555+10:00",
         "last_amended": "2025-10-03T11:49:50.600499+10:00"
     },
     "NSW Government AI Guidance": {
@@ -128,7 +128,7 @@
             }
         ],
         "file_id": "NSW_Government_AI_Guidance",
-        "last_checked": "2025-11-07T11:59:30.269798+10:00",
+        "last_checked": "2025-11-08T11:53:21.377133+10:00",
         "last_amended": "2025-07-21T11:56:28.122385+10:00"
     }
 }
