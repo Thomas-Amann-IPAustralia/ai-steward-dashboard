@@ -34,7 +34,7 @@
             }
         ],
         "file_id": "National_Archives_of_Australia_-_AI_Policy",
-        "last_checked": "2026-02-07T12:35:35.892635+10:00",
+        "last_checked": "2026-02-08T13:19:05.458511+10:00",
         "last_amended": "2025-12-19T12:06:22.549589+10:00"
     },
     "Google AI Policies": {
@@ -50,7 +50,7 @@
             }
         ],
         "file_id": "Google_AI_Policies",
-        "last_checked": "2026-02-07T12:35:48.028263+10:00",
+        "last_checked": "2026-02-08T13:19:20.516273+10:00",
         "last_amended": "2026-01-27T12:24:52.218207+10:00"
     },
     "Anthropic Legal Policies": {
@@ -68,11 +68,11 @@
             }
         ],
         "file_id": "Anthropic_Legal_Policies",
-        "last_checked": "2026-02-07T12:36:06.400131+10:00",
+        "last_checked": "2026-02-08T13:19:39.127744+10:00",
         "last_amended": "2026-01-13T12:08:43.249704+10:00"
     },
     "Perplexity AI Legal Policies": {
-        "hash": "a672a820be93c06256e6218a0bff6153",
+        "hash": "443808f7957ff820db4bc63936ca3d89",
         "category": "Private Sector",
         "urls": [
             {
@@ -86,8 +86,8 @@
             }
         ],
         "file_id": "Perplexity_AI_Legal_Policies",
-        "last_checked": "2026-02-07T12:36:34.318243+10:00",
-        "last_amended": "2026-02-07T12:36:34.318243+10:00"
+        "last_checked": "2026-02-08T13:20:05.755434+10:00",
+        "last_amended": "2026-02-08T13:20:05.755434+10:00"
     },
     "Midjourney Legal Policies": {
         "hash": "0bb09d20fa8f60e66f616208e42593bb",
@@ -101,7 +101,7 @@
             }
         ],
         "file_id": "Midjourney_Legal_Policies",
-        "last_checked": "2026-02-07T12:36:53.710743+10:00",
+        "last_checked": "2026-02-08T13:20:25.877368+10:00",
         "last_amended": "2026-02-07T12:36:53.710743+10:00"
     },
     "ACSC Information Security Manual (ISM)": {
@@ -113,7 +113,7 @@
             }
         ],
         "file_id": "ACSC_Information_Security_Manual_ISM",
-        "last_checked": "2026-02-07T12:37:02.765928+10:00",
+        "last_checked": "2026-02-08T13:20:34.986216+10:00",
         "last_amended": "2025-12-05T12:05:19.641362+10:00"
     },
     "NSW Government AI Guidance": {
@@ -128,7 +128,7 @@
             }
         ],
         "file_id": "NSW_Government_AI_Guidance",
-        "last_checked": "2026-02-07T12:37:16.990223+10:00",
+        "last_checked": "2026-02-08T13:20:47.156053+10:00",
         "last_amended": "2025-07-21T11:56:28.122385+10:00"
     }
 }
