@@ -1,7 +1,5 @@
-requests
-beautifulsoup4
-google-generativeai
-selenium
-blinker==1.7.0
-selenium-stealth
-webdriver-manager
+beautifulsoup4==4.12.3
+google-generativeai==0.8.3
+selenium==4.25.0
+selenium-stealth==1.0.6
+webdriver-manager==4.0.2
