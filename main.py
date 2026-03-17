@@ -28,7 +28,7 @@ SNAPSHOTS_DIR = 'snapshots'
 ANALYSIS_DIR = 'analysis'
 LOG_DIR = 'logs'
 
-GEMINI_MODEL = 'gemini-1.5-flash'
+GEMINI_MODEL = 'gemini-2.5-flash'
 AEST_TZ = timezone(timedelta(hours=10))
 MAX_RETRIES = 2
 RETRY_DELAY_SECONDS = 5
