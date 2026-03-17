@@ -1,6 +1,6 @@
 {
-    "summary": "The Digital.gov.au AI Policy has been updated and is now publicly accessible.  The policy outlines principles and requirements for Australian government agencies' use of artificial intelligence, emphasizing responsible implementation, transparency, and ongoing evaluation.  Key changes include the establishment of accountable officials within agencies, mandatory transparency statements, recommended staff training, and a focus on risk mitigation and ethical considerations.  The policy explicitly excludes the defense portfolio and the national intelligence community, although voluntary adoption of elements is permitted where feasible.",
-    "analysis": "The updated policy shows a significant shift from the previous inaccessible state to a clear, structured document with defined roles, responsibilities, and timelines.  The 'enable, engage, and evolve' framework provides a logical structure for implementation.  Mandatory requirements, such as the designation of accountable officials and the publication of transparency statements, demonstrate a commitment to accountability and public oversight.  The inclusion of recommended actions and considerations encourages proactive engagement and continuous improvement. The exclusion of national security sectors is a sensible precaution, balancing the need for policy with the sensitivities involved. The policy's emphasis on collaboration and information sharing across government agencies suggests a strategy for building collective AI capability and best practices.",
-    "date_time": "2023-10-27T16:30:00Z",
-    "priority": "High"
+    "summary": "Analysis failed.",
+    "analysis": "API error: NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "date_time": "2026-03-17T23:07:59.853006+10:00",
+    "priority": "medium"
 }
