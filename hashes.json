@@ -21,7 +21,7 @@
             }
         ],
         "file_id": "Digital_gov_au_AI_Policy",
-        "last_checked": "2026-07-23T13:27:43.172958+10:00",
+        "last_checked": "2026-07-24T13:22:23.667697+10:00",
         "last_amended": "2026-03-17T23:07:57.694614+10:00",
         "last_priority": "medium"
     },
@@ -35,7 +35,7 @@
             }
         ],
         "file_id": "National_Archives_of_Australia_-_AI_Policy",
-        "last_checked": "2026-07-23T13:27:50.282476+10:00",
+        "last_checked": "2026-07-24T13:22:29.303340+10:00",
         "last_amended": "2026-03-17T23:08:06.961233+10:00",
         "last_priority": "medium"
     },
@@ -52,7 +52,7 @@
             }
         ],
         "file_id": "Google_AI_Policies",
-        "last_checked": "2026-07-23T13:28:06.006644+10:00",
+        "last_checked": "2026-07-24T13:22:44.767501+10:00",
         "last_amended": "2026-06-25T14:08:50.673486+10:00",
         "last_priority": "low"
     },
@@ -71,7 +71,7 @@
             }
         ],
         "file_id": "Anthropic_Legal_Policies",
-        "last_checked": "2026-07-23T13:28:39.329048+10:00",
+        "last_checked": "2026-07-24T13:23:10.646595+10:00",
         "last_amended": "2026-07-21T13:23:03.598867+10:00",
         "last_priority": "critical"
     },
@@ -90,7 +90,7 @@
             }
         ],
         "file_id": "Perplexity_AI_Legal_Policies",
-        "last_checked": "2026-07-23T13:28:58.518106+10:00",
+        "last_checked": "2026-07-24T13:23:30.986411+10:00",
         "last_amended": "2026-07-22T13:22:05.321981+10:00",
         "last_priority": "low"
     },
@@ -106,7 +106,7 @@
             }
         ],
         "file_id": "Midjourney_Legal_Policies",
-        "last_checked": "2026-07-23T13:29:12.094852+10:00",
+        "last_checked": "2026-07-24T13:23:45.705648+10:00",
         "last_amended": "2026-06-29T14:44:46.448139+10:00",
         "last_priority": "critical"
     },
@@ -119,12 +119,12 @@
             }
         ],
         "file_id": "ACSC_Information_Security_Manual_ISM",
-        "last_checked": "2026-07-23T13:29:20.880745+10:00",
+        "last_checked": "2026-07-24T13:23:53.792074+10:00",
         "last_amended": "2026-06-09T14:08:38.141566+10:00",
         "last_priority": "high"
     },
     "NSW Government AI Guidance": {
-        "hash": "d74d2da6fb01eb531b878d4eaa710f96",
+        "hash": "bcab1751184733f195c21b46f3901146",
         "category": "State Government",
         "urls": [
             {
@@ -138,8 +138,8 @@
             }
         ],
         "file_id": "NSW_Government_AI_Guidance",
-        "last_checked": "2026-07-23T13:29:45.300696+10:00",
-        "last_amended": "2026-07-08T13:27:57.040552+10:00",
-        "last_priority": "low"
+        "last_checked": "2026-07-24T13:24:19.548183+10:00",
+        "last_amended": "2026-07-24T13:24:19.548183+10:00",
+        "last_priority": "medium"
     }
 }
