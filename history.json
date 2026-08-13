@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T11:49:31.615728+00:00",
+  "generated_at": "2026-08-13T12:14:26.816017+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -99,15 +99,6 @@
         "priority": "low",
         "verdict": null,
         "summary": "No substantive changes were detected between the old and new content of the ACSC Information Security Manual (ISM).  The only difference is a minor wording change in the call to action for reporting security incidents; 'cyber security' is now consistently written as two words instead of one in some places.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T14:13:20",
-        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250721_141320_analysis.json",
-        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250721_141320_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Initial snapshot captured.",
         "changed_documents": []
       }
     ],
@@ -247,69 +238,6 @@
         "priority": "High",
         "verdict": null,
         "summary": "The Digital.gov.au AI Policy has been updated and is now publicly accessible.  The policy outlines principles and requirements for Australian government agencies' use of artificial intelligence, emphasizing responsible implementation, transparency, and ongoing evaluation.  Key changes include the establishment of accountable officials within agencies, mandatory transparency statements, recommended staff training, and a focus on risk mitigation and ethical considerations.  The policy explicitly excludes the defense portfolio and the national intelligence community, although voluntary adoption of elements is permitted where feasible.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T02:44:16",
-        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250721_024416_analysis.json",
-        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250721_024416_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Digital.gov.au AI Policy document's content is currently inaccessible.  All four sections ('Implementation', 'Enable and Prepare', 'Engage Responsibly', and 'Evolve and Integrate') return HTTP2 Protocol Errors, indicating the website is experiencing issues or the pages have been moved.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T20:38:55",
-        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_203855_analysis.json",
-        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_203855_snapshot.txt",
-        "priority": "medium",
-        "verdict": null,
-        "summary": "The most significant change is the update of the PEM encoded certificate chain across all sections of the Digital.gov.au AI Policy document.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T20:22:58",
-        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_202258_analysis.json",
-        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_202258_snapshot.txt",
-        "priority": "high",
-        "verdict": null,
-        "summary": "The most significant change is the addition of mandatory AI transparency statements requiring agencies to publicly disclose their AI adoption and usage.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T18:56:44",
-        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_185644_analysis.json",
-        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_185644_snapshot.txt",
-        "priority": "Medium",
-        "verdict": null,
-        "summary": "The Digital.gov.au AI Policy has undergone minor revisions.  The core structure and principles remain largely the same, focusing on enabling responsible AI adoption across the Australian government.  Key changes include the addition of mandatory requirements for AI transparency statements, requiring agencies to publicly disclose their AI usage and mitigation strategies.  There is also a strong recommendation for AI fundamentals training for all staff within six months of the policy's effective date.  The policy continues to emphasize ethical considerations, risk mitigation, and ongoing review and adaptation.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T18:44:20",
-        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_184420_analysis.json",
-        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_184420_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Digital.gov.au AI Policy has been significantly updated.  The new version includes a detailed implementation plan with timelines, clearly defined roles and responsibilities for accountable officials,  a focus on staff training, and an emphasis on integrating AI into existing frameworks.  Specific guidance is provided for implementing the policy, including a pilot AI assurance framework, and the policy now explicitly defines AI using the OECD definition.  National security carve-outs for Defence and the National Intelligence Community are also explicitly stated.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T18:20:21",
-        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_182021_analysis.json",
-        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_182021_snapshot.txt",
-        "priority": "critical",
-        "verdict": null,
-        "summary": "The 'Digital.gov.au AI Policy' document is now inaccessible due to a certificate authority error, replacing previous errors indicating the site was down or moved.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T03:12:48",
-        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_031248_analysis.json",
-        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_031248_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Initial snapshot captured.",
         "changed_documents": []
       }
     ],
@@ -475,141 +403,6 @@
         "verdict": null,
         "summary": "The provided text shows no changes between the old and new content for the \"Google AI Policies\" document. Both the Google Terms of Service and the Google AI Principles documents remain identical.  There is no evidence of any policy updates or modifications.",
         "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-24T12:12:27",
-        "analysis_path": "logs/Google_AI_Policies_20250724_121227_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250724_121227_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "No changes detected in the Google Terms of Service document. The Google AI Principles document remains unchanged as well.  The analysis below reflects this.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-23T12:13:29",
-        "analysis_path": "logs/Google_AI_Policies_20250723_121329_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250723_121329_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Google AI Policies document has undergone a significant restructuring. The old version focused on Google's AI products, research, and responsible AI initiatives, presenting them as separate sections.  The new version is entirely replaced by Google's Terms of Service document, focusing on user agreements, responsibilities, and legal aspects of using Google services.  There is no longer a dedicated policy document specifically addressing Google's AI principles; instead, the AI principles are now embedded within the broader terms of service, implying that AI development and usage are governed by the overall terms of service rather than a separate AI-specific policy.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T02:36:41",
-        "analysis_path": "logs/Google_AI_Policies_20250721_023641_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250721_023641_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Google AI Policies document has undergone a significant restructuring and content update. The old version was primarily Google's standard Terms of Service, while the new version focuses on Google's AI principles, products, and research initiatives.  The new content emphasizes responsible AI development and deployment, highlighting various AI tools, models, and resources available for users and developers.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T01:46:06",
-        "analysis_path": "logs/Google_AI_Policies_20250721_014606_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250721_014606_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Google AI Policies document has been replaced with Google's Terms of Service.  The old document outlined Google's AI Principles focusing on bold innovation, responsible development and deployment, and collaborative progress. The new document is a comprehensive legal agreement covering user responsibilities, content usage, intellectual property, dispute resolution, and more.  It includes a Generative AI Prohibited Use Policy, indicating a shift towards addressing the specific challenges of generative AI technologies.  There is no direct replacement for the detailed AI principles in the new terms of service.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T00:44:56",
-        "analysis_path": "logs/Google_AI_Policies_20250721_004456_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250721_004456_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "No changes detected between the old and new versions of the Google AI Principles document.  Both versions present the same text regarding Google's AI principles, their application, and related resources.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T23:12:15",
-        "analysis_path": "logs/Google_AI_Policies_20250720_231215_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_231215_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Google AI Policies document has been significantly updated. The old version consisted solely of error messages indicating an invalid SSL certificate for the Google policies and AI principles websites. The new version is a comprehensive Terms of Service document outlining Google's expectations for users and responsibilities towards them, covering aspects like user content, intellectual property, liability, and dispute resolution.  The AI principles document remains largely unchanged, reiterating Google's commitment to bold innovation and responsible AI development.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T20:39:58",
-        "analysis_path": "logs/Google_AI_Policies_20250720_203958_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_203958_snapshot.txt",
-        "priority": "medium",
-        "verdict": null,
-        "summary": "The Google AI Policies document's certificate chain was updated, and several domains were added to the list of Google domains covered by the certificate.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T20:23:46",
-        "analysis_path": "logs/Google_AI_Policies_20250720_202346_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_202346_snapshot.txt",
-        "priority": "critical",
-        "verdict": null,
-        "summary": "The most significant change is the replacement of the Google AI Principles document content with a security warning about a certificate authority issue on the ai.google and policies.google domains.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T19:55:59",
-        "analysis_path": "logs/Google_AI_Policies_20250720_195559_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_195559_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "No changes detected between the old and new versions of the Google AI Principles document.  Both versions contain the same text regarding Google's three AI principles: Bold Innovation, Responsible Development and Deployment, and Collaborative Progress.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T19:16:07",
-        "analysis_path": "logs/Google_AI_Policies_20250720_191607_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_191607_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Google AI Policies have been updated. The old content consisted of broken links to Google's terms of service and their AI principles. The new content replaces the broken links with the full text of Google's Terms of Service, which includes sections on user responsibilities, content usage, intellectual property, dispute resolution, and liability.  The AI Principles document remains largely unchanged, continuing to emphasize bold innovation and responsible development and deployment of AI.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T18:45:21",
-        "analysis_path": "logs/Google_AI_Policies_20250720_184521_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_184521_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Google AI Principles document remains unchanged.  However, the Google Terms of Service document, linked within the Google AI Policies, is now inaccessible, returning a 'Residential Failed' error message indicating that access is restricted.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T18:37:44",
-        "analysis_path": "logs/Google_AI_Policies_20250720_183744_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_183744_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "No changes were detected between the old and new content provided for the Google AI Policies. Both the Google Terms of Service and the AI Principles sections remained identical.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T18:31:30",
-        "analysis_path": "logs/Google_AI_Policies_20250720_183130_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_183130_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Google AI Policies document has undergone a significant revision. The old content consisted primarily of SSL certificate error messages, while the new content is a comprehensive Terms of Service document outlining user responsibilities, Google's responsibilities, intellectual property rights concerning user content, and dispute resolution processes.  The AI Principles document remains largely unchanged, focusing on Google's approach to responsible AI development and deployment.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T18:21:08",
-        "analysis_path": "logs/Google_AI_Policies_20250720_182108_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_182108_snapshot.txt",
-        "priority": "critical",
-        "verdict": null,
-        "summary": "The most significant change is the addition of a security warning and certificate information at the beginning of both the 'Google AI Policies' and 'Google Terms of Service' documents, indicating a potential security breach.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-20T03:40:25",
-        "analysis_path": "logs/Google_AI_Policies_20250720_034025_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250720_034025_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Initial snapshot captured.",
-        "changed_documents": []
       }
     ],
     "Midjourney_Legal_Policies": [
@@ -765,33 +558,6 @@
         "verdict": null,
         "summary": "The provided text shows two documents: a Privacy Policy (last updated June 2, 2025) and Terms of Service (effective June 23, 2025).  The Terms of Service introduce new sections on content rights, a DMCA takedown policy, dispute resolution, service limitations, payment and billing, community guidelines, limitations of liability, and an image editor/video model section.  The Privacy Policy remains largely unchanged, though its last updated date precedes that of the Terms of Service.",
         "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-30T12:27:03",
-        "analysis_path": "logs/Midjourney_Legal_Policies_20250730_122703_analysis.json",
-        "snapshot_path": "logs/Midjourney_Legal_Policies_20250730_122703_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "No changes were detected between the provided OLD and NEW content for the Midjourney Privacy Policy.  The content is identical.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-29T12:30:26",
-        "analysis_path": "logs/Midjourney_Legal_Policies_20250729_123026_analysis.json",
-        "snapshot_path": "logs/Midjourney_Legal_Policies_20250729_123026_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The provided text shows updates to Midjourney's Terms of Service and a largely unchanged Privacy Policy. The Terms of Service document has been completely replaced with a new version, which includes details on service availability, user content rights, DMCA takedown procedures, dispute resolution, payment and billing, community guidelines, limitations of liability, and provisions for the image editor and video model.  The Privacy Policy shows only a minor update to the 'Last Updated' date.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T03:50:50",
-        "analysis_path": "logs/Midjourney_Legal_Policies_20250721_035050_analysis.json",
-        "snapshot_path": "logs/Midjourney_Legal_Policies_20250721_035050_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Initial snapshot captured.",
-        "changed_documents": []
       }
     ],
     "NSW_Government_AI_Guidance": [
@@ -847,15 +613,6 @@
         "priority": "High",
         "verdict": null,
         "summary": "The NSW Government's AI guidance has undergone a significant revision. The previous version, playfully styled as a pirate's code, has been replaced with a more formal and concise document focusing on responsible and ethical use of Generative AI.  The new guidance emphasizes avoiding sensitive data input, verifying AI-generated information, acknowledging biases, and adhering to intellectual property rights.  The playful tone and nautical metaphors are entirely absent from the updated version.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T09:04:14",
-        "analysis_path": "logs/NSW_Government_AI_Guidance_20250721_090414_analysis.json",
-        "snapshot_path": "logs/NSW_Government_AI_Guidance_20250721_090414_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Initial snapshot captured.",
         "changed_documents": []
       }
     ],
@@ -1038,33 +795,6 @@
         "priority": "low",
         "verdict": null,
         "summary": "The main change between the old and new versions of the \"National Archives of Australia - AI Policy\" document is the addition of a brief announcement regarding scheduled maintenance for RecordSearch on August 14th, 2024, from 8 to 10 am AEST.  The core content of the AI policy document itself remains unchanged.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-07T12:21:41",
-        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250807_122141_analysis.json",
-        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250807_122141_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The National Archives of Australia's AI Policy document shows no substantive changes between the old and new content.  The text, structure, and examples remain identical. The only difference observed is the removal of a temporary announcement regarding the unavailability of online reference inquiry forms due to a system upgrade.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-22T12:11:21",
-        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250722_121121_analysis.json",
-        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250722_121121_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The National Archives of Australia has published updated guidance on managing records created using Artificial Intelligence (AI) technologies.  The new policy provides detailed advice on managing records generated by both generative AI (e.g., ChatGPT, Copilot) and traditional AI systems. It emphasizes the importance of maintaining authenticity, reliability, and integrity of AI-generated records, outlining principles for retention, disposal, and metadata management.  The policy also addresses the management of AI systems themselves and incorporates references to relevant Australian Government policies and frameworks for AI governance and responsible use.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T02:44:25",
-        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250721_024425_analysis.json",
-        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250721_024425_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Initial snapshot captured.",
         "changed_documents": []
       }
     ],
@@ -2165,69 +1895,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "The Perplexity AI Legal Policies show minor updates across Terms of Service, Privacy Policy, and Acceptable Use Policy documents.  The Terms of Service has an updated 'last updated' date (June 4th, 2024), reflecting a relatively unchanged document.  The Privacy Policy's last update is February 2nd, 2025, and the Acceptable Use Policy's last update is July 8th, 2025. The most significant change is the addition of 'Comet Browser' to the product list in both the Privacy and Acceptable Use Policies.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-13T12:05:53",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250813_120553_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250813_120553_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The Perplexity AI Legal Policies have been updated with the addition of comprehensive Terms of Service.  The Terms of Service document covers user accounts, subscriptions, payment processing, intellectual property rights, disclaimers, limitations of liability, and a mandatory arbitration clause with a class action waiver.  The Privacy Policy and Acceptable Use Policy remain largely unchanged, though their 'Last Updated' dates reflect recent modifications.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-11T12:22:07",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250811_122207_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250811_122207_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The provided text consists of Perplexity AI's Privacy Policy and Acceptable Use Policy.  No changes are detected between the old and new content for the Privacy Policy and Acceptable Use Policy. The Terms of Service were not included in the new content. ",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-10T12:25:50",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250810_122550_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250810_122550_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "The provided text shows no changes in the \"Perplexity AI Legal Policies\" documents.  All four documents (Terms of Service, Acceptable Use Policy, Privacy Policy, and an un-named fourth document) are identical in both the 'OLD CONTENT' and 'NEW CONTENT' sections. The only differences are the inclusion of the 'OLD CONTENT' and 'NEW CONTENT' headers and the dates in the headers, which are not part of the actual policy documents themselves.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T14:12:53",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250721_141253_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250721_141253_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Analysis of Perplexity AI Legal Policies reveals no substantive changes in the Terms of Service or Acceptable Use Policy between the provided old and new content.  The Privacy Policy shows an update to its last revised date, from February 2, 2025 to a future date, indicating potential internal updates that were not provided in the comparison.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T12:24:16",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250721_122416_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250721_122416_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The provided text shows updates to Perplexity AI's legal policies.  The most significant change is the addition of comprehensive Terms of Service, covering user accounts, subscriptions, payments, product orders, usage restrictions, disclaimers, liability limitations, and a mandatory arbitration clause with a class action waiver.  The Privacy Policy and Acceptable Use Policy have also been updated with minor revisions and clarifications but remain largely unchanged.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T09:03:29",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250721_090329_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250721_090329_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "Analysis of updated Perplexity AI Legal Policies reveals a new Privacy Policy (updated February 2nd, 2025) and an updated Acceptable Use Policy (updated July 8th, 2025).  The Terms of Service (last updated June 4th, 2024) remain largely unchanged.  The Privacy Policy details data collection, usage, and disclosure practices, emphasizing compliance with GDPR, CCPA, and the Data Privacy Framework. The Acceptable Use Policy outlines restrictions on illegal activities, high-risk activities, and technical misuse of the service.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-07-21T03:50:34",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250721_035034_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250721_035034_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Initial snapshot captured.",
         "changed_documents": []
       }
     ]
