@@ -1,0 +1,112 @@
+# AI Steward Dashboard — runtime configuration
+#
+# Every value below is validated at startup by steward/config.py. An unknown
+# key, a wrong type or an out-of-range number stops the run with a message
+# naming the offending key, rather than being silently ignored.
+
+# Gemini model used for change analysis.
+model: gemini-2.5-flash
+
+fetch:
+  # Seconds to wait for a plain HTTP response before giving up.
+  timeout_seconds: 30
+  # Attempts per document before the document is recorded as a fetch failure.
+  max_retries: 2
+  # Seconds between attempts.
+  retry_delay_seconds: 5
+  # Seconds Selenium waits for a page body, when Selenium is used at all.
+  page_load_timeout: 25
+  # Set true to skip the cheap conditional GET and always download the body.
+  disable_conditional_get: false
+  user_agent: >-
+    Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+    (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+
+validation:
+  # A policy document shorter than this is not a policy document.
+  min_length: 500
+  # Reject a capture below this fraction of the stored length for the same URL.
+  # Tripwire uses 0.30; policy documents are stable enough to justify tighter.
+  shrink_ratio: 0.6
+  # Reject a capture above this multiple of the stored length.
+  growth_ratio: 2.5
+  # Substrings that mark a block page or browser error rather than content.
+  # Matched against a quote-folded, case-folded copy of the text, so the curly
+  # apostrophe in Chrome's "This site can’t be reached" cannot slip through —
+  # which is exactly how the 8 August 2026 false critical happened.
+  failure_signatures:
+    - "This site can't be reached"
+    - "ERR_HTTP2_PROTOCOL_ERROR"
+    - "ERR_NO_SUPPORTED_PROXIES"
+    - "ERR_CONNECTION_"
+    - "ERR_TUNNEL_CONNECTION_FAILED"
+    - "ERR_NAME_NOT_RESOLVED"
+    - "might be temporarily down or it may have moved permanently"
+    - "Enable JavaScript and cookies to continue"
+    - "Checking if the site connection is secure"
+    - "Just a moment..."
+    - "Verifying you are human"
+    - "DDoS protection by Cloudflare"
+    - "Access denied"
+    - "Attention Required! | Cloudflare"
+    - "429 Too Many Requests"
+
+normalisation:
+  # Regexes stripped from every document before hashing. Deliberately empty:
+  # a pattern broad enough to apply to every source is broad enough to delete
+  # a real amendment. Noise is a property of a particular site, so it belongs
+  # under per_source_noise.
+  #
+  # Patterns are applied with re.MULTILINE. Match the whole line and its
+  # newline (`^.*…*\n?`) rather than just the offending words — stripping the
+  # words alone leaves an empty line behind, which is itself a diff.
+  noise_patterns: []
+  # Regexes stripped only from documents on the matching host. Rotating
+  # banners live here — Perplexity's is a live example, and on its own it
+  # accounted for a share of that source's 129 recorded "changes".
+  per_source_noise:
+    www.perplexity.ai:
+      - '(?i)^.*we recently updated our (?:consumer )?privacy notice.*\n?'
+    policies.google.com:
+      - '(?i)^effective\s+\w+\s+\d{1,2},\s+\d{4}\s*\|\s*archived versions.*\n?'
+
+diff:
+  # Lines of unchanged context kept either side of a changed hunk.
+  context_lines: 3
+  # Hard ceiling on the diff text handed to the model.
+  max_diff_chars: 40000
+
+fingerprint:
+  # Scanned across changed lines only, and passed to the model as context.
+  # Never a veto: a genuine content change is analysed whether or not it
+  # matches anything here.
+  watchlist:
+    - arbitration
+    - class action
+    - indemnify
+    - indemnification
+    - training data
+    - retention
+    - sub-processor
+    - subprocessor
+    - jurisdiction
+    - personal information
+    - government
+    - Australia
+    - liability
+    - warranty
+    - termination
+
+health:
+  # Consecutive failed runs before a source is called failing.
+  consecutive_failure_threshold: 3
+  # Share of documents failing in one run that counts as a bad run.
+  error_rate_threshold: 0.3
+  # Consecutive schema failures from the model before alerting.
+  schema_failure_threshold: 2
+
+retention:
+  # Days of archived analyses and snapshots kept in logs/.
+  log_days: 365
+  # Days of per-source records kept in runs.jsonl.
+  run_log_days: 90

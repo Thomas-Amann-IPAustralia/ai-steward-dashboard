@@ -2,7 +2,16 @@
 
 **Date:** 2026-06-09  
 **Repository:** thomas-amann-ipaustralia/ai-steward-dashboard  
-**Stack:** React 18 (JavaScript) + Python 3.11 (Selenium + Google Gemini API)
+**Stack:** React 18 (JavaScript) + Python 3.11 (requests/trafilatura, Selenium fallback, Google Gemini API)
+
+> **Status update — 13 August 2026.** All fifteen findings have been addressed as
+> part of the upgrade described in [`UPGRADE_PLAN.md`](UPGRADE_PLAN.md). Line
+> references below point at the pre-upgrade code and are kept for the record;
+> see the status column in [Findings summary](#findings-summary) for where each
+> fix now lives. BUG-01 was closed by removing the mis-passed parameter rather
+> than correcting the call site: archived log filenames use `file_id`, matching
+> the 500+ archives already on disk and the grammar `steward/history.py` parses,
+> so switching them to set names would have broken both.
 
 ---
 
@@ -370,27 +379,29 @@ The README contains only one line of description. There are no installation step
 
 ## Findings Summary
 
-| ID | Severity | Location | Description |
-|----|----------|----------|-------------|
-| BUG-01 | Critical | `main.py:427` | Wrong argument passed to `log_previous_version` |
-| BUG-02 | Critical | `DashboardHome.js:78`, `Sidebar.js:128` | Unguarded `urls[0]` access crashes on bad data |
-| BUG-03 | High | `main.py:294` | `response` unbound in JSON error handler |
-| BUG-04 | High | `update_checker.yml:79` | No failure notification in CI workflow |
-| BUG-05 | High | `main.py:180` | Empty page content triggers false change detection |
-| BUG-06 | Medium | `constants.js:14` | `formatDate` doesn't detect `Invalid Date` |
-| BUG-07 | Medium | `main.py:136` | No URL scheme validation before Selenium navigation |
-| BUG-08 | Medium | `main.py:424` | Previous analysis not archived when `last_checked` missing |
-| BUG-09 | Medium | `DashboardHome.js:72` | `Space` key not handled (accessibility gap) |
-| BUG-10 | Medium | `usePolicyDetail.js:23` | No fetch timeout causes perpetual loading |
-| BUG-11 | Low | `usePolicySets.js:39` | `groupedSets` computed but never consumed |
-| BUG-12 | Low | `Sidebar.js:40` | `Date` objects constructed inside sort comparator |
-| BUG-13 | Low | `src/components/*` | No PropTypes on any React component |
-| BUG-14 | Low | — | No automated test suite |
-| BUG-15 | Low | `README.md` | README is a single sentence |
+| ID | Severity | Description | Status |
+|----|----------|-------------|--------|
+| BUG-01 | Critical | Wrong argument passed to `log_previous_version` | Fixed — parameter removed; `main.archive_previous_version(file_id, timestamp)` |
+| BUG-02 | Critical | Unguarded `urls[0]` access crashes on bad data | Fixed — `primaryUrl()` in `src/utils/constants.js`, covered by a test |
+| BUG-03 | High | `response` unbound in JSON error handler | Fixed — parsing and the API call are separate in `steward/analysis.py`; nothing references `response` outside its own scope |
+| BUG-04 | High | No failure notification in CI workflow | Fixed — `continue-on-error` plus an explicit failure step, and a `source-health` issue on degraded runs |
+| BUG-05 | High | Empty page content triggers false change detection | Fixed — `steward/validation.py` rejects empty and short captures before they can overwrite a snapshot |
+| BUG-06 | Medium | `formatDate` doesn't detect `Invalid Date` | Fixed — `NaN` guard in `formatDate`, covered by a test |
+| BUG-07 | Medium | No URL scheme validation before navigation | Fixed — `fetching.is_safe_url()` gates every fetch |
+| BUG-08 | Medium | Previous analysis not archived when `last_checked` missing | Fixed — archiving falls back to the current timestamp |
+| BUG-09 | Medium | `Space` key not handled (accessibility gap) | Fixed — shared `keyActivate` handler in `DashboardHome.js` |
+| BUG-10 | Medium | No fetch timeout causes perpetual loading | Fixed — `fetchWithTimeout()` used by every data hook |
+| BUG-11 | Low | `groupedSets` computed but never consumed | Fixed — removed from `usePolicySets` |
+| BUG-12 | Low | `Date` objects constructed inside sort comparator | Fixed — timestamps precomputed once in `Sidebar.js` |
+| BUG-13 | Low | No PropTypes on any React component | Addressed differently — the crash this guarded against is now handled at the access sites (`primaryUrl`, optional chaining) and covered by tests, without adding a runtime dependency |
+| BUG-14 | Low | No automated test suite | Fixed — 57 Python tests in `tests/`, 11 frontend tests, both run in CI |
+| BUG-15 | Low | README is a single sentence | Fixed — README documents the pipeline, config, local runs and automation |
 
 ---
 
 ## Recommended Fix Order
+
+*(Retained for the record; all sprints below are complete.)*
 
 ### Sprint 1 — Immediate
 1. **BUG-01** — Fix argument order in `log_previous_version` call (1-line change)

@@ -1,0 +1,2235 @@
+{
+  "generated_at": "2026-08-13T11:49:31.615728+00:00",
+  "entries": {
+    "ACSC_Information_Security_Manual_ISM": [
+      {
+        "timestamp": "2026-06-08T14:47:03",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20260608_144703_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20260608_144703_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The ACSC Information Security Manual (ISM) has been updated from the December 2025 release to the March 2026 release. This update includes new versions of the main ISM document, its corresponding changes document, and associated templates (System Security Plan Annex, Cloud Controls Matrix), all showing slight increases in file size. Additionally, the descriptive text outlining the ISM's protection scope has been subtly refined by removing the specific mention of 'applications and data' when referring to protecting information technology and operational technology systems.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-17T00:31:59",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20260317_003159_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20260317_003159_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-12-04T12:05:01",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20251204_120501_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20251204_120501_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-12-03T12:03:36",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20251203_120336_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20251203_120336_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-02T11:50:12",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20251002_115012_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20251002_115012_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "Minor changes detected in the ACSC Information Security Manual (ISM) webpage.  The only discernible difference is a reduction in the size of the main Information Security Manual PDF file (from 2.27MB to 2.17MB), while the System Security Plan Annex template saw a 1KB decrease.  All other content remains identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-22T12:00:09",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250922_120009_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250922_120009_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The only change detected between the old and new content of the ACSC Information Security Manual (ISM) is a 100KB increase in the size of the main PDF document.  The version number and date remain the same (September 2025). All other elements, including supporting documents and website structure, are identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-12T11:48:29",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250912_114829_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250912_114829_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Minimal changes detected between the old and new versions of the ACSC Information Security Manual (ISM) document. The only discernible difference is a 4KB reduction in the size of the 'ISM September 2025 changes' document.  The content of the main ISM document and supporting materials appear identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-10T11:50:09",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250910_115009_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250910_115009_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "Minor changes detected in the ACSC Information Security Manual (ISM) webpage.  The only significant difference is a 2KB increase in the size of the 'System security plan annex template' from 156KB to 158KB.  The content of the ISM itself and the associated documentation appear unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-08T11:57:23",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250908_115723_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250908_115723_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "Minimal changes detected between the old and new content of the ACSC Information Security Manual (ISM).  The only discernible difference is a 1KB reduction in the size of the 'System security plan annex template' file, from 157KB to 156KB. The content of the manual itself appears identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-05T11:52:02",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250905_115202_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250905_115202_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The ACSC Information Security Manual (ISM) has been updated from the June 2025 version to the September 2025 version.  The primary changes are a revised manual PDF (smaller file size), updated change document (significantly smaller file size), and slightly larger supporting templates.  The content of the manual itself appears unchanged based on the provided snippets.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-04T11:49:17",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250904_114917_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250904_114917_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No substantive changes were detected between the old and new content of the ACSC Information Security Manual (ISM).  The only difference is a minor wording change in the call to action for reporting security incidents; 'cyber security' is now consistently written as two words instead of one in some places.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T14:13:20",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250721_141320_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250721_141320_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Initial snapshot captured.",
+        "changed_documents": []
+      }
+    ],
+    "Anthropic_Legal_Policies": [
+      {
+        "timestamp": "2026-07-20T13:48:55",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260720_134855_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260720_134855_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The Anthropic Legal Policies document, encompassing the Consumer Terms, Acceptable Use Policy, and Privacy Policy, has undergone no substantive changes. A minor formatting addition was observed in the Acceptable Use Policy.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-19T13:29:21",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260719_132921_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260719_132921_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "A minor, incomplete change was observed in the Privacy Policy's 'Communication Information' section, appearing to expand the stated scope of collected data by a partial phrase.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-12T13:33:02",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260712_133302_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260712_133302_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "A minor, likely cosmetic, text string 'Usage Policy \\ Anthropic' was appended to the end of the Acceptable Use Policy document, with no substantive policy changes observed in the provided content.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-11T13:21:19",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260711_132119_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260711_132119_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The only change identified is the removal of the publication and effective date from the beginning of Anthropic's Privacy Policy document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-08T13:26:50",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260708_132650_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260708_132650_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-08T14:46:17",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260608_144617_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260608_144617_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The Privacy Policy was updated with a minor grammatical correction to a sentence describing automatically collected personal data. No substantive changes to data collection practices or user obligations were identified.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-02T14:44:23",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260602_144423_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260602_144423_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-12T12:23:36",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260112_122336_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260112_122336_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-12-01T12:27:50",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20251201_122750_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20251201_122750_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-19T11:59:26",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20251119_115926_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20251119_115926_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-08T11:50:36",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20251008_115036_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20251008_115036_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-26T11:51:22",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20250926_115122_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20250926_115122_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "Anthropic updated its legal policies, effective September 28, 2025, or upon user acknowledgement.  Key changes include clarifying user data usage for model training (with an opt-out option), adding a 7-day cancellation period for subscriptions in certain regions (Brazil, Mexico, South Korea, and Taiwan),  and prohibiting the use of services for financial advice related to securities.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-28T11:54:38",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20250828_115438_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20250828_115438_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "Anthropic updated its legal policies, primarily focusing on clarifying user responsibilities and enhancing safety measures.  The Acceptable Use Policy (AUP) has been significantly restructured, moving from a broad categorization to a more detailed list of prohibited activities, emphasizing child safety and the prevention of misuse in high-risk sectors.  The Terms of Service remain largely unchanged, with minor wording adjustments for clarity. The Privacy Policy shows no significant changes.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-15T12:06:55",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20250815_120655_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20250815_120655_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Initial snapshot captured.",
+        "changed_documents": []
+      }
+    ],
+    "Digital_gov_au_AI_Policy": [
+      {
+        "timestamp": "2025-11-30T12:11:36",
+        "analysis_path": "logs/Digital_gov_au_AI_Policy_20251130_121136_analysis.json",
+        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20251130_121136_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Digital.gov.au AI Policy has been updated and is now publicly accessible.  The policy outlines principles and requirements for Australian government agencies' use of artificial intelligence, emphasizing responsible implementation, transparency, and ongoing evaluation.  Key changes include the establishment of accountable officials within agencies, mandatory transparency statements, recommended staff training, and a focus on risk mitigation and ethical considerations.  The policy explicitly excludes the defense portfolio and the national intelligence community, although voluntary adoption of elements is permitted where feasible.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T02:44:16",
+        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250721_024416_analysis.json",
+        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250721_024416_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Digital.gov.au AI Policy document's content is currently inaccessible.  All four sections ('Implementation', 'Enable and Prepare', 'Engage Responsibly', and 'Evolve and Integrate') return HTTP2 Protocol Errors, indicating the website is experiencing issues or the pages have been moved.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T20:38:55",
+        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_203855_analysis.json",
+        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_203855_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "The most significant change is the update of the PEM encoded certificate chain across all sections of the Digital.gov.au AI Policy document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T20:22:58",
+        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_202258_analysis.json",
+        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_202258_snapshot.txt",
+        "priority": "high",
+        "verdict": null,
+        "summary": "The most significant change is the addition of mandatory AI transparency statements requiring agencies to publicly disclose their AI adoption and usage.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T18:56:44",
+        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_185644_analysis.json",
+        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_185644_snapshot.txt",
+        "priority": "Medium",
+        "verdict": null,
+        "summary": "The Digital.gov.au AI Policy has undergone minor revisions.  The core structure and principles remain largely the same, focusing on enabling responsible AI adoption across the Australian government.  Key changes include the addition of mandatory requirements for AI transparency statements, requiring agencies to publicly disclose their AI usage and mitigation strategies.  There is also a strong recommendation for AI fundamentals training for all staff within six months of the policy's effective date.  The policy continues to emphasize ethical considerations, risk mitigation, and ongoing review and adaptation.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T18:44:20",
+        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_184420_analysis.json",
+        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_184420_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Digital.gov.au AI Policy has been significantly updated.  The new version includes a detailed implementation plan with timelines, clearly defined roles and responsibilities for accountable officials,  a focus on staff training, and an emphasis on integrating AI into existing frameworks.  Specific guidance is provided for implementing the policy, including a pilot AI assurance framework, and the policy now explicitly defines AI using the OECD definition.  National security carve-outs for Defence and the National Intelligence Community are also explicitly stated.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T18:20:21",
+        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_182021_analysis.json",
+        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_182021_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The 'Digital.gov.au AI Policy' document is now inaccessible due to a certificate authority error, replacing previous errors indicating the site was down or moved.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T03:12:48",
+        "analysis_path": "logs/Digital_gov_au_AI_Policy_20250720_031248_analysis.json",
+        "snapshot_path": "logs/Digital_gov_au_AI_Policy_20250720_031248_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Initial snapshot captured.",
+        "changed_documents": []
+      }
+    ],
+    "Google_AI_Policies": [
+      {
+        "timestamp": "2026-08-03T13:34:42",
+        "analysis_path": "logs/Google_AI_Policies_20260803_133442_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260803_133442_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Google's Terms of Service have been updated to reflect a July 30, 2026 effective date, introducing a new clause clarifying user responsibility for data costs incurred by background service usage, and strengthening the disclaimer against relying on Google services for professional, especially medical, advice.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-30T12:50:21",
+        "analysis_path": "logs/Google_AI_Policies_20260730_125021_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260730_125021_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No material changes were identified between the old and new versions of the Google AI Policies provided. The content remains identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-29T13:17:17",
+        "analysis_path": "logs/Google_AI_Policies_20260729_131717_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260729_131717_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were detected between the provided old and new policy content for 'Google AI Policies', including both the Terms of Service and the AI Principles.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-24T14:08:20",
+        "analysis_path": "logs/Google_AI_Policies_20260624_140820_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260624_140820_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Google has added a notification to its Terms of Service indicating a future update effective July 30, 2026, and provides a link to a preview of these upcoming changes.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-16T15:08:37",
+        "analysis_path": "logs/Google_AI_Policies_20260616_150837_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260616_150837_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were identified in the provided 'Google AI Policies' documents between the old and new content versions.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-11T14:41:57",
+        "analysis_path": "logs/Google_AI_Policies_20260611_144157_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260611_144157_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-18T12:46:34",
+        "analysis_path": "logs/Google_AI_Policies_20260218_124634_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260218_124634_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-26T12:28:27",
+        "analysis_path": "logs/Google_AI_Policies_20260126_122827_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260126_122827_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-26T12:01:00",
+        "analysis_path": "logs/Google_AI_Policies_20251126_120100_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20251126_120100_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-25T12:00:50",
+        "analysis_path": "logs/Google_AI_Policies_20251125_120050_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20251125_120050_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-03T12:03:00",
+        "analysis_path": "logs/Google_AI_Policies_20251103_120300_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20251103_120300_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-30T12:01:02",
+        "analysis_path": "logs/Google_AI_Policies_20251030_120102_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20251030_120102_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-15T11:55:02",
+        "analysis_path": "logs/Google_AI_Policies_20251015_115502_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20251015_115502_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-14T11:51:45",
+        "analysis_path": "logs/Google_AI_Policies_20251014_115145_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20251014_115145_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The Google AI Policies document remains largely unchanged, with the most significant difference being an increase in the number of language options available on the main Google Terms of Service page.  The AI Principles document is unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-27T11:54:30",
+        "analysis_path": "logs/Google_AI_Policies_20250827_115430_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250827_115430_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The provided text shows no changes in the Google Terms of Service document.  The AI Principles document remains unchanged as well. Therefore, there are no policy changes to analyze.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-26T11:58:02",
+        "analysis_path": "logs/Google_AI_Policies_20250826_115802_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250826_115802_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The Google AI Policies document remains largely unchanged, with the core Terms of Service showing no substantive alterations.  The primary difference lies in the addition of a language selection dropdown in the Terms of Service document, offering improved accessibility. The separate AI Principles document also remains consistent.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-22T11:57:05",
+        "analysis_path": "logs/Google_AI_Policies_20250822_115705_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250822_115705_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The provided text shows no changes in the \"Google AI Policies\" document itself.  Both the old and new content are identical for the Google Terms of Service. The Google AI Principles document remains unchanged as well.  Therefore, there is no policy change to analyze.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-21T11:56:29",
+        "analysis_path": "logs/Google_AI_Policies_20250821_115629_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250821_115629_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The provided text shows no changes between the old and new content for the \"Google AI Policies\" document. Both the Google Terms of Service and the Google AI Principles documents remain identical.  There is no evidence of any policy updates or modifications.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-24T12:12:27",
+        "analysis_path": "logs/Google_AI_Policies_20250724_121227_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250724_121227_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes detected in the Google Terms of Service document. The Google AI Principles document remains unchanged as well.  The analysis below reflects this.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-23T12:13:29",
+        "analysis_path": "logs/Google_AI_Policies_20250723_121329_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250723_121329_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Google AI Policies document has undergone a significant restructuring. The old version focused on Google's AI products, research, and responsible AI initiatives, presenting them as separate sections.  The new version is entirely replaced by Google's Terms of Service document, focusing on user agreements, responsibilities, and legal aspects of using Google services.  There is no longer a dedicated policy document specifically addressing Google's AI principles; instead, the AI principles are now embedded within the broader terms of service, implying that AI development and usage are governed by the overall terms of service rather than a separate AI-specific policy.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T02:36:41",
+        "analysis_path": "logs/Google_AI_Policies_20250721_023641_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250721_023641_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Google AI Policies document has undergone a significant restructuring and content update. The old version was primarily Google's standard Terms of Service, while the new version focuses on Google's AI principles, products, and research initiatives.  The new content emphasizes responsible AI development and deployment, highlighting various AI tools, models, and resources available for users and developers.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T01:46:06",
+        "analysis_path": "logs/Google_AI_Policies_20250721_014606_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250721_014606_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Google AI Policies document has been replaced with Google's Terms of Service.  The old document outlined Google's AI Principles focusing on bold innovation, responsible development and deployment, and collaborative progress. The new document is a comprehensive legal agreement covering user responsibilities, content usage, intellectual property, dispute resolution, and more.  It includes a Generative AI Prohibited Use Policy, indicating a shift towards addressing the specific challenges of generative AI technologies.  There is no direct replacement for the detailed AI principles in the new terms of service.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T00:44:56",
+        "analysis_path": "logs/Google_AI_Policies_20250721_004456_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250721_004456_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes detected between the old and new versions of the Google AI Principles document.  Both versions present the same text regarding Google's AI principles, their application, and related resources.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T23:12:15",
+        "analysis_path": "logs/Google_AI_Policies_20250720_231215_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_231215_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Google AI Policies document has been significantly updated. The old version consisted solely of error messages indicating an invalid SSL certificate for the Google policies and AI principles websites. The new version is a comprehensive Terms of Service document outlining Google's expectations for users and responsibilities towards them, covering aspects like user content, intellectual property, liability, and dispute resolution.  The AI principles document remains largely unchanged, reiterating Google's commitment to bold innovation and responsible AI development.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T20:39:58",
+        "analysis_path": "logs/Google_AI_Policies_20250720_203958_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_203958_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "The Google AI Policies document's certificate chain was updated, and several domains were added to the list of Google domains covered by the certificate.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T20:23:46",
+        "analysis_path": "logs/Google_AI_Policies_20250720_202346_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_202346_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The most significant change is the replacement of the Google AI Principles document content with a security warning about a certificate authority issue on the ai.google and policies.google domains.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T19:55:59",
+        "analysis_path": "logs/Google_AI_Policies_20250720_195559_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_195559_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes detected between the old and new versions of the Google AI Principles document.  Both versions contain the same text regarding Google's three AI principles: Bold Innovation, Responsible Development and Deployment, and Collaborative Progress.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T19:16:07",
+        "analysis_path": "logs/Google_AI_Policies_20250720_191607_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_191607_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Google AI Policies have been updated. The old content consisted of broken links to Google's terms of service and their AI principles. The new content replaces the broken links with the full text of Google's Terms of Service, which includes sections on user responsibilities, content usage, intellectual property, dispute resolution, and liability.  The AI Principles document remains largely unchanged, continuing to emphasize bold innovation and responsible development and deployment of AI.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T18:45:21",
+        "analysis_path": "logs/Google_AI_Policies_20250720_184521_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_184521_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Google AI Principles document remains unchanged.  However, the Google Terms of Service document, linked within the Google AI Policies, is now inaccessible, returning a 'Residential Failed' error message indicating that access is restricted.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T18:37:44",
+        "analysis_path": "logs/Google_AI_Policies_20250720_183744_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_183744_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were detected between the old and new content provided for the Google AI Policies. Both the Google Terms of Service and the AI Principles sections remained identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T18:31:30",
+        "analysis_path": "logs/Google_AI_Policies_20250720_183130_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_183130_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Google AI Policies document has undergone a significant revision. The old content consisted primarily of SSL certificate error messages, while the new content is a comprehensive Terms of Service document outlining user responsibilities, Google's responsibilities, intellectual property rights concerning user content, and dispute resolution processes.  The AI Principles document remains largely unchanged, focusing on Google's approach to responsible AI development and deployment.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T18:21:08",
+        "analysis_path": "logs/Google_AI_Policies_20250720_182108_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_182108_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The most significant change is the addition of a security warning and certificate information at the beginning of both the 'Google AI Policies' and 'Google Terms of Service' documents, indicating a potential security breach.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-20T03:40:25",
+        "analysis_path": "logs/Google_AI_Policies_20250720_034025_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20250720_034025_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Initial snapshot captured.",
+        "changed_documents": []
+      }
+    ],
+    "Midjourney_Legal_Policies": [
+      {
+        "timestamp": "2026-06-28T14:24:56",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260628_142456_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260628_142456_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Midjourney's Terms of Service document is currently inaccessible, displaying an error message instead of its content. The Privacy Policy document remains unchanged and accessible.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-27T14:02:48",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260627_140248_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260627_140248_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Midjourney has introduced a comprehensive Privacy Policy document, which was previously inaccessible or unavailable, outlining how user data is handled, processed, and protected.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-21T15:00:24",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260621_150024_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260621_150024_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Midjourney's Privacy Policy, which is explicitly referenced in its Terms of Service, is no longer accessible at its provided URL, creating a significant transparency gap regarding user data handling.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-20T14:17:10",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260620_141710_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260620_141710_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Midjourney has introduced a comprehensive Terms of Service, where previously none was accessible, outlining user rights, content ownership, licensing, acceptable use, liability, and mandatory dispute resolution.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-18T14:44:58",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260618_144458_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260618_144458_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The Midjourney Terms of Service document is no longer accessible at its previously provided URL, creating significant legal uncertainty for users. The Privacy Policy document remains unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-17T14:51:48",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260617_145148_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260617_145148_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Midjourney has introduced a comprehensive Privacy Policy, previously inaccessible, which details data collection, usage, sharing, and retention practices, and significantly expands user rights, particularly for those in Europe (EEA, Switzerland, UK) and California.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-14T14:51:05",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260614_145105_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260614_145105_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The Midjourney Privacy Policy is no longer accessible at its previously provided URL, creating a transparency gap regarding user data handling. The Terms of Service document remains unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-13T14:23:56",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260613_142356_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260613_142356_snapshot.txt",
+        "priority": "high",
+        "verdict": null,
+        "summary": "Midjourney updated its Terms of Service, effective May 27, 2026, to introduce a new 'Community Localization' program where users irrevocably assign or broadly license intellectual property rights for their submitted translations to Midjourney. The Privacy Policy remains unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-27T14:25:01",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260527_142501_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260527_142501_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-12T12:51:13",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260212_125113_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260212_125113_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-08T13:20:25",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260208_132025_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260208_132025_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-06T12:42:20",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260206_124220_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260206_124220_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-04T12:39:39",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260204_123939_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260204_123939_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-02T12:48:36",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260202_124836_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260202_124836_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-01T12:59:20",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20260201_125920_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20260201_125920_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-12-05T12:05:11",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20251205_120511_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20251205_120511_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-07T11:59:08",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20251107_115908_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20251107_115908_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The provided text shows two documents: a Privacy Policy (last updated June 2, 2025) and Terms of Service (effective June 23, 2025).  The Terms of Service introduce new sections on content rights, a DMCA takedown policy, dispute resolution, service limitations, payment and billing, community guidelines, limitations of liability, and an image editor/video model section.  The Privacy Policy remains largely unchanged, though its last updated date precedes that of the Terms of Service.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-30T12:27:03",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20250730_122703_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20250730_122703_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were detected between the provided OLD and NEW content for the Midjourney Privacy Policy.  The content is identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-29T12:30:26",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20250729_123026_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20250729_123026_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The provided text shows updates to Midjourney's Terms of Service and a largely unchanged Privacy Policy. The Terms of Service document has been completely replaced with a new version, which includes details on service availability, user content rights, DMCA takedown procedures, dispute resolution, payment and billing, community guidelines, limitations of liability, and provisions for the image editor and video model.  The Privacy Policy shows only a minor update to the 'Last Updated' date.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T03:50:50",
+        "analysis_path": "logs/Midjourney_Legal_Policies_20250721_035050_analysis.json",
+        "snapshot_path": "logs/Midjourney_Legal_Policies_20250721_035050_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Initial snapshot captured.",
+        "changed_documents": []
+      }
+    ],
+    "NSW_Government_AI_Guidance": [
+      {
+        "timestamp": "2026-07-23T13:29:45",
+        "analysis_path": "logs/NSW_Government_AI_Guidance_20260723_132945_analysis.json",
+        "snapshot_path": "logs/NSW_Government_AI_Guidance_20260723_132945_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "A minor editorial change was made to the display text of a hyperlink within the Victorian Security of Payment Act (SOPA) guidance section.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-07T14:01:32",
+        "analysis_path": "logs/NSW_Government_AI_Guidance_20260707_140132_analysis.json",
+        "snapshot_path": "logs/NSW_Government_AI_Guidance_20260707_140132_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The policy document was updated to add explicit indicators for links that open in a new tab, primarily within the 'Dispute Support' section, enhancing user navigation clarity.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-01T14:28:06",
+        "analysis_path": "logs/NSW_Government_AI_Guidance_20260701_142806_analysis.json",
+        "snapshot_path": "logs/NSW_Government_AI_Guidance_20260701_142806_snapshot.txt",
+        "priority": "high",
+        "verdict": null,
+        "summary": "The 'NSW Government AI Guidance' document itself has no changes. However, an external Australian Small Business and Family Enterprise Ombudsman (ASBFEO) 'Dispute Support' web page, previously inaccessible, is now live, providing extensive resources for small businesses on dispute resolution, including disputes with government entities.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-25T14:10:46",
+        "analysis_path": "logs/NSW_Government_AI_Guidance_20260625_141046_analysis.json",
+        "snapshot_path": "logs/NSW_Government_AI_Guidance_20260625_141046_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "An external link to the Australian Small Business and Family Enterprise Ombudsman's (ASBFEO) 'Dispute Support' page, previously included as a resource, is now broken and inaccessible, returning a 'Not Found' error.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-24T14:10:11",
+        "analysis_path": "logs/NSW_Government_AI_Guidance_20260624_141011_analysis.json",
+        "snapshot_path": "logs/NSW_Government_AI_Guidance_20260624_141011_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-04-23T13:36:23",
+        "analysis_path": "logs/NSW_Government_AI_Guidance_20260423_133623_analysis.json",
+        "snapshot_path": "logs/NSW_Government_AI_Guidance_20260423_133623_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The NSW Government's AI guidance has undergone a significant revision. The previous version, playfully styled as a pirate's code, has been replaced with a more formal and concise document focusing on responsible and ethical use of Generative AI.  The new guidance emphasizes avoiding sensitive data input, verifying AI-generated information, acknowledging biases, and adhering to intellectual property rights.  The playful tone and nautical metaphors are entirely absent from the updated version.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T09:04:14",
+        "analysis_path": "logs/NSW_Government_AI_Guidance_20250721_090414_analysis.json",
+        "snapshot_path": "logs/NSW_Government_AI_Guidance_20250721_090414_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Initial snapshot captured.",
+        "changed_documents": []
+      }
+    ],
+    "National_Archives_of_Australia_-_AI_Policy": [
+      {
+        "timestamp": "2026-03-17T12:42:00",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260317_124200_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260317_124200_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-15T12:58:34",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260315_125834_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260315_125834_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-18T12:46:22",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260218_124622_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260218_124622_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-12T12:50:04",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260212_125004_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260212_125004_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-11T12:54:39",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260211_125439_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20260211_125439_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-12-18T12:03:36",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251218_120336_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251218_120336_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-12-17T12:02:59",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251217_120259_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251217_120259_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-20T11:57:20",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251120_115720_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251120_115720_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-13T12:01:01",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251113_120101_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251113_120101_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-12T11:59:08",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251112_115908_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251112_115908_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-10T12:04:07",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251110_120407_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251110_120407_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-02T11:49:00",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251002_114900_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251002_114900_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-28T11:59:56",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250928_115956_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250928_115956_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The National Archives of Australia's AI Policy document underwent a minor revision.  The changes primarily involve the removal of a temporary announcement regarding system maintenance from the webpage. The core content of the policy regarding AI record management remains unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-18T11:48:20",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250918_114820_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250918_114820_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The National Archives of Australia's AI Policy document has undergone a minor update. The primary change is in the announcement section, where the description of the system maintenance affecting RefTracker has been replaced with an announcement regarding intermittent unavailability of online reference inquiry forms.  The content related to AI record management remains largely unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-15T11:57:30",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250915_115730_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250915_115730_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The main change between the old and new versions of the \"National Archives of Australia - AI Policy\" document is the addition of a brief announcement regarding temporary unavailability of the RefTracker system due to maintenance.  The core content of the AI policy document itself remains unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-11T11:51:38",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250911_115138_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250911_115138_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The updated National Archives of Australia AI Policy shows minor changes primarily in the \"Students and Teachers\" section of the website navigation menu.  The main policy content regarding AI record management remains largely unchanged. The only substantive alteration is the replacement of \"Teacher professional learning\" with \"Teacher e-newsletter\" in the navigation menu.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-03T11:48:01",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250903_114801_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250903_114801_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The National Archives of Australia's AI Policy document has undergone a minor revision.  The main change appears to be the removal of a temporary announcement regarding RecordSearch system maintenance. The core content regarding AI record management remains unchanged, including guidance on generative and traditional AI, record types, retention policies, and management of AI systems. The document's date remains January 2025.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-31T11:58:44",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250831_115844_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250831_115844_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The National Archives of Australia's AI Policy document has been updated with a new announcement regarding temporary RecordSearch unavailability due to system maintenance from 9 am on Saturday, August 30th, to 8 pm on Sunday, August 31st.  The core content regarding AI record management remains unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-26T11:57:48",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250826_115748_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250826_115748_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The National Archives of Australia's AI Policy document underwent a minor revision.  The most significant change is the removal of a temporary service interruption announcement related to RecordSearch. The content of the AI policy itself remains unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-14T12:05:27",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250814_120527_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250814_120527_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The main change between the old and new versions of the \"National Archives of Australia - AI Policy\" document is the addition of a brief announcement regarding scheduled maintenance for RecordSearch on August 14th, 2024, from 8 to 10 am AEST.  The core content of the AI policy document itself remains unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-07T12:21:41",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250807_122141_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250807_122141_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The National Archives of Australia's AI Policy document shows no substantive changes between the old and new content.  The text, structure, and examples remain identical. The only difference observed is the removal of a temporary announcement regarding the unavailability of online reference inquiry forms due to a system upgrade.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-22T12:11:21",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250722_121121_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250722_121121_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The National Archives of Australia has published updated guidance on managing records created using Artificial Intelligence (AI) technologies.  The new policy provides detailed advice on managing records generated by both generative AI (e.g., ChatGPT, Copilot) and traditional AI systems. It emphasizes the importance of maintaining authenticity, reliability, and integrity of AI-generated records, outlining principles for retention, disposal, and metadata management.  The policy also addresses the management of AI systems themselves and incorporates references to relevant Australian Government policies and frameworks for AI governance and responsible use.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T02:44:25",
+        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250721_024425_analysis.json",
+        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250721_024425_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Initial snapshot captured.",
+        "changed_documents": []
+      }
+    ],
+    "Perplexity_AI_Legal_Policies": [
+      {
+        "timestamp": "2026-08-08T12:02:21",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260808_120221_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260808_120221_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has removed its comprehensive Terms of Service document from its publicly provided legal policies. This document has been replaced by two new, distinct policies: a detailed Privacy Notice and an expanded Acceptable Use Policy, but critical terms related to liability, dispute resolution, and payment are now missing from the publicly provided documents.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-08-07T12:56:53",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260807_125653_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260807_125653_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "There are no changes between the provided old and new policy documents. The content of 'Perplexity AI Legal Policies' remains identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-08-03T13:35:18",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260803_133518_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260803_133518_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has added a prominent notice to its Terms of Service, alerting users to recent updates in its consumer Privacy Notice regarding cookies, first-party advertising measurement, privacy choices, and an explicit clarification that personal data, queries, prompts, or conversation content are not sold or shared with advertisers.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-08-02T13:34:48",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260802_133448_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260802_133448_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "The Perplexity AI Terms of Service have undergone significant formatting and numbering updates, including the organization of clauses into sub-sections and the removal of duplicate text, without altering the core legal substance of the terms.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-08-01T13:34:10",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260801_133410_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260801_133410_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "The physical mailing address for submitting DMCA (copyright infringement) notices to Perplexity AI has been updated in the legal policies.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-31T13:34:11",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260731_133411_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260731_133411_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "There are no changes between the provided old and new policy documents. The content remains identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-21T13:23:44",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260721_132344_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260721_132344_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The policy document has been updated to remove redundant and duplicated sentences within the 'SHOPPING WITH PERPLEXITY PRO' section, clarifying the language without altering the substance of the terms.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-08T13:27:09",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260708_132709_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260708_132709_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a comprehensive Terms of Service for its core services, notably including a mandatory arbitration clause, a class action waiver, and granting the company extensive rights to user-generated content.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-05T14:03:56",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260705_140356_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260705_140356_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has fragmented its legal policies, with the previous comprehensive Terms of Service no longer available at its original link, and introducing a detailed standalone Privacy Notice and a new Acceptable Use Policy.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-04T13:44:15",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260704_134415_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260704_134415_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No substantive changes were identified between the old and new policy documents provided, indicating the terms of service remain unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-03T13:52:50",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260703_135250_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260703_135250_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were identified between the provided old and new versions of the Perplexity AI Legal Policies document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-02T14:06:13",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260702_140613_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260702_140613_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were identified between the old and new versions of the Perplexity AI Legal Policies document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-07-01T14:27:12",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260701_142712_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260701_142712_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were detected between the old and new versions of the Perplexity AI Legal Policies document. The policy remains identical to its previous version.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-30T14:11:20",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260630_141120_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260630_141120_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were identified between the old and new versions of the Perplexity AI Legal Policies document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-29T14:44:14",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260629_144414_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260629_144414_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No substantive changes were detected between the provided old and new versions of the 'Perplexity AI Legal Policies' document. The content remains identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-28T14:24:40",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260628_142440_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260628_142440_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a comprehensive Terms of Service (ToS) policy where none was previously accessible. This new ToS fundamentally alters the user agreement by instituting mandatory arbitration, a class action waiver (with a 30-day opt-out), granting broad licensing rights to user-generated content, and clarifying liability for AI output and a new 'ProShop' feature.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-25T14:09:50",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260625_140950_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260625_140950_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The Perplexity AI Acceptable Use Policy (AUP) and the main Terms of Service are no longer accessible at their designated URLs, leaving users without clear public guidance on prohibited activities, legal obligations, and the fundamental rules governing service usage.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-24T14:09:10",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260624_140910_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260624_140910_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has published a comprehensive Privacy Policy, detailing how user data is collected, used, and disclosed, replacing a previously inaccessible policy page. This change significantly clarifies data handling practices and user rights.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-23T14:06:15",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260623_140615_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260623_140615_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a new and extensive Acceptable Use Policy, replacing or supplementing the previously accessible Terms of Service and Privacy Policy which are now unavailable. This policy significantly broadens the prohibitions on user behavior, content generation, and technical interaction with Perplexity's AI services.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-22T15:07:21",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260622_150721_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260622_150721_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a comprehensive Terms of Service that includes a mandatory arbitration clause and class action waiver, explicit age restrictions, and broad licensing rights for user-generated content, significantly redefining user rights and company liability.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-21T14:59:55",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260621_145955_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260621_145955_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The Perplexity AI Privacy Policy, previously available at `https://www.perplexity.ai/hub/legal/privacy-policy`, is now inaccessible and returns an error message, while the Terms of Service link remains broken and the Acceptable Use Policy is unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-20T14:16:22",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260620_141622_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260620_141622_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has significantly restructured its legal policies, removing the previous Terms of Service document from its primary URL. This change introduces a new, comprehensive Privacy Policy with expanded data collection details and user rights, alongside a new Acceptable Use Policy outlining stricter rules for AI output and platform usage.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-19T15:03:15",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260619_150315_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260619_150315_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has published comprehensive Terms of Service, previously inaccessible, which introduce mandatory binding arbitration, a class action waiver, broad content licensing terms for user input, and extensive limitations on liability for all users of its services.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-18T14:44:31",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260618_144431_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260618_144431_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The Perplexity AI Acceptable Use Policy (AUP) document is no longer accessible at its previously specified URL, rendering its content unavailable to users.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-17T14:51:20",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260617_145120_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260617_145120_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has published its Acceptable Use Policy (AUP), outlining detailed prohibitions on how users can deploy and interact with its AI services, replacing a previously inaccessible page.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-16T15:09:38",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260616_150938_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260616_150938_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI's legal policy documents, including its Terms of Service and Privacy Policy, are currently inaccessible via their official web addresses, preventing users from reviewing the terms that govern the service.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-15T15:06:47",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260615_150647_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260615_150647_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has published a comprehensive Terms of Service agreement, where previously none was accessible, introducing mandatory arbitration, a class action waiver, and outlining user responsibilities and content licensing for its AI services and a new 'ProShop' feature.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-14T14:50:34",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260614_145034_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260614_145034_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI's primary legal policy documents, including its Terms of Service, Privacy Policy, and an Acceptable Use Policy, are currently inaccessible online, displaying a 'This site can't be reached' error at their previous URLs.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-13T14:23:14",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260613_142314_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260613_142314_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a comprehensive Terms of Service agreement that was previously inaccessible, defining the legal framework for all users of its core AI services and products. Key changes include mandatory arbitration, broad content licensing, and significant limitations on company liability.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-12T14:44:33",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260612_144433_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260612_144433_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The 'Terms of Service' document is no longer accessible at its previous location, replaced by an error page. Instead, a comprehensive 'Privacy Policy' document, effective February 5, 2026, is now the primary legal policy displayed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-11T14:42:52",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260611_144252_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260611_144252_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were detected between the provided old and new versions of the Perplexity AI Legal Policies document. The two documents are identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-09T14:08:19",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260609_140819_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260609_140819_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-08T14:46:39",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260608_144639_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260608_144639_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were identified between the old and new versions of the Perplexity AI Legal Policies document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-07T14:41:42",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260607_144142_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260607_144142_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No discernable changes were found between the old and new versions of the Perplexity AI Legal Policies document provided.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-06T14:04:58",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260606_140458_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260606_140458_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a comprehensive Terms of Service, replacing previously inaccessible legal documents and an Acceptable Use Policy, which includes a mandatory arbitration clause, class action waiver, and extensive new rules regarding user content and liability.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-05T14:22:33",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260605_142233_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260605_142233_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a new, comprehensive Acceptable Use Policy that outlines numerous prohibited activities and content, while its previous Terms of Service and Privacy Policy links are currently inaccessible. This change significantly expands restrictions on how users can interact with the AI services, with non-compliance potentially leading to service suspension or termination.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-04T14:47:26",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260604_144726_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260604_144726_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a new, comprehensive Terms of Service where previously none was accessible, fundamentally altering the legal relationship between the company and its users. Key changes include mandatory arbitration, a class action waiver, broad licensing of user-generated content, and explicit disclaimers regarding AI output reliability and company liability.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-03T14:53:39",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260603_145339_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260603_145339_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The primary Terms of Service document is currently inaccessible, indicating a significant change in Perplexity AI's legal policy structure. This change now includes new, detailed Privacy Policy and Acceptable Use Policy documents which introduce specific rules for data handling, AI usage, and user behavior, but the core user agreement remains unavailable.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-02T14:44:42",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260602_144442_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260602_144442_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a comprehensive Terms of Service document, which was previously unavailable or inaccessible. This new policy includes mandatory arbitration, a class action waiver, explicit rules for AI-generated content, age restrictions, and detailed liability limitations for both users and the company.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-06-01T14:57:02",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260601_145702_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260601_145702_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI's Privacy Policy webpage is currently inaccessible, meaning users can no longer view the details of how their personal data is collected, used, and disclosed. The Terms of Service page also remains unreachable.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-31T14:26:28",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260531_142628_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260531_142628_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has significantly restructured its legal policies, discontinuing the previous comprehensive Terms of Service document and introducing distinct, detailed Privacy Policy and Acceptable Use Policy documents. These new policies provide expanded clarity on data handling, enhance user rights, and establish specific rules for responsible AI use.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-30T14:01:02",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260530_140102_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260530_140102_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has published a comprehensive Terms of Service document, replacing previously inaccessible legal links, which significantly outlines user obligations, grants the company broad rights to user content, and introduces mandatory arbitration with a class action waiver.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-28T14:13:58",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260528_141358_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260528_141358_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The Perplexity AI Acceptable Use Policy, previously detailed and accessible, has become inaccessible, alongside the Terms of Service and Privacy Policy, indicating a complete unavailability of Perplexity's legal policies at their stated URLs.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-27T14:24:32",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260527_142432_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260527_142432_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The Perplexity AI Privacy Policy, which details how user data is collected, used, and protected, is no longer publicly accessible, removing crucial transparency for all users.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-26T14:10:26",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260526_141026_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260526_141026_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has published a comprehensive Privacy Policy, effective February 5, 2026, detailing how user data is collected, used, shared, and protected, and outlining specific user rights. This policy was previously inaccessible and represents a significant step towards transparency in data handling.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-25T14:25:09",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260525_142509_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260525_142509_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI's Privacy Policy, previously accessible, is now showing a 'This site can't be reached' error, making its content unavailable to users.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-24T14:14:01",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260524_141401_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260524_141401_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The previous Perplexity AI Terms of Service is now inaccessible, and the company has introduced comprehensive new Privacy and Acceptable Use Policies. These new policies significantly enhance user data privacy disclosures, clarify user responsibilities for AI content, and outline prohibited behaviors, especially concerning misrepresentation of AI output and high-risk applications.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-21T14:19:57",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260521_141957_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260521_141957_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were identified between the old and new versions of the 'Perplexity AI Legal Policies' document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-20T14:10:55",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260520_141055_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260520_141055_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has implemented a new, comprehensive Terms of Service document, which was previously inaccessible, establishing mandatory binding arbitration and a class action waiver for users. The updated policy also introduces explicit terms for content ownership, broad licensing of user input, significant disclaimers of liability for AI output, and requirements for attributing AI-generated content.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-15T14:02:37",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260515_140237_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260515_140237_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has significantly reorganized its legal policies, replacing a single Terms of Service document at its primary URL with an error message, and instead presenting separate, updated Privacy Policy and Acceptable Use Policy documents. This move likely indicates a broader restructuring of their legal framework, with crucial sections like arbitration and liability potentially relocated to an unprovided overarching Terms of Service document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-05-14T13:58:35",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260514_135835_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260514_135835_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has publicly released a comprehensive Terms of Service (ToS) document for its user-facing services, which was previously inaccessible. Key changes include the introduction of mandatory binding arbitration with a class action waiver, explicit rules for user-generated content, and extensive limitations on Perplexity's liability.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-26T12:55:09",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260326_125509_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260326_125509_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has introduced a new, comprehensive Acceptable Use Policy (AUP) that significantly expands restrictions on how users can interact with its AI services and content, while the main Terms of Service and Privacy Policy URLs appear to be inaccessible.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-25T12:48:04",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260325_124804_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260325_124804_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has updated its Terms of Service to clarify that country-specific consumer laws may allow for subscription refunds, expanding user rights in certain regions. Concurrently, the section on SMS messaging and phone calls has been significantly truncated, potentially broadening the scope of user consent for automated communications.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-19T12:50:40",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260319_125040_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260319_125040_snapshot.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has released a comprehensive Terms of Service document, which includes a mandatory arbitration clause, a class action waiver, and grants the company broad rights to use user input to improve its services. The new terms also explicitly disclaim liability for AI output reliability and introduce specific requirements for users publishing AI-generated content.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-18T12:48:58",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260318_124858_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260318_124858_snapshot.txt",
+        "priority": "Unknown",
+        "verdict": null,
+        "summary": "The Perplexity AI Terms of Service document is currently inaccessible, displaying an error. A new and comprehensive 'Perplexity's Privacy Policy,' effective February 5, 2026, has been released, detailing expanded data handling practices, user rights, and international data transfer compliance.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-17T23:21:07",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260317_232107_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260317_232107_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "No changes were detected between the old and new versions of the 'Perplexity AI Legal Policies' document.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-17T23:09:05",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260317_230905_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260317_230905_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-17T12:42:55",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260317_124255_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260317_124255_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-13T12:40:48",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260313_124048_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260313_124048_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-12T12:42:40",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260312_124240_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260312_124240_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-04T12:37:32",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260304_123732_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260304_123732_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-03-03T12:45:01",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260303_124501_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260303_124501_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-28T12:29:08",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260228_122908_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260228_122908_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-27T12:39:41",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260227_123941_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260227_123941_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-26T12:41:25",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260226_124125_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260226_124125_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-25T12:45:33",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260225_124533_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260225_124533_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-24T12:45:16",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260224_124516_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260224_124516_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-23T12:47:54",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260223_124754_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260223_124754_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-22T12:47:34",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260222_124734_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260222_124734_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-21T12:34:51",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260221_123451_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260221_123451_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-18T12:47:33",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260218_124733_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260218_124733_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-17T12:44:05",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260217_124405_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260217_124405_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-16T12:47:51",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260216_124751_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260216_124751_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-15T12:52:24",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260215_125224_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260215_125224_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-11T12:55:46",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260211_125546_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260211_125546_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-10T12:57:56",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260210_125756_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260210_125756_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-09T12:49:24",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260209_124924_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260209_124924_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-08T13:20:05",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260208_132005_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260208_132005_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-07T12:36:34",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260207_123634_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260207_123634_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-06T12:42:05",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260206_124205_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260206_124205_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-05T12:41:05",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260205_124105_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260205_124105_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-03T12:44:39",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260203_124439_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260203_124439_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-02T12:48:17",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260202_124817_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260202_124817_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-02-01T12:59:06",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260201_125906_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260201_125906_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-31T12:33:32",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260131_123332_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260131_123332_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-30T12:37:51",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260130_123751_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260130_123751_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-29T12:37:34",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260129_123734_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260129_123734_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-24T12:09:00",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260124_120900_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260124_120900_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-19T12:24:01",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260119_122401_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260119_122401_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-13T12:09:02",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260113_120902_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260113_120902_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2026-01-07T12:11:02",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260107_121102_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260107_121102_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-12-12T12:07:49",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251212_120749_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251212_120749_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-30T12:12:40",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251130_121240_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251130_121240_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-29T11:58:56",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251129_115856_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251129_115856_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-13T12:02:05",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251113_120205_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251113_120205_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-12T12:00:06",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251112_120006_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251112_120006_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-11T12:01:03",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251111_120103_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251111_120103_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-07T11:58:55",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251107_115855_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251107_115855_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-06T12:00:25",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251106_120025_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251106_120025_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-11-05T12:00:20",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251105_120020_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251105_120020_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-31T11:58:19",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251031_115819_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251031_115819_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-28T11:55:13",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251028_115513_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251028_115513_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-23T11:55:01",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251023_115501_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251023_115501_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-22T11:59:26",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251022_115926_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251022_115926_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-19T12:05:27",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251019_120527_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251019_120527_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-18T11:47:49",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251018_114749_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251018_114749_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-16T11:54:18",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251016_115418_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251016_115418_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-15T11:55:46",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251015_115546_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251015_115546_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-12T11:55:51",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251012_115551_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251012_115551_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-11T11:48:00",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251011_114800_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251011_114800_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-10T11:52:05",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251010_115205_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251010_115205_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-10-09T11:51:44",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251009_115144_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251009_115144_snapshot.txt",
+        "priority": "medium",
+        "verdict": null,
+        "summary": "Analysis failed.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-25T11:52:26",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250925_115226_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250925_115226_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The main change is the addition of a comprehensive \"Perplexity Terms of Service\" document.  This document details user rights and responsibilities, payment and subscription terms, intellectual property rights, disclaimers, limitations of liability, and a mandatory arbitration clause with a class action waiver.  The previously existing Privacy Policy and Acceptable Use Policy remain largely unchanged, though the Terms of Service clarifies some aspects of data usage and acceptable behavior previously mentioned in these policies.  Specifically, the Terms of Service adds details about the use of user input and AI generated output, as well as the purchase of products and services through the platform.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-18T11:49:19",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250918_114919_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250918_114919_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The provided text shows no changes to the Perplexity AI Legal Policies.  The Privacy Policy and Acceptable Use Policy are identical in both the old and new content.  There is no information about changes to other legal documents. Therefore, the analysis below reflects this.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-17T11:49:30",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250917_114930_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250917_114930_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The Perplexity AI Legal Policies show no substantive changes in the Terms of Service, Acceptable Use Policy, or Privacy Policy content between the old and new versions.  The only differences are the 'Last updated' dates, reflecting that the documents were updated at different times. The Terms of Service date remains June 4th, 2024, while the Acceptable Use Policy and Privacy Policy dates are July 8th, 2025 and February 2nd, 2025 respectively.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-13T11:43:35",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250913_114335_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250913_114335_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "Analysis of Perplexity AI Legal Policies reveals no substantive changes in the Terms of Service document between the old and new content.  The Privacy Policy shows updates to the \"Last Updated\" date (from February 2, 2025 to a future date), and the Acceptable Use Policy also shows an update to the \"Last Updated\" date (from July 8th, 2025 to a future date).  No other textual differences were detected.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-12T11:48:10",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250912_114810_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250912_114810_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The Perplexity AI Legal Policies show no significant content changes in the Terms of Service, Acceptable Use Policy, or Privacy Policy between the old and new versions.  The 'Last Updated' dates are different, reflecting updates to each document, but the core content remains largely identical.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-07T11:57:11",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250907_115711_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250907_115711_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "Analysis of Perplexity AI Legal Policies reveals no substantive changes in the Terms of Service document between the old and new content.  The Privacy Policy and Acceptable Use Policy show updates, reflecting changes in dates and possibly minor wording adjustments. The Terms of Service 'Last Updated' date remains June 4th, 2024.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-06T11:48:26",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250906_114826_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250906_114826_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The provided text shows three distinct legal documents from Perplexity AI: a Privacy Policy (last updated February 2, 2025), Terms of Service (last updated June 4, 2024), and an Acceptable Use Policy (last updated July 8, 2025).  The Terms of Service document is significantly more comprehensive than the previous version, introducing detailed sections on user accounts, paid services, order processing, ownership and content, disclaimers and limitations of liability, and a binding arbitration clause with a class action waiver.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-05T11:51:37",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250905_115137_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250905_115137_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The provided text shows no changes to the Perplexity AI Privacy Policy document.  The content is identical in both the 'OLD CONTENT' and 'NEW CONTENT' sections.  Therefore, no analysis of changes is possible.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-09-04T11:48:56",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250904_114856_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250904_114856_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The Perplexity AI Legal Policies show minor changes.  The most significant alteration is in the navigation menu, replacing \"Enterprise & Developer Terms\" with \"Partner & Promotion Terms.\"  The content of the Terms of Service, Privacy Policy, and Acceptable Use Policy remains largely the same, with only minor updates to wording and formatting. No substantial changes to legal obligations or user rights were detected.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-20T11:58:04",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250820_115804_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250820_115804_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The Perplexity AI Legal Policies show minor updates across Terms of Service, Privacy Policy, and Acceptable Use Policy documents.  The Terms of Service has an updated 'last updated' date (June 4th, 2024), reflecting a relatively unchanged document.  The Privacy Policy's last update is February 2nd, 2025, and the Acceptable Use Policy's last update is July 8th, 2025. The most significant change is the addition of 'Comet Browser' to the product list in both the Privacy and Acceptable Use Policies.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-13T12:05:53",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250813_120553_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250813_120553_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The Perplexity AI Legal Policies have been updated with the addition of comprehensive Terms of Service.  The Terms of Service document covers user accounts, subscriptions, payment processing, intellectual property rights, disclaimers, limitations of liability, and a mandatory arbitration clause with a class action waiver.  The Privacy Policy and Acceptable Use Policy remain largely unchanged, though their 'Last Updated' dates reflect recent modifications.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-11T12:22:07",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250811_122207_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250811_122207_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "The provided text consists of Perplexity AI's Privacy Policy and Acceptable Use Policy.  No changes are detected between the old and new content for the Privacy Policy and Acceptable Use Policy. The Terms of Service were not included in the new content. ",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-08-10T12:25:50",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250810_122550_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250810_122550_snapshot.txt",
+        "priority": "Low",
+        "verdict": null,
+        "summary": "The provided text shows no changes in the \"Perplexity AI Legal Policies\" documents.  All four documents (Terms of Service, Acceptable Use Policy, Privacy Policy, and an un-named fourth document) are identical in both the 'OLD CONTENT' and 'NEW CONTENT' sections. The only differences are the inclusion of the 'OLD CONTENT' and 'NEW CONTENT' headers and the dates in the headers, which are not part of the actual policy documents themselves.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T14:12:53",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250721_141253_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250721_141253_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Analysis of Perplexity AI Legal Policies reveals no substantive changes in the Terms of Service or Acceptable Use Policy between the provided old and new content.  The Privacy Policy shows an update to its last revised date, from February 2, 2025 to a future date, indicating potential internal updates that were not provided in the comparison.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T12:24:16",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250721_122416_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250721_122416_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "The provided text shows updates to Perplexity AI's legal policies.  The most significant change is the addition of comprehensive Terms of Service, covering user accounts, subscriptions, payments, product orders, usage restrictions, disclaimers, liability limitations, and a mandatory arbitration clause with a class action waiver.  The Privacy Policy and Acceptable Use Policy have also been updated with minor revisions and clarifications but remain largely unchanged.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T09:03:29",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250721_090329_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250721_090329_snapshot.txt",
+        "priority": "High",
+        "verdict": null,
+        "summary": "Analysis of updated Perplexity AI Legal Policies reveals a new Privacy Policy (updated February 2nd, 2025) and an updated Acceptable Use Policy (updated July 8th, 2025).  The Terms of Service (last updated June 4th, 2024) remain largely unchanged.  The Privacy Policy details data collection, usage, and disclosure practices, emphasizing compliance with GDPR, CCPA, and the Data Privacy Framework. The Acceptable Use Policy outlines restrictions on illegal activities, high-risk activities, and technical misuse of the service.",
+        "changed_documents": []
+      },
+      {
+        "timestamp": "2025-07-21T03:50:34",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250721_035034_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250721_035034_snapshot.txt",
+        "priority": "low",
+        "verdict": null,
+        "summary": "Initial snapshot captured.",
+        "changed_documents": []
+      }
+    ]
+  }
+}
