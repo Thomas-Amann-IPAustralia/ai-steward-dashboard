@@ -1,55 +1,67 @@
-import { useState, useEffect, useRef } from 'react';
-import { BASE_URL } from '../utils/constants';
+import { useState, useEffect } from 'react';
+import { BASE_URL, fetchWithTimeout } from '../utils/constants';
 
+const EMPTY_ANALYSIS = {
+  summary: 'No analysis found for this policy set.',
+  analysis: 'This could be the first scan, or an error may have occurred during analysis.',
+  date_time: 'Unknown',
+  priority: 'low',
+  verdict: null,
+};
+
+/**
+ * Loads the three artefacts a detail page needs: the analysis, the unified
+ * diff that produced it, and the full snapshot behind a disclosure. The diff
+ * is the primary view; the snapshot is a fallback for sets last captured
+ * before diffs existed.
+ */
 export function usePolicyDetail(fileId) {
   const [analysis, setAnalysis] = useState(null);
+  const [diff, setDiff] = useState('');
   const [snapshot, setSnapshot] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const abortRef = useRef(null);
 
   useEffect(() => {
     if (!fileId) {
       setAnalysis(null);
+      setDiff('');
       setSnapshot('');
       setError(null);
-      return;
+      return undefined;
     }
 
-    if (abortRef.current) abortRef.current.abort();
     const controller = new AbortController();
-    abortRef.current = controller;
 
     const fetchDetail = async () => {
       setLoading(true);
       setError(null);
+      setDiff('');
+      const cacheBuster = `?v=${Date.now()}`;
+      const opts = { signal: controller.signal };
+
       try {
-        const cacheBuster = `?v=${Date.now()}`;
-        const [analysisRes, snapshotRes] = await Promise.all([
-          fetch(`${BASE_URL}/analysis/${fileId}.json${cacheBuster}`, { signal: controller.signal }),
-          fetch(`${BASE_URL}/snapshots/${fileId}.txt${cacheBuster}`, { signal: controller.signal }),
+        const [analysisRes, diffRes, snapshotRes] = await Promise.all([
+          fetchWithTimeout(`${BASE_URL}/analysis/${fileId}.json${cacheBuster}`, opts),
+          fetchWithTimeout(`${BASE_URL}/diffs/${fileId}.diff${cacheBuster}`, opts).catch(() => null),
+          fetchWithTimeout(`${BASE_URL}/snapshots/${fileId}.txt${cacheBuster}`, opts),
         ]);
 
-        if (analysisRes.ok) {
-          setAnalysis(await analysisRes.json());
-        } else {
-          setAnalysis({
-            summary: 'No analysis found for this policy set.',
-            analysis: 'This could be the first scan or an error might have occurred during analysis.',
-            date_time: 'Unknown',
-            priority: 'low',
-          });
-        }
-
-        if (snapshotRes.ok) {
-          setSnapshot(await snapshotRes.text());
-        } else {
-          setSnapshot('Could not load the content snapshot for this policy set.');
-        }
+        setAnalysis(analysisRes.ok ? await analysisRes.json() : EMPTY_ANALYSIS);
+        if (diffRes && diffRes.ok) setDiff(await diffRes.text());
+        setSnapshot(
+          snapshotRes.ok
+            ? await snapshotRes.text()
+            : 'Could not load the content snapshot for this policy set.'
+        );
       } catch (err) {
         if (err.name !== 'AbortError') {
           console.error('Error loading policy set data:', err);
-          setError('An error occurred while loading data.');
+          setError(
+            err.message === 'Failed to fetch'
+              ? 'Could not reach the data files. Check your connection and try again.'
+              : 'An error occurred while loading data. It may have timed out — try reloading.'
+          );
         }
       } finally {
         setLoading(false);
@@ -60,5 +72,5 @@ export function usePolicyDetail(fileId) {
     return () => controller.abort();
   }, [fileId]);
 
-  return { analysis, snapshot, loading, error };
+  return { analysis, diff, snapshot, loading, error };
 }

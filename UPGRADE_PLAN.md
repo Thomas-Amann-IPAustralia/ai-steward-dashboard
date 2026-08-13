@@ -5,6 +5,61 @@
 
 ---
 
+## 0. Implementation status — 13 August 2026
+
+Steps 1, 2, 3, 4 and 6 of the suggested order in §4 are implemented on
+`claude/upgrade-plan-implementation-5n1s7m`. **Step 5, the newsletter feed
+(C1–C8), is not started** — it is the one increment in this plan that needs a
+mailbox, a secret and an allowlist before any of its code does anything, and
+the plan itself scopes it as self-contained. Everything else is done.
+
+| Item | Status | Where |
+|---|---|---|
+| A1 Reject implausible scrapes | Done | `steward/validation.py` |
+| A2 Hash and diff per URL | Done | `hashes.json` → `documents{}`, `snapshots/{file_id}/` |
+| A3 Stamp the timestamp in code | Done | `main.py`, `date_time` removed from the prompt |
+| A4 Validate, retry once, allow declining | Done | `steward/analysis.py` |
+| A5 Make a broken source visible | Done | `health.json`, sidebar and briefing |
+| A6 Close the live bugs | Done | see `BUG_REPORT.md` |
+| B1 Probe before fetching | Done | conditional GET in `steward/fetching.py` |
+| B2 requests + trafilatura by default | Done | Selenium reserved for `"render": true` |
+| B3 Normalise before hashing | Done | `steward/content.py`, idempotent |
+| B4 Compute and send only the diff | Done | `steward/diffing.py`, `diffs/{file_id}.diff` |
+| B5 Regex significance fingerprint | Done | context for the model, never a veto |
+| C1–C8 Newsletter feed | **Not started** | — |
+| D1 Diff as the default detail view | Done | `src/components/DiffView.js` |
+| D2 Show which document changed | Done | detail page + briefing rows |
+| D3 Home page as a briefing | Done | `src/components/DashboardHome.js` |
+| D4 Fix the stale priority badge | Done | `src/components/PriorityBadge.js` |
+| D5 History timeline | Done | `history.json`, `src/components/HistoryTimeline.js` |
+| D6 Copy briefing button | Done | `src/utils/briefing.js` |
+| D7 Drop the Google favicon calls | Done | `src/components/Lettermark.js` |
+| D8 Accessibility and responsive | Done | three breakpoints, focus-visible, `aria-live` |
+| D9 Feedback loop | Done | 👍/👎 opening a prefilled issue |
+| E1 One validated config file | Done | `steward_config.yaml`, `steward/config.py` |
+| E2 A run log | Done | `runs.jsonl` |
+| E3 Health alerting | Done | `source-health` issue from `health_alert.md` |
+| E4 Clean up the orphans | Done | 12 orphaned files removed |
+| E5 Tests | Done | 57 Python + 11 frontend, both in CI |
+| E6 Move off the legacy Gemini SDK | Done | `google-genai` |
+
+One root cause worth recording, found while building A1: the 8 August capture
+was Chrome's error page reading *"This site can’t be reached"* with a **curly**
+apostrophe (U+2019), while `FAILURE_SIGNATURES` carried a straight one. The
+signature never matched, which is why the block page was accepted as content.
+Signature matching is now quote-folded and case-folded, and
+`tests/test_pipeline.py` pins that behaviour against the archived file.
+
+A note on migration: extraction moved from BeautifulSoup to trafilatura, so the
+stored snapshots are not comparable with freshly captured text. Rather than
+reporting eight simultaneous "changes" on the first run, `main.py` re-baselines
+any document whose stored `pipeline_version` is behind the current one — logged,
+recorded in `runs.jsonl`, and explicitly not badged. Per-document baselines are
+recovered by splitting the existing aggregate snapshots, so a year of history is
+carried across rather than discarded.
+
+---
+
 ## 1. Why now: the dashboard is currently reporting things that did not happen
 
 Three consecutive runs in August, all still in `logs/`, show the failure mode end to end.

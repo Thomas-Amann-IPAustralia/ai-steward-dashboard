@@ -107,3 +107,10 @@ public
 # Temporary folders
 tmp/
 temp/
+
+# Steward runtime artefacts
+# health_alert.md is a transient hand-off to the alerting workflow step, not
+# state worth keeping in history.
+health_alert.md
+diffs/*.tmp
+runs.jsonl.tmp
