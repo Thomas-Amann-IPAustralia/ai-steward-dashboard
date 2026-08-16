@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-15T01:40:22.762439+00:00",
+  "generated_at": "2026-08-16T01:46:59.201760+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -218,15 +218,6 @@
         "priority": "High",
         "verdict": null,
         "summary": "Anthropic updated its legal policies, primarily focusing on clarifying user responsibilities and enhancing safety measures.  The Acceptable Use Policy (AUP) has been significantly restructured, moving from a broad categorization to a more detailed list of prohibited activities, emphasizing child safety and the prevention of misuse in high-risk sectors.  The Terms of Service remain largely unchanged, with minor wording adjustments for clarity. The Privacy Policy shows no significant changes.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-15T12:06:55",
-        "analysis_path": "logs/Anthropic_Legal_Policies_20250815_120655_analysis.json",
-        "snapshot_path": "logs/Anthropic_Legal_Policies_20250815_120655_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Initial snapshot captured.",
         "changed_documents": []
       }
     ],
