@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T01:40:53.930260+00:00",
+  "generated_at": "2026-08-21T01:46:21.097438+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -781,6 +781,18 @@
       }
     ],
     "Perplexity_AI_Legal_Policies": [
+      {
+        "timestamp": "2026-08-21T11:45:10",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260821_114510_analysis.json",
+        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20260821_114510_snapshot.txt",
+        "diff_path": "logs/Perplexity_AI_Legal_Policies_20260821_114510_diff.txt",
+        "priority": "low",
+        "verdict": "no_material_change",
+        "summary": "The Terms of Service were updated primarily with formatting changes to improve readability, and a phone number was removed from the 'How to Contact Us' section.",
+        "changed_documents": [
+          "Terms Of Service"
+        ]
+      },
       {
         "timestamp": "2026-08-08T12:02:21",
         "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260808_120221_analysis.json",
@@ -1868,15 +1880,6 @@
         "priority": "low",
         "verdict": null,
         "summary": "The Perplexity AI Legal Policies show minor changes.  The most significant alteration is in the navigation menu, replacing \"Enterprise & Developer Terms\" with \"Partner & Promotion Terms.\"  The content of the Terms of Service, Privacy Policy, and Acceptable Use Policy remains largely the same, with only minor updates to wording and formatting. No substantial changes to legal obligations or user rights were detected.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-20T11:58:04",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250820_115804_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250820_115804_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "The Perplexity AI Legal Policies show minor updates across Terms of Service, Privacy Policy, and Acceptable Use Policy documents.  The Terms of Service has an updated 'last updated' date (June 4th, 2024), reflecting a relatively unchanged document.  The Privacy Policy's last update is February 2nd, 2025, and the Acceptable Use Policy's last update is July 8th, 2025. The most significant change is the addition of 'Comet Browser' to the product list in both the Privacy and Acceptable Use Policies.",
         "changed_documents": []
       }
     ]

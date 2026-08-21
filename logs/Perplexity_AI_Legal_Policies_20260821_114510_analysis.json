@@ -1,0 +1,10 @@
+{
+    "verdict": "no_material_change",
+    "summary": "The Terms of Service were updated primarily with formatting changes to improve readability, and a phone number was removed from the 'How to Contact Us' section.",
+    "analysis": "### 1. What specifically changed\nThe changes to Perplexity AI's Terms of Service are largely cosmetic, involving the reformatting of several sections (6.1-6.4, 9.1-9.4, and 11.1-11.8) to introduce line breaks for improved readability. The content of these sections, pertaining to ownership, intellectual property, arbitration, and miscellaneous provisions, remains substantively identical. The only material content change is the removal of the phone number `+1 (510) 270-0840` from the 'How to Contact Us' Section 11.8. Email and postal mail contact methods remain available.\n\n### 2. Who is affected\nAll users of Perplexity AI's services, including Australian public servants, are affected by these changes. The primary impact is a minor alteration to how users can contact the company.\n\n### 3. Whether user rights, data handling or liability are affected\nUser rights, data handling practices, and liability clauses are not materially affected by these changes. The core terms regarding intellectual property ownership, limitations of liability, and dispute resolution (including arbitration and class action waivers) remain unchanged in their meaning and application. The removal of the phone number does not diminish the fundamental right to contact the company, merely one specific method of doing so.\n\n### 4. Any action required\nNo immediate action is required. Australian public servants should note that direct phone contact is no longer listed as an option in the Terms of Service. Communication with Perplexity AI should now primarily rely on the provided email address (`support@perplexity.ai`) or postal mail.",
+    "priority": "low",
+    "date_time": "2026-08-21T11:45:10.080352+10:00",
+    "changed_documents": [
+        "Terms Of Service"
+    ]
+}
