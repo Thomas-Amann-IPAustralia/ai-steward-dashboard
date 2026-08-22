@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-08-21T01:46:21.080477+00:00",
+  "generated_at": "2026-08-22T01:39:32.346210+00:00",
   "overall": "failing",
-  "error_rate": 0.3,
+  "error_rate": 0.3158,
   "sources": {
     "Digital.gov.au AI Policy": {
       "file_id": "Digital_gov_au_AI_Policy",
       "status": "failing",
       "last_success": null,
       "days_since_success": null,
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "documents_total": 4,
       "documents_failing": 4,
       "failing": [
         {
           "url": "https://www.digital.gov.au/policy/ai/implementation",
           "label": "Implementation",
-          "consecutive_failures": 9,
+          "consecutive_failures": 10,
           "last_success": null,
           "last_error": "too_short: 256 chars is below the 500 char minimum",
           "status": "failing"
@@ -23,7 +23,7 @@
         {
           "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
           "label": "Enable And Prepare",
-          "consecutive_failures": 9,
+          "consecutive_failures": 10,
           "last_success": null,
           "last_error": "too_short: 256 chars is below the 500 char minimum",
           "status": "failing"
@@ -31,7 +31,7 @@
         {
           "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
           "label": "Engage Responsibly",
-          "consecutive_failures": 9,
+          "consecutive_failures": 10,
           "last_success": null,
           "last_error": "too_short: 256 chars is below the 500 char minimum",
           "status": "failing"
@@ -39,7 +39,7 @@
         {
           "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
           "label": "Evolve And Integrate",
-          "consecutive_failures": 9,
+          "consecutive_failures": 10,
           "last_success": null,
           "last_error": "too_short: 256 chars is below the 500 char minimum",
           "status": "failing"
@@ -51,14 +51,14 @@
       "status": "failing",
       "last_success": null,
       "days_since_success": null,
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "documents_total": 1,
       "documents_failing": 1,
       "failing": [
         {
           "url": "https://www.naa.gov.au/information-management/manage-information-assets/types-information/information-management-records-created-using-artificial-intelligence-ai-technologies",
           "label": "Information Management Records Created Using Artificial Intelligence Ai Technologies",
-          "consecutive_failures": 9,
+          "consecutive_failures": 10,
           "last_success": null,
           "last_error": "shrank: 2856 chars is 8% of the stored 36088 chars, below the 60% floor",
           "status": "failing"
@@ -68,7 +68,7 @@
     "Google AI Policies": {
       "file_id": "Google_AI_Policies",
       "status": "ok",
-      "last_success": "2026-08-21T11:45:07.048912+10:00",
+      "last_success": "2026-08-22T11:38:44.018436+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 2,
@@ -78,7 +78,7 @@
     "Anthropic Legal Policies": {
       "file_id": "Anthropic_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-08-21T11:45:08.583923+10:00",
+      "last_success": "2026-08-22T11:38:45.307956+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -88,7 +88,7 @@
     "Perplexity AI Legal Policies": {
       "file_id": "Perplexity_AI_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-08-21T11:45:10.080352+10:00",
+      "last_success": "2026-08-22T11:38:46.386856+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -98,7 +98,7 @@
     "Midjourney Legal Policies": {
       "file_id": "Midjourney_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-08-21T11:45:37.291768+10:00",
+      "last_success": "2026-08-22T11:38:47.763867+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 2,
@@ -108,7 +108,7 @@
     "ACSC Information Security Manual (ISM)": {
       "file_id": "ACSC_Information_Security_Manual_ISM",
       "status": "ok",
-      "last_success": "2026-08-21T11:45:37.960508+10:00",
+      "last_success": "2026-08-22T11:38:48.521690+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 1,
@@ -120,14 +120,14 @@
       "status": "failing",
       "last_success": null,
       "days_since_success": null,
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "documents_total": 3,
       "documents_failing": 1,
       "failing": [
         {
           "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework",
           "label": "Nsw Artificial Intelligence Assurance Framework",
-          "consecutive_failures": 9,
+          "consecutive_failures": 10,
           "last_success": null,
           "last_error": "block_page: matched failure signature \"This site can't be reached\"",
           "status": "failing"
@@ -140,7 +140,7 @@
       "kind": "source_failing",
       "set_name": "Digital.gov.au AI Policy",
       "url": "https://www.digital.gov.au/policy/ai/implementation",
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "last_success": null,
       "detail": "too_short: 256 chars is below the 500 char minimum"
     },
@@ -148,7 +148,7 @@
       "kind": "source_failing",
       "set_name": "Digital.gov.au AI Policy",
       "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "last_success": null,
       "detail": "too_short: 256 chars is below the 500 char minimum"
     },
@@ -156,7 +156,7 @@
       "kind": "source_failing",
       "set_name": "Digital.gov.au AI Policy",
       "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "last_success": null,
       "detail": "too_short: 256 chars is below the 500 char minimum"
     },
@@ -164,7 +164,7 @@
       "kind": "source_failing",
       "set_name": "Digital.gov.au AI Policy",
       "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "last_success": null,
       "detail": "too_short: 256 chars is below the 500 char minimum"
     },
@@ -172,7 +172,7 @@
       "kind": "source_failing",
       "set_name": "National Archives of Australia - AI Policy",
       "url": "https://www.naa.gov.au/information-management/manage-information-assets/types-information/information-management-records-created-using-artificial-intelligence-ai-technologies",
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "last_success": null,
       "detail": "shrank: 2856 chars is 8% of the stored 36088 chars, below the 60% floor"
     },
@@ -180,9 +180,17 @@
       "kind": "source_failing",
       "set_name": "NSW Government AI Guidance",
       "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework",
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "last_success": null,
       "detail": "block_page: matched failure signature \"This site can't be reached\""
+    },
+    {
+      "kind": "run_error_rate",
+      "set_name": "",
+      "url": "",
+      "consecutive_failures": 0,
+      "last_success": null,
+      "detail": "32% of documents failed this run, above the 30% threshold"
     }
   ]
 }

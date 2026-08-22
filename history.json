@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T01:46:21.097438+00:00",
+  "generated_at": "2026-08-22T01:39:32.355899+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -384,15 +384,6 @@
         "priority": "low",
         "verdict": null,
         "summary": "The provided text shows no changes in the \"Google AI Policies\" document itself.  Both the old and new content are identical for the Google Terms of Service. The Google AI Principles document remains unchanged as well.  Therefore, there is no policy change to analyze.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-21T11:56:29",
-        "analysis_path": "logs/Google_AI_Policies_20250821_115629_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250821_115629_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The provided text shows no changes between the old and new content for the \"Google AI Policies\" document. Both the Google Terms of Service and the Google AI Principles documents remain identical.  There is no evidence of any policy updates or modifications.",
         "changed_documents": []
       }
     ],
