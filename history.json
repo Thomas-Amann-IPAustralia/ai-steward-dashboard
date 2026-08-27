@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T01:46:37.914871+00:00",
+  "generated_at": "2026-08-27T08:44:51.854896+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -366,15 +366,6 @@
         "priority": "low",
         "verdict": null,
         "summary": "The provided text shows no changes in the Google Terms of Service document.  The AI Principles document remains unchanged as well. Therefore, there are no policy changes to analyze.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-26T11:58:02",
-        "analysis_path": "logs/Google_AI_Policies_20250826_115802_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20250826_115802_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The Google AI Policies document remains largely unchanged, with the core Terms of Service showing no substantive alterations.  The primary difference lies in the addition of a language selection dropdown in the Terms of Service document, offering improved accessibility. The separate AI Principles document also remains consistent.",
         "changed_documents": []
       }
     ],
@@ -750,15 +741,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "The National Archives of Australia's AI Policy document has been updated with a new announcement regarding temporary RecordSearch unavailability due to system maintenance from 9 am on Saturday, August 30th, to 8 pm on Sunday, August 31st.  The core content regarding AI record management remains unchanged.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-08-26T11:57:48",
-        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250826_115748_analysis.json",
-        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250826_115748_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The National Archives of Australia's AI Policy document underwent a minor revision.  The most significant change is the removal of a temporary service interruption announcement related to RecordSearch. The content of the AI policy itself remains unchanged.",
         "changed_documents": []
       }
     ],
