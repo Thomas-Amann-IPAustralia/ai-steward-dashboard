@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T04:39:34.904487+00:00",
+  "generated_at": "2026-09-02T04:02:12.982362+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -224,6 +224,18 @@
       }
     ],
     "Google_AI_Policies": [
+      {
+        "timestamp": "2026-09-02T14:01:16",
+        "analysis_path": "logs/Google_AI_Policies_20260902_140116_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260902_140116_snapshot.txt",
+        "diff_path": "logs/Google_AI_Policies_20260902_140116_diff.txt",
+        "priority": "low",
+        "verdict": "no_material_change",
+        "summary": "The changes are purely typographical, correcting an encoding error where 'â' was replaced with an em dash '—' in two instances.",
+        "changed_documents": [
+          "Principles"
+        ]
+      },
       {
         "timestamp": "2026-08-03T13:34:42",
         "analysis_path": "logs/Google_AI_Policies_20260803_133442_analysis.json",

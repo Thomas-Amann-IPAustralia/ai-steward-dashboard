@@ -1,0 +1,10 @@
+{
+    "verdict": "no_material_change",
+    "summary": "The changes are purely typographical, correcting an encoding error where 'â' was replaced with an em dash '—' in two instances.",
+    "analysis": "1.  **What specifically changed:** The character sequence `â` was replaced with an em dash `—` in two locations within the 'Principles' document. This correction was applied once in the introductory paragraph regarding the company's founding mission and once in the section detailing 'Our AI Principles in action' related to the model lifecycle.\n2.  **Who is affected:** No specific group or individual is affected by these changes. They are cosmetic corrections to the document's presentation.\n3.  **Whether user rights, data handling or liability are affected:** User rights, data handling practices, and legal liability are not affected. The semantic meaning and intent of the policy text remain entirely unchanged.\n4.  **Any action required:** No action is required by Australian public servants or any other stakeholders, as the modifications are non-substantive and do not alter any obligations or operational procedures.",
+    "priority": "low",
+    "date_time": "2026-09-02T14:01:16.656065+10:00",
+    "changed_documents": [
+        "Principles"
+    ]
+}
