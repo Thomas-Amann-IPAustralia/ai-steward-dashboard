@@ -1,0 +1,10 @@
+{
+    "verdict": "no_material_change",
+    "summary": "A sub-heading in the ISM was updated from 'Using the Information security manual' to 'Using the cyber security framework' for improved consistency in terminology.",
+    "analysis": "1) **What specifically changed:** A sub-heading within the ISM was updated. The previous heading \"Using the Information security manual\" has been replaced with \"Using the cyber security framework\". This change refines the document's internal terminology to better align with its description of the ISM as a \"cyber security framework\" found in the introductory paragraph.\n2) **Who is affected:** This change primarily affects chief information security officers, chief information officers, cyber security professionals, and information technology managers who consult the ISM. However, the impact is minimal as it's a semantic adjustment to a heading rather than a change in policy or guidance.\n3) **Whether user rights, data handling or liability are affected:** No. This is a terminological update to a heading and does not alter any provisions related to user rights, data handling practices, legal obligations, or liability. The core guidance and requirements of the ISM remain unchanged.\n4) **Any action required:** No action is required by any affected parties. This change is cosmetic and aims for consistency in language rather than introducing new requirements or modifying existing ones.",
+    "priority": "low",
+    "date_time": "2026-09-03T14:00:45.908757+10:00",
+    "changed_documents": [
+        "Ism"
+    ]
+}

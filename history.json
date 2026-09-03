@@ -1,7 +1,19 @@
 {
-  "generated_at": "2026-09-02T04:02:12.982362+00:00",
+  "generated_at": "2026-09-03T04:05:07.467320+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
+      {
+        "timestamp": "2026-09-03T14:00:45",
+        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20260903_140045_analysis.json",
+        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20260903_140045_snapshot.txt",
+        "diff_path": "logs/ACSC_Information_Security_Manual_ISM_20260903_140045_diff.txt",
+        "priority": "low",
+        "verdict": "no_material_change",
+        "summary": "A sub-heading in the ISM was updated from 'Using the Information security manual' to 'Using the cyber security framework' for improved consistency in terminology.",
+        "changed_documents": [
+          "Ism"
+        ]
+      },
       {
         "timestamp": "2026-06-08T14:47:03",
         "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20260608_144703_analysis.json",
