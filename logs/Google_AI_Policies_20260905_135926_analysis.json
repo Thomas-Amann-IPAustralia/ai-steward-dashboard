@@ -1,0 +1,10 @@
+{
+    "verdict": "no_material_change",
+    "summary": "The changes are cosmetic, involving the replacement of em-dashes with a character encoding artifact, with no alteration to the meaning or intent of the text.",
+    "analysis": "1) **What specifically changed**: In two instances, the em-dash character (`—`) has been replaced by the character sequence `â`. This is a common rendering issue, likely due to a character encoding mismatch during display or storage. The surrounding text and overall meaning of the sentences remain identical.\n\n2) **Who is affected**: No parties are affected, as the change is purely cosmetic and does not alter the substance of the policy.\n\n3) **Whether user rights, data handling or liability are affected**: There is no impact on user rights, data handling practices, or liability, as the policy content remains unchanged.\n\n4) **Any action required**: No action is required from Australian public servants. The change is a technical artifact and holds no policy significance.",
+    "priority": "low",
+    "date_time": "2026-09-05T13:59:26.708994+10:00",
+    "changed_documents": [
+        "Principles"
+    ]
+}

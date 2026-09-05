@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T04:03:16.546068+00:00",
+  "generated_at": "2026-09-05T04:00:20.145309+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -102,15 +102,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "The ACSC Information Security Manual (ISM) has been updated from the June 2025 version to the September 2025 version.  The primary changes are a revised manual PDF (smaller file size), updated change document (significantly smaller file size), and slightly larger supporting templates.  The content of the manual itself appears unchanged based on the provided snippets.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-04T11:49:17",
-        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250904_114917_analysis.json",
-        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250904_114917_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "No substantive changes were detected between the old and new content of the ACSC Information Security Manual (ISM).  The only difference is a minor wording change in the call to action for reporting security incidents; 'cyber security' is now consistently written as two words instead of one in some places.",
         "changed_documents": []
       }
     ],
@@ -236,6 +227,18 @@
       }
     ],
     "Google_AI_Policies": [
+      {
+        "timestamp": "2026-09-05T13:59:26",
+        "analysis_path": "logs/Google_AI_Policies_20260905_135926_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260905_135926_snapshot.txt",
+        "diff_path": "logs/Google_AI_Policies_20260905_135926_diff.txt",
+        "priority": "low",
+        "verdict": "no_material_change",
+        "summary": "The changes are cosmetic, involving the replacement of em-dashes with a character encoding artifact, with no alteration to the meaning or intent of the text.",
+        "changed_documents": [
+          "Principles"
+        ]
+      },
       {
         "timestamp": "2026-09-02T14:01:16",
         "analysis_path": "logs/Google_AI_Policies_20260902_140116_analysis.json",
@@ -1833,15 +1836,6 @@
         "priority": "low",
         "verdict": null,
         "summary": "The provided text shows no changes to the Perplexity AI Privacy Policy document.  The content is identical in both the 'OLD CONTENT' and 'NEW CONTENT' sections.  Therefore, no analysis of changes is possible.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-04T11:48:56",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250904_114856_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250904_114856_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The Perplexity AI Legal Policies show minor changes.  The most significant alteration is in the navigation menu, replacing \"Enterprise & Developer Terms\" with \"Partner & Promotion Terms.\"  The content of the Terms of Service, Privacy Policy, and Acceptable Use Policy remains largely the same, with only minor updates to wording and formatting. No substantial changes to legal obligations or user rights were detected.",
         "changed_documents": []
       }
     ]
