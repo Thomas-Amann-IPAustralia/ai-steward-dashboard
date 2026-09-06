@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T04:00:20.145309+00:00",
+  "generated_at": "2026-09-06T04:05:50.209749+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -93,15 +93,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "Minimal changes detected between the old and new content of the ACSC Information Security Manual (ISM).  The only discernible difference is a 1KB reduction in the size of the 'System security plan annex template' file, from 157KB to 156KB. The content of the manual itself appears identical.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-05T11:52:02",
-        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250905_115202_analysis.json",
-        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250905_115202_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "The ACSC Information Security Manual (ISM) has been updated from the June 2025 version to the September 2025 version.  The primary changes are a revised manual PDF (smaller file size), updated change document (significantly smaller file size), and slightly larger supporting templates.  The content of the manual itself appears unchanged based on the provided snippets.",
         "changed_documents": []
       }
     ],
@@ -1827,15 +1818,6 @@
         "priority": "High",
         "verdict": null,
         "summary": "The provided text shows three distinct legal documents from Perplexity AI: a Privacy Policy (last updated February 2, 2025), Terms of Service (last updated June 4, 2024), and an Acceptable Use Policy (last updated July 8, 2025).  The Terms of Service document is significantly more comprehensive than the previous version, introducing detailed sections on user accounts, paid services, order processing, ownership and content, disclaimers and limitations of liability, and a binding arbitration clause with a class action waiver.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-05T11:51:37",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250905_115137_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250905_115137_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The provided text shows no changes to the Perplexity AI Privacy Policy document.  The content is identical in both the 'OLD CONTENT' and 'NEW CONTENT' sections.  Therefore, no analysis of changes is possible.",
         "changed_documents": []
       }
     ]
