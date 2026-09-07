@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T04:05:50.209749+00:00",
+  "generated_at": "2026-09-07T04:04:56.378690+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -1809,15 +1809,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "Analysis of Perplexity AI Legal Policies reveals no substantive changes in the Terms of Service document between the old and new content.  The Privacy Policy and Acceptable Use Policy show updates, reflecting changes in dates and possibly minor wording adjustments. The Terms of Service 'Last Updated' date remains June 4th, 2024.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-06T11:48:26",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250906_114826_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250906_114826_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The provided text shows three distinct legal documents from Perplexity AI: a Privacy Policy (last updated February 2, 2025), Terms of Service (last updated June 4, 2024), and an Acceptable Use Policy (last updated July 8, 2025).  The Terms of Service document is significantly more comprehensive than the previous version, introducing detailed sections on user accounts, paid services, order processing, ownership and content, disclaimers and limitations of liability, and a binding arbitration clause with a class action waiver.",
         "changed_documents": []
       }
     ]
