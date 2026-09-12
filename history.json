@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T04:09:27.874068+00:00",
+  "generated_at": "2026-09-12T04:11:43.947449+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -706,15 +706,6 @@
         "priority": "low",
         "verdict": null,
         "summary": "The main change between the old and new versions of the \"National Archives of Australia - AI Policy\" document is the addition of a brief announcement regarding temporary unavailability of the RefTracker system due to maintenance.  The core content of the AI policy document itself remains unchanged.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-11T11:51:38",
-        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250911_115138_analysis.json",
-        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250911_115138_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The updated National Archives of Australia AI Policy shows minor changes primarily in the \"Students and Teachers\" section of the website navigation menu.  The main policy content regarding AI record management remains largely unchanged. The only substantive alteration is the replacement of \"Teacher professional learning\" with \"Teacher e-newsletter\" in the navigation menu.",
         "changed_documents": []
       }
     ],
