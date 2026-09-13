@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T04:11:43.947449+00:00",
+  "generated_at": "2026-09-13T04:21:47.694325+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -67,18 +67,19 @@
         "verdict": null,
         "summary": "The only change detected between the old and new content of the ACSC Information Security Manual (ISM) is a 100KB increase in the size of the main PDF document.  The version number and date remain the same (September 2025). All other elements, including supporting documents and website structure, are identical.",
         "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-12T11:48:29",
-        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250912_114829_analysis.json",
-        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250912_114829_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "Minimal changes detected between the old and new versions of the ACSC Information Security Manual (ISM) document. The only discernible difference is a 4KB reduction in the size of the 'ISM September 2025 changes' document.  The content of the main ISM document and supporting materials appear identical.",
-        "changed_documents": []
       }
     ],
     "Anthropic_Legal_Policies": [
+      {
+        "timestamp": "2026-09-12T14:09:27",
+        "analysis_path": "logs/Anthropic_Legal_Policies_20260912_140927_analysis.json",
+        "snapshot_path": "logs/Anthropic_Legal_Policies_20260912_140927_snapshot.txt",
+        "diff_path": "logs/Anthropic_Legal_Policies_20260912_140927_diff.txt",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "The provided new version of Anthropic's Privacy Policy has been severely truncated, ending mid-sentence in the 'Communication Information' section and omitting all subsequent detailed policy information regarding data collection, use, disclosure, security, and user rights.",
+        "changed_documents": []
+      },
       {
         "timestamp": "2026-07-20T13:48:55",
         "analysis_path": "logs/Anthropic_Legal_Policies_20260720_134855_analysis.json",
@@ -1764,15 +1765,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "Analysis of Perplexity AI Legal Policies reveals no substantive changes in the Terms of Service document between the old and new content.  The Privacy Policy shows updates to the \"Last Updated\" date (from February 2, 2025 to a future date), and the Acceptable Use Policy also shows an update to the \"Last Updated\" date (from July 8th, 2025 to a future date).  No other textual differences were detected.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-12T11:48:10",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250912_114810_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250912_114810_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "The Perplexity AI Legal Policies show no significant content changes in the Terms of Service, Acceptable Use Policy, or Privacy Policy between the old and new versions.  The 'Last Updated' dates are different, reflecting updates to each document, but the core content remains largely identical.",
         "changed_documents": []
       }
     ]

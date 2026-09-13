@@ -1,0 +1,42 @@
+===== Privacy — +21 / -10 =====
+--- Privacy (stored)
++++ Privacy (current)
+@@ -224,17 +224,28 @@
+ Please keep in mind that these rights are not absolute and may not apply in certain circumstances. For example, in certain cases we may continue to process and retain data regardless of your request for deletion, objection, blocking or anonymisation, in order to comply with legal, contractual and regulatory obligations, safeguard and exercise rights, including in judicial, administrative and arbitration proceedings and in other cases provided for by law.
+ International Data Transfers. You acknowledge that Anthropic is a company based and headquartered in the United States. Any information we hold about you will be transferred to, used, processed, and stored in the United States and other countries and territories, which may not have data privacy or data protection laws equivalent to those in your country or territory. For the proper operation of the Services, Anthropic needs to carry out international transfers of personal data. In the case of Brazil, we will rely on standard contractual clauses (SCCs) for our data transfers where required and in instances where they are not covered by an adequacy decision. These SCCs have been approved by the Brazilian Data Protection Authority (ANPD), which is the "competent supervisory authority" for these transfers, as governed by Brazilian Data Protection Laws. You can view the SCCs adopted by the ANPD here.
+ Supplemental Disclosures for Residents of the Republic of Korea
++This section applies to the extent that Anthropic is subject to the Personal Information Protection Act (“PIPA”), and supplements the information in the Privacy Policy. This is an addendum to the Privacy Policy and should be read in conjunction with the Privacy Policy. In case of any inconsistency between the Privacy Policy and this Addendum, this Addendum prevails for users in the Republic of Korea. This Addendum may be amended or updated from time to time.
++Items of Personal Data Collected and Purpose of Use
++In addition to “1. Collection of Personal Data”, we collect and use your information as follows:
++- Purpose: Identity verification, Fraud and abuse monitoring
++- Items of Data: Name, birthdate, sex, native-foreigner-code, and DI (duplication information)
++- Period of retention and use: Until account deletion
++Delegation of Processing of Personal Data
++Anthropic delegates the processing of personal data as described here and below, and the delegatees may process personal data according to the purpose of the delegation.
++- Korea Credit Bureau: Fraud and abuse detection and identity verification
++- Kim & Chang: Assisting with the domestic representative related duties
++Overseas Transfer of Personal Data
++Anthropic delegates the processing of personal data to affiliates and third parties, all of whom are located overseas. In addition, Anthropic transfers personal data overseas as follows:
++- Recipient’s Name (Contact Information): Persona (privacy@withpersona.com)
++- Country to which Personal Data to be Transferred: United States
++- Items of Personal Data to be Transferred: Name, birthdate, sex, native-foreigner-code, and DI (duplication information)
++- Recipient’s Purpose of Use: Fraud and abuse detection and identity verification
++- Period of Retention and Use by Recipient: 3 years
++- Legal Basis for Overseas Transfer: PIPA Article 28-8(1)(iii) delegation
++Following collection, personal data is transferred to the overseas recipients listed below from time to time, as necessary, via a dedicated network. You may have the right to request that your personal data not be transferred overseas as described above. If so, you may request this by email us at privacy@anthropic.com and contact our Data Protection Officer at dpo@anthropic.com. However, in doing so, Anthropic may not be able to provide you with all or any of the services we make available through our website.
+ Domestic Representative in the Republic of Korea
+ The domestic representative of Anthropic PBC for data protection and related regulatory purposes under Article 31-2 of the Personal Information Protection Act and Article 32-5 of the Act on Promotion of Information and Communications Network Utilization and Data Protection, Etc. in the Republic of Korea is as follows:
+ Entity Name and Representative: Anthropic Korea, Limited (Representative Patrick Azubike Ekeruo)
+ Registered Address: (Yeoksam-dong), 41F, 152 Teheran-ro, Gangnam-gu, Seoul, South Korea
+-Telephone: [+82-2-6252-2080]
+-Email: [anthropicprivacy@bkl.co.kr]
+-Data Processors:
+-| Trustees and Contacts | Bae, Kim & Lee LLC (02-3404-0001) |
+-|---|---|
+-| Entrusted Data | Name, ID, phone number, email, address, and other information that you may provide to the domestic representative |
+-| Purpose | Assisting with the domestic representative duties |
+-| Recipient Location | South Korea |
+-| Retention period | The period necessary to process your request |
+-| Times and methods of transfer | Telephone, text, or email |
++Telephone: +82 2 734 0940
++Email: anthropic_privacy@kimchang.com
