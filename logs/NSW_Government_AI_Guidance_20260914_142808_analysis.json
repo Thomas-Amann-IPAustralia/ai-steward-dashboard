@@ -1,0 +1,10 @@
+{
+    "verdict": "no_material_change",
+    "summary": "The contact information for the Australian Financial Complaints Authority (AFCA) has been updated to explicitly include the HTTPS protocol in its website address.",
+    "analysis": "1. **What specifically changed:** The website URL for the Australian Financial Complaints Authority (AFCA) in the \"Dispute Support\" document was updated. The previous entry `Website: www.afca.org.au` was changed to `Website: https://www.afca.org.au/`, adding the secure HTTPS protocol and a trailing slash.\n2. **Who is affected:** This change primarily affects public servants referring to the NSW Government AI Guidance for dispute support contact details. Members of the public who might seek this information are unlikely to notice any practical difference, as `www.afca.org.au` would almost certainly redirect to the secure HTTPS version.\n3. **User rights, data handling or liability:** This change does not affect user rights, data handling practices, or liability in any way. It is a minor editorial correction/standardisation of a URL.\n4. **Action required:** No action is required. This is a cosmetic update with no functional impact.",
+    "priority": "low",
+    "date_time": "2026-09-14T14:28:08.610839+10:00",
+    "changed_documents": [
+        "Dispute Support"
+    ]
+}

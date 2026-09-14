@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T04:21:47.694325+00:00",
+  "generated_at": "2026-09-14T04:28:21.427301+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -518,6 +518,18 @@
       }
     ],
     "NSW_Government_AI_Guidance": [
+      {
+        "timestamp": "2026-09-14T14:28:08",
+        "analysis_path": "logs/NSW_Government_AI_Guidance_20260914_142808_analysis.json",
+        "snapshot_path": "logs/NSW_Government_AI_Guidance_20260914_142808_snapshot.txt",
+        "diff_path": "logs/NSW_Government_AI_Guidance_20260914_142808_diff.txt",
+        "priority": "low",
+        "verdict": "no_material_change",
+        "summary": "The contact information for the Australian Financial Complaints Authority (AFCA) has been updated to explicitly include the HTTPS protocol in its website address.",
+        "changed_documents": [
+          "Dispute Support"
+        ]
+      },
       {
         "timestamp": "2026-07-23T13:29:45",
         "analysis_path": "logs/NSW_Government_AI_Guidance_20260723_132945_analysis.json",
@@ -1756,15 +1768,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "The Perplexity AI Legal Policies show no substantive changes in the Terms of Service, Acceptable Use Policy, or Privacy Policy content between the old and new versions.  The only differences are the 'Last updated' dates, reflecting that the documents were updated at different times. The Terms of Service date remains June 4th, 2024, while the Acceptable Use Policy and Privacy Policy dates are July 8th, 2025 and February 2nd, 2025 respectively.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-13T11:43:35",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250913_114335_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250913_114335_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "Analysis of Perplexity AI Legal Policies reveals no substantive changes in the Terms of Service document between the old and new content.  The Privacy Policy shows updates to the \"Last Updated\" date (from February 2, 2025 to a future date), and the Acceptable Use Policy also shows an update to the \"Last Updated\" date (from July 8th, 2025 to a future date).  No other textual differences were detected.",
         "changed_documents": []
       }
     ]
