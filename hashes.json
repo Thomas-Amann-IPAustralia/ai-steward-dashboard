@@ -28,71 +28,13 @@
         "last_change": null,
         "last_review": null,
         "schema_failures": 0,
-        "consecutive_failures": 35,
+        "consecutive_failures": 0,
         "last_success": null,
-        "documents": {
-            "https://www.digital.gov.au/policy/ai/implementation": {
-                "doc_id": "policy-ai-implementation-41ff0a19",
-                "label": "Implementation",
-                "hash": "750cdc5da292f8d5c6adbbf8ceee21a8838cedcded2e8cf5c032a2989e5e05f3",
-                "length": 347,
-                "pipeline_version": 1,
-                "extractor": "legacy",
-                "consecutive_failures": 35,
-                "last_checked": "2026-09-16T14:20:36.640645+10:00",
-                "http_status": null,
-                "fetch_ms": 39269,
-                "status": "suspect_scrape",
-                "last_error": "too_short: 256 chars is below the 500 char minimum",
-                "suspect_length": 256
-            },
-            "https://www.digital.gov.au/policy/ai/enable-and-prepare": {
-                "doc_id": "policy-ai-enable-and-prepare-c5bd2fab",
-                "label": "Enable And Prepare",
-                "hash": "f51c97e2377b7fdc9b83cf3115ebd59b8b311c6c10fc07fd591fffe7d1ef091b",
-                "length": 355,
-                "pipeline_version": 1,
-                "extractor": "legacy",
-                "consecutive_failures": 35,
-                "last_checked": "2026-09-16T14:20:36.640645+10:00",
-                "http_status": null,
-                "fetch_ms": 35854,
-                "status": "suspect_scrape",
-                "last_error": "too_short: 256 chars is below the 500 char minimum",
-                "suspect_length": 256
-            },
-            "https://www.digital.gov.au/policy/ai/engage-responsibly": {
-                "doc_id": "policy-ai-engage-responsibly-27a51d84",
-                "label": "Engage Responsibly",
-                "hash": "f3952ac068c6ce8a9c147a809eaefa9411e7e51bd2e942a13bf072d6c8f30193",
-                "length": 355,
-                "pipeline_version": 1,
-                "extractor": "legacy",
-                "consecutive_failures": 35,
-                "last_checked": "2026-09-16T14:20:36.640645+10:00",
-                "http_status": null,
-                "fetch_ms": 34469,
-                "status": "suspect_scrape",
-                "last_error": "too_short: 256 chars is below the 500 char minimum",
-                "suspect_length": 256
-            },
-            "https://www.digital.gov.au/policy/ai/evolve-and-integrate": {
-                "doc_id": "policy-ai-evolve-and-integrate-6ff58bfc",
-                "label": "Evolve And Integrate",
-                "hash": "325f77c939c4d67cc01c000e6502bd4c83129c8d839be17fd127bccf366fcb19",
-                "length": 359,
-                "pipeline_version": 1,
-                "extractor": "legacy",
-                "consecutive_failures": 35,
-                "last_checked": "2026-09-16T14:20:36.640645+10:00",
-                "http_status": null,
-                "fetch_ms": 33965,
-                "status": "suspect_scrape",
-                "last_error": "too_short: 256 chars is below the 500 char minimum",
-                "suspect_length": 256
-            }
-        },
-        "status": "failing"
+        "documents": {},
+        "status": "unknown",
+        "monitoring": "disabled",
+        "disabled_reason": "digital.gov.au serves a bot-protection interstitial to datacentre IP addresses, including GitHub Actions runners. Every capture since the source was added has been that interstitial, not policy content — 35 consecutive runs with no successful read. Re-enable once a residential proxy is configured (PROXY_HOST/PORT/USER/PASS) or an alternative source for the same content is found.",
+        "disabled_since": "2026-09-17T08:42:38.357304+10:00"
     },
     "National Archives of Australia - AI Policy": {
         "hash": "bea7ab50064916a7610bd4fd90dafd4c8df15a9d637c291fc70ec1ac00cae679",
@@ -338,17 +280,14 @@
         ],
         "file_id": "Perplexity_AI_Legal_Policies",
         "last_checked": "2026-09-16T14:23:36.144438+10:00",
-        "last_amended": "2026-08-09T12:10:17.411163+10:00",
-        "last_priority": "critical",
-        "last_verdict": null,
-        "last_change": null,
+        "last_amended": "2026-08-03T13:35:18+10:00",
+        "last_priority": "low",
+        "last_verdict": "no_material_change",
         "last_review": {
-            "timestamp": "2026-08-21T11:45:10.080352+10:00",
+            "timestamp": "2026-09-17T08:40:11.821785+10:00",
             "verdict": "no_material_change",
-            "summary": "The Terms of Service were updated primarily with formatting changes to improve readability, and a phone number was removed from the 'How to Contact Us' section.",
-            "changed_documents": [
-                "Terms Of Service"
-            ]
+            "summary": "Retracted: The 8-9 August 2026 'Terms of Service removed, then restored' pair was an artefact of a failed capture, not a policy change. The 8 August capture was 354 bytes of Chrome error page against a 57 kB stored document; the 9 August 'restoration' was the real page returning. Perplexity did not remove or republish its Terms of Service. The validation gate added on 13 August rejects this class of capture.",
+            "changed_documents": []
         },
         "schema_failures": 0,
         "consecutive_failures": 0,
@@ -580,7 +519,7 @@
             ]
         },
         "schema_failures": 0,
-        "consecutive_failures": 35,
+        "consecutive_failures": 0,
         "last_success": null,
         "documents": {
             "https://www.digital.nsw.gov.au/policy/artificial-intelligence/generative-ai-basic-guidance": {
@@ -600,44 +539,8 @@
                 "last_error": "",
                 "status": "unchanged",
                 "rebaseline_reason": "extraction pipeline changed"
-            },
-            "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework": {
-                "doc_id": "nsw-artificial-intelligence-assurance-framework-64dc57bb",
-                "label": "Nsw Artificial Intelligence Assurance Framework",
-                "hash": "0602f71c6644fcc1825fed30c53f0ebcd23a97bb82a4a44238e61e4078a79631",
-                "length": 84,
-                "pipeline_version": 1,
-                "extractor": "legacy",
-                "consecutive_failures": 35,
-                "last_checked": "2026-09-16T14:24:14.226349+10:00",
-                "http_status": null,
-                "fetch_ms": 4962,
-                "status": "suspect_scrape",
-                "last_error": "block_page: matched failure signature \"This site can't be reached\"",
-                "suspect_length": 463
-            },
-            "https://www.asbfeo.gov.au/disputes-assistance/dispute-support": {
-                "doc_id": "disputes-assistance-dispute-support-aa52a24d",
-                "label": "Dispute Support",
-                "hash": "b4e6f5daa962ec8b9c39de49b71649491324abca105cb17187baa0c9e083e522",
-                "length": 85528,
-                "pipeline_version": 2,
-                "extractor": "trafilatura",
-                "consecutive_failures": 0,
-                "last_checked": "2026-09-16T14:24:14.226349+10:00",
-                "http_status": 200,
-                "fetch_ms": 2166,
-                "etag": null,
-                "last_modified": null,
-                "last_success": "2026-09-16T14:24:14.226349+10:00",
-                "last_error": "",
-                "status": "unchanged",
-                "rebaseline_reason": "extraction pipeline changed",
-                "last_changed": "2026-09-14T14:28:08.610839+10:00",
-                "diff_added": 1,
-                "diff_removed": 1
             }
         },
-        "status": "failing"
+        "status": "ok"
     }
 }

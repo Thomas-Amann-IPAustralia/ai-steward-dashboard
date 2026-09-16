@@ -121,6 +121,34 @@ function PolicyDetail({ policySets, health }) {
         </div>
       )}
 
+      {/* An analysis the pipeline should not have published, and one it published
+          before it could stamp its own timestamps, are both still on the page —
+          the archive would be dishonest without them. What they must not do is
+          read as a current finding. */}
+      {analysis?.retracted && (
+        <div className="review-notice retracted" role="status">
+          <strong>This analysis has been retracted.</strong>
+          <p>{analysis.summary?.replace(/^Retracted:\s*/, '')}</p>
+          <p>
+            The retracted analysis is kept in the change history below. The set is no
+            longer badged for it.
+          </p>
+        </div>
+      )}
+
+      {analysis?.legacy && !analysis?.retracted && (
+        <div className="review-notice legacy" role="status">
+          <strong>This analysis predates the current pipeline.</strong>
+          <p>
+            It was produced before responses were schema-checked and before the
+            analysis timestamp was stamped in code rather than supplied by the model.
+            Its date has been corrected from the run record; its priority has not been
+            re-assessed and should be treated with caution. The change history below is
+            authoritative.
+          </p>
+        </div>
+      )}
+
       {analysis && (
         <div className="analysis-card">
           <div className="analysis-header">

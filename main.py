@@ -169,9 +169,41 @@ def validate_policy_sets(policy_sets: list) -> list:
         if not all(isinstance(u, dict) and u.get("url") for u in urls):
             log.warning("Skipping policy_sets[%d] (%s): malformed url entry", i, name)
             continue
+        if "enabled" in ps and not isinstance(ps["enabled"], bool):
+            log.warning("Skipping policy_sets[%d] (%s): 'enabled' must be true or false", i, name)
+            continue
         seen_names.add(name)
         valid.append(ps)
     return valid
+
+
+def is_enabled(policy_set: dict) -> bool:
+    """A set is monitored unless it says otherwise."""
+    return policy_set.get("enabled", True) is not False
+
+
+def disabled_entry(policy_set: dict, previous_entry: dict, timestamp: str) -> dict:
+    """State for a set that is deliberately not being checked.
+
+    A source that cannot be read is a different thing from a source nobody is
+    trying to read, and the dashboard has to be able to say which. The stored
+    state is carried forward untouched so the archive still resolves; what
+    changes is that health stops alerting on it and the UI stops presenting its
+    last known reading as current.
+    """
+    entry = dict(previous_entry)
+    entry.update(
+        {
+            "category": policy_set["category"],
+            "urls": policy_set["urls"],
+            "file_id": slugify_set_name(policy_set["setName"]),
+            "monitoring": "disabled",
+            "disabled_reason": (policy_set.get("disabled_reason") or "").strip()
+            or "No reason recorded.",
+            "disabled_since": previous_entry.get("disabled_since") or timestamp,
+        }
+    )
+    return entry
 
 
 # --- Migration -------------------------------------------------------------
@@ -679,9 +711,18 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.only:
         wanted = set(args.only)
         policy_sets = [ps for ps in policy_sets if ps["setName"] in wanted]
-    if not policy_sets:
+
+    disabled_sets = [ps for ps in policy_sets if not is_enabled(ps)]
+    policy_sets = [ps for ps in policy_sets if is_enabled(ps)]
+    if not policy_sets and not disabled_sets:
         log.error("No valid policy sets to check. Exiting.")
         return 1
+    for policy_set in disabled_sets:
+        log.info(
+            "Skipping '%s' — monitoring disabled: %s",
+            policy_set["setName"],
+            policy_set.get("disabled_reason") or "no reason recorded",
+        )
 
     previous_hashes = load_json_file(HASHES_FILE, {})
     if not isinstance(previous_hashes, dict):
@@ -703,6 +744,12 @@ def main(argv: Optional[List[str]] = None) -> int:
             if set_name in previous_hashes:
                 current_hashes[set_name] = previous_hashes[set_name]
 
+    run_timestamp = datetime.now(AEST_TZ).isoformat()
+    for policy_set in disabled_sets:
+        current_hashes[policy_set["setName"]] = disabled_entry(
+            policy_set, previous_hashes.get(policy_set["setName"], {}), run_timestamp
+        )
+
     # Sets that were skipped this run keep their stored state rather than
     # vanishing from the dashboard.
     for set_name, entry in previous_hashes.items():
@@ -716,10 +763,20 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     save_json_file(current_hashes, HASHES_FILE)
     health.write_report(report)
-    if health.write_alert(report):
-        log.warning("Health alerts raised: %d — see %s", len(report["alerts"]), health.ALERT_FILE)
-    elif os.path.exists(health.ALERT_FILE):
-        os.remove(health.ALERT_FILE)
+    if health.write_alert(report, digest_days=cfg.health.digest_days):
+        log.warning(
+            "Health alerts changed — see %s (%d open)",
+            health.ALERT_FILE,
+            len(report["alerts"]),
+        )
+    else:
+        if report["alerts"]:
+            log.info(
+                "Health: %d alert(s) open, none new since the last report — not re-raising",
+                len(report["alerts"]),
+            )
+        if os.path.exists(health.ALERT_FILE):
+            os.remove(health.ALERT_FILE)
 
     pruned = history.prune(LOG_DIR, cfg.retention.log_days)
     if pruned:

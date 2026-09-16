@@ -22,9 +22,14 @@ permissions:
   id-token: write
   issues: write
 
+# Not cancel-in-progress: a push to main used to kill a scheduled run partway
+# through, and main.py writes snapshots during its loop but hashes.json only at
+# the end. A run killed in between leaves a snapshot newer than the hash
+# recorded for it, and the next run reads that as "no change" — silently
+# swallowing a real one.
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   check-and-build:
@@ -87,7 +92,7 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         mkdir -p analysis snapshots diffs logs
         git add analysis/ snapshots/ diffs/ policy_sets.json
-        for f in hashes.json health.json history.json runs.jsonl; do
+        for f in hashes.json health.json history.json runs.jsonl health_state.json; do
           if [ -f "$f" ]; then git add "$f"; fi
         done
         git add -f logs/
@@ -113,7 +118,7 @@ jobs:
         script: |
           const fs = require('fs');
           const body = fs.readFileSync('health_alert.md', 'utf8');
-          const title = `Steward health: sources need attention (${new Date().toISOString().slice(0, 10)})`;
+          const title = `Steward health: source status changed (${new Date().toISOString().slice(0, 10)})`;
 
           const existing = await github.rest.issues.listForRepo({
             owner: context.repo.owner,

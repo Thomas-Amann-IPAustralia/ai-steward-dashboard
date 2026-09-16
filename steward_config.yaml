@@ -50,6 +50,19 @@ validation:
     - "Access denied"
     - "Attention Required! | Cloudflare"
     - "429 Too Many Requests"
+    # WAF interstitials served with HTTP 200. Until these were listed, the only
+    # thing standing between a bot-protection page and a stored baseline was
+    # validation.min_length — and the digital.gov.au interstitial measured 256
+    # characters on one host and 522 on another, i.e. on the wrong side of that
+    # floor half the time. A block page must be recognised as a block page, not
+    # caught by being short.
+    - "your information cannot be processed"
+    - "Request unsuccessful. Incapsula incident ID"
+    - "Pardon Our Interruption"
+    - "The requested URL was rejected. Please consult with your administrator"
+    - "Reference #18."
+    - "You don't have permission to access"
+    - "Sorry, you have been blocked"
 
 normalisation:
   # Regexes stripped from every document before hashing. Deliberately empty:
@@ -104,6 +117,10 @@ health:
   error_rate_threshold: 0.3
   # Consecutive schema failures from the model before alerting.
   schema_failure_threshold: 2
+  # Alerts fire on transitions — a source that started failing, or recovered.
+  # Anything still open is repeated as a digest this many days apart, so a
+  # long-running problem is neither forgotten nor reported every single run.
+  digest_days: 7
 
 retention:
   # Days of archived analyses and snapshots kept in logs/.

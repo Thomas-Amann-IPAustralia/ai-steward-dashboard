@@ -53,6 +53,17 @@ def load_cfg():
     return config.load_config(os.path.join(REPO_ROOT, "steward_config.yaml"))
 
 
+
+def first_alert_body(report):
+    """The alert body as it reads the first time these alerts are seen.
+
+    Alerts fire on transitions now, so rendering one needs a before-state as
+    well as a report. An empty state is "nothing has ever been reported", which
+    is what these tests are describing.
+    """
+    empty = {"open": {}, "last_digest_at": None}
+    return health.render_alert_markdown(health.diff_alerts(empty, report), report)
+
 class RunHarness(unittest.TestCase):
     """Runs process_policy_set in a scratch directory with the network and the
     model replaced by fixtures."""
@@ -229,7 +240,7 @@ class TheEighthOfAugustProducesNoAlert(RunHarness):
         report = health.build_report({PERPLEXITY_SET["setName"]: entry}, self.cfg)
         self.assertEqual(report["overall"], health.FAILING)
         self.assertEqual(len(report["alerts"]), 1)
-        self.assertIn("Perplexity", health.render_alert_markdown(report))
+        self.assertIn("Perplexity", first_alert_body(report))
 
 
 class AGenuineChangeStillGetsThrough(RunHarness):

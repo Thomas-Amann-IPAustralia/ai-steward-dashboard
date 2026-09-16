@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T04:24:23.116575+00:00",
+  "generated_at": "2026-09-16T22:42:38.365462+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -725,6 +725,14 @@
         "changed_documents": [
           "Terms Of Service"
         ]
+      },
+      {
+        "timestamp": "2026-08-09T12:10:17",
+        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20260809_121017_analysis.json",
+        "priority": "critical",
+        "verdict": null,
+        "summary": "Perplexity AI has launched a comprehensive Terms of Service document, replacing a previously inaccessible page, which includes mandatory arbitration, a class action waiver, detailed rules for AI input and output, and significant limitations on company liability.",
+        "changed_documents": []
       },
       {
         "timestamp": "2026-08-08T12:02:21",

@@ -13,7 +13,7 @@ const SORT_OPTIONS = [
 ];
 
 const PRIORITY_FILTERS = ['all', 'critical', 'high', 'medium', 'low'];
-const HEALTH_RANK = { failing: 0, degraded: 1, ok: 2 };
+const HEALTH_RANK = { failing: 0, degraded: 1, ok: 2, disabled: 3 };
 
 function Sidebar({ policySets, health, loading, error }) {
   const [searchTerm, setSearchTerm] = useState('');

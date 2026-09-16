@@ -19,7 +19,9 @@
         "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
         "selector": "article"
       }
-    ]
+    ],
+    "enabled": false,
+    "disabled_reason": "digital.gov.au serves a bot-protection interstitial to datacentre IP addresses, including GitHub Actions runners. Every capture since the source was added has been that interstitial, not policy content — 35 consecutive runs with no successful read. Re-enable once a residential proxy is configured (PROXY_HOST/PORT/USER/PASS) or an alternative source for the same content is found."
   },
   {
     "setName": "National Archives of Australia - AI Policy",
@@ -103,10 +105,8 @@
         "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/generative-ai-basic-guidance"
       },
       {
-        "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework"
-      },
-      {
-        "url": "https://www.asbfeo.gov.au/disputes-assistance/dispute-support"
+        "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/ai-governance-assurance-and-frameworks/nsw-ai-assessment-framework",
+        "label": "NSW AI Assessment Framework"
       }
     ]
   }

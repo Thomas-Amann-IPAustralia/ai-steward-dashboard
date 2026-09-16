@@ -44,7 +44,18 @@ export const HEALTH_LABELS = {
   ok: 'Reading normally',
   degraded: 'Last read failed',
   failing: 'Not being read',
+  disabled: 'Not currently monitored',
 };
+
+/**
+ * Whether a set is deliberately not being checked, as opposed to failing to be
+ * checked. The two look identical on a dashboard that only reports the last
+ * reading, and they call for completely different responses: one needs a fix,
+ * the other needs a decision.
+ */
+export const isDisabled = (policySet, health) =>
+  policySet?.monitoring === 'disabled' ||
+  health?.sources?.[policySet?.setName]?.status === 'disabled';
 
 const toDate = (value) => {
   if (!value || value === 'Unknown') return null;

@@ -17,6 +17,7 @@ import os
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -42,6 +43,17 @@ def read_fixture(path: str) -> str:
 def load_cfg():
     return config.load_config(os.path.join(REPO_ROOT, "steward_config.yaml"))
 
+
+
+def first_alert_body(report):
+    """The alert body as it reads the first time these alerts are seen.
+
+    Alerts fire on transitions now, so rendering one needs a before-state as
+    well as a report. An empty state is "nothing has ever been reported", which
+    is what these tests are describing.
+    """
+    empty = {"open": {}, "last_digest_at": None}
+    return health.render_alert_markdown(health.diff_alerts(empty, report), report)
 
 class NormalisationIsIdempotent(unittest.TestCase):
     def test_repeated_normalisation_is_a_no_op(self):
@@ -353,7 +365,7 @@ class HealthMakesBrokenSourcesVisible(unittest.TestCase):
         self.assertEqual(report["overall"], health.FAILING)
         self.assertEqual(report["sources"]["Broken Source"]["status"], health.FAILING)
         self.assertEqual(len(report["alerts"]), 1)
-        self.assertIn("Broken Source", health.render_alert_markdown(report))
+        self.assertIn("Broken Source", first_alert_body(report))
 
     def test_a_healthy_source_raises_nothing(self):
         hashes = {
@@ -367,7 +379,7 @@ class HealthMakesBrokenSourcesVisible(unittest.TestCase):
         report = health.build_report(hashes, self.cfg)
         self.assertEqual(report["overall"], health.OK)
         self.assertEqual(report["alerts"], [])
-        self.assertEqual(health.render_alert_markdown(report), "")
+        self.assertEqual(first_alert_body(report), "")
 
 
 class HistoryIndexesTheArchive(unittest.TestCase):
@@ -430,3 +442,215 @@ class DiffsCarryFingerprints(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AlertsFireOnTransitionsNotStates(unittest.TestCase):
+    """One comment per run for as long as a source stayed broken is how
+    digital.gov.au produced thirty-five identical tables and was then ignored
+    for a month. An alert has to say what changed."""
+
+    def setUp(self):
+        self.cfg = load_cfg()
+        self.report = health.build_report(
+            {
+                "Broken Source": {
+                    "file_id": "Broken_Source",
+                    "last_success": "2026-02-01T00:00:00+10:00",
+                    "consecutive_failures": 3,
+                    "documents": {
+                        "https://example.gov.au/policy": {
+                            "label": "Policy",
+                            "consecutive_failures": 3,
+                            "last_success": "2026-02-01T00:00:00+10:00",
+                            "last_error": "block_page: matched failure signature",
+                        }
+                    },
+                }
+            },
+            self.cfg,
+        )
+        self.empty = {"open": {}, "last_digest_at": None}
+
+    def test_a_newly_failing_source_is_reported(self):
+        delta = health.diff_alerts(self.empty, self.report)
+        self.assertEqual(len(delta.new), 1)
+        self.assertEqual(delta.ongoing, [])
+        self.assertTrue(delta.worth_reporting)
+        self.assertIn("started failing", health.render_alert_markdown(delta, self.report))
+
+    def test_the_same_failure_tomorrow_is_not_reported_again(self):
+        now = datetime(2026, 9, 1, tzinfo=timezone.utc)
+        state = {
+            "open": {
+                health.alert_key(self.report["alerts"][0]): {
+                    **self.report["alerts"][0],
+                    "first_seen": now.isoformat(),
+                }
+            },
+            "last_digest_at": now.isoformat(),
+        }
+        delta = health.diff_alerts(
+            state, self.report, now=now + timedelta(days=1), digest_days=7
+        )
+        self.assertEqual(delta.new, [])
+        self.assertEqual(len(delta.ongoing), 1)
+        self.assertFalse(delta.worth_reporting)
+        self.assertEqual(health.render_alert_markdown(delta, self.report), "")
+
+    def test_a_failure_still_open_a_week_later_is_digested(self):
+        now = datetime(2026, 9, 1, tzinfo=timezone.utc)
+        state = {
+            "open": {
+                health.alert_key(self.report["alerts"][0]): {
+                    **self.report["alerts"][0],
+                    "first_seen": now.isoformat(),
+                }
+            },
+            "last_digest_at": now.isoformat(),
+        }
+        delta = health.diff_alerts(
+            state, self.report, now=now + timedelta(days=8), digest_days=7
+        )
+        self.assertTrue(delta.digest_due)
+        self.assertTrue(delta.worth_reporting)
+        self.assertIn("Still open", health.render_alert_markdown(delta, self.report))
+
+    def test_recovery_is_reported(self):
+        state = {
+            "open": {
+                health.alert_key(self.report["alerts"][0]): self.report["alerts"][0]
+            },
+            "last_digest_at": None,
+        }
+        healthy = health.build_report(
+            {
+                "Broken Source": {
+                    "file_id": "Broken_Source",
+                    "last_success": "2026-09-16T00:00:00+10:00",
+                    "consecutive_failures": 0,
+                    "documents": {
+                        "https://example.gov.au/policy": {"consecutive_failures": 0}
+                    },
+                }
+            },
+            self.cfg,
+        )
+        delta = health.diff_alerts(state, healthy)
+        self.assertEqual(len(delta.recovered), 1)
+        self.assertIn("recovered", health.render_alert_markdown(delta, healthy))
+
+    def test_the_failure_count_changing_is_not_a_new_alert(self):
+        """A source that fails again tomorrow is the same alert, not a new one."""
+        first = self.report["alerts"][0]
+        worse = {**first, "consecutive_failures": 12, "detail": "a different message"}
+        self.assertEqual(health.alert_key(first), health.alert_key(worse))
+
+
+class ADisabledSourceIsNotAFailingSource(unittest.TestCase):
+    """A source nobody is checking and a source that cannot be checked look
+    identical on a dashboard that only reports the last reading, and they call
+    for completely different responses."""
+
+    def setUp(self):
+        self.cfg = load_cfg()
+        self.hashes = {
+            "Blocked By A WAF": {
+                "file_id": "Blocked_By_A_WAF",
+                "monitoring": "disabled",
+                "disabled_reason": "Bot protection; needs a residential proxy.",
+                "disabled_since": "2026-09-16T00:00:00+10:00",
+                "consecutive_failures": 35,
+                "documents": {
+                    "https://example.gov.au/p": {
+                        "consecutive_failures": 35,
+                        "last_error": "too_short",
+                    }
+                },
+            }
+        }
+
+    def test_it_raises_no_alert(self):
+        report = health.build_report(self.hashes, self.cfg)
+        self.assertEqual(report["alerts"], [])
+
+    def test_it_does_not_drag_down_the_overall_status(self):
+        report = health.build_report(self.hashes, self.cfg)
+        self.assertEqual(report["overall"], health.OK)
+
+    def test_it_is_still_reported_with_its_reason(self):
+        report = health.build_report(self.hashes, self.cfg)
+        source = report["sources"]["Blocked By A WAF"]
+        self.assertEqual(source["status"], health.DISABLED)
+        self.assertIn("residential proxy", source["disabled_reason"])
+
+    def test_it_is_excluded_from_the_monitored_count(self):
+        report = health.build_report(self.hashes, self.cfg)
+        self.assertEqual(report["monitored_sources"], 0)
+
+
+class ASourceCanBeDisabledWithoutBeingDeleted(unittest.TestCase):
+    """Deleting a set orphans its snapshots, diffs and a year of archived
+    analyses. Disabling it keeps the record and stops the pretence that its
+    last reading is current."""
+
+    def test_a_set_is_monitored_unless_it_says_otherwise(self):
+        self.assertTrue(main.is_enabled({"setName": "X"}))
+        self.assertTrue(main.is_enabled({"setName": "X", "enabled": True}))
+        self.assertFalse(main.is_enabled({"setName": "X", "enabled": False}))
+
+    def test_a_non_boolean_enabled_is_rejected(self):
+        sets = [
+            {
+                "setName": "Sloppy",
+                "category": "Test",
+                "enabled": "false",
+                "urls": [{"url": "https://example.gov.au/p"}],
+            }
+        ]
+        self.assertEqual(main.validate_policy_sets(sets), [])
+
+    def test_disabling_carries_the_stored_state_forward(self):
+        previous = {
+            "hash": "abc",
+            "last_amended": "2026-03-17T00:00:00+10:00",
+            "last_priority": "medium",
+            "documents": {"https://example.gov.au/p": {"hash": "abc"}},
+        }
+        entry = main.disabled_entry(
+            {
+                "setName": "Blocked",
+                "category": "Test",
+                "enabled": False,
+                "disabled_reason": "Bot protection.",
+                "urls": [{"url": "https://example.gov.au/p"}],
+            },
+            previous,
+            "2026-09-16T00:00:00+10:00",
+        )
+        self.assertEqual(entry["monitoring"], "disabled")
+        self.assertEqual(entry["disabled_reason"], "Bot protection.")
+        self.assertEqual(entry["disabled_since"], "2026-09-16T00:00:00+10:00")
+        # The archive still has to resolve, so nothing stored is thrown away.
+        self.assertEqual(entry["last_amended"], "2026-03-17T00:00:00+10:00")
+        self.assertEqual(entry["documents"], previous["documents"])
+
+    def test_a_missing_reason_is_recorded_as_missing_not_omitted(self):
+        entry = main.disabled_entry(
+            {"setName": "Blocked", "category": "Test", "enabled": False, "urls": []},
+            {},
+            "2026-09-16T00:00:00+10:00",
+        )
+        self.assertEqual(entry["disabled_reason"], "No reason recorded.")
+
+    def test_disabled_since_is_not_reset_on_every_run(self):
+        first = main.disabled_entry(
+            {"setName": "B", "category": "T", "enabled": False, "urls": []},
+            {},
+            "2026-09-01T00:00:00+10:00",
+        )
+        second = main.disabled_entry(
+            {"setName": "B", "category": "T", "enabled": False, "urls": []},
+            first,
+            "2026-09-16T00:00:00+10:00",
+        )
+        self.assertEqual(second["disabled_since"], "2026-09-01T00:00:00+10:00")

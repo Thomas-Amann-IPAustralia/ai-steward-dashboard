@@ -889,6 +889,13 @@ select:focus-visible,
   color: #ffffff;
 }
 
+/* Deliberately muted. A source nobody is checking should read as a gap in
+   coverage, not as an incident — it is grey, not red. */
+.health-pill.health-disabled {
+  background-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
 .health-notice {
   border: 1px solid var(--attention-border);
   background-color: var(--attention-bg);
@@ -902,6 +909,27 @@ select:focus-visible,
   border-color: var(--error-border);
   border-left-color: var(--error-color);
   background-color: var(--error-bg);
+}
+
+.review-notice.retracted {
+  border-color: var(--error-border);
+  border-left-color: var(--error-color);
+  background-color: var(--error-bg);
+}
+
+.review-notice.legacy {
+  border-color: var(--border-color);
+  border-left-color: var(--text-secondary);
+}
+
+.health-notice.disabled {
+  border-color: var(--border-color);
+  border-left-color: var(--text-secondary);
+  background-color: transparent;
+}
+
+.briefing-section.not-monitored .briefing-item.disabled {
+  opacity: 0.75;
 }
 
 .health-notice p {

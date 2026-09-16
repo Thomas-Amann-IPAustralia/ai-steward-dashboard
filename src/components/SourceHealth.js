@@ -10,17 +10,37 @@ import { formatRelative, HEALTH_LABELS } from '../utils/constants';
  * negative on exactly the risk this tool exists to cover.
  */
 
+const PILL_TEXT = {
+  failing: 'Not being read',
+  degraded: 'Read failed',
+  disabled: 'Not monitored',
+};
+
 export function HealthPill({ status }) {
   if (!status || status === 'ok') return null;
   return (
     <span className={`health-pill health-${status}`} title={HEALTH_LABELS[status]}>
-      {status === 'failing' ? 'Not being read' : 'Read failed'}
+      {PILL_TEXT[status] || status}
     </span>
   );
 }
 
 export function SourceHealthNotice({ source }) {
   if (!source || source.status === 'ok') return null;
+
+  if (source.status === 'disabled') {
+    return (
+      <div className="health-notice disabled" role="status">
+        <strong>This source is not currently being monitored.</strong>
+        <p>
+          {source.disabled_reason || 'No reason was recorded.'}{' '}
+          {source.last_success
+            ? `The reading below is from ${formatRelative(source.last_success)} and is not current.`
+            : 'It has never been read successfully, so there is no reading below to trust.'}
+        </p>
+      </div>
+    );
+  }
 
   const failing = source.failing || [];
   const severe = source.status === 'failing';

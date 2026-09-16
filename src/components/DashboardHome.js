@@ -44,8 +44,15 @@ function DashboardHome({ policySets, health }) {
       health: healthSources[set.setName] || { status: set.status || 'ok' },
     }));
 
+    const notMonitored = withHealth.filter((set) => set.health.status === 'disabled');
+
     const failingSources = withHealth
-      .filter((set) => set.health.status && set.health.status !== 'ok')
+      .filter(
+        (set) =>
+          set.health.status &&
+          set.health.status !== 'ok' &&
+          set.health.status !== 'disabled'
+      )
       .map((set) => ({
         setName: set.setName,
         file_id: set.file_id,
@@ -55,7 +62,10 @@ function DashboardHome({ policySets, health }) {
       .sort((a, b) => (a.status === 'failing' ? -1 : 1));
 
     const recentChanges = withHealth
-      .filter((set) => timestampOf(set.last_amended) > cutoff)
+      .filter(
+        (set) =>
+          set.health.status !== 'disabled' && timestampOf(set.last_amended) > cutoff
+      )
       .sort((a, b) => timestampOf(b.last_amended) - timestampOf(a.last_amended));
 
     const needsAttention = recentChanges.filter((set) =>
@@ -76,6 +86,8 @@ function DashboardHome({ policySets, health }) {
 
     return {
       withHealth,
+      notMonitored,
+      monitoredCount: withHealth.length - notMonitored.length,
       failingSources,
       recentChanges,
       needsAttention,
@@ -136,7 +148,9 @@ function DashboardHome({ policySets, health }) {
               ? `Last checked ${formatDate(new Date(brief.lastScan).toISOString())}`
               : 'No completed scan recorded yet'}
             {' · '}
-            {policySets.length} policy set{policySets.length === 1 ? '' : 's'} monitored
+            {brief.monitoredCount} policy set{brief.monitoredCount === 1 ? '' : 's'} monitored
+            {brief.notMonitored.length > 0 &&
+              ` · ${brief.notMonitored.length} not currently monitored`}
           </p>
         </div>
         <div className="briefing-actions">
@@ -205,7 +219,7 @@ function DashboardHome({ policySets, health }) {
       <section className="briefing-section stable">
         <h3>Checked and unchanged</h3>
         <p className="briefing-quiet">
-          {brief.stable.length} of {policySets.length} monitored policy sets were checked
+          {brief.stable.length} of {brief.monitoredCount} monitored policy sets were checked
           and showed no material change.
         </p>
         <ul className="stable-chips">
@@ -219,6 +233,35 @@ function DashboardHome({ policySets, health }) {
           ))}
         </ul>
       </section>
+
+      {/* A source nobody is checking is not a source that is fine. Saying so
+          here is the difference between an honest gap and a silent one. */}
+      {brief.notMonitored.length > 0 && (
+        <section className="briefing-section not-monitored">
+          <h3>Not currently monitored</h3>
+          <ul className="briefing-list">
+            {brief.notMonitored.map((set) => (
+              <li
+                key={set.file_id}
+                className="briefing-item disabled"
+                onClick={() => open(set.file_id)}
+                onKeyDown={(event) => keyActivate(event, set.file_id)}
+                tabIndex={0}
+                role="button"
+              >
+                <div className="briefing-item-head">
+                  <Lettermark url={primaryUrl(set)} name={set.setName} />
+                  <span className="briefing-item-name">{set.setName}</span>
+                  <HealthPill status="disabled" />
+                </div>
+                <p className="briefing-item-summary">
+                  {set.health?.disabled_reason || 'No reason was recorded.'}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }

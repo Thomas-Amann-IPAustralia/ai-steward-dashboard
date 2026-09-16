@@ -63,6 +63,7 @@ class HealthConfig:
     consecutive_failure_threshold: int = 3
     error_rate_threshold: float = 0.3
     schema_failure_threshold: int = 2
+    digest_days: int = 7
 
 
 @dataclass
@@ -209,6 +210,7 @@ def validate(cfg: StewardConfig) -> StewardConfig:
         h.schema_failure_threshold >= 1,
         "health.schema_failure_threshold: must be at least 1",
     )
+    _check(h.digest_days >= 1, "health.digest_days: must be at least 1")
 
     r = cfg.retention
     _check(r.log_days > 0, "retention.log_days: must be greater than 0")

@@ -1,50 +1,20 @@
 {
-  "generated_at": "2026-09-16T04:24:23.102684+00:00",
-  "overall": "failing",
-  "error_rate": 0.2632,
+  "generated_at": "2026-09-16T22:42:38.358135+00:00",
+  "overall": "ok",
+  "error_rate": 0.0,
+  "monitored_sources": 7,
   "sources": {
     "Digital.gov.au AI Policy": {
       "file_id": "Digital_gov_au_AI_Policy",
-      "status": "failing",
+      "status": "disabled",
+      "disabled_reason": "digital.gov.au serves a bot-protection interstitial to datacentre IP addresses, including GitHub Actions runners. Every capture since the source was added has been that interstitial, not policy content — 35 consecutive runs with no successful read. Re-enable once a residential proxy is configured (PROXY_HOST/PORT/USER/PASS) or an alternative source for the same content is found.",
+      "disabled_since": "2026-09-17T08:42:38.357304+10:00",
       "last_success": null,
       "days_since_success": null,
-      "consecutive_failures": 35,
-      "documents_total": 4,
-      "documents_failing": 4,
-      "failing": [
-        {
-          "url": "https://www.digital.gov.au/policy/ai/implementation",
-          "label": "Implementation",
-          "consecutive_failures": 35,
-          "last_success": null,
-          "last_error": "too_short: 256 chars is below the 500 char minimum",
-          "status": "failing"
-        },
-        {
-          "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
-          "label": "Enable And Prepare",
-          "consecutive_failures": 35,
-          "last_success": null,
-          "last_error": "too_short: 256 chars is below the 500 char minimum",
-          "status": "failing"
-        },
-        {
-          "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
-          "label": "Engage Responsibly",
-          "consecutive_failures": 35,
-          "last_success": null,
-          "last_error": "too_short: 256 chars is below the 500 char minimum",
-          "status": "failing"
-        },
-        {
-          "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
-          "label": "Evolve And Integrate",
-          "consecutive_failures": 35,
-          "last_success": null,
-          "last_error": "too_short: 256 chars is below the 500 char minimum",
-          "status": "failing"
-        }
-      ]
+      "consecutive_failures": 0,
+      "documents_total": 0,
+      "documents_failing": 0,
+      "failing": []
     },
     "National Archives of Australia - AI Policy": {
       "file_id": "National_Archives_of_Australia_-_AI_Policy",
@@ -108,64 +78,14 @@
     },
     "NSW Government AI Guidance": {
       "file_id": "NSW_Government_AI_Guidance",
-      "status": "failing",
+      "status": "ok",
       "last_success": null,
       "days_since_success": null,
-      "consecutive_failures": 35,
-      "documents_total": 3,
-      "documents_failing": 1,
-      "failing": [
-        {
-          "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework",
-          "label": "Nsw Artificial Intelligence Assurance Framework",
-          "consecutive_failures": 35,
-          "last_success": null,
-          "last_error": "block_page: matched failure signature \"This site can't be reached\"",
-          "status": "failing"
-        }
-      ]
+      "consecutive_failures": 0,
+      "documents_total": 1,
+      "documents_failing": 0,
+      "failing": []
     }
   },
-  "alerts": [
-    {
-      "kind": "source_failing",
-      "set_name": "Digital.gov.au AI Policy",
-      "url": "https://www.digital.gov.au/policy/ai/implementation",
-      "consecutive_failures": 35,
-      "last_success": null,
-      "detail": "too_short: 256 chars is below the 500 char minimum"
-    },
-    {
-      "kind": "source_failing",
-      "set_name": "Digital.gov.au AI Policy",
-      "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
-      "consecutive_failures": 35,
-      "last_success": null,
-      "detail": "too_short: 256 chars is below the 500 char minimum"
-    },
-    {
-      "kind": "source_failing",
-      "set_name": "Digital.gov.au AI Policy",
-      "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
-      "consecutive_failures": 35,
-      "last_success": null,
-      "detail": "too_short: 256 chars is below the 500 char minimum"
-    },
-    {
-      "kind": "source_failing",
-      "set_name": "Digital.gov.au AI Policy",
-      "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
-      "consecutive_failures": 35,
-      "last_success": null,
-      "detail": "too_short: 256 chars is below the 500 char minimum"
-    },
-    {
-      "kind": "source_failing",
-      "set_name": "NSW Government AI Guidance",
-      "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework",
-      "consecutive_failures": 35,
-      "last_success": null,
-      "detail": "block_page: matched failure signature \"This site can't be reached\""
-    }
-  ]
+  "alerts": []
 }
