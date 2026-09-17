@@ -94,6 +94,9 @@ def error_rate(records: Iterable[Dict[str, Any]]) -> float:
     if not records:
         return 0.0
     failures = sum(
-        1 for e in records if e.get("outcome") in ("fetch_failed", "suspect_scrape", "schema_failed")
+        1
+        for e in records
+        if e.get("outcome")
+        in ("fetch_failed", "suspect_scrape", "schema_failed", "api_failed", "link_rot")
     )
     return failures / len(records)

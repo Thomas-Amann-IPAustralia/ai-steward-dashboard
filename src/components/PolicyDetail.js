@@ -95,7 +95,7 @@ function PolicyDetail({ policySets, health }) {
                 <div className="document-item-head">
                   <span className="document-label">{label}</span>
                   <span className={`document-state state-${state}`}>
-                    {changed ? 'changed' : state.replace(/_/g, ' ')}
+                    {changed ? 'changed' : state === 'link_rot' ? 'URL is dead' : state.replace(/_/g, ' ')}
                   </span>
                 </div>
                 <a href={urlObj.url} target="_blank" rel="noopener noreferrer" className="document-url">

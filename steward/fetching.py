@@ -37,6 +37,12 @@ log = logging.getLogger(__name__)
 OK = "ok"
 NOT_MODIFIED = "not_modified"
 FAILED = "failed"
+# The resource is gone, not unreachable. A 404 is an answer: it says a human
+# has to change a URL, which is a content-management task and not an
+# extraction problem. Collapsing it into FAILED sent every reader looking at
+# the fetcher — the NSW assurance framework spent 35 runs reported as "This
+# site can't be reached" when the page had simply moved.
+GONE = "gone"
 
 # How the text was obtained, recorded so a change of extractor can be
 # detected and re-baselined rather than reported as a policy amendment.
@@ -62,6 +68,11 @@ class FetchResult:
     @property
     def ok(self) -> bool:
         return self.status == OK
+
+    @property
+    def terminal(self) -> bool:
+        """No further route will help. Don't render it, don't proxy it."""
+        return self.status == GONE
 
 
 def is_safe_url(url: str) -> bool:
@@ -169,6 +180,15 @@ def _http_fetch(url_data: dict, prior: dict, cfg, use_proxy: bool) -> FetchResul
             etag=etag or prior.get("etag"),
             last_modified=last_modified or prior.get("last_modified"),
             http_status=304,
+        )
+
+    if response.status_code in (404, 410):
+        gone = "no longer exists" if response.status_code == 410 else "not found"
+        return FetchResult(
+            url,
+            GONE,
+            http_status=response.status_code,
+            error=f"HTTP {response.status_code} — the page {gone} at this URL",
         )
 
     if response.status_code >= 400:
@@ -294,7 +314,11 @@ _RENDERABLE_STATUSES = {401, 403, 405, 406, 429}
 
 
 def _worth_rendering(result: FetchResult) -> bool:
-    """Whether a failed plain fetch is worth spending a browser launch on."""
+    """Whether a failed plain fetch is worth spending a browser launch on.
+
+    A 404 never reaches here — it returns GONE and ends the attempt — so this
+    is only about client errors a browser might plausibly get past.
+    """
     status = result.http_status
     if status is None:
         return True  # a network-level failure; a different route may work
@@ -343,6 +367,13 @@ def fetch_document(url_data: dict, prior: dict, cfg, policy_set: Optional[dict] 
                     result.attempts = attempts
                     result.duration_ms = int((time.monotonic() - started) * 1000)
                     return result
+                if result.terminal:
+                    # A browser and a proxy will both be told the same thing,
+                    # ~20s and one Chrome launch later.
+                    log.warning("    [%s] %s", route, result.error)
+                    result.attempts = attempts
+                    result.duration_ms = int((time.monotonic() - started) * 1000)
+                    return result
                 if result.ok and result.text.strip() and not _looks_like_block_page(result.text, cfg):
                     result.attempts = attempts
                     result.duration_ms = int((time.monotonic() - started) * 1000)
@@ -359,6 +390,11 @@ def fetch_document(url_data: dict, prior: dict, cfg, policy_set: Optional[dict] 
                 probe = _http_fetch({"url": url}, prior, cfg, use_proxy)
                 if probe.status == NOT_MODIFIED:
                     log.info("    [%s] 304 Not Modified — no render needed", route)
+                    probe.attempts = attempts
+                    probe.duration_ms = int((time.monotonic() - started) * 1000)
+                    return probe
+                if probe.terminal:
+                    log.warning("    [%s] %s", route, probe.error)
                     probe.attempts = attempts
                     probe.duration_ms = int((time.monotonic() - started) * 1000)
                     return probe
@@ -387,6 +423,6 @@ def fetch_document(url_data: dict, prior: dict, cfg, policy_set: Optional[dict] 
 
     result.attempts = attempts
     result.duration_ms = int((time.monotonic() - started) * 1000)
-    if result.status != FAILED:
+    if result.status not in (FAILED, GONE):
         result.status = FAILED
     return result

@@ -18,7 +18,6 @@ import hashlib
 import json
 import logging
 import os
-import re
 import shutil
 import sys
 import uuid
@@ -27,11 +26,17 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from steward import PIPELINE_VERSION, analysis as llm, content, diffing, fetching, health, history, runlog
 from steward.config import ConfigError, load_config
+from steward.policy_sets import (
+    POLICY_SETS_FILE,
+    disabled_entry,
+    partition,
+    slugify_set_name,
+    validate_policy_sets,
+)
 from steward.validation import validate_capture
 
 # --- Paths -----------------------------------------------------------------
 
-POLICY_SETS_FILE = "policy_sets.json"
 HASHES_FILE = "hashes.json"
 SNAPSHOTS_DIR = "snapshots"
 ANALYSIS_DIR = "analysis"
@@ -48,6 +53,9 @@ DOC_NEW = "new"
 DOC_REBASELINED = "rebaselined"
 DOC_SUSPECT = "suspect_scrape"
 DOC_FETCH_FAILED = "fetch_failed"
+# The URL is dead, not unreachable. Kept separate from a fetch failure because
+# the remedy is a person editing policy_sets.json, not a retry.
+DOC_GONE = "link_rot"
 
 _HEALTHY_OUTCOMES = {DOC_UNCHANGED, DOC_NOT_MODIFIED, DOC_CHANGED, DOC_NEW, DOC_REBASELINED}
 
@@ -66,10 +74,6 @@ log = logging.getLogger("steward")
 def setup_directories() -> None:
     for path in (SNAPSHOTS_DIR, ANALYSIS_DIR, DIFFS_DIR, LOG_DIR):
         os.makedirs(path, exist_ok=True)
-
-
-def slugify_set_name(name: str) -> str:
-    return re.sub(r"[^a-zA-Z0-9\-]+", "_", name).strip("_")
 
 
 def load_json_file(path: str, default: Any) -> Any:
@@ -143,67 +147,6 @@ def archive_previous_version(file_id: str, timestamp: str) -> None:
     ):
         if os.path.exists(source):
             shutil.copy(source, os.path.join(LOG_DIR, f"{file_id}_{stamp}_{suffix}"))
-
-
-def validate_policy_sets(policy_sets: list) -> list:
-    valid = []
-    seen_names: set[str] = set()
-    for i, ps in enumerate(policy_sets):
-        if not isinstance(ps, dict):
-            log.warning("Skipping policy_sets[%d]: not a dict", i)
-            continue
-        name = ps.get("setName")
-        if not name:
-            log.warning("Skipping policy_sets[%d]: missing 'setName'", i)
-            continue
-        if name in seen_names:
-            log.warning("Skipping policy_sets[%d] (%s): duplicate setName", i, name)
-            continue
-        if not ps.get("category"):
-            log.warning("Skipping policy_sets[%d] (%s): missing 'category'", i, name)
-            continue
-        urls = ps.get("urls")
-        if not isinstance(urls, list) or not urls:
-            log.warning("Skipping policy_sets[%d] (%s): missing or empty 'urls'", i, name)
-            continue
-        if not all(isinstance(u, dict) and u.get("url") for u in urls):
-            log.warning("Skipping policy_sets[%d] (%s): malformed url entry", i, name)
-            continue
-        if "enabled" in ps and not isinstance(ps["enabled"], bool):
-            log.warning("Skipping policy_sets[%d] (%s): 'enabled' must be true or false", i, name)
-            continue
-        seen_names.add(name)
-        valid.append(ps)
-    return valid
-
-
-def is_enabled(policy_set: dict) -> bool:
-    """A set is monitored unless it says otherwise."""
-    return policy_set.get("enabled", True) is not False
-
-
-def disabled_entry(policy_set: dict, previous_entry: dict, timestamp: str) -> dict:
-    """State for a set that is deliberately not being checked.
-
-    A source that cannot be read is a different thing from a source nobody is
-    trying to read, and the dashboard has to be able to say which. The stored
-    state is carried forward untouched so the archive still resolves; what
-    changes is that health stops alerting on it and the UI stops presenting its
-    last known reading as current.
-    """
-    entry = dict(previous_entry)
-    entry.update(
-        {
-            "category": policy_set["category"],
-            "urls": policy_set["urls"],
-            "file_id": slugify_set_name(policy_set["setName"]),
-            "monitoring": "disabled",
-            "disabled_reason": (policy_set.get("disabled_reason") or "").strip()
-            or "No reason recorded.",
-            "disabled_since": previous_entry.get("disabled_since") or timestamp,
-        }
-    )
-    return entry
 
 
 # --- Migration -------------------------------------------------------------
@@ -291,6 +234,17 @@ def process_document(
             }
         )
         return record, DOC_NOT_MODIFIED, None, stored_text
+
+    if result.status == fetching.GONE:
+        record.update(
+            {
+                "status": DOC_GONE,
+                "consecutive_failures": int(prior.get("consecutive_failures", 0)) + 1,
+                "last_error": result.error,
+            }
+        )
+        log.warning("    %s is gone: %s", url, result.error)
+        return record, DOC_GONE, None, stored_text
 
     if result.status == fetching.FAILED:
         record.update(
@@ -443,7 +397,9 @@ def process_policy_set(
         )
 
     all_ok = all(outcome in _HEALTHY_OUTCOMES for outcome in outcomes.values())
-    any_failed = any(outcome in (DOC_FETCH_FAILED, DOC_SUSPECT) for outcome in outcomes.values())
+    any_failed = any(
+        outcome in (DOC_FETCH_FAILED, DOC_SUSPECT, DOC_GONE) for outcome in outcomes.values()
+    )
     readable = [url for url, outcome in outcomes.items() if outcome in _HEALTHY_OUTCOMES]
 
     entry: Dict[str, Any] = {
@@ -458,6 +414,7 @@ def process_policy_set(
         "last_change": previous_entry.get("last_change"),
         "last_review": previous_entry.get("last_review"),
         "schema_failures": int(previous_entry.get("schema_failures", 0) or 0),
+        "api_failures": int(previous_entry.get("api_failures", 0) or 0),
         "consecutive_failures": (
             int(previous_entry.get("consecutive_failures", 0) or 0) + 1 if any_failed else 0
         ),
@@ -542,7 +499,11 @@ def process_policy_set(
         file_id=file_id,
         url="",
         label="(policy set)",
-        outcome="analysed" if outcome.ok else "schema_failed",
+        outcome=(
+            "analysed"
+            if outcome.ok
+            else ("schema_failed" if outcome.is_schema_failure else "api_failed")
+        ),
         diff_added=total_added,
         diff_removed=total_removed,
         tags=unique_tags,
@@ -558,13 +519,20 @@ def process_policy_set(
     if not outcome.ok:
         # Nothing is stored: the stored snapshot stays put so the same diff is
         # retried next run rather than being silently lost.
-        log.error("  Analysis of '%s' failed schema validation twice — skipping", set_name)
-        entry["schema_failures"] = entry["schema_failures"] + 1
+        if outcome.is_schema_failure:
+            log.error("  Analysis of '%s' failed schema validation — skipping", set_name)
+            entry["schema_failures"] = entry["schema_failures"] + 1
+        else:
+            # The model never got to answer. That says nothing about whether it
+            # can, so it must not count toward the schema-failure alert.
+            log.error("  Analysis of '%s' could not be run: %s", set_name, outcome.error)
+            entry["api_failures"] = int(previous_entry.get("api_failures", 0) or 0) + 1
         entry["hash"] = previous_entry.get("hash", entry["hash"])
         entry["documents"] = _revert_changed_documents(documents, prior_documents, outcomes)
         return entry
 
     entry["schema_failures"] = 0
+    entry["api_failures"] = 0
     result = outcome.result
     verdict = result["verdict"]
 
@@ -712,8 +680,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         wanted = set(args.only)
         policy_sets = [ps for ps in policy_sets if ps["setName"] in wanted]
 
-    disabled_sets = [ps for ps in policy_sets if not is_enabled(ps)]
-    policy_sets = [ps for ps in policy_sets if is_enabled(ps)]
+    policy_sets, disabled_sets = partition(policy_sets)
     if not policy_sets and not disabled_sets:
         log.error("No valid policy sets to check. Exiting.")
         return 1

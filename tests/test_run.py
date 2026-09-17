@@ -349,7 +349,9 @@ class SchemaFailureLosesNothing(RunHarness):
             AUP: self.seventh[AUP] + "\n\nNew clause 9.4 about indemnification.\n",
         }
         llm.analyse_change = lambda *a, **k: llm.AnalysisOutcome(
-            result=None, error="priority must be one of critical, high, medium, low, got 'unknown'",
+            result=None,
+            error="priority must be one of critical, high, medium, low, got 'unknown'",
+            error_kind=llm.SCHEMA_ERROR,
             attempts=2,
         )
 
@@ -448,3 +450,42 @@ class EveryDocumentFailing(RunHarness):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AnApiFailureIsNotASchemaFailure(RunHarness):
+    """Two Gemini 503s in September were counted as schema failures and raised
+    an alert saying the model returned an invalid response. It hadn't — it was
+    never reached."""
+
+    def setUp(self):
+        super().setUp()
+        self.seventh = archived("7aug")
+        self.previous = self.seed_from(self.seventh)
+        self.responses = {
+            TOS: self.seventh[TOS],
+            PRIVACY: self.seventh[PRIVACY],
+            AUP: self.seventh[AUP] + "\n\nNew clause 9.4 about indemnification.\n",
+        }
+        llm.analyse_change = lambda *a, **k: llm.AnalysisOutcome(
+            result=None,
+            error="ServerError: 503 UNAVAILABLE. The model is overloaded.",
+            error_kind=llm.API_ERROR,
+            attempts=3,
+        )
+
+    def test_it_does_not_count_toward_the_schema_failure_alert(self):
+        entry, _ = self.run_set(self.previous)
+        self.assertEqual(entry["schema_failures"], 0)
+        self.assertEqual(entry["api_failures"], 1)
+
+    def test_the_change_is_still_retried_next_run(self):
+        entry, _ = self.run_set(self.previous)
+        self.assertEqual(
+            entry["documents"][AUP]["hash"], self.previous["documents"][AUP]["hash"]
+        )
+        self.assertEqual(entry["last_amended"], self.previous["last_amended"])
+
+    def test_the_run_log_records_it_as_an_api_failure(self):
+        _, log = self.run_set(self.previous)
+        self.assertEqual(log.counts_by_outcome()["api_failed"], 1)
+        self.assertNotIn("schema_failed", log.counts_by_outcome())

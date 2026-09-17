@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar';
 import DashboardHome from './components/DashboardHome';
 import PolicyDetail from './components/PolicyDetail';
 import ErrorBoundary from './components/ErrorBoundary';
+import StaleRunNotice from './components/StaleRunNotice';
 import { usePolicySets } from './hooks/usePolicySets';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <div className="App">
           <a href="#main-content" className="skip-link">Skip to main content</a>
           <Header darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
+          {!loading && <StaleRunNotice health={health} />}
           <div className="container">
             <Sidebar policySets={policySets} health={health} loading={loading} error={error} />
             <main className="content" id="main-content">

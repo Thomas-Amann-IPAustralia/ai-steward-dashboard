@@ -1,7 +1,7 @@
 # Handover — review remediation, September 2026
 
 **Branch:** `claude/repo-review-features-k3f74g`
-**Written:** 16 September 2026
+**Written:** 16 September 2026 · **Updated:** 17 September 2026 (Week 1 complete)
 **For:** whoever (human or agent) picks this up next.
 
 Read [`REVIEW_2026-09.md`](REVIEW_2026-09.md) first — it is the analysis this
@@ -13,15 +13,18 @@ watch.
 
 ## 1. State of this branch
 
-Two commits. The first added the review. The second is the Day-1 remediation
-list from `REVIEW_2026-09.md` §9 — items 1 to 4, complete.
+Four commits: the review, the Day-1 remediation (`REVIEW_2026-09.md` §9 items
+1–4), a merge of the 17 September run from `main`, and Week 1 (§9 items 5–8).
 
 ```
-Python tests   81 pass  (was 57; 24 added)
-Frontend tests 11 pass
-npm run build  compiles clean under CI=true (warnings are errors)
-main.py        --dry-run verified against a live source and the disabled path
+Python tests   109 pass  (was 57; 52 added)
+Frontend tests  16 pass  (was 11)
+npm run build   compiles clean under CI=true (warnings are errors)
+main.py         --dry-run verified against live sources and the disabled path
 ```
+
+**Day 1 and Week 1 of `REVIEW_2026-09.md` §9 are both done.** The next
+unstarted item is the news feed, RSS first (§6.1).
 
 **Nothing here has run in CI yet.** The pipeline has not executed against the
 repaired state on a GitHub runner. §5 lists what to check on the first real run.
@@ -137,6 +140,51 @@ done** — see §4.
 
 ---
 
+### 2.6 Week 1 — closing the feedback gaps (§3.3, §3.5, §3.6, §3.7, §3.11a)
+
+**`steward/policy_sets.py` now owns the source list.** `validate_policy_sets`,
+`is_enabled`, `disabled_entry`, `slugify_set_name` and a new `partition()` and
+`validate_entry()` moved out of `main.py`. `validate_entry` returns *(ok,
+reason)* rather than only logging, because the pipeline skips a bad entry and
+carries on while an editor needs to show the reason to whoever typed it. This
+was the prerequisite for the GUI: a second writer of `policy_sets.json` would
+otherwise have arrived with a second copy of the rules.
+
+**Link rot is its own outcome.** A 404 or 410 now returns `fetching.GONE`,
+which is *terminal*: no Selenium launch, no proxy retry, no second attempt —
+all three would be told the same thing, ~20 seconds and one Chrome launch
+later. It surfaces as `link_rot` in `hashes.json`, as a `source_gone` health
+alert with its own section in the issue body ("these returned 404 or 410 …
+update the URL in `policy_sets.json`"), and as its own notice on the detail
+page. It also **fails a document on the first run** rather than after three:
+a 404 is deterministic, so waiting only delays the person who has to find the
+new URL. This is what the NSW failure needed — it spent 35 runs reported as
+"This site can't be reached".
+
+**A failed call and a bad answer are now different failures.** `analyse_change`
+retries an API error up to three times with exponential backoff and jitter
+(2s/8s/30s), and a schema violation once with the error quoted back. Only a
+genuine schema violation increments `schema_failures`; API errors get their own
+`api_failures` counter and their own `api_failed` run-log outcome. The two
+September 503s would no longer raise "the model returned an invalid response".
+
+**The Gemini call is constrained, not just checked.** `RESPONSE_SCHEMA` pins
+all four keys and both enums at generation time. `parse_and_validate` stays as
+the belt to that braces and because a schema cannot express "declining sets
+priority to low". The SDK import also moved inside the `client is None` branch
+and `types.GenerateContentConfig` was replaced with a plain dict — the SDK
+declares `GenerateContentConfigOrDict` and its `Type` enum is case-insensitive,
+both verified against the installed source. That restores the `steward/`
+contract: the module is now testable with an injected client and no SDK
+present, which it was not before.
+
+**A staleness banner watches the watcher.** `src/components/StaleRunNotice.js`
+reads `health.json`'s `generated_at` and warns above the whole app when no run
+has completed in 48 hours. A missing or unreadable health report counts as
+stale, not fine — the absence of evidence is exactly the case being guarded
+against. Nothing previously noticed if the workflow itself stopped: every badge
+would freeze at its last value and the dashboard would look entirely normal.
+
 ## 3. Current data state
 
 ```
@@ -168,22 +216,16 @@ on it.
 
 ## 4. Deliberately not done
 
-Everything below is from `REVIEW_2026-09.md` and is **still open**. None of it
-was started.
+Everything below is from `REVIEW_2026-09.md` and is **still open**.
 
 | § | Item | Note |
 |---|---|---|
-| 3.3 | `link_rot` as a distinct outcome | A 404 still reports as a generic failure. The NSW URL was fixed by hand; the *next* dead URL will be just as hard to diagnose. Highest-value remaining item. |
-| 3.4 | Priority inflation | Untouched. Still 48 criticals in 192 archived analyses. Needs few-shot anchors, an `evidence` field, and a `confidence` field. |
-| 3.5 | API errors misfiled as schema failures | Untouched. A Gemini 503 still increments `schema_failures` and retries with no backoff. |
-| 3.6 | `response_schema` on the Gemini call | Untouched. ~15 lines. |
-| 3.7 | Staleness banner from `health.generated_at` | Untouched. Nothing still watches the watcher. |
-| 3.8 | Atomic snapshot/`hashes.json` writes | Only the CI cancellation was fixed. The underlying non-atomicity remains. |
-| 3.9 | Validator biased toward silence | Untouched. `growth_ratio: 2.5` still rejects a doubled policy — the very event worth catching. |
-| 3.11 | The ten smaller items | Untouched, including extracting `steward/policy_sets.py`, which is a **prerequisite for the source editor GUI**. |
-| 5, 6 | The GUI and the news feed | Not started. Designs are in the review. |
-
----
+| 3.4 | Priority inflation | Untouched, and now the largest open correctness problem. Still 48 criticals in 192 archived analyses. Needs few-shot anchors drawn from the archive, a required `evidence` field quoting the clause the rating rests on, and a `confidence` field. |
+| 3.8 | Atomic snapshot/`hashes.json` writes | Only the CI cancellation was fixed. The underlying non-atomicity remains: a run that dies between the snapshot writes and the `hashes.json` write can still silently swallow a change. |
+| 3.9 | Validator biased toward silence | `growth_ratio: 2.5` still rejects a doubled policy — the very event worth catching. `min_length` is still global. First captures still have no quarantine. |
+| 3.11 | The remaining smaller items | b (mixed-case priorities in the archive), c (`git pull --rebase` with no conflict handling), d (uninformative commit messages), e (per-document priorities), f (nested interactive elements), g (deep-linked history), h (full-text search), i (global timeline), j (print stylesheet). Item a is done. |
+| 5 | The source-editor GUI | Not started. `steward/policy_sets.py` now exists, which was the prerequisite. Design is in the review. |
+| 6 | The news feed | Not started. **This is the next thing to build.** Design is in the review; do RSS before email. |
 
 ## 5. Watch this on the first real run
 
@@ -209,25 +251,26 @@ was started.
 
 ## 6. Where to pick up
 
-In order. This is `REVIEW_2026-09.md` §9 "Week 1", minus what is now done.
+Week 1 is done. The next block is the news feed, RSS first — `REVIEW_2026-09.md`
+§6.1 explains why RSS before email, and §9 has the sequence.
 
-1. **Extract `steward/policy_sets.py`** (§3.11a). `validate_policy_sets` and
-   `is_enabled` live in `main.py:148` and are needed by anything that writes
-   `policy_sets.json`. Do this *before* the GUI or you will end up with two
-   validators that disagree. Smallest item on the list and it unblocks the
-   largest.
-2. **`link_rot` as a distinct outcome** (§3.3). Treat 404/410 as terminal in
-   `_http_fetch` — no render, no retry, no proxy — give it its own health alert
-   kind, and say "this page no longer exists, the URL needs updating" in the UI.
-   Link rot becomes the dominant failure mode the moment non-engineers can add
-   sources.
-3. **Split API errors from schema errors** (§3.5) and add `response_schema`
-   (§3.6). Both are in `steward/analysis.py` and both are small.
-4. **Staleness banner** (§3.7). Ten lines in `usePolicySets` plus a banner.
-   Closes the last hole in the trust chain.
-5. Then the news feed, RSS first (§6.1).
+1. **`feeds.yaml` + `steward/feeds.py`** — fetch and parse with `feedparser`
+   (needs adding to `requirements.txt`), dedupe on entry id/link. Pure module,
+   same testability contract as the rest of `steward/`.
+2. **`steward/news.py`** — one model call per batch returning TLDR, topics and
+   an `aps_relevance` band. Reuse the `AnalysisOutcome` error-kind split and the
+   backoff that `steward/analysis.py` now has rather than writing a second
+   retry loop. **Validate that every `source_url` the model returns actually
+   appears in the source document** — a model that invents a link is worse than
+   one that omits it.
+3. **`news/feed.json`** (rolling 30 days) + `news/archive/YYYY-MM.json`, a News
+   tab, and the cross-link to monitored policy sets (§6.3 item 2 — the feature
+   that makes this a steward's feed rather than an aggregator).
+4. Then the Gmail/IMAP ingestion for feedless newsletters, which needs the
+   account set up first.
 
----
+Before starting, ask the user which feeds to carry — that is the one decision
+that cannot be made from the codebase.
 
 ## 7. Operating notes
 

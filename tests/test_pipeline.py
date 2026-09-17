@@ -22,7 +22,17 @@ from datetime import datetime, timedelta, timezone
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import main
-from steward import PIPELINE_VERSION, analysis, config, content, diffing, fetching, health, history
+from steward import (
+    PIPELINE_VERSION,
+    analysis,
+    config,
+    content,
+    diffing,
+    fetching,
+    health,
+    history,
+    policy_sets,
+)
 from steward.validation import BLOCK_PAGE, SHRANK, TOO_SHORT, validate_capture
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -594,9 +604,9 @@ class ASourceCanBeDisabledWithoutBeingDeleted(unittest.TestCase):
     last reading is current."""
 
     def test_a_set_is_monitored_unless_it_says_otherwise(self):
-        self.assertTrue(main.is_enabled({"setName": "X"}))
-        self.assertTrue(main.is_enabled({"setName": "X", "enabled": True}))
-        self.assertFalse(main.is_enabled({"setName": "X", "enabled": False}))
+        self.assertTrue(policy_sets.is_enabled({"setName": "X"}))
+        self.assertTrue(policy_sets.is_enabled({"setName": "X", "enabled": True}))
+        self.assertFalse(policy_sets.is_enabled({"setName": "X", "enabled": False}))
 
     def test_a_non_boolean_enabled_is_rejected(self):
         sets = [
@@ -607,7 +617,7 @@ class ASourceCanBeDisabledWithoutBeingDeleted(unittest.TestCase):
                 "urls": [{"url": "https://example.gov.au/p"}],
             }
         ]
-        self.assertEqual(main.validate_policy_sets(sets), [])
+        self.assertEqual(policy_sets.validate_policy_sets(sets), [])
 
     def test_disabling_carries_the_stored_state_forward(self):
         previous = {
@@ -616,7 +626,7 @@ class ASourceCanBeDisabledWithoutBeingDeleted(unittest.TestCase):
             "last_priority": "medium",
             "documents": {"https://example.gov.au/p": {"hash": "abc"}},
         }
-        entry = main.disabled_entry(
+        entry = policy_sets.disabled_entry(
             {
                 "setName": "Blocked",
                 "category": "Test",
@@ -635,7 +645,7 @@ class ASourceCanBeDisabledWithoutBeingDeleted(unittest.TestCase):
         self.assertEqual(entry["documents"], previous["documents"])
 
     def test_a_missing_reason_is_recorded_as_missing_not_omitted(self):
-        entry = main.disabled_entry(
+        entry = policy_sets.disabled_entry(
             {"setName": "Blocked", "category": "Test", "enabled": False, "urls": []},
             {},
             "2026-09-16T00:00:00+10:00",
@@ -643,14 +653,308 @@ class ASourceCanBeDisabledWithoutBeingDeleted(unittest.TestCase):
         self.assertEqual(entry["disabled_reason"], "No reason recorded.")
 
     def test_disabled_since_is_not_reset_on_every_run(self):
-        first = main.disabled_entry(
+        first = policy_sets.disabled_entry(
             {"setName": "B", "category": "T", "enabled": False, "urls": []},
             {},
             "2026-09-01T00:00:00+10:00",
         )
-        second = main.disabled_entry(
+        second = policy_sets.disabled_entry(
             {"setName": "B", "category": "T", "enabled": False, "urls": []},
             first,
             "2026-09-16T00:00:00+10:00",
         )
         self.assertEqual(second["disabled_since"], "2026-09-01T00:00:00+10:00")
+
+
+class ThePolicySetListHasOneValidator(unittest.TestCase):
+    """The pipeline and anything that writes policy_sets.json have to agree on
+    what a valid entry is, or they disagree the first time one is changed."""
+
+    def test_a_reason_is_returned_not_raised(self):
+        ok, reason = policy_sets.validate_entry({"setName": "X", "category": "C"})
+        self.assertFalse(ok)
+        self.assertIn("urls", reason)
+
+    def test_each_rejection_names_its_own_cause(self):
+        cases = [
+            ({}, "setName"),
+            ({"setName": "X"}, "category"),
+            ({"setName": "X", "category": "C", "urls": []}, "urls"),
+            ({"setName": "X", "category": "C", "urls": [{"no_url": 1}]}, "url entry"),
+            (
+                {"setName": "X", "category": "C", "urls": [{"url": "u"}], "enabled": "yes"},
+                "enabled",
+            ),
+            ("not an object", "object"),
+        ]
+        for entry, expected in cases:
+            with self.subTest(entry=entry):
+                ok, reason = policy_sets.validate_entry(entry)
+                self.assertFalse(ok)
+                self.assertIn(expected, reason)
+
+    def test_a_valid_entry_passes(self):
+        ok, reason = policy_sets.validate_entry(
+            {"setName": "X", "category": "C", "urls": [{"url": "https://e.gov.au/p"}]}
+        )
+        self.assertTrue(ok)
+        self.assertEqual(reason, "")
+
+    def test_one_bad_entry_does_not_lose_the_good_ones(self):
+        good = {"setName": "Good", "category": "C", "urls": [{"url": "https://e.gov.au/p"}]}
+        self.assertEqual(policy_sets.validate_policy_sets([{"bad": True}, good]), [good])
+
+    def test_a_duplicate_set_name_is_dropped(self):
+        entry = {"setName": "Same", "category": "C", "urls": [{"url": "https://e.gov.au/p"}]}
+        self.assertEqual(len(policy_sets.validate_policy_sets([entry, dict(entry)])), 1)
+
+    def test_partition_splits_monitored_from_disabled(self):
+        on = {"setName": "On", "category": "C", "urls": [{"url": "https://e.gov.au/a"}]}
+        off = {**on, "setName": "Off", "enabled": False}
+        monitored, disabled = policy_sets.partition([on, off])
+        self.assertEqual(monitored, [on])
+        self.assertEqual(disabled, [off])
+
+    def test_the_file_id_is_the_name_the_archive_is_keyed_by(self):
+        # history.py parses this back out of log filenames; changing it orphans
+        # every archived analysis for the set.
+        self.assertEqual(
+            policy_sets.slugify_set_name("Digital.gov.au AI Policy"),
+            "Digital_gov_au_AI_Policy",
+        )
+
+    def test_the_live_policy_set_file_is_valid(self):
+        with open(os.path.join(REPO_ROOT, "policy_sets.json"), encoding="utf-8") as handle:
+            configured = json.load(handle)
+        self.assertEqual(
+            len(policy_sets.validate_policy_sets(configured)),
+            len(configured),
+            "an entry in policy_sets.json would be silently skipped by the pipeline",
+        )
+
+
+class ADeadUrlIsNotAFetchFailure(unittest.TestCase):
+    """A 404 says a human has to change a URL. A block page says the fetcher
+    needs a different route. Collapsing them sent every reader of the NSW
+    failure looking at the extraction path for 35 runs, when the page had
+    simply moved."""
+
+    class _Response:
+        def __init__(self, status_code):
+            self.status_code = status_code
+            self.headers = {}
+            self.text = "<html><body>Not found</body></html>"
+
+    def setUp(self):
+        self.cfg = load_cfg()
+        self.url_data = {"url": "https://example.gov.au/moved"}
+
+    def _fetch(self, status_code):
+        original = fetching.requests.get
+        fetching.requests.get = lambda *a, **k: self._Response(status_code)
+        try:
+            return fetching._http_fetch(self.url_data, {}, self.cfg, use_proxy=False)
+        finally:
+            fetching.requests.get = original
+
+    def test_404_is_gone_not_failed(self):
+        result = self._fetch(404)
+        self.assertEqual(result.status, fetching.GONE)
+        self.assertTrue(result.terminal)
+        self.assertIn("not found", result.error)
+
+    def test_410_is_gone_too(self):
+        self.assertEqual(self._fetch(410).status, fetching.GONE)
+
+    def test_a_403_is_still_a_plain_failure(self):
+        result = self._fetch(403)
+        self.assertEqual(result.status, fetching.FAILED)
+        self.assertFalse(result.terminal)
+
+    def test_a_dead_url_ends_the_attempt_without_a_browser(self):
+        """The whole point: no Selenium launch, no proxy retry, no 20s wasted."""
+        rendered = []
+        original_http, original_selenium = fetching._http_fetch, fetching._selenium_fetch
+        fetching._http_fetch = lambda *a, **k: fetching.FetchResult(
+            self.url_data["url"], fetching.GONE, http_status=404, error="HTTP 404 — gone"
+        )
+        fetching._selenium_fetch = lambda *a, **k: rendered.append(1)
+        try:
+            result = fetching.fetch_document(self.url_data, {}, self.cfg)
+        finally:
+            fetching._http_fetch, fetching._selenium_fetch = original_http, original_selenium
+
+        self.assertEqual(result.status, fetching.GONE)
+        self.assertEqual(rendered, [], "a browser was launched for a page that does not exist")
+        self.assertEqual(result.attempts, 1)
+
+    def test_link_rot_fails_a_document_on_the_first_run(self):
+        """Deterministic, so waiting three runs only delays the person who has
+        to go and find the new URL."""
+        record = {"status": "link_rot", "consecutive_failures": 1}
+        self.assertEqual(health.document_status(record, threshold=3), health.FAILING)
+
+    def test_it_raises_its_own_alert_kind(self):
+        report = health.build_report(
+            {
+                "Moved Set": {
+                    "file_id": "Moved_Set",
+                    "consecutive_failures": 1,
+                    "documents": {
+                        "https://example.gov.au/moved": {
+                            "label": "Moved",
+                            "status": "link_rot",
+                            "consecutive_failures": 1,
+                            "last_error": "HTTP 404 — the page not found at this URL",
+                        }
+                    },
+                }
+            },
+            self.cfg,
+        )
+        self.assertEqual([a["kind"] for a in report["alerts"]], ["source_gone"])
+        self.assertTrue(report["sources"]["Moved Set"]["failing"][0]["gone"])
+
+    def test_the_alert_body_says_which_job_it_is(self):
+        report = health.build_report(
+            {
+                "Moved Set": {
+                    "file_id": "Moved_Set",
+                    "consecutive_failures": 1,
+                    "documents": {
+                        "https://example.gov.au/moved": {
+                            "status": "link_rot",
+                            "consecutive_failures": 1,
+                            "last_error": "HTTP 404",
+                        }
+                    },
+                }
+            },
+            self.cfg,
+        )
+        body = first_alert_body(report)
+        self.assertIn("no longer exist", body)
+        self.assertIn("policy_sets.json", body)
+        self.assertNotIn("started failing", body)
+
+
+class TheModelIsRetriedAccordingToWhatFailed(unittest.TestCase):
+    """A failed call and a bad answer used to spend the same two immediate
+    attempts. Two 503s in September ate both and were then reported as the
+    model returning an invalid response."""
+
+    class _Client:
+        """Stands in for genai.Client. `script` is one entry per call: an
+        exception to raise, or a string to return as the response text."""
+
+        def __init__(self, script):
+            self.script = list(script)
+            self.calls = []
+
+            outer = self
+
+            class _Models:
+                def generate_content(self, *, model, contents, config):
+                    outer.calls.append(contents)
+                    item = outer.script.pop(0)
+                    if isinstance(item, Exception):
+                        raise item
+                    return type("R", (), {"text": item, "usage_metadata": None})()
+
+            self.models = _Models()
+
+    GOOD = json.dumps(
+        {
+            "verdict": "material_change",
+            "summary": "s",
+            "analysis": "a",
+            "priority": "high",
+        }
+    )
+
+    def setUp(self):
+        self.slept = []
+
+    def _analyse(self, script):
+        return analysis.analyse_change(
+            "Set",
+            "diff",
+            model="gemini-2.5-flash",
+            client=self._Client(script),
+            sleep=self.slept.append,
+        )
+
+    def test_a_transient_api_error_is_retried_with_backoff(self):
+        outcome = self._analyse([RuntimeError("503 UNAVAILABLE"), self.GOOD])
+        self.assertTrue(outcome.ok)
+        self.assertEqual(outcome.attempts, 2)
+        self.assertEqual(len(self.slept), 1, "retried a 503 with no delay at all")
+        self.assertGreater(self.slept[0], 0)
+
+    def test_it_gives_up_after_three_api_attempts(self):
+        outcome = self._analyse([RuntimeError("503")] * 3)
+        self.assertFalse(outcome.ok)
+        self.assertEqual(outcome.attempts, 3)
+        self.assertEqual(outcome.error_kind, analysis.API_ERROR)
+        self.assertFalse(outcome.is_schema_failure)
+        # Three attempts, two waits — it does not sleep after the last one.
+        self.assertEqual(len(self.slept), 2)
+
+    def test_the_backoff_grows(self):
+        self._analyse([RuntimeError("503")] * 3)
+        self.assertGreater(self.slept[1], self.slept[0])
+
+    def test_a_schema_error_is_retried_once_with_the_error_quoted_back(self):
+        outcome = self._analyse(['{"verdict": "material_change"}', self.GOOD])
+        self.assertTrue(outcome.ok)
+        self.assertEqual(outcome.attempts, 2)
+        self.assertEqual(self.slept, [], "a correctable answer does not need a delay")
+
+    def test_a_schema_error_is_not_retried_a_third_time(self):
+        outcome = self._analyse(["not json", "still not json"])
+        self.assertFalse(outcome.ok)
+        self.assertEqual(outcome.attempts, 2)
+        self.assertEqual(outcome.error_kind, analysis.SCHEMA_ERROR)
+        self.assertTrue(outcome.is_schema_failure)
+
+    def test_both_kinds_can_happen_in_one_call(self):
+        outcome = self._analyse([RuntimeError("503"), "not json", self.GOOD])
+        self.assertTrue(outcome.ok)
+        self.assertEqual(outcome.attempts, 3)
+
+    def test_a_missing_api_key_is_an_api_error_not_a_schema_one(self):
+        key = os.environ.pop("GEMINI_API_KEY", None)
+        try:
+            outcome = analysis.analyse_change("Set", "diff", model="m")
+            self.assertEqual(outcome.error_kind, analysis.API_ERROR)
+            self.assertFalse(outcome.is_schema_failure)
+        finally:
+            if key is not None:
+                os.environ["GEMINI_API_KEY"] = key
+
+
+class TheResponseIsConstrainedNotJustChecked(unittest.TestCase):
+    def test_the_schema_pins_both_enums(self):
+        properties = analysis.RESPONSE_SCHEMA["properties"]
+        self.assertEqual(properties["verdict"]["enum"], list(analysis.VERDICTS))
+        self.assertEqual(properties["priority"]["enum"], list(analysis.PRIORITIES))
+
+    def test_the_schema_requires_every_key_the_validator_requires(self):
+        self.assertEqual(
+            set(analysis.RESPONSE_SCHEMA["required"]),
+            {"verdict", "summary", "analysis", "priority"},
+        )
+
+    def test_the_validator_still_coerces_what_the_schema_cannot_express(self):
+        """A schema cannot say "declining sets priority to low"."""
+        parsed = analysis.parse_and_validate(
+            json.dumps(
+                {
+                    "verdict": "no_material_change",
+                    "summary": "s",
+                    "analysis": "a",
+                    "priority": "critical",
+                }
+            )
+        )
+        self.assertEqual(parsed["priority"], "low")

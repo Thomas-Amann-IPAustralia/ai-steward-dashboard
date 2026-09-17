@@ -911,6 +911,22 @@ select:focus-visible,
   background-color: var(--error-bg);
 }
 
+/* Sits above the whole app, not inside a section: it is a statement about the
+   page, not about any source on it. */
+.stale-run-notice {
+  background-color: var(--error-bg);
+  border-bottom: 3px solid var(--error-color);
+  color: var(--text-color);
+  padding: 0.85rem 1.5rem;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.stale-run-notice a {
+  color: inherit;
+  font-weight: 600;
+}
+
 .review-notice.retracted {
   border-color: var(--error-border);
   border-left-color: var(--error-color);

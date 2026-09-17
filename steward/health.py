@@ -38,10 +38,18 @@ DEGRADED = "degraded"
 FAILING = "failing"
 DISABLED = "disabled"
 
+# The pipeline's own outcome for a document whose URL returned 404 or 410.
+LINK_ROT = "link_rot"
+
 _RANK = {OK: 0, DEGRADED: 1, FAILING: 2}
 
 
 def document_status(record: Dict[str, Any], threshold: int) -> str:
+    # A 404 is deterministic. Waiting three runs to be sure only delays the
+    # person who has to go and find the new URL.
+    if record.get("status") == LINK_ROT:
+        return FAILING
+
     failures = int(record.get("consecutive_failures", 0) or 0)
     if failures >= threshold:
         return FAILING
@@ -110,6 +118,7 @@ def build_report(hashes: Dict[str, Any], cfg, run_error_rate: float = 0.0) -> Di
                 "last_success": record.get("last_success"),
                 "last_error": record.get("last_error", ""),
                 "status": document_status(record, threshold),
+                "gone": record.get("status") == LINK_ROT,
             }
             for url, record in documents.items()
             if document_status(record, threshold) != OK
@@ -130,7 +139,10 @@ def build_report(hashes: Dict[str, Any], cfg, run_error_rate: float = 0.0) -> Di
             if doc["status"] == FAILING:
                 alerts.append(
                     {
-                        "kind": "source_failing",
+                        # Separate kinds because they are separate jobs: one is
+                        # someone editing a URL, the other is someone debugging
+                        # an extraction path.
+                        "kind": "source_gone" if doc["gone"] else "source_failing",
                         "set_name": set_name,
                         "url": doc["url"],
                         "consecutive_failures": doc["consecutive_failures"],
@@ -303,16 +315,32 @@ def render_alert_markdown(delta: AlertDelta, report: Dict[str, Any]) -> str:
 
     lines: List[str] = []
 
-    if delta.new:
+    gone = [alert for alert in delta.new if alert.get("kind") == "source_gone"]
+    broken = [alert for alert in delta.new if alert.get("kind") != "source_gone"]
+
+    if gone:
         lines += [
-            f"## {len(delta.new)} source(s) started failing",
+            f"## {len(gone)} URL(s) no longer exist",
             "",
             *_TABLE_HEAD,
-            *[_alert_row(alert) for alert in delta.new],
+            *[_alert_row(alert) for alert in gone],
+            "",
+            "These returned 404 or 410. The page moved or was withdrawn — this is "
+            "not an extraction problem and retrying will not fix it. Find where the "
+            "content went and update the URL in `policy_sets.json`, or disable the "
+            "set with `\"enabled\": false` and a reason.",
+            "",
+        ]
+
+    if broken:
+        lines += [
+            f"## {len(broken)} source(s) started failing",
+            "",
+            *_TABLE_HEAD,
+            *[_alert_row(alert) for alert in broken],
             "",
             "A source in this state is not reporting 'no changes' — it is reporting "
-            "nothing at all. Check the source URL first (a 404 means it moved, and "
-            "the fix is in `policy_sets.json`), then the extraction path in "
+            "nothing at all. Check the source URL first, then the extraction path in "
             "`steward/fetching.py`.",
             "",
         ]

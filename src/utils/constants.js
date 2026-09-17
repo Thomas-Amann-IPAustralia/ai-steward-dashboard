@@ -45,6 +45,7 @@ export const HEALTH_LABELS = {
   degraded: 'Last read failed',
   failing: 'Not being read',
   disabled: 'Not currently monitored',
+  link_rot: 'URL no longer exists',
 };
 
 /**
@@ -123,6 +124,35 @@ export const hostOf = (url) => {
   } catch {
     return '';
   }
+};
+
+/**
+ * How long after a completed run the dashboard stops vouching for itself.
+ *
+ * The pipeline runs daily, so two days covers a single missed run plus the
+ * timezone slack without crying wolf. Past that, something is wrong with the
+ * monitor rather than with the sources.
+ */
+export const RUN_STALE_AFTER_HOURS = 48;
+
+/**
+ * Whether the monitor itself has stopped running.
+ *
+ * Every badge, health pill and "last checked" on this page is read out of files
+ * the pipeline wrote. If the workflow stops — disabled, out of credit, broken
+ * before main.py — those files freeze and the dashboard goes on presenting them
+ * as current. That is the same silent false negative the health report exists to
+ * prevent, one level up, and nothing was watching for it.
+ */
+export const runStaleness = (health, now = Date.now()) => {
+  const generated = toDate(health?.generated_at);
+  if (!generated) return { stale: true, hours: null, generatedAt: null };
+  const hours = Math.floor((now - generated.getTime()) / (60 * 60 * 1000));
+  return {
+    stale: hours >= RUN_STALE_AFTER_HOURS,
+    hours,
+    generatedAt: health.generated_at,
+  };
 };
 
 const FETCH_TIMEOUT_MS = 12000;

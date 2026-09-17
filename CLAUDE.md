@@ -100,6 +100,17 @@ gate-by-gate walkthrough.
   on the dashboard as "not currently monitored" with its reason — because a
   source nobody is checking and a source that cannot be checked need different
   responses and must not look the same.
+- **A 404 is an answer, not a failure.** `fetching.GONE` is terminal — no
+  render, no proxy, no retry — and surfaces as `link_rot`, which fails a
+  document on the first run and raises a `source_gone` alert. It is separate
+  from a fetch failure because the remedy is a person editing a URL, not a
+  retry. Don't fold it back into `FAILED`.
+- **An API error is not a schema failure.** `steward/analysis.py` retries a
+  failed *call* with backoff and a bad *answer* with a correction, and only the
+  second counts toward `schema_failures`. Conflating them reported a Gemini 503
+  as the model returning invalid JSON. `analyse_change` takes a `client` (and a
+  `sleep`) so it is testable without the SDK installed — keep the
+  `from google import genai` inside the `client is None` branch.
 - **The fingerprint watchlist (`fingerprint.watchlist` in
   `steward_config.yaml`) is context for the model, never a gate.** A genuine
   content change is always analysed, whether or not it matches anything on
@@ -146,6 +157,7 @@ gate-by-gate walkthrough.
 | `steward/health.py` | Per-source health status and GitHub-issue alert body |
 | `steward/history.py` | Builds `history.json` from `logs/` |
 | `steward/runlog.py` | Appends `runs.jsonl` |
+| `steward/policy_sets.py` | Loads/validates `policy_sets.json`; the one validator any writer must use |
 | `policy_sets.json` | **The list of monitored sources — edit this to add one** |
 | `steward_config.yaml` | Thresholds, watchlist, model name, retention |
 | `scripts/` | One-off but re-runnable repairs to committed pipeline output |

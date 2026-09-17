@@ -44,6 +44,35 @@ export function SourceHealthNotice({ source }) {
 
   const failing = source.failing || [];
   const severe = source.status === 'failing';
+  const gone = failing.filter((doc) => doc.gone);
+
+  // Link rot is a different job from a broken fetcher: someone has to find
+  // where the page went, not debug an extraction path. Saying so here is the
+  // difference between a five-minute fix and a week of ignored alerts.
+  if (gone.length > 0) {
+    return (
+      <div className="health-notice severe" role="status">
+        <strong>
+          {gone.length === 1
+            ? 'A page in this set no longer exists at the URL we have.'
+            : `${gone.length} pages in this set no longer exist at the URLs we have.`}
+        </strong>
+        <p>
+          The server returned 404 or 410 — the page moved or was withdrawn. This is not
+          a connection problem and retrying will not fix it. Until the URL is updated,
+          nothing here is being monitored.
+        </p>
+        <ul className="health-notice-list">
+          {gone.map((doc) => (
+            <li key={doc.url}>
+              <span className="health-doc-label">{doc.label || doc.url}</span>
+              <span className="health-doc-error"> — {doc.url}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <div className={`health-notice ${severe ? 'severe' : ''}`} role="status">

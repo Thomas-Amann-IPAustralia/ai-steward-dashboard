@@ -1,9 +1,11 @@
 import {
+  RUN_STALE_AFTER_HOURS,
   daysSince,
   formatDate,
+  hostOf,
   isStale,
   primaryUrl,
-  hostOf,
+  runStaleness,
   timestampOf,
 } from './constants';
 import { buildBriefing } from './briefing';
@@ -99,5 +101,37 @@ describe('buildBriefing', () => {
     expect(text).toContain('Anthropic Legal Policies — HIGH');
     expect(text).toContain('Documents: Aup');
     expect(text).toContain('#/policy/Anthropic_Legal_Policies');
+  });
+});
+
+describe('runStaleness', () => {
+  const HOUR = 60 * 60 * 1000;
+  const now = new Date('2026-09-17T12:00:00+10:00').getTime();
+  const hoursAgo = (n) => new Date(now - n * HOUR).toISOString();
+
+  test('a recent run is not stale', () => {
+    const { stale, hours } = runStaleness({ generated_at: hoursAgo(6) }, now);
+    expect(stale).toBe(false);
+    expect(hours).toBe(6);
+  });
+
+  test('a run just inside the window is not stale', () => {
+    expect(runStaleness({ generated_at: hoursAgo(47) }, now).stale).toBe(false);
+  });
+
+  test('a run past the window is stale', () => {
+    expect(runStaleness({ generated_at: hoursAgo(RUN_STALE_AFTER_HOURS) }, now).stale).toBe(true);
+  });
+
+  test('a missing health report is stale, not fine', () => {
+    // The absence of evidence is the case being guarded against: if health.json
+    // never loaded, the dashboard cannot vouch for anything it is showing.
+    expect(runStaleness(null, now).stale).toBe(true);
+    expect(runStaleness({}, now).stale).toBe(true);
+    expect(runStaleness({ generated_at: 'nonsense' }, now).stale).toBe(true);
+  });
+
+  test('a stale report still reports how stale', () => {
+    expect(runStaleness({ generated_at: hoursAgo(200) }, now).hours).toBe(200);
   });
 });

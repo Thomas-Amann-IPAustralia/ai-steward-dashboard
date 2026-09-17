@@ -5,11 +5,18 @@ Three properties the previous implementation lacked:
 * The timestamp is stamped in code. The model does not know what time it is
   and, when asked, invented one — which is how the live Perplexity analysis
   came to be dated 16 May 2024.
-* The response is validated. A missing key used to be backfilled with the
-  string 'Unknown' and `priority` was never checked against the four
-  permitted values, which is how a `priority: unknown` analysis reached the
-  archive. Now: validate, retry once with the error, log and skip on the
-  second failure.
+* The response is validated, and constrained before it is validated. The
+  model is given a response schema with both enums, so a missing key or an
+  out-of-enum priority is largely structural rather than something to catch
+  afterwards; `parse_and_validate` stays as the belt to that braces, and
+  because the schema cannot express "declining sets priority to low".
+
+* A failed call and a bad answer are different failures. Both used to spend
+  the same two immediate attempts and both incremented `schema_failures`,
+  so two Gemini 503s in September raised an alert reading "the model returned
+  an invalid response on consecutive runs" — which was false, and sent the
+  reader somewhere useless. An API error now backs off and retries; only a
+  genuine schema violation counts as one.
 * The model may decline. It was already writing "there are no changes between
   the provided documents" and then being forced to pick a priority anyway.
   `no_material_change` says that cleanly, and when it does the set is not
@@ -21,14 +28,40 @@ from __future__ import annotations
 import json
 import logging
 import os
+import random
 import re
-from dataclasses import dataclass, field
+import time
+from dataclasses import dataclass
 from typing import Optional, Sequence
 
 log = logging.getLogger(__name__)
 
 PRIORITIES = ("critical", "high", "medium", "low")
 VERDICTS = ("material_change", "no_material_change", "uncertain")
+
+# Handed to the model so the four keys and both enums are constrained at
+# generation time rather than rejected afterwards.
+RESPONSE_SCHEMA = {
+    "type": "object",
+    "required": ["verdict", "summary", "analysis", "priority"],
+    "properties": {
+        "verdict": {"type": "string", "enum": list(VERDICTS)},
+        "summary": {"type": "string"},
+        "analysis": {"type": "string"},
+        "priority": {"type": "string", "enum": list(PRIORITIES)},
+    },
+}
+
+# How a call failed. The distinction is the point: one is worth retrying with
+# a delay, the other is worth retrying with a correction, and only the second
+# says anything about the model's reliability.
+API_ERROR = "api_error"
+SCHEMA_ERROR = "schema_error"
+
+# Attempts and backoff for a transient API failure. Two immediate attempts is
+# what a demand spike eats without noticing.
+API_ATTEMPTS = 3
+API_BACKOFF_SECONDS = (2, 8, 30)
 
 MATERIAL_CHANGE = "material_change"
 NO_MATERIAL_CHANGE = "no_material_change"
@@ -45,6 +78,7 @@ class SchemaError(ValueError):
 class AnalysisOutcome:
     result: Optional[dict] = None
     error: str = ""
+    error_kind: str = ""
     attempts: int = 0
     prompt_tokens: int = 0
     output_tokens: int = 0
@@ -53,6 +87,15 @@ class AnalysisOutcome:
     @property
     def ok(self) -> bool:
         return self.result is not None
+
+    @property
+    def is_schema_failure(self) -> bool:
+        """Whether this says anything about the model's reliability.
+
+        A 503 does not. Counting it as one is how a demand spike came to be
+        reported as a schema failure.
+        """
+        return not self.ok and self.error_kind == SCHEMA_ERROR
 
 
 PROMPT_TEMPLATE = """You are an AI policy analyst advising Australian public servants on \
@@ -186,6 +229,12 @@ def _usage(response) -> tuple[int, int]:
     )
 
 
+def _sleep_for(attempt: int) -> float:
+    """Backoff with jitter, so two sources failing together don't retry together."""
+    base = API_BACKOFF_SECONDS[min(attempt, len(API_BACKOFF_SECONDS) - 1)]
+    return base * random.uniform(0.8, 1.2)
+
+
 def analyse_change(
     set_name: str,
     diff_text: str,
@@ -194,35 +243,58 @@ def analyse_change(
     changed_documents: Sequence[str] = (),
     tags: Sequence[str] = (),
     client=None,
+    sleep=time.sleep,
 ) -> AnalysisOutcome:
-    """Call the model, validate, retry once, then give up cleanly."""
-    from google import genai
-    from google.genai import types
+    """Call the model, validate, and retry according to what actually failed.
 
-    api_key = os.environ.get("GEMINI_API_KEY")
+    A transient API error is retried with backoff — up to API_ATTEMPTS, because
+    a demand spike outlasts two immediate tries. A schema violation is retried
+    once, with the error quoted back, because asking a third time rarely helps
+    and the diff is not lost either way: `main.py` reverts the stored hash so
+    the same change is re-analysed on the next run.
+    """
     if client is None:
+        api_key = os.environ.get("GEMINI_API_KEY")
         if not api_key:
-            return AnalysisOutcome(error="GEMINI_API_KEY is not set")
+            return AnalysisOutcome(error="GEMINI_API_KEY is not set", error_kind=API_ERROR)
+        # Imported here rather than at module scope so that `steward/` stays
+        # importable and testable without the SDK, which is the whole point of
+        # the `client` seam.
+        from google import genai
+
         client = genai.Client(api_key=api_key)
 
     prompt = build_prompt(set_name, diff_text, changed_documents, tags)
-    outcome = AnalysisOutcome()
-    last_error = ""
+    # A plain dict, not types.GenerateContentConfig: the SDK declares
+    # `GenerateContentConfigOrDict` and its `Type` enum is case-insensitive, so
+    # this needs no import and reads as the JSON Schema it is.
+    config = {
+        "response_mime_type": "application/json",
+        "response_schema": RESPONSE_SCHEMA,
+    }
 
-    for attempt in (1, 2):
-        outcome.attempts = attempt
-        text = prompt if attempt == 1 else prompt + _RETRY_SUFFIX.format(error=last_error)
+    outcome = AnalysisOutcome()
+    api_failures = 0
+    schema_failures = 0
+    last_schema_error = ""
+
+    while api_failures < API_ATTEMPTS and schema_failures < 2:
+        outcome.attempts += 1
+        text = prompt
+        if last_schema_error:
+            text = prompt + _RETRY_SUFFIX.format(error=last_schema_error)
 
         try:
-            response = client.models.generate_content(
-                model=model,
-                contents=text,
-                config=types.GenerateContentConfig(response_mime_type="application/json"),
-            )
+            response = client.models.generate_content(model=model, contents=text, config=config)
         except Exception as exc:  # noqa: BLE001 — an API failure must not kill the run
-            last_error = f"{type(exc).__name__}: {exc}"
-            log.error("  Gemini API error on attempt %d: %s", attempt, last_error)
-            outcome.error = last_error
+            api_failures += 1
+            outcome.error = f"{type(exc).__name__}: {exc}"
+            outcome.error_kind = API_ERROR
+            log.error(
+                "  Gemini API error (%d/%d): %s", api_failures, API_ATTEMPTS, outcome.error
+            )
+            if api_failures < API_ATTEMPTS:
+                sleep(_sleep_for(api_failures - 1))
             continue
 
         prompt_tokens, output_tokens = _usage(response)
@@ -234,11 +306,22 @@ def analyse_change(
         try:
             outcome.result = parse_and_validate(raw)
             outcome.error = ""
+            outcome.error_kind = ""
             return outcome
         except SchemaError as exc:
-            last_error = str(exc)
-            outcome.error = last_error
-            log.warning("  Model response rejected on attempt %d: %s", attempt, last_error)
+            schema_failures += 1
+            last_schema_error = str(exc)
+            outcome.error = last_schema_error
+            outcome.error_kind = SCHEMA_ERROR
+            log.warning(
+                "  Model response rejected (%d/2): %s", schema_failures, last_schema_error
+            )
 
-    log.error("  Giving up on '%s' after 2 attempts: %s", set_name, outcome.error)
+    log.error(
+        "  Giving up on '%s' after %d attempt(s) — %s: %s",
+        set_name,
+        outcome.attempts,
+        outcome.error_kind or "unknown",
+        outcome.error,
+    )
     return outcome
