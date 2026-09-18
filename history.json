@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T04:30:58.273755+00:00",
+  "generated_at": "2026-09-18T04:14:58.788769+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -1750,15 +1750,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "The provided text shows no changes to the Perplexity AI Legal Policies.  The Privacy Policy and Acceptable Use Policy are identical in both the old and new content.  There is no information about changes to other legal documents. Therefore, the analysis below reflects this.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-17T11:49:30",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250917_114930_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250917_114930_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "The Perplexity AI Legal Policies show no substantive changes in the Terms of Service, Acceptable Use Policy, or Privacy Policy content between the old and new versions.  The only differences are the 'Last updated' dates, reflecting that the documents were updated at different times. The Terms of Service date remains June 4th, 2024, while the Acceptable Use Policy and Privacy Policy dates are July 8th, 2025 and February 2nd, 2025 respectively.",
         "changed_documents": []
       }
     ]
