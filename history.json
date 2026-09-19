@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T04:14:58.788769+00:00",
+  "generated_at": "2026-09-19T04:11:36.344275+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -701,15 +701,6 @@
         "priority": "low",
         "verdict": null,
         "summary": "The National Archives of Australia's AI Policy document underwent a minor revision.  The changes primarily involve the removal of a temporary announcement regarding system maintenance from the webpage. The core content of the policy regarding AI record management remains unchanged.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-18T11:48:20",
-        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250918_114820_analysis.json",
-        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250918_114820_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The National Archives of Australia's AI Policy document has undergone a minor update. The primary change is in the announcement section, where the description of the system maintenance affecting RefTracker has been replaced with an announcement regarding intermittent unavailability of online reference inquiry forms.  The content related to AI record management remains largely unchanged.",
         "changed_documents": []
       }
     ],
@@ -1741,15 +1732,6 @@
         "priority": "High",
         "verdict": null,
         "summary": "The main change is the addition of a comprehensive \"Perplexity Terms of Service\" document.  This document details user rights and responsibilities, payment and subscription terms, intellectual property rights, disclaimers, limitations of liability, and a mandatory arbitration clause with a class action waiver.  The previously existing Privacy Policy and Acceptable Use Policy remain largely unchanged, though the Terms of Service clarifies some aspects of data usage and acceptable behavior previously mentioned in these policies.  Specifically, the Terms of Service adds details about the use of user input and AI generated output, as well as the purchase of products and services through the platform.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-18T11:49:19",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250918_114919_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250918_114919_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "The provided text shows no changes to the Perplexity AI Legal Policies.  The Privacy Policy and Acceptable Use Policy are identical in both the old and new content.  There is no information about changes to other legal documents. Therefore, the analysis below reflects this.",
         "changed_documents": []
       }
     ]
