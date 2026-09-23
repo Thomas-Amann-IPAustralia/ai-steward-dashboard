@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T04:24:09.018325+00:00",
+  "generated_at": "2026-09-23T04:21:14.781649+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -57,15 +57,6 @@
         "priority": "Low",
         "verdict": null,
         "summary": "Minor changes detected in the ACSC Information Security Manual (ISM) webpage.  The only discernible difference is a reduction in the size of the main Information Security Manual PDF file (from 2.27MB to 2.17MB), while the System Security Plan Annex template saw a 1KB decrease.  All other content remains identical.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-22T12:00:09",
-        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20250922_120009_analysis.json",
-        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20250922_120009_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "The only change detected between the old and new content of the ACSC Information Security Manual (ISM) is a 100KB increase in the size of the main PDF document.  The version number and date remain the same (September 2025). All other elements, including supporting documents and website structure, are identical.",
         "changed_documents": []
       }
     ],
