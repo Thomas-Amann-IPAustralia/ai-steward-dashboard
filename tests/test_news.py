@@ -156,6 +156,11 @@ class ItemsAreCleanAndStable(unittest.TestCase):
         self.assertNotIn("appeared first", item["summary"])
         self.assertNotIn("utm_", item["url"])
 
+    def test_guardian_newsletter_and_app_plugs_are_stripped(self):
+        raw = ("Experts say the breach is a portent of things to come Follow our Australia news live blog "
+               "for latest updates Get our breaking news email , free app or daily news podcast Continue reading...")
+        self.assertEqual(news.clean_text(raw), "Experts say the breach is a portent of things to come")
+
     def test_excerpts_are_bounded(self):
         long = "AI " + "word " * 400
         item, _ = news.build_item(entry("AI news", summary=long), SOURCE, now=NOW, window_days=45, vocab=vocab(), links=[])
@@ -182,16 +187,43 @@ class TheGatesFilterNoise(unittest.TestCase):
         )
         self.assertIsNotNone(item)
 
-    def test_ai_mentioned_only_in_passing_is_not_rated_highly_by_keywords(self):
-        # pm.gov.au, 23 September 2026: a doorstop transcript that touched on AI.
-        item, _ = news.build_item(
+    def test_a_general_feed_needs_ai_in_the_headline(self):
+        # pm.gov.au, 23 September 2026: a doorstop transcript that touched on
+        # AI in passing. Not worth the reader's attention or the model's tokens.
+        item, reason = news.build_item(
             entry(
                 "Doorstop - New York",
                 summary="ANTHONY ALBANESE, PRIME MINISTER: we launched the Coalition for AI safety with the Australian Government.",
             ),
             SOURCE, now=NOW, window_days=45, vocab=vocab(), links=[],
         )
-        self.assertEqual(item["relevance"], 1)
+        self.assertIsNone(item)
+        self.assertEqual(reason, "not about AI")
+
+    def test_live_blogs_podcasts_and_cartoons_are_dropped(self):
+        # Real headlines from the Guardian and ABC feeds, 24 September 2026.
+        for title in (
+            "Australia news live: Paterson says PM's AI hack timing not a coincidence",
+            "Live: Trump to host Xi at lavish White House dinner with tech leaders",
+            "Rogue AI hacks government system for first time – The Latest",
+            "Ben Jennings on smart glasses and AI hacks – cartoon",
+        ):
+            item, reason = news.build_item(entry(title), AI_SOURCE, now=NOW, window_days=45, vocab=vocab(), links=[])
+            self.assertIsNone(item, title)
+            self.assertEqual(reason, "live blog, podcast or similar")
+
+    def test_live_facial_recognition_is_not_a_live_blog(self):
+        item, _ = news.build_item(
+            entry("WA Police's Live Facial Recognition Trial Raises Privacy Concerns"),
+            AI_SOURCE, now=NOW, window_days=45, vocab=vocab(), links=[],
+        )
+        self.assertIsNotNone(item)
+
+    def test_source_publisher_and_paywall_are_carried(self):
+        source = dict(AI_SOURCE, publisher="The Canberra Times", paywalled=True)
+        item, _ = news.build_item(entry("APS told to pause AI tools"), source, now=NOW, window_days=45, vocab=vocab(), links=[])
+        self.assertEqual(item["publisher"], "The Canberra Times")
+        self.assertTrue(item["paywalled"])
 
     def test_old_items_are_not_ingested(self):
         item, reason = news.build_item(
@@ -242,6 +274,23 @@ class OneStoryIsOneItem(unittest.TestCase):
         self.assertEqual([i["id"] for i in folded], ["a"])
         self.assertEqual(folded[0]["relevance"], 3)
         self.assertEqual(len(folded[0]["coverage"]), 2)
+
+    def test_the_outlets_own_copy_leads_over_a_google_news_copy(self):
+        via_google = item("g", "OpenAI agent hacked Medicare portal, PM says",
+                          url="https://news.google.com/rss/articles/abc", publisher="ABC News")
+        direct = item("d", "OpenAI agent hacked Medicare portal, PM says",
+                      url="https://www.abc.net.au/news/2026-09-23/openai", summary="The PM said…")
+        merged = news.merge_items([via_google], [direct])
+        self.assertEqual([i["id"] for i in merged], ["d"])
+        self.assertEqual(merged[0]["coverage"][0]["url"], "https://news.google.com/rss/articles/abc")
+
+    def test_an_enriched_copy_is_never_displaced(self):
+        via_google = item("g", "OpenAI agent hacked Medicare portal, PM says",
+                          url="https://news.google.com/rss/articles/abc", relevance_source="model", tldr="Done.")
+        direct = item("d", "OpenAI agent hacked Medicare portal, PM says",
+                      url="https://www.abc.net.au/news/2026-09-23/openai", summary="The PM said…")
+        merged = news.merge_items([via_google], [direct])
+        self.assertEqual([i["id"] for i in merged], ["g"])
 
     def test_cycles_and_cross_kind_links_are_ignored(self):
         items = [item("a", "A"), item("b", "B"), item("i", "Incident", kind="incident")]
@@ -373,6 +422,28 @@ class TheRunWritesAWindowedFeed(unittest.TestCase):
         self.assertEqual(len(feed["items"]), 1)
         self.assertEqual(state["sources"]["general"]["etag"], '"v1"')
         self.assertEqual(state["last_run"]["new_items"], 0)
+
+    def test_a_repeat_of_a_held_story_never_reaches_the_model(self):
+        self.run_news()
+        sent = []
+        original = news_enrichment.enrich
+        self.addCleanup(setattr, news_enrichment, "enrich", original)
+
+        def fake_enrich(items, **kwargs):
+            sent.extend(i["id"] for i in items)
+            return news_enrichment.EnrichmentOutcome()
+
+        news_enrichment.enrich = fake_enrich
+        now = datetime.now(timezone.utc)
+        self.entries = [
+            entry("Anthropic updates AI usage policy", link="https://another.example/same-story", published=now),
+            entry("Senate committee opens AI inquiry", link="https://example.com/9", published=now),
+        ]
+        news_watch.run(self.cfg, enrich=True)
+        titles = {i["id"]: i["title"] for i in read_json(news_watch.FEED_FILE)["items"]}
+        self.assertNotIn(news.item_id("https://another.example/same-story"), sent)
+        self.assertIn(news.item_id(news.canonical_url("https://example.com/9")), sent)
+        self.assertEqual(sorted(titles.values()), ["Anthropic updates AI usage policy", "Senate committee opens AI inquiry"])
 
     def test_dry_run_writes_nothing(self):
         self.run_news(dry_run=True)

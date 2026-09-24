@@ -140,11 +140,28 @@ news:
   enrich_batch_size: 20
   max_enrich_items: 120
 
+  # Headlines matching any of these regexes are dropped before scoring and
+  # before the model sees them: live blogs, podcasts, cartoons and newsletter
+  # round-ups repeat news that also arrives as a proper article. Anchor them
+  # (^ / $) so "live facial recognition" is not mistaken for a live blog.
+  exclude_title_patterns:
+    - '(?i)^live:'
+    - '(?i)\bnews live:'
+    - '(?i)\s[–-]\s*live$'
+    - '(?i)\bas it happened$'
+    - '(?i)\bpodcast\b'
+    - '(?i)\s[–-]\s*the latest$'
+    - '(?i)\s[–-]\s*cartoon$'
+    - '(?i)^morning mail:'
+    - '(?i)^afternoon update:'
+    - '(?i)\bquiz\b'
+
   # Vocabulary shared by the deterministic gates and scorer. An all-caps term
   # is matched case-sensitively as a whole word (so AI is not found in
   # "said"); anything else is matched as a whole word ignoring case.
   #
-  # Sources marked "require_ai" only admit items that mention one of these.
+  # Items from sources not marked "ai_focused" are only admitted when one of
+  # these appears in the headline itself.
   ai_terms:
     - AI
     - A.I.

@@ -250,7 +250,17 @@ def run(cfg, *, dry_run: bool = False, only: Optional[Sequence[str]] = None, enr
             added += 1
         log.info("  %-28s %d entries, %d new", source["id"], len(result.entries), added)
 
-    new_items = news.merge_items([], new_items)
+    # Fold repeats — within this run, and of stories already held — before
+    # the model is called, so it is never paid to read the same story twice.
+    # A direct publisher copy may take over from a held Google News copy that
+    # has not been enriched yet.
+    new_ids = {item["id"] for item in new_items}
+    combined = news.merge_items(existing, new_items)
+    folded_early = len(existing) + len(new_items) - len(combined)
+    if folded_early:
+        dropped["repeat of a held story"] = folded_early
+    new_items = [item for item in combined if item["id"] in new_ids]
+    existing = [item for item in combined if item["id"] not in new_ids]
 
     # Items still carrying only a keyword score — new ones, and any a previous
     # run could not enrich because the model was down — are queued with the

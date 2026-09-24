@@ -65,8 +65,10 @@ schema-checked JSON object, and may itself decide a change is
 `no_material_change`. Everything upstream of that call exists to stop
 something that isn't a real edit — a rotating banner, a transient block page,
 whitespace, a mis-decoded dash, a CDN serving two variants — from ever
-reaching it. The news side mirrors this: window → canonical-URL dedupe → AI
-gate → keyword relevance → one batched model pass. See `BACKEND.md` for the
+reaching it. The news side mirrors this: window → canonical-URL dedupe →
+format gate (live blogs, podcasts) → AI-in-the-headline gate → keyword
+relevance → fold repeats → one batched model pass. The gates are the cost
+control: keep anything a keyword or pattern can decide out of the prompt. See `BACKEND.md` for the
 full gate-by-gate walkthrough.
 
 ## Conventions and gotchas

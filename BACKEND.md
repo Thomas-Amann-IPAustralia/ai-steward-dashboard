@@ -333,9 +333,10 @@ fallback to a default for a key that's present but wrong. Sections:
 - **`news`** — `enabled`, `window_days` (how long items stay in
   `news/feed.json`), `min_relevance` (items scoring below it are not kept),
   `max_new_items_per_source`, `enrich` / `enrich_batch_size` /
-  `max_enrich_items` (the model pass), and the vocabulary lists `ai_terms`,
-  `australia_terms`, `government_terms`, `policy_terms`, `risk_terms` used by
-  the AI gate and the keyword scorer.
+  `max_enrich_items` (the model pass), `exclude_title_patterns` (regexes for
+  live blogs, podcasts and similar, validated at startup), and the vocabulary
+  lists `ai_terms`, `australia_terms`, `government_terms`, `policy_terms`,
+  `risk_terms` used by the AI gate and the keyword scorer.
 
 ## Health and alerting (`steward/health.py`)
 
@@ -520,6 +521,7 @@ Each entry is one feed:
 {
   "id": "the-mandarin",
   "name": "The Mandarin",
+  "publisher": "The Mandarin",
   "category": "Australian news",
   "kind": "news",
   "type": "rss",
@@ -530,15 +532,19 @@ Each entry is one feed:
 ```
 
 - `id` — lower-case letters, digits and hyphens; the key in `news/state.json`.
-- `category` — the News page's source filter: `Australian Government`,
-  `Australian news`, `International`, `AI providers` (incident sources use
-  `AI incidents`).
+- `name` — the feed's name on the Sources page; `publisher` (optional) — the
+  outlet as readers know it, shown on each story ("ABC News" for the feed
+  "ABC News — AI"). Google News items carry their own publisher.
+- `category` — the News page's filter: `Australian Government`,
+  `Australian news`, `Analysis`, `International`, `AI providers` (incident
+  sources use `AI incidents`).
 - `kind` — `news` or `incident`.
 - `type` — `rss` (RSS 2.0, RSS 1.0 and Atom) or `oecd_aim`.
-- `ai_focused` (optional) — the feed is about AI by construction (an AI
-  lab's blog, a search for "artificial intelligence"), so its items skip the
-  AI gate. Leave it off for general feeds: their items are only admitted if
-  the headline or excerpt mentions AI.
+- `ai_focused` (optional) — the feed is about AI by construction (the ABC's
+  AI topic, an AI lab's blog, a search for "artificial intelligence"), so its
+  items skip the AI gate. Leave it off for general feeds: their items are
+  only admitted when the *headline* mentions AI.
+- `paywalled` (optional) — stories are marked "Subscriber" on the dashboard.
 - `relevance_floor` (optional, 0–3) — lift every AI item from this source to
   at least this score (the UK AI Security Institute publishes nothing that is
   merely "general AI news").
@@ -548,6 +554,23 @@ Many `gov.au` sites (DTA, digital.gov.au, cyber.gov.au, industry.gov.au,
 eSafety) refuse automated feed readers from datacentre addresses, including
 GitHub's runners. They are reached through Google News searches restricted to
 `site:gov.au`, whose headlines must mention AI to be kept.
+
+The Guardian needs no API key: its tag pages have RSS, and a "combiner" URL
+intersects two tags — `australia-news+technology/artificialintelligenceai/rss`
+is Guardian Australia's AI coverage. The ABC's topic feeds are addressed by
+the topic's numeric id (`/news/feed/13876586/rss.xml` is the AI topic; the id
+is in the topic page's source as its `coremedia://channel/…` uri).
+
+Feeds in the shipped list, by category: **Australian Government** — `gov.au`
+pages via Google News, the Prime Minister's media releases; **Australian
+news** — ABC News (AI topic), Guardian Australia (AI), SBS News, The Canberra
+Times (paywalled), The Mandarin, Government News, iTnews, and two Google News
+searches (APS and government AI coverage; AI regulation); **Analysis** — The
+Conversation (AI topic), the OECD.AI blog; **International** — the UK AI
+Security Institute and DSIT, the European Commission; **AI providers** — a
+Google News search for coverage of provider terms, privacy and data-retention
+changes, OpenAI, Google and Microsoft; **AI incidents** — three OECD AIM
+slices.
 
 An `oecd_aim` source carries a `query` for the [OECD AI Incidents
 Monitor](https://oecd.ai/en/incidents) search API (the endpoint oecd.ai's own
@@ -576,19 +599,36 @@ over a fortnight, and the handful reported most widely overall.
 2. **Identity** — an item's id is a hash of its canonical URL (tracking
    parameters, fragments and `www.` removed); ids already held or seen
    (`news/state.json`) are skipped, so each item is scored once.
-3. **AI gate** — see `ai_focused` above; `news.ai_terms` is the vocabulary.
-   All-caps terms (`AI`, `DTA`, `ISM`) match case-sensitively as whole words,
-   so "said" is not about AI and "tourism" does not mention the ISM.
-4. **Keyword relevance** — a 0–3 score and reason from `australia_terms`,
+3. **Format gate** — headlines matching `news.exclude_title_patterns` (live
+   blogs, podcasts, cartoons, newsletter round-ups) are dropped; the same news
+   arrives as a proper article. Publisher furniture at the end of an excerpt
+   (WordPress's "The post … appeared first on", the Guardian's "Continue
+   reading…" and newsletter plugs) is stripped too.
+4. **AI gate** — see `ai_focused` above; `news.ai_terms` is the vocabulary,
+   matched against the headline of a general feed's items. An excerpt-only
+   mention — a press-conference transcript that touched on AI — is noise for
+   the reader and tokens for the model. All-caps terms (`AI`, `DTA`, `ISM`)
+   match case-sensitively as whole words, so "said" is not about AI and
+   "tourism" does not mention the ISM.
+5. **Keyword relevance** — a 0–3 score and reason from `australia_terms`,
    `government_terms`, `policy_terms` and `risk_terms`, on the same rubric the
-   model gets (3 act on it, 2 directly relevant, 1 worth knowing, 0 skip). An
-   item from a general feed whose *headline* doesn't mention AI is capped at 1
-   — a press-conference transcript that touched on AI is not "act on it".
-5. **Cross-links** — an item matching a policy set's optional `keywords` in
+   model gets (3 act on it, 2 directly relevant, 1 worth knowing, 0 skip).
+6. **Cross-links** — an item matching a policy set's optional `keywords` in
    `policy_sets.json` is linked to it and appears on that policy's page.
-6. **One story, one item** — near-identical headlines fold together at merge
-   time; the model folds the rest (below). Other outlets are kept on the lead
-   item as `coverage`.
+7. **One story, one item** — near-identical headlines fold together, against
+   stories already held as well as within the run, *before* the model is
+   called, so it is never paid to read a story twice. The outlet's own copy
+   (a direct link and an excerpt) takes the lead over a Google News copy of
+   the same headline unless that copy has already been enriched. The model
+   folds the rest (below). Other outlets are kept on the lead item as
+   `coverage`.
+
+The gates are also the cost control. Measured over the week to 24 September
+2026 (an unusually heavy one), the 24 shipped feeds yield about 30 new items
+a day after gating — about 8 of them from the ABC, Guardian, SBS, Canberra
+Times, Government News, Conversation and provider-policy feeds added that
+day — at roughly 70 tokens of item text each, with 19 repeats a week folded
+before the model.
 
 Items keep a headline, link, a ≤320-character publisher excerpt with markup
 and images stripped, and our own TLDR — never the article body.

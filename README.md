@@ -67,10 +67,11 @@ health report to `health.json`, and an index over the archived analyses to
 `history.json`.
 
 **News and incidents (`news_watch.py`)** — RSS/Atom feeds and the OECD AI Incidents
-Monitor API, through the same shape of pipeline: a window, canonical-URL dedupe, an
-AI gate for general feeds, keyword relevance scoring, links to the monitored
-policies, then one batched Gemini pass that writes a TLDR, refines the score and
-folds repeat coverage of the same story. See [`BACKEND.md`](BACKEND.md#news-and-ai-incidents).
+Monitor API, through the same shape of pipeline: a window, canonical-URL dedupe,
+live blogs and podcasts dropped, an AI-in-the-headline gate for general feeds,
+keyword relevance scoring, links to the monitored policies, and repeats folded —
+all before one batched Gemini pass that writes a TLDR, refines the score and folds
+the remaining repeat coverage of the same story. See [`BACKEND.md`](BACKEND.md#news-and-ai-incidents).
 
 **Dashboard (`src/`)** — A React single-page app with five views: an **Overview**
 briefing (what's new since your last visit, what needs attention, a month of policy
@@ -95,10 +96,12 @@ selector to target the relevant part of the page). The current sets cover:
 - **Private Sector** — Google, Anthropic, Perplexity, and Midjourney legal policies
 
 News and incident feeds are configured in [`news_sources.json`](news_sources.json):
-Google News searches for Australian public-sector AI coverage and `gov.au` pages,
-the Prime Minister's media releases, The Mandarin, iTnews, the UK AI Security
-Institute and DSIT, the European Commission's digital strategy, the OECD.AI blog,
-OpenAI, Google and Microsoft, and three slices of the OECD AI Incidents Monitor.
+ABC News and Guardian Australia's AI coverage, SBS News, The Canberra Times, The
+Mandarin, Government News and iTnews; The Conversation and the OECD.AI blog for
+analysis; `gov.au` pages and the Prime Minister's media releases; Google News
+searches for Australian public-sector AI coverage, AI regulation and AI providers'
+policy changes; the UK AI Security Institute and DSIT, and the European Commission;
+OpenAI, Google and Microsoft; and three slices of the OECD AI Incidents Monitor.
 
 To monitor a new policy source, add an entry to `policy_sets.json`:
 

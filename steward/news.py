@@ -10,9 +10,13 @@ reader and noise.
 2. **Identity.** An item's id is a hash of its canonical URL (tracking
    parameters, fragments and `www.` removed), so the same story arriving
    from two feeds, or twice from one, is one item.
-3. **AI gate.** General feeds (a PM's media releases, the Mandarin) are only
-   admitted when the headline or excerpt is about AI at all. Sources that
-   are about AI by construction are marked `ai_focused` and skip it.
+3. **AI gate.** General feeds (a PM's media releases, the Mandarin, SBS) are
+   only admitted when the *headline* is about AI. An excerpt-only mention is
+   a press-conference transcript that touched on AI in passing — noise for
+   the reader and tokens for the model. Sources that are about AI by
+   construction are marked `ai_focused` and skip the gate. Live blogs,
+   podcasts and cartoons are dropped by title (`news.exclude_title_patterns`):
+   the same news arrives as a proper article.
 4. **Keyword relevance.** A 0–3 score with its reasons, built from the same
    Australian-government and policy vocabulary the model is given. It is the
    fallback when the model is unavailable, and the order in which items are
@@ -20,9 +24,11 @@ reader and noise.
 5. **Cross-links.** An item naming a vendor or agency whose policies are
    monitored is linked to that policy set — a dictionary lookup, no vectors.
 6. **One story, one item.** Near-identical headlines are folded together
-   here; the model folds the rest (fifteen outlets' takes on one event). The
-   other outlets are kept as `coverage` on the lead item, which is itself a
-   signal of how big the story is.
+   here, before the model is called, so it never pays to read a story twice;
+   the direct publisher's copy (with its excerpt) is preferred over a Google
+   News copy of the same headline. The model folds the rest (fifteen
+   outlets' takes on one event). The other outlets are kept as `coverage` on
+   the lead item, which is itself a signal of how big the story is.
 
 Newsletter and article text is third-party copyright going onto a public
 site, so an item stores a headline, a link, a short publisher excerpt and our
@@ -60,6 +66,8 @@ TOPICS = (
 )
 
 EXCERPT_CHARS = 320
+# Google News item links redirect through here rather than to the outlet.
+AGGREGATOR_HOST = "news.google.com"
 # Most other outlets listed against one story.
 MAX_COVERAGE = 20
 
@@ -69,8 +77,16 @@ _TRACKING_PARAMS = re.compile(
     re.IGNORECASE,
 )
 _WHITESPACE = re.compile(r"\s+")
-# WordPress appends this to every excerpt.
-_WP_FOOTER = re.compile(r"\s*The post .{1,300}? appeared first on .{1,120}?\.?\s*$", re.IGNORECASE)
+# Publisher furniture at the end of an excerpt: WordPress's "The post …
+# appeared first on …", and the Guardian's newsletter, app and live-blog
+# plugs. Stripped repeatedly from the end, so they cost neither the reader's
+# attention nor the model's tokens.
+_TRAILING_FURNITURE = (
+    re.compile(r"\s*The post .{1,300}? appeared first on .{1,120}?\.?\s*$", re.IGNORECASE),
+    re.compile(r"\s*Continue reading(?:\.\.\.|…)?\s*$", re.IGNORECASE),
+    re.compile(r"\s*Get our [\w\s-]{1,40}email\s*,\s*free app or daily news podcast\.?\s*$", re.IGNORECASE),
+    re.compile(r"\s*Follow (?:our [\w\s]{1,30}live blog for (?:the )?latest updates|the day[’']s news live)\.?\s*$", re.IGNORECASE),
+)
 
 
 # --- URLs and identity ----------------------------------------------------------
@@ -115,9 +131,13 @@ def clean_text(fragment: str) -> str:
         # Images are dropped with the markup: newsletter and blog excerpts are
         # full of tracking pixels, and nothing remote is ever rendered.
         fragment = BeautifulSoup(fragment, "html.parser").get_text(" ")
-    text = html.unescape(fragment)
-    text = _WP_FOOTER.sub("", text)
-    return _WHITESPACE.sub(" ", text).strip()
+    text = _WHITESPACE.sub(" ", html.unescape(fragment)).strip()
+    stripped = None
+    while stripped != text:
+        stripped = text
+        for pattern in _TRAILING_FURNITURE:
+            text = pattern.sub("", text)
+    return text.strip()
 
 
 def excerpt(text: str, limit: int = EXCERPT_CHARS) -> str:
@@ -183,6 +203,7 @@ class Vocabulary:
     government: Optional[re.Pattern]
     policy: Optional[re.Pattern]
     risk: Optional[re.Pattern]
+    excluded_titles: Tuple[re.Pattern, ...] = ()
 
     @classmethod
     def from_config(cls, news_cfg) -> "Vocabulary":
@@ -192,6 +213,7 @@ class Vocabulary:
             government=compile_terms(news_cfg.government_terms),
             policy=compile_terms(news_cfg.policy_terms),
             risk=compile_terms(news_cfg.risk_terms),
+            excluded_titles=tuple(re.compile(p) for p in news_cfg.exclude_title_patterns),
         )
 
 
@@ -288,6 +310,8 @@ def build_item(
     title = clean_text(split_publisher(entry.title, entry.publisher))
     if not title:
         return None, "no title"
+    if any(pattern.search(title) for pattern in vocab.excluded_titles):
+        return None, "live blog, podcast or similar"
 
     summary = clean_text(entry.summary)
     # Aggregator excerpts are often just the headline again, or a list of
@@ -299,7 +323,7 @@ def build_item(
     kind = KIND_INCIDENT if entry.incident else source.get("kind", KIND_NEWS)
     text = f"{title}\n{summary}"
     ai_focused = bool(source.get("ai_focused")) or kind == KIND_INCIDENT
-    if not ai_focused and not matches(vocab.ai, text):
+    if not ai_focused and not matches(vocab.ai, title):
         return None, "not about AI"
 
     related = related_policies(text, links)
@@ -312,12 +336,6 @@ def build_item(
         country_code=(incident or {}).get("country_code", ""),
         ai_focused=ai_focused,
     )
-    # A general feed item whose headline is not about AI mentions it in
-    # passing — a press conference transcript, say. The model can still
-    # raise it; keywords alone cannot tell.
-    if not ai_focused and not matches(vocab.ai, title) and relevance > 1:
-        relevance, reason = 1, "Mentions AI in passing"
-
     # A source can vouch for its own items (the UK AI Security Institute
     # publishes nothing that is merely "general AI news"), but never lift an
     # item that is not about AI at all.
@@ -332,7 +350,9 @@ def build_item(
         "source_id": source["id"],
         "source_name": source["name"],
         "category": source.get("category", ""),
-        "publisher": entry.publisher if entry.publisher and entry.publisher != source["name"] else "",
+        # The outlet as a reader knows it: named by the aggregator for a
+        # Google News item, by the source entry for a direct feed.
+        "publisher": entry.publisher or source.get("publisher", ""),
         "published": published.astimezone(timezone.utc).isoformat(),
         "first_seen": now.astimezone(timezone.utc).isoformat(),
         "summary": summary,
@@ -343,6 +363,8 @@ def build_item(
         "topics": [],
         "related_policies": related,
     }
+    if source.get("paywalled"):
+        item["paywalled"] = True
     if incident:
         item["incident"] = incident
     return item, ""
@@ -371,11 +393,24 @@ def add_coverage(lead: dict, other: dict) -> None:
             lead["related_policies"].append(file_id)
 
 
+def is_aggregated(item: dict) -> bool:
+    """Whether an item's link goes through an aggregator rather than to the outlet."""
+    return (urlparse(item.get("url", "")).hostname or "") == AGGREGATOR_HOST
+
+
+def _richness(item: dict) -> int:
+    """How much a copy of a story gives the reader: a direct link, then an excerpt."""
+    return (0 if is_aggregated(item) else 2) + (1 if item.get("summary") else 0)
+
+
 def merge_items(existing: Sequence[dict], incoming: Sequence[dict]) -> List[dict]:
     """Existing items plus new ones, one per id and one per near-identical headline.
 
-    When a later arrival repeats a story already held, the held item is kept
-    and the newcomer is recorded as coverage of it rather than listed twice.
+    When an arrival repeats a story already held, one copy leads and the other
+    is recorded as its coverage rather than listed twice. The held copy leads,
+    unless the newcomer is the outlet's own (a direct link and an excerpt
+    rather than a Google News redirect) and the held copy has not yet been
+    through the model — an enriched item is never displaced.
     """
     merged: Dict[str, dict] = {item["id"]: item for item in existing if item.get("id")}
     for item in incoming:
@@ -389,10 +424,14 @@ def merge_items(existing: Sequence[dict], incoming: Sequence[dict]) -> List[dict
             ),
             None,
         )
-        if duplicate is not None:
+        if duplicate is None:
+            merged[item["id"]] = item
+        elif _richness(item) > _richness(duplicate) and duplicate.get("relevance_source") != "model":
+            del merged[duplicate["id"]]
+            add_coverage(item, duplicate)
+            merged[item["id"]] = item
+        else:
             add_coverage(duplicate, item)
-            continue
-        merged[item["id"]] = item
     return sorted(merged.values(), key=lambda i: i.get("published", ""), reverse=True)
 
 

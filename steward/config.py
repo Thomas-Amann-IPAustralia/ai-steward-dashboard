@@ -8,6 +8,7 @@ a message naming the offending key.
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass, field, fields, is_dataclass
 from typing import Any, Dict, List, get_args, get_origin, get_type_hints
 
@@ -90,6 +91,8 @@ class NewsConfig:
     government_terms: List[str] = field(default_factory=list)
     policy_terms: List[str] = field(default_factory=list)
     risk_terms: List[str] = field(default_factory=list)
+    # Regexes; an item whose headline matches one is dropped before scoring.
+    exclude_title_patterns: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -244,6 +247,11 @@ def validate(cfg: StewardConfig) -> StewardConfig:
     _check(1 <= n.enrich_batch_size <= 50, "news.enrich_batch_size: must be between 1 and 50")
     _check(n.max_enrich_items >= 0, "news.max_enrich_items: must not be negative")
     _check(bool(n.ai_terms), "news.ai_terms: must not be empty")
+    for i, pattern in enumerate(n.exclude_title_patterns):
+        try:
+            re.compile(pattern)
+        except re.error as exc:
+            raise ConfigError(f"news.exclude_title_patterns[{i}]: not a valid regex ({exc})") from exc
 
     return cfg
 
