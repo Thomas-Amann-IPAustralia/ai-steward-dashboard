@@ -1,0 +1,291 @@
+[
+  {
+    "id": "gov-au-ai",
+    "name": "Australian Government websites",
+    "category": "Australian Government",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://news.google.com/rss/search?q=site:gov.au+%22artificial+intelligence%22+when:30d&hl=en-AU&gl=AU&ceid=AU:en",
+    "homepage": "https://www.australia.gov.au/",
+    "via": "Google News search",
+    "note": "Parliament, PM&C, Treasury and agency pages about AI. Most gov.au sites refuse automated feed readers, so they are reached through search. Only headlines that mention AI are kept."
+  },
+  {
+    "id": "pm-gov-au",
+    "name": "Prime Minister of Australia",
+    "publisher": "Prime Minister of Australia",
+    "category": "Australian Government",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.pm.gov.au/rss.xml",
+    "homepage": "https://www.pm.gov.au/media",
+    "note": "Media releases, speeches and transcripts. Only items that mention AI are kept."
+  },
+  {
+    "id": "abc-news-ai",
+    "name": "ABC News — AI",
+    "publisher": "ABC News",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.abc.net.au/news/feed/13876586/rss.xml",
+    "homepage": "https://www.abc.net.au/news/topic/ai",
+    "ai_focused": true,
+    "note": "The ABC's artificial intelligence topic."
+  },
+  {
+    "id": "guardian-au-ai",
+    "name": "Guardian Australia — AI",
+    "publisher": "The Guardian",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.theguardian.com/australia-news+technology/artificialintelligenceai/rss",
+    "homepage": "https://www.theguardian.com/technology/artificialintelligenceai",
+    "ai_focused": true,
+    "note": "Guardian stories tagged both Australia news and artificial intelligence. No API key needed."
+  },
+  {
+    "id": "sbs-news",
+    "name": "SBS News",
+    "publisher": "SBS News",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.sbs.com.au/news/topic/latest/feed",
+    "homepage": "https://www.sbs.com.au/news",
+    "note": "Only headlines that mention AI are kept."
+  },
+  {
+    "id": "canberra-times",
+    "name": "The Canberra Times",
+    "publisher": "The Canberra Times",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.canberratimes.com.au/rss.xml",
+    "homepage": "https://www.canberratimes.com.au/",
+    "paywalled": true,
+    "note": "The APS's home paper. Some stories need a subscription. Only headlines that mention AI are kept."
+  },
+  {
+    "id": "the-mandarin",
+    "name": "The Mandarin",
+    "publisher": "The Mandarin",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.themandarin.com.au/feed/",
+    "homepage": "https://www.themandarin.com.au/",
+    "note": "News for the Australian public sector. Only items that mention AI are kept."
+  },
+  {
+    "id": "government-news",
+    "name": "Government News",
+    "publisher": "Government News",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.governmentnews.com.au/feed/",
+    "homepage": "https://www.governmentnews.com.au/",
+    "note": "Local and state government news. Only headlines that mention AI are kept."
+  },
+  {
+    "id": "itnews-emerging-tech",
+    "name": "iTnews — Emerging Tech",
+    "publisher": "iTnews",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.itnews.com.au/RSS/rss.ashx?type=Category&ID=1415",
+    "homepage": "https://www.itnews.com.au/",
+    "note": "Only items that mention AI are kept."
+  },
+  {
+    "id": "itnews-security",
+    "name": "iTnews — Security",
+    "publisher": "iTnews",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.itnews.com.au/RSS/rss.ashx?type=Category&ID=32",
+    "homepage": "https://www.itnews.com.au/",
+    "note": "Only items that mention AI are kept."
+  },
+  {
+    "id": "au-public-sector-ai",
+    "name": "APS & government AI coverage",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://news.google.com/rss/search?q=(%22artificial+intelligence%22+OR+AI)+(%22Australian+Public+Service%22+OR+%22federal+government%22+OR+%22government+agency%22+OR+%22public+servants%22)+Australia+when:14d&hl=en-AU&gl=AU&ceid=AU:en",
+    "homepage": "https://news.google.com/",
+    "via": "Google News search",
+    "ai_focused": true,
+    "note": "Australian reporting on AI in and around government."
+  },
+  {
+    "id": "au-ai-regulation",
+    "name": "Australian AI regulation coverage",
+    "category": "Australian news",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://news.google.com/rss/search?q=(%22artificial+intelligence%22+OR+AI)+(regulation+OR+guardrails+OR+%22Privacy+Act%22+OR+legislation)+Australia+when:14d&hl=en-AU&gl=AU&ceid=AU:en",
+    "homepage": "https://news.google.com/",
+    "via": "Google News search",
+    "ai_focused": true,
+    "note": "Reporting on AI law, guardrails and privacy reform in Australia."
+  },
+  {
+    "id": "conversation-ai",
+    "name": "The Conversation — AI",
+    "publisher": "The Conversation",
+    "category": "Analysis",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://theconversation.com/au/topics/artificial-intelligence-ai-90/articles.atom",
+    "homepage": "https://theconversation.com/au/topics/artificial-intelligence-ai-90",
+    "ai_focused": true,
+    "note": "Analysis by researchers, from the Australian edition's AI topic."
+  },
+  {
+    "id": "oecd-ai-wonk",
+    "name": "OECD.AI Policy Observatory blog",
+    "publisher": "OECD.AI",
+    "category": "Analysis",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://wp.oecd.ai/feed/",
+    "homepage": "https://oecd.ai/en/wonk",
+    "ai_focused": true
+  },
+  {
+    "id": "uk-aisi",
+    "name": "UK AI Security Institute",
+    "publisher": "UK AI Security Institute",
+    "category": "International",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.gov.uk/government/organisations/ai-security-institute.atom",
+    "homepage": "https://www.aisi.gov.uk/",
+    "ai_focused": true,
+    "relevance_floor": 2
+  },
+  {
+    "id": "uk-dsit",
+    "name": "UK Department for Science, Innovation and Technology",
+    "publisher": "UK Government (DSIT)",
+    "category": "International",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://www.gov.uk/government/organisations/department-for-science-innovation-and-technology.atom",
+    "homepage": "https://www.gov.uk/government/organisations/department-for-science-innovation-and-technology",
+    "note": "Only items that mention AI are kept."
+  },
+  {
+    "id": "eu-digital-strategy",
+    "name": "European Commission — Digital Strategy",
+    "publisher": "European Commission",
+    "category": "International",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://digital-strategy.ec.europa.eu/en/rss.xml",
+    "homepage": "https://digital-strategy.ec.europa.eu/en",
+    "note": "Includes EU AI Act implementation. Only items that mention AI are kept."
+  },
+  {
+    "id": "provider-policy-coverage",
+    "name": "AI provider policy coverage",
+    "category": "AI providers",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://news.google.com/rss/search?q=%28Anthropic+OR+Claude+OR+OpenAI+OR+ChatGPT+OR+Gemini+OR+Copilot+OR+Perplexity+OR+Midjourney%29+%28%22terms+of+service%22+OR+%22terms+of+use%22+OR+%22privacy+policy%22+OR+%22usage+policy%22+OR+%22acceptable+use%22+OR+%22data+retention%22%29+when%3A14d&hl=en-AU&gl=AU&ceid=AU:en",
+    "homepage": "https://news.google.com/",
+    "via": "Google News search",
+    "ai_focused": true,
+    "note": "Reporting on changes to the terms, privacy and data-retention policies of AI services APS staff use."
+  },
+  {
+    "id": "openai-news",
+    "name": "OpenAI",
+    "publisher": "OpenAI",
+    "category": "AI providers",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://openai.com/news/rss.xml",
+    "homepage": "https://openai.com/news/",
+    "ai_focused": true
+  },
+  {
+    "id": "google-ai-blog",
+    "name": "Google — AI blog",
+    "publisher": "Google",
+    "category": "AI providers",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://blog.google/technology/ai/rss/",
+    "homepage": "https://blog.google/technology/ai/",
+    "ai_focused": true
+  },
+  {
+    "id": "microsoft-on-the-issues",
+    "name": "Microsoft On the Issues",
+    "publisher": "Microsoft",
+    "category": "AI providers",
+    "kind": "news",
+    "type": "rss",
+    "url": "https://blogs.microsoft.com/on-the-issues/feed/",
+    "homepage": "https://blogs.microsoft.com/on-the-issues/",
+    "note": "Microsoft's policy and legal blog. Only items that mention AI are kept."
+  },
+  {
+    "id": "oecd-aim-australia",
+    "name": "OECD AI Incidents Monitor — Australia",
+    "category": "AI incidents",
+    "kind": "incident",
+    "type": "oecd_aim",
+    "homepage": "https://oecd.ai/en/incidents",
+    "note": "Every incident and hazard the OECD records in Australia.",
+    "query": {
+      "countries": [
+        "AUS"
+      ],
+      "order_by": "date",
+      "lookback_days": 45,
+      "num_results": 100
+    }
+  },
+  {
+    "id": "oecd-aim-government",
+    "name": "OECD AI Incidents Monitor — government, worldwide",
+    "category": "AI incidents",
+    "kind": "incident",
+    "type": "oecd_aim",
+    "homepage": "https://oecd.ai/en/incidents",
+    "note": "The most-reported incidents in the government, security and defence sector over the last fortnight.",
+    "query": {
+      "industries": [
+        "Government, security, and defence"
+      ],
+      "order_by": "n_articles",
+      "lookback_days": 14,
+      "num_results": 30,
+      "min_articles": 10
+    }
+  },
+  {
+    "id": "oecd-aim-global",
+    "name": "OECD AI Incidents Monitor — most reported",
+    "category": "AI incidents",
+    "kind": "incident",
+    "type": "oecd_aim",
+    "homepage": "https://oecd.ai/en/incidents",
+    "note": "The most widely reported AI incidents worldwide over the last ten days.",
+    "query": {
+      "order_by": "n_articles",
+      "lookback_days": 10,
+      "num_results": 20,
+      "min_articles": 150
+    }
+  }
+]

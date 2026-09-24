@@ -50,6 +50,12 @@ validation:
     - "Access denied"
     - "Attention Required! | Cloudflare"
     - "429 Too Many Requests"
+    # Web application firewall pages. digital.gov.au serves the first to
+    # GitHub's runners; at 256 characters it was being reported as merely
+    # "too short" rather than as the block it is.
+    - "Your request has been blocked"
+    - "The requested URL was rejected"
+    - "Pardon Our Interruption"
 
 normalisation:
   # Regexes stripped from every document before hashing. Deliberately empty:
@@ -75,6 +81,10 @@ diff:
   context_lines: 3
   # Hard ceiling on the diff text handed to the model.
   max_diff_chars: 40000
+  # How many earlier versions of each document are remembered. A capture that
+  # matches one of them is recorded as a revert rather than re-analysed — the
+  # pattern a CDN serving two variants of a page produces. 0 turns this off.
+  revert_memory: 5
 
 fingerprint:
   # Scanned across changed lines only, and passed to the model as context.
@@ -110,3 +120,161 @@ retention:
   log_days: 365
   # Days of per-source records kept in runs.jsonl.
   run_log_days: 90
+
+news:
+  # The news and AI-incident feed (news_sources.json lists the sources).
+  enabled: true
+  # Days an item stays in news/feed.json before it moves to news/archive/.
+  window_days: 45
+  # Items scoring below this on the 0-3 relevance scale are not kept. The
+  # dashboard shows 2 and above by default, with 1s one click away.
+  #   3 act on it · 2 directly relevant context · 1 worth knowing · 0 skip
+  min_relevance: 1
+  # Most items one source may add in one run.
+  max_new_items_per_source: 40
+  # Have the model write a TLDR and refine the relevance score. Without it
+  # (or without GEMINI_API_KEY) items keep their keyword score and the
+  # publisher's own excerpt.
+  enrich: true
+  # Items per model call, and the most items enriched in one run.
+  enrich_batch_size: 20
+  max_enrich_items: 120
+
+  # Headlines matching any of these regexes are dropped before scoring and
+  # before the model sees them: live blogs, podcasts, cartoons and newsletter
+  # round-ups repeat news that also arrives as a proper article. Anchor them
+  # (^ / $) so "live facial recognition" is not mistaken for a live blog.
+  exclude_title_patterns:
+    - '(?i)^live:'
+    - '(?i)\bnews live:'
+    - '(?i)\s[–-]\s*live$'
+    - '(?i)\bas it happened$'
+    - '(?i)\bpodcast\b'
+    - '(?i)\s[–-]\s*the latest$'
+    - '(?i)\s[–-]\s*cartoon$'
+    - '(?i)^morning mail:'
+    - '(?i)^afternoon update:'
+    - '(?i)\bquiz\b'
+
+  # Vocabulary shared by the deterministic gates and scorer. An all-caps term
+  # is matched case-sensitively as a whole word (so AI is not found in
+  # "said"); anything else is matched as a whole word ignoring case.
+  #
+  # Items from sources not marked "ai_focused" are only admitted when one of
+  # these appears in the headline itself.
+  ai_terms:
+    - AI
+    - A.I.
+    - AGI
+    - LLM
+    - LLMs
+    - GenAI
+    - artificial intelligence
+    - generative AI
+    - machine learning
+    - large language model
+    - large language models
+    - chatbot
+    - chatbots
+    - ChatGPT
+    - Copilot
+    - Gemini
+    - Claude
+    - OpenAI
+    - Anthropic
+    - DeepMind
+    - Perplexity
+    - Midjourney
+    - deepfake
+    - deepfakes
+    - facial recognition
+    - automated decision-making
+    - algorithmic
+    - neural network
+    - agentic
+    - AI agent
+    - AI agents
+  australia_terms:
+    - Australia
+    - Australian
+    - Australians
+    - Commonwealth
+    - Canberra
+    - APS
+    - NSW
+    - New South Wales
+    - Victoria
+    - Victorian
+    - Queensland
+    - Western Australia
+    - South Australia
+    - Tasmania
+    - Tasmanian
+    - ACT Government
+    - Northern Territory
+    - Albanese
+  government_terms:
+    - government
+    - public service
+    - public servants
+    - agency
+    - agencies
+    - department
+    - minister
+    - Senate
+    - Parliament
+    - parliamentary
+    - inquiry
+    - DTA
+    - Digital Transformation Agency
+    - OAIC
+    - Information Commissioner
+    - ASD
+    - ACSC
+    - Australian Signals Directorate
+    - eSafety
+    - APSC
+    - National Archives
+    - Department of Industry
+    - National AI Centre
+    - Treasury
+    - Services Australia
+    - Robodebt
+  policy_terms:
+    - policy
+    - regulation
+    - regulator
+    - regulatory
+    - legislation
+    - law
+    - guidance
+    - guardrails
+    - framework
+    - standards
+    - consultation
+    - Privacy Act
+    - EU AI Act
+    - AI Act
+    - procurement
+    - assurance
+    - transparency statement
+    - terms of service
+    - privacy policy
+    - governance
+  risk_terms:
+    - breach
+    - incident
+    - misuse
+    - scam
+    - scams
+    - hallucination
+    - hallucinated
+    - bias
+    - discrimination
+    - lawsuit
+    - sued
+    - fined
+    - safety
+    - security
+    - vulnerability
+    - privacy

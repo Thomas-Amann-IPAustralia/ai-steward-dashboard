@@ -89,6 +89,59 @@ def load_records(path: str = RUN_LOG_FILE, days: int = 90) -> List[Dict[str, Any
     return _load_recent(path, days)
 
 
+# How each per-document outcome is counted in the activity summary.
+# "filtered" is a would-be change stopped before it could cost a model call or
+# badge the dashboard; "rejected" is a capture that was not the document.
+_ACTIVITY_BUCKETS = {
+    "not_modified": "unchanged",
+    "unchanged": "unchanged",
+    "changed": "changed",
+    "cosmetic": "filtered",
+    "reverted": "filtered",
+    "suspect_scrape": "rejected",
+    "fetch_failed": "failed",
+    "rebaselined": "baseline",
+    "new": "baseline",
+}
+_ACTIVITY_KEYS = (
+    "runs", "checks", "unchanged", "changed", "filtered", "cosmetic", "reverted",
+    "rejected", "failed", "baseline", "analysed", "material", "declined",
+)
+
+
+def activity_summary(records: Iterable[Dict[str, Any]]) -> Dict[str, Dict[str, int]]:
+    """Per-set counts of what the gates did with each check.
+
+    The steward sees one badge per set; this is the evidence behind it — how
+    many checks ran, how many would-be changes were set aside as cosmetic or
+    a revert, how many captures were rejected, and how many reached the model.
+    """
+    summary: Dict[str, Dict[str, int]] = {}
+    runs: Dict[str, set] = {}
+    for entry in records:
+        set_name = entry.get("set_name")
+        if not set_name:
+            continue
+        counts = summary.setdefault(set_name, dict.fromkeys(_ACTIVITY_KEYS, 0))
+        runs.setdefault(set_name, set()).add(entry.get("run_id"))
+        outcome = entry.get("outcome")
+        if entry.get("llm_called"):
+            if outcome == "analysed":
+                counts["analysed"] += 1
+                key = "declined" if entry.get("verdict") == "no_material_change" else "material"
+                counts[key] += 1
+            continue
+        counts["checks"] += 1
+        bucket = _ACTIVITY_BUCKETS.get(outcome)
+        if bucket:
+            counts[bucket] += 1
+        if outcome in ("cosmetic", "reverted"):
+            counts[outcome] += 1
+    for set_name, ids in runs.items():
+        summary[set_name]["runs"] = len(ids)
+    return summary
+
+
 def error_rate(records: Iterable[Dict[str, Any]]) -> float:
     records = list(records)
     if not records:

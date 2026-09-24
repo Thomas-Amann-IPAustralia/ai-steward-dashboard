@@ -1,11 +1,18 @@
 # AI Steward Dashboard
 
-A monitoring tool that helps Australian Public Servants keep track of changes to
-GenAI platform policies, terms of service, and relevant AI governance guidance.
+A one-stop dashboard that helps Australian Public Servants keep their finger on the
+pulse of AI: changes to the AI policies and terms of service they rely on, the news
+around them, and AI incidents — all checked daily.
 
-The dashboard automatically watches a curated set of government and private-sector
-policy pages, detects when they change, uses Google Gemini to summarise and
-prioritise each change, and publishes the results as a searchable web dashboard.
+- **Policy watch** — a curated set of government and private-sector policy pages is
+  checked daily; genuine changes in wording are summarised and prioritised by Google
+  Gemini, and everything else (reformatting, block pages, flip-flops) is filtered out
+  before it can raise an alert.
+- **News** — Australian government announcements, public-sector and technology media,
+  overseas regulators and the AI providers themselves, filtered to AI, ranked for
+  relevance to APS work, and folded so one story appears once.
+- **AI incidents** — the OECD AI Incidents Monitor, sliced to incidents in Australia,
+  government-sector incidents worldwide, and the most widely reported.
 
 🔗 **Live dashboard:** https://thomas-amann-ipaustralia.github.io/ai-steward-dashboard
 
@@ -38,7 +45,11 @@ Each gate exists because skipping it produced a false alert. In order:
    rather than per policy set. Normalisation is idempotent.
 
 5. **Diff and the cosmetic gate** — `difflib.unified_diff` over the normalised
-   text. An empty diff stops here: no model call, `last_amended` untouched.
+   text, comparing *wording*: blocks that differ only in spacing, line wrapping,
+   quote or dash style, capitalisation or how a link is written are set aside
+   before the diff is built, and a page returning to a version already seen is
+   recorded as a revert rather than re-analysed. Nothing substantive left stops
+   here: no model call, `last_amended` untouched.
 
 6. **Fingerprint** — a regex scan of the changed lines only, tagging money,
    dates, percentages, section references, obligations and a steward watchlist.
@@ -46,17 +57,28 @@ Each gate exists because skipping it produced a false alert. In order:
 
 7. **Analysis** — only the diff is sent, not two 50,000-character documents. The
    response must satisfy a schema (`verdict`, `summary`, `analysis`, `priority`,
-   with both enums checked); one retry, then log and skip. The model may return
-   `no_material_change`, in which case the set is not badged and `last_amended`
-   does not move. The analysis timestamp is stamped in code.
+   with both enums checked) that is also enforced by the API; one retry, then log
+   and skip. An overloaded model is waited out rather than counted as a failure.
+   The model may return `no_material_change`, in which case the set is not badged
+   and `last_amended` does not move. The analysis timestamp is stamped in code.
 
 Alongside that, each run writes a record per document to `runs.jsonl`, a source
 health report to `health.json`, and an index over the archived analyses to
 `history.json`.
 
-**Dashboard (`src/`)** — A React single-page app that leads with the diff, shows
-which document in a set changed, surfaces sources that are failing to read, and
-renders the archive as a timeline.
+**News and incidents (`news_watch.py`)** — RSS/Atom feeds and the OECD AI Incidents
+Monitor API, through the same shape of pipeline: a window, canonical-URL dedupe,
+live blogs and podcasts dropped, an AI-in-the-headline gate for general feeds,
+keyword relevance scoring, links to the monitored policies, and repeats folded —
+all before one batched Gemini pass that writes a TLDR, refines the score and folds
+the remaining repeat coverage of the same story. See [`BACKEND.md`](BACKEND.md#news-and-ai-incidents).
+
+**Dashboard (`src/`)** — A React single-page app with five views: an **Overview**
+briefing (what's new since your last visit, what needs attention, a month of policy
+changes, top news and Australian incidents, and a copyable weekly briefing);
+**Policy watch** (the diff first, which document changed, the change history, related
+news); **News** and **AI incidents** (filterable, shareable views); and **Sources**
+(every source's health, and how many false changes were filtered).
 
 The whole pipeline is orchestrated by GitHub Actions, which runs the monitor daily,
 commits any new snapshots, diffs and analyses, rebuilds the React app, and deploys
@@ -73,7 +95,15 @@ selector to target the relevant part of the page). The current sets cover:
 - **State Government** — NSW Government AI Guidance
 - **Private Sector** — Google, Anthropic, Perplexity, and Midjourney legal policies
 
-To monitor a new source, add an entry to `policy_sets.json`:
+News and incident feeds are configured in [`news_sources.json`](news_sources.json):
+ABC News and Guardian Australia's AI coverage, SBS News, The Canberra Times, The
+Mandarin, Government News and iTnews; The Conversation and the OECD.AI blog for
+analysis; `gov.au` pages and the Prime Minister's media releases; Google News
+searches for Australian public-sector AI coverage, AI regulation and AI providers'
+policy changes; the UK AI Security Institute and DSIT, and the European Commission;
+OpenAI, Google and Microsoft; and three slices of the OECD AI Incidents Monitor.
+
+To monitor a new policy source, add an entry to `policy_sets.json`:
 
 ```json
 {
@@ -89,6 +119,7 @@ To monitor a new source, add an entry to `policy_sets.json`:
 
 ```
 main.py              # Orchestrator: sequences the gates, keeps per-document state
+news_watch.py        # Orchestrator for the news and incident feed
 steward/             # The gates themselves
   config.py          #   steward_config.yaml, loaded and validated at startup
   fetching.py        #   conditional GET, trafilatura, Selenium fallback
@@ -99,8 +130,12 @@ steward/             # The gates themselves
   runlog.py          #   one record per document per run
   health.py          #   source status and alerting
   history.py         #   the index over logs/
-steward_config.yaml  # Thresholds, watchlist, retention — validated, fail-fast
+  feeds.py           #   RSS/Atom parsing and the OECD AIM API
+  news.py            #   news gates: window, dedupe, AI gate, relevance, cross-links
+  news_enrichment.py #   the batched model pass over news items
+steward_config.yaml  # Thresholds, watchlist, news vocabulary — validated, fail-fast
 policy_sets.json     # Configuration of monitored policy sources
+news_sources.json    # Configuration of news and incident feeds
 hashes.json          # Per-set and per-document state, read directly by the app
 health.json          # Which sources are actually being read successfully
 history.json         # Index over the archived analyses in logs/
@@ -109,6 +144,7 @@ snapshots/           # Latest normalised text — per set, and per document
 diffs/               # Unified diff behind the most recent analysis per set
 analysis/            # Latest AI analysis (JSON) per policy set
 logs/                # Archived snapshots, diffs and analyses of past versions
+news/                # feed.json (what the app reads), archive/, state.json
 tests/               # Pipeline tests (stdlib unittest, no network or API key)
 requirements.txt     # Python dependencies
 src/                 # React dashboard (components, hooks, utils)
@@ -142,15 +178,19 @@ python main.py
 # Run every gate and report what would happen, changing nothing on disk
 python main.py --dry-run
 
-# Limit the run to one policy set
+# Limit the run to one policy set (skips the news feed)
 python main.py --only "Anthropic Legal Policies"
+
+# Refresh just the news and incident feed, or dry-run one feed
+python news_watch.py
+python news_watch.py --dry-run --only oecd-aim-australia
 
 # Run the pipeline tests (no network, no browser, no API key needed)
 python -m unittest discover -s tests
 ```
 
 The script updates `hashes.json`, `health.json`, `history.json` and `runs.jsonl`,
-and writes to `snapshots/`, `diffs/` and `analysis/`. On the first run for a policy
+writes to `snapshots/`, `diffs/` and `analysis/`, then refreshes `news/`. On the first run for a policy
 set it captures an initial snapshot; on later runs it calls Gemini only when the
 normalised content has actually changed.
 
@@ -178,7 +218,7 @@ npm run build
 ```
 
 The React app fetches `hashes.json`, `health.json`, `history.json`, `analysis/`,
-`diffs/` and `snapshots/` from the site root, so these data files need to be
+`diffs/`, `snapshots/` and `news/feed.json` from the site root, so these data files need to be
 present in the build for the dashboard to display content.
 
 ```bash
@@ -192,7 +232,8 @@ Two GitHub Actions workflows live in `.github/workflows/`:
 
 - **`update_checker.yml`** — Runs daily at midnight UTC (and on manual dispatch or
   pushes to `main` that touch app/config files). It installs Chrome and
-  dependencies, runs the pipeline tests, runs `main.py`, commits any changes,
+  dependencies, runs the pipeline tests, runs `main.py` and then `news_watch.py`,
+  commits any changes,
   opens or updates a `source-health` issue when a source is failing, builds the
   React app, and deploys it to GitHub Pages. Requires the `GEMINI_API_KEY` secret
   (and optional `PROXY_*` secrets).

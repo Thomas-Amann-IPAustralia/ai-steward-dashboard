@@ -280,6 +280,16 @@ class AGenuineChangeStillGetsThrough(RunHarness):
         self.assertTrue(stored["date_time"].startswith(entry["last_checked"][:4]))
         self.assertEqual(stored["date_time"], entry["last_checked"])
 
+    def test_dry_run_records_no_baselines_either(self):
+        # A new or re-baselined document with no diff used to have its
+        # snapshot written even under --dry-run.
+        fresh = dict(PERPLEXITY_SET, setName="Brand New Set")
+        before = sorted(os.listdir(main.SNAPSHOTS_DIR))
+        log = runlog.RunLog("test")
+        main.process_policy_set(fresh, {}, self.cfg, log, True)
+        self.assertEqual(sorted(os.listdir(main.SNAPSHOTS_DIR)), before)
+        self.assertEqual(os.listdir(main.ANALYSIS_DIR), [])
+
     def test_dry_run_changes_nothing(self):
         entry, _ = self.run_set(self.previous, dry_run=True)
         self.assertEqual(self.llm_calls, [])

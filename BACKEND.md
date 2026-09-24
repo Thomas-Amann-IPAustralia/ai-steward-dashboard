@@ -89,6 +89,13 @@ overwrite anything or reach the model:
 - **Within `[shrink_ratio, growth_ratio]` of the stored length for that same
   URL** (default 60%–250%), when a prior length exists.
 
+The size-delta check only runs against a stored baseline that itself passes
+the absolute checks. A baseline that is a block page or a stub (digital.gov.au
+spent months stored as a 347-character Chrome error page) is ignored, and the
+first plausible capture re-baselines the document (`DOC_REBASELINED`, reason
+"stored baseline was not a valid capture") instead of being rejected forever
+for "growing" fifty-fold.
+
 A capture that fails any of these is recorded with status `suspect_scrape`:
 the stored snapshot is left untouched, no diff is computed, no model call
 happens, and `consecutive_failures` increments (which is what eventually
@@ -119,17 +126,41 @@ The normalised text is SHA-256 hashed (`content_hash`). That hash, compared
 against the document's stored hash from `hashes.json`, is what decides
 `unchanged` vs. "needs a diff."
 
-### 5. Diff and the cosmetic gate (`steward/diffing.py`)
+### 5. Revert check (`main.py`)
 
-If the hash changed, `difflib.unified_diff` runs between the *stored*
-normalised text and the *new* normalised text, with `diff.context_lines`
-lines of context either side of each change (default 3). If the resulting
-diff has zero added and zero removed lines — possible if two different texts
-normalise to the same string in some edge case, or as a defence-in-depth
-check — the document is treated as `unchanged` and nothing proceeds further.
-No model call, `last_amended` untouched.
+Each document remembers the last `diff.revert_memory` hashes it has held
+(`previous_hashes` in `hashes.json`, default 5). A capture whose hash matches
+one of them is going *back* to a version already seen — the day-after-day
+flip-flop a CDN serving two variants, or an A/B test, produces. It is recorded
+as `reverted`, becomes the baseline, and is **not** re-analysed; the set's
+`last_review` says which document reverted, and the set is not badged.
 
-### 6. Fingerprint (`steward/diffing.py`)
+### 6. Diff and the cosmetic gate (`steward/diffing.py`)
+
+If the hash changed, the cosmetic gate decides whether the *wording* did.
+Each changed block of lines is reduced to a canonical form
+(`diffing.canonical`): Unicode NFKC, curly quotes and every dash folded to
+ASCII, case folded, `https://`/`www.`/trailing slashes dropped from links,
+all whitespace — line breaks included — collapsed, and spaces around
+punctuation removed. A block whose canonical form did not move is restored
+to its stored wording before the diff is built; matching runs are also peeled
+off the edges of larger blocks, so a re-wrapped paragraph next to a real edit
+leaves only the edit. `canonical` is for comparison only and is never stored.
+
+Then `difflib.unified_diff` runs between the stored text and that
+cosmetics-restored text, with `diff.context_lines` lines of context (default
+3). If nothing substantive is left, the document is recorded as `cosmetic`:
+the new text becomes the baseline, `cosmetic_lines` says how much moved, and
+there is no model call and no badge. Replayed against the archive, this gate
+stops four of the six August–September 2026 model calls that came back
+`no_material_change` (Google's em-dash spacing ×3, an NSW link gaining
+`https://`); both genuine amendments in that period still reach the model.
+
+A related fix sits upstream in `fetching.decode_body`: a response without a
+declared charset is decoded as UTF-8 rather than requests' ISO-8859-1
+default, which is what had Google's page alternating between `—` and `â`.
+
+### 7. Fingerprint (`steward/diffing.py`)
 
 A regex scan runs over *only the changed lines* (not the whole document),
 tagging things like `money`, `date`, `percentage`, `duration`,
@@ -142,7 +173,7 @@ record. **The fingerprint never gates anything** — a real content change is
 analysed regardless of whether it matches the watchlist, and a watchlist hit
 never forces a change to be analysed if the diff itself was empty.
 
-### 7. Analysis — the one expensive call (`steward/analysis.py`)
+### 8. Analysis — the one expensive call (`steward/analysis.py`)
 
 This only happens once per **policy set** per run, after every document in
 that set has been through steps 1–6, and only if at least one document in the
@@ -164,7 +195,9 @@ with exactly four keys:
 }
 ```
 
-The response is parsed and schema-checked (`parse_and_validate`): both enums
+The same schema is passed to the API as a `response_schema`, so the model is
+constrained to it rather than merely asked; the response is still parsed and
+schema-checked (`parse_and_validate`): both enums
 are checked against a fixed set of permitted values, `summary`/`analysis`
 must be non-empty strings, and a `no_material_change` verdict is forced to
 `priority: low` regardless of what the model said. If validation fails, one
@@ -173,6 +206,13 @@ fails, the analysis is logged and skipped — the document's prior hash is
 restored (`_revert_changed_documents`) so the *same* diff is retried on the
 next run rather than being silently lost, and `schema_failures` increments
 (which can raise a health alert — see below).
+
+An overloaded or rate-limited API (HTTP 429/5xx) is waited out with a backoff
+(15 s, 45 s, 90 s) inside a single attempt rather than spending the one
+schema retry — two of the three "schema failures" in September 2026 were a
+503 retried within the same second. If the model stays unavailable the run
+records `api_unavailable`, restores the prior hashes so the change is retried
+next run, and does **not** count it towards `schema_failures`.
 
 The timestamp on the analysis is stamped by `main.py`, never accepted from
 the model — a prior version of this tool asked the model for a date and it
@@ -208,6 +248,10 @@ these directly over HTTP from the deployed site — there's no API layer.
 | `analysis/<file_id>.json` | `main.py` | frontend | Latest AI analysis for a set |
 | `logs/<file_id>_<stamp>_{analysis.json,snapshot.txt,diff.txt}` | `main.py` | `steward/history.py`, frontend (on demand) | Archived prior versions, one triple per analysed change |
 | `health_alert.md` | `steward/health.py` | GitHub Actions workflow | Only written when there's something to alert on; becomes a GitHub issue |
+| `news_sources.json` | you | `news_watch.py` | The news and incident feeds — see [News and AI incidents](#news-and-ai-incidents) |
+| `news/feed.json` | `news_watch.py` | frontend | News and incident items inside the window, plus per-feed health |
+| `news/archive/YYYY-MM.json` | `news_watch.py` | — | Items that aged out of the window, by month published |
+| `news/state.json` | `news_watch.py` | `news_watch.py` (next run) | Per-feed ETag/Last-Modified and ids already seen; not deployed |
 
 `file_id` is `slugify_set_name(setName)` — the policy set name with
 everything except letters/digits/hyphens collapsed to underscores
@@ -246,7 +290,8 @@ same trailing path segment on different sets don't collide.
         "http_status": 200, "fetch_ms": 812,
         "consecutive_failures": 0,
         "last_checked": "...", "last_success": "...", "last_error": "",
-        "status": "unchanged | changed | new | rebaselined | not_modified | suspect_scrape | fetch_failed"
+        "previous_hashes": ["...", "..."],   // most recent first, for the revert check
+        "status": "unchanged | changed | cosmetic | reverted | new | rebaselined | not_modified | suspect_scrape | fetch_failed"
       }
     }
   }
@@ -275,7 +320,9 @@ fallback to a default for a key that's present but wrong. Sections:
   purpose — a pattern broad enough to apply everywhere is broad enough to
   eat a real amendment) and `per_source_noise` (regexes keyed by hostname).
 - **`diff`** — `context_lines`, `max_diff_chars` (hard ceiling on what's sent
-  to the model; longer diffs are truncated with a marker).
+  to the model; longer diffs are truncated with a marker), `revert_memory`
+  (how many earlier versions per document the revert check remembers; 0
+  disables it).
 - **`fingerprint`** — `watchlist` (context terms, never a gate — see above).
 - **`health`** — `consecutive_failure_threshold` (when a document flips to
   `failing`), `error_rate_threshold` (share of documents failing in one run
@@ -283,6 +330,13 @@ fallback to a default for a key that's present but wrong. Sections:
 - **`retention`** — `log_days` (how long archives stay in `logs/` before
   `steward/history.py:prune` deletes them), `run_log_days` (same, for
   `runs.jsonl`).
+- **`news`** — `enabled`, `window_days` (how long items stay in
+  `news/feed.json`), `min_relevance` (items scoring below it are not kept),
+  `max_new_items_per_source`, `enrich` / `enrich_batch_size` /
+  `max_enrich_items` (the model pass), `exclude_title_patterns` (regexes for
+  live blogs, podcasts and similar, validated at startup), and the vocabulary
+  lists `ai_terms`, `australia_terms`, `government_terms`, `policy_terms`,
+  `risk_terms` used by the AI gate and the keyword scorer.
 
 ## Health and alerting (`steward/health.py`)
 
@@ -295,6 +349,12 @@ its documents. `steward/health.py:build_report` also raises a
 and a `run_error_rate` alert (too large a share of *all* documents failed in
 one run — a signal something systemic broke, like an IP getting blocked
 everywhere).
+
+`health.json` also carries `activity`: per-set counts over the last 30 days
+of checks, would-be changes set aside (`cosmetic` + `reverted`), captures
+rejected, and changes analysed / judged material, built from `runs.jsonl` by
+`runlog.activity_summary`. The dashboard's Sources page and each policy page
+show it, so the filtering is visible rather than taken on trust.
 
 `main.py` writes `health.json` for the frontend every run, and writes
 `health_alert.md` only when `report["alerts"]` is non-empty (and deletes it
@@ -312,9 +372,13 @@ motivated it).
 python -m unittest discover -s tests -v
 ```
 
-`tests/test_pipeline.py` and `tests/test_run.py` are stdlib `unittest`, need
-no network, browser, or `GEMINI_API_KEY`, and run in CI before `main.py` is
-even invoked. They're not a coverage exercise — several pin a specific
+`tests/test_pipeline.py`, `tests/test_run.py`, `tests/test_filtering.py` and
+`tests/test_news.py` are stdlib `unittest`, need no network, browser, or
+`GEMINI_API_KEY`, and run in CI before `main.py` is even invoked.
+`test_filtering.py` pins the September 2026 false changes (the charset
+flip-flop, em-dash spacing, a link gaining `https://`, the poisoned
+digital.gov.au baseline, a 503 spent as a schema retry); `test_news.py` pins
+the news gates and the model contract. They're not a coverage exercise — several pin a specific
 production incident so it can't silently reoccur, most notably: normalisation
 idempotency, the cosmetic-diff gate producing no model call, the size-delta
 guard rejecting a real archived block-page capture
@@ -352,6 +416,10 @@ If you touch `steward/validation.py`, `steward/content.py`, or
    - `category` groups sets in the sidebar. Reuse an existing one (`"Australian
      Government"`, `"State Government"`, `"Private Sector"`) unless you're
      genuinely introducing a new grouping.
+   - `keywords` (optional) — names that identify this provider or agency in
+     the news (`["Anthropic", "Claude"]`). A news item or incident matching
+     one is linked to the set and listed on its page. All-caps terms match
+     case-sensitively as whole words, so `ISM` does not match "tourism".
    - Each URL entry supports:
      - `"selector"` (optional) — a CSS selector narrowing extraction to one
        part of the page (e.g. `"article"`, `"div.main-content"`,
@@ -437,19 +505,185 @@ source — not just a new one — bump `PIPELINE_VERSION` in
 re-baseline silently (`DOC_REBASELINED`) instead of reporting a change that
 didn't really happen.
 
+## News and AI incidents
+
+The policy monitor answers "did a document I rely on change?". The news
+pipeline (`news_watch.py`) answers the question after it: "what else happened
+that I should know about?". It follows the same discipline — deterministic
+gates first, one batched model call last, the orchestrator the only thing
+that writes files — and runs as its own step after the policy check.
+
+### Sources (`news_sources.json`)
+
+Each entry is one feed:
+
+```json
+{
+  "id": "the-mandarin",
+  "name": "The Mandarin",
+  "publisher": "The Mandarin",
+  "category": "Australian news",
+  "kind": "news",
+  "type": "rss",
+  "url": "https://www.themandarin.com.au/feed/",
+  "homepage": "https://www.themandarin.com.au/",
+  "note": "Shown on the Sources page."
+}
+```
+
+- `id` — lower-case letters, digits and hyphens; the key in `news/state.json`.
+- `name` — the feed's name on the Sources page; `publisher` (optional) — the
+  outlet as readers know it, shown on each story ("ABC News" for the feed
+  "ABC News — AI"). Google News items carry their own publisher.
+- `category` — the News page's filter: `Australian Government`,
+  `Australian news`, `Analysis`, `International`, `AI providers` (incident
+  sources use `AI incidents`).
+- `kind` — `news` or `incident`.
+- `type` — `rss` (RSS 2.0, RSS 1.0 and Atom) or `oecd_aim`.
+- `ai_focused` (optional) — the feed is about AI by construction (the ABC's
+  AI topic, an AI lab's blog, a search for "artificial intelligence"), so its
+  items skip the AI gate. Leave it off for general feeds: their items are
+  only admitted when the *headline* mentions AI.
+- `paywalled` (optional) — stories are marked "Subscriber" on the dashboard.
+- `relevance_floor` (optional, 0–3) — lift every AI item from this source to
+  at least this score (the UK AI Security Institute publishes nothing that is
+  merely "general AI news").
+- `via` (optional) — shown as "via …" (used for Google News searches).
+
+Many `gov.au` sites (DTA, digital.gov.au, cyber.gov.au, industry.gov.au,
+eSafety) refuse automated feed readers from datacentre addresses, including
+GitHub's runners. They are reached through Google News searches restricted to
+`site:gov.au`, whose headlines must mention AI to be kept.
+
+The Guardian needs no API key: its tag pages have RSS, and a "combiner" URL
+intersects two tags — `australia-news+technology/artificialintelligenceai/rss`
+is Guardian Australia's AI coverage. The ABC's topic feeds are addressed by
+the topic's numeric id (`/news/feed/13876586/rss.xml` is the AI topic; the id
+is in the topic page's source as its `coremedia://channel/…` uri).
+
+Feeds in the shipped list, by category: **Australian Government** — `gov.au`
+pages via Google News, the Prime Minister's media releases; **Australian
+news** — ABC News (AI topic), Guardian Australia (AI), SBS News, The Canberra
+Times (paywalled), The Mandarin, Government News, iTnews, and two Google News
+searches (APS and government AI coverage; AI regulation); **Analysis** — The
+Conversation (AI topic), the OECD.AI blog; **International** — the UK AI
+Security Institute and DSIT, the European Commission; **AI providers** — a
+Google News search for coverage of provider terms, privacy and data-retention
+changes, OpenAI, Google and Microsoft; **AI incidents** — three OECD AIM
+slices.
+
+An `oecd_aim` source carries a `query` for the [OECD AI Incidents
+Monitor](https://oecd.ai/en/incidents) search API (the endpoint oecd.ai's own
+incident browser posts to):
+
+```json
+"query": {
+  "countries": ["AUS"],
+  "industries": ["Government, security, and defence"],
+  "order_by": "date | n_articles | score",
+  "lookback_days": 45,
+  "num_results": 100,
+  "min_articles": 1
+}
+```
+
+AIM records several hundred incidents a month, and the API returns at most
+100 per request, so the shipped config asks for three slices: every incident
+located in Australia, the most-reported government-sector incidents worldwide
+over a fortnight, and the handful reported most widely overall.
+
+### Gates (`steward/news.py`)
+
+1. **Window** — entries published before `news.window_days` are ignored, not
+   ingested and archived (OpenAI's feed alone carries 1,200 items).
+2. **Identity** — an item's id is a hash of its canonical URL (tracking
+   parameters, fragments and `www.` removed); ids already held or seen
+   (`news/state.json`) are skipped, so each item is scored once.
+3. **Format gate** — headlines matching `news.exclude_title_patterns` (live
+   blogs, podcasts, cartoons, newsletter round-ups) are dropped; the same news
+   arrives as a proper article. Publisher furniture at the end of an excerpt
+   (WordPress's "The post … appeared first on", the Guardian's "Continue
+   reading…" and newsletter plugs) is stripped too.
+4. **AI gate** — see `ai_focused` above; `news.ai_terms` is the vocabulary,
+   matched against the headline of a general feed's items. An excerpt-only
+   mention — a press-conference transcript that touched on AI — is noise for
+   the reader and tokens for the model. All-caps terms (`AI`, `DTA`, `ISM`)
+   match case-sensitively as whole words, so "said" is not about AI and
+   "tourism" does not mention the ISM.
+5. **Keyword relevance** — a 0–3 score and reason from `australia_terms`,
+   `government_terms`, `policy_terms` and `risk_terms`, on the same rubric the
+   model gets (3 act on it, 2 directly relevant, 1 worth knowing, 0 skip).
+6. **Cross-links** — an item matching a policy set's optional `keywords` in
+   `policy_sets.json` is linked to it and appears on that policy's page.
+7. **One story, one item** — near-identical headlines fold together, against
+   stories already held as well as within the run, *before* the model is
+   called, so it is never paid to read a story twice. The outlet's own copy
+   (a direct link and an excerpt) takes the lead over a Google News copy of
+   the same headline unless that copy has already been enriched. The model
+   folds the rest (below). Other outlets are kept on the lead item as
+   `coverage`.
+
+The gates are also the cost control. Measured over the week to 24 September
+2026 (an unusually heavy one), the 24 shipped feeds yield about 30 new items
+a day after gating — about 8 of them from the ABC, Guardian, SBS, Canberra
+Times, Government News, Conversation and provider-policy feeds added that
+day — at roughly 70 tokens of item text each, with 19 repeats a week folded
+before the model.
+
+Items keep a headline, link, a ≤320-character publisher excerpt with markup
+and images stripped, and our own TLDR — never the article body.
+
+### Enrichment (`steward/news_enrichment.py`)
+
+New items, plus any held item still on a keyword score (the model was down
+last time), are sent most-promising-first in batches of
+`news.enrich_batch_size`, at most `news.max_enrich_items` per run. The model
+returns, per item: a ≤30-word `tldr` using only what the item says (empty if
+it is only a headline), a 0–3 `relevance`, a short `reason`, `topics` from a
+fixed list, and `same_story_as` — the id of an earlier story (it is shown the
+last ten days of headlines) or another item in the batch reporting the same
+event. A `response_schema` constrains the reply; `parse_and_validate` drops
+unknown ids, out-of-range scores and links to stories it was not shown. One
+retry per batch; a failed batch leaves its items on their keyword scores.
+Feed text is fenced and labelled as untrusted data in the prompt, and the
+TLDR is rendered as plain text.
+
+Items the model scores below `news.min_relevance` leave the feed.
+
+### Health
+
+Each feed's `consecutive_failures`, `last_success` and `last_error` are kept
+in `news/state.json` and summarised into `news/feed.json`'s `sources` block
+with the same ok / degraded / failing thresholds as policy sources; the
+Sources page shows them. Feeds do not raise `source-health` issues — a news
+feed being down is visible on the dashboard, but it is not the silent false
+negative the policy alerting exists to catch.
+
+### Adding a feed
+
+1. Find an RSS/Atom URL (or decide on an AIM query) and add an entry to
+   `news_sources.json`.
+2. `python news_watch.py --dry-run --only your-feed-id` — check the entry
+   count, what was dropped and why, and the scores of the first items.
+3. Commit; the next scheduled run ingests and enriches it.
+
 ## Automation (GitHub Actions)
 
 `.github/workflows/update_checker.yml` runs daily at 00:00 UTC (also on
 manual dispatch, and on pushes to `main` touching frontend/config files). In
 order: install deps → run the pipeline tests → install Chrome (for the
-Selenium fallback) → run `main.py` (`continue-on-error`, so later steps can
-still commit whatever was produced before a failure) → commit and push any
-changed data files → open/update a `source-health` issue if
-`health_alert.md` exists → fail the job if `main.py` itself exited non-zero →
-build the React app → copy the data files into `build/` (note: only archived
-*analyses*, not archived *snapshots*, ship to `build/logs/` — the snapshots
-were the bulk of the archive's size and the timeline UI never fetches them) →
-deploy to GitHub Pages.
+Selenium fallback) → run `main.py --skip-news` → run `news_watch.py` (each
+`continue-on-error`, so one failing never stops the other's output being
+committed) → commit and push any changed data files (including `news/`) →
+open/update a `source-health` issue if `health_alert.md` exists → build the
+React app → copy the data files into `build/` (only archived *analyses*, not
+archived *snapshots*, ship to `build/logs/`; `news/state.json` is not
+shipped) → deploy to GitHub Pages → finally, fail the job if either pipeline
+step exited non-zero, so a failure is still red without holding back the
+deploy.
+
+Run locally, `python main.py` does both halves in turn; `--skip-news` limits
+it to policies, and `--only` implies `--skip-news`.
 
 `.github/workflows/generate_lockfile.yml` is a manual-dispatch-only helper
 that regenerates `package-lock.json`.

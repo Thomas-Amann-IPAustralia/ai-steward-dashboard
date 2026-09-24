@@ -8,6 +8,9 @@ import { hostOf } from '../utils/constants';
  * From a tool aimed at public servants that is a third-party request which
  * agency networks may block — leaving broken icons — and it discloses the list
  * of monitored sites to Google. This costs nothing and always renders.
+ *
+ * The letter comes from the name, not the host: a host-derived letter showed
+ * Google's policies as "P" (policies.google.com) and Midjourney's as "D".
  */
 
 const PALETTE = [
@@ -25,8 +28,8 @@ const colorFor = (seed) => {
 
 function Lettermark({ url, name, size = 18 }) {
   const host = hostOf(url);
-  const seed = host || name || '?';
-  const letter = (host || name || '?').charAt(0).toUpperCase();
+  const seed = name || host || '?';
+  const letter = ((name || host || '?').match(/[A-Za-z0-9]/)?.[0] || '?').toUpperCase();
 
   return (
     <span

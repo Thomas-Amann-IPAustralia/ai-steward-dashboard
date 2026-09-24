@@ -38,6 +38,54 @@ export const VERDICT_LABELS = {
   no_material_change: 'No material change',
   uncertain: 'Uncertain',
   rebaselined: 'Baseline re-recorded',
+  reverted: 'Returned to an earlier version',
+};
+
+export const PRIORITY_DESCRIPTIONS = {
+  critical: 'Directly alters user rights, data handling, liability or legal obligations',
+  high: 'A significant shift in how the service operates or is governed',
+  medium: 'Notable but not urgent — clarifications or minor scope changes',
+  low: 'Cosmetic or trivial wording with no practical impact',
+};
+
+/** Plain-language names for a document's state on its last check. */
+export const DOCUMENT_STATES = {
+  unchanged: 'Unchanged',
+  not_modified: 'Unchanged (server confirmed)',
+  changed: 'Changed',
+  cosmetic: 'Reformatted only',
+  reverted: 'Back to an earlier version',
+  new: 'First capture',
+  rebaselined: 'Baseline re-recorded',
+  suspect_scrape: 'Capture rejected',
+  fetch_failed: 'Could not be read',
+  analysis_pending: 'Change awaiting analysis',
+};
+
+/**
+ * When a set's last badged change has since been reverted — the document
+ * went back to a version recorded before it — the time that happened, else
+ * null. The badge stays (the change did happen), but the reader is told.
+ */
+export const revertedAfterChange = (set) => {
+  const review = set?.last_review;
+  if (review?.verdict !== 'reverted') return null;
+  return timestampOf(review.timestamp) > timestampOf(set?.last_amended) ? review.timestamp : null;
+};
+
+/**
+ * The one-line summary of a set's most recent badged change.
+ *
+ * `last_review` moves on every analysis, badged or not — including a
+ * re-baseline — so it is only used when it describes that same change.
+ */
+export const changeSummaryOf = (set) => {
+  if (set?.last_change?.summary) return set.last_change.summary;
+  const review = set?.last_review;
+  if (review?.summary && review.timestamp && review.timestamp === set?.last_amended) {
+    return review.summary;
+  }
+  return null;
 };
 
 export const HEALTH_LABELS = {
