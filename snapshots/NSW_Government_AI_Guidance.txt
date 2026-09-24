@@ -92,11 +92,48 @@ Additional acts and regulations that promote the protection of personal and heal
 Note: ChatGPT was utilised to suggest improvements to sentence structures, grammatical errors, sentence flow and clarity. The content in this guideline is based off publicly available industry research and best practices.
 If you are generating AI frameworks, guidelines, procedures, or policies, please connect with us.
 
---- Content from https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework ---
+--- Content from https://www.digital.nsw.gov.au/policy/artificial-intelligence/ai-governance-assurance-and-frameworks/nsw-ai-assessment-framework ---
 
-Skip to main content
-A NSW Government website
-The requested page could not be found.
+NSW AI Assessment Framework
+NSW AI assurance approach
+The NSW Government has a comprehensive and structured approach to ensuring the safe and responsible use of artificial intelligence (AI) including AI governance and oversight, risk management and mitigation, ethics, capability and capacity building, and continuous improvement.
+All NSW Government use of AI — including any AI system or component across its full lifecycle, whether or not part of a formal project — must apply the NSW AI Assessment Framework (AIAF) in line with the NSW mandate under Circular DCS-2024-04 to use both the AI Ethics Policy and the AIAF.
+Agencies are responsible for ensuring appropriate governance and assurance oversight for AI use across its entire lifecycle. This includes completing the AIAF to identify risks, define required mitigations, and ensure high- or critical-risk systems are reviewed by the NSW AI Review Committee (AIRC). These systems must be submitted to the AI Secretariat, who coordinates the AIRC review.
+Assurance of AI is embedded in the NSW Digital Assurance Framework (DAF). Projects with budgets exceeding $5 million, or funded through the Digital Restart Fund, receive additional central oversight under the DAF to confirm AIAF compliance and alignment with NSW AI governance requirements.
+Digital NSW is also working with all government departments to make AIAF compliance easier to assess and track. This will help identify areas needing additional support and strengthen assurance for the safe and responsible use of AI across government.
+NSW AI Assessment Framework (AIAF)
+Download the NSW AIAF
+Purpose
+The NSW AIAF has been established to guide NSW Government agencies through the ethical development, deployment and use of artificial intelligence (AI) technologies.
+Its primary aim is to ensure AI solutions are designed, built and operated with a strict adherence to the mandatory AI Ethics Principles outlined in NSW Circular DCS-2024-04. This involves a systematic process for identifying, documenting and mitigating AI-specific risks.
+The Framework has an important role in promoting responsible AI use and ensuring community benefits, fairness, privacy and security, transparency and accountability are at the forefront of all AI initiatives within government operations.
+The NSW AIAF is a risk self-assessment framework for NSW Government agencies to ensure responsible design, development, deployment, procurement and use of AI technologies.
+The AIAF is mandatory for all NSW Government Agencies to use.
+Designed for project and executive sponsors, technical leads and data governance leads, this framework is to be used across all phases of the AI solution lifecycle.
+When designing, developing, deploying, procuring or using systems containing AI components. The AIAF is to be used across all project stages and the solution lifecycle, emphasising continuous adherence to ethical principles. It calls for ongoing assessments from project inception to operations, highlighting the importance of understanding AI's limitations and risks, especially regarding data security and privacy.
+To strengthen compliance, project leaders and solution owners are encouraged to use the Framework during the planning phase of AI implementation.
+The AIAF workbook has four sections. Three are mandatory and one is optional but recommended.
+Section 1 — Instructions (mandatory).
+Confirm you have the right expertise involved and capture key use-case information (description, responsible officer, date completed).
+Section 2 — Assessment (mandatory).
+Answer the 16 assessment questions. Your responses generate the overall risk level and list any mandatory assurance activities you must complete (e.g., Privacy Impact Assessment, Human Rights Impact Assessment, Cybersecurity review)
+Section 3 — Deep Dive (optional but recommended).
+Work through additional focus questions to identify further risks and link to good-practice controls. Any additional risks you identify are added automatically to the Risk Register tab.
+Section 4 — Post-Assessment Actions (mandatory).
+Record sign-off in the Audit Record, save the file in your agency’s records management system, and register High or Critical use cases in your agency’s AI register. High or Critical user cases must also be referred to the AISecretariat for coordination of the AI Review Committee (AIRC) review. Re-run the AIAF whenever features, datasets, purposes or decision contexts change.
+Excel resource
+The Excel version of the NSW AIAF - Excel (XLSX, 2.32 MB) is the current version to be completed by agencies when assessing AI use. It provides an accessible, easy-to-use format for managing AI risk and ensuring consistent application of the framework across projects. A system-based version of the AIAF is currently being developed to further streamline the assessment and assurance process.
+If there are any issues with downloading or using the AIAF Excel please contact NSW GovAI at govai@customerservice.nsw.gov.au.
+When to submit your project to the AI Review Body
+Agencies are required to submit their completed AI self-assessment to the AI Review Committee if the resulting risk is high or critical.
+To submit AI systems for review please send your completed AI Self-assessment to
+AlSecretariat@customerservice.nsw.gov.au.
+Relationship to NSW Government policies
+This Framework refers to other NSW Government policies, legislation, and tools that provide context and information relevant to AI, including the NSW AI Strategy and AI Ethics Policy.
+It is designed to enhance, not replace, agency-specific policies and standards, and ensures teams consult with subject matter experts for tailored guidance.
+The Framework has been integrated into the NSW Digital Assurance Framework to ensure a comprehensive approach to compliance with AI ethical principles.
+Maintaining this Framework
+The AIAF is regularly reviewed to ensure it reflects advancements in AI, strengthens risk management practices, aligns with evolving standards, and supports the growing maturity of AI across the NSW Government.
 
 --- Content from https://www.asbfeo.gov.au/disputes-assistance/dispute-support ---
 

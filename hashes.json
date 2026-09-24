@@ -21,14 +21,14 @@
             }
         ],
         "file_id": "Digital_gov_au_AI_Policy",
-        "last_checked": "2026-09-24T14:13:58.331537+10:00",
+        "last_checked": "2026-09-25T08:44:29.308463+10:00",
         "last_amended": "2026-03-17T23:07:57.694614+10:00",
         "last_priority": "medium",
         "last_verdict": null,
         "last_change": null,
         "last_review": null,
         "schema_failures": 0,
-        "consecutive_failures": 43,
+        "consecutive_failures": 44,
         "last_success": null,
         "documents": {
             "https://www.digital.gov.au/policy/ai/implementation": {
@@ -38,10 +38,10 @@
                 "length": 347,
                 "pipeline_version": 1,
                 "extractor": "legacy",
-                "consecutive_failures": 43,
-                "last_checked": "2026-09-24T14:13:58.331537+10:00",
+                "consecutive_failures": 44,
+                "last_checked": "2026-09-25T08:44:29.308463+10:00",
                 "http_status": null,
-                "fetch_ms": 65385,
+                "fetch_ms": 44554,
                 "status": "suspect_scrape",
                 "last_error": "too_short: 256 chars is below the 500 char minimum",
                 "suspect_length": 256
@@ -53,10 +53,10 @@
                 "length": 355,
                 "pipeline_version": 1,
                 "extractor": "legacy",
-                "consecutive_failures": 43,
-                "last_checked": "2026-09-24T14:13:58.331537+10:00",
+                "consecutive_failures": 44,
+                "last_checked": "2026-09-25T08:44:29.308463+10:00",
                 "http_status": null,
-                "fetch_ms": 33963,
+                "fetch_ms": 34107,
                 "status": "suspect_scrape",
                 "last_error": "too_short: 256 chars is below the 500 char minimum",
                 "suspect_length": 256
@@ -68,10 +68,10 @@
                 "length": 355,
                 "pipeline_version": 1,
                 "extractor": "legacy",
-                "consecutive_failures": 43,
-                "last_checked": "2026-09-24T14:13:58.331537+10:00",
+                "consecutive_failures": 44,
+                "last_checked": "2026-09-25T08:44:29.308463+10:00",
                 "http_status": null,
-                "fetch_ms": 34185,
+                "fetch_ms": 34232,
                 "status": "suspect_scrape",
                 "last_error": "too_short: 256 chars is below the 500 char minimum",
                 "suspect_length": 256
@@ -83,10 +83,10 @@
                 "length": 359,
                 "pipeline_version": 1,
                 "extractor": "legacy",
-                "consecutive_failures": 43,
-                "last_checked": "2026-09-24T14:13:58.331537+10:00",
+                "consecutive_failures": 44,
+                "last_checked": "2026-09-25T08:44:29.308463+10:00",
                 "http_status": null,
-                "fetch_ms": 33337,
+                "fetch_ms": 33800,
                 "status": "suspect_scrape",
                 "last_error": "too_short: 256 chars is below the 500 char minimum",
                 "suspect_length": 256
@@ -104,44 +104,45 @@
             }
         ],
         "file_id": "National_Archives_of_Australia_-_AI_Policy",
-        "last_checked": "2026-09-24T14:16:45.205544+10:00",
+        "last_checked": "2026-09-25T08:46:56.006600+10:00",
         "last_amended": "2026-03-17T23:08:06.961233+10:00",
         "last_priority": "medium",
         "last_verdict": null,
         "last_change": null,
         "last_review": {
-            "timestamp": "2026-09-10T14:09:49.407907+10:00",
+            "timestamp": "2026-09-25T08:46:56.006600+10:00",
             "verdict": "rebaselined",
             "summary": "Baseline re-recorded for: Information Management Records Created Using Artificial Intelligence Ai Technologies. No change reported."
         },
         "schema_failures": 0,
         "consecutive_failures": 0,
-        "last_success": "2026-09-24T14:16:45.205544+10:00",
+        "last_success": "2026-09-25T08:46:56.006600+10:00",
         "documents": {
             "https://www.naa.gov.au/information-management/manage-information-assets/types-information/information-management-records-created-using-artificial-intelligence-ai-technologies": {
                 "doc_id": "ed-using-artificial-intelligence-ai-technologies-90239491",
                 "label": "Information Management Records Created Using Artificial Intelligence Ai Technologies",
                 "hash": "667c66e00de69f9285a2fed104cbad9d0d9d6539c478551dfbd8134cdafc39e0",
                 "length": 37388,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "selenium+trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:16:45.205544+10:00",
+                "last_checked": "2026-09-25T08:46:56.006600+10:00",
                 "http_status": null,
-                "fetch_ms": 35039,
-                "status": "unchanged",
+                "fetch_ms": 36328,
+                "status": "rebaselined",
                 "last_error": "",
                 "suspect_length": 5238,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:16:45.205544+10:00",
-                "rebaseline_reason": "extraction pipeline changed"
+                "last_success": "2026-09-25T08:46:56.006600+10:00",
+                "rebaseline_reason": "extraction pipeline changed",
+                "previous_hashes": []
             }
         },
         "status": "ok"
     },
     "Google AI Policies": {
-        "hash": "d2f74f18d35569b6803770bfe2f46e188ea6727cff6db8943a687e5d8fd931a4",
+        "hash": "f2ac50b3b5f182ca738042d83b297a6a4fa8f25e0bad5a80c8f9c907ad1fecaf",
         "category": "Private Sector",
         "urls": [
             {
@@ -153,64 +154,63 @@
             }
         ],
         "file_id": "Google_AI_Policies",
-        "last_checked": "2026-09-24T14:17:20.251362+10:00",
+        "last_checked": "2026-09-25T08:47:32.346078+10:00",
         "last_amended": "2026-08-04T13:17:29.415627+10:00",
         "last_priority": "low",
         "last_verdict": null,
         "last_change": null,
         "last_review": {
-            "timestamp": "2026-09-24T14:17:20.251362+10:00",
-            "verdict": "no_material_change",
-            "summary": "The only change observed is a minor formatting adjustment involving the insertion of spaces after 'â' characters, which does not alter the meaning or intent of the text.",
-            "changed_documents": [
-                "Principles"
-            ]
+            "timestamp": "2026-09-25T08:47:32.346078+10:00",
+            "verdict": "rebaselined",
+            "summary": "Baseline re-recorded for: Terms, Principles. No change reported."
         },
         "schema_failures": 0,
         "consecutive_failures": 0,
-        "last_success": "2026-09-24T14:17:20.251362+10:00",
+        "last_success": "2026-09-25T08:47:32.346078+10:00",
         "documents": {
             "https://policies.google.com/terms": {
                 "doc_id": "terms-dc53493d",
                 "label": "Terms",
                 "hash": "6e954f9c39ea7244db6648ec08eb420613c5c21886f6455a4064090459e77730",
                 "length": 27207,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:20.251362+10:00",
+                "last_checked": "2026-09-25T08:47:32.346078+10:00",
                 "http_status": 200,
-                "fetch_ms": 315,
+                "fetch_ms": 251,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:20.251362+10:00",
+                "last_success": "2026-09-25T08:47:32.346078+10:00",
                 "last_error": "",
-                "status": "unchanged",
+                "status": "rebaselined",
                 "rebaseline_reason": "extraction pipeline changed",
                 "last_changed": "2026-08-23T11:48:22.366839+10:00",
                 "diff_added": 26,
-                "diff_removed": 20
+                "diff_removed": 20,
+                "previous_hashes": []
             },
             "https://ai.google/responsibility/principles/": {
                 "doc_id": "responsibility-principles-15e3a776",
                 "label": "Principles",
-                "hash": "19be524189e8323d0bb38acc716256fb1dc9219b23434fc6999b5bd560810038",
+                "hash": "12f312c1ad2c4645722eea5b1207267abcfd43aff993c5e06be278951dd1b5a2",
                 "length": 4053,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:20.251362+10:00",
+                "last_checked": "2026-09-25T08:47:32.346078+10:00",
                 "http_status": 200,
-                "fetch_ms": 828,
-                "etag": "\"eI3yYw\"",
+                "fetch_ms": 234,
+                "etag": "\"RquGyw\"",
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:20.251362+10:00",
+                "last_success": "2026-09-25T08:47:32.346078+10:00",
                 "last_error": "",
-                "status": "changed",
+                "status": "rebaselined",
                 "rebaseline_reason": "extraction pipeline changed",
                 "last_changed": "2026-09-24T14:17:20.251362+10:00",
                 "diff_added": 1,
-                "diff_removed": 1
+                "diff_removed": 1,
+                "previous_hashes": []
             }
         },
         "status": "ok"
@@ -230,7 +230,7 @@
             }
         ],
         "file_id": "Anthropic_Legal_Policies",
-        "last_checked": "2026-09-24T14:17:27.007768+10:00",
+        "last_checked": "2026-09-25T08:47:32.841595+10:00",
         "last_amended": "2026-09-13T14:20:50.095086+10:00",
         "last_priority": "critical",
         "last_verdict": "material_change",
@@ -251,73 +251,73 @@
             ]
         },
         "last_review": {
-            "timestamp": "2026-09-13T14:20:50.095086+10:00",
-            "verdict": "material_change",
-            "summary": "Anthropic's Privacy Policy for residents of the Republic of Korea (ROK) has been significantly updated to detail new categories of personal data collected, specific purposes of use (e.g., identity verification, fraud monitoring), new third-party data processors, and explicit overseas data transfers, including retention periods.",
-            "changed_documents": [
-                "Privacy"
-            ]
+            "timestamp": "2026-09-25T08:47:32.841595+10:00",
+            "verdict": "rebaselined",
+            "summary": "Baseline re-recorded for: Consumer Terms, Aup, Privacy. No change reported."
         },
         "schema_failures": 0,
         "consecutive_failures": 0,
-        "last_success": "2026-09-24T14:17:27.007768+10:00",
+        "last_success": "2026-09-25T08:47:32.841595+10:00",
         "documents": {
             "https://www.anthropic.com/legal/consumer-terms": {
                 "doc_id": "legal-consumer-terms-8ac8edab",
                 "label": "Consumer Terms",
                 "hash": "4777f8cef74787f84a74e4ac876f2c307392abd21ba904c61ef971b9d0f67723",
                 "length": 28768,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:27.007768+10:00",
+                "last_checked": "2026-09-25T08:47:32.841595+10:00",
                 "http_status": 200,
-                "fetch_ms": 239,
+                "fetch_ms": 259,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:27.007768+10:00",
+                "last_success": "2026-09-25T08:47:32.841595+10:00",
                 "last_error": "",
-                "status": "unchanged",
-                "rebaseline_reason": "extraction pipeline changed"
+                "status": "rebaselined",
+                "rebaseline_reason": "extraction pipeline changed",
+                "previous_hashes": []
             },
             "https://www.anthropic.com/legal/aup": {
                 "doc_id": "legal-aup-34cfa2c0",
                 "label": "Aup",
                 "hash": "2ca156471ee66f103bc2ce9a0a66223fcfd1d37a3921d66a8b3bc3910f7fed73",
                 "length": 16890,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:27.007768+10:00",
+                "last_checked": "2026-09-25T08:47:32.841595+10:00",
                 "http_status": 200,
-                "fetch_ms": 266,
+                "fetch_ms": 333,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:27.007768+10:00",
+                "last_success": "2026-09-25T08:47:32.841595+10:00",
                 "last_error": "",
-                "status": "unchanged",
-                "rebaseline_reason": "extraction pipeline changed"
+                "status": "rebaselined",
+                "rebaseline_reason": "extraction pipeline changed",
+                "previous_hashes": []
             },
             "https://www.anthropic.com/legal/privacy": {
                 "doc_id": "legal-privacy-47b90923",
                 "label": "Privacy",
                 "hash": "91f77ea0675cde46423ebe4503715c779e5e072712bf6d19d86f6c2d5fbdbcc7",
                 "length": 38064,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:27.007768+10:00",
+                "last_checked": "2026-09-25T08:47:32.841595+10:00",
                 "http_status": 200,
-                "fetch_ms": 347,
+                "fetch_ms": 296,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:27.007768+10:00",
+                "last_success": "2026-09-25T08:47:32.841595+10:00",
                 "last_error": "",
-                "status": "unchanged",
+                "status": "rebaselined",
                 "rebaseline_reason": "extraction pipeline changed",
                 "last_changed": "2026-09-13T14:20:50.095086+10:00",
                 "diff_added": 21,
-                "diff_removed": 10
+                "diff_removed": 10,
+                "previous_hashes": []
             }
         },
         "status": "ok"
@@ -337,79 +337,79 @@
             }
         ],
         "file_id": "Perplexity_AI_Legal_Policies",
-        "last_checked": "2026-09-24T14:17:27.873740+10:00",
+        "last_checked": "2026-09-25T08:47:33.754081+10:00",
         "last_amended": "2026-08-09T12:10:17.411163+10:00",
         "last_priority": "critical",
         "last_verdict": null,
         "last_change": null,
         "last_review": {
-            "timestamp": "2026-08-21T11:45:10.080352+10:00",
-            "verdict": "no_material_change",
-            "summary": "The Terms of Service were updated primarily with formatting changes to improve readability, and a phone number was removed from the 'How to Contact Us' section.",
-            "changed_documents": [
-                "Terms Of Service"
-            ]
+            "timestamp": "2026-09-25T08:47:33.754081+10:00",
+            "verdict": "rebaselined",
+            "summary": "Baseline re-recorded for: Terms Of Service, Privacy Policy, Aup. No change reported."
         },
         "schema_failures": 0,
         "consecutive_failures": 0,
-        "last_success": "2026-09-24T14:17:27.873740+10:00",
+        "last_success": "2026-09-25T08:47:33.754081+10:00",
         "documents": {
             "https://www.perplexity.ai/hub/legal/terms-of-service": {
                 "doc_id": "hub-legal-terms-of-service-e8178d41",
                 "label": "Terms Of Service",
                 "hash": "b223353232b84ad8485e15b4475b94427b9a349fc5e45a586e5913fc066213b0",
                 "length": 55884,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:27.873740+10:00",
+                "last_checked": "2026-09-25T08:47:33.754081+10:00",
                 "http_status": 200,
-                "fetch_ms": 399,
+                "fetch_ms": 1010,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:27.873740+10:00",
+                "last_success": "2026-09-25T08:47:33.754081+10:00",
                 "last_error": "",
-                "status": "unchanged",
+                "status": "rebaselined",
                 "rebaseline_reason": "extraction pipeline changed",
                 "last_changed": "2026-08-21T11:45:10.080352+10:00",
                 "diff_added": 16,
-                "diff_removed": 3
+                "diff_removed": 3,
+                "previous_hashes": []
             },
             "https://www.perplexity.ai/hub/legal/privacy-policy": {
                 "doc_id": "hub-legal-privacy-policy-4df88149",
                 "label": "Privacy Policy",
                 "hash": "d9e829d5ddf23b155e9d28b1d0a4c2df9d29e0bc446c12eb96520c09f0fc169f",
                 "length": 33159,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:27.873740+10:00",
+                "last_checked": "2026-09-25T08:47:33.754081+10:00",
                 "http_status": 200,
-                "fetch_ms": 490,
+                "fetch_ms": 525,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:27.873740+10:00",
+                "last_success": "2026-09-25T08:47:33.754081+10:00",
                 "last_error": "",
-                "status": "unchanged",
-                "rebaseline_reason": "extraction pipeline changed"
+                "status": "rebaselined",
+                "rebaseline_reason": "extraction pipeline changed",
+                "previous_hashes": []
             },
             "https://www.perplexity.ai/hub/legal/aup": {
                 "doc_id": "hub-legal-aup-c95a9422",
                 "label": "Aup",
                 "hash": "adaed1e138b414a7053ae536f3a5fc4a86610e90600659d663cd928a185a4e8a",
                 "length": 5800,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:27.873740+10:00",
+                "last_checked": "2026-09-25T08:47:33.754081+10:00",
                 "http_status": 200,
-                "fetch_ms": 664,
+                "fetch_ms": 830,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:27.873740+10:00",
+                "last_success": "2026-09-25T08:47:33.754081+10:00",
                 "last_error": "",
-                "status": "unchanged",
-                "rebaseline_reason": "extraction pipeline changed"
+                "status": "rebaselined",
+                "rebaseline_reason": "extraction pipeline changed",
+                "previous_hashes": []
             }
         },
         "status": "ok"
@@ -426,7 +426,7 @@
             }
         ],
         "file_id": "Midjourney_Legal_Policies",
-        "last_checked": "2026-09-24T14:17:29.444564+10:00",
+        "last_checked": "2026-09-25T08:47:36.148808+10:00",
         "last_amended": "2026-09-04T14:02:16.618143+10:00",
         "last_priority": "critical",
         "last_verdict": "material_change",
@@ -448,55 +448,54 @@
             ]
         },
         "last_review": {
-            "timestamp": "2026-09-04T14:02:16.618143+10:00",
-            "verdict": "material_change",
-            "summary": "Midjourney's Privacy Policy has undergone significant revisions, expanding the types of personal data collected, detailing new uses for legal compliance, and altering notification practices for law enforcement data requests, as well as shifting the basis for consent for data transfers.",
-            "changed_documents": [
-                "Privacy Policy"
-            ]
+            "timestamp": "2026-09-25T08:47:36.148808+10:00",
+            "verdict": "rebaselined",
+            "summary": "Baseline re-recorded for: Terms Of Service, Privacy Policy. No change reported."
         },
         "schema_failures": 0,
         "consecutive_failures": 0,
-        "last_success": "2026-09-24T14:17:29.444564+10:00",
+        "last_success": "2026-09-25T08:47:36.148808+10:00",
         "documents": {
             "https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service": {
                 "doc_id": "c-en-us-articles-32083055291277-terms-of-service-ecb3dfde",
                 "label": "Terms Of Service",
                 "hash": "74467b47f9062322c508b8eb1b074484f289313a1888f81afc8537f7c4283d3c",
                 "length": 21897,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:29.444564+10:00",
+                "last_checked": "2026-09-25T08:47:36.148808+10:00",
                 "http_status": 200,
-                "fetch_ms": 389,
+                "fetch_ms": 345,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:29.444564+10:00",
+                "last_success": "2026-09-25T08:47:36.148808+10:00",
                 "last_error": "",
-                "status": "unchanged",
-                "rebaseline_reason": "extraction pipeline changed"
+                "status": "rebaselined",
+                "rebaseline_reason": "extraction pipeline changed",
+                "previous_hashes": []
             },
             "https://docs.midjourney.com/hc/en-us/articles/32083472637453-Privacy-Policy": {
                 "doc_id": "hc-en-us-articles-32083472637453-privacy-policy-21de6af1",
                 "label": "Privacy Policy",
                 "hash": "19c453dfbf9e4062ffd411921fc6160fe25af1b6513cc385a6dc857c99341be4",
                 "length": 25166,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:29.444564+10:00",
+                "last_checked": "2026-09-25T08:47:36.148808+10:00",
                 "http_status": 200,
-                "fetch_ms": 253,
+                "fetch_ms": 312,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:29.444564+10:00",
+                "last_success": "2026-09-25T08:47:36.148808+10:00",
                 "last_error": "",
-                "status": "unchanged",
+                "status": "rebaselined",
                 "rebaseline_reason": "extraction pipeline changed",
                 "last_changed": "2026-09-04T14:02:16.618143+10:00",
                 "diff_added": 71,
-                "diff_removed": 60
+                "diff_removed": 60,
+                "previous_hashes": []
             }
         },
         "status": "ok"
@@ -510,134 +509,134 @@
             }
         ],
         "file_id": "ACSC_Information_Security_Manual_ISM",
-        "last_checked": "2026-09-24T14:17:30.094873+10:00",
+        "last_checked": "2026-09-25T08:47:36.820247+10:00",
         "last_amended": "2026-06-09T14:08:38.141566+10:00",
         "last_priority": "high",
         "last_verdict": null,
         "last_change": null,
         "last_review": {
-            "timestamp": "2026-09-03T14:00:45.908757+10:00",
-            "verdict": "no_material_change",
-            "summary": "A sub-heading in the ISM was updated from 'Using the Information security manual' to 'Using the cyber security framework' for improved consistency in terminology.",
-            "changed_documents": [
-                "Ism"
-            ]
+            "timestamp": "2026-09-25T08:47:36.820247+10:00",
+            "verdict": "rebaselined",
+            "summary": "Baseline re-recorded for: Ism. No change reported."
         },
         "schema_failures": 0,
         "consecutive_failures": 0,
-        "last_success": "2026-09-24T14:17:30.094873+10:00",
+        "last_success": "2026-09-25T08:47:36.820247+10:00",
         "documents": {
             "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism": {
                 "doc_id": "ness-and-government-essential-cyber-security-ism-c7048fa7",
                 "label": "Ism",
                 "hash": "30e18b5804a56b4399d8fa479bc0293210e9119e23b0de0dc4438310c575f75b",
                 "length": 1229,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "selenium+trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:17:30.094873+10:00",
+                "last_checked": "2026-09-25T08:47:36.820247+10:00",
                 "http_status": null,
-                "fetch_ms": 34846,
+                "fetch_ms": 35056,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:17:30.094873+10:00",
+                "last_success": "2026-09-25T08:47:36.820247+10:00",
                 "last_error": "",
-                "status": "unchanged",
+                "status": "rebaselined",
                 "rebaseline_reason": "extraction pipeline changed",
                 "last_changed": "2026-09-03T14:00:45.908757+10:00",
                 "diff_added": 1,
-                "diff_removed": 1
+                "diff_removed": 1,
+                "previous_hashes": []
             }
         },
         "status": "ok"
     },
     "NSW Government AI Guidance": {
-        "hash": "a55480ed2891d66752b0e070dbb6e1dcd0ae4c6024edfd68d3ffb6c06a471f4e",
+        "hash": "38b22624cc49f9f2bd247ba17e779952072970e54b7e4cb2747ff86f3ee0457c",
         "category": "State Government",
         "urls": [
             {
                 "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/generative-ai-basic-guidance"
             },
             {
-                "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework"
+                "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/ai-governance-assurance-and-frameworks/nsw-ai-assessment-framework"
             },
             {
                 "url": "https://www.asbfeo.gov.au/disputes-assistance/dispute-support"
             }
         ],
         "file_id": "NSW_Government_AI_Guidance",
-        "last_checked": "2026-09-24T14:18:04.942373+10:00",
+        "last_checked": "2026-09-25T08:48:11.877945+10:00",
         "last_amended": "2026-07-24T13:24:19.548183+10:00",
         "last_priority": "medium",
         "last_verdict": null,
         "last_change": null,
         "last_review": {
-            "timestamp": "2026-09-14T14:28:08.610839+10:00",
-            "verdict": "no_material_change",
-            "summary": "The contact information for the Australian Financial Complaints Authority (AFCA) has been updated to explicitly include the HTTPS protocol in its website address.",
-            "changed_documents": [
-                "Dispute Support"
-            ]
+            "timestamp": "2026-09-25T08:48:11.877945+10:00",
+            "verdict": "rebaselined",
+            "summary": "Baseline re-recorded for: Nsw Ai Assessment Framework, Generative Ai Basic Guidance, Dispute Support. No change reported."
         },
         "schema_failures": 0,
-        "consecutive_failures": 43,
-        "last_success": null,
+        "consecutive_failures": 0,
+        "last_success": "2026-09-25T08:48:11.877945+10:00",
         "documents": {
             "https://www.digital.nsw.gov.au/policy/artificial-intelligence/generative-ai-basic-guidance": {
                 "doc_id": "ficial-intelligence-generative-ai-basic-guidance-13546bb8",
                 "label": "Generative Ai Basic Guidance",
                 "hash": "b742b08ba080f1506e94146331ffe8d82acb7d3b6556d99963ddf39666cc84af",
                 "length": 12456,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:18:04.942373+10:00",
+                "last_checked": "2026-09-25T08:48:11.877945+10:00",
                 "http_status": 200,
-                "fetch_ms": 3134,
-                "etag": "W/\"1790223485\"",
-                "last_modified": "Thu, 24 Sep 2026 04:18:05 GMT",
-                "last_success": "2026-09-24T14:18:04.942373+10:00",
+                "fetch_ms": 1767,
+                "etag": "W/\"1790290092\"",
+                "last_modified": "Thu, 24 Sep 2026 22:48:12 GMT",
+                "last_success": "2026-09-25T08:48:11.877945+10:00",
                 "last_error": "",
-                "status": "unchanged",
-                "rebaseline_reason": "extraction pipeline changed"
+                "status": "rebaselined",
+                "rebaseline_reason": "extraction pipeline changed",
+                "previous_hashes": []
             },
-            "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework": {
-                "doc_id": "nsw-artificial-intelligence-assurance-framework-64dc57bb",
-                "label": "Nsw Artificial Intelligence Assurance Framework",
-                "hash": "0602f71c6644fcc1825fed30c53f0ebcd23a97bb82a4a44238e61e4078a79631",
-                "length": 84,
-                "pipeline_version": 1,
-                "extractor": "legacy",
-                "consecutive_failures": 43,
-                "last_checked": "2026-09-24T14:18:04.942373+10:00",
-                "http_status": null,
-                "fetch_ms": 5681,
-                "status": "suspect_scrape",
-                "last_error": "block_page: matched failure signature \"This site can't be reached\"",
-                "suspect_length": 463
+            "https://www.digital.nsw.gov.au/policy/artificial-intelligence/ai-governance-assurance-and-frameworks/nsw-ai-assessment-framework": {
+                "doc_id": "rance-and-frameworks-nsw-ai-assessment-framework-d51d9f9a",
+                "label": "Nsw Ai Assessment Framework",
+                "last_checked": "2026-09-25T08:48:11.877945+10:00",
+                "consecutive_failures": 0,
+                "http_status": 200,
+                "fetch_ms": 416,
+                "hash": "047ca6a8b4e5699cf75b765c73a9e0ae01974fbfab6003d049bf63ba23f3bf36",
+                "length": 6070,
+                "etag": "W/\"1790290093\"",
+                "last_modified": "Thu, 24 Sep 2026 22:48:13 GMT",
+                "extractor": "trafilatura",
+                "pipeline_version": 3,
+                "last_success": "2026-09-25T08:48:11.877945+10:00",
+                "last_error": "",
+                "status": "new",
+                "last_changed": "2026-09-25T08:48:11.877945+10:00"
             },
             "https://www.asbfeo.gov.au/disputes-assistance/dispute-support": {
                 "doc_id": "disputes-assistance-dispute-support-aa52a24d",
                 "label": "Dispute Support",
                 "hash": "b4e6f5daa962ec8b9c39de49b71649491324abca105cb17187baa0c9e083e522",
                 "length": 85528,
-                "pipeline_version": 2,
+                "pipeline_version": 3,
                 "extractor": "trafilatura",
                 "consecutive_failures": 0,
-                "last_checked": "2026-09-24T14:18:04.942373+10:00",
+                "last_checked": "2026-09-25T08:48:11.877945+10:00",
                 "http_status": 200,
-                "fetch_ms": 1721,
+                "fetch_ms": 1981,
                 "etag": null,
                 "last_modified": null,
-                "last_success": "2026-09-24T14:18:04.942373+10:00",
+                "last_success": "2026-09-25T08:48:11.877945+10:00",
                 "last_error": "",
-                "status": "unchanged",
+                "status": "rebaselined",
                 "rebaseline_reason": "extraction pipeline changed",
                 "last_changed": "2026-09-14T14:28:08.610839+10:00",
                 "diff_added": 1,
-                "diff_removed": 1
+                "diff_removed": 1,
+                "previous_hashes": []
             }
         },
-        "status": "failing"
+        "status": "ok"
     }
 }
