@@ -18,7 +18,6 @@ import hashlib
 import json
 import logging
 import os
-import re
 import shutil
 import sys
 import uuid
@@ -40,6 +39,9 @@ LOG_DIR = "logs"
 
 AEST_TZ = timezone(timedelta(hours=10))
 
+# Window for the per-source activity summary shown on the dashboard.
+ACTIVITY_DAYS = 30
+
 # Per-document outcomes recorded in hashes.json and runs.jsonl.
 DOC_UNCHANGED = "unchanged"
 DOC_NOT_MODIFIED = "not_modified"
@@ -48,8 +50,23 @@ DOC_NEW = "new"
 DOC_REBASELINED = "rebaselined"
 DOC_SUSPECT = "suspect_scrape"
 DOC_FETCH_FAILED = "fetch_failed"
+# The text moved but said nothing new: re-typeset, re-wrapped, re-linked.
+DOC_COSMETIC = "cosmetic"
+# The text returned to a version already seen — the flip-flop a CDN serving
+# two variants, or an A/B test, produces day after day.
+DOC_REVERTED = "reverted"
 
-_HEALTHY_OUTCOMES = {DOC_UNCHANGED, DOC_NOT_MODIFIED, DOC_CHANGED, DOC_NEW, DOC_REBASELINED}
+_HEALTHY_OUTCOMES = {
+    DOC_UNCHANGED,
+    DOC_NOT_MODIFIED,
+    DOC_CHANGED,
+    DOC_NEW,
+    DOC_REBASELINED,
+    DOC_COSMETIC,
+    DOC_REVERTED,
+}
+# Outcomes whose captured text becomes the stored baseline.
+_BASELINE_OUTCOMES = {DOC_CHANGED, DOC_NEW, DOC_REBASELINED, DOC_COSMETIC, DOC_REVERTED}
 
 logging.basicConfig(
     level=logging.INFO,
@@ -69,7 +86,7 @@ def setup_directories() -> None:
 
 
 def slugify_set_name(name: str) -> str:
-    return re.sub(r"[^a-zA-Z0-9\-]+", "_", name).strip("_")
+    return content.set_file_id(name)
 
 
 def load_json_file(path: str, default: Any) -> Any:
@@ -271,13 +288,20 @@ def process_document(
         log.warning("    Fetch failed for %s: %s", url, result.error)
         return record, DOC_FETCH_FAILED, None, stored_text
 
+    # A stored baseline that is itself a block page or a stub can never be
+    # compared against: the real page would be rejected for "growing" 50-fold
+    # and the source would stay failing forever. Digital.gov.au sat in
+    # exactly that state behind a 347-character Chrome error page.
+    baseline_valid = bool(stored_text) and _is_plausible_capture(stored_text, cfg)
+    prior_length = prior.get("length") if baseline_valid else None
+
     # Stage 2 pass 1 — normalise, then decide whether this is plausibly the
     # document at all. A capture that fails validation never overwrites the
     # stored snapshot and never reaches the model.
     normalised = content.normalise(result.text, cfg.noise_patterns_for(content.host_of(url)))
     verdict = validate_capture(
         normalised,
-        prior.get("length"),
+        prior_length,
         min_length=cfg.validation.min_length,
         shrink_ratio=cfg.validation.shrink_ratio,
         growth_ratio=cfg.validation.growth_ratio,
@@ -320,16 +344,35 @@ def process_document(
     # baseline, so the two are not comparable. Re-baseline and say so, rather
     # than reporting a change that did not happen.
     stale_pipeline = int(prior.get("pipeline_version", 0)) != PIPELINE_VERSION
-    if stale_pipeline or not stored_text:
-        reason = "extraction pipeline changed" if stale_pipeline else "stored snapshot missing"
+    if stale_pipeline or not baseline_valid:
+        if stale_pipeline:
+            reason = "extraction pipeline changed"
+        elif stored_text:
+            reason = "stored baseline was not a valid capture"
+        else:
+            reason = "stored snapshot missing"
         log.info("    Re-baselining %s (%s)", label, reason)
         record["status"] = DOC_REBASELINED
         record["rebaseline_reason"] = reason
+        # Versions recorded under different rules are not comparable either.
+        record["previous_hashes"] = []
         return record, DOC_REBASELINED, None, normalised
 
     if new_hash == prior.get("hash"):
         record["status"] = DOC_UNCHANGED
         return record, DOC_UNCHANGED, None, normalised
+
+    remembered = [h for h in prior.get("previous_hashes") or [] if h]
+    record["previous_hashes"] = _remember(prior.get("hash"), remembered, new_hash, cfg.diff.revert_memory)
+
+    # Back to a version already seen. Analysing it again would re-report a
+    # change the steward has already been shown, in reverse, every time the
+    # source flips — so it is recorded, not analysed.
+    if new_hash in remembered:
+        log.info("    %s returned to a previously seen version — not re-analysed", label)
+        record["status"] = DOC_REVERTED
+        record["last_changed"] = timestamp
+        return record, DOC_REVERTED, None, normalised
 
     # Stage 2 pass 2 — the diff, and the cosmetic gate.
     diff = diffing.compute_diff(
@@ -341,15 +384,42 @@ def process_document(
         watchlist=cfg.fingerprint.watchlist,
     )
     if diff.is_empty:
-        log.info("    %s: hash moved but the diff is empty — cosmetic, no analysis", label)
-        record["status"] = DOC_UNCHANGED
-        return record, DOC_UNCHANGED, None, normalised
+        log.info(
+            "    %s: %d line(s) moved, none substantively — cosmetic, no analysis",
+            label,
+            diff.cosmetic_lines,
+        )
+        record["status"] = DOC_COSMETIC
+        record["cosmetic_lines"] = diff.cosmetic_lines
+        return record, DOC_COSMETIC, None, normalised
 
     record["status"] = DOC_CHANGED
     record["last_changed"] = timestamp
     record["diff_added"] = diff.added
     record["diff_removed"] = diff.removed
+    record["cosmetic_lines"] = diff.cosmetic_lines
     return record, DOC_CHANGED, diff, normalised
+
+
+def _is_plausible_capture(text: str, cfg) -> bool:
+    """Whether stored text passes the absolute checks a fresh capture must."""
+    return validate_capture(
+        text,
+        None,
+        min_length=cfg.validation.min_length,
+        shrink_ratio=cfg.validation.shrink_ratio,
+        growth_ratio=cfg.validation.growth_ratio,
+        failure_signatures=cfg.validation.failure_signatures,
+    ).ok
+
+
+def _remember(current: Optional[str], remembered: List[str], incoming: str, limit: int) -> List[str]:
+    """Most-recent-first hashes this document has held, excluding the new one."""
+    if limit <= 0:
+        return []
+    history_ = [current] if current else []
+    history_.extend(h for h in remembered if h != current)
+    return [h for h in history_ if h != incoming][:limit]
 
 
 # --- Per-set processing ----------------------------------------------------
@@ -387,7 +457,7 @@ def process_policy_set(
         outcomes[url] = outcome
         sections.append((url, text))
 
-        if outcome in (DOC_CHANGED, DOC_NEW, DOC_REBASELINED):
+        if outcome in _BASELINE_OUTCOMES:
             texts_to_write.append((document_snapshot_path(file_id, record["doc_id"]), text))
         if diff is not None:
             changed.append((record["label"], diff))
@@ -441,10 +511,15 @@ def process_policy_set(
     # Nothing survived to the diff stage: either genuinely unchanged, or a
     # re-baseline, or a first capture. None of those is a policy amendment.
     if not changed:
+        if dry_run:
+            if texts_to_write:
+                log.info("  [dry-run] Would record %d baseline(s)", len(texts_to_write))
+            return previous_entry or entry
         _commit_texts(texts_to_write)
         _write_aggregate(file_id, sections)
         new_docs = [documents[u]["label"] for u, o in outcomes.items() if o == DOC_NEW]
         rebaselined = [documents[u]["label"] for u, o in outcomes.items() if o == DOC_REBASELINED]
+        reverted = [documents[u]["label"] for u, o in outcomes.items() if o == DOC_REVERTED]
 
         if new_docs and not previous_entry.get("hash"):
             log.info("  First scan for '%s'", set_name)
@@ -465,6 +540,19 @@ def process_policy_set(
                 },
                 analysis_path(file_id),
             )
+        elif reverted:
+            noted = ", ".join(reverted)
+            log.info("  '%s': %s returned to a previously seen version", set_name, noted)
+            entry["last_review"] = {
+                "timestamp": timestamp,
+                "verdict": "reverted",
+                "summary": (
+                    f"{noted} returned to a version already recorded, so it was not "
+                    "re-analysed. A source that alternates like this is usually serving "
+                    "two variants rather than being amended."
+                ),
+                "changed_documents": reverted,
+            }
         elif new_docs or rebaselined:
             noted = ", ".join(new_docs + rebaselined)
             log.info("  Baselines recorded for '%s' (%s) — no change reported", set_name, noted)
@@ -510,7 +598,7 @@ def process_policy_set(
         file_id=file_id,
         url="",
         label="(policy set)",
-        outcome="analysed" if outcome.ok else "schema_failed",
+        outcome="analysed" if outcome.ok else ("api_unavailable" if outcome.unavailable else "schema_failed"),
         diff_added=total_added,
         diff_removed=total_removed,
         tags=unique_tags,
@@ -525,9 +613,14 @@ def process_policy_set(
 
     if not outcome.ok:
         # Nothing is stored: the stored snapshot stays put so the same diff is
-        # retried next run rather than being silently lost.
-        log.error("  Analysis of '%s' failed schema validation twice — skipping", set_name)
-        entry["schema_failures"] = entry["schema_failures"] + 1
+        # retried next run rather than being silently lost. An overloaded
+        # model is not the model misbehaving, so only a real schema failure
+        # counts towards the schema alert.
+        if outcome.unavailable:
+            log.error("  Model unavailable for '%s' — the change will be retried next run", set_name)
+        else:
+            log.error("  Analysis of '%s' failed schema validation twice — skipping", set_name)
+            entry["schema_failures"] = entry["schema_failures"] + 1
         entry["hash"] = previous_entry.get("hash", entry["hash"])
         entry["documents"] = _revert_changed_documents(documents, prior_documents, outcomes)
         return entry
@@ -543,6 +636,7 @@ def process_policy_set(
     change_record = {
         "timestamp": timestamp,
         "verdict": verdict,
+        "summary": result["summary"],
         "changed_documents": changed_labels,
         "added": total_added,
         "removed": total_removed,
@@ -624,6 +718,7 @@ def _revert_changed_documents(
             merged = dict(record)
             merged["hash"] = prior[url].get("hash", record.get("hash"))
             merged["length"] = prior[url].get("length", record.get("length"))
+            merged["previous_hashes"] = prior[url].get("previous_hashes", [])
             merged["status"] = "analysis_pending"
             reverted[url] = merged
         else:
@@ -651,7 +746,12 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
         action="append",
         default=None,
         metavar="SET_NAME",
-        help="Limit the run to the named policy set. Repeatable.",
+        help="Limit the run to the named policy set. Repeatable. Implies --skip-news.",
+    )
+    parser.add_argument(
+        "--skip-news",
+        action="store_true",
+        help="Check the policy sets only; leave the news and incident feed alone.",
     )
     return parser.parse_args(argv)
 
@@ -712,9 +812,12 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     if args.dry_run:
         _report_dry_run(run_log, report)
-        return 0
+        return _run_news(cfg, args)
 
     save_json_file(current_hashes, HASHES_FILE)
+    run_log.flush(cfg.retention.run_log_days)
+    report["activity_days"] = ACTIVITY_DAYS
+    report["activity"] = runlog.activity_summary(runlog.load_records(days=ACTIVITY_DAYS))
     health.write_report(report)
     if health.write_alert(report):
         log.warning("Health alerts raised: %d — see %s", len(report["alerts"]), health.ALERT_FILE)
@@ -728,8 +831,6 @@ def main(argv: Optional[List[str]] = None) -> int:
     known = {entry["file_id"] for entry in current_hashes.values() if entry.get("file_id")}
     history.write_index(history.build_index(LOG_DIR, known))
 
-    run_log.flush(cfg.retention.run_log_days)
-
     totals = run_log.token_totals()
     log.info(
         "Run %s complete — outcomes: %s; %d model call(s), %d prompt / %d output tokens; health: %s",
@@ -740,7 +841,24 @@ def main(argv: Optional[List[str]] = None) -> int:
         totals["output_tokens"],
         report["overall"],
     )
-    return 0
+    return _run_news(cfg, args)
+
+
+def _run_news(cfg, args: argparse.Namespace) -> int:
+    """The news and incident feed, after the policy check.
+
+    Imported here rather than at the top so a policy-only run never loads it,
+    and isolated so a failure there cannot touch what the policy run wrote.
+    """
+    if args.skip_news or args.only:
+        return 0
+    try:
+        import news_watch
+
+        return news_watch.run(cfg, dry_run=args.dry_run)
+    except Exception as exc:  # noqa: BLE001 — the policy results are already saved
+        log.exception("News run failed: %s", exc)
+        return 1
 
 
 def _report_dry_run(run_log: runlog.RunLog, report: Dict[str, Any]) -> None:

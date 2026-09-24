@@ -51,6 +51,7 @@ class NormalisationConfig:
 class DiffConfig:
     context_lines: int = 3
     max_diff_chars: int = 40000
+    revert_memory: int = 5
 
 
 @dataclass
@@ -72,6 +73,26 @@ class RetentionConfig:
 
 
 @dataclass
+class NewsConfig:
+    enabled: bool = True
+    # Days an item stays in news/feed.json before moving to the monthly archive.
+    window_days: int = 45
+    # Items below this relevance (0-3) are not kept at all.
+    min_relevance: int = 1
+    # Bound on what one source can add in one run.
+    max_new_items_per_source: int = 40
+    # Whether the model writes TLDRs and refines relevance.
+    enrich: bool = True
+    enrich_batch_size: int = 20
+    max_enrich_items: int = 120
+    ai_terms: List[str] = field(default_factory=list)
+    australia_terms: List[str] = field(default_factory=list)
+    government_terms: List[str] = field(default_factory=list)
+    policy_terms: List[str] = field(default_factory=list)
+    risk_terms: List[str] = field(default_factory=list)
+
+
+@dataclass
 class StewardConfig:
     model: str = "gemini-2.5-flash"
     fetch: FetchConfig = field(default_factory=FetchConfig)
@@ -81,6 +102,7 @@ class StewardConfig:
     fingerprint: FingerprintConfig = field(default_factory=FingerprintConfig)
     health: HealthConfig = field(default_factory=HealthConfig)
     retention: RetentionConfig = field(default_factory=RetentionConfig)
+    news: NewsConfig = field(default_factory=NewsConfig)
 
     def noise_patterns_for(self, host: str) -> List[str]:
         """Global noise patterns plus any registered for this host."""
@@ -195,6 +217,7 @@ def validate(cfg: StewardConfig) -> StewardConfig:
     d = cfg.diff
     _check(d.context_lines >= 0, "diff.context_lines: must not be negative")
     _check(d.max_diff_chars > 0, "diff.max_diff_chars: must be greater than 0")
+    _check(0 <= d.revert_memory <= 50, "diff.revert_memory: must be between 0 and 50")
 
     h = cfg.health
     _check(
@@ -213,6 +236,14 @@ def validate(cfg: StewardConfig) -> StewardConfig:
     r = cfg.retention
     _check(r.log_days > 0, "retention.log_days: must be greater than 0")
     _check(r.run_log_days > 0, "retention.run_log_days: must be greater than 0")
+
+    n = cfg.news
+    _check(1 <= n.window_days <= 365, "news.window_days: must be between 1 and 365")
+    _check(0 <= n.min_relevance <= 3, "news.min_relevance: must be between 0 and 3")
+    _check(n.max_new_items_per_source >= 1, "news.max_new_items_per_source: must be at least 1")
+    _check(1 <= n.enrich_batch_size <= 50, "news.enrich_batch_size: must be between 1 and 50")
+    _check(n.max_enrich_items >= 0, "news.max_enrich_items: must not be negative")
+    _check(bool(n.ai_terms), "news.ai_terms: must not be empty")
 
     return cfg
 

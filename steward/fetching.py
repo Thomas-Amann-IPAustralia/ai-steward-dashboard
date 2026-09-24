@@ -142,6 +142,30 @@ def extract_text(html: str, url: str, selector: Optional[str] = None) -> tuple[s
 # --- Plain HTTP path -------------------------------------------------------
 
 
+def decode_body(response) -> str:
+    """Response body as text, without trusting requests' charset fallback.
+
+    When a text/* response carries no charset, requests decodes it as
+    ISO-8859-1. A UTF-8 em dash then becomes 'â' plus two control characters
+    that extraction strips, so the same page read on two days could differ by
+    nothing but that — which is how Google's AI Principles page kept reaching
+    the model as a "change". A declared charset is honoured; otherwise UTF-8
+    is tried first, and only bytes that are not valid UTF-8 fall back to
+    detection.
+    """
+    content_type = response.headers.get("Content-Type", "") or ""
+    if "charset=" in content_type.lower():
+        return response.text
+
+    raw = response.content or b""
+    try:
+        return raw.decode("utf-8")
+    except UnicodeDecodeError:
+        encoding = response.apparent_encoding or "utf-8"
+        return raw.decode(encoding, errors="replace")
+
+
+
 def _http_fetch(url_data: dict, prior: dict, cfg, use_proxy: bool) -> FetchResult:
     url = url_data["url"]
     proxies = _proxies() if use_proxy else None
@@ -176,7 +200,7 @@ def _http_fetch(url_data: dict, prior: dict, cfg, use_proxy: bool) -> FetchResul
             url, FAILED, http_status=response.status_code, error=f"HTTP {response.status_code}"
         )
 
-    html = response.text
+    html = decode_body(response)
     text, extractor = extract_text(html, url, url_data.get("selector"))
     return FetchResult(
         url,

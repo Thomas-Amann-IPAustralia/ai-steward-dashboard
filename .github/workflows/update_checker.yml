@@ -14,6 +14,7 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - 'policy_sets.json'
+      - 'news_sources.json'
       - 'steward_config.yaml'
 
 permissions:
@@ -78,15 +79,24 @@ jobs:
         PROXY_PORT: ${{ secrets.PROXY_PORT }}
         PROXY_USER: ${{ secrets.PROXY_USER }}
         PROXY_PASS: ${{ secrets.PROXY_PASS }}
-      run: python main.py
+      run: python main.py --skip-news
+
+    # Its own step, so a news source being down can never stop the policy
+    # results from being committed and deployed.
+    - name: Refresh news and AI incidents
+      id: run_news
+      continue-on-error: true
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: python news_watch.py
 
     - name: Commit and push if changed
       id: commit_push
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        mkdir -p analysis snapshots diffs logs
-        git add analysis/ snapshots/ diffs/ policy_sets.json
+        mkdir -p analysis snapshots diffs logs news
+        git add analysis/ snapshots/ diffs/ news/ policy_sets.json
         for f in hashes.json health.json history.json runs.jsonl; do
           if [ -f "$f" ]; then git add "$f"; fi
         done
@@ -141,12 +151,6 @@ jobs:
             });
           }
 
-    - name: Fail the run if the update script failed
-      if: steps.run_script.outcome == 'failure'
-      run: |
-        echo "::error::main.py exited non-zero. Artefacts produced before the failure were still committed."
-        exit 1
-
     - name: Setup Node.js
       if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       uses: actions/setup-node@v4
@@ -176,7 +180,7 @@ jobs:
       if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       run: |
         echo "Copying data files to build directory..."
-        mkdir -p build/analysis build/snapshots build/diffs build/logs
+        mkdir -p build/analysis build/snapshots build/diffs build/logs build/news
         cp hashes.json build/
         cp policy_sets.json build/
         for f in health.json history.json; do
@@ -185,6 +189,10 @@ jobs:
         cp -r analysis/. build/analysis/ 2>/dev/null || echo "No analysis files to copy"
         cp -r snapshots/. build/snapshots/ 2>/dev/null || echo "No snapshot files to copy"
         cp -r diffs/. build/diffs/ 2>/dev/null || echo "No diff files to copy"
+        # The feed and its monthly archive ship; state.json (validators and
+        # seen ids) is the pipeline's working memory, not something to serve.
+        cp -r news/. build/news/ 2>/dev/null || echo "No news files to copy"
+        rm -f build/news/state.json
         # Only the archived analyses ship, not the archived snapshots. The
         # timeline reads history.json and fetches an analysis on demand; the
         # snapshots were ~13 MB of the ~14 MB and nothing ever fetched them.
@@ -206,3 +214,16 @@ jobs:
       if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
       id: deployment
       uses: actions/deploy-pages@v4
+
+    # Last, so a failure still marks the run red without holding back the
+    # deploy of whatever the other steps did produce.
+    - name: Fail the run if a pipeline step failed
+      if: steps.run_script.outcome == 'failure' || steps.run_news.outcome == 'failure'
+      run: |
+        if [ "${{ steps.run_script.outcome }}" = "failure" ]; then
+          echo "::error::main.py exited non-zero. Artefacts produced before the failure were still committed."
+        fi
+        if [ "${{ steps.run_news.outcome }}" = "failure" ]; then
+          echo "::error::news_watch.py exited non-zero — no news source could be read, or the run crashed."
+        fi
+        exit 1

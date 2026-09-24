@@ -105,6 +105,12 @@ def content_hash(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def set_file_id(set_name: str) -> str:
+    """Filesystem-safe id for a policy set: its name with runs of anything
+    other than letters, digits and hyphens collapsed to underscores."""
+    return re.sub(r"[^a-zA-Z0-9\-]+", "_", set_name).strip("_")
+
+
 def document_id(url: str) -> str:
     """Short, filesystem-safe, stable id for a URL within a policy set."""
     slug = re.sub(r"[^a-zA-Z0-9]+", "-", urlparse(url).path or "").strip("-")

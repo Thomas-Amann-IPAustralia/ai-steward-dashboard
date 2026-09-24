@@ -2,6 +2,14 @@
   {
     "setName": "Digital.gov.au AI Policy",
     "category": "Australian Government",
+    "keywords": [
+      "Digital Transformation Agency",
+      "DTA",
+      "digital.gov.au",
+      "responsible use of AI in government",
+      "AI transparency statement",
+      "AI transparency statements"
+    ],
     "urls": [
       {
         "url": "https://www.digital.gov.au/policy/ai/implementation",
@@ -24,6 +32,10 @@
   {
     "setName": "National Archives of Australia - AI Policy",
     "category": "Australian Government",
+    "keywords": [
+      "National Archives of Australia",
+      "NAA"
+    ],
     "urls": [
       {
         "url": "https://www.naa.gov.au/information-management/manage-information-assets/types-information/information-management-records-created-using-artificial-intelligence-ai-technologies",
@@ -34,6 +46,11 @@
   {
     "setName": "Google AI Policies",
     "category": "Private Sector",
+    "keywords": [
+      "Google",
+      "Gemini",
+      "DeepMind"
+    ],
     "urls": [
       {
         "url": "https://policies.google.com/terms",
@@ -47,6 +64,10 @@
   {
     "setName": "Anthropic Legal Policies",
     "category": "Private Sector",
+    "keywords": [
+      "Anthropic",
+      "Claude"
+    ],
     "urls": [
       {
         "url": "https://www.anthropic.com/legal/consumer-terms"
@@ -62,6 +83,9 @@
   {
     "setName": "Perplexity AI Legal Policies",
     "category": "Private Sector",
+    "keywords": [
+      "Perplexity"
+    ],
     "urls": [
       {
         "url": "https://www.perplexity.ai/hub/legal/terms-of-service"
@@ -77,6 +101,9 @@
   {
     "setName": "Midjourney Legal Policies",
     "category": "Private Sector",
+    "keywords": [
+      "Midjourney"
+    ],
     "urls": [
       {
         "url": "https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service"
@@ -89,6 +116,14 @@
   {
     "setName": "ACSC Information Security Manual (ISM)",
     "category": "Australian Government",
+    "keywords": [
+      "Information Security Manual",
+      "ISM",
+      "Australian Signals Directorate",
+      "ASD",
+      "ACSC",
+      "Australian Cyber Security Centre"
+    ],
     "urls": [
       {
         "url": "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism"
@@ -98,12 +133,18 @@
   {
     "setName": "NSW Government AI Guidance",
     "category": "State Government",
+    "keywords": [
+      "NSW Government",
+      "Digital NSW",
+      "NSW AI Assurance Framework",
+      "New South Wales Government"
+    ],
     "urls": [
       {
         "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/generative-ai-basic-guidance"
       },
       {
-        "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/nsw-artificial-intelligence-assurance-framework"
+        "url": "https://www.digital.nsw.gov.au/policy/artificial-intelligence/ai-governance-assurance-and-frameworks/nsw-ai-assessment-framework"
       },
       {
         "url": "https://www.asbfeo.gov.au/disputes-assistance/dispute-support"

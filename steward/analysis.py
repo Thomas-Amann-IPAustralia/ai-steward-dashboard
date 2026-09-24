@@ -14,6 +14,12 @@ Three properties the previous implementation lacked:
   the provided documents" and then being forced to pick a priority anyway.
   `no_material_change` says that cleanly, and when it does the set is not
   badged and `last_amended` is not touched.
+
+The schema is also handed to the API as a response schema, so the model is
+constrained to it rather than merely asked; validation stays as the check.
+An overloaded model (HTTP 503/429) is retried with a backoff instead of being
+spent as the one schema retry — two of the three "schema failures" in
+September 2026 were a 503 retried within the same second.
 """
 
 from __future__ import annotations
@@ -22,8 +28,9 @@ import json
 import logging
 import os
 import re
-from dataclasses import dataclass, field
-from typing import Optional, Sequence
+import time
+from dataclasses import dataclass
+from typing import Callable, Optional, Sequence
 
 log = logging.getLogger(__name__)
 
@@ -35,6 +42,22 @@ NO_MATERIAL_CHANGE = "no_material_change"
 UNCERTAIN = "uncertain"
 
 _FENCE = re.compile(r"^\s*```(?:json)?\s*|\s*```\s*$", re.MULTILINE)
+
+# Status codes worth waiting out rather than giving up on.
+TRANSIENT_STATUS = {429, 500, 502, 503, 504}
+# Seconds to wait before each successive retry of a transient API error.
+TRANSIENT_BACKOFF = (15, 45, 90)
+
+RESPONSE_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "verdict": {"type": "STRING", "enum": list(VERDICTS)},
+        "summary": {"type": "STRING"},
+        "analysis": {"type": "STRING"},
+        "priority": {"type": "STRING", "enum": list(PRIORITIES)},
+    },
+    "required": ["verdict", "summary", "analysis", "priority"],
+}
 
 
 class SchemaError(ValueError):
@@ -49,6 +72,9 @@ class AnalysisOutcome:
     prompt_tokens: int = 0
     output_tokens: int = 0
     raw: str = ""
+    # True when the model could not be reached at all, as opposed to
+    # answering outside the schema.
+    unavailable: bool = False
 
     @property
     def ok(self) -> bool:
@@ -176,6 +202,46 @@ def parse_and_validate(raw_text: str) -> dict:
     }
 
 
+def is_transient(exc: Exception) -> bool:
+    """Whether an API error is load or rate limiting rather than a real fault."""
+    code = getattr(exc, "code", None)
+    if isinstance(code, int) and code in TRANSIENT_STATUS:
+        return True
+    text = str(exc).upper()
+    return any(marker in text for marker in ("UNAVAILABLE", "RESOURCE_EXHAUSTED", "DEADLINE_EXCEEDED"))
+
+
+def generate_json(
+    client,
+    model: str,
+    prompt: str,
+    schema: dict,
+    *,
+    sleep: Callable[[float], None] = time.sleep,
+    backoff: Sequence[float] = TRANSIENT_BACKOFF,
+):
+    """One structured-output call, waiting out transient overloads.
+
+    Raises the last exception if the API never answers.
+    """
+    from google.genai import types
+
+    config = types.GenerateContentConfig(
+        response_mime_type="application/json",
+        response_schema=schema,
+    )
+    waits = list(backoff)
+    while True:
+        try:
+            return client.models.generate_content(model=model, contents=prompt, config=config)
+        except Exception as exc:  # noqa: BLE001 — classified below
+            if not waits or not is_transient(exc):
+                raise
+            delay = waits.pop(0)
+            log.warning("  Model busy (%s) — retrying in %ss", type(exc).__name__, delay)
+            sleep(delay)
+
+
 def _usage(response) -> tuple[int, int]:
     usage = getattr(response, "usage_metadata", None)
     if usage is None:
@@ -194,15 +260,15 @@ def analyse_change(
     changed_documents: Sequence[str] = (),
     tags: Sequence[str] = (),
     client=None,
+    sleep: Callable[[float], None] = time.sleep,
 ) -> AnalysisOutcome:
     """Call the model, validate, retry once, then give up cleanly."""
-    from google import genai
-    from google.genai import types
-
-    api_key = os.environ.get("GEMINI_API_KEY")
     if client is None:
+        api_key = os.environ.get("GEMINI_API_KEY")
         if not api_key:
-            return AnalysisOutcome(error="GEMINI_API_KEY is not set")
+            return AnalysisOutcome(error="GEMINI_API_KEY is not set", unavailable=True)
+        from google import genai
+
         client = genai.Client(api_key=api_key)
 
     prompt = build_prompt(set_name, diff_text, changed_documents, tags)
@@ -214,15 +280,15 @@ def analyse_change(
         text = prompt if attempt == 1 else prompt + _RETRY_SUFFIX.format(error=last_error)
 
         try:
-            response = client.models.generate_content(
-                model=model,
-                contents=text,
-                config=types.GenerateContentConfig(response_mime_type="application/json"),
-            )
+            response = generate_json(client, model, text, RESPONSE_SCHEMA, sleep=sleep)
         except Exception as exc:  # noqa: BLE001 — an API failure must not kill the run
             last_error = f"{type(exc).__name__}: {exc}"
             log.error("  Gemini API error on attempt %d: %s", attempt, last_error)
             outcome.error = last_error
+            if is_transient(exc):
+                # Already waited out; a second round would only wait again.
+                outcome.unavailable = True
+                break
             continue
 
         prompt_tokens, output_tokens = _usage(response)
@@ -240,5 +306,5 @@ def analyse_change(
             outcome.error = last_error
             log.warning("  Model response rejected on attempt %d: %s", attempt, last_error)
 
-    log.error("  Giving up on '%s' after 2 attempts: %s", set_name, outcome.error)
+    log.error("  Giving up on '%s' after %d attempt(s): %s", set_name, outcome.attempts, outcome.error)
     return outcome
