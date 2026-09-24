@@ -26,7 +26,8 @@ the plan itself scopes it as self-contained. Everything else is done.
 | B3 Normalise before hashing | Done | `steward/content.py`, idempotent |
 | B4 Compute and send only the diff | Done | `steward/diffing.py`, `diffs/{file_id}.diff` |
 | B5 Regex significance fingerprint | Done | context for the model, never a veto |
-| C1–C8 Newsletter feed | **Not started** | — |
+| C1–C2 Mailbox ingestion | Superseded | RSS/Atom feeds and the OECD AIM API instead — see below |
+| C3–C8 News feed | Done (24 Sep 2026) | `news_watch.py`, `steward/feeds.py`, `steward/news.py`, `steward/news_enrichment.py` |
 | D1 Diff as the default detail view | Done | `src/components/DiffView.js` |
 | D2 Show which document changed | Done | detail page + briefing rows |
 | D3 Home page as a briefing | Done | `src/components/DashboardHome.js` |
@@ -42,6 +43,16 @@ the plan itself scopes it as self-contained. Everything else is done.
 | E4 Clean up the orphans | Done | 12 orphaned files removed |
 | E5 Tests | Done | 57 Python + 11 frontend, both in CI |
 | E6 Move off the legacy Gemini SDK | Done | `google-genai` |
+
+**Update — 24 September 2026.** The news feed (C3–C8) is built, from RSS/Atom
+feeds and the OECD AI Incidents Monitor rather than a newsletter mailbox: no
+secret, allowlist or quarantine is needed, and the relevance rubric (C4),
+policy cross-links (C5), no-bodies storage (C6), untrusted-input handling (C7)
+and `news/feed.json` + monthly archive (C8) are as planned. Newsletters can
+still be added later as another source type. The same round closed four
+false-change causes that survived the August upgrade — a charset fallback,
+typography-only diffs, a poisoned baseline, and 503s spent as schema retries
+— see `tests/test_filtering.py`.
 
 One root cause worth recording, found while building A1: the 8 August capture
 was Chrome's error page reading *"This site can’t be reached"* with a **curly**
