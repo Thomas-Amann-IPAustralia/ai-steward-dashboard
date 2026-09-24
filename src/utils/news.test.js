@@ -1,9 +1,13 @@
 import {
   dayLabel,
   filterItems,
+  formatAgo,
   groupByDay,
+  isAggregated,
   isNew,
   itemsForPolicy,
+  outletInitials,
+  pickTopStories,
   rankItems,
   withinDays,
 } from './news';
@@ -191,5 +195,42 @@ describe('reverted changes', () => {
   test('anything else is not', () => {
     expect(revertedAfterChange({ last_review: { verdict: 'no_material_change', timestamp: '2026-09-15T00:00:00Z' } })).toBeNull();
     expect(revertedAfterChange({})).toBeNull();
+  });
+});
+
+describe('reading at a glance', () => {
+  test('outlet initials read like the outlet', () => {
+    expect(outletInitials('ABC News')).toBe('ABC');
+    expect(outletInitials('SBS News')).toBe('SBS');
+    expect(outletInitials('The Guardian')).toBe('G');
+    expect(outletInitials('The Canberra Times')).toBe('CT');
+    expect(outletInitials('Government News')).toBe('GN');
+    expect(outletInitials('OECD.AI')).toBe('OECD');
+    expect(outletInitials('')).toBe('?');
+  });
+
+  test('times are short and relative while fresh', () => {
+    expect(formatAgo('2026-09-24T05:48:00Z', NOW)).toBe('12m ago');
+    expect(formatAgo('2026-09-24T01:00:00Z', NOW)).toBe('5h ago');
+    expect(formatAgo('2026-09-20T01:00:00Z', NOW)).toMatch(/20 Sept?/);
+    expect(formatAgo(undefined, NOW)).toBe('');
+  });
+
+  test('top stories are recent and either act-on-it or widely reported', () => {
+    const stories = pickTopStories(
+      [
+        item('act', { relevance: 3, published: '2026-09-24T01:00:00Z' }),
+        item('wide', { relevance: 2, published: '2026-09-23T01:00:00Z', coverage: [{ url: 'a' }, { url: 'b' }] }),
+        item('plain', { relevance: 2, published: '2026-09-24T02:00:00Z' }),
+        item('stale', { relevance: 3, published: '2026-09-10T01:00:00Z' }),
+      ],
+      { now: NOW }
+    );
+    expect(stories.map((s) => s.id)).toEqual(['act', 'wide']);
+  });
+
+  test('Google News links are recognised as aggregated', () => {
+    expect(isAggregated({ url: 'https://news.google.com/rss/articles/x' })).toBe(true);
+    expect(isAggregated({ url: 'https://www.abc.net.au/news/x' })).toBe(false);
   });
 });

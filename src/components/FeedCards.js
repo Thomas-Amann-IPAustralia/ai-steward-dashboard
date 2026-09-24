@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { formatShortDay } from '../utils/constants';
-import { blurbOf, isNew, RELEVANCE, TOPIC_LABELS } from '../utils/news';
+import { formatDate, formatShortDay } from '../utils/constants';
+import {
+  blurbOf,
+  formatAgo,
+  isAggregated,
+  isNew,
+  outletInitials,
+  publisherOf,
+  RELEVANCE,
+  TOPIC_LABELS,
+} from '../utils/news';
 
 /**
  * Cards for news items and AI incidents.
@@ -26,15 +35,14 @@ export function NewBadge() {
   return <span className="new-badge">New</span>;
 }
 
-function ExternalTitle({ item }) {
+function ExternalTitle({ item, as: Tag = 'h3', className = 'feed-title' }) {
   return (
-    <h3 className="feed-title">
+    <Tag className={className}>
       <a href={item.url} target="_blank" rel="noopener noreferrer">
         {item.title}
-        <span className="external-mark" aria-hidden="true"> ↗</span>
         <span className="visually-hidden"> (opens in a new tab)</span>
       </a>
-    </h3>
+    </Tag>
   );
 }
 
@@ -54,65 +62,123 @@ function RelatedPolicies({ ids, policyNames }) {
   );
 }
 
-function Coverage({ entries }) {
-  const [open, setOpen] = useState(false);
-  if (!entries || entries.length === 0) return null;
-  const names = [...new Set(entries.map((entry) => entry.publisher).filter(Boolean))];
+const MARK_PALETTE = ['#00529B', '#0f766e', '#7c3aed', '#b45309', '#be123c', '#15803d', '#0369a1', '#7e22ce'];
+
+const markColor = (name) => {
+  let hash = 0;
+  for (let i = 0; i < name.length; i += 1) hash = (hash * 31 + name.charCodeAt(i)) % 100000;
+  return MARK_PALETTE[hash % MARK_PALETTE.length];
+};
+
+/** A coloured tile with the outlet's initials — recognisable without a
+ *  third-party favicon request. */
+export function OutletMark({ name }) {
   return (
-    <div className="coverage">
-      <button
-        type="button"
-        className="link-button"
-        onClick={() => setOpen((value) => !value)}
-        aria-expanded={open}
-      >
-        Also reported by {names.slice(0, 3).join(', ')}
-        {names.length > 3 ? ` and ${names.length - 3} more` : ''}
-      </button>
-      {open && (
-        <ul className="coverage-list">
-          {entries.map((entry) => (
-            <li key={entry.url}>
-              <a href={entry.url} target="_blank" rel="noopener noreferrer">
-                {entry.title}
-              </a>{' '}
-              <span className="coverage-publisher">— {entry.publisher}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <span className="outlet-mark" style={{ backgroundColor: markColor(name || '?') }} aria-hidden="true">
+      {outletInitials(name)}
+    </span>
   );
 }
 
-export function NewsCard({ item, since, policyNames = {}, compact = false }) {
+/** "+4 outlets", opening a list of the other coverage. */
+function CoverageToggle({ entries, open, onToggle }) {
+  if (!entries || entries.length === 0) return null;
+  return (
+    <button type="button" className="meta-button" onClick={onToggle} aria-expanded={open}>
+      +{entries.length} outlet{entries.length === 1 ? '' : 's'}
+    </button>
+  );
+}
+
+function CoverageList({ entries }) {
+  return (
+    <ul className="coverage-list">
+      {entries.map((entry) => (
+        <li key={entry.url}>
+          <a href={entry.url} target="_blank" rel="noopener noreferrer">
+            {entry.title}
+          </a>{' '}
+          <span className="coverage-publisher">— {entry.publisher}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function RelatedLinks({ ids, policyNames }) {
+  const known = (ids || []).filter((id) => policyNames[id]);
+  return known.map((id) => (
+    <Link key={id} to={`/policy/${id}`} className="policy-link" title="A policy this dashboard monitors">
+      {policyNames[id]}
+    </Link>
+  ));
+}
+
+/**
+ * One news item as a scannable row: a coloured edge for relevance, the
+ * outlet's mark, the headline, one line of summary, and a single meta line.
+ * Everything a reader needs to decide whether to click, in two seconds.
+ */
+export function NewsRow({ item, since, policyNames = {}, compact = false }) {
+  const [open, setOpen] = useState(false);
   const fresh = isNew(item, since);
   const blurb = blurbOf(item);
-  const via = item.publisher && item.source_name !== item.publisher ? item.source_name : null;
+  const outlet = publisherOf(item);
+  const topics = compact ? [] : (item.topics || []).slice(0, 2);
 
   return (
-    <article className={`feed-card${fresh ? ' is-new' : ''}${compact ? ' compact' : ''}`}>
-      <div className="feed-meta">
+    <article className={`news-row rel-${item.relevance || 1}${fresh ? ' is-new' : ''}${compact ? ' compact' : ''}`}>
+      <OutletMark name={outlet} />
+      <div className="news-row-main">
+        <div className="news-row-head">
+          <ExternalTitle item={item} className="news-row-title" />
+          <time className="news-row-time" dateTime={item.published} title={formatDate(item.published)}>
+            {formatAgo(item.published)}
+          </time>
+        </div>
+        {blurb && <p className="news-row-blurb">{blurb}</p>}
+        <div className="news-row-meta">
+          {fresh && <NewBadge />}
+          <span className="news-row-outlet">{outlet}</span>
+          <RelevanceBadge level={item.relevance} />
+          {item.paywalled && <span className="paywall-tag" title="This outlet may ask you to subscribe">Subscriber</span>}
+          {topics.map((topic) => (
+            <span key={topic} className="topic-tag">{TOPIC_LABELS[topic] || topic}</span>
+          ))}
+          <RelatedLinks ids={item.related_policies} policyNames={policyNames} />
+          {!compact && <CoverageToggle entries={item.coverage} open={open} onToggle={() => setOpen((v) => !v)} />}
+          {!compact && isAggregated(item) && <span className="via-tag">via Google News</span>}
+        </div>
+        {open && <CoverageList entries={item.coverage} />}
+      </div>
+    </article>
+  );
+}
+
+/** A lead story: the same information as a row, with room to read. */
+export function TopStory({ item, since, policyNames = {} }) {
+  const [open, setOpen] = useState(false);
+  const fresh = isNew(item, since);
+  const blurb = blurbOf(item);
+  const outlet = publisherOf(item);
+
+  return (
+    <article className={`top-story rel-${item.relevance || 1}${fresh ? ' is-new' : ''}`}>
+      <div className="top-story-meta">
+        <OutletMark name={outlet} />
+        <span className="news-row-outlet">{outlet}</span>
+        <time dateTime={item.published} title={formatDate(item.published)}>{formatAgo(item.published)}</time>
+      </div>
+      <ExternalTitle item={item} className="top-story-title" />
+      {blurb && <p className="top-story-blurb">{blurb}</p>}
+      <div className="news-row-meta">
         {fresh && <NewBadge />}
         <RelevanceBadge level={item.relevance} />
-        <span className="feed-source">{item.publisher || item.source_name}</span>
-        {compact && <span className="feed-date">{formatShortDay(item.published)}</span>}
-        {!compact && via && <span className="feed-via">via {via}</span>}
+        {item.paywalled && <span className="paywall-tag">Subscriber</span>}
+        <RelatedLinks ids={item.related_policies} policyNames={policyNames} />
+        <CoverageToggle entries={item.coverage} open={open} onToggle={() => setOpen((v) => !v)} />
       </div>
-      <ExternalTitle item={item} />
-      {blurb && <p className="feed-blurb">{blurb}</p>}
-      {!compact && item.relevance_source === 'model' && item.relevance_reason && (
-        <p className="feed-reason">{item.relevance_reason}</p>
-      )}
-      <RelatedPolicies ids={item.related_policies} policyNames={policyNames} />
-      {!compact && item.topics?.length > 0 && (
-        <ul className="topic-chips" aria-label="Topics">
-          {item.topics.map((topic) => (
-            <li key={topic}>{TOPIC_LABELS[topic] || topic}</li>
-          ))}
-        </ul>
-      )}
-      {!compact && <Coverage entries={item.coverage} />}
+      {open && <CoverageList entries={item.coverage} />}
     </article>
   );
 }
@@ -180,5 +246,5 @@ export function IncidentCard({ item, since, policyNames = {}, compact = false })
 }
 
 export function FeedCard(props) {
-  return props.item.kind === 'incident' ? <IncidentCard {...props} /> : <NewsCard {...props} />;
+  return props.item.kind === 'incident' ? <IncidentCard {...props} /> : <NewsRow {...props} />;
 }

@@ -78,20 +78,37 @@ test('opens on the relevant items, with Everything one click away', () => {
   expect(container.textContent).toContain('A model got slightly faster');
 });
 
-test('headlines link to the original in a new tab, and the TLDR is plain text', () => {
+test('an "act on it" story leads, linking to the original in a new tab', () => {
   render();
-  const link = container.querySelector('.feed-title a');
+  const lead = container.querySelector('.top-story');
+  const link = lead.querySelector('.top-story-title a');
   expect(link.getAttribute('href')).toBe('https://example.com/act');
   expect(link.getAttribute('target')).toBe('_blank');
   expect(link.getAttribute('rel')).toContain('noopener');
-  expect(container.querySelector('.feed-blurb').textContent).toBe('Written by the model.');
+  expect(lead.querySelector('.top-story-blurb').textContent).toBe('Written by the model.');
+});
+
+test('searching lists every match as a row, without lead stories', () => {
+  render('/news?q=transparency');
+  expect(container.querySelector('.top-story')).toBeNull();
+  expect(container.querySelector('.news-row-title a').textContent).toContain('transparency statement');
 });
 
 test('an item about a monitored policy links to it', () => {
   render();
-  const related = container.querySelector('.related-policies a');
+  const related = container.querySelector('.policy-link');
   expect(related.textContent).toBe('Digital.gov.au AI Policy');
   expect(related.getAttribute('href')).toBe('/policy/Digital_gov_au_AI_Policy');
+});
+
+test('a category with nothing to show is disabled rather than a dead end', () => {
+  render();
+  const chips = [...container.querySelectorAll('.filter-chip')];
+  const international = chips.find((chip) => chip.textContent.startsWith('International'));
+  const government = chips.find((chip) => chip.textContent.startsWith('Australian Government'));
+  expect(international.disabled).toBe(true);
+  expect(government.disabled).toBe(false);
+  expect(government.textContent).toContain('1');
 });
 
 test('a missing feed is a notice, not a crash', () => {

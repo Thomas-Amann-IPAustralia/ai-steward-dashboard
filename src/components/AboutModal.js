@@ -53,7 +53,8 @@ function AboutModal({ onClose }) {
         <p>
           News comes from Australian government sites, public-sector and technology media, overseas
           regulators and the AI providers themselves. Incidents come from the OECD AI Incidents
-          Monitor. General feeds only contribute items that mention AI; each item is then scored
+          Monitor. General feeds only contribute stories with AI in the headline, and live blogs
+          and podcasts are left out; each item is then scored
           for relevance to APS work and, where the item says enough, given a one-line summary.
           Repeat coverage of the same event is folded into one item. Headlines always link to the
           original, which remains the authority.

@@ -27,6 +27,7 @@ export const TOPIC_LABELS = {
 export const NEWS_CATEGORIES = [
   'Australian Government',
   'Australian news',
+  'Analysis',
   'International',
   'AI providers',
 ];
@@ -141,4 +142,50 @@ export function dayLabel(value, now = Date.now()) {
     day: 'numeric',
     month: 'long',
   });
+}
+
+/** The outlet a reader would name: the publisher, else the feed. */
+export const publisherOf = (item) => item?.publisher || item?.source_name || '';
+
+/** Whether an item's link goes through Google News rather than to the outlet. */
+export const isAggregated = (item) => /^https?:\/\/news\.google\.com\//.test(item?.url || '');
+
+/**
+ * Up to three letters that identify an outlet at a glance: an acronym as
+ * written (ABC, SBS, OECD), otherwise the initials of its first two words,
+ * ignoring a leading "The".
+ */
+export function outletInitials(name) {
+  const words = (name || '').replace(/^the\s+/i, '').split(/[\s—–-]+/).filter(Boolean);
+  if (words.length === 0) return '?';
+  const acronym = words[0].match(/^[A-Z]{2,4}(?![a-z])/);
+  if (acronym) return acronym[0];
+  return words
+    .slice(0, 2)
+    .map((word) => word.charAt(0).toUpperCase())
+    .join('');
+}
+
+/** Short relative time: "12m", "5h", then a date. */
+export function formatAgo(value, now = Date.now()) {
+  const time = timestampOf(value);
+  if (!time) return '';
+  const minutes = Math.max(0, Math.round((now - time) / 60000));
+  if (minutes < 60) return `${Math.max(minutes, 1)}m ago`;
+  if (minutes < 24 * 60) return `${Math.round(minutes / 60)}h ago`;
+  return new Date(time).toLocaleDateString('en-AU', {
+    timeZone: 'Australia/Sydney',
+    day: 'numeric',
+    month: 'short',
+  });
+}
+
+/**
+ * The stories to lead with: "act on it" items, or anything widely reported,
+ * from the last few days — most important first.
+ */
+export function pickTopStories(items, { days = 3, limit = 3, now = Date.now() } = {}) {
+  return rankItems(withinDays(items, days, now))
+    .filter((item) => item.relevance >= 3 || (item.coverage?.length || 0) >= 2)
+    .slice(0, limit);
 }
