@@ -1,15 +1,18 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { usePolicyDetail } from '../hooks/usePolicyDetail';
 import { useHistory } from '../hooks/useHistory';
 import {
+  DOCUMENT_STATES,
   formatDate,
   formatRelative,
   REPO_URL,
   VERDICT_LABELS,
 } from '../utils/constants';
+import { itemsForPolicy } from '../utils/news';
 import DiffView from './DiffView';
+import { FeedCard } from './FeedCards';
 import HistoryTimeline from './HistoryTimeline';
 import PriorityBadge from './PriorityBadge';
 import { SourceHealthNotice } from './SourceHealth';
@@ -28,13 +31,31 @@ const feedbackUrl = (setName, fileId, verdict, judgement) => {
   return `${REPO_URL}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=analysis-feedback`;
 };
 
-function PolicyDetail({ policySets, health }) {
+function ActivityLine({ counts, days }) {
+  if (!counts || !counts.checks) return null;
+  const parts = [`${counts.checks} document checks`];
+  if (counts.filtered) parts.push(`${counts.filtered} formatting-only or flip-flop change${counts.filtered === 1 ? '' : 's'} set aside`);
+  if (counts.rejected) parts.push(`${counts.rejected} bad capture${counts.rejected === 1 ? '' : 's'} rejected`);
+  parts.push(`${counts.analysed || 0} sent for analysis`);
+  if (counts.analysed) parts.push(`${counts.material || 0} judged material`);
+  return (
+    <p className="activity-line">
+      <strong>Last {days} days:</strong> {parts.join(' · ')}
+    </p>
+  );
+}
+
+const RELATED_LIMIT = 6;
+
+function PolicyDetail({ policySets, health, feed, since }) {
   const { fileId } = useParams();
   const { analysis, diff, snapshot, loading, error } = usePolicyDetail(fileId);
   const historyState = useHistory(fileId);
 
   const policySet = policySets.find((p) => p.file_id === fileId);
   const sourceHealth = policySet ? health?.sources?.[policySet.setName] : null;
+  const related = itemsForPolicy(feed?.items, fileId);
+  const policyNames = Object.fromEntries(policySets.map((set) => [set.file_id, set.setName]));
 
   if (loading) {
     return (
@@ -52,11 +73,19 @@ function PolicyDetail({ policySets, health }) {
     );
   }
 
+  if (!policySet && policySets.length === 0) {
+    return (
+      <div className="loading-message" role="status" aria-live="polite">
+        Loading page data…
+      </div>
+    );
+  }
+
   if (!policySet) {
     return (
       <div className="placeholder">
         <h2>Policy Not Found</h2>
-        <p>The selected policy could not be found. Please select a policy from the sidebar.</p>
+        <p>The selected policy could not be found. Choose one from the list of monitored policies.</p>
       </div>
     );
   }
@@ -65,16 +94,18 @@ function PolicyDetail({ policySets, health }) {
   const changedDocuments = analysis?.changed_documents || [];
   const verdict = analysis?.verdict;
   const review = policySet.last_review;
-  const declined = review?.verdict === 'no_material_change' || review?.verdict === 'rebaselined';
+  const declined = ['no_material_change', 'rebaselined', 'reverted'].includes(review?.verdict);
 
   return (
     <div className="policy-detail">
+      <Link to="/policies" className="back-link">← All policies</Link>
       <div className="content-header">
         <h2>{policySet.setName}</h2>
         <p className="detail-subtitle">
           Last checked {formatDate(policySet.last_checked)}
           {policySet.last_amended && ` · last change ${formatRelative(policySet.last_amended)}`}
         </p>
+        <ActivityLine counts={health?.activity?.[policySet.setName]} days={health?.activity_days || 30} />
       </div>
 
       <SourceHealthNotice source={sourceHealth} />
@@ -95,7 +126,7 @@ function PolicyDetail({ policySets, health }) {
                 <div className="document-item-head">
                   <span className="document-label">{label}</span>
                   <span className={`document-state state-${state}`}>
-                    {changed ? 'changed' : state.replace(/_/g, ' ')}
+                    {changed ? DOCUMENT_STATES.changed : DOCUMENT_STATES[state] || state.replace(/_/g, ' ')}
                   </span>
                 </div>
                 <a href={urlObj.url} target="_blank" rel="noopener noreferrer" className="document-url">
@@ -192,6 +223,25 @@ function PolicyDetail({ policySets, health }) {
         <h3>What changed</h3>
         <DiffView diff={diff} changedDocuments={changedDocuments} />
       </section>
+
+      {related.length > 0 && (
+        <section className="related-section">
+          <h3>Related news and incidents</h3>
+          <p className="muted">
+            Items from the news and incident feeds that name this provider or agency.
+          </p>
+          <div className="feed-list">
+            {related.slice(0, RELATED_LIMIT).map((item) => (
+              <FeedCard key={item.id} item={item} since={since} policyNames={policyNames} compact />
+            ))}
+          </div>
+          {related.length > RELATED_LIMIT && (
+            <p className="muted">
+              {related.length - RELATED_LIMIT} more in <Link to="/news?related=1&show=all">News</Link>.
+            </p>
+          )}
+        </section>
+      )}
 
       <section className="history-section">
         <h3>Change history</h3>

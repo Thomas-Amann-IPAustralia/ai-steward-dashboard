@@ -147,7 +147,7 @@ function Sidebar({ policySets, health, loading, error }) {
                 <div className="page-item">
                   <div className="page-title">
                     <Lettermark url={primaryUrl(policySet)} name={policySet.setName} />
-                    <span>{policySet.setName}</span>
+                    <span className="page-title-name">{policySet.setName}</span>
                     <PriorityBadge
                       priority={policySet.last_priority}
                       date={policySet.last_amended}

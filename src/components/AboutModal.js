@@ -1,11 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 
+/**
+ * How the dashboard works, in plain terms first and in detail after.
+ *
+ * This replaces two dialogs that described an earlier version of the tool —
+ * MD5 hashes over whole policy sets, a browser launched for every page, and
+ * both full documents sent to the model — none of which is true any more.
+ */
 function AboutModal({ onClose }) {
   const closeRef = useRef(null);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
     };
     document.addEventListener('keydown', handleKeyDown);
     closeRef.current?.focus();
@@ -14,39 +21,62 @@ function AboutModal({ onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="about-modal-title">
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close-button" onClick={onClose} ref={closeRef} aria-label="Close dialog">&times;</button>
-        <h2 id="about-modal-title">How the AI Steward Dashboard Works</h2>
-        <p>Think of the dashboard as having three main parts that work together: <strong>The Watcher</strong>, <strong>The Analyst</strong>, and <strong>The Dashboard Website</strong>. The entire process is automated to run once every day.</p>
+      <div className="modal-content" onClick={(event) => event.stopPropagation()}>
+        <button className="modal-close-button" onClick={onClose} ref={closeRef} aria-label="Close dialog">
+          &times;
+        </button>
+        <h2 id="about-modal-title">How this works</h2>
+        <p>
+          Once a day, an automated job reads every source listed on the Sources page, works out what
+          genuinely changed or is genuinely new, and publishes this site. Nothing here is written by
+          hand, and nothing is sent anywhere by your browser except requests for this site's own files.
+        </p>
 
-        <h3>1. The Watcher (The Python Script & Automation)</h3>
+        <h3>Policy watch</h3>
+        <p>
+          Government AI policies and the terms of the AI services APS staff use are downloaded and
+          compared, document by document, with the copy stored the day before. Most days nothing
+          changes. When something does, it has to get past several checks before anyone is told:
+        </p>
         <ul>
-          <li><strong>Knows What to Watch:</strong> The system starts with a simple list (<code>policy_sets.json</code>). This list tells it exactly which government policy pages and company terms of service websites it needs to monitor.</li>
-          <li><strong>Daily Check-up:</strong> Every day, an automated process kicks off on GitHub. It runs a script (<code>main.py</code>) that acts like a robot, visiting every single URL on its list.</li>
-          <li><strong>Takes a "Snapshot":</strong> For each page it visits, the robot carefully copies all the relevant text and saves it as a "snapshot." It then compares this new snapshot to the one it saved from the previous day.</li>
+          <li><strong>Is it really the document?</strong> Error pages, “access denied” pages and pages that suddenly shrink or balloon are rejected, and the stored copy is kept.</li>
+          <li><strong>Did the wording change?</strong> Differences in spacing, line breaks, quote marks, dashes, capitals or how a link is written are ignored.</li>
+          <li><strong>Is it just flip-flopping?</strong> A page returning to a version already seen is recorded, not re-reported.</li>
+        </ul>
+        <p>
+          Only then is the change — just the changed lines, not the whole document — sent to an AI
+          model (Google Gemini), which summarises it, rates its priority, and is allowed to say
+          “nothing material changed”. If it says so, the policy is not badged.
+        </p>
+
+        <h3>News and AI incidents</h3>
+        <p>
+          News comes from Australian government sites, public-sector and technology media, overseas
+          regulators and the AI providers themselves. Incidents come from the OECD AI Incidents
+          Monitor. General feeds only contribute items that mention AI; each item is then scored
+          for relevance to APS work and, where the item says enough, given a one-line summary.
+          Repeat coverage of the same event is folded into one item. Headlines always link to the
+          original, which remains the authority.
+        </p>
+
+        <h3>What it can't do</h3>
+        <ul>
+          <li>It reads only the pages listed. Some government sites block automated readers; they are reached through search where possible, and any source not being read is flagged, never shown as “unchanged”.</li>
+          <li>AI summaries and ratings can be wrong. Check the diff or the original before acting, and use 👍/👎 on an analysis to say whether it helped.</li>
+          <li>It is not legal advice and not an official Australian Government product.</li>
         </ul>
 
-        <h3>2. The Analyst (The AI Integration)</h3>
-        <ul>
-          <li><strong>Detects a Change:</strong> If the watcher notices <em>any</em> difference between today's snapshot and yesterday's, it flags that a change has occurred.</li>
-          <li><strong>Asks the AI for Help:</strong> This is the core of the tool. The system sends both the old version and the new, changed version of the text to a powerful AI (Google's Gemini).</li>
-          <li><strong>Gets a Human-Friendly Summary:</strong> It asks the AI to do two things:
-            <ul>
-              <li>Write a clear, simple summary of exactly what changed.</li>
-              <li>Analyse the importance of the change and assign a priority level (e.g., <code>Critical</code>, <code>High</code>, <code>Low</code>).</li>
-            </ul>
-          </li>
-          <li><strong>Saves the Analysis:</strong> The AI's summary and priority rating are saved. The new snapshot also replaces the old one, ready for the next day's comparison.</li>
-        </ul>
-
-        <h3>3. The Dashboard Website (The React App)</h3>
-        <ul>
-          <li><strong>Presents the Information:</strong> This is the part you see and interact with. It's a simple website that reads all the saved snapshots and AI-generated summaries.</li>
-          <li><strong>Easy Navigation:</strong> The dashboard displays a clean list of all the policies being tracked. You can click on any of them.</li>
-          <li><strong>Shows You What Matters:</strong> When you select a policy, the dashboard instantly shows you the AI's latest analysis, including the priority and a summary of the most recent changes. You can also view the full text snapshot that the watcher saved.</li>
-        </ul>
-
-        <p>In short, the system automatically <strong>watches</strong> key websites, uses <strong>AI to analyze</strong> any changes it finds, and presents those findings on a simple <strong>dashboard</strong> for you to review.</p>
+        <details className="tech-details">
+          <summary>Technical detail</summary>
+          <ul>
+            <li><strong>Pipeline:</strong> Python, run daily by GitHub Actions; results are committed to the repository and served as static files by GitHub Pages. There is no server or database.</li>
+            <li><strong>Fetching:</strong> a conditional GET (ETag / Last-Modified) first; <code>requests</code> + <code>trafilatura</code> extraction; headless Chrome only for pages that need it.</li>
+            <li><strong>Comparison:</strong> text is normalised and SHA-256 hashed per document; a unified diff is built only when the hash moves, and blocks that differ only typographically are set aside before diffing. Recent hashes are remembered to spot flip-flops.</li>
+            <li><strong>Analysis:</strong> one Gemini call per changed policy set, constrained to a JSON schema and validated; the timestamp is stamped in code, never by the model.</li>
+            <li><strong>News:</strong> RSS/Atom feeds and the OECD AIM search API, deduplicated by canonical URL, keyword-scored, then scored and summarised by the model in batches, with feed text treated strictly as untrusted data.</li>
+            <li><strong>Source:</strong> see <code>BACKEND.md</code> in the project repository.</li>
+          </ul>
+        </details>
       </div>
     </div>
   );
