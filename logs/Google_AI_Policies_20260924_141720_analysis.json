@@ -1,0 +1,10 @@
+{
+    "verdict": "no_material_change",
+    "summary": "The only change observed is a minor formatting adjustment involving the insertion of spaces after 'â' characters, which does not alter the meaning or intent of the text.",
+    "analysis": "1) **What specifically changed:** The document 'Principles' had a single line modified. The changes involve the insertion of a space character after the 'â' character in two instances within a sentence (e.g., `lifecycleâfrom` became `lifecycle â from` and `testingâwhich` became `testing â which`). This appears to be a typographical or display correction rather than a substantive content change.\n2) **Who is affected:** No parties, including users, developers, or the public, are affected by this change, as it is purely cosmetic.\n3) **Whether user rights, data handling or liability are affected:** This minor formatting adjustment has no impact whatsoever on user rights, data handling practices, or Google's liability. The meaning and implications of the policy remain identical.\n4) **Any action required:** No action is required. This is a trivial change with no practical impact.",
+    "priority": "low",
+    "date_time": "2026-09-24T14:17:20.251362+10:00",
+    "changed_documents": [
+        "Principles"
+    ]
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-23T04:21:14.781649+00:00",
+  "generated_at": "2026-09-24T04:18:15.504790+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -192,6 +192,18 @@
       }
     ],
     "Google_AI_Policies": [
+      {
+        "timestamp": "2026-09-24T14:17:20",
+        "analysis_path": "logs/Google_AI_Policies_20260924_141720_analysis.json",
+        "snapshot_path": "logs/Google_AI_Policies_20260924_141720_snapshot.txt",
+        "diff_path": "logs/Google_AI_Policies_20260924_141720_diff.txt",
+        "priority": "low",
+        "verdict": "no_material_change",
+        "summary": "The only change observed is a minor formatting adjustment involving the insertion of spaces after 'â' characters, which does not alter the meaning or intent of the text.",
+        "changed_documents": [
+          "Principles"
+        ]
+      },
       {
         "timestamp": "2026-09-05T13:59:26",
         "analysis_path": "logs/Google_AI_Policies_20260905_135926_analysis.json",
