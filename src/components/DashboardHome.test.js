@@ -30,6 +30,18 @@ const policySets = [
     last_amended: daysAgo(90),
     last_priority: 'low',
   },
+  {
+    setName: 'Commonwealth AI Transparency Statement Register',
+    file_id: 'Commonwealth_AI_Transparency_Statement_Register',
+    category: 'Australian Government',
+    kind: 'adoption',
+    urls: [{ url: 'https://www.digital.gov.au/policy/ai/list-of-transparency-statements' }],
+    last_checked: daysAgo(0),
+    last_amended: daysAgo(2),
+    last_priority: 'low',
+    last_verdict: 'material_change',
+    last_change: { summary: 'Three entities were added to the register.', changed_documents: ['Register'] },
+  },
 ];
 
 const feed = {
@@ -106,6 +118,18 @@ test('marking a change reviewed empties the queue, remembers it, and can be undo
 
   act(() => container.querySelector('.toast-action').click());
   expect(container.querySelector('#review-queue .review-list').textContent).toContain('Anthropic Legal Policies');
+});
+
+test('an adoption register is shown across government, not queued for review', async () => {
+  await render();
+  const queue = container.querySelector('#review-queue');
+  expect(queue.textContent).not.toContain('Transparency Statement Register');
+
+  const across = container.querySelector('[aria-labelledby="adoption-title"]');
+  expect(across.textContent).toContain('Commonwealth AI Transparency Statement Register');
+  expect(across.textContent).toContain('Three entities were added to the register.');
+  expect(across.textContent).toContain('Adoption update');
+  expect(across.textContent).not.toMatch(/Mark reviewed|priority/i);
 });
 
 test('news is offered to read, never to review', async () => {

@@ -175,6 +175,12 @@
 .p-high { --pc: var(--p-high); --pc-soft: var(--p-high-soft); --pc-text: var(--p-high-text); --swatch: var(--p-high); }
 .p-medium { --pc: var(--p-medium); --pc-soft: var(--p-medium-soft); --pc-text: var(--p-medium-text); --swatch: var(--p-medium); }
 .p-low { --pc: var(--p-low); --pc-soft: var(--p-low-soft); --pc-text: var(--p-low-text); --swatch: var(--p-low); }
+.p-adoption {
+  --pc: var(--viz-1);
+  --pc-soft: color-mix(in srgb, var(--viz-1) 13%, var(--surface));
+  --pc-text: color-mix(in srgb, var(--viz-1) 80%, var(--text));
+  --swatch: var(--viz-1);
+}
 .p-none,
 .p-unrated { --pc: var(--text-4); --pc-soft: var(--surface-3); --pc-text: var(--text-2); --swatch: var(--text-4); }
 .rel-1 { --swatch: var(--rel-1-c); }

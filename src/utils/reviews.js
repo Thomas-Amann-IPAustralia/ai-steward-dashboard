@@ -1,4 +1,4 @@
-import { timestampOf } from './constants';
+import { isAdoption, timestampOf } from './constants';
 
 /**
  * The review queue: the one thing on this dashboard a steward acts on.
@@ -64,12 +64,13 @@ export const hasMaterialChange = (set) =>
 
 /**
  * Sets whose latest material change falls within the review window, newest
- * first, split into those still to review and those already reviewed.
+ * first, split into those still to review and those already reviewed. An
+ * adoption register is read, not reviewed, so it never joins the queue.
  */
 export function reviewQueue(policySets, reviewed, { now = Date.now(), days = REVIEW_WINDOW_DAYS } = {}) {
   const cutoff = now - days * 24 * 60 * 60 * 1000;
   const recent = (policySets || [])
-    .filter((set) => hasMaterialChange(set) && timestampOf(set.last_amended) > cutoff)
+    .filter((set) => hasMaterialChange(set) && !isAdoption(set) && timestampOf(set.last_amended) > cutoff)
     .sort((a, b) => timestampOf(b.last_amended) - timestampOf(a.last_amended));
   return {
     pending: recent.filter((set) => !isReviewed(reviewed, set)),

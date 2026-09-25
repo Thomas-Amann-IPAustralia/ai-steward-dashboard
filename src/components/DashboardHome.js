@@ -9,6 +9,7 @@ import {
   formatDate,
   formatRelative,
   formatShortDay,
+  isAdoption,
   primaryUrl,
   PRIORITY_ORDER,
   revertedAfterChange,
@@ -180,12 +181,40 @@ function ReviewItem({ set, summary, since, onToggle, done = false }) {
   );
 }
 
+/** A register of what other agencies have published: read for awareness, never reviewed. */
+function AdoptionItem({ set, summary, since }) {
+  const fresh = since && timestampOf(set.last_amended) > since;
+  return (
+    <li className="review-item">
+      <Lettermark url={primaryUrl(set)} name={set.setName} size={36} />
+      <div className="review-main">
+        <div className="review-head">
+          <Link className="review-name" to={`/policy/${set.file_id}`}>{set.setName}</Link>
+          {fresh && <NewBadge />}
+          <PriorityBadge priority={set.last_priority} date={set.last_amended} kind={set.kind} />
+          <HealthPill status={set.health?.status} />
+        </div>
+        <p className="review-summary">
+          {summary || (set.last_amended ? 'No summary recorded for the last update.' : 'No update recorded yet.')}
+        </p>
+        <div className="review-meta">
+          <span>
+            <Icon name="clock" size={13} />{' '}
+            {set.last_amended ? `Updated ${formatRelative(set.last_amended)}` : `Checked ${formatRelative(set.last_checked)}`}
+          </span>
+        </div>
+      </div>
+    </li>
+  );
+}
+
 /**
  * The overview: one page that answers "what do I need to know?".
  *
  * A steward acts on one thing here — a material change to a monitored
  * policy — so those lead as a review queue that empties as they are read.
- * News and incidents are for awareness and follow it. The briefing sentence
+ * News, incidents and what other agencies are doing are for awareness and
+ * follow it. The briefing sentence
  * says the same in words, and the tiles and the activity chart show the shape
  * of it at a glance.
  */
@@ -220,6 +249,8 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
         .filter((set) => timestampOf(set.last_amended) > now - days * DAY_MS && set.last_verdict !== 'no_material_change')
         .sort((a, b) => timestampOf(b.last_amended) - timestampOf(a.last_amended));
 
+    // Adoption registers count as changed (they are not "unchanged"), but they
+    // are reported on their own rather than as policy changes.
     const recentIds = new Set(changedWithin(RECENT_DAYS).map((set) => set.file_id));
     const stable = withHealth.filter((set) => !recentIds.has(set.file_id) && set.health.status === 'ok');
     const { pending, done } = reviewQueue(withHealth, reviewed, { now });
@@ -228,8 +259,9 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
     const news = items.filter((item) => item.kind === 'news');
     const relevantNews = news.filter((item) => item.relevance >= 2);
     const auIncidents = items.filter(isAustralianIncident);
-    const weekChanges = changedWithin(BRIEFING_DAYS);
-    const weekIds = new Set(weekChanges.map((set) => set.file_id));
+    const weekAll = changedWithin(BRIEFING_DAYS);
+    const weekChanges = weekAll.filter((set) => !isAdoption(set));
+    const weekIds = new Set(weekAll.map((set) => set.file_id));
 
     return {
       failingSources,
@@ -245,6 +277,10 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
       localIncidents: rankItems(withinDays(auIncidents, RECENT_DAYS)).slice(0, 4),
       lastScan: withHealth.reduce((latest, set) => Math.max(latest, timestampOf(set.last_checked)), 0),
       weekChanges,
+      weekAdoption: weekAll.filter(isAdoption),
+      adoption: withHealth
+        .filter(isAdoption)
+        .sort((a, b) => timestampOf(b.last_amended) - timestampOf(a.last_amended)),
       weekStable: withHealth.filter((set) => !weekIds.has(set.file_id) && set.health.status === 'ok').length,
       newNews: relevantNews.filter((item) => isNew(item, since)).length,
       newIncidents: auIncidents.filter((item) => isNew(item, since)).length,
@@ -272,6 +308,10 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
           last_change: { ...set.last_change, summary: summaryOf(set) },
         })),
         failingSources: brief.failingSources,
+        adoptionUpdates: brief.weekAdoption.map((set) => ({
+          ...set,
+          last_change: { ...set.last_change, summary: summaryOf(set) },
+        })),
         stableCount: brief.weekStable,
         topNews: brief.weekNews,
         incidents: brief.weekIncidents,
@@ -551,6 +591,22 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
               ))}
             </ul>
           </section>
+
+          {brief.adoption.length > 0 && (
+            <section className="card" aria-labelledby="adoption-title">
+              <div className="card-head">
+                <div>
+                  <h2 id="adoption-title">Across government</h2>
+                  <p className="card-sub">How other agencies are adopting AI. For awareness — nothing here needs review.</p>
+                </div>
+              </div>
+              <ul className="review-list">
+                {brief.adoption.map((set) => (
+                  <AdoptionItem key={set.file_id} set={set} summary={summaryOf(set)} since={since} />
+                ))}
+              </ul>
+            </section>
+          )}
 
           <section className="card" aria-labelledby="news-title">
             <div className="card-head">

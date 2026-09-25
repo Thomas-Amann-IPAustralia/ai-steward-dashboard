@@ -6,26 +6,43 @@
       "Digital Transformation Agency",
       "DTA",
       "digital.gov.au",
-      "responsible use of AI in government",
-      "AI transparency statement",
-      "AI transparency statements"
+      "responsible use of AI in government"
     ],
     "urls": [
       {
-        "url": "https://www.digital.gov.au/policy/ai/implementation",
-        "selector": "article"
+        "url": "https://www.digital.gov.au/ai/ai-in-government-policy",
+        "selector": "article",
+        "label": "Policy overview"
       },
       {
-        "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
-        "selector": "article"
+        "url": "https://www.digital.gov.au/ai/ai-in-government-policy/implementation",
+        "selector": "article",
+        "label": "Implementation"
       },
       {
-        "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
-        "selector": "article"
+        "url": "https://www.digital.gov.au/ai/ai-in-government-policy/strategy-and-oversight",
+        "selector": "article",
+        "label": "Strategy and oversight"
       },
       {
-        "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
-        "selector": "article"
+        "url": "https://www.digital.gov.au/ai/ai-in-government-policy/preparedness-and-operations",
+        "selector": "article",
+        "label": "Preparedness and operations"
+      },
+      {
+        "url": "https://www.digital.gov.au/ai/ai-in-government-policy/ai-use-case-impact-assessment",
+        "selector": "article",
+        "label": "AI use case impact assessment"
+      },
+      {
+        "url": "https://www.digital.gov.au/ai/ai-in-government-policy/accountability",
+        "selector": "article",
+        "label": "Standard for accountability"
+      },
+      {
+        "url": "https://www.digital.gov.au/ai/ai-in-government-policy/standard-ai-transparency-statements",
+        "selector": "article",
+        "label": "Standard for AI transparency statements"
       }
     ]
   },
@@ -58,6 +75,18 @@
       },
       {
         "url": "https://ai.google/responsibility/principles/"
+      },
+      {
+        "url": "https://policies.google.com/terms/generative-ai",
+        "label": "Generative AI Additional Terms"
+      },
+      {
+        "url": "https://support.google.com/gemini/answer/13594961?hl=en",
+        "label": "Gemini Apps Privacy Notice"
+      },
+      {
+        "url": "https://policies.google.com/privacy",
+        "label": "Google Privacy Policy"
       }
     ]
   },
@@ -114,6 +143,212 @@
     ]
   },
   {
+    "setName": "OpenAI Consumer Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "ChatGPT",
+      "OpenAI"
+    ],
+    "urls": [
+      {
+        "url": "https://openai.com/policies/row-terms-of-use/",
+        "label": "Terms of Use"
+      },
+      {
+        "url": "https://openai.com/policies/row-privacy-policy/",
+        "label": "Privacy Policy"
+      }
+    ]
+  },
+  {
+    "setName": "OpenAI Enterprise and API Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "OpenAI",
+      "ChatGPT Enterprise",
+      "ChatGPT Business"
+    ],
+    "urls": [
+      {
+        "url": "https://openai.com/policies/services-agreement/",
+        "label": "Services Agreement"
+      },
+      {
+        "url": "https://openai.com/policies/service-terms/",
+        "label": "Service Terms"
+      },
+      {
+        "url": "https://openai.com/enterprise-privacy/",
+        "label": "Enterprise privacy"
+      },
+      {
+        "url": "https://openai.com/policies/usage-policies/",
+        "label": "Usage policies"
+      },
+      {
+        "url": "https://developers.openai.com/api/docs/guides/your-data",
+        "label": "API data controls"
+      }
+    ]
+  },
+  {
+    "setName": "Microsoft Consumer AI Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "Microsoft Copilot",
+      "Microsoft Services Agreement"
+    ],
+    "urls": [
+      {
+        "url": "https://www.microsoft.com/en-au/servicesagreement",
+        "label": "Microsoft Services Agreement"
+      },
+      {
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/for-individuals/termsofuse",
+        "label": "Copilot Supplemental Terms of Use"
+      },
+      {
+        "url": "https://www.microsoft.com/en-us/privacy/privacystatement",
+        "selector": "div:has(> div > #mainartificialintelligenceandmicrosoftcopilotmodule) + div",
+        "label": "Privacy Statement: AI and Copilot"
+      }
+    ]
+  },
+  {
+    "setName": "Microsoft Enterprise AI Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "Microsoft",
+      "Microsoft 365 Copilot",
+      "Azure OpenAI",
+      "Microsoft Foundry"
+    ],
+    "urls": [
+      {
+        "url": "https://learn.microsoft.com/en-us/legal/ai-code-of-conduct",
+        "selector": "div.content",
+        "label": "Enterprise AI Services Code of Conduct"
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/responsible-ai/openai/data-privacy",
+        "selector": "div.content",
+        "label": "Foundry models data, privacy and security"
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy",
+        "selector": "div.content",
+        "label": "Microsoft 365 Copilot data and privacy"
+      }
+    ]
+  },
+  {
+    "setName": "AWS Bedrock Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "Amazon Bedrock",
+      "Amazon Web Services",
+      "AWS"
+    ],
+    "urls": [
+      {
+        "url": "https://aws.amazon.com/service-terms/",
+        "selector": "div:has(> h3:-soup-contains(\"Machine Learning and Artificial Intelligence Services\"))",
+        "label": "Service Terms §50: AI Services"
+      },
+      {
+        "url": "https://aws.amazon.com/ai/responsible-ai/policy/",
+        "label": "Responsible AI Policy"
+      },
+      {
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html",
+        "selector": "#main-col-body",
+        "label": "Bedrock data protection"
+      },
+      {
+        "url": "https://aws.amazon.com/agreement/",
+        "label": "AWS Customer Agreement"
+      },
+      {
+        "url": "https://aws.amazon.com/aup/",
+        "label": "AWS Acceptable Use Policy"
+      }
+    ]
+  },
+  {
+    "setName": "Anthropic API and Commercial Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "Anthropic API",
+      "Claude API",
+      "Claude Developer Platform"
+    ],
+    "urls": [
+      {
+        "url": "https://www.anthropic.com/legal/commercial-terms",
+        "label": "Commercial Terms"
+      },
+      {
+        "url": "https://platform.claude.com/docs/en/manage-claude/api-and-data-retention",
+        "label": "API and data retention"
+      },
+      {
+        "url": "https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data",
+        "label": "Commercial data retention"
+      }
+    ]
+  },
+  {
+    "setName": "Google Enterprise and API AI Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "Gemini API",
+      "Vertex AI",
+      "Google AI Studio",
+      "Gemini for Workspace"
+    ],
+    "urls": [
+      {
+        "url": "https://ai.google.dev/gemini-api/terms",
+        "label": "Gemini API Additional Terms"
+      },
+      {
+        "url": "https://ai.google.dev/gemini-api/docs/usage-policies",
+        "label": "Gemini API abuse monitoring"
+      },
+      {
+        "url": "https://policies.google.com/terms/generative-ai/use-policy",
+        "label": "Generative AI Prohibited Use Policy"
+      },
+      {
+        "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance",
+        "label": "Vertex AI data governance"
+      },
+      {
+        "url": "https://support.google.com/a/answer/15706919?hl=en",
+        "label": "Generative AI in Google Workspace Privacy Hub"
+      }
+    ]
+  },
+  {
+    "setName": "Perplexity Enterprise and API Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "Perplexity Enterprise",
+      "Perplexity API",
+      "Sonar API"
+    ],
+    "urls": [
+      {
+        "url": "https://www.perplexity.ai/hub/legal/enterprise-terms-of-service",
+        "label": "Enterprise Terms of Service"
+      },
+      {
+        "url": "https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service",
+        "label": "API Terms of Service"
+      }
+    ]
+  },
+  {
     "setName": "ACSC Information Security Manual (ISM)",
     "category": "Australian Government",
     "keywords": [
@@ -127,6 +362,189 @@
     "urls": [
       {
         "url": "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism"
+      }
+    ]
+  },
+  {
+    "setName": "DTA AI Hub",
+    "category": "Australian Government",
+    "keywords": [
+      "APS AI Plan",
+      "AI Plan for the Australian Public Service"
+    ],
+    "urls": [
+      {
+        "url": "https://www.digital.gov.au/policy/ai",
+        "selector": "article",
+        "label": "AI hub"
+      }
+    ]
+  },
+  {
+    "setName": "DTA AI Technical Standard",
+    "category": "Australian Government",
+    "keywords": [
+      "AI technical standard"
+    ],
+    "urls": [
+      {
+        "url": "https://www.digital.gov.au/policy/ai/AI-technical-standard",
+        "selector": "article",
+        "label": "Overview"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/AI-technical-standard/technical-standard-governments-use-artificial-intelligence-introduction-scope-and-target-audience",
+        "selector": "article",
+        "label": "Introduction, scope and audience"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/AI-technical-standard/summary-requirements-standard",
+        "selector": "article",
+        "label": "Summary of requirements"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/AI-technical-standard/technical-standard-governments-use-artificial-intelligence-whole-ai-lifecycle-statements",
+        "selector": "article",
+        "label": "Whole of AI lifecycle statements"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/AI-technical-standard/technical-standard-governments-use-artificial-intelligence-use-case-assessment",
+        "selector": "article",
+        "label": "Use case assessments"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/AI-technical-standard/technical-standard-governments-use-artificial-intelligence-key-terms",
+        "selector": "article",
+        "label": "Key terms"
+      }
+    ]
+  },
+  {
+    "setName": "DTA Agentic AI Addendum",
+    "category": "Australian Government",
+    "keywords": [
+      "agentic AI addendum"
+    ],
+    "urls": [
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum",
+        "selector": "article",
+        "label": "Overview"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-introduction",
+        "selector": "article",
+        "label": "Introduction"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-whole-ai-lifecycle",
+        "selector": "article",
+        "label": "Statements: Whole of AI lifecycle"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-design",
+        "selector": "article",
+        "label": "Statements: Design"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-data",
+        "selector": "article",
+        "label": "Statements: Data"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-train",
+        "selector": "article",
+        "label": "Statements: Train"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-evaluate",
+        "selector": "article",
+        "label": "Statements: Evaluate"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-integrate",
+        "selector": "article",
+        "label": "Statements: Integrate"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-monitor",
+        "selector": "article",
+        "label": "Statements: Monitor"
+      },
+      {
+        "url": "https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-decommission",
+        "selector": "article",
+        "label": "Statements: Decommission"
+      }
+    ]
+  },
+  {
+    "setName": "DTA AI Impact Assessment Tool",
+    "category": "Australian Government",
+    "keywords": [
+      "AI impact assessment tool"
+    ],
+    "urls": [
+      {
+        "url": "https://www.digital.gov.au/ai/impact-assessment-tool",
+        "selector": "article",
+        "label": "Overview"
+      },
+      {
+        "url": "https://www.digital.gov.au/ai/impact-assessment-tool/introduction",
+        "selector": "article",
+        "label": "Introduction"
+      },
+      {
+        "url": "https://www.digital.gov.au/ai/impact-assessment-tool/guidance",
+        "selector": "article",
+        "label": "Guidance"
+      }
+    ]
+  },
+  {
+    "setName": "Commonwealth AI Transparency Statement Register",
+    "category": "Australian Government",
+    "kind": "adoption",
+    "keywords": [
+      "AI transparency statement",
+      "AI transparency statements"
+    ],
+    "urls": [
+      {
+        "url": "https://www.digital.gov.au/policy/ai/list-of-transparency-statements",
+        "selector": "article",
+        "label": "Register of transparency statements"
+      }
+    ]
+  },
+  {
+    "setName": "PSPF AI Policy Advisories",
+    "category": "Australian Government",
+    "keywords": [
+      "Protective Security Policy Framework",
+      "PSPF"
+    ],
+    "urls": [
+      {
+        "url": "https://www.protectivesecurity.gov.au/protective-security-directions-under-pspf/protective-security-policy-advisories",
+        "label": "Policy advisories"
+      }
+    ]
+  },
+  {
+    "setName": "OAIC Commercial AI Privacy Guidance",
+    "category": "Australian Government",
+    "keywords": [
+      "Office of the Australian Information Commissioner",
+      "OAIC",
+      "Privacy Commissioner"
+    ],
+    "urls": [
+      {
+        "url": "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-the-use-of-commercially-available-ai-products",
+        "selector": "main",
+        "label": "Guidance on commercially available AI products"
       }
     ]
   },

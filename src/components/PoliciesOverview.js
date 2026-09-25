@@ -203,7 +203,7 @@ function PoliciesOverview({ policySets, health, loading }) {
                 </p>
                 {daily && <SourceStrip daily={daily[set.setName]} label={set.setName} />}
                 <div className="policy-card-foot">
-                  <PriorityBadge priority={set.last_priority} date={set.last_amended} />
+                  <PriorityBadge priority={set.last_priority} date={set.last_amended} kind={set.kind} />
                   <span className="foot-meta">
                     {set.last_amended ? `Changed ${formatRelative(set.last_amended)}` : 'Never changed'}
                   </span>

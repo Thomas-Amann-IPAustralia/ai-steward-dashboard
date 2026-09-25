@@ -157,7 +157,7 @@ function Sidebar({ policySets, health, loading, error }) {
                             )}
                           </span>
                           <span className="list-row-meta">
-                            <PriorityBadge priority={policySet.last_priority} date={policySet.last_amended} />
+                            <PriorityBadge priority={policySet.last_priority} date={policySet.last_amended} kind={policySet.kind} />
                             <HealthPill status={policySet._health} />
                             <span className="list-row-time">
                               {policySet.last_amended ? formatRelative(policySet.last_amended) : 'No change'}

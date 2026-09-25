@@ -41,6 +41,16 @@ MATERIAL_CHANGE = "material_change"
 NO_MATERIAL_CHANGE = "no_material_change"
 UNCERTAIN = "uncertain"
 
+# What a policy set is watched for. A `policy` binds the reader — terms of
+# service, government policy — and its changes are rated for risk. An
+# `adoption` set is a register of what other agencies are doing (the
+# Commonwealth's list of AI transparency statements): worth keeping up with,
+# but a change to it alters nobody's obligations, so it is described rather
+# than rated, and always carries the lowest priority.
+POLICY = "policy"
+ADOPTION = "adoption"
+SET_KINDS = (POLICY, ADOPTION)
+
 _FENCE = re.compile(r"^\s*```(?:json)?\s*|\s*```\s*$", re.MULTILINE)
 
 # Status codes worth waiting out rather than giving up on.
@@ -121,6 +131,47 @@ UNIFIED DIFF:
 {diff}
 ---"""
 
+ADOPTION_PROMPT_TEMPLATE = """You are an AI policy analyst helping Australian public \
+servants keep up with how the rest of the Australian Government is adopting AI.
+
+A monitored register named "{set_name}" has changed. It records what other \
+government entities have published — it is not a policy, and a change to it \
+places no new obligation on the reader. Below is the unified diff between the \
+stored version and the current one. Lines beginning with `-` were removed; \
+lines beginning with `+` were added. Unmarked lines are surrounding context \
+and did not change.
+
+{documents_note}{fingerprint_note}
+Respond with a single JSON object and nothing else:
+
+{{
+  "verdict": "One of: material_change, no_material_change, uncertain",
+  "summary": "1-2 sentences in plain language: which entities were added, removed \
+or renamed, or what else changed",
+  "analysis": "Markdown covering: 1) entities added, removed or renamed, each named \
+in full, 2) any change to the register's own text, such as counts, deadlines or \
+compliance statements, 3) what this suggests about AI adoption across government, \
+4) anything worth a closer look",
+  "priority": "low"
+}}
+
+Verdict definitions:
+- **material_change**: an entity was added, removed or renamed, or the register's \
+own text changed in meaning.
+- **no_material_change**: the diff is formatting, reordering, typography or \
+boilerplate with no change in meaning. Say so plainly — do not manufacture \
+significance.
+- **uncertain**: the diff is too fragmentary or ambiguous to judge. Explain what \
+you would need to see.
+
+Always set priority to "low". Do not include a timestamp. Do not include any \
+key other than the four above.
+
+UNIFIED DIFF:
+---
+{diff}
+---"""
+
 _RETRY_SUFFIX = """
 
 Your previous response was rejected: {error}
@@ -134,6 +185,7 @@ def build_prompt(
     diff_text: str,
     changed_documents: Sequence[str] = (),
     tags: Sequence[str] = (),
+    kind: str = POLICY,
 ) -> str:
     documents_note = ""
     if changed_documents:
@@ -150,7 +202,8 @@ def build_prompt(
             "Treat this as a hint about where to look, not as a conclusion.\n\n"
         )
 
-    return PROMPT_TEMPLATE.format(
+    template = ADOPTION_PROMPT_TEMPLATE if kind == ADOPTION else PROMPT_TEMPLATE
+    return template.format(
         set_name=set_name,
         documents_note=documents_note,
         fingerprint_note=fingerprint_note,
@@ -158,7 +211,7 @@ def build_prompt(
     )
 
 
-def parse_and_validate(raw_text: str) -> dict:
+def parse_and_validate(raw_text: str, kind: str = POLICY) -> dict:
     """Parse the model's reply and enforce the schema, or raise SchemaError."""
     if not raw_text or not raw_text.strip():
         raise SchemaError("response was empty")
@@ -190,8 +243,9 @@ def parse_and_validate(raw_text: str) -> dict:
 
     verdict = verdict.strip().lower()
     priority = priority.strip().lower()
-    if verdict == NO_MATERIAL_CHANGE:
-        # The model occasionally declines and then rates the change anyway.
+    if verdict == NO_MATERIAL_CHANGE or kind == ADOPTION:
+        # The model occasionally declines and then rates the change anyway;
+        # and a register of what others are doing is never a risk to rate.
         priority = "low"
 
     return {
@@ -259,6 +313,7 @@ def analyse_change(
     model: str,
     changed_documents: Sequence[str] = (),
     tags: Sequence[str] = (),
+    kind: str = POLICY,
     client=None,
     sleep: Callable[[float], None] = time.sleep,
 ) -> AnalysisOutcome:
@@ -271,7 +326,7 @@ def analyse_change(
 
         client = genai.Client(api_key=api_key)
 
-    prompt = build_prompt(set_name, diff_text, changed_documents, tags)
+    prompt = build_prompt(set_name, diff_text, changed_documents, tags, kind)
     outcome = AnalysisOutcome()
     last_error = ""
 
@@ -298,7 +353,7 @@ def analyse_change(
         outcome.raw = raw
 
         try:
-            outcome.result = parse_and_validate(raw)
+            outcome.result = parse_and_validate(raw, kind)
             outcome.error = ""
             return outcome
         except SchemaError as exc:
