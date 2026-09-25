@@ -1,0 +1,66 @@
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Design
+Statement AGT.3: Design for agentic workflow
+Agencies must:
+Criterion AGT.3.1: Define your business needs and identify goals
+This includes:
+identifying all tasks, goals, success criteria, and business needs required for the agentic AI workflow
+determining which agentic behaviour is required based on the specified goals
+breaking bigger goals into smaller manageable tasks
+defining the roles, capabilities, and goals for each agent
+narrowing the scope of each agent to minimise the risk of errors and hallucinations (also known as confabulations).
+Criterion AGT.3.2: Define the sequence and logical order for tasks and agents
+This includes:
+clearly defining the logical order and sequence of each task
+assigning each AI agent to its specific task and avoiding duplication of responsibility
+defining dependencies among tasks.
+Criterion AGT.3.3: Identify guardrails and constraints
+Assign a unique identity to each agent by establishing distinct roles, responsibilities, and access privileges for each agent within a system.
+This includes:
+ensuring each agent has the proper authentication credentials to restrict access to necessary resources
+providing agents with the right level of authorisation to only access required information and tools, preventing them from using over‑privileged context or self‑assigning access in ways that could identify or exploit security weaknesses
+assigning responsibility boundaries across agents
+identifying and implementing guardrails to detect and minimise risks of harmful content, with guardrails implemented on inputs, tools, and outputs
+mapping constraints for how the agent must operate
+creating fail-safe designs, for example, using an output parser or a Pydantic model to generate structured outputs, which helps enhance reliability and validation of the model's responses.
+Criterion AGT.3.4: Embed self-correction mechanisms, fail-safes, and feedback loops
+This includes:
+incorporating feedback into prompts for refinement
+specifying how the agent or the agentic system will assess itself and improve
+evaluating outputs based on set criteria and determine how the outcome is implemented into subsequent iterations
+specifying how issues are going to be monitored and debugged
+designing fail-safes such as automatic rollbacks, redundant checks, and alerting systems to ensure the agent or the agentic system can recover gracefully
+ensuring self‑correction mechanisms and fail-safes are auditable
+setting minimum technical requirements for implementing kill switches
+mapping kills switches to operational controls
+identifying methods for gathering user feedback and ensuring continuous feedback.
+Agencies should:
+Criterion AGT.3.5: Choose the tools to integrate with the agentic workflow
+This includes:
+listing all tools, APIs, protocols, and resources that agents will use to interact with their environment
+using tools that exist within the environment or platform, when possible, to avoid duplicated governance and monitoring, only using customised tools when necessary
+specifying how each tool can be used by agents
+listing tools that are required for each agent and limiting access to only these tools
+maintaining approvals for agent use of high-impact tools
+ensuring that APIs are compatible with the tool selected
+enabling fallbacks when tool or API calls fail, timeout, provide unexpected responses, or have rate limits.
+Criterion AGT.3.6: Define conditional branches and decision points
+This includes:
+defining clear ‘need-to-know’ rules for agents to follow
+identifying all conditional branches for the AI agent to make and adapt to
+mapping decisions clearly to guide the agent to select the best path
+listing all rules and how the agent is going to learn and adapt to its environment
+ensuring policy safeguards and constraints are embedded into the decision logic so agents cannot bypass approvals upon task completion
+providing escalation protocols, human reviews, and auditing artefacts to each decision point.
+Criterion AGT.3.7: Account for scalability and increased complexity in agentic systems and external systems
+This includes:
+accounting for the extra logic needed to decide which agent to use, how agents communicate with each other, and how to integrate results from multiple agents and external systems
+ensuring the system remains operable, cost-effective, and maintainable across its lifecycle
+accounting for micro services design that enables flexibility and extensibility, allowing agentic systems to incorporate diverse tools and protocols and integrate effectively with complex or external systems
+evaluating trade-offs in a multi agent system, as a request may trigger multiple agents operating sequentially or in parallel, which can introduce latency or increased response time
+considering when to use smaller more specialised smaller models in comparison to larger generalised models, noting that larger models usually add latency and overhead, which may be unsuitable for time-critical or real-time use cases
+considering dependencies and integrations with external systems or environments when designing agentic AI systems, to ensure they can scale appropriately as demand and complexity increases.
+Next statement
+Data

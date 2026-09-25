@@ -1,0 +1,93 @@
+Introduction
+AI systems are receiving growing attention as they become more autonomous and increasingly able to interact with and influence their operating environments. Recent advances with large language models, agents, and tools have introduced new capabilities that challenge existing conceptual boundaries. They highlight the need for clearer definitions and standards to ensure AI systems with agentic capabilities are designed, built, and operated safely.
+As agentic AI use cases mature, government and industry are expected to shift from experimentation to active use. Agentic systems may autonomously plan tasks, coordinate work, and trigger actions in real-world contexts. They may also coordinate and negotiate with other agents, humans, or organisations through workflows and protocols. This transition enables decisions and actions to be executed at greater scale and speed, improving citizen service responsiveness, efficiency, and consistency, particularly in public sector high-volume use cases.
+While these systems may accelerate service delivery and improve operational responsiveness, their autonomy and interconnectedness can introduce new failure modes, control gaps, and oversight challenges. Effective design, development, and use therefore requires robust design, governance, and assurance. It also seeks fit-for-purpose infrastructure, monitoring, and communication mechanisms to ensure systems behave responsibly and predictably across environments.
+The standard outlines key drivers for adopting agentic AI and extends the existing
+AI technical standard
+by providing best-practice guidance to help agencies implement agentic AI safely and responsibly.
+Key drivers and best practice guidance
+The agentic AI best practice guidance focuses on the key drivers that necessitate addendums to the AI technical standard, with an emphasis on governance, safeguards, and technical controls that are proportionate to varying levels of agentic AI adoption and use.
+Drivers informing agentic AI best practice
+Best practice guidance
+AI technical standard addendums
+Absence of governance and safeguards for responsible AI use increases the risk of harm, including uncontrolled deployments, unclear accountability, and legal or ethical non‑compliance.
+Implement governance arrangements and safeguards that ensure agentic AI systems are developed and deployed responsibly and ethically. This includes clarifying decision rights and accountability, embedding legal and ethical controls upfront, and preventing uncontrolled or inconsistent deployments across the organisation.
+Whole of AI lifecycle: Statement AGT.1
+Criterion AGT.1.1
+Criterion AGT.1.2
+Criterion AGT.1.3
+Criterion AGT.1.4
+Agentic AI systems may retain excessive or poorly scoped data, increasing the risk of privacy breaches, regulatory non-compliance, and harm from data leakage across workflows and environments.
+Establish memory management mechanisms that clearly define scope, retention, provenance, and deletion, while minimising unnecessary data retention and sensitive information exposure to support privacy obligations and reduce the risk of harm from data leakage or unintended inference.
+Whole of AI lifecycle: Statement AGT.2
+Criterion AGT.2.1
+Lack of clear decision points and approvals increases the risk of cascading errors and uncontrolled agentic AI execution across environments.
+Design agentic workflows with clearly defined decision points, approvals, and responsible AI controls, enforcing bounded planning, human oversight, and controlled execution paths to prevent cascading errors and unintended actions.
+Design: Statement AGT.3
+Criterion AGT.3.1
+Criterion AGT.3.2
+Criterion AGT.3.3
+Criterion AGT.3.4
+Criterion AGT.3.5
+Criterion AGT.3.6
+Criterion AGT.3.7
+Failure to implement orchestration and data flow controls increases the risk of unauthorised access, and data exfiltration.
+Ensure the system can orchestrate routing of tasks or messages to appropriate agents, supported by data management mechanisms that enable secure, efficient, and reliable data exchange between agents or environments.
+Data: Statement AGT.4
+Criterion AGT.4.1
+Criterion AGT.4.2
+Inappropriate selection of agent types, models, technologies, frameworks, and engineering controls could risk safety issues, bias, cost overruns, poor performance, scalability limitations, and compliance.
+Select agent types, models, and technologies that are appropriate for the intended use case and aligned with risk, performance, and compliance requirements. When using pretrained or custom models, assess key trade-offs including capability, cost, transparency, and data handling. Apply appropriate frameworks for flexibility, scalability, and engineering techniques to reduce safety risks, bias, cost overruns, and compliance gaps.
+Train: Statement AGT.5
+Criterion AGT.5.1
+Criterion AGT.5.2
+Criterion AGT.5.3
+Failure to adopt appropriate evaluation increases the risk of undetected agent level failures and unintended behaviours propagating into production, potentially impacting reliability at scale.
+Establish evaluation mechanisms to assess agent interactions and agentic AI systems across efficiency, performance, safety, fairness, and robustness of task execution. Use defined metrics to measure success criteria and conduct robust testing, including against adversarial scenarios.
+Evaluate: Statement AGT.6
+Criterion AGT.6.1
+Criterion AGT.6.2
+Criterion AGT.6.3
+Criterion AGT.6.4
+Insufficient controls over tools and interaction protocols increase the likelihood of injection attacks, validation failures, and unsafe or degraded performance.
+Select tools and interaction protocols that allow agents to operate safely and reliably within their environment using typed interfaces, access controls, and robust input and output validation to mitigate tool misuse and injection related failures.
+Integrate: Statement AGT.7
+Criterion AGT.7.1
+Criterion AGT.7.2
+Lack of continuous monitoring increases the risk of undetected drift, unsafe agent behaviour, delayed incident response, and wider operational impacts.
+Implement continuous monitoring of agents or systems to detect drift, anomalies, and emerging risks to ensure behaviour remains aligned with defined objectives. Monitoring should also track changes in the operating environment, such as constraints and authorisations, to enable timely fallback actions and remediation.
+Monitor: Statement AGT.8
+Criterion AGT.8.1
+Criterion AGT.8.2
+Failure to securely decommission agentic AI resources in a timely manner can lead to lingering access, unintended agent activity, increased security exposure, and ongoing operational or compliance risks.
+Implement controlled shutdown and recovery mechanisms such as kill switches, rollback, and secure decommissioning to rapidly halt agent or system operations, contain harm, and restore the last known safe state. Ensure that associated tools, logs, data, and resources are secure.
+Decommission: Statement 41
+Criterion 147
+Applicability of the agentic AI standard
+The agentic AI standard extends the AI technical standard. For additional guidance on how to use the AI technical standard, refer to the respective
+section on use case assessment
+.
+Comply with government legislation, policies, and standards
+Agencies must follow the requirements below to ensure AI remains transparent, safe, and ethical.
+Policy for the responsible use of AI in government
+Related legislation, policies, and standards to consider:
+Technical standard for government's use of artificial intelligence
+Australian Signal Directorate (ASD) guidelines to
+careful adoption of agentic AI services
+Protective Security Policy Framework (PSPF)
+Information Security Manual (ISM)
+Australian Privacy Principles
+Public Service Act 1999
+,
+Privacy Act 1988
+,
+Archives Act 1983
+,
+Digital Experience Policy
+relevant Commonwealth legislation including (but not limited to) the
+Archives Act 1983 (Cth)
+any other legislation applicable to specific functions and circumstances.
+Adopt human oversight for accountability and explainability
+To maintain the auditability of outcomes, agentic AI systems should follow guidance to operate under human oversight, such as a human‑on‑the‑loop model, where systems run autonomously, and humans observe and intervene when needed. This requires AI systems to generate transparent, auditable reasoning logs that support human review, approval, and accountability. That way, agencies can ensure that their actions remain transparent, safe, and ethical.
+Next section
+Background

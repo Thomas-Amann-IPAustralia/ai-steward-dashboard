@@ -1,0 +1,62 @@
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Train
+Statement AGT.5: Select appropriate agent, model, and AI technology
+Agencies must:
+Criterion AGT.5.1: Ensure agent, model, and AI technology aligns with use case requirements
+When designing agentic systems, it is essential to evaluate the agent type and underlying AI technology that best matches the unique requirements of the intended application. To ensure the chosen agent can effectively address the specific problem, consider the complexity of the tasks, the data environment, scalability needs, and the desired level of interoperability. Agencies should also evaluate the use of appropriate AI technologies for implementation within an agentic AI system.
+Types of agents can include but are not limited to:
+transformer-based LLM agents
+symbolic reasoning agents
+graph based agents
+behavioural tree agents
+probabilistic and Bayesian agents.
+Technologies can include but are not limited to:
+reinforcement learning (RL):
+applying RL algorithms so agents self-reflect, learn, and adapt by interacting with its environment, using feedback in the form of rewards and penalties to refine their behaviour
+transformers:
+enable agents to process and interpret multimodal inputs, such as text, images, video, sensor data, and audio to generate contextually relevant responses with minimal human intervention
+large multi-modal models (LMMs):
+useful for tasks that combine visual and language understanding, like interpreting sensory data to producing relevant reports and responses
+small language models:
+agentic AI systems may employ small language models for each agent to perform more specialised tasks, enabling more efficient and cost-effective operation.
+Agencies should:
+Criterion AGT.5.2: Consider trade-offs when selecting LLMs or pre-trained models
+These may include:
+capability
+: larger models are more capable of following unstructured and complex instructions, while smaller models require carefully structured prompts to produce similar outputs
+cost:
+consider the cost of using a larger model compared to a smaller one, for example when using an LLM factors such as token usage for both input and output should be taken into account
+user experience:
+latency and speed of getting a response to the user
+other trade-offs to consider:
+data residency, privacy concerns, FOI exposure, risks of vendor lock‑in, and operational assurance responsibilities.
+Criterion AGT.5.3: Select appropriate prompt engineering technique when using LLM-based agents
+Prompt engineering is the practice of optimising the text inputted into an LLM to gain desired responses. Prompts guide how the agent reasons and acts. Better prompting techniques can allow similar results when using cheaper or less complex models.
+In agentic AI, prompt engineering guides the agent by providing a clear description of its role, what tools to use, how to interact with other agents within the workflow, and how decisions are made between alternative options. Prompts also guide how the agent should reason about trade offs, uncertainty, or escalation pathways when issues arise.
+As agentic systems increase in complexity, prompt engineering must scale to support coordination across multiple agents. Agencies should ensure that prompts remain understandable, testable, and maintainable as part of the overall system design.
+Prompting for an AI agent can include:
+defining the agent’s role or persona, specifying tasks to be performed, defining constraints, and outlining the agent’s thinking process. For example, “You are a customer support agent for an online retail company. Your task is to assist users with order tracking, returns, and product inquiries”
+directing an agent to perform a particular action and can include established boundaries, output format, and examples. For example: “Summarise the main findings from the attached research paper in no more than 200 words. Use bullet points for each key finding and cite any statistics or data mentioned in the paper”
+crafting prompts to guide agents to interpret tasks accurately
+leveraging relevant tools and maintaining context throughout complex workflows
+maintaining regular testing and evaluation to ensure that prompts remain aligned with evolving goals and environmental conditions
+treating prompts and system instructions as controlled artefacts that should be logged, approved, versioned and have rollback-capabilities
+assessing different prompting techniques and selecting the most appropriate for the task at hand to achieve optimal outcomes
+using prompting techniques such as chain of thought, role-based prompting, and ReAct can minimise issues like prompt brittleness and improve the reliability, safety, and explainability of agentic outcomes.
+Prompting techniques may include:
+zero-shot prompting:
+this is the most basic form of prompting, it provides direct instructions or questions without additional context or examples, for example “what’s the capital of Australia”. Some larger models work best when minimal prompting is provided
+few-shot or multi-shot prompting:
+providing one or more examples of desired input-output to the model, prior to inputting the actual prompt
+role-based prompting:
+providing the LLM with a persona or role that defines how the agent behaves, and the personality and tone of the output
+chain-of-thought (CoT):
+involves guiding the LLM with step-by-step logical reasoning. Instead of asking the model to directly produce a final answer, CoT involves prompting the model to breakdown complex problems into a series of intermediate reasoning steps. This method is useful for tasks that require multi-step reasoning, such as solving math problems, solving complex puzzles, or making decisions based on multiple criteria. CoT helps breakdown complex problems into a series of sub-steps. This helps guide the model to think in steps, can help improve performance, reduces errors, and provides greater transparency
+prompt chaining:
+involves breaking down a complex task into smaller manageable sub-prompts. This process connects multiple LLM-based agents. The output of one LLM agent feeds into the next LLM agent as the input. Prompt chaining can be useful for complex tasks and can include validation checks after each step to verify that the output is accurate and does not contain harmful content or bias
+ReAct prompting:
+involves reason, act, and observe and is performed over a three-step process. First, the reason (or thought) phase generates the model’s internal chain-of-thought reasoning. Next, the act phase determines the actions to be taken based on that reasoning, such as selecting and using an appropriate tool. Finally, during the observe phase, feedback from the executed action, such as information about the environment, is returned to the model and used to inform the next cycle of reasoning. ReAct prompts must provide clear instructions detailing how the agent should respond by outlining each step of the think and act cycle. Prompts should include the thought and action, clear response instructions for each step of the thought and act cycle, an example to show how the agent performs a task, an orchestration layer, reasoning combined with external tools, and feedback to enable and adapt learning from previous actions.
+Next statement
+Evaluate

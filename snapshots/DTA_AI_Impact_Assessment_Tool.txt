@@ -1,0 +1,147 @@
+--- Content from https://www.digital.gov.au/ai/impact-assessment-tool ---
+
+About the AI impact assessment tool
+The impact assessment tool is for Australian Government teams working on an artificial intelligence (AI) use case. It helps teams identify, assess and manage AI use case impacts and risks against Australia's AI Ethics Principles. Understanding and managing AI use case impacts and risks is critical for effective AI governance and to fulfilling the Australian Government’s commitment to safe and responsible use of AI. The impact assessment tool supports the
+Policy for the responsible use of AI in government
+.
+How to use the tool
+The Impact Assessment Tool is available as a fillable Word template that can be downloaded for use within your agency’s environment. Once downloaded, it can be seamlessly integrated into your existing workflows in undertaking consistent and structured assessments.
+The template is accompanied by a detailed guidance document that corresponds to each numbered section of the tool. This guidance provides clear, practical advice for completing every part, helping you apply the tool effectively within your agency’s processes.
+Explore the tool
+Impact assessment tool introduction
+View the guidance for the impact assessment tool
+Supporting documentation
+Download the impact assessment tool
+Use the fillable template.
+AI impact assessment tool.docx
+(docx, 418.96 KB)
+LAST UPDATED: 1 Dec 2025
+Download the guidance for the impact assessment tool
+Guidance for the AI impact assessment tool.pdf
+(pdf, 700.16 KB)
+LAST UPDATED: 1 Dec 2025
+Testing the impact assessment tool
+The DTA piloted an earlier draft of the impact assessment tool with 21 volunteer agencies from September to November 2024. Pilot participants provided valuable feedback that has informed further updates to the tool.
+This earlier draft of the tool was known as the ‘Pilot AI assurance framework’. Since then, the title has been updated to ‘AI impact assessment tool’, to better reflect its intended scope and purpose.
+Read the pilot report
+
+--- Content from https://www.digital.gov.au/ai/impact-assessment-tool/introduction ---
+
+Introduction
+The impact assessment tool is for Australian Government teams working on an artificial intelligence (AI) use case. It helps teams identify, assess and manage AI use case impacts and risks against
+Australia's AI Ethics Principles
+. Understanding and managing AI use case impacts and risks is critical for effective AI governance and to fulfilling the Australian Government’s commitment to safe and responsible use of AI.
+The impact assessment tool and its supporting guidance are intended to complement and strengthen – not duplicate – existing frameworks, legislation and practices that relate to government AI use. It does this by focusing on AI-specific impacts and risks that existing approaches may not fully address. It does not replace a comprehensive risk management plan, which captures all risks, treatments and ongoing monitoring measures.
+Policy for the responsible use of AI in government
+On 1 December 2025, the Digital Transformation Agency (DTA) published an updated
+Policy for the responsible use of AI in government
+(the AI policy). The policy update strengthens government’s approach to safe and responsible AI through new measures on AI governance. It includes a new mandatory requirement for agencies to conduct an AI impact assessment for use cases identified as in scope of the AI policy.
+The updated AI policy provides implementation timeframes for agencies to meet the new requirements. Agencies are required to implement the AI impact assessment requirement for in-scope use cases by 15 December 2026. While agencies may need this time to action the new AI policy requirements, including mandatory AI impact assessment, agencies should implement them sooner if practicable.
+Refer to the AI policy for more information on the definition of ‘AI use case’ and the AI impact assessment requirements.
+Assessing officers should familiarise themselves with the AI policy and Australia’s AI Ethics Principles. Also consider other DTA resources designed to support government AI adoption, including:
+the
+AI technical standard
+AI procurement resources, including the
+Guidance on AI procurement
+in government,
+AI contract template
+and
+AI model clauses
+Agency guidance on the use of public generative AI tools for agencies
+Agency guidance on the use of public generative AI tools for staff
+.
+The DTA piloted a previous draft of this tool – known as the ‘Pilot AI assurance framework’ – with volunteer agencies from September to November 2024 and published the pilot draft in October 2024. The pilot findings that shaped this version of the tool and guidance are outlined in the
+Pilot implementation report
+. The title has been updated to ‘AI impact assessment tool’ to better reflect its intended scope and purpose.
+The DTA welcomes feedback and questions on the tool via email to
+ai@dta.gov.au
+.
+AI impact assessment beyond the policy requirements
+While the AI policy requires agencies to assess the impact of in-scope AI use cases, agencies are free to establish their own assessment requirements for AI use cases that are outside the scope of the AI policy.
+Agencies may also use this tool to support other AI-related activities. For example, procurements where suppliers use AI to provide goods and services (refer to the Guidance on AI procurement in government for further advice). Agencies should ensure specific internal requirements and expectations are clearly communicated to staff whose work involves AI.
+For highly complex, novel or specific AI use cases, including AI-related activities which are outside the scope of the AI policy, agencies should also consider whether there are impacts which are not covered by this tool. These impacts must be assessed accordingly, and technical or legal advice sought where appropriate, as additional or different controls and mitigations may be required to address these impacts.
+If you identify gaps in this tool, report these to the DTA. This reporting will enable the DTA to ensure that the AI policy and impact assessment tool remain fit for purpose and continue to evolve in response to emerging applications and risks.
+Assessment roles and responsibilities
+The tool and its supporting guidance are designed for Australian Government staff whose work involves AI. Each AI impact assessment must have an identified assessing officer and approving officer, and assessing officers should consult relevant experts for input. These roles are described below.
+The updated AI policy also requires agencies to assign an accountable use case owner for each AI use case within the scope of the AI policy. This role is distinct from the assessment roles described above, although the accountable use case owner may also serve in one of those roles.
+Assessing officer
+An officer assigned to complete the assessment, coordinate the end-to-end process and serve as the contact point for any assessment queries. Depending on the specific use case and agency context, this officer may be a technical, data, governance or risk specialist, or they may be a policy or project officer from the business area that is implementing the AI use case in its operations.
+Approving officer
+An officer with appropriate authority to approve the AI use case assessment, including the inherent risk ratings. Like the assessing officer role above, the approving officer’s specific role in the AI use case is not predetermined and will depend on the agency and use case context.
+Expert contributors
+Regardless of the assessing officer’s role in the AI use case, they should seek peer review from colleagues and input from relevant experts as required, and document the experts consulted at
+section 1.10
+.
+For some less complex, smaller scale AI use cases, the assessing officer may have all the information they need at their disposal to complete the assessment and may not require significant input from beyond their team. More complex use cases will likely require input from internal agency colleagues, including technical, data, risk management, policy and other domain area experts. If this expertise is not available in the agency, the assessing officer may need to seek external advice.
+How to use this assessment tool
+Check you have the latest version
+The impact assessment tool will continue to evolve over time. Please refer to
+digital.gov.au
+to ensure you are using the latest version.
+Before commencing this impact assessment tool and throughout the assessment process, you should read the supporting guidance. The guidance mirrors the assessment’s structure – each section of the impact assessment has a corresponding section in the guidance with further advice on completing the assessment.
+Pre-assessment
+Before assessing an AI use case, check if it is within the scope of the AI policy. The AI policy sets the criteria for in-scope use cases and the mandatory governance actions agencies must apply.
+If your AI use case is out-of-scope of the AI policy, you may still find the impact assessment process useful. For example, to support procurement, design and deployment decisions. Your agency may have specific requirements, in addition to the AI policy requirements, for assessing AI use case impacts. Check you are meeting any agency-specific requirements.
+Start gathering use case information
+You will need a broad range of information about the AI use case to complete the assessment. During the design phase the assessment is likely to be an iterative process, involving input from a range of experts. Regular updates may be needed as new information becomes available or design choices are refined.
+The use case information you need may include:
+the people the AI use case will affect, including demographic characteristics, needs or barriers they may face
+the potential impacts on individuals or groups, including direct and indirect impacts, their duration and reversibility, and how you intend to identify, assess and mitigate these
+the input data the AI system uses, including the type, source, collection method and security classification and how the input data will be stored and handled
+planned or existing security, monitoring, evaluation and quality assurance measures
+planned transparency measures to communicate information about the AI use case to individuals and groups
+how you will identify and consult relevant stakeholders
+how the AI system will record, log and explain any recommendations or decisions it makes, the extent of human oversight and validation of recommendations or decisions, and how any outcomes from the AI system will influence human decision-making
+who owns intellectual property rights in the inputs and outputs of the AI system, including copyright
+how your agency manages and delivers information technology services and solutions
+Threshold assessment: sections 1 to 4
+If your AI use case is in scope of the AI policy, complete the first 4 sections of the tool, which includes an assessment of inherent risks at section 3.
+If all inherent risks are rated low, you can seek approving officer endorsement to conclude the impact assessment at section 4 and proceed with the use case, with appropriate plans for monitoring, evaluation and re-validation.
+If any of the inherent risks at section 3 are rated medium or high, proceed to the full assessment and complete sections 5 to 12.
+The AI policy also outlines additional requirements for use cases assessed as having an overall high inherent risk rating at the threshold assessment stage.
+For any inherent risks rated medium or high, you may also consider seeking legal advice on whether the proposed use of AI is compliant with relevant laws and regulations prior to proceeding to the full assessment.
+Full assessment: sections 5 to 12
+The full impact assessment builds on the threshold risk assessment with more detailed analysis beyond the inherent risk level. It helps you examine specific potential harms, affected stakeholders, and contextual factors, to determine whether additional controls and mitigations are required.
+Monitoring and evaluation
+Regularly monitor and evaluate your AI use case throughout its lifecycle. If you identify a material change in the scope, usage or operation of the use case, you must formally revalidate your assessment, in line with AI policy requirements.
+Re-validation
+Check an approved use case assessment for accuracy and changes after deployment using re-validation. If revalidation results in assessment changes, the relevant officer or governance body must re-approve the changes. You may also specify other re-assessment intervals or triggers for your use case. This includes re-assessment to align with key project governance decision points.
+Progress to the fillable word template
+AI Impact Assessment Tool
+Download the complete resource
+AI impact assessment tool.docx
+(docx, 418.96 KB)
+LAST UPDATED: 1 Dec 2025
+
+--- Content from https://www.digital.gov.au/ai/impact-assessment-tool/guidance ---
+
+Introduction
+This document provides guidance for completing the Australian Government artificial intelligence (AI) impact assessment tool (the tool). Use this supporting guidance to understand, interpret and complete the tool.
+The impact assessment tool is for Australian Government teams working on an AI use case. It helps teams identify, assess and manage AI use case impacts and risks against
+Australia's AI Ethics Principles
+.
+Agencies can use the tool to fulfill AI use case impact assessment requirements under the
+Policy for the responsible use of AI in government
+(the AI policy). Refer to the impact assessment tool document for assessment instructions and to the AI policy for key definitions and implementation requirements.
+This guidance mirrors the AI impact assessment tool’s 12-section structure. For advice on completing a section in the tool, find the corresponding section number in this guidance
+Assessing officers should familiarise themselves with the AI policy and the AI Ethics Principles. Also consider other Digital Transformation Agency (DTA) resources designed to support government AI adoption, including:
+the
+AI technical standard
+AI procurement resources, including the
+Guidance on AI procurement in government
+,
+AI contract template
+and
+AI model clauses
+guidance on the use of public generative AI tools
+for agencies
+and
+for staff
+.
+The DTA welcomes user feedback on the tool and supporting guidance. Please send questions or suggestions to
+ai@dta.gov.au
+.
+Disclaimer
+The Digital Transformation Agency (DTA) provides the AI impact assessment tool and supporting guidance to assist Australia Government agencies to assess their proposed use of artificial intelligence (AI). Agencies should not treat the tool or guidance as legal advice or as authorising proposed AI use. Agencies are responsible for any decisions relating to their use of AI and for seeking technical and legal advice as appropriate.
+Next page
+1. Basic information

@@ -1,0 +1,100 @@
+On this page
+Introduction
+Scope
+Target audience
+Introduction
+The AI technical standard (the standard) sets consistent practices for government agencies adopting artificial intelligence (AI) systems across the AI lifecycle.
+The standard brings together a set of practices for procuring, designing, developing, deploying, and using AI systems. The standard reinforces the Australian Government’s
+AI Ethics Principles
+into a set of technical requirements and guidelines. It complements the
+Policy for the responsible use of AI in government
+, the
+AI impact assessment tool
+, and the
+Voluntary AI Safety Standard
+.
+The standard adopts the
+OECD definition of an Artificial Intelligence (AI) system
+:
+‘An AI system is a machine-based system that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments. Different AI systems vary in their levels of autonomy and adaptiveness after deployment.’
+The standard adopts an agency-first approach. Rather than introducing new processes or duplication, it emphasises the reuse of agency policies, frameworks and practices.
+Agencies may choose to combine the standard with existing frameworks, such as project governance or data, to include AI-related activities. The standard complements existing frameworks and legislation to help ensure agencies meet their obligations in the use of AI.
+The challenges for government use of AI are complex and linked with other governance considerations, such as:
+The Australian Public Service (APS) Code of Conduct
+data governance
+cyber security
+ICT infrastructure
+privacy
+sourcing and procurement
+copyright
+ethics practices.
+While not exhaustive, a
+list of related existing frameworks and related resources
+is provided by the Policy for the responsible use of AI in government.
+The practices outlined in this document take the form of standard statements, criteria, and explanatory notes.
+Statement
+: the standard statements describe ‘what’ needs to be done.
+Criteria
+: each statement has at least one criterion to satisfy the statement. Each criterion is ‘required’ or ‘recommended’.
+Required
+: agencies must satisfy criterion marked as required to meet the standard. Required criterion are driven by Australian legislation, regulation and policies, and ethics principles.
+Recommended
+: agencies should implement any criterion marked as recommended.
+Explanatory notes
+: explanatory notes are provided for each criterion. These notes are intended to offer guidance rather than serve as a comprehensive checklist. Unless specified, explanatory notes are not mandatory but are intended to support understanding, offer ways to implement the criterion, and provides examples, scenarios, and concepts to guide implementation.
+The level of detail and implementation of each statement will vary across use cases. Practical use case guidance has been provided in the Use Case Applications section of the standard.
+The standard is applicable regardless of whether an agency develops an AI system in-house or contracts an external provider to build or supply it. Engaging external providers does not prevent agencies from implementing each of the criteria in the statements. Agencies that adopt the standard are accountable for ensuring it is met in line with the required and recommended criterion.
+Transparency documents can be utilised to support assessments, including open-source software.
+For early experimentation, proof of concept, and pilots of AI products and services, the standard should be used to provide guidance for building responsible and safe AI systems, ensuring a clear pathway to production.
+The standard helps government:
+contribute to the ethical use of AI to ensure public trust
+stay compliant with regulatory requirements and alignment with AI strategic frameworks
+align with cybersecurity guidelines and the AI Assurance framework
+support innovation and whole of economy growth
+support AI sourcing and adoption processes
+provide alignment with international AI best practices across government.
+Scope
+In scope
+The standard applies to:
+AI services and products for administrative decision-making in government
+AI systems that may produce discriminatory, unfair, or harmful outcomes
+platform, data, and software for AI services and products
+a product or service with at least one AI model, hosted internally or externally
+reuse of AI assets, including applying to new or changed use cases
+systems with embedded AI services and products
+publicly available AI tools, such as ChatGPT.
+Examples of the types of AI considered for the standard includes machine learning, computer vision, deep learning, artificial neural networks, generative AI (GenAI) or any combinations of these.
+Out of scope
+While the below list is out of scope, agencies can adapt and apply the standard at their own discretion:
+automated decision-making
+robotic process automation
+human-repeatable scripts or processes
+artificial general intelligence
+incidental use of AI.
+The standard does not define, but works in conjunction with, the following:
+procurement processes and guidance
+project management methodologies
+risk identification and impact assessment
+incident, problem, and change management.
+Target audience
+The standard impacts both roles and responsibilities at varying organisational levels across government, and impacts Australians more broadly. The following functions and communities may be impacted or assisted by the standard. Noting individuals may perform multiple roles.
+Entities external to government agencies includes the following:
+Civil society
+can be the owners of the data used by AI systems, or users who are directly or indirectly impacted by AI systems. They can investigate the use of AI in the public sector and publish their findings. Civil society helps shape government’s AI policy, programs and strategy to safeguard human rights. They include the public, academia and research, advocacy and media groups.
+Oversight bodies
+review the extent to which agencies have implemented the standard. They enforce laws, assess compliance, and provide stakeholder confidence. They include the regulators, assurance teams, ethics officers and auditors. They can be internal or external to an agency.
+Industry partners
+implement the standard for the products or services they provide. They may need to adopt the standard to conform with responsible AI principles and policies for government: They include government suppliers, managed services providers, consultants and contractors. They can range from startups to large corporations, local and international.
+International organisations
+are interested in global collaboration and advancing interoperability. They include standards bodies, international governments and intergovernmental organisations.
+The standard will impact roles and responsibilities at varying organisational levels. The following functions may be impacted and assisted by the standard, noting that individuals may perform multiple roles:
+AI leaders in government
+shape the future of the public service and the safe and responsible use of AI across Australia, promoting public trust. They include government leaders, AI accountable officials (AO), executive boards, chief technology officers, chief data officers, chief information officers.
+Business leadership teams
+identify, prioritise and schedule product features considering the requirements in the standard. Accountable and responsible for AI system deployment. They understand the problem that needs to be solved, the end-users and the wider operating environment of AI-enabled systems. They include senior responsible officers, business owners, product managers, project managers and delivery leads.
+Technical leadership teams
+translate the standard into system-specific requirements and technical procurement requirements. They are the technical system owners. They design technology solutions for business problems. They ensure alignment with enterprise architecture principles and patterns. They include the technical leads, enterprise architects and system analysts. They design technology solutions for business problems.
+Development teams
+apply the standard to solution from concept and prototyping, design, implementation, integration and testing of AI systems. They include the AI scientists, data engineers, data labellers, software developers, application developers, infrastructure engineers, user and customer experience specialists, test specialists, integrators, and cybersecurity.
+Operations teams
+apply the standard on continuous deployment, testing, and monitoring of an AI system. They operate AI systems and ensure reliable delivery of services. They include service delivery representatives, technical support, security operations, system administrators, hosting engineers, network engineers, DevOps engineers and maintenance personnel. They need to understand the capability and limitations of the AI systems they are deploying, operating, or using.

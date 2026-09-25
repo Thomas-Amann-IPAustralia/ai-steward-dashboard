@@ -1,0 +1,710 @@
+--- Content from https://www.digital.gov.au/policy/ai/AI-technical-standard ---
+
+Technical standard for government’s use of artificial intelligence
+To support the safe and responsible use of artificial intelligence, the
+Digital Transformation Agency (DTA)
+has developed the AI technical standard for Australian Government. This standard provides practical guidance for technical specialists and business owners embedding AI in government systems, enabling agencies to confidently experiment with and develop AI use cases.
+The standard outlines best practice for the end-to-end design, development, deployment, and use of AI systems. It reinforces the Australian Government’s commitment to the AI Ethics Principles.
+By establishing the core technical foundation, the standard strengthens the broader ecosystem of policies, frameworks, and guidance. It is a key enabler for building capability across government, ensuring agencies can innovate with AI while maintaining public trust and delivering better outcomes for Australians.
+Introduction, scope and audience
+Discover who the standards apply to and what is out of scope.
+AI system lifecycle
+The practices described in this standard aligns to an AI lifecycle model to ensure holistic coverage of an AI system.
+Summary of requirements in the standard
+Identifies the statements and criteria of this standard, organised their AI lifecycle stage.
+The statements
+Each statement expanded to detail what agencies should or must do.
+Use case assessments
+This section aims to assess the applicability of the standard to current AI use cases within government agencies. It is anticipated that it will continue to be added to as agency use matures.
+Key terms
+Provides a list of key terms and their definitions as it relates to the standard.
+Agentic AI Addendum
+The addendum to the AI technical standard, highlighting best practice key considerations for the secure and governed implementation of agentic AI systems.
+Agentic AI addendum
+Downloadable resource
+Technical standard for government’s use of artificial intelligence
+Australian Government AI technical standard.pdf
+(pdf, 857.23 KB)
+LAST UPDATED: 22 Aug 2025
+
+--- Content from https://www.digital.gov.au/policy/ai/AI-technical-standard/technical-standard-governments-use-artificial-intelligence-introduction-scope-and-target-audience ---
+
+On this page
+Introduction
+Scope
+Target audience
+Introduction
+The AI technical standard (the standard) sets consistent practices for government agencies adopting artificial intelligence (AI) systems across the AI lifecycle.
+The standard brings together a set of practices for procuring, designing, developing, deploying, and using AI systems. The standard reinforces the Australian Government’s
+AI Ethics Principles
+into a set of technical requirements and guidelines. It complements the
+Policy for the responsible use of AI in government
+, the
+AI impact assessment tool
+, and the
+Voluntary AI Safety Standard
+.
+The standard adopts the
+OECD definition of an Artificial Intelligence (AI) system
+:
+‘An AI system is a machine-based system that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments. Different AI systems vary in their levels of autonomy and adaptiveness after deployment.’
+The standard adopts an agency-first approach. Rather than introducing new processes or duplication, it emphasises the reuse of agency policies, frameworks and practices.
+Agencies may choose to combine the standard with existing frameworks, such as project governance or data, to include AI-related activities. The standard complements existing frameworks and legislation to help ensure agencies meet their obligations in the use of AI.
+The challenges for government use of AI are complex and linked with other governance considerations, such as:
+The Australian Public Service (APS) Code of Conduct
+data governance
+cyber security
+ICT infrastructure
+privacy
+sourcing and procurement
+copyright
+ethics practices.
+While not exhaustive, a
+list of related existing frameworks and related resources
+is provided by the Policy for the responsible use of AI in government.
+The practices outlined in this document take the form of standard statements, criteria, and explanatory notes.
+Statement
+: the standard statements describe ‘what’ needs to be done.
+Criteria
+: each statement has at least one criterion to satisfy the statement. Each criterion is ‘required’ or ‘recommended’.
+Required
+: agencies must satisfy criterion marked as required to meet the standard. Required criterion are driven by Australian legislation, regulation and policies, and ethics principles.
+Recommended
+: agencies should implement any criterion marked as recommended.
+Explanatory notes
+: explanatory notes are provided for each criterion. These notes are intended to offer guidance rather than serve as a comprehensive checklist. Unless specified, explanatory notes are not mandatory but are intended to support understanding, offer ways to implement the criterion, and provides examples, scenarios, and concepts to guide implementation.
+The level of detail and implementation of each statement will vary across use cases. Practical use case guidance has been provided in the Use Case Applications section of the standard.
+The standard is applicable regardless of whether an agency develops an AI system in-house or contracts an external provider to build or supply it. Engaging external providers does not prevent agencies from implementing each of the criteria in the statements. Agencies that adopt the standard are accountable for ensuring it is met in line with the required and recommended criterion.
+Transparency documents can be utilised to support assessments, including open-source software.
+For early experimentation, proof of concept, and pilots of AI products and services, the standard should be used to provide guidance for building responsible and safe AI systems, ensuring a clear pathway to production.
+The standard helps government:
+contribute to the ethical use of AI to ensure public trust
+stay compliant with regulatory requirements and alignment with AI strategic frameworks
+align with cybersecurity guidelines and the AI Assurance framework
+support innovation and whole of economy growth
+support AI sourcing and adoption processes
+provide alignment with international AI best practices across government.
+Scope
+In scope
+The standard applies to:
+AI services and products for administrative decision-making in government
+AI systems that may produce discriminatory, unfair, or harmful outcomes
+platform, data, and software for AI services and products
+a product or service with at least one AI model, hosted internally or externally
+reuse of AI assets, including applying to new or changed use cases
+systems with embedded AI services and products
+publicly available AI tools, such as ChatGPT.
+Examples of the types of AI considered for the standard includes machine learning, computer vision, deep learning, artificial neural networks, generative AI (GenAI) or any combinations of these.
+Out of scope
+While the below list is out of scope, agencies can adapt and apply the standard at their own discretion:
+automated decision-making
+robotic process automation
+human-repeatable scripts or processes
+artificial general intelligence
+incidental use of AI.
+The standard does not define, but works in conjunction with, the following:
+procurement processes and guidance
+project management methodologies
+risk identification and impact assessment
+incident, problem, and change management.
+Target audience
+The standard impacts both roles and responsibilities at varying organisational levels across government, and impacts Australians more broadly. The following functions and communities may be impacted or assisted by the standard. Noting individuals may perform multiple roles.
+Entities external to government agencies includes the following:
+Civil society
+can be the owners of the data used by AI systems, or users who are directly or indirectly impacted by AI systems. They can investigate the use of AI in the public sector and publish their findings. Civil society helps shape government’s AI policy, programs and strategy to safeguard human rights. They include the public, academia and research, advocacy and media groups.
+Oversight bodies
+review the extent to which agencies have implemented the standard. They enforce laws, assess compliance, and provide stakeholder confidence. They include the regulators, assurance teams, ethics officers and auditors. They can be internal or external to an agency.
+Industry partners
+implement the standard for the products or services they provide. They may need to adopt the standard to conform with responsible AI principles and policies for government: They include government suppliers, managed services providers, consultants and contractors. They can range from startups to large corporations, local and international.
+International organisations
+are interested in global collaboration and advancing interoperability. They include standards bodies, international governments and intergovernmental organisations.
+The standard will impact roles and responsibilities at varying organisational levels. The following functions may be impacted and assisted by the standard, noting that individuals may perform multiple roles:
+AI leaders in government
+shape the future of the public service and the safe and responsible use of AI across Australia, promoting public trust. They include government leaders, AI accountable officials (AO), executive boards, chief technology officers, chief data officers, chief information officers.
+Business leadership teams
+identify, prioritise and schedule product features considering the requirements in the standard. Accountable and responsible for AI system deployment. They understand the problem that needs to be solved, the end-users and the wider operating environment of AI-enabled systems. They include senior responsible officers, business owners, product managers, project managers and delivery leads.
+Technical leadership teams
+translate the standard into system-specific requirements and technical procurement requirements. They are the technical system owners. They design technology solutions for business problems. They ensure alignment with enterprise architecture principles and patterns. They include the technical leads, enterprise architects and system analysts. They design technology solutions for business problems.
+Development teams
+apply the standard to solution from concept and prototyping, design, implementation, integration and testing of AI systems. They include the AI scientists, data engineers, data labellers, software developers, application developers, infrastructure engineers, user and customer experience specialists, test specialists, integrators, and cybersecurity.
+Operations teams
+apply the standard on continuous deployment, testing, and monitoring of an AI system. They operate AI systems and ensure reliable delivery of services. They include service delivery representatives, technical support, security operations, system administrators, hosting engineers, network engineers, DevOps engineers and maintenance personnel. They need to understand the capability and limitations of the AI systems they are deploying, operating, or using.
+
+--- Content from https://www.digital.gov.au/policy/ai/AI-technical-standard/summary-requirements-standard ---
+
+Summary of requirements in the standard
+The statements and criteria of this standard are organised by stage of the AI lifecycle, including those that apply across all lifecycle stages.
+Lifecycle stages
+Introduces each lifecycle and it's accompanying statements noting which are required and which are recommended.
+Whole of AI lifecycle
+Statement Number 1. Define an operational model
+Recommended
+Criterion 1: Identify a suitable operational model to design, develop, and deliver the system securely and efficiently.
+Criterion 2: Consider the technology impacts of the operating model.
+Criterion 3: Consider technology hosting strategies.
+Statement Number 2. Define the reference architecture
+Required
+Criterion 4: Evaluate existing reference architectures.
+Recommended
+Criterion 5: Monitor emerging reference architectures to evaluate and update the AI system.
+Statement Number 3. Identify and build people capabilities
+Required
+Criterion 6: Identify and assign AI roles to ensure a diverse team of business and technology professionals with specialised skills.
+Criterion 7: Build and maintain AI capabilities by undertaking regular training and education of end users, staff, and stakeholders.
+Recommended
+Criterion 8: Mitigate staff over reliance, under reliance, and aversion of AI.
+Statement Number 4. Enable AI auditing
+Required
+Criterion 9: Provide end-to-end auditability.
+Criterion 10: Perform ongoing data-specific checks across the AI lifecycle.
+Criterion 11: Perform ongoing model-specific checks across the AI lifecycle.
+Statement Number 5. Provide explainability based on the use case
+Required
+Criterion 12: Explain the AI system and technology used, including the limitations and capabilities of the system.
+Recommended
+Criterion 13: Explain outputs made by the AI system to end users.
+Criterion 14: Explain how data is used and shared by the AI system.
+Statement Number 6. Manage system bias
+Required
+Criterion 15: Identify how bias could affect people, processes, data, and technologies involved in the AI system lifecycle.
+Criterion 16: Assess the impact of bias on your use case.
+Criterion 17: Manage identified bias across the AI system lifecycle.
+Statement Number 7. Apply version control practices
+Required
+Criterion 18: Apply version management practices to the end-to-end development lifecycle.
+Recommended
+Criterion 19: Use metadata in version control to distinguish between production and non-production data, models, and code.
+Criterion 20: Use a version control toolset to improve useability for users.
+Criterion 21: Record version control information in audit logs.
+Statement Number 8. Apply watermarking techniques
+Required
+Criterion 22: Apply visual watermarks and metadata to generated media content to provide transparency and provenance, including authorship.
+Criterion 23: Apply watermarks that are WCAG compatible where relevant.
+Criterion 24: Apply visual and accessible content to indicate when a user is interacting with an AI system.
+Recommended
+Criterion 25: For hidden watermarks, use watermarking tools based on the use case and content risk.
+Criterion 26: Assess watermarking risks and limitations.
+Design
+Statement Number 9. Conduct pre-work
+Required
+Criterion 27: Define the problem to be solved, its context, intended use, and impacted stakeholders.
+Criterion 28: Assess AI and non-AI alternatives.
+Criterion 29: Assess environmental impact and sustainability.
+Criterion 30: Perform cost analysis across all aspects of the AI system.
+Criterion 31: Analyse how the use of AI will impact the solution and its delivery.
+Statement Number 10.
+Adopt a human-centred approach
+Required
+Criterion 32: Identify human values requirements.
+Criterion 33: Establish a mechanism to inform users of AI interactions and output, as part of transparency.
+Criterion 34: Design AI systems to be inclusive, ethical, and meets accessibility standards using appropriate mechanisms.
+Criterion 35: Design feedback mechanisms.
+Criterion 36: Define human oversight and control mechanisms.
+Recommended
+Criterion 37: Involve users in the design process.
+Statement Number 11.
+Design safety systemically
+Required
+Criterion 38: Analyse and assess harms.
+Criterion 39: Mitigate harms by embedding mechanisms for prevention, detection, and intervention.
+Recommended
+Criterion 40: Design the system to allow calibration at deployment.
+Statement Number 12.
+Define success criteria
+Required
+Criterion 41: Identify, assess, and select metrics appropriate to the AI system.
+Recommended
+Criterion 42: Reevaluate the selection of appropriate success metrics as the AI system moves through the AI lifecycle.
+Criterion 43: Continuously verify correctness of the metrics.
+Data
+Statement Number 13. Establish data supply chain management processes
+Required
+Criterion 44: Create and collect data for the AI system and identify the purpose for its use.
+Criterion 45: Plan for data archival and destruction.
+Recommended
+Criterion 46: Analyse data for use by mapping the data supply chain and ensuring traceability.
+Criterion 47: Implement practices to maintain and reuse data.
+Statement Number 14. Implement data orchestration processes
+Required
+Criterion 48: Implement processes to enable data access and retrieval, encompassing the sharing, archiving, and deletion of data.
+Recommended
+Criterion 49: Establish standard operating procedures for data orchestration.
+Criterion 50: Configure integration processes to integrate data in increments.
+Criterion 51: Implement automation processes to orchestrate the reliable flow of data between systems and platforms.
+Criterion 52: Perform oversight and regular testing of task dependencies.
+Criterion 53: Establish and maintain data exchange processes.
+Statement Number 15. Implement data transformation and feature engineering practices
+Recommended
+Criterion 54: Establish data cleaning procedures to manage any data issues.
+Criterion 55: Define data transformation processes to convert and optimise data for the AI system.
+Criterion 56: Map the points where transformation occurs between datasets and across the AI system.
+Criterion 57: Identify fit-for-purpose feature engineering techniques.
+Criterion 58: Apply consistent data transformation and feature engineering methods to support data reuse and extensibility.
+Statement Number 16. Ensure data quality is acceptable
+Required
+Criterion 59: Define quality assessment criteria for the data used in the AI system.
+Recommended
+Criterion 60: Implement data profiling activities and remediate any data quality issues.
+Criterion 61: Define processes for labelling data and managing the quality of data labels.
+Statement Number 17. Validate and select data
+Required
+Criterion 62: Perform data validation activities to ensure data meets the requirements for the system’s purpose.
+Criterion 63: Select data for use that is aligned with the purpose of the AI system.
+Statement Number 18. Enable data fusion, integration and sharing
+Recommended
+Criterion 64: Analyse data fusion and integration requirements.
+Criterion 65: Establish an approach to data fusion and integration.
+Criterion 66: Identify data sharing arrangements and processes to maintain consistency.
+Statement Number 19. Establish the model and context dataset
+Required
+Criterion 67: Measure how representative the model dataset is.
+Criterion 68: Separate the model training dataset from the validation and testing datasets.
+Criterion 69: Manage bias in the data.
+Recommended
+Criterion 70: For generative AI, build reference or contextual datasets to improve the quality of AI outputs.
+Train
+Statement Number 20. Plan the model architecture
+Required
+Criterion 71: Establish success criteria that cover any AI training and operational limitations for infrastructure and costs.
+Criterion 72: Define a model architecture for the use case suitable to the data and AI system operation.
+Criterion 73: Select algorithms aligned with the purpose of the AI system and the available data.
+Criterion 74: Set training boundaries in relation to any infrastructure, performance, and cost limitations.
+Recommended
+Criterion 75: Start small, scale gradually.
+Statement Number 21. Establish the training environment
+Required
+Criterion 76: Establish compute resources and infrastructure for the training environment.
+Criterion 77: Secure the infrastructure.
+Recommended
+Criterion 78: Reuse available approved AI modelling frameworks, libraries, and tools.
+Statement Number 22. Implement model creation, tuning and grounding
+Required
+Criterion 79: Set assessment criteria for the AI models, with respect to pre-defined metrics for the AI system.
+Criterion 80: Identify and address situations when AI outputs should not be provided.
+Criterion 81: Apply considerations for reusing existing agency models, off-the-shelf, and pre-trained models.
+Criterion 82: Create or fine-tune models optimised for target domain environment.
+Recommended
+Criterion 83: Create and train using multiple model architectures and learning strategies.
+Statement Number 23. Validate, assess and update model
+Required
+Criterion 84: Set techniques to validate AI trained models.
+Criterion 85: Evaluate the model against training boundaries.
+Criterion 86: Evaluate the model for bias, implement and test bias mitigations.
+Recommended
+Criterion 87: Identify relevant model refinement methods.
+Statement Number 24. Select trained models
+Recommended
+Criterion 88: Assess a pool of trained models against acceptance metrics to select a model for the AI system.
+Statement Number 25. Implement continuous improvement frameworks
+Required
+Criterion 89: Establish interface tools and feedback channels for machines and humans.
+Criterion 90: Perform model version control.
+Evaluate
+Statement Number 26. Adapt strategies and practices for AI systems
+Required
+Criterion 91: Mitigate bias in the testing process.
+Criterion 92: Define test criteria approaches.
+Recommended
+Criterion 93: Define how test coverage will be measured.
+Criterion 94: Define a strategy to ensure test adequacy.
+Statement Number 27. Test for specified behaviour
+Required
+Criterion 95: Undertake human verification of test design and implementation for correctness, consistency, and completeness.
+Criterion 96: Conduct functional performance testing to verify the correctness of the AI System Under Test (SUT) as per the pre-defined metrics.
+Criterion 97: Perform controllability testing to verify human oversight and control, and system control requirements.
+Criterion 98: Perform explainability and transparency testing as per the requirements.
+Criterion 99: Perform calibration testing as per the requirements.
+Criterion 100: Perform logging tests as per the requirements.
+Statement Number 28. Test for safety, robustness, and reliability
+Required
+Criterion 101: Test the computational performance of the system.
+Criterion 102: Test safety measures through negative testing methods, failure testing, and fault injection.
+Criterion 103: Test reliability of the AI output, through stress testing over an extended period, simulating edge cases, and operating under extreme conditions.
+Recommended
+Criterion 104: Undertake adversarial testing (red team testing), attempting to break security and privacy measures to identify weaknesses.
+Statement Number 29. Test for conformance and compliance
+Required
+Criterion 105: Verify compliance with relevant policies, frameworks, and legislation.
+Criterion 106: Verify conformance against organisation and industry-specific coding standards.
+Criterion 107: Perform vulnerability testing to identify any well-known vulnerabilities.
+Statement Number 30. Test for intended and unintended consequences
+Required
+Criterion 108: Perform user acceptance testing (UAT) and scenario testing, validating the system with a diversity of end-users in their operating contexts and real-world scenarios.
+Recommended
+Criterion 109: Perform robust regression testing to mitigate the heightened risk of escaped defects resulting from changes, such as a step change in parameters.
+Integrate
+Statement Number 31. Undertake integration planning
+Recommended
+Criterion 110: Ensure the AI system meets architecture and operational requirements with the Australian Government Security Authority to Operate (SATO).
+Criterion 111: Identify suitable tests for integration with the operational environment, systems, and data.
+Statement Number 32. Manage integration as a continuous practice
+Recommended
+Criterion 112: Apply secure and auditable continuous integration practices for AI systems.
+Deploy
+Statement Number 33. Create business continuity plans
+Required
+Criterion 113: Develop plans to ensure critical systems remain operational during disruptions.
+Statement Number 34. Configure a staging environment
+Recommended
+Criterion 114: Ensure the staging environment mirrors the production environment in configurations, libraries, and dependencies for consistency and predictability.
+Criterion 115: Measure the performance of the AI system in the staging environment against predefined metrics.
+Criterion 116: Ensure deployment strategies include monitoring for AI specific metrics, such as inference latency and AI output accuracy.
+Statement Number 35. Deploy to a production environment
+Required
+Criterion 117: Apply strategies for phased roll-out.
+Criterion 118: Apply readiness verification, assurance checks and change management practices for the AI system.
+Recommended
+Criterion 119: Apply strategies for limiting service interruptions.
+Statement Number 36. Implement rollout and safe rollback mechanisms
+Recommended
+Criterion 120: Define a comprehensive rollout and rollback strategy.
+Criterion 121: Implement load balancing and traffic shifting methods for system rollout.
+Criterion 122: Conduct regular health checks, readiness, and startup probes to verify stability and performance on the deployment environment.
+Criterion 123: Implement rollback mechanisms to revert to the last stable version in case of failure.
+Monitor
+Statement Number 37. Establish monitoring framework
+Recommended
+Criterion 124: Define reporting requirements.
+Criterion 125: Define alerting requirements.
+Criterion 126: Implement monitoring tools.
+Criterion 127: Implement feedback loop to ensure that insights from monitoring are fed back into the development and improvement of the AI system.
+Statement Number 38. Undertake ongoing testing and monitoring
+Required
+Criterion 128: Test periodically after deployment and have a clear framework to manage any issues.
+Criterion 129: Monitor the system as agreed and specified in its operating procedures.
+Criterion 130: Monitor performance and AI drift as per pre-defined metrics.
+Criterion 131: Monitor health of the system and infrastructure.
+Criterion 132: Monitor safety.
+Criterion 133: Monitor reliability metrics and mechanisms.
+Criterion 134: Monitor human-machine collaboration.
+Criterion 135: Monitor for unintended consequences.
+Criterion 136: Monitor transparency and explainability.
+Criterion 137: Monitor costs.
+Criterion 138: Monitor security.
+Criterion 139: Monitor compliance of the AI system.
+Statement Number 39. Establish incident resolution processes
+Required
+Criterion 140: Define incident handling processes.
+Criterion 141: Implement corrective and preventive actions for incidents.
+Decommission
+Statement Number 40. Create a decommissioning plan
+Required
+Criterion 142: Define the scope of decommissioning activities.
+Criterion 143: Conduct an impact analysis of decommissioning the target AI system.
+Criterion 144: Proactively communicate system retirement.
+Statement Number 41. Shut down the AI system
+Required
+Criterion 144: Proactively communicate system retirement.
+Criterion 146: Disable computing resources or components specifically dedicated to the AI system.
+Criterion 147: Securely decommission or repurpose all computing resources specifically dedicated to the AI system, including individual and shared components.
+Statement Number 42. Finalise documentation and reporting
+Required
+Criterion 148: Finalise decommissioning information and update organisational documentation.
+Alternative table option providing greater visibility of the individual statements
+An interactive table presenting each statement and it's relationship to the AI lifecycles, applicable criteria and requirements. This table allows for filtering to provide the user with customised targeted results.
+The interactive statements table
+
+--- Content from https://www.digital.gov.au/policy/ai/AI-technical-standard/technical-standard-governments-use-artificial-intelligence-whole-ai-lifecycle-statements ---
+
+Whole of AI lifecycle: statements 1 - 8
+Whole of AI lifecycle includes statements that apply across multiple AI product lifecycle stages, for ease of use and to minimise content duplication.
+The challenges for government use of AI are complex and linked with other governance considerations, such as:
+the APS Code of Conduct
+data governance
+cyber security
+ICT infrastructure
+privacy
+sourcing and procurement
+copyright
+ethics practices.
+Across the lifecycle stages, agencies should consider:
+technology operations – to ensure compliance, efficiency, and ethical standards
+reference architecture – to provide structured frameworks that guide the design, development, and management of AI solutions
+people capabilities – having the specialised skills required for successful implementation
+auditability – enabling external scrutiny, supporting transparency, and accountability
+explainability – identifying what needs to be explained and when, making complex AI processes transparent and trustworthy
+system bias – maintaining the role of positive bias in delivering meaningful outcomes, while mitigating the source and impacts of problematic bias
+version control – tracking and managing changes to information to inform stakeholder decision-making
+watermarking – to embed visual or hidden markers into generated content so that its creation details can be identified.
+Notes:
+Agencies must consider intellectual property rights and ownership derived from procured services or datasets used (including general AI outputs) to comply with
+copyright law
+.
+Management of bias in an AI system is critical to ensuring compliance with
+Australia’s anti-discrimination law
+.
+All documents relating to the establishment, design, and governance of an AI implemented solution must be retained to comply with
+information management legislation
+.
+Agencies must comply with data privacy and protection practices as per the
+Australian Privacy Principles
+.
+Agencies must consider
+data and lineage
+compliance with Australian Government regulations.
+Agencies should refer to the Policy of responsible use of AI in government to implement
+AI fundamentals training
+for all staff, regardless of their role. To support agencies with their implementation of the Policy, the DTA provides
+Guidance for staff training on AI
+.
+Australian Government
+API guidelines
+mandate the use of semantic versioning.
+Agencies should refer to the
+Australian parliamentary recommendations
+on AI including risk management, people capabilities, and implement measures for
+algorithmic bias
+.
+Any infrastructure, both software and hardware, for AI services and solutions must adhere to Australian Government regulations and should consider security as priority as recommended by the Australian Government guidance on
+AI System Development
+,
+Deploying AI Systems Securely
+and
+Engaging with AI
+. The recommendations include secure well-architected environments, whether on-premises, cloud-based, or hybrid, to maintain the confidentiality, integrity, and availability of AI services.
+Agencies using cloud-based systems should refer to
+Cloud Financial Optimisation (Cloud FinOps)
+.
+Agencies must consider
+security frameworks
+, controls and practices with respect to the
+Information security manual (ISM)
+,
+Essential Eight maturity model
+,
+Protective Security Policy Framework
+and
+Strategies to mitigate cyber security incidents
+.
+Reuse digital, ICT, data and AI solutions in line with the Australian Government
+Reuse standard
+. This includes pre-existing AI assets and components from organisational repositories or open-source platforms.
+The
+Budget Process Operational Rules (BPORs)
+mandate that entities must consult with the DTA before seeking authority to come forward for
+Expenditure Review Committee
+agreement to digital and ICT-enabled New Policy Proposals, to meet the requirements of the
+Digital and ICT Investment Oversight Framework
+. Digital proposals likely to have financial implications of $30 million or more, may be subject to the
+ICT Investment Approval Process (IIAP)
+.
+Management of human, society and environmental impact should ensure alignment with
+National Agreement on Closing the Gap
+,
+Working for Women – A Strategy for Gender Equality
+,
+Australia’s Disability Strategy 2021-2031
+,
+National Plan to End Gender Based Violence
+,
+APS Net Zero Emissions by 2030 Strategy
+,
+Environmentally Sustainable Procurement Policy
+and Environmental impact assessment.
+The DTA oversees sourcing of digital and ICT for the whole of government and provides a suite of policies and guidelines to support responsible procurement practices of agencies, such as the
+Procurement and Sourcing | aga
+and
+Lifecycle - BuyICT
+guidance.
+AI model clauses
+provide guidance for purchasing AI systems.
+Next lifecycle
+The design lifecycle
+The design statements includes concept development, requirements engineering, and solution design.
+Next page
+Statement 1: Define an operational model
+
+--- Content from https://www.digital.gov.au/policy/ai/AI-technical-standard/technical-standard-governments-use-artificial-intelligence-use-case-assessment ---
+
+Use case assessment
+The standard was assessed against a selection of use cases across government agencies. Outcomes were collated to identify how the standard can be used across each lifecycle stage.
+The assessment considered:
+proof of concept to those in operation
+the nature of the applications, whether used by internal staff or public facing
+the type of data involved, whether private, public, or a combination of both
+the risk level of the applications, ranging from low to high.
+The applicability of the standard varied, based on who built each part of the AI system:
+Fully built and managed in-house: Involves building AI systems from scratch.
+Partially built and fully managed in-house: This includes using pre-trained or off-the-shelf models with or without grounding, RAG, and prompt engineering, such as large language models (LLMs) or reusing existing pre-trained machine learning or computer vision models. Note that fine-tuning a model would transfer the responsibility of applying the standard from the vendor to the agency.
+Largely built and managed externally: Sourcing or procuring an AI system or SaaS product that is managed by a third-party or an external provider, such as Copilot.
+Incidental usage of AI: Using off-the-shelf software with AI as incidental feature.
+Examples include:
+AI features built into desktop software such as grammar checks
+internet search with AI functionality
+Applicability of the statements in the standard was tested against each AI use case. The process determined whether the standard could be applied to the use case or not. In some cases, such as when a pre-trained model is used, the applicability may be conditional. This means that the applicability depends on the use case, vendor responsibility, and how AI is integrated into the environment.
+Applicability of the standard has been categorised as:
+Applicable:
+The statements in the standard fully apply to the use case.
+Conditional:
+The statements in the standard are applicable, but their implementation may require agreement with third-party providers or rigorous testing and monitoring. For example, when using GenAI without fine-tuning or grounding, parts of the standard will be implemented by the provider.
+N/A (not applicable):
+The use case falls outside the scope of the standard, and therefore the statements do not apply.
+The following table shows the applicability of the standard against each lifecycle phase:
+Phase
+Built and managed in-house
+Partially built and fully managed in-house
+Largely built and managed externally
+Incidental usage of AI
+Whole of AI Lifecycle
+Applicable
+Applicable
+Applicable
+N/A
+Design
+Applicable
+Applicable
+Applicable
+N/A
+Data
+Applicable
+Conditional
+Conditional
+N/A
+Train
+Applicable
+Conditional
+Conditional
+N/A
+Evaluate
+Applicable
+Applicable
+Conditional
+N/A
+Integrate
+Applicable
+Applicable
+Conditional
+N/A
+Deploy
+Applicable
+Applicable
+Conditional
+N/A
+Monitor
+Applicable
+Applicable
+Applicable
+N/A
+Decommission
+Applicable
+Applicable
+Applicable
+N/A
+
+--- Content from https://www.digital.gov.au/policy/ai/AI-technical-standard/technical-standard-governments-use-artificial-intelligence-key-terms ---
+
+On this page
+A - E
+F - P
+Q - Z
+A - E
+AI incident
+An event, circumstance or series of events where the development, use or malfunction of one or more AI systems directly or indirectly leads to any of the following harms:
+injury or harm to the health of a person or groups of people
+disruption of the management and operation of critical infrastructure
+violations of human rights or a significant breach of obligations under applicable laws, including intellectual property, privacy and Indigenous cultural and intellectual property
+harm to property, communities or the environment.
+AI model
+‘A model is defined as a “physical, mathematical or otherwise logical representation of a system, entity, phenomenon, process or data” in the ISO/IEC 22989 standard. AI models include, among others, statistical models and various kinds of input-output functions (such as decision trees and neural networks). An AI model can represent the transition dynamics of the environment, allowing an AI system to select actions by examining their possible consequences using the model. AI models can be built manually by human programmers or automatically through, for example, unsupervised, supervised, or reinforcement machine learning techniques.’ OECD definition.
+AI system
+‘An Artificial Intelligence (AI) system is a machine-based system that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments. Different AI systems vary in their levels of autonomy and adaptiveness after deployment.' OECD definition
+.
+AI watermarking
+Information embedded into digital content, either perceptibly or imperceptibly by humans, that can serve a variety of purposes, such as establishing digital content provenance or informing stakeholders that the contents are AI-generated or significantly modified.
+AI-generated content watermarking: a procedure by which watermarks are embedded into AI-generated content. This embedding can occur at 2 distinct stages: during generation by altering a GenAI model's inference procedure or post-generation, as the content is distributed along the data and information distribution chain. C2PA.
+Algorithm
+‘A clearly specified mathematical process for computation; a set of rules that, if followed, will give a prescribed result ’ NIST definition.
+Application programming interface (API)
+‘A system access point or library function that has a well-defined syntax and is accessible from application programs or user code to provide well-defined functionality. ’ NIST definition.
+Artificial general intelligence (AGI)
+‘Artificial general intelligence (AGI), also known as strong AI, is the (currently hypothetical) intelligence of a machine that can accomplish any intellectual task that a human can perform. AGI is a trait attributed to future autonomous AI systems that can achieve goals in a wide range of real or virtual environments at least as effectively as humans can.’ Gartner.
+Bias
+‘systematic difference in treatment of certain objects, people, or groups in comparison to others’ – ISO/IEC 24027.
+C2PA
+The Coalition for Content Provenance and Authenticity, or C2PA, provides an open technical standard for publishers, creators and consumers to establish the origin and edits of digital content.
+Classification model
+‘Machine learning model whose expected output for a given input is one or more classes’ ISO/IEC 23053.
+Data labelling
+‘data labelling, in which datasets are labelled, which means that samples are associated with target variables.’ ISO/IEC 22989.
+Dataset
+‘collection of data with a shared format’ ISO/IEC 22989.
+Explainability
+‘property of an AI system to express important factors influencing the AI system results in a way that humans can understand’ ISO/IEC 22989.
+F - P
+Fairness
+See
+Guidance 4. Fairness | digital.gov.au
+.
+Fine-tuning
+‘Model fine-tuning involves adjusting the parameters of foundation models or training models with small datasets for a specific task. This process adapts and enhances the model's performance for particular business needs’.
+Generative AI (GenAI)
+‘The class of AI models that emulate the structure and characteristics of input data in order to generate derived synthetic content. This can include images, videos, audio, text, and other digital content.’ NIST definition.
+Grounding
+Providing context or relevant knowledge to an AI model by connecting it to trusted data sources at inference time. This does not update the model itself.
+Ground truth
+‘Value of the target variable for a particular item of labelled input data. The term ground truth does not imply that the labelled input data consistently corresponds to the real-world value of the target variables.’ (ISO/IEC 22989).
+Hallucination
+‘Outputs generated by an AI system may not always be accurate or factually correct. Generative AI systems are known to hallucinate information that is not factually correct. Organisational functions that rely on the accuracy of generative AI outputs could be negatively impacted by hallucinations, unless appropriate mitigations are implemented.’ Source:
+Engaging with artificial intelligence | Cyber.gov.au
+.
+Harm
+“Any adverse effects that would be experienced by an individual (i.e., that may be socially, physically, or financially damaging) or an organization if the confidentiality of PII were breached.” NIST Definition.
+Hyperparameters
+‘characteristic of a machine learning algorithm that affects its learning process Note 1 to entry: Hyperparameters are selected prior to training and can be used in processes to help estimate model parameters.’ ISO/IEC 22989.
+Infrastructure as a service (IaaS)
+‘The capability provided to the consumer is to provision processing, storage, networks, and other fundamental computing resources where the consumer is able to deploy and run arbitrary software, which can include operating systems and applications. The consumer does not manage or control the underlying cloud infrastructure but has control over operating systems, storage, and deployed applications; and possibly limited control of select networking components (e.g., host firewalls).’ NIST definition.
+Large language model (LLM)
+Based on artificial neural network technology to take natural language text as input, process it and generate text as output e.g. code generation and content creation.
+Machine learning
+‘Process of optimizing model parameters through computational techniques, such that the model's behavior reflects the data or experience’ ISO/IEC 22989.
+Model dataset
+The dataset is used to train an AI model. It is made up of smaller datasets - train dataset, validation dataset and test dataset.
+Model explainability
+Ability of the model to provide clear and understandable reasons for model outputs to authorised humans.
+Model refresh
+Update or replace an existing model with a new model.
+Offline training
+‘The system is trained during the development process before the system is put into production. This is similar in nature to standard software development, where the system is built and tested fully before it is put into production.’ ISO/IEC 22989:2023.
+Online training
+‘Online learning / continuous learning – involve the incremental update of the model in the system as it operates during production. The data input to the system during operation is not only analysed to produce an output from the system, but also simultaneously used to adjust the model in the system, with the aim of improving the model on the basis of the production data. Depending on the design of the continuous learning AI system, there can be human actions required in the process, for example data labelling, validating the application of a specific incremental update or monitoring the AI system performance.’ ISO/IEC 22989:2023.
+Platform as a Service (PaaS)
+‘The capability provided to the consumer is to deploy onto the cloud infrastructure consumer-created or acquired applications created using programming languages, libraries, services, and tools supported by the provider. The consumer does not manage or control the underlying cloud infrastructure including network, servers, operating systems, or storage, but has control over the deployed applications and possibly configuration settings for the application-hosting environment.’ NIST definition.
+Poisoning
+‘Adversarial attacks in which an adversary interferes with a model during its training stage, such as by inserting malicious training data (data poisoning) or modifying the training process itself (model poisoning).’ NIST -
+Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations
+.
+Prompt engineering
+‘Prompt engineering is the discipline of providing inputs, in the form of text or images, to generative AI models to specify and confine the set of responses the model can produce. The inputs prompt a set that produces a desired outcome without updating the actual weights of the model (as done with fine-tuning).’ Gartner.
+Pre-trained model
+‘a component of the training stage in which a model learns general patterns, features, and relationships from vast amounts of unlabeled data, such as through self-supervised learning. Pre-training can equip models with knowledge of general features or patterns which may be useful in downstream tasks, and can be followed with additional training or fine-tuning that specializes the model for a specific downstream task.’ Source
+pre‐training - Glossary | NIST CSRC
+.
+Q - Z
+Regression
+‘machine learning model whose expected output for a given input is a continuous variable’ ISO/IEC 23053.
+Reliability
+‘AI systems reliably operate in accordance with their intended purpose throughout their lifecycle’ – AI Ethics principle.
+Retrieval Augmented Generation (RAG)
+‘RAG enhances LLMs by retrieving relevant information from an external knowledge base and incorporating it into the LLM's generation process”.
+Safety
+‘Expectation that a system does not, under defined conditions, lead to a state in which human life, health, property, or the environment is endangered.’ ISO/IEC/IEEE 12207.
+Semantic versioning
+‘Version numbers and the way they change convey meaning about the underlying code and what has been modified from one version to the next.’ Source - semantic versioning standard
+https://semver.org/
+.
+Software as a Service (SaaS)
+‘Software as a service (SaaS) is software that is owned, delivered and managed remotely by one or more providers. The provider delivers software based on one set of common code and data definitions that is consumed in a one-to-many model by all contracted customers at anytime on a pay-for-use basis or as a subscription based on use metrics.’ Gartner.
+Test dataset
+‘data used to assess the performance of a final model’ ISO/IEC 22989.
+Train dataset
+‘data used to train a machine learning model’ ISO/IEC 22989.
+Transparency
+‘property of a system that appropriate information about the system is made available to relevant stakeholders’ ISO/IEC 22989.
+Validation
+‘confirmation, through the provision of objective evidence, that the requirements for a specific intended use or application have been fulfilled’ ISO/IEC 22989.
+Validation dataset
+‘data used to compare the performance of different candidate models’ ISO/IEC 22989.
+Verification
+‘confirmation, through the provision of objective evidence, that specified requirements have been fulfilled’ ISO/IEC 22989.
+WCAG (Web Content Accessibility Guidelines)
+WCAG explains how to make web content more accessible to people with disabilities. Web ‘content’ generally refers to the information in a web page including natural information such as text, images, and sounds, or code or markup that defines structure or presentation.

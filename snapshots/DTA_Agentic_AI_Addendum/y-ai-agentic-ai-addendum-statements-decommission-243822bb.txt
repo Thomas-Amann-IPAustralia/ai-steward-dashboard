@@ -1,0 +1,11 @@
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Decommission
+Statement 41: Shut down the AI system (existing)
+Agencies must:
+Criterion 147 (existing): Securely decommission or repurpose all computing resources dedicated to the AI system, including individual and shared components
+Agentic systems will also include:
+decommission individual agents by securely shutting down their processes
+decommissioning any agent-specific data or memory
+ensuring all tools, logs, and resources unique to each agent are properly removed or repurposed.

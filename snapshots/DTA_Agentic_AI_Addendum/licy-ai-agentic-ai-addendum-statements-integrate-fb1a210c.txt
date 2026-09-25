@@ -1,0 +1,34 @@
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Integrate
+Statement AGT.7: Select tools and protocols that enable agents to interact with their environment
+Agencies should:
+Criterion AGT.7.1: Select tools that enable agents to communicate, interact, and expand their capabilities beyond their environment
+This may include:
+ensuring tools are selected based on their defined objectives, authorised scope, and operational context
+providing only necessary tool access with clear permissions and execution limits
+interacting with tools through approved interfaces, such as APIs, function calls, or standard protocols
+implementing audit logging and tracing activities across agents and tools, including retrieving external data, human oversight, executing code, or invoking external services
+selected tools to extend agent capabilities in a controlled manner, enabling agents to reason over new information, coordinate with other systems or agents, and adapt to environmental changes without exceeding their authorised scope or introducing unmanaged risk.
+Tools can include:
+APIs
+protocols
+web search APIs
+extensions
+function calling, which is used to allow AI agents to interact with tools
+data stores, to retrieve information such as structured or unstructured data
+code execution for automations or logs.
+Criterion AGT.7.2: Identify and list necessary standard protocols required for AI agent interaction and communication
+Existing and emerging protocols allow diverse AI agents, built on different platforms, frameworks, and created by different vendors, to communicate and collaborate in an agentic system. These protocols can be used to complement each other.
+Figure 3: AI communication protocols and how they connect agents to other agents and tools
+Detailed image description
+The image illustrates a communication diagram featuring two main communication protocols: Model Context Protocol (MCP) and Point-to-Point interactions between agents, all supported by APIs, services, and tools.
+As at the publication date of the agentic AI standard, some examples of emerging protocols include Model context protocol (MCP), Agent2Agent (A2A), Agent communication protocol (ACP) and Agent network protocol (ANP). For more information on current and emerging protocols, refer to the
+Artificial intelligence integration protocols standard
+.
+This may include:
+accounting for the use of multiple protocols used internally or externally by the agentic system, to ensure alignment and interoperability
+considering the use of federated architecture or platform to better support the use of multiple protocols.
+Next statement
+Monitor

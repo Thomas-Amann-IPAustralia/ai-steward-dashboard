@@ -1,0 +1,36 @@
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Monitor
+Statement AGT.8: Undertake ongoing monitoring for individual agents and agentic systems
+Agencies must:
+Criterion AGT.8.1: Continuously monitor individual agents and how they interact with its environment
+Perform ongoing testing and monitoring for individual agents as well as monitoring the entire agentic AI system.
+This may include:
+allocating monitoring responsibilities across the system to prevent overlapping duties
+monitoring for goal drift and ensuring that agent behaviour remains consistent with set goals and pre-defined objectives
+ensuring alignment between multi-agent goals and monitoring to avoid conflicts over time
+monitoring that the agent accurately follows predefined rules, constraints, and acts only within its permitted scope. For example, an agent that is restricted from deleting emails, audit logs, or datasets should be closely monitored to ensure it operates strictly within its designated permissions
+monitoring individual agents for unexpected behaviour patterns or unintended outputs
+monitoring agent performance and setting alerts for high CPU usage, token use, or latency issues
+monitoring the sequence of actions and inter-agent interactions executed by agents
+monitoring the interaction between AI agents, tools, memory, and the environment
+monitoring and evaluating error messages returned from failed tool or API calls and implementing fallback mechanisms as needed
+monitoring tools for unauthorised use, misuse, injection attacks, and poisoning
+monitoring for conflicts between agents and ensuring mechanisms are in place to support conflict resolution
+monitoring memory and enabling mechanisms to detect duplication, staleness, leakage, poisoning, and unauthorised access
+monitoring changes in the environment such as constraints and authorisations.
+Agencies should:
+Criterion AGT.8.2: Establish a control tower to provide system oversight
+A control tower is a centralised architectural governance layer that monitors, manages, and ensures secure agentic AI operations. A control tower can be used by business, system owners, and governance teams to monitor what agents are running, risks, security, costs, and compliance with regulations.
+Control towers may include:
+end-to-end observability of each agent and the agentic systems operational performance
+collecting and analysing data on agents in real time
+debugging, error tracing, and detecting issues
+recommending or automating actions to manage incidents
+providing real-time monitoring and dashboards on agent health, versioning, and operational status
+auditing trails and compliance reporting
+ensuring each agent is using the best model available based on performance, cost, and quality of output
+monitoring token use and the cost of using larger vs smaller models at both the agent and agentic system levels.
+Next statement
+Decommission

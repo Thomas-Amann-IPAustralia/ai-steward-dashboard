@@ -1,0 +1,168 @@
+Standard for accountability
+Supporting the policy for responsible use of AI in government
+The information in this standard supports your agency's implementation of the
+policy for responsible use of AI in government
+. It covers Accountable Officials, Accountable Use Case Owners and Internal Use Case Registers.
+Accountable officials
+Your responsibilities
+Agencies
+must
+designate accountability for implementing the policy to accountable official(s) (AOs), who must:
+be accountable for implementation of the policy within their agencies
+notify the Digital Transformation Agency (DTA) where the agency has identified a new high-risk use case by emailing
+ai@dta.gov.au
+be a contact point for whole-of-government AI coordination and respond to DTA requests for information
+engage in whole-of-government AI forums and processes
+keep up to date with changing requirements as they evolve over time.
+An agency may decide to apply additional responsibilities to their chosen AOs.
+How to apply
+Choose a suitable accountable official
+Agencies may choose AOs who suit the agency context and structure.
+The responsibilities may be vested in an individual or in the chair of a body. The responsibilities may be split across officials or existing roles to suit agency preferences. For example, Chief Information Officer, Chief Technology Officer or Chief Data Officer.
+Implementation of the policy is not solely focused on technology, so AOs may also be selected from business or policy areas. AOs should have the authority and influence to effectively drive the policy's implementation in their agency.
+Agencies may choose to share AO responsibilities across multiple leadership positions.
+Agencies
+must
+notify the DTA of AO selection including the contact details of all their AOs at initial selection and when the accountable roles change. Notify DTA by emailing
+ai@dta.gov.au
+.
+Implementing the policy
+AOs are accountable for their agency's implementation of the policy. Agencies should implement the entire policy as soon as practical, considering the agency's context, size and function.
+The mandatory actions set out in the policy must be implemented within the specified timelines.
+The policy provides a coordinated approach for the use of AI across the Australian Government. It builds public trust by supporting the Australian Public Service (APS) to engage with AI in a responsible way. AOs should assist in delivering its aims by:
+uplifting internal capability to support governance of AI adoption in their agency
+embedding a culture that fairly balances AI risk management and innovation
+enhancing the response and adaptation to AI policy changes in their agency
+facilitating agency involvement in cross-government coordination and collaboration.
+AOs should also consider the following activities:
+developing a policy implementation plan
+monitoring and measuring the implementation of each policy requirement
+strongly encouraging the implementation of the AI technical standard for Australian Government
+strongly encouraging additional training for staff in consideration of their role and responsibilities, such as those responsible for the procurement, development, training and deployment of AI systems
+establishing a mechanism for staff to seek advice about responsible AI use
+encouraging the implementation of further actions suggested in the policy
+reporting internally to relevant governance mechanisms in their agency
+reviewing policy implementation regularly and provide feedback to the DTA.
+In line with the
+Standard for Transparency Statements
+, agencies must provide the DTA with a link to their agency transparency statement each time it is updated, by emailing
+ai@dta.gov.au
+.
+Reporting high-risk use cases
+In the event their agency has decided to deploy a new use case with an inherent high risk rating, AOs
+must
+notify the DTA, by emailing
+ai@dta.gov.au
+.
+AOs
+must
+also notify the DTA when an existing AI use case has been re-assessed as having an inherent high risk, or when use case is no longer high risk.
+The notification should include:
+the type of AI
+intended application
+how the agency arrived at a 'high-risk' assessment
+any sensitivities.
+This is not intended to prevent agencies from adopting the use case. Instead, it will help government develop risk mitigation approaches and maintain a whole-of-government view of high-risk use cases.
+Acting as the agency's contact point
+At times, the DTA will need to collect information and coordinate activities across government to mature the whole-of-government approach and policy.
+AOs are the primary point of contact within their agency. They
+must
+respond to DTA requests for information and facilitate connection to the appropriate internal areas for information collection and agency participation in these activities.
+Engaging with forums and processes
+AOs
+must
+participate in, or nominate a delegate for, whole-of-government forums and processes which support collaboration and coordination on current and emerging AI issues. These forums will be communicated to AOs as they emerge.
+Keeping up-to-date with changes
+The policy will evolve as technology, leading practices and the broader regulatory environment mature. While the DTA will communicate changes, AOs should keep themselves and stakeholders in their agency up to date on:
+changes to the policy
+impacts of policy requirements.
+Questions about policy implementation
+AOs can contact the DTA with questions about policy implementation by emailing
+ai@dta.gov.au
+.
+Accountable Use Case Owners
+Your responsibilities
+Agencies
+must
+ensure each AI use case that is in scope of the policy (see Appendix C) has designated accountability registered with the agency's AO(s) as an accountable use case owner. Accountable use case owners
+must
+:
+ensure their use case is registered with the agency's AO
+be accountable for applying the actions under the AI use case impact assessment requirements. These include:
+conducting an AI use case impact assessment
+regularly monitoring and evaluating the use case
+re-validating the assessment when required
+applying the high-risk use case actions if their use case has an inherent high-risk rating.
+Accountable use case owners should ensure records demonstrate transparency and accountability in the design, development, deployment and monitoring of AI systems related to their use case. This may include establishing documentation and traceability of decisions and changes, ensuring information accessibility and availability to assist with audits, and ensuring explainability of technical and non-technical information.
+How to apply
+Choose a suitable accountable use case owner
+In setting the role of accountable use case owner, accountability can:
+Be split between roles, for example, between business and technology areas, depending on where accountability is best placed. It is recommended that agencies involve their technology area and consider sharing accountability.
+Adapt over time based on the lifecycle of the AI use case.
+Be designated in line with existing agency and whole of government accountability structures.
+Accountable use case owners should either have or be able to access appropriate skills and expertise to identify risks and emerging issues related to their AI use case. Accountable use case owners
+must
+also be familiar with Australia's AI Ethics Principles, the Australian Government Impact Assessment Tool and the policy.
+Accountable use case owners of high-risk use cases
+must
+have the ability to identify and manage risks and emerging issues.
+Accountable use case owner actions can be delegated to other suitable staff.
+Internal use case register
+Minimum fields for the register
+Agencies
+must
+create a register of AI use cases that are in scope of the policy to enable registration of an accountable use case owner with accountable official(s). At a minimum, the register
+must
+include the following fields:
+use case name
+agency identifier (reference number)
+description (including what the AI does, its business objective and, if applicable, the underpinning product's name)
+AI technology type (Generative AI, Machine Learning, Natural Language Processing and/or Computer Vision)
+lifecycle stage (
+Discover
+,
+Operate
+or
+Retire
+)
+use of
+Technical standard for government's use of artificial intelligence
+(not applied, partially applied or fully applied)
+domain (see
+Standard for AI transparency statements
+)
+usage pattern (see
+Standard for AI transparency statements
+)
+accountable use case owner (name and email address)
+what criteria the use case met to be in scope of the policy (see Appendix C of the policy)
+inherent risk rating (determined through an AI use case impact assessment)
+residual risk rating (determined through an AI use case impact assessment)
+the date when the AI impact assessment was last updated (if applicable).
+For AI use cases with an
+inherent
+high-risk rating, the register
+must
+also include:
+the last date of review
+date for next review.
+Agencies should ensure that use case register are up to date via periodic review.
+Sharing the register with the DTA
+Agencies
+must
+share the register with the DTA every 6 months, commencing from when they create the register to meet the policy requirement. They can share the register by emailing
+ai@dta.gov.au
+or through a method pre-agreed with the DTA. The DTA may update the required method of submission during policy implementation.
+Administration of Accountable Official requirement
+The requirement to appoint an Accountable Official under the Policy for the responsible use of AI V1.0 (AI Policy) first took effect on 30 November 2024.
+On 25 February 2025, a representative of the Digital Transformation Agency (DTA) gave evidence at the Finance and Public Administration Legislative Committee (Senate Estimates) noting that four entities subject to the AI Policy had yet to meet this requirement and were uncontactable, they were:
+Australian Accounting Standards Board
+The Office of the Auditing and Assurance Standards Board
+The Office of the Inspector-General of Aged Care
+The Organ and Tissue Authority.
+Subsequent to this evidence being provided the DTA identified administrative issues impacting communication between the DTA and a number of these entities which resulted in either notifications of appointments not reaching the DTA or notices of non-compliance not reaching entity representatives. These issues were immediately rectified and records subsequently corrected.
+Downloadable resource
+Download the standard for accountability
+Standard for accountability 2.0
+(pdf, 272.8 KB)
+LAST UPDATED: 2 Dec 2025

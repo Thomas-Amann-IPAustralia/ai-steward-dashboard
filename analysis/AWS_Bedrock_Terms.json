@@ -1,0 +1,8 @@
+{
+    "verdict": "no_material_change",
+    "summary": "Initial snapshot captured.",
+    "analysis": "This is the first time the 'AWS Bedrock Terms' policy set has been monitored. Future runs will compare against this baseline.",
+    "priority": "low",
+    "date_time": "2026-09-25T21:30:02.450329+10:00",
+    "changed_documents": []
+}

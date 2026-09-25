@@ -1,0 +1,21 @@
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Data
+Data readiness and exfiltration must be treated as a mandatory prerequisite for agentic AI systems, consistent with the AI technical standard. Agencies must not progress beyond early design or experimental stages unless data quality, governance, and security are confirmed and have been assessed as fit for the level of autonomy.
+Statement AGT.4: Orchestrate routing and data flow management mechanisms for agents
+Effective data management is critical for ensuring that information passed between agents is both accurate and protected from unauthorised access or modification.
+Agencies must:
+Criterion AGT.4.1: Establish data management mechanisms to enable secure, efficient, and reliable data exchange between agents
+This may include:
+implementing robust protocols for data exchange between agents for authentication, encryption, and audit logs to safeguard sensitive data throughout its lifecycle
+ensuring classifications and sovereignty controls are incorporated into agent-to-agent data exchange
+ensuring that clear data handling policies and access controls between agents are enforced to maintain compliance with privacy regulations and organisational requirements.
+Agencies should:
+Criterion AGT.4.2: Ensure the system dynamically routes messages or tasks to appropriate agents
+This may include:
+defining which components are responsible for routing, the signals used, and how routing decisions are governed to ensure consistency and interoperability
+creating and implementing methods for dynamically routing messages or tasks to the best-suited agent within the system
+ensuring workflows are safely routed between tools, APIs, memory, communication protocols, and other agents.
+Next statement
+Train

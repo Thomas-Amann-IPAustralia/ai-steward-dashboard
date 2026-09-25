@@ -1,43 +1,534 @@
---- Content from https://www.digital.gov.au/policy/ai/implementation ---
+--- Content from https://www.digital.gov.au/ai/ai-in-government-policy ---
 
-This site can’t be reached
-The webpage at
-https://www.digital.gov.au/policy/ai/implementation
-might be temporarily down or it may have moved permanently to a new web address.
-ERR_NO_SUPPORTED_PROXIES
-The webpage at
-https://www.digital.gov.au/policy/ai/implementation
-might be temporarily down or it may have moved permanently to a new web address.
+Policy for the responsible use of AI in government
+Need to know
+This version of the policy (v2.0) is effective
+15 December 2025
+. The first version (v1.1) took effect on 1 September 2024.
+It applies to all non-corporate Commonwealth entities,
+with some exceptions
+.
+Departments and agencies
+must
+meet the mandatory requirements for:
+accountable official(s)
+transparency statements
+developing a strategic approach to AI adoption
+operationalising the responsible use of AI
+AI use case accountability
+internal use case registers
+staff training on AI
+AI use case impact assessment
+Explore the policy
+Policy aims
+Implementation
+Explore the principles and requirements of the policy.
+Strategy and oversight
+Preparedness and operations
+AI use case impact assessment
+Download the policy
+Download a PDF of the policy for responsible use of AI in government.
+Policy for the responsible use of AI in Government 2.0.pdf
+(pdf, 630.23 KB)
+LAST UPDATED: 1 Dec 2025
+Policy introduction
+The increasing adoption of artificial intelligence (AI) is reshaping the economy, society and government. Government agencies are embracing the AI opportunity to boost efficiency, enable better data analysis and evidence-based decisions, and improve service delivery for people and business.
+The Australian Government is committed to capturing the opportunities of AI in a way that facilitates innovation while mitigating harms. Government has an elevated responsibility to adopt AI safely and should be held to a high ethical standard of use.
+The December 2025 update to the policy strengthens government's approach to safe and responsible AI through new measures on AI governance. It introduces requirements for agencies to develop a strategic approach to adopting AI, establish an approach to operationalise the responsible use of AI, ensure designated accountability for AI use cases, and undertake risk-based use case-level actions.
+In recognition of the speed and scale of change in this area, the policy will evolve over time as the technology changes, leading practices emerge, the broader regulatory environment develops, and government's AI maturity improves.
+Policy overview
+This policy provides a framework to enable the accelerated and sustainable adoption of AI by agencies. It allows them to embrace AI while continuing to position government as an exemplar in responsible AI use, in line with the Australian community's expectations.
+The policy aims to create a coordinated approach to government's use of AI and has been designed to complement and strengthen – not duplicate – existing frameworks in use by the APS.
+The policy outlines principles and requirements under the following sections:
+strategy and oversight
+,
+preparedness and operations
+, and
+AI use case impact assessment
+.
+Each section of the policy is underpinned by principles and outlines the mandatory requirements agencies must follow. Recommended actions and considerations are also included where relevant.
+Next page
+Policy aims
 
---- Content from https://www.digital.gov.au/policy/ai/enable-and-prepare ---
+--- Content from https://www.digital.gov.au/ai/ai-in-government-policy/implementation ---
 
-This site can’t be reached
-The webpage at
-https://www.digital.gov.au/policy/ai/enable-and-prepare
-might be temporarily down or it may have moved permanently to a new web address.
-ERR_NO_SUPPORTED_PROXIES
-The webpage at
-https://www.digital.gov.au/policy/ai/enable-and-prepare
-might be temporarily down or it may have moved permanently to a new web address.
+Implementation
+Application
+This version of the policy (v2.0) is effective
+15 December 2025
+. It replaces version v1.1 of the policy which came into effect 1 September 2024.
+All
+non-corporate Commonwealth entities
+(NCEs), as defined by the
+Public Governance, Performance and Accountability Act 2013
+, must apply this policy.
+Corporate Commonwealth entities
+are also encouraged to apply this policy.
+National security carveouts
+This policy does not apply to:
+the use of AI in the defence portfolio
+the 'national intelligence community' (NIC) as defined by Section 4 of the
+Office of National Intelligence Act 2018
+.
+The NIC includes:
+Office of National Intelligence (ONI)
+Australian Signals Directorate (ASD)
+Australian Security Intelligence Organisation (ASIO)
+Australian Secret Intelligence Service (ASIS)
+Australian Geospatial-Intelligence Organisation (AGO)
+Defence Intelligence Organisation (DIO)
+Australian Criminal Intelligence Commission (ACIC)
+the intelligence role and functions of the Australian Transaction Reports and Analysis Centre (AUSTRAC), Australian Federal Police (AFP), the Department of Home Affairs and the Department of Defence.
+Defence and members of the NIC may voluntarily adopt elements of this policy where they are able to do so without compromising national security capabilities or interests.
+Existing frameworks
+The challenges raised by government use of AI are complex and inherently linked with other considerations, such as the APS Code of Conduct, data governance, cyber security, privacy and ethics practices.
+This policy has been designed to complement and strengthen – not duplicate – existing frameworks, legislation and practices that touch on government’s use of AI.
+This policy must be read and applied alongside existing frameworks and laws to ensure agencies meet all their obligations.
+Explore related frameworks
+A non-exhaustive list of existing frameworks related to AI.
+Definitions
+For the purposes of this policy, agencies should apply the definition of AI provided by the Organisation for Economic Co-operation and Development (OECD) and the following definition of AI use case:
+"An AI use case is a specific application of an AI system or systems to achieve certain objectives or perform certain tasks."
+Definitions and how to apply them – including an optional approach to group AI use cases for some general-purpose AI solutions – is available in
+Appendix B
+. The appendix also defines an AI incident.
+Timeframes
+This policy provides implementation timeframes for agencies to meet some of its requirements. While agencies may need this time to action requirements, agencies should implement them sooner if practicable. Agencies could consider putting in place interim processes and building out their approach as they reach the specified implementation deadline.
+In-scope AI use cases
+This policy specifies actions that apply at the use case level. AI use cases in scope of this policy (referred to as in-scope AI use cases) are use cases that meet any criteria in
+Appendix C
+.
+In addition to the criteria, the appendix lists areas of AI use to consider that are not automatically high risk, but are more likely to involve risks that require careful attention through an impact assessment. It also provides information on how to apply the policy for agencies experimenting with AI.
+Next page
+Strategy and oversight
 
---- Content from https://www.digital.gov.au/policy/ai/engage-responsibly ---
+--- Content from https://www.digital.gov.au/ai/ai-in-government-policy/strategy-and-oversight ---
 
-This site can’t be reached
-The webpage at
-https://www.digital.gov.au/policy/ai/engage-responsibly
-might be temporarily down or it may have moved permanently to a new web address.
-ERR_NO_SUPPORTED_PROXIES
-The webpage at
-https://www.digital.gov.au/policy/ai/engage-responsibly
-might be temporarily down or it may have moved permanently to a new web address.
+Strategy and oversight
+The principles and requirements included in this section are designed to enable a forward-leaning approach to agency AI adoption. These requirements set out AI accountability at the agency level and use case level and seek to build trust through transparency.
+Principles
+Adopt AI to enhance efficiency, decision-making, policy outcomes and government service delivery for the benefit of Australians.
+Have clear accountabilities for the adoption of AI and understand its use.
+Build public trust through transparency about government AI use.
+Mandatory requirements
+AI transparency statement
+Agencies
+must
+make a publicly available statement outlining their approach to AI adoption and use, as prescribed under the
+Standard for transparency statements
+.
+The statement
+must
+be reviewed and updated annually or sooner, should the agency make significant changes to its approach to AI.
+Agencies
+must
+notify the DTA when they publish and make any changes to their AI transparency statement by emailing
+ai@dta.gov.au
+.
+Strategic position on AI adoption
+Agencies
+must
+develop a strategic position on AI adoption within 6 months of this policy taking effect. This position is to emphasise how AI opportunities can be identified and embraced by the agency.
+Agencies
+must
+communicate their strategic position on AI to give staff clear direction on AI adoption. In line with their current and anticipated use of AI, agencies can develop a standalone AI strategy, augment an existing strategy or create other materials to communicate the approach to staff.
+Accountable officials
+Agencies
+must
+designate accountable official(s) to take accountability for implementing this policy.
+Agencies
+must
+follow the
+Standard for accountability
+when designating accountable official(s) and implementing this requirement. The responsibilities of accountable officials are set in the standard.
+Agencies
+must
+notify the DTA when they designate and make any changes to their accountable official(s) by emailing
+ai@dta.gov.au
+.
+Accountable use case owners
+Agencies
+must
+designate an accountable use case owner for each in-scope AI use case within 12 months of this policy taking effect. Accountable official(s) are to maintain a register of accountable use case owners.
+Agencies
+must
+follow the
+Standard for accountability
+when implementing this requirement. The responsibilities of accountable use case owners are set in the standard.
+Internal AI use case register
+Agencies
+must
+create a register of in-scope AI use cases to enable accountable official(s) to record accountable use case owners within 12 months of this policy taking effect.
+Agencies
+must
+share the register with the DTA every 6 months, commencing from when they create the register to meet the above requirement.
+The
+Standard for accountability
+lists the minimum fields agencies must capture in the use case register. Agencies can add additional fields to meet their organisational needs. An existing register may be reused for the purposes of meeting this requirement. The standard also provides the instructions for how to share agency registers with the DTA.
+Next page
+Preparedness and operations
 
---- Content from https://www.digital.gov.au/policy/ai/evolve-and-integrate ---
+--- Content from https://www.digital.gov.au/ai/ai-in-government-policy/preparedness-and-operations ---
 
-This site can’t be reached
-The webpage at
-https://www.digital.gov.au/policy/ai/evolve-and-integrate
-might be temporarily down or it may have moved permanently to a new web address.
-ERR_NO_SUPPORTED_PROXIES
-The webpage at
-https://www.digital.gov.au/policy/ai/evolve-and-integrate
-might be temporarily down or it may have moved permanently to a new web address.
+Preparedness and operations
+The principles and requirements included in this section standardise key elements of AI governance that allow agencies to build AI capability and use AI responsibly.
+Principles
+Protect Australians from AI harms.
+APS officers need to be able to explain, justify and take ownership of advice and decisions when using AI.
+AI capability built for the long term.
+Flexibility and adaptability to accommodate technological advances.
+Mandatory requirements
+Operationalise the responsible use of AI
+Agencies
+must
+establish an approach to embed responsible AI practices within 12 months of this policy taking effect. This may vary according to the scale and scope of agency AI use.
+At a minimum, the approach will provide an agency with:
+a process for adopting AI use cases in line with the implemented actions of this policy, as well as the agency's enterprise risk management and governance approach.
+a way to inform staff who are designing and implementing AI use cases about Australia's AI Ethics Principles.
+a pathway for staff to report AI safety concerns, including AI incidents.
+pathways for the public to report AI safety concerns, appropriate to the agency's AI use.
+clear processes to address AI incidents aligned to their ICT incident management approach - incident remediation must be overseen by an appropriate governance body or senior executive and should be undertaken in line with any other legal obligations.
+Agencies may modify existing policies, procedures and frameworks, or create new ones. Smaller agencies with minimal AI adoption could amend existing documentation and/or assign key personnel to guide staff on responsible AI adoption on an ad hoc basis. Agencies with greater AI adoption could create dedicated AI policies, procedures and/or frameworks to support responsible adoption. Accountable officials are responsible for deciding the appropriate approach for their agency.
+Staff training on AI
+Agencies
+must
+implement mandatory training for all staff on responsible AI use within 12 months of this policy taking effect. Agencies should consider the
+Guidance for staff training on AI
+and can use the
+AI fundamentals training module
+to meet the requirement. They can use the module as provided, modify it, or incorporate it into an existing training program based on their specific context and requirements. Alternatively, agencies can allow their staff to access the module directly through
+APSLearn
+.
+Agencies should implement additional training for staff as required, in consideration of their roles and responsibilities. For example, additional training for those responsible for the procurement, development, training and deployment of AI systems.
+Recommended Actions
+AI technical standard
+It is strongly recommended that agencies apply the
+AI technical standard for Australian Government
+. The standard is designed for Australian Government agencies adopting AI. It embeds the principles of fairness, transparency, and accountability into a set of technical requirements and guidelines.
+AI procurement guidance
+It is strongly recommended that agencies refer to the
+Guidance on AI procurement in government
+when procuring AI products and services. The guidance offers practical, step-by-step advice to help agencies identify and manage AI-specific risks while maintaining procurement best practices.
+Agencies should consider
+Applying the generative AI guidance
+Applying the
+Managing access to public generative AI tools
+guidance and the
+Using public generative AI tools safely and responsibly
+guidance.
+Capability development
+Developing staff AI capability to effectively use AI and comply with AI policy and regulation.
+Next page
+AI use case impact assessment
+
+--- Content from https://www.digital.gov.au/ai/ai-in-government-policy/ai-use-case-impact-assessment ---
+
+AI use case impact assessment
+The principles and requirements in this section intend to assess potential impacts of AI use cases and ensure additional oversight of higher risk AI.
+Principles
+Ongoing monitoring and evaluation of AI uses.
+AI risk mitigation is proportionate and targeted.
+AI use is lawful, ethical, responsible, transparent and explainable to the public.
+Mandatory requirements
+All new AI use cases
+Agencies
+must
+assess all new AI use cases against the in-scope criteria (
+Appendix C
+) to determine if they are in scope of the policy. The assessment
+must
+be documented and take place during the design phase while developing requirements.
+Agencies
+must
+begin AI use case assessments within 12 months of this policy taking effect.
+For existing use cases not yet assessed, agencies
+must
+determine whether they are in scope of this policy and apply all relevant policy actions by 30 April 2027.
+Where practicable, agencies should implement the requirements ahead of the deadlines listed above.
+In-scope AI use cases
+For AI use cases that are in-scope, agencies
+must
+conduct an AI use case impact assessment. Agencies are to commence an assessment at the design stage. Before the solution is deployed, agencies
+must
+finalise the assessment and apply any agreed risk treatments.
+Agencies may conduct an AI use case impact assessment by using either:
+the
+Australian Government AI impact assessment tool
+(the impact assessment tool)
+an internal process that integrates all provisions of the impact assessment tool.
+Where an agency integrates the tool, they
+must
+ensure:
+the internal process is consistent
+it delivers the same (or a higher) risk outcome for inherent and residual risk.
+Agencies
+must
+be able to revise their internal process in response to any impact assessment tool updates.
+Agencies
+must
+add each in-scope AI use case to their internal register of AI use cases and update it as required. Include risk rating and accountable use case owner changes. When deploying an in-scope AI use case, agencies
+must
+:
+regularly monitor and evaluate their use case to ensure it is operating as intended and that risks are being effectively managed.
+re-validate the AI use case impact assessment by checking its accuracy and updating it when there is a material change in the use case scope, usage or operation.
+Agencies should also monitor changes that are not initiated by the agency. For example, vendor changes and changes in the regulatory environment. Agencies could also ask vendors to provide information on updates through contractual mechanisms.
+Medium-risk AI use cases
+If an agency determines their in-scope AI use case has an
+inherent medium-risk rating
+when completing an AI use case impact assessment, they should consider if the use case would benefit from being governed through a designated board or a senior executive. Agencies should choose an approach appropriate for the size and scope of the agency if they apply additional governance.
+High-risk AI use cases
+If an agency determines their in-scope AI use case has an
+inherent high-risk rating
+when completing an AI use case impact assessment, they
+must
+:
+report the use case to the agency accountable official with the reasons for the inherent high-risk rating, proposed mitigations and residual risks
+govern the use case through a designated board or a senior executive, whichever is appropriate for the size and scope of the agency.
+Once an agency has decided to deploy the use case, they
+must
+:
+report the use case to the DTA through the accountable official, see the
+Standard for accountability
+establish a system to regularly review the use case every 12 months at a minimum. The review
+must
+report to the relevant governing board or senior executive on whether the use case is operating as intended and that risks are being effectively managed. The review
+must
+also consider the AI use case impact assessment and revisions to it, if required.
+Out-of-scope AI use cases
+For use cases assessed as out of scope of this policy, agencies may adopt the use case while ensuring they comply with relevant existing obligations, such as privacy and security.
+If an agency adopts an out-of-scope AI use case, they
+must
+assess whether the use case becomes in-scope of this policy if there is a material change in the scope, usage or operation of the solution.
+If a use case is in scope, agencies
+must
+follow any applicable actions in this policy.
+Next page
+Appendices
+
+--- Content from https://www.digital.gov.au/ai/ai-in-government-policy/accountability ---
+
+Standard for accountability
+Supporting the policy for responsible use of AI in government
+The information in this standard supports your agency's implementation of the
+policy for responsible use of AI in government
+. It covers Accountable Officials, Accountable Use Case Owners and Internal Use Case Registers.
+Accountable officials
+Your responsibilities
+Agencies
+must
+designate accountability for implementing the policy to accountable official(s) (AOs), who must:
+be accountable for implementation of the policy within their agencies
+notify the Digital Transformation Agency (DTA) where the agency has identified a new high-risk use case by emailing
+ai@dta.gov.au
+be a contact point for whole-of-government AI coordination and respond to DTA requests for information
+engage in whole-of-government AI forums and processes
+keep up to date with changing requirements as they evolve over time.
+An agency may decide to apply additional responsibilities to their chosen AOs.
+How to apply
+Choose a suitable accountable official
+Agencies may choose AOs who suit the agency context and structure.
+The responsibilities may be vested in an individual or in the chair of a body. The responsibilities may be split across officials or existing roles to suit agency preferences. For example, Chief Information Officer, Chief Technology Officer or Chief Data Officer.
+Implementation of the policy is not solely focused on technology, so AOs may also be selected from business or policy areas. AOs should have the authority and influence to effectively drive the policy's implementation in their agency.
+Agencies may choose to share AO responsibilities across multiple leadership positions.
+Agencies
+must
+notify the DTA of AO selection including the contact details of all their AOs at initial selection and when the accountable roles change. Notify DTA by emailing
+ai@dta.gov.au
+.
+Implementing the policy
+AOs are accountable for their agency's implementation of the policy. Agencies should implement the entire policy as soon as practical, considering the agency's context, size and function.
+The mandatory actions set out in the policy must be implemented within the specified timelines.
+The policy provides a coordinated approach for the use of AI across the Australian Government. It builds public trust by supporting the Australian Public Service (APS) to engage with AI in a responsible way. AOs should assist in delivering its aims by:
+uplifting internal capability to support governance of AI adoption in their agency
+embedding a culture that fairly balances AI risk management and innovation
+enhancing the response and adaptation to AI policy changes in their agency
+facilitating agency involvement in cross-government coordination and collaboration.
+AOs should also consider the following activities:
+developing a policy implementation plan
+monitoring and measuring the implementation of each policy requirement
+strongly encouraging the implementation of the AI technical standard for Australian Government
+strongly encouraging additional training for staff in consideration of their role and responsibilities, such as those responsible for the procurement, development, training and deployment of AI systems
+establishing a mechanism for staff to seek advice about responsible AI use
+encouraging the implementation of further actions suggested in the policy
+reporting internally to relevant governance mechanisms in their agency
+reviewing policy implementation regularly and provide feedback to the DTA.
+In line with the
+Standard for Transparency Statements
+, agencies must provide the DTA with a link to their agency transparency statement each time it is updated, by emailing
+ai@dta.gov.au
+.
+Reporting high-risk use cases
+In the event their agency has decided to deploy a new use case with an inherent high risk rating, AOs
+must
+notify the DTA, by emailing
+ai@dta.gov.au
+.
+AOs
+must
+also notify the DTA when an existing AI use case has been re-assessed as having an inherent high risk, or when use case is no longer high risk.
+The notification should include:
+the type of AI
+intended application
+how the agency arrived at a 'high-risk' assessment
+any sensitivities.
+This is not intended to prevent agencies from adopting the use case. Instead, it will help government develop risk mitigation approaches and maintain a whole-of-government view of high-risk use cases.
+Acting as the agency's contact point
+At times, the DTA will need to collect information and coordinate activities across government to mature the whole-of-government approach and policy.
+AOs are the primary point of contact within their agency. They
+must
+respond to DTA requests for information and facilitate connection to the appropriate internal areas for information collection and agency participation in these activities.
+Engaging with forums and processes
+AOs
+must
+participate in, or nominate a delegate for, whole-of-government forums and processes which support collaboration and coordination on current and emerging AI issues. These forums will be communicated to AOs as they emerge.
+Keeping up-to-date with changes
+The policy will evolve as technology, leading practices and the broader regulatory environment mature. While the DTA will communicate changes, AOs should keep themselves and stakeholders in their agency up to date on:
+changes to the policy
+impacts of policy requirements.
+Questions about policy implementation
+AOs can contact the DTA with questions about policy implementation by emailing
+ai@dta.gov.au
+.
+Accountable Use Case Owners
+Your responsibilities
+Agencies
+must
+ensure each AI use case that is in scope of the policy (see Appendix C) has designated accountability registered with the agency's AO(s) as an accountable use case owner. Accountable use case owners
+must
+:
+ensure their use case is registered with the agency's AO
+be accountable for applying the actions under the AI use case impact assessment requirements. These include:
+conducting an AI use case impact assessment
+regularly monitoring and evaluating the use case
+re-validating the assessment when required
+applying the high-risk use case actions if their use case has an inherent high-risk rating.
+Accountable use case owners should ensure records demonstrate transparency and accountability in the design, development, deployment and monitoring of AI systems related to their use case. This may include establishing documentation and traceability of decisions and changes, ensuring information accessibility and availability to assist with audits, and ensuring explainability of technical and non-technical information.
+How to apply
+Choose a suitable accountable use case owner
+In setting the role of accountable use case owner, accountability can:
+Be split between roles, for example, between business and technology areas, depending on where accountability is best placed. It is recommended that agencies involve their technology area and consider sharing accountability.
+Adapt over time based on the lifecycle of the AI use case.
+Be designated in line with existing agency and whole of government accountability structures.
+Accountable use case owners should either have or be able to access appropriate skills and expertise to identify risks and emerging issues related to their AI use case. Accountable use case owners
+must
+also be familiar with Australia's AI Ethics Principles, the Australian Government Impact Assessment Tool and the policy.
+Accountable use case owners of high-risk use cases
+must
+have the ability to identify and manage risks and emerging issues.
+Accountable use case owner actions can be delegated to other suitable staff.
+Internal use case register
+Minimum fields for the register
+Agencies
+must
+create a register of AI use cases that are in scope of the policy to enable registration of an accountable use case owner with accountable official(s). At a minimum, the register
+must
+include the following fields:
+use case name
+agency identifier (reference number)
+description (including what the AI does, its business objective and, if applicable, the underpinning product's name)
+AI technology type (Generative AI, Machine Learning, Natural Language Processing and/or Computer Vision)
+lifecycle stage (
+Discover
+,
+Operate
+or
+Retire
+)
+use of
+Technical standard for government's use of artificial intelligence
+(not applied, partially applied or fully applied)
+domain (see
+Standard for AI transparency statements
+)
+usage pattern (see
+Standard for AI transparency statements
+)
+accountable use case owner (name and email address)
+what criteria the use case met to be in scope of the policy (see Appendix C of the policy)
+inherent risk rating (determined through an AI use case impact assessment)
+residual risk rating (determined through an AI use case impact assessment)
+the date when the AI impact assessment was last updated (if applicable).
+For AI use cases with an
+inherent
+high-risk rating, the register
+must
+also include:
+the last date of review
+date for next review.
+Agencies should ensure that use case register are up to date via periodic review.
+Sharing the register with the DTA
+Agencies
+must
+share the register with the DTA every 6 months, commencing from when they create the register to meet the policy requirement. They can share the register by emailing
+ai@dta.gov.au
+or through a method pre-agreed with the DTA. The DTA may update the required method of submission during policy implementation.
+Administration of Accountable Official requirement
+The requirement to appoint an Accountable Official under the Policy for the responsible use of AI V1.0 (AI Policy) first took effect on 30 November 2024.
+On 25 February 2025, a representative of the Digital Transformation Agency (DTA) gave evidence at the Finance and Public Administration Legislative Committee (Senate Estimates) noting that four entities subject to the AI Policy had yet to meet this requirement and were uncontactable, they were:
+Australian Accounting Standards Board
+The Office of the Auditing and Assurance Standards Board
+The Office of the Inspector-General of Aged Care
+The Organ and Tissue Authority.
+Subsequent to this evidence being provided the DTA identified administrative issues impacting communication between the DTA and a number of these entities which resulted in either notifications of appointments not reaching the DTA or notices of non-compliance not reaching entity representatives. These issues were immediately rectified and records subsequently corrected.
+Downloadable resource
+Download the standard for accountability
+Standard for accountability 2.0
+(pdf, 272.8 KB)
+LAST UPDATED: 2 Dec 2025
+
+--- Content from https://www.digital.gov.au/ai/ai-in-government-policy/standard-ai-transparency-statements ---
+
+Standard for AI transparency statements
+Supporting the policy for responsible use of AI in government
+Use the following information to support your agency's implementation of the policy for responsible use of AI in government.
+Your responsibilities
+Under the policy, agencies must make a publicly available statement that outlines their approach to AI adoption, as directed by the Digital Transformation Agency (DTA).
+Agencies must follow this standard, which sets the direction for AI transparency statements including expectations and formatting. It establishes a consistent format and expectation for AI transparency statements in the Australian Government. Clear and consistent transparency statements build public trust and make it easier to understand and compare how government agencies adopt AI.
+At a minimum, agencies must provide the following information regarding their use of AI in their transparency statement:
+the intentions behind why the agency uses AI or is considering its adoption
+classification of AI use according to usage patterns and domains, as listed at Attachment A
+classification of use where the public may directly interact with, or be significantly impacted by, AI or its outputs without human review
+measures to monitor the effectiveness of deployed AI systems and protect the public against negative impacts
+overview of compliance with the requirements under the Policy for responsible use of AI in government
+compliance with applicable legislation and regulation
+when the statement was most recently updated.
+Statements must use clear, plain language
+1
+that avoids technical jargon and is consistent with the Australian Government Style Manual. They must also provide or direct to a contact email for further public enquiries.
+Agencies must publish transparency statements on their public facing website. It's recommended that a link to the statement is placed in a global menu, aligned to the approach often taken for privacy policies.
+Transparency statements must be reviewed and updated at these junctures:
+at least once a year
+when making a significant change to the agency's approach to AI
+when any new factor materially impacts the existing statement's accuracy.
+How to apply
+Implementing the AI transparency statements
+The policy provides a coordinated approach for the use of AI across the Australian Government. It builds public trust by supporting the Australian Public Service (APS) to engage with AI in a responsible way.
+Transparency is critical to public trust and is an important aim of the policy and broader APS Reform agenda
+2
+. The public should have confidence that agencies monitor the effectiveness of deployed AI systems and have measures to protect against negative impacts.
+AI transparency statements help agencies meet these aims by providing a foundational level of transparency on their use of AI. They publicly disclose:
+how AI is used and managed by the agency
+a commitment to safe and responsible use
+compliance with the policy.
+Agency transparency statements are intended to provide a high-level overview of agency AI use and management in line with the policy intent.
+Agencies are not required to list individual use cases or provide use case level detail. However, agencies may choose to provide detail beyond the requirements to publicly explain their approach to AI.
+Agencies must send the DTA a link to the statement when it is published or updated by emailing
+ai@dta.gov.au
+.
+Questions about implementation
+Accountable officials can contact the DTA with questions about implementing the transparency statements by emailing
+ai@dta.gov.au
+.
+Footnotes
+Australian Government Style Manual, Plain language and word choice
+↩
+APS Reform, Priority one: An APS that embodies integrity in everything it does. "The APS acts with integrity and fairness and is accountable and transparent in everything it does. This will build public trust and strengthen standards of integrity in our federal government."
+https://www.apsreform.gov.au/about-aps-reform/our-focus-areas
+↩
+Administration of AI Transparency Statement requirement
+The requirement for entities subject to the Policy for the responsible use of AI V1.0 (AI Policy) to publish an AI Transparency Statement on their public facing website first took effect on 28 February 2025. Due to administrative issues at the commencement of this requirement the Digital Transformation Agency was unable to successfully contact a small number of entities, including the Australian Accounting Standards Board (AASB) and the Office of the Auditing and Assurance Standards Board (AUASB), to notify them of the requirements until 26 March 2025. The AASB and AUASB became compliant with the requirements on 27 March 2025.
+Downloadable resource
+Download the Standard for AI transparency statements
+Standard for AI transparency statements 2.0.pdf
+(pdf, 245.03 KB)
+LAST UPDATED: 1 Dec 2025

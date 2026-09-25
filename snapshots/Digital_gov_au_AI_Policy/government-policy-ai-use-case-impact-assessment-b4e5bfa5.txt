@@ -1,0 +1,81 @@
+AI use case impact assessment
+The principles and requirements in this section intend to assess potential impacts of AI use cases and ensure additional oversight of higher risk AI.
+Principles
+Ongoing monitoring and evaluation of AI uses.
+AI risk mitigation is proportionate and targeted.
+AI use is lawful, ethical, responsible, transparent and explainable to the public.
+Mandatory requirements
+All new AI use cases
+Agencies
+must
+assess all new AI use cases against the in-scope criteria (
+Appendix C
+) to determine if they are in scope of the policy. The assessment
+must
+be documented and take place during the design phase while developing requirements.
+Agencies
+must
+begin AI use case assessments within 12 months of this policy taking effect.
+For existing use cases not yet assessed, agencies
+must
+determine whether they are in scope of this policy and apply all relevant policy actions by 30 April 2027.
+Where practicable, agencies should implement the requirements ahead of the deadlines listed above.
+In-scope AI use cases
+For AI use cases that are in-scope, agencies
+must
+conduct an AI use case impact assessment. Agencies are to commence an assessment at the design stage. Before the solution is deployed, agencies
+must
+finalise the assessment and apply any agreed risk treatments.
+Agencies may conduct an AI use case impact assessment by using either:
+the
+Australian Government AI impact assessment tool
+(the impact assessment tool)
+an internal process that integrates all provisions of the impact assessment tool.
+Where an agency integrates the tool, they
+must
+ensure:
+the internal process is consistent
+it delivers the same (or a higher) risk outcome for inherent and residual risk.
+Agencies
+must
+be able to revise their internal process in response to any impact assessment tool updates.
+Agencies
+must
+add each in-scope AI use case to their internal register of AI use cases and update it as required. Include risk rating and accountable use case owner changes. When deploying an in-scope AI use case, agencies
+must
+:
+regularly monitor and evaluate their use case to ensure it is operating as intended and that risks are being effectively managed.
+re-validate the AI use case impact assessment by checking its accuracy and updating it when there is a material change in the use case scope, usage or operation.
+Agencies should also monitor changes that are not initiated by the agency. For example, vendor changes and changes in the regulatory environment. Agencies could also ask vendors to provide information on updates through contractual mechanisms.
+Medium-risk AI use cases
+If an agency determines their in-scope AI use case has an
+inherent medium-risk rating
+when completing an AI use case impact assessment, they should consider if the use case would benefit from being governed through a designated board or a senior executive. Agencies should choose an approach appropriate for the size and scope of the agency if they apply additional governance.
+High-risk AI use cases
+If an agency determines their in-scope AI use case has an
+inherent high-risk rating
+when completing an AI use case impact assessment, they
+must
+:
+report the use case to the agency accountable official with the reasons for the inherent high-risk rating, proposed mitigations and residual risks
+govern the use case through a designated board or a senior executive, whichever is appropriate for the size and scope of the agency.
+Once an agency has decided to deploy the use case, they
+must
+:
+report the use case to the DTA through the accountable official, see the
+Standard for accountability
+establish a system to regularly review the use case every 12 months at a minimum. The review
+must
+report to the relevant governing board or senior executive on whether the use case is operating as intended and that risks are being effectively managed. The review
+must
+also consider the AI use case impact assessment and revisions to it, if required.
+Out-of-scope AI use cases
+For use cases assessed as out of scope of this policy, agencies may adopt the use case while ensuring they comply with relevant existing obligations, such as privacy and security.
+If an agency adopts an out-of-scope AI use case, they
+must
+assess whether the use case becomes in-scope of this policy if there is a material change in the scope, usage or operation of the solution.
+If a use case is in scope, agencies
+must
+follow any applicable actions in this policy.
+Next page
+Appendices

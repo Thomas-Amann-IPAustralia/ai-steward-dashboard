@@ -1,0 +1,74 @@
+Use case assessment
+The standard was assessed against a selection of use cases across government agencies. Outcomes were collated to identify how the standard can be used across each lifecycle stage.
+The assessment considered:
+proof of concept to those in operation
+the nature of the applications, whether used by internal staff or public facing
+the type of data involved, whether private, public, or a combination of both
+the risk level of the applications, ranging from low to high.
+The applicability of the standard varied, based on who built each part of the AI system:
+Fully built and managed in-house: Involves building AI systems from scratch.
+Partially built and fully managed in-house: This includes using pre-trained or off-the-shelf models with or without grounding, RAG, and prompt engineering, such as large language models (LLMs) or reusing existing pre-trained machine learning or computer vision models. Note that fine-tuning a model would transfer the responsibility of applying the standard from the vendor to the agency.
+Largely built and managed externally: Sourcing or procuring an AI system or SaaS product that is managed by a third-party or an external provider, such as Copilot.
+Incidental usage of AI: Using off-the-shelf software with AI as incidental feature.
+Examples include:
+AI features built into desktop software such as grammar checks
+internet search with AI functionality
+Applicability of the statements in the standard was tested against each AI use case. The process determined whether the standard could be applied to the use case or not. In some cases, such as when a pre-trained model is used, the applicability may be conditional. This means that the applicability depends on the use case, vendor responsibility, and how AI is integrated into the environment.
+Applicability of the standard has been categorised as:
+Applicable:
+The statements in the standard fully apply to the use case.
+Conditional:
+The statements in the standard are applicable, but their implementation may require agreement with third-party providers or rigorous testing and monitoring. For example, when using GenAI without fine-tuning or grounding, parts of the standard will be implemented by the provider.
+N/A (not applicable):
+The use case falls outside the scope of the standard, and therefore the statements do not apply.
+The following table shows the applicability of the standard against each lifecycle phase:
+Phase
+Built and managed in-house
+Partially built and fully managed in-house
+Largely built and managed externally
+Incidental usage of AI
+Whole of AI Lifecycle
+Applicable
+Applicable
+Applicable
+N/A
+Design
+Applicable
+Applicable
+Applicable
+N/A
+Data
+Applicable
+Conditional
+Conditional
+N/A
+Train
+Applicable
+Conditional
+Conditional
+N/A
+Evaluate
+Applicable
+Applicable
+Conditional
+N/A
+Integrate
+Applicable
+Applicable
+Conditional
+N/A
+Deploy
+Applicable
+Applicable
+Conditional
+N/A
+Monitor
+Applicable
+Applicable
+Applicable
+N/A
+Decommission
+Applicable
+Applicable
+Applicable
+N/A

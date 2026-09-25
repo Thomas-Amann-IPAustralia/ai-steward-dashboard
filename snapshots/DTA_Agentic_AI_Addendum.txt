@@ -1,0 +1,492 @@
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum ---
+
+Agentic AI addendum to the AI technical standard for Australian Government
+This standard provides best practice guidance for Australian Government agencies implementing agentic AI. As an addendum to the
+AI technical standard
+, this standard highlights best practices key considerations for the secure and governed implementation of agentic AI systems.
+All statements, criteria, and general guidance outlined in the AI technical standard remain applicable. Some criteria within this addendum may also apply to non-agentic forms of AI, for example memory management. Agencies exploring, developing or using agentic AI are expected to apply this addendum in conjunction with the AI technical standard.
+Technologies mentioned in this standard serve only as examples to explain concepts and may not be an exhaustive list or imply endorsement by the DTA.
+Introduction
+Background
+Key terms
+Whole of AI lifecycle
+Design
+Data
+Train
+Evaluate
+Integrate
+Monitor
+Decommission
+Downloadable resource
+Agentic AI addendum
+Agentic AI addendum
+(pdf, 553.7 KB)
+LAST UPDATED: 4 Jun 2026
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-introduction ---
+
+Introduction
+AI systems are receiving growing attention as they become more autonomous and increasingly able to interact with and influence their operating environments. Recent advances with large language models, agents, and tools have introduced new capabilities that challenge existing conceptual boundaries. They highlight the need for clearer definitions and standards to ensure AI systems with agentic capabilities are designed, built, and operated safely.
+As agentic AI use cases mature, government and industry are expected to shift from experimentation to active use. Agentic systems may autonomously plan tasks, coordinate work, and trigger actions in real-world contexts. They may also coordinate and negotiate with other agents, humans, or organisations through workflows and protocols. This transition enables decisions and actions to be executed at greater scale and speed, improving citizen service responsiveness, efficiency, and consistency, particularly in public sector high-volume use cases.
+While these systems may accelerate service delivery and improve operational responsiveness, their autonomy and interconnectedness can introduce new failure modes, control gaps, and oversight challenges. Effective design, development, and use therefore requires robust design, governance, and assurance. It also seeks fit-for-purpose infrastructure, monitoring, and communication mechanisms to ensure systems behave responsibly and predictably across environments.
+The standard outlines key drivers for adopting agentic AI and extends the existing
+AI technical standard
+by providing best-practice guidance to help agencies implement agentic AI safely and responsibly.
+Key drivers and best practice guidance
+The agentic AI best practice guidance focuses on the key drivers that necessitate addendums to the AI technical standard, with an emphasis on governance, safeguards, and technical controls that are proportionate to varying levels of agentic AI adoption and use.
+Drivers informing agentic AI best practice
+Best practice guidance
+AI technical standard addendums
+Absence of governance and safeguards for responsible AI use increases the risk of harm, including uncontrolled deployments, unclear accountability, and legal or ethical non‑compliance.
+Implement governance arrangements and safeguards that ensure agentic AI systems are developed and deployed responsibly and ethically. This includes clarifying decision rights and accountability, embedding legal and ethical controls upfront, and preventing uncontrolled or inconsistent deployments across the organisation.
+Whole of AI lifecycle: Statement AGT.1
+Criterion AGT.1.1
+Criterion AGT.1.2
+Criterion AGT.1.3
+Criterion AGT.1.4
+Agentic AI systems may retain excessive or poorly scoped data, increasing the risk of privacy breaches, regulatory non-compliance, and harm from data leakage across workflows and environments.
+Establish memory management mechanisms that clearly define scope, retention, provenance, and deletion, while minimising unnecessary data retention and sensitive information exposure to support privacy obligations and reduce the risk of harm from data leakage or unintended inference.
+Whole of AI lifecycle: Statement AGT.2
+Criterion AGT.2.1
+Lack of clear decision points and approvals increases the risk of cascading errors and uncontrolled agentic AI execution across environments.
+Design agentic workflows with clearly defined decision points, approvals, and responsible AI controls, enforcing bounded planning, human oversight, and controlled execution paths to prevent cascading errors and unintended actions.
+Design: Statement AGT.3
+Criterion AGT.3.1
+Criterion AGT.3.2
+Criterion AGT.3.3
+Criterion AGT.3.4
+Criterion AGT.3.5
+Criterion AGT.3.6
+Criterion AGT.3.7
+Failure to implement orchestration and data flow controls increases the risk of unauthorised access, and data exfiltration.
+Ensure the system can orchestrate routing of tasks or messages to appropriate agents, supported by data management mechanisms that enable secure, efficient, and reliable data exchange between agents or environments.
+Data: Statement AGT.4
+Criterion AGT.4.1
+Criterion AGT.4.2
+Inappropriate selection of agent types, models, technologies, frameworks, and engineering controls could risk safety issues, bias, cost overruns, poor performance, scalability limitations, and compliance.
+Select agent types, models, and technologies that are appropriate for the intended use case and aligned with risk, performance, and compliance requirements. When using pretrained or custom models, assess key trade-offs including capability, cost, transparency, and data handling. Apply appropriate frameworks for flexibility, scalability, and engineering techniques to reduce safety risks, bias, cost overruns, and compliance gaps.
+Train: Statement AGT.5
+Criterion AGT.5.1
+Criterion AGT.5.2
+Criterion AGT.5.3
+Failure to adopt appropriate evaluation increases the risk of undetected agent level failures and unintended behaviours propagating into production, potentially impacting reliability at scale.
+Establish evaluation mechanisms to assess agent interactions and agentic AI systems across efficiency, performance, safety, fairness, and robustness of task execution. Use defined metrics to measure success criteria and conduct robust testing, including against adversarial scenarios.
+Evaluate: Statement AGT.6
+Criterion AGT.6.1
+Criterion AGT.6.2
+Criterion AGT.6.3
+Criterion AGT.6.4
+Insufficient controls over tools and interaction protocols increase the likelihood of injection attacks, validation failures, and unsafe or degraded performance.
+Select tools and interaction protocols that allow agents to operate safely and reliably within their environment using typed interfaces, access controls, and robust input and output validation to mitigate tool misuse and injection related failures.
+Integrate: Statement AGT.7
+Criterion AGT.7.1
+Criterion AGT.7.2
+Lack of continuous monitoring increases the risk of undetected drift, unsafe agent behaviour, delayed incident response, and wider operational impacts.
+Implement continuous monitoring of agents or systems to detect drift, anomalies, and emerging risks to ensure behaviour remains aligned with defined objectives. Monitoring should also track changes in the operating environment, such as constraints and authorisations, to enable timely fallback actions and remediation.
+Monitor: Statement AGT.8
+Criterion AGT.8.1
+Criterion AGT.8.2
+Failure to securely decommission agentic AI resources in a timely manner can lead to lingering access, unintended agent activity, increased security exposure, and ongoing operational or compliance risks.
+Implement controlled shutdown and recovery mechanisms such as kill switches, rollback, and secure decommissioning to rapidly halt agent or system operations, contain harm, and restore the last known safe state. Ensure that associated tools, logs, data, and resources are secure.
+Decommission: Statement 41
+Criterion 147
+Applicability of the agentic AI standard
+The agentic AI standard extends the AI technical standard. For additional guidance on how to use the AI technical standard, refer to the respective
+section on use case assessment
+.
+Comply with government legislation, policies, and standards
+Agencies must follow the requirements below to ensure AI remains transparent, safe, and ethical.
+Policy for the responsible use of AI in government
+Related legislation, policies, and standards to consider:
+Technical standard for government's use of artificial intelligence
+Australian Signal Directorate (ASD) guidelines to
+careful adoption of agentic AI services
+Protective Security Policy Framework (PSPF)
+Information Security Manual (ISM)
+Australian Privacy Principles
+Public Service Act 1999
+,
+Privacy Act 1988
+,
+Archives Act 1983
+,
+Digital Experience Policy
+relevant Commonwealth legislation including (but not limited to) the
+Archives Act 1983 (Cth)
+any other legislation applicable to specific functions and circumstances.
+Adopt human oversight for accountability and explainability
+To maintain the auditability of outcomes, agentic AI systems should follow guidance to operate under human oversight, such as a human‑on‑the‑loop model, where systems run autonomously, and humans observe and intervene when needed. This requires AI systems to generate transparent, auditable reasoning logs that support human review, approval, and accountability. That way, agencies can ensure that their actions remain transparent, safe, and ethical.
+Next section
+Background
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-whole-ai-lifecycle ---
+
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Whole of AI lifecycle
+Statement AGT.1: Establish governance and safeguards to ensure responsible and ethical development and deployment of agentic AI systems
+Agencies must:
+Criterion AGT.1.1: Identify and assign responsibilities for agents and human accountability for decisions resulting from agentic AI systems
+In an agentic system, agents are tasked with actioning responsibilities, while a human should be assigned accountability for the decisions made by these agents.
+This may include:
+clearly defining what actions and decisions each agent is responsible for, ensuring proper documentation is maintained at each stage of deployment
+determining the agents responsible for providing updated actions
+assigning accountability to a human for agent behaviour, decisions, and outcomes, even where decisions are made autonomously across multiple steps
+assigning human accountability for outcomes generated by an agentic AI system within complex multi-agent or multi-agentic systems
+ensuring accountability can be traced back to agent actions, and supported by documented records that can be reviewed and audited
+clearly defining accountability with third-party or external systems for data inputs and outputs. Examples may include unstructured data such as website information, structured data through an API call, or data flows between other external agents or agentic systems.
+Criterion AGT.1.2: Identify effective human oversight and intervene when necessary
+Oversight must be maintained through a
+human-in-the-loop
+or
+human-on-the-loop
+governance model. Coordination between AI agents and humans must be clearly defined. Agencies should monitor the full agentic AI system, including where agents or tools in third-party or external systems are being used.
+embedding oversight over autonomous agentic AI systems through a human-in-the-loop or human-on-the-loop model
+defining clear real-time monitoring processes for agent behaviour and agentic workflows
+implementing human-review processes at key stages to verify outcomes remain safe, accurate, and reliable
+enabling human intervention processes for irreversible or high-risk actions
+documenting escalation pathways and accountability for autonomous decision-making
+ensuring system interactions and escalations with humans are accessible.
+Criterion AGT.1.3: Explain agentic system decision-making processes
+This may include:
+ensuring systems with AI agents provide explanations for decision-making processes
+documenting the reasoning process when using LLMs, for example, use reasoning models and methods such as chain-of-thought (CoT) and including prompts to ‘think step-by-step’ to capture the output of the agent’s thinking process
+ensuring explanations from internal agentic reasoning does not expose personal or sensitive data
+using auditable decision-making record explanations when reasoning or thinking processes may reveal personal or sensitive information
+using modelling and graphs to show statistical knowledge
+gathering metadata from AI agents in each lifecycle phase at runtime to enhance explainability, auditability, and interpretability.
+Agencies should:
+Criterion AGT.1.4: Establish an orchestration layer
+The orchestration layer or orchestration agent oversees the entire agentic system. It delegates tasks to agents, enables agents to interact with tools and the environment, assigns roles, and manages issues that may arise in the agentic workflow.
+Orchestration patterns can include sequential execution, parallel execution, and conditional branching.
+Orchestration may include:
+structuring agentic workflows
+task and event management, such as delegating tasks to agents
+API management and governance
+API governance may require extensions to existing management tools
+management of new standards, such as model context protocol (MCP), Agent2Agent (A2A), agent communication protocol (ACP) and agent network protocol (ANP)
+memory retrieval
+model, agent, tool, or data orchestration
+accounting for multi-agent coordination in multi-agent systems to include tracking progress of all agents, their assigned tasks, and coordinating protocols
+accounting for multi-agent interoperability to ensure agents communicate and collaborate effectively while safely exchanging information
+monitoring agent interactions and the use of observability tools, such as a control tower
+managing errors
+communication and feedback loops.
+Statement AGT.2: Establish memory management mechanisms
+Agencies should:
+Criterion AGT.2.1: Establish robust memory management mechanisms
+This includes:
+ensuring agent memory is governed and auditable
+defining when memory is used, what may be stored, retention periods, hosting constraints, and audit and purge mechanisms
+ensuring agents can effectively retain, recall, and use information
+implementing techniques to prevent memory duplication by updating or replacing out-of-date information
+providing safeguard measures and operational controls to protect memory from leakage and poisoning
+implementing secure measures to ensure memory is protected
+setting requirements for memory retention, disposal, and minimisation
+ensuring conflict resolution rules are defined for handling contradicting memory issues. These rules help agents avoid retaining inconsistent, outdated, or mutually conflicting information in memory
+providing mechanisms to ensure outdated or irrelevant information is removed to maintain agent performance and accuracy over time
+ensuring all information required for record keeping purposes is captured, including prompts created by agents, and inputs and outputs throughout the workflow.
+Different methods that could be used to retain information:
+State:
+refers to information that an AI model retains during the execution of a task. Agent states are temporary and cleared after the task ends. When using GenAI, most models are stateless systems by default, handling each prompt on its own without retaining memory of earlier interactions. The use of structured workflows can help manage the agents state, guiding the agents next action based on the current state. States can include agent instructions, pending or executed tools, prompts, and results.
+Short-term memory:
+management processes enable agentic workflows to maintain context across multiple tasks during a single session. This approach allows the agent to recall prior interactions using short-term memory, remaining active only for the duration of the session. Simulating short-term memory can include maintaining the full conversation which requires more storage and tokens, including only the most recent messages which reduces cost but may result in loss of context and quality, and summarising messages which would require effective summarising techniques.
+Long-term memory:
+Long-term memory is available across multiple sessions and tasks can be stored in databases and vector stores. Apply long-term memory frameworks according to specific use case requirements. Examples of long-term memory includes episodic which allows agents to recall previous actions, semantic which encodes domain knowledge, and vector which allows for similarity-based retrieval.
+Next statement
+Design
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-design ---
+
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Design
+Statement AGT.3: Design for agentic workflow
+Agencies must:
+Criterion AGT.3.1: Define your business needs and identify goals
+This includes:
+identifying all tasks, goals, success criteria, and business needs required for the agentic AI workflow
+determining which agentic behaviour is required based on the specified goals
+breaking bigger goals into smaller manageable tasks
+defining the roles, capabilities, and goals for each agent
+narrowing the scope of each agent to minimise the risk of errors and hallucinations (also known as confabulations).
+Criterion AGT.3.2: Define the sequence and logical order for tasks and agents
+This includes:
+clearly defining the logical order and sequence of each task
+assigning each AI agent to its specific task and avoiding duplication of responsibility
+defining dependencies among tasks.
+Criterion AGT.3.3: Identify guardrails and constraints
+Assign a unique identity to each agent by establishing distinct roles, responsibilities, and access privileges for each agent within a system.
+This includes:
+ensuring each agent has the proper authentication credentials to restrict access to necessary resources
+providing agents with the right level of authorisation to only access required information and tools, preventing them from using over‑privileged context or self‑assigning access in ways that could identify or exploit security weaknesses
+assigning responsibility boundaries across agents
+identifying and implementing guardrails to detect and minimise risks of harmful content, with guardrails implemented on inputs, tools, and outputs
+mapping constraints for how the agent must operate
+creating fail-safe designs, for example, using an output parser or a Pydantic model to generate structured outputs, which helps enhance reliability and validation of the model's responses.
+Criterion AGT.3.4: Embed self-correction mechanisms, fail-safes, and feedback loops
+This includes:
+incorporating feedback into prompts for refinement
+specifying how the agent or the agentic system will assess itself and improve
+evaluating outputs based on set criteria and determine how the outcome is implemented into subsequent iterations
+specifying how issues are going to be monitored and debugged
+designing fail-safes such as automatic rollbacks, redundant checks, and alerting systems to ensure the agent or the agentic system can recover gracefully
+ensuring self‑correction mechanisms and fail-safes are auditable
+setting minimum technical requirements for implementing kill switches
+mapping kills switches to operational controls
+identifying methods for gathering user feedback and ensuring continuous feedback.
+Agencies should:
+Criterion AGT.3.5: Choose the tools to integrate with the agentic workflow
+This includes:
+listing all tools, APIs, protocols, and resources that agents will use to interact with their environment
+using tools that exist within the environment or platform, when possible, to avoid duplicated governance and monitoring, only using customised tools when necessary
+specifying how each tool can be used by agents
+listing tools that are required for each agent and limiting access to only these tools
+maintaining approvals for agent use of high-impact tools
+ensuring that APIs are compatible with the tool selected
+enabling fallbacks when tool or API calls fail, timeout, provide unexpected responses, or have rate limits.
+Criterion AGT.3.6: Define conditional branches and decision points
+This includes:
+defining clear ‘need-to-know’ rules for agents to follow
+identifying all conditional branches for the AI agent to make and adapt to
+mapping decisions clearly to guide the agent to select the best path
+listing all rules and how the agent is going to learn and adapt to its environment
+ensuring policy safeguards and constraints are embedded into the decision logic so agents cannot bypass approvals upon task completion
+providing escalation protocols, human reviews, and auditing artefacts to each decision point.
+Criterion AGT.3.7: Account for scalability and increased complexity in agentic systems and external systems
+This includes:
+accounting for the extra logic needed to decide which agent to use, how agents communicate with each other, and how to integrate results from multiple agents and external systems
+ensuring the system remains operable, cost-effective, and maintainable across its lifecycle
+accounting for micro services design that enables flexibility and extensibility, allowing agentic systems to incorporate diverse tools and protocols and integrate effectively with complex or external systems
+evaluating trade-offs in a multi agent system, as a request may trigger multiple agents operating sequentially or in parallel, which can introduce latency or increased response time
+considering when to use smaller more specialised smaller models in comparison to larger generalised models, noting that larger models usually add latency and overhead, which may be unsuitable for time-critical or real-time use cases
+considering dependencies and integrations with external systems or environments when designing agentic AI systems, to ensure they can scale appropriately as demand and complexity increases.
+Next statement
+Data
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-data ---
+
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Data
+Data readiness and exfiltration must be treated as a mandatory prerequisite for agentic AI systems, consistent with the AI technical standard. Agencies must not progress beyond early design or experimental stages unless data quality, governance, and security are confirmed and have been assessed as fit for the level of autonomy.
+Statement AGT.4: Orchestrate routing and data flow management mechanisms for agents
+Effective data management is critical for ensuring that information passed between agents is both accurate and protected from unauthorised access or modification.
+Agencies must:
+Criterion AGT.4.1: Establish data management mechanisms to enable secure, efficient, and reliable data exchange between agents
+This may include:
+implementing robust protocols for data exchange between agents for authentication, encryption, and audit logs to safeguard sensitive data throughout its lifecycle
+ensuring classifications and sovereignty controls are incorporated into agent-to-agent data exchange
+ensuring that clear data handling policies and access controls between agents are enforced to maintain compliance with privacy regulations and organisational requirements.
+Agencies should:
+Criterion AGT.4.2: Ensure the system dynamically routes messages or tasks to appropriate agents
+This may include:
+defining which components are responsible for routing, the signals used, and how routing decisions are governed to ensure consistency and interoperability
+creating and implementing methods for dynamically routing messages or tasks to the best-suited agent within the system
+ensuring workflows are safely routed between tools, APIs, memory, communication protocols, and other agents.
+Next statement
+Train
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-train ---
+
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Train
+Statement AGT.5: Select appropriate agent, model, and AI technology
+Agencies must:
+Criterion AGT.5.1: Ensure agent, model, and AI technology aligns with use case requirements
+When designing agentic systems, it is essential to evaluate the agent type and underlying AI technology that best matches the unique requirements of the intended application. To ensure the chosen agent can effectively address the specific problem, consider the complexity of the tasks, the data environment, scalability needs, and the desired level of interoperability. Agencies should also evaluate the use of appropriate AI technologies for implementation within an agentic AI system.
+Types of agents can include but are not limited to:
+transformer-based LLM agents
+symbolic reasoning agents
+graph based agents
+behavioural tree agents
+probabilistic and Bayesian agents.
+Technologies can include but are not limited to:
+reinforcement learning (RL):
+applying RL algorithms so agents self-reflect, learn, and adapt by interacting with its environment, using feedback in the form of rewards and penalties to refine their behaviour
+transformers:
+enable agents to process and interpret multimodal inputs, such as text, images, video, sensor data, and audio to generate contextually relevant responses with minimal human intervention
+large multi-modal models (LMMs):
+useful for tasks that combine visual and language understanding, like interpreting sensory data to producing relevant reports and responses
+small language models:
+agentic AI systems may employ small language models for each agent to perform more specialised tasks, enabling more efficient and cost-effective operation.
+Agencies should:
+Criterion AGT.5.2: Consider trade-offs when selecting LLMs or pre-trained models
+These may include:
+capability
+: larger models are more capable of following unstructured and complex instructions, while smaller models require carefully structured prompts to produce similar outputs
+cost:
+consider the cost of using a larger model compared to a smaller one, for example when using an LLM factors such as token usage for both input and output should be taken into account
+user experience:
+latency and speed of getting a response to the user
+other trade-offs to consider:
+data residency, privacy concerns, FOI exposure, risks of vendor lock‑in, and operational assurance responsibilities.
+Criterion AGT.5.3: Select appropriate prompt engineering technique when using LLM-based agents
+Prompt engineering is the practice of optimising the text inputted into an LLM to gain desired responses. Prompts guide how the agent reasons and acts. Better prompting techniques can allow similar results when using cheaper or less complex models.
+In agentic AI, prompt engineering guides the agent by providing a clear description of its role, what tools to use, how to interact with other agents within the workflow, and how decisions are made between alternative options. Prompts also guide how the agent should reason about trade offs, uncertainty, or escalation pathways when issues arise.
+As agentic systems increase in complexity, prompt engineering must scale to support coordination across multiple agents. Agencies should ensure that prompts remain understandable, testable, and maintainable as part of the overall system design.
+Prompting for an AI agent can include:
+defining the agent’s role or persona, specifying tasks to be performed, defining constraints, and outlining the agent’s thinking process. For example, “You are a customer support agent for an online retail company. Your task is to assist users with order tracking, returns, and product inquiries”
+directing an agent to perform a particular action and can include established boundaries, output format, and examples. For example: “Summarise the main findings from the attached research paper in no more than 200 words. Use bullet points for each key finding and cite any statistics or data mentioned in the paper”
+crafting prompts to guide agents to interpret tasks accurately
+leveraging relevant tools and maintaining context throughout complex workflows
+maintaining regular testing and evaluation to ensure that prompts remain aligned with evolving goals and environmental conditions
+treating prompts and system instructions as controlled artefacts that should be logged, approved, versioned and have rollback-capabilities
+assessing different prompting techniques and selecting the most appropriate for the task at hand to achieve optimal outcomes
+using prompting techniques such as chain of thought, role-based prompting, and ReAct can minimise issues like prompt brittleness and improve the reliability, safety, and explainability of agentic outcomes.
+Prompting techniques may include:
+zero-shot prompting:
+this is the most basic form of prompting, it provides direct instructions or questions without additional context or examples, for example “what’s the capital of Australia”. Some larger models work best when minimal prompting is provided
+few-shot or multi-shot prompting:
+providing one or more examples of desired input-output to the model, prior to inputting the actual prompt
+role-based prompting:
+providing the LLM with a persona or role that defines how the agent behaves, and the personality and tone of the output
+chain-of-thought (CoT):
+involves guiding the LLM with step-by-step logical reasoning. Instead of asking the model to directly produce a final answer, CoT involves prompting the model to breakdown complex problems into a series of intermediate reasoning steps. This method is useful for tasks that require multi-step reasoning, such as solving math problems, solving complex puzzles, or making decisions based on multiple criteria. CoT helps breakdown complex problems into a series of sub-steps. This helps guide the model to think in steps, can help improve performance, reduces errors, and provides greater transparency
+prompt chaining:
+involves breaking down a complex task into smaller manageable sub-prompts. This process connects multiple LLM-based agents. The output of one LLM agent feeds into the next LLM agent as the input. Prompt chaining can be useful for complex tasks and can include validation checks after each step to verify that the output is accurate and does not contain harmful content or bias
+ReAct prompting:
+involves reason, act, and observe and is performed over a three-step process. First, the reason (or thought) phase generates the model’s internal chain-of-thought reasoning. Next, the act phase determines the actions to be taken based on that reasoning, such as selecting and using an appropriate tool. Finally, during the observe phase, feedback from the executed action, such as information about the environment, is returned to the model and used to inform the next cycle of reasoning. ReAct prompts must provide clear instructions detailing how the agent should respond by outlining each step of the think and act cycle. Prompts should include the thought and action, clear response instructions for each step of the thought and act cycle, an example to show how the agent performs a task, an orchestration layer, reasoning combined with external tools, and feedback to enable and adapt learning from previous actions.
+Next statement
+Evaluate
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-evaluate ---
+
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Evaluate
+Continuous evaluation is essential in agentic AI systems which operate with a degree of automation, relying on humans to intervene when necessary. It is crucial to have ongoing evaluation mechanisms in place to ensure the reliability, safety, and alignment of agent actions with intended outcomes. Ongoing monitoring helps identify and address unintended behaviours or errors that may occur at every step without direct human validation. This helps maintain trust and accountability.
+Statement AGT.6: Implement continuous evaluation mechanisms for AI agents
+Agencies must:
+Criterion AGT.6.1: Test agents for robustness against unexpected inputs or scenarios
+This includes:
+assessing explainability and traceability of decision-making in agentic AI systems
+ensuring actions performed by agents are compliant and safe
+ensuring agents operate within their pre-defined constraints and access controls
+testing the scalability of the system and how efficient it becomes when task complexity increases
+allowing agents to evaluate their output by adopting a secondary reasoning stage
+measuring each agent’s success rates for task completion
+measuring adaptability and efficiency of individual agents
+ensuring periodic review and re-validation to ensure ongoing compliance and efficacy
+evaluating the effectiveness of prompts when using LLMs.
+Evaluation methods that can be used include:
+ground truth evaluation:
+involves creating a ground truth set that identifies the criteria for success. Tests should have input and output sets that align with the ground truth. Results generated by the AI agent or system are then compared to the ground truth. ML evaluation metrices such as completeness, accuracy, precision, and recall can be used to provide a score for the agent’s response based on the ground truth criteria
+robustness testing:
+evaluates how well the system operates when agents are faced with adversarial situations. This ensures measures are considered against data leakage and misuse of personal data at the agent and system level. Robustness testing should provide simple and easy to measure metrics.
+Criterion AGT.6.2: Evaluate the interaction between agents and integrated tools
+This includes:
+evaluating whether the agent is selecting the appropriate tool for a given task
+verifying whether parameters passed to tools are accurate
+ensuring tools return consistent responses
+evaluating each tools cost, latency, and consistency
+evaluating the reliability of tools and assessing their fault recovery capabilities
+evaluating agent–tool interaction, and ensuring responsibilities and controls are not duplicated across the agentic workflow and orchestration layer.
+Criterion AGT.6.3: Evaluate the interaction between agents and its environment
+In the context of agent–environment interaction, the environment includes the set of systems, data sources, infrastructure, integrations, and governance constraints that collectively constitute the operational context within which an AI system operates, influencing its perception, decision-making, and actions. The environment also defines the systems trust boundaries, control constraints, and points of exposure to risk.
+This includes:
+ensuring the environment does not negatively influence AI agent behaviour
+checking for environmental constraints and boundaries to ensure agents act within limits to mitigate unintended or harmful consequences.
+Criterion AGT.6.4: Evaluate the interaction between agents and memory
+This includes:
+evaluating how well agents update and manage stored information
+evaluating whether agents are accurately retrieving information from memory
+evaluating how long it takes agents to access information.
+Next statement
+Integrate
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-integrate ---
+
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Integrate
+Statement AGT.7: Select tools and protocols that enable agents to interact with their environment
+Agencies should:
+Criterion AGT.7.1: Select tools that enable agents to communicate, interact, and expand their capabilities beyond their environment
+This may include:
+ensuring tools are selected based on their defined objectives, authorised scope, and operational context
+providing only necessary tool access with clear permissions and execution limits
+interacting with tools through approved interfaces, such as APIs, function calls, or standard protocols
+implementing audit logging and tracing activities across agents and tools, including retrieving external data, human oversight, executing code, or invoking external services
+selected tools to extend agent capabilities in a controlled manner, enabling agents to reason over new information, coordinate with other systems or agents, and adapt to environmental changes without exceeding their authorised scope or introducing unmanaged risk.
+Tools can include:
+APIs
+protocols
+web search APIs
+extensions
+function calling, which is used to allow AI agents to interact with tools
+data stores, to retrieve information such as structured or unstructured data
+code execution for automations or logs.
+Criterion AGT.7.2: Identify and list necessary standard protocols required for AI agent interaction and communication
+Existing and emerging protocols allow diverse AI agents, built on different platforms, frameworks, and created by different vendors, to communicate and collaborate in an agentic system. These protocols can be used to complement each other.
+Figure 3: AI communication protocols and how they connect agents to other agents and tools
+Detailed image description
+The image illustrates a communication diagram featuring two main communication protocols: Model Context Protocol (MCP) and Point-to-Point interactions between agents, all supported by APIs, services, and tools.
+As at the publication date of the agentic AI standard, some examples of emerging protocols include Model context protocol (MCP), Agent2Agent (A2A), Agent communication protocol (ACP) and Agent network protocol (ANP). For more information on current and emerging protocols, refer to the
+Artificial intelligence integration protocols standard
+.
+This may include:
+accounting for the use of multiple protocols used internally or externally by the agentic system, to ensure alignment and interoperability
+considering the use of federated architecture or platform to better support the use of multiple protocols.
+Next statement
+Monitor
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-monitor ---
+
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Monitor
+Statement AGT.8: Undertake ongoing monitoring for individual agents and agentic systems
+Agencies must:
+Criterion AGT.8.1: Continuously monitor individual agents and how they interact with its environment
+Perform ongoing testing and monitoring for individual agents as well as monitoring the entire agentic AI system.
+This may include:
+allocating monitoring responsibilities across the system to prevent overlapping duties
+monitoring for goal drift and ensuring that agent behaviour remains consistent with set goals and pre-defined objectives
+ensuring alignment between multi-agent goals and monitoring to avoid conflicts over time
+monitoring that the agent accurately follows predefined rules, constraints, and acts only within its permitted scope. For example, an agent that is restricted from deleting emails, audit logs, or datasets should be closely monitored to ensure it operates strictly within its designated permissions
+monitoring individual agents for unexpected behaviour patterns or unintended outputs
+monitoring agent performance and setting alerts for high CPU usage, token use, or latency issues
+monitoring the sequence of actions and inter-agent interactions executed by agents
+monitoring the interaction between AI agents, tools, memory, and the environment
+monitoring and evaluating error messages returned from failed tool or API calls and implementing fallback mechanisms as needed
+monitoring tools for unauthorised use, misuse, injection attacks, and poisoning
+monitoring for conflicts between agents and ensuring mechanisms are in place to support conflict resolution
+monitoring memory and enabling mechanisms to detect duplication, staleness, leakage, poisoning, and unauthorised access
+monitoring changes in the environment such as constraints and authorisations.
+Agencies should:
+Criterion AGT.8.2: Establish a control tower to provide system oversight
+A control tower is a centralised architectural governance layer that monitors, manages, and ensures secure agentic AI operations. A control tower can be used by business, system owners, and governance teams to monitor what agents are running, risks, security, costs, and compliance with regulations.
+Control towers may include:
+end-to-end observability of each agent and the agentic systems operational performance
+collecting and analysing data on agents in real time
+debugging, error tracing, and detecting issues
+recommending or automating actions to manage incidents
+providing real-time monitoring and dashboards on agent health, versioning, and operational status
+auditing trails and compliance reporting
+ensuring each agent is using the best model available based on performance, cost, and quality of output
+monitoring token use and the cost of using larger vs smaller models at both the agent and agentic system levels.
+Next statement
+Decommission
+
+--- Content from https://www.digital.gov.au/policy/ai/agentic-ai-addendum-statements-decommission ---
+
+The statements below are intended as an addendum to the
+AI technical standard
+for Australian Government. These updates build upon the current framework to address the specific considerations associated with agentic AI. All existing statements, criteria, and general guidance outlined in the AI technical standard still apply. Some criteria in this standard may also apply to non-agentic forms of AI. Agencies exploring or using agentic AI should use both standards.
+Decommission
+Statement 41: Shut down the AI system (existing)
+Agencies must:
+Criterion 147 (existing): Securely decommission or repurpose all computing resources dedicated to the AI system, including individual and shared components
+Agentic systems will also include:
+decommission individual agents by securely shutting down their processes
+decommissioning any agent-specific data or memory
+ensuring all tools, logs, and resources unique to each agent are properly removed or repurposed.

@@ -1,0 +1,107 @@
+Whole of AI lifecycle: statements 1 - 8
+Whole of AI lifecycle includes statements that apply across multiple AI product lifecycle stages, for ease of use and to minimise content duplication.
+The challenges for government use of AI are complex and linked with other governance considerations, such as:
+the APS Code of Conduct
+data governance
+cyber security
+ICT infrastructure
+privacy
+sourcing and procurement
+copyright
+ethics practices.
+Across the lifecycle stages, agencies should consider:
+technology operations – to ensure compliance, efficiency, and ethical standards
+reference architecture – to provide structured frameworks that guide the design, development, and management of AI solutions
+people capabilities – having the specialised skills required for successful implementation
+auditability – enabling external scrutiny, supporting transparency, and accountability
+explainability – identifying what needs to be explained and when, making complex AI processes transparent and trustworthy
+system bias – maintaining the role of positive bias in delivering meaningful outcomes, while mitigating the source and impacts of problematic bias
+version control – tracking and managing changes to information to inform stakeholder decision-making
+watermarking – to embed visual or hidden markers into generated content so that its creation details can be identified.
+Notes:
+Agencies must consider intellectual property rights and ownership derived from procured services or datasets used (including general AI outputs) to comply with
+copyright law
+.
+Management of bias in an AI system is critical to ensuring compliance with
+Australia’s anti-discrimination law
+.
+All documents relating to the establishment, design, and governance of an AI implemented solution must be retained to comply with
+information management legislation
+.
+Agencies must comply with data privacy and protection practices as per the
+Australian Privacy Principles
+.
+Agencies must consider
+data and lineage
+compliance with Australian Government regulations.
+Agencies should refer to the Policy of responsible use of AI in government to implement
+AI fundamentals training
+for all staff, regardless of their role. To support agencies with their implementation of the Policy, the DTA provides
+Guidance for staff training on AI
+.
+Australian Government
+API guidelines
+mandate the use of semantic versioning.
+Agencies should refer to the
+Australian parliamentary recommendations
+on AI including risk management, people capabilities, and implement measures for
+algorithmic bias
+.
+Any infrastructure, both software and hardware, for AI services and solutions must adhere to Australian Government regulations and should consider security as priority as recommended by the Australian Government guidance on
+AI System Development
+,
+Deploying AI Systems Securely
+and
+Engaging with AI
+. The recommendations include secure well-architected environments, whether on-premises, cloud-based, or hybrid, to maintain the confidentiality, integrity, and availability of AI services.
+Agencies using cloud-based systems should refer to
+Cloud Financial Optimisation (Cloud FinOps)
+.
+Agencies must consider
+security frameworks
+, controls and practices with respect to the
+Information security manual (ISM)
+,
+Essential Eight maturity model
+,
+Protective Security Policy Framework
+and
+Strategies to mitigate cyber security incidents
+.
+Reuse digital, ICT, data and AI solutions in line with the Australian Government
+Reuse standard
+. This includes pre-existing AI assets and components from organisational repositories or open-source platforms.
+The
+Budget Process Operational Rules (BPORs)
+mandate that entities must consult with the DTA before seeking authority to come forward for
+Expenditure Review Committee
+agreement to digital and ICT-enabled New Policy Proposals, to meet the requirements of the
+Digital and ICT Investment Oversight Framework
+. Digital proposals likely to have financial implications of $30 million or more, may be subject to the
+ICT Investment Approval Process (IIAP)
+.
+Management of human, society and environmental impact should ensure alignment with
+National Agreement on Closing the Gap
+,
+Working for Women – A Strategy for Gender Equality
+,
+Australia’s Disability Strategy 2021-2031
+,
+National Plan to End Gender Based Violence
+,
+APS Net Zero Emissions by 2030 Strategy
+,
+Environmentally Sustainable Procurement Policy
+and Environmental impact assessment.
+The DTA oversees sourcing of digital and ICT for the whole of government and provides a suite of policies and guidelines to support responsible procurement practices of agencies, such as the
+Procurement and Sourcing | aga
+and
+Lifecycle - BuyICT
+guidance.
+AI model clauses
+provide guidance for purchasing AI systems.
+Next lifecycle
+The design lifecycle
+The design statements includes concept development, requirements engineering, and solution design.
+Next page
+Statement 1: Define an operational model

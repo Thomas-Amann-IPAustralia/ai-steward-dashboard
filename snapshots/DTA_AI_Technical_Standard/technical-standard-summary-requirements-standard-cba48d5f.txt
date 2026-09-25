@@ -1,0 +1,271 @@
+Summary of requirements in the standard
+The statements and criteria of this standard are organised by stage of the AI lifecycle, including those that apply across all lifecycle stages.
+Lifecycle stages
+Introduces each lifecycle and it's accompanying statements noting which are required and which are recommended.
+Whole of AI lifecycle
+Statement Number 1. Define an operational model
+Recommended
+Criterion 1: Identify a suitable operational model to design, develop, and deliver the system securely and efficiently.
+Criterion 2: Consider the technology impacts of the operating model.
+Criterion 3: Consider technology hosting strategies.
+Statement Number 2. Define the reference architecture
+Required
+Criterion 4: Evaluate existing reference architectures.
+Recommended
+Criterion 5: Monitor emerging reference architectures to evaluate and update the AI system.
+Statement Number 3. Identify and build people capabilities
+Required
+Criterion 6: Identify and assign AI roles to ensure a diverse team of business and technology professionals with specialised skills.
+Criterion 7: Build and maintain AI capabilities by undertaking regular training and education of end users, staff, and stakeholders.
+Recommended
+Criterion 8: Mitigate staff over reliance, under reliance, and aversion of AI.
+Statement Number 4. Enable AI auditing
+Required
+Criterion 9: Provide end-to-end auditability.
+Criterion 10: Perform ongoing data-specific checks across the AI lifecycle.
+Criterion 11: Perform ongoing model-specific checks across the AI lifecycle.
+Statement Number 5. Provide explainability based on the use case
+Required
+Criterion 12: Explain the AI system and technology used, including the limitations and capabilities of the system.
+Recommended
+Criterion 13: Explain outputs made by the AI system to end users.
+Criterion 14: Explain how data is used and shared by the AI system.
+Statement Number 6. Manage system bias
+Required
+Criterion 15: Identify how bias could affect people, processes, data, and technologies involved in the AI system lifecycle.
+Criterion 16: Assess the impact of bias on your use case.
+Criterion 17: Manage identified bias across the AI system lifecycle.
+Statement Number 7. Apply version control practices
+Required
+Criterion 18: Apply version management practices to the end-to-end development lifecycle.
+Recommended
+Criterion 19: Use metadata in version control to distinguish between production and non-production data, models, and code.
+Criterion 20: Use a version control toolset to improve useability for users.
+Criterion 21: Record version control information in audit logs.
+Statement Number 8. Apply watermarking techniques
+Required
+Criterion 22: Apply visual watermarks and metadata to generated media content to provide transparency and provenance, including authorship.
+Criterion 23: Apply watermarks that are WCAG compatible where relevant.
+Criterion 24: Apply visual and accessible content to indicate when a user is interacting with an AI system.
+Recommended
+Criterion 25: For hidden watermarks, use watermarking tools based on the use case and content risk.
+Criterion 26: Assess watermarking risks and limitations.
+Design
+Statement Number 9. Conduct pre-work
+Required
+Criterion 27: Define the problem to be solved, its context, intended use, and impacted stakeholders.
+Criterion 28: Assess AI and non-AI alternatives.
+Criterion 29: Assess environmental impact and sustainability.
+Criterion 30: Perform cost analysis across all aspects of the AI system.
+Criterion 31: Analyse how the use of AI will impact the solution and its delivery.
+Statement Number 10.
+Adopt a human-centred approach
+Required
+Criterion 32: Identify human values requirements.
+Criterion 33: Establish a mechanism to inform users of AI interactions and output, as part of transparency.
+Criterion 34: Design AI systems to be inclusive, ethical, and meets accessibility standards using appropriate mechanisms.
+Criterion 35: Design feedback mechanisms.
+Criterion 36: Define human oversight and control mechanisms.
+Recommended
+Criterion 37: Involve users in the design process.
+Statement Number 11.
+Design safety systemically
+Required
+Criterion 38: Analyse and assess harms.
+Criterion 39: Mitigate harms by embedding mechanisms for prevention, detection, and intervention.
+Recommended
+Criterion 40: Design the system to allow calibration at deployment.
+Statement Number 12.
+Define success criteria
+Required
+Criterion 41: Identify, assess, and select metrics appropriate to the AI system.
+Recommended
+Criterion 42: Reevaluate the selection of appropriate success metrics as the AI system moves through the AI lifecycle.
+Criterion 43: Continuously verify correctness of the metrics.
+Data
+Statement Number 13. Establish data supply chain management processes
+Required
+Criterion 44: Create and collect data for the AI system and identify the purpose for its use.
+Criterion 45: Plan for data archival and destruction.
+Recommended
+Criterion 46: Analyse data for use by mapping the data supply chain and ensuring traceability.
+Criterion 47: Implement practices to maintain and reuse data.
+Statement Number 14. Implement data orchestration processes
+Required
+Criterion 48: Implement processes to enable data access and retrieval, encompassing the sharing, archiving, and deletion of data.
+Recommended
+Criterion 49: Establish standard operating procedures for data orchestration.
+Criterion 50: Configure integration processes to integrate data in increments.
+Criterion 51: Implement automation processes to orchestrate the reliable flow of data between systems and platforms.
+Criterion 52: Perform oversight and regular testing of task dependencies.
+Criterion 53: Establish and maintain data exchange processes.
+Statement Number 15. Implement data transformation and feature engineering practices
+Recommended
+Criterion 54: Establish data cleaning procedures to manage any data issues.
+Criterion 55: Define data transformation processes to convert and optimise data for the AI system.
+Criterion 56: Map the points where transformation occurs between datasets and across the AI system.
+Criterion 57: Identify fit-for-purpose feature engineering techniques.
+Criterion 58: Apply consistent data transformation and feature engineering methods to support data reuse and extensibility.
+Statement Number 16. Ensure data quality is acceptable
+Required
+Criterion 59: Define quality assessment criteria for the data used in the AI system.
+Recommended
+Criterion 60: Implement data profiling activities and remediate any data quality issues.
+Criterion 61: Define processes for labelling data and managing the quality of data labels.
+Statement Number 17. Validate and select data
+Required
+Criterion 62: Perform data validation activities to ensure data meets the requirements for the system’s purpose.
+Criterion 63: Select data for use that is aligned with the purpose of the AI system.
+Statement Number 18. Enable data fusion, integration and sharing
+Recommended
+Criterion 64: Analyse data fusion and integration requirements.
+Criterion 65: Establish an approach to data fusion and integration.
+Criterion 66: Identify data sharing arrangements and processes to maintain consistency.
+Statement Number 19. Establish the model and context dataset
+Required
+Criterion 67: Measure how representative the model dataset is.
+Criterion 68: Separate the model training dataset from the validation and testing datasets.
+Criterion 69: Manage bias in the data.
+Recommended
+Criterion 70: For generative AI, build reference or contextual datasets to improve the quality of AI outputs.
+Train
+Statement Number 20. Plan the model architecture
+Required
+Criterion 71: Establish success criteria that cover any AI training and operational limitations for infrastructure and costs.
+Criterion 72: Define a model architecture for the use case suitable to the data and AI system operation.
+Criterion 73: Select algorithms aligned with the purpose of the AI system and the available data.
+Criterion 74: Set training boundaries in relation to any infrastructure, performance, and cost limitations.
+Recommended
+Criterion 75: Start small, scale gradually.
+Statement Number 21. Establish the training environment
+Required
+Criterion 76: Establish compute resources and infrastructure for the training environment.
+Criterion 77: Secure the infrastructure.
+Recommended
+Criterion 78: Reuse available approved AI modelling frameworks, libraries, and tools.
+Statement Number 22. Implement model creation, tuning and grounding
+Required
+Criterion 79: Set assessment criteria for the AI models, with respect to pre-defined metrics for the AI system.
+Criterion 80: Identify and address situations when AI outputs should not be provided.
+Criterion 81: Apply considerations for reusing existing agency models, off-the-shelf, and pre-trained models.
+Criterion 82: Create or fine-tune models optimised for target domain environment.
+Recommended
+Criterion 83: Create and train using multiple model architectures and learning strategies.
+Statement Number 23. Validate, assess and update model
+Required
+Criterion 84: Set techniques to validate AI trained models.
+Criterion 85: Evaluate the model against training boundaries.
+Criterion 86: Evaluate the model for bias, implement and test bias mitigations.
+Recommended
+Criterion 87: Identify relevant model refinement methods.
+Statement Number 24. Select trained models
+Recommended
+Criterion 88: Assess a pool of trained models against acceptance metrics to select a model for the AI system.
+Statement Number 25. Implement continuous improvement frameworks
+Required
+Criterion 89: Establish interface tools and feedback channels for machines and humans.
+Criterion 90: Perform model version control.
+Evaluate
+Statement Number 26. Adapt strategies and practices for AI systems
+Required
+Criterion 91: Mitigate bias in the testing process.
+Criterion 92: Define test criteria approaches.
+Recommended
+Criterion 93: Define how test coverage will be measured.
+Criterion 94: Define a strategy to ensure test adequacy.
+Statement Number 27. Test for specified behaviour
+Required
+Criterion 95: Undertake human verification of test design and implementation for correctness, consistency, and completeness.
+Criterion 96: Conduct functional performance testing to verify the correctness of the AI System Under Test (SUT) as per the pre-defined metrics.
+Criterion 97: Perform controllability testing to verify human oversight and control, and system control requirements.
+Criterion 98: Perform explainability and transparency testing as per the requirements.
+Criterion 99: Perform calibration testing as per the requirements.
+Criterion 100: Perform logging tests as per the requirements.
+Statement Number 28. Test for safety, robustness, and reliability
+Required
+Criterion 101: Test the computational performance of the system.
+Criterion 102: Test safety measures through negative testing methods, failure testing, and fault injection.
+Criterion 103: Test reliability of the AI output, through stress testing over an extended period, simulating edge cases, and operating under extreme conditions.
+Recommended
+Criterion 104: Undertake adversarial testing (red team testing), attempting to break security and privacy measures to identify weaknesses.
+Statement Number 29. Test for conformance and compliance
+Required
+Criterion 105: Verify compliance with relevant policies, frameworks, and legislation.
+Criterion 106: Verify conformance against organisation and industry-specific coding standards.
+Criterion 107: Perform vulnerability testing to identify any well-known vulnerabilities.
+Statement Number 30. Test for intended and unintended consequences
+Required
+Criterion 108: Perform user acceptance testing (UAT) and scenario testing, validating the system with a diversity of end-users in their operating contexts and real-world scenarios.
+Recommended
+Criterion 109: Perform robust regression testing to mitigate the heightened risk of escaped defects resulting from changes, such as a step change in parameters.
+Integrate
+Statement Number 31. Undertake integration planning
+Recommended
+Criterion 110: Ensure the AI system meets architecture and operational requirements with the Australian Government Security Authority to Operate (SATO).
+Criterion 111: Identify suitable tests for integration with the operational environment, systems, and data.
+Statement Number 32. Manage integration as a continuous practice
+Recommended
+Criterion 112: Apply secure and auditable continuous integration practices for AI systems.
+Deploy
+Statement Number 33. Create business continuity plans
+Required
+Criterion 113: Develop plans to ensure critical systems remain operational during disruptions.
+Statement Number 34. Configure a staging environment
+Recommended
+Criterion 114: Ensure the staging environment mirrors the production environment in configurations, libraries, and dependencies for consistency and predictability.
+Criterion 115: Measure the performance of the AI system in the staging environment against predefined metrics.
+Criterion 116: Ensure deployment strategies include monitoring for AI specific metrics, such as inference latency and AI output accuracy.
+Statement Number 35. Deploy to a production environment
+Required
+Criterion 117: Apply strategies for phased roll-out.
+Criterion 118: Apply readiness verification, assurance checks and change management practices for the AI system.
+Recommended
+Criterion 119: Apply strategies for limiting service interruptions.
+Statement Number 36. Implement rollout and safe rollback mechanisms
+Recommended
+Criterion 120: Define a comprehensive rollout and rollback strategy.
+Criterion 121: Implement load balancing and traffic shifting methods for system rollout.
+Criterion 122: Conduct regular health checks, readiness, and startup probes to verify stability and performance on the deployment environment.
+Criterion 123: Implement rollback mechanisms to revert to the last stable version in case of failure.
+Monitor
+Statement Number 37. Establish monitoring framework
+Recommended
+Criterion 124: Define reporting requirements.
+Criterion 125: Define alerting requirements.
+Criterion 126: Implement monitoring tools.
+Criterion 127: Implement feedback loop to ensure that insights from monitoring are fed back into the development and improvement of the AI system.
+Statement Number 38. Undertake ongoing testing and monitoring
+Required
+Criterion 128: Test periodically after deployment and have a clear framework to manage any issues.
+Criterion 129: Monitor the system as agreed and specified in its operating procedures.
+Criterion 130: Monitor performance and AI drift as per pre-defined metrics.
+Criterion 131: Monitor health of the system and infrastructure.
+Criterion 132: Monitor safety.
+Criterion 133: Monitor reliability metrics and mechanisms.
+Criterion 134: Monitor human-machine collaboration.
+Criterion 135: Monitor for unintended consequences.
+Criterion 136: Monitor transparency and explainability.
+Criterion 137: Monitor costs.
+Criterion 138: Monitor security.
+Criterion 139: Monitor compliance of the AI system.
+Statement Number 39. Establish incident resolution processes
+Required
+Criterion 140: Define incident handling processes.
+Criterion 141: Implement corrective and preventive actions for incidents.
+Decommission
+Statement Number 40. Create a decommissioning plan
+Required
+Criterion 142: Define the scope of decommissioning activities.
+Criterion 143: Conduct an impact analysis of decommissioning the target AI system.
+Criterion 144: Proactively communicate system retirement.
+Statement Number 41. Shut down the AI system
+Required
+Criterion 144: Proactively communicate system retirement.
+Criterion 146: Disable computing resources or components specifically dedicated to the AI system.
+Criterion 147: Securely decommission or repurpose all computing resources specifically dedicated to the AI system, including individual and shared components.
+Statement Number 42. Finalise documentation and reporting
+Required
+Criterion 148: Finalise decommissioning information and update organisational documentation.
+Alternative table option providing greater visibility of the individual statements
+An interactive table presenting each statement and it's relationship to the AI lifecycles, applicable criteria and requirements. This table allows for filtering to provide the user with customised targeted results.
+The interactive statements table
