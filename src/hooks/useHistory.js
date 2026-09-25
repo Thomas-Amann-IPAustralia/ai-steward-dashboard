@@ -2,57 +2,61 @@ import { useState, useEffect } from 'react';
 import { BASE_URL, fetchWithTimeout } from '../utils/constants';
 
 let cached = null;
+let inflight = null;
+
+const loadIndex = () => {
+  if (!inflight) {
+    inflight = fetchWithTimeout(`${BASE_URL}/history.json?v=${Date.now()}`)
+      .then((response) => {
+        if (!response.ok) throw new Error(`Status ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        cached = { entries: data?.entries || {}, generated_at: data?.generated_at || null };
+        return cached;
+      })
+      .finally(() => {
+        inflight = null;
+      });
+  }
+  return inflight;
+};
 
 /**
  * Loads history.json, the index over the archived analyses in logs/.
  *
  * GitHub Pages serves no directory listing, so a year of archives has been
  * shipped in every build with no way for the app to enumerate it. The index is
- * generated at the end of each run; the timeline is a rendering job over it.
- * Cached at module scope because it does not change while the page is open.
+ * generated at the end of each run; the timelines are a rendering job over it.
+ * Fetched once and cached at module scope because it does not change while
+ * the page is open, and shared by every view that draws from it.
  */
-export function useHistory(fileId) {
-  const [entries, setEntries] = useState(() => (cached ? cached.entries?.[fileId] ?? [] : []));
-  const [loading, setLoading] = useState(!cached);
-  const [error, setError] = useState(null);
+export function useHistoryIndex() {
+  const [state, setState] = useState(() =>
+    cached ? { entries: cached.entries, loading: false, error: null } : { entries: {}, loading: true, error: null }
+  );
 
   useEffect(() => {
-    if (!fileId) {
-      setEntries([]);
-      return undefined;
-    }
-
-    if (cached) {
-      setEntries(cached.entries?.[fileId] ?? []);
-      setLoading(false);
-      return undefined;
-    }
-
-    const controller = new AbortController();
-
-    const load = async () => {
-      setLoading(true);
-      try {
-        const response = await fetchWithTimeout(
-          `${BASE_URL}/history.json?v=${Date.now()}`,
-          { signal: controller.signal }
-        );
-        if (!response.ok) throw new Error(`Status ${response.status}`);
-        cached = await response.json();
-        setEntries(cached.entries?.[fileId] ?? []);
-        setError(null);
-      } catch (err) {
-        if (err.name === 'AbortError') return;
+    if (cached) return undefined;
+    let active = true;
+    loadIndex()
+      .then((index) => {
+        if (active) setState({ entries: index.entries, loading: false, error: null });
+      })
+      .catch((err) => {
         console.warn('history.json unavailable:', err);
-        setError('The change history index is not available yet.');
-      } finally {
-        setLoading(false);
-      }
+        if (active) setState({ entries: {}, loading: false, error: 'The change history index is not available yet.' });
+      });
+    return () => {
+      active = false;
     };
+  }, []);
 
-    load();
-    return () => controller.abort();
-  }, [fileId]);
+  return state;
+}
 
-  return { entries, loading, error };
+/** The archived analyses for one policy set, newest first. */
+export function useHistory(fileId) {
+  const { entries, loading, error } = useHistoryIndex();
+  return { entries: fileId ? entries[fileId] ?? [] : [], loading, error };
 }

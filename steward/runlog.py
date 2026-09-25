@@ -142,6 +142,32 @@ def activity_summary(records: Iterable[Dict[str, Any]]) -> Dict[str, Dict[str, i
     return summary
 
 
+def daily_summary(records: Iterable[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
+    """Per-set activity broken down by the calendar day of each check.
+
+    The totals in `activity_summary` say how much was filtered; this says
+    when. It is what lets the dashboard draw a status-page strip per source —
+    a month of days, each one read, rejected, failed or changed — so a source
+    that stopped being read last Tuesday looks different from one that has
+    never been read. Days are taken from the record's own timestamp (written
+    in AEST), and only the counts that occurred that day are kept.
+    """
+    days: Dict[str, Dict[str, Dict[str, int]]] = {}
+    for entry in records:
+        set_name = entry.get("set_name")
+        day = str(entry.get("timestamp") or "")[:10]
+        if not set_name or len(day) != 10:
+            continue
+        counts = days.setdefault(set_name, {}).setdefault(day, {})
+        for key, value in activity_summary([entry]).get(set_name, {}).items():
+            if value and key != "runs":
+                counts[key] = counts.get(key, 0) + value
+    return {
+        set_name: [{"date": day, **counts} for day, counts in sorted(by_day.items())]
+        for set_name, by_day in days.items()
+    }
+
+
 def error_rate(records: Iterable[Dict[str, Any]]) -> float:
     records = list(records)
     if not records:

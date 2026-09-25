@@ -17,11 +17,11 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <div className="error-screen" role="alert">
           <h2>Something went wrong.</h2>
           <p>Please try refreshing the page. If the problem persists, check the browser console for details.</p>
-          <button onClick={() => window.location.reload()} style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}>
-            Refresh Page
+          <button type="button" className="btn btn-primary" onClick={() => window.location.reload()}>
+            Refresh page
           </button>
         </div>
       );

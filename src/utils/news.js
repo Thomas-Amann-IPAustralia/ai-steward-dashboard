@@ -7,7 +7,7 @@ import { timestampOf } from './constants';
  */
 
 export const RELEVANCE = {
-  3: { label: 'Act on it', description: 'Australian Government AI policy, guidance, legislation or incidents' },
+  3: { label: 'Highly relevant', description: 'Australian Government AI policy, guidance, legislation or incidents' },
   2: { label: 'Relevant', description: 'Providers APS staff use, comparable regulators, public-sector AI' },
   1: { label: 'Worth knowing', description: 'Major releases, research and wider AI news' },
 };
@@ -88,7 +88,8 @@ export function filterItems(
     .sort((a, b) => timestampOf(b.published) - timestampOf(a.published));
 }
 
-const dayKey = (value) => {
+/** The Sydney calendar day of a timestamp, as YYYY-MM-DD. */
+export const dayKey = (value) => {
   const time = timestampOf(value);
   if (!time) return 'undated';
   return new Date(time).toLocaleDateString('en-CA', { timeZone: 'Australia/Sydney' });
@@ -181,7 +182,7 @@ export function formatAgo(value, now = Date.now()) {
 }
 
 /**
- * The stories to lead with: "act on it" items, or anything widely reported,
+ * The stories to lead with: highly relevant items, or anything widely reported,
  * from the last few days — most important first.
  */
 export function pickTopStories(items, { days = 3, limit = 3, now = Date.now() } = {}) {

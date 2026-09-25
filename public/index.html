@@ -2,9 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="%PUBLIC_URL%/logo192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#00529B" />
+    <meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)" />
     <meta
       name="description"
       content="AI policy changes, news and AI incidents for Australian Public Servants, checked daily"
@@ -12,6 +14,19 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>AI Steward Dashboard</title>
+    <script>
+      // Set the theme before first paint, so a dark-mode reader never sees a
+      // flash of the light theme while the app loads.
+      (function () {
+        var dark;
+        try {
+          var stored = localStorage.getItem('darkMode');
+          if (stored !== null) dark = stored === 'true';
+        } catch (e) {}
+        if (dark === undefined) dark = !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

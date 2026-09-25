@@ -154,7 +154,7 @@ full gate-by-gate walkthrough.
 | `news_sources.json` | **The list of news and incident feeds — edit this to add one** |
 | `steward_config.yaml` | Thresholds, watchlist, model name, retention |
 | `tests/` | stdlib `unittest`, no network/browser/API key |
-| `src/` | React dashboard (Overview, Policy watch, News, AI incidents, Sources); `src/hooks/*` fetch the pipeline's output JSON |
+| `src/` | React dashboard (Overview, Policy watch, News, AI incidents, Sources); `src/hooks/*` fetch the pipeline's output JSON; charts are plain HTML in `src/components/charts.js`, styled by the tokens in `src/App.css` |
 | `.github/workflows/update_checker.yml` | Daily run → commit → build → deploy to Pages |
 
 ## Adding a new monitored source

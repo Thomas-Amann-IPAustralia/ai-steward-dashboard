@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { BASE_URL, fetchWithTimeout, formatDay, VERDICT_LABELS } from '../utils/constants';
+import { isMaterialEntry } from '../utils/series';
+import Icon from './Icon';
 import PriorityBadge from './PriorityBadge';
 
 const PAGE_SIZE = 12;
@@ -15,10 +17,10 @@ function HistoryTimeline({ entries, loading, error }) {
   const [expanded, setExpanded] = useState(null);
   const [detail, setDetail] = useState({});
 
-  if (loading) return <div className="loading-message" aria-live="polite">Loading change history…</div>;
-  if (error) return <div className="history-empty">{error}</div>;
+  if (loading) return <div className="skeleton skeleton-block" aria-label="Loading change history" />;
+  if (error) return <p className="muted">{error}</p>;
   if (!entries || entries.length === 0) {
-    return <div className="history-empty">No archived analyses for this policy set yet.</div>;
+    return <p className="muted">No archived analyses for this policy set yet.</p>;
   }
 
   const toggle = async (entry) => {
@@ -50,39 +52,32 @@ function HistoryTimeline({ entries, loading, error }) {
           const key = entry.timestamp;
           const open = expanded === key;
           const loaded = detail[key];
+          const material = isMaterialEntry(entry);
+          const priority = (entry.priority || '').toLowerCase();
 
           return (
-            <li className={`timeline-item${open ? ' open' : ''}`} key={key}>
-              <button
-                type="button"
-                className="timeline-head"
-                onClick={() => toggle(entry)}
-                aria-expanded={open}
-              >
+            <li className={`timeline-item${open ? ' open' : ''}${material ? '' : ' quiet'}`} key={key}>
+              <span className={`timeline-node ${material ? `p-${priority}` : 'p-none'}`} aria-hidden="true" />
+              <button type="button" className="timeline-head" onClick={() => toggle(entry)} aria-expanded={open}>
                 <span className="timeline-date">{formatDay(entry.timestamp)}</span>
-                <span className="timeline-summary">
-                  {entry.summary || 'Archived analysis'}
-                </span>
+                <span className="timeline-summary">{entry.summary || 'Archived analysis'}</span>
                 <span className="timeline-meta">
-                  {entry.verdict && VERDICT_LABELS[entry.verdict] && (
+                  {entry.verdict && VERDICT_LABELS[entry.verdict] && !material && (
                     <span className="verdict-chip">{VERDICT_LABELS[entry.verdict]}</span>
                   )}
-                  <PriorityBadge priority={entry.priority} />
+                  {material && <PriorityBadge priority={entry.priority} />}
+                  <Icon name="chevron-down" size={15} className="timeline-chevron" />
                 </span>
               </button>
 
               {open && (
-                <div className="timeline-body">
+                <div className="timeline-body prose">
                   {entry.changed_documents?.length > 0 && (
-                    <p className="timeline-documents">
-                      Changed: {entry.changed_documents.join(', ')}
-                    </p>
+                    <p className="timeline-documents">Changed: {entry.changed_documents.join(', ')}</p>
                   )}
                   {loaded?.error && <p>The archived analysis could not be loaded.</p>}
-                  {loaded && !loaded.error && (
-                    <ReactMarkdown>{loaded.analysis || ''}</ReactMarkdown>
-                  )}
-                  {!loaded && <p className="loading-message">Loading…</p>}
+                  {loaded && !loaded.error && <ReactMarkdown>{loaded.analysis || ''}</ReactMarkdown>}
+                  {!loaded && <div className="skeleton skeleton-lines" />}
                 </div>
               )}
             </li>
@@ -91,11 +86,7 @@ function HistoryTimeline({ entries, loading, error }) {
       </ol>
 
       {visible < entries.length && (
-        <button
-          type="button"
-          className="secondary-button"
-          onClick={() => setVisible((n) => n + PAGE_SIZE)}
-        >
+        <button type="button" className="btn btn-secondary btn-block" onClick={() => setVisible((n) => n + PAGE_SIZE)}>
           Show older ({entries.length - visible} remaining)
         </button>
       )}

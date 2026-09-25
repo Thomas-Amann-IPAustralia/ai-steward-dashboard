@@ -216,7 +216,7 @@ describe('reading at a glance', () => {
     expect(formatAgo(undefined, NOW)).toBe('');
   });
 
-  test('top stories are recent and either act-on-it or widely reported', () => {
+  test('top stories are recent and either highly relevant or widely reported', () => {
     const stories = pickTopStories(
       [
         item('act', { relevance: 3, published: '2026-09-24T01:00:00Z' }),

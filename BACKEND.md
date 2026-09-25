@@ -354,7 +354,11 @@ everywhere).
 of checks, would-be changes set aside (`cosmetic` + `reverted`), captures
 rejected, and changes analysed / judged material, built from `runs.jsonl` by
 `runlog.activity_summary`. The dashboard's Sources page and each policy page
-show it, so the filtering is visible rather than taken on trust.
+show it, so the filtering is visible rather than taken on trust. Alongside it,
+`activity_daily` (`runlog.daily_summary`) holds the same counts per set per
+calendar day, which the dashboard draws as a status-page strip for each
+source — a day read cleanly, a day with a rejected capture, a day with a
+change.
 
 `main.py` writes `health.json` for the frontend every run, and writes
 `health_alert.md` only when `report["alerts"]` is non-empty (and deletes it
@@ -612,7 +616,7 @@ over a fortnight, and the handful reported most widely overall.
    "tourism" does not mention the ISM.
 5. **Keyword relevance** — a 0–3 score and reason from `australia_terms`,
    `government_terms`, `policy_terms` and `risk_terms`, on the same rubric the
-   model gets (3 act on it, 2 directly relevant, 1 worth knowing, 0 skip).
+   model gets (3 highly relevant, 2 directly relevant, 1 worth knowing, 0 skip).
 6. **Cross-links** — an item matching a policy set's optional `keywords` in
    `policy_sets.json` is linked to it and appears on that policy's page.
 7. **One story, one item** — near-identical headlines fold together, against

@@ -1,5 +1,7 @@
 import React from 'react';
-import { formatShortDay, getPriorityColor, isStale, STALE_AFTER_DAYS } from '../utils/constants';
+import { formatShortDay, isStale, STALE_AFTER_DAYS } from '../utils/constants';
+
+const KNOWN = new Set(['critical', 'high', 'medium', 'low']);
 
 /**
  * A priority badge that carries its date.
@@ -13,24 +15,21 @@ import { formatShortDay, getPriorityColor, isStale, STALE_AFTER_DAYS } from '../
 function PriorityBadge({ priority, date, solid = false, className = '' }) {
   if (!priority) return null;
 
-  const stale = isStale(date);
-  const label = priority.toUpperCase();
+  const key = priority.toLowerCase();
+  const stale = date !== undefined && isStale(date);
+  const label = key.charAt(0).toUpperCase() + key.slice(1);
   const shown = date ? formatShortDay(date) : null;
-
-  const style = solid
-    ? { backgroundColor: getPriorityColor(priority) }
-    : { color: getPriorityColor(priority) };
 
   return (
     <span
-      className={`priority-badge${solid ? ' solid' : ''}${stale ? ' stale' : ''} ${className}`.trim()}
-      style={style}
+      className={`priority-badge p-${KNOWN.has(key) ? key : 'none'}${solid ? ' solid' : ''}${stale ? ' stale' : ''} ${className}`.trim()}
       title={
         stale && shown
           ? `Last change ${shown} — more than ${STALE_AFTER_DAYS} days ago`
-          : undefined
+          : `${label} priority`
       }
     >
+      <span className="priority-dot" aria-hidden="true" />
       {label}
       {shown && <span className="priority-badge-date"> · {shown}</span>}
     </span>

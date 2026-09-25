@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import Icon, { Logo } from './Icon';
 
 /**
  * How the dashboard works, in plain terms first and in detail after.
@@ -22,10 +23,13 @@ function AboutModal({ onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="about-modal-title">
       <div className="modal-content" onClick={(event) => event.stopPropagation()}>
-        <button className="modal-close-button" onClick={onClose} ref={closeRef} aria-label="Close dialog">
-          &times;
+        <button type="button" className="icon-button modal-close-button" onClick={onClose} ref={closeRef} aria-label="Close dialog">
+          <Icon name="x" />
         </button>
-        <h2 id="about-modal-title">How this works</h2>
+        <div className="modal-brand">
+          <Logo size={36} />
+          <h2 id="about-modal-title">How this works</h2>
+        </div>
         <p>
           Once a day, an automated job reads every source listed on the Sources page, works out what
           genuinely changed or is genuinely new, and publishes this site. Nothing here is written by

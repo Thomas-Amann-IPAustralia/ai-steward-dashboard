@@ -1,21 +1,17 @@
 import React from 'react';
-import { Outlet, useMatch } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
 /**
- * Policy watch: the list of monitored sets beside the selected one.
- *
- * The sidebar used to sit on every page, which on a phone put the entire
- * policy list above the briefing. It now belongs to the policy pages only,
- * and on a narrow screen it steps aside once a policy is open.
+ * An open policy beside the list of every monitored set, so a steward can
+ * work down the list without going back. On a narrow screen the list steps
+ * aside and the page's breadcrumb leads back to Policy watch instead.
  */
 function PolicyLayout({ policySets, health, loading, error }) {
-  const selected = useMatch('/policy/:fileId');
-
   return (
-    <div className={`policy-layout${selected ? ' has-selection' : ''}`}>
+    <div className="master-detail">
       <Sidebar policySets={policySets} health={health} loading={loading} error={error} />
-      <div className="policy-main">
+      <div className="detail-pane">
         <Outlet />
       </div>
     </div>
