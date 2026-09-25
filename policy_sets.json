@@ -38,6 +38,11 @@
         "url": "https://www.digital.gov.au/ai/ai-in-government-policy/accountability",
         "selector": "article",
         "label": "Standard for accountability"
+      },
+      {
+        "url": "https://www.digital.gov.au/ai/ai-in-government-policy/standard-ai-transparency-statements",
+        "selector": "article",
+        "label": "Standard for AI transparency statements"
       }
     ]
   },
@@ -70,6 +75,18 @@
       },
       {
         "url": "https://ai.google/responsibility/principles/"
+      },
+      {
+        "url": "https://policies.google.com/terms/generative-ai",
+        "label": "Generative AI Additional Terms"
+      },
+      {
+        "url": "https://support.google.com/gemini/answer/13594961?hl=en",
+        "label": "Gemini Apps Privacy Notice"
+      },
+      {
+        "url": "https://policies.google.com/privacy",
+        "label": "Google Privacy Policy"
       }
     ]
   },
@@ -126,6 +143,24 @@
     ]
   },
   {
+    "setName": "OpenAI Consumer Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "ChatGPT",
+      "OpenAI"
+    ],
+    "urls": [
+      {
+        "url": "https://openai.com/policies/row-terms-of-use/",
+        "label": "Terms of Use"
+      },
+      {
+        "url": "https://openai.com/policies/row-privacy-policy/",
+        "label": "Privacy Policy"
+      }
+    ]
+  },
+  {
     "setName": "OpenAI Enterprise and API Terms",
     "category": "Private Sector",
     "keywords": [
@@ -157,11 +192,34 @@
     ]
   },
   {
+    "setName": "Microsoft Consumer AI Terms",
+    "category": "Private Sector",
+    "keywords": [
+      "Microsoft Copilot",
+      "Microsoft Services Agreement"
+    ],
+    "urls": [
+      {
+        "url": "https://www.microsoft.com/en-au/servicesagreement",
+        "label": "Microsoft Services Agreement"
+      },
+      {
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/for-individuals/termsofuse",
+        "label": "Copilot Supplemental Terms of Use"
+      },
+      {
+        "url": "https://www.microsoft.com/en-us/privacy/privacystatement",
+        "selector": "div:has(> div > #mainartificialintelligenceandmicrosoftcopilotmodule) + div",
+        "label": "Privacy Statement: AI and Copilot"
+      }
+    ]
+  },
+  {
     "setName": "Microsoft Enterprise AI Terms",
     "category": "Private Sector",
     "keywords": [
       "Microsoft",
-      "Microsoft Copilot",
+      "Microsoft 365 Copilot",
       "Azure OpenAI",
       "Microsoft Foundry"
     ],
@@ -205,6 +263,14 @@
         "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html",
         "selector": "#main-col-body",
         "label": "Bedrock data protection"
+      },
+      {
+        "url": "https://aws.amazon.com/agreement/",
+        "label": "AWS Customer Agreement"
+      },
+      {
+        "url": "https://aws.amazon.com/aup/",
+        "label": "AWS Acceptable Use Policy"
       }
     ]
   },
@@ -232,12 +298,13 @@
     ]
   },
   {
-    "setName": "Google Gemini API and Vertex AI Terms",
+    "setName": "Google Enterprise and API AI Terms",
     "category": "Private Sector",
     "keywords": [
       "Gemini API",
       "Vertex AI",
-      "Google AI Studio"
+      "Google AI Studio",
+      "Gemini for Workspace"
     ],
     "urls": [
       {
@@ -255,17 +322,26 @@
       {
         "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance",
         "label": "Vertex AI data governance"
+      },
+      {
+        "url": "https://support.google.com/a/answer/15706919?hl=en",
+        "label": "Generative AI in Google Workspace Privacy Hub"
       }
     ]
   },
   {
-    "setName": "Perplexity API Terms",
+    "setName": "Perplexity Enterprise and API Terms",
     "category": "Private Sector",
     "keywords": [
+      "Perplexity Enterprise",
       "Perplexity API",
       "Sonar API"
     ],
     "urls": [
+      {
+        "url": "https://www.perplexity.ai/hub/legal/enterprise-terms-of-service",
+        "label": "Enterprise Terms of Service"
+      },
       {
         "url": "https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service",
         "label": "API Terms of Service"
@@ -427,8 +503,9 @@
     ]
   },
   {
-    "setName": "Commonwealth AI Transparency Statements",
+    "setName": "Commonwealth AI Transparency Statement Register",
     "category": "Australian Government",
+    "kind": "adoption",
     "keywords": [
       "AI transparency statement",
       "AI transparency statements"
@@ -438,11 +515,6 @@
         "url": "https://www.digital.gov.au/policy/ai/list-of-transparency-statements",
         "selector": "article",
         "label": "Register of transparency statements"
-      },
-      {
-        "url": "https://www.digital.gov.au/ai/ai-in-government-policy/standard-ai-transparency-statements",
-        "selector": "article",
-        "label": "Standard for AI transparency statements"
       }
     ]
   },

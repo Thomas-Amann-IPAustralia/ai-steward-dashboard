@@ -8,10 +8,12 @@ export const SITE_URL = 'https://thomas-amann-ipaustralia.github.io/ai-steward-d
  *
  * Stewards forward this sort of thing to their team. One button beats a
  * copy-paste job, and it is a fraction of the work of a PDF export. It covers
- * the monitored policies first, then the news and incidents worth passing on.
+ * the monitored policies first, then what other agencies have published, then
+ * the news and incidents worth passing on.
  */
 export function buildBriefing({
   recentChanges = [],
+  adoptionUpdates = [],
   failingSources = [],
   stableCount = 0,
   topNews = [],
@@ -50,6 +52,18 @@ export function buildBriefing({
         lines.push('', summary);
       }
       lines.push('', `${SITE_URL}/#/policy/${change.file_id}`, '');
+    });
+  }
+
+  if (adoptionUpdates.length > 0) {
+    lines.push('## Across government', '');
+    adoptionUpdates.forEach((update) => {
+      lines.push(`### ${update.setName} — updated ${formatDay(update.last_amended)}`);
+      const summary = changeSummaryOf(update);
+      if (summary) {
+        lines.push('', summary);
+      }
+      lines.push('', `${SITE_URL}/#/policy/${update.file_id}`, '');
     });
   }
 

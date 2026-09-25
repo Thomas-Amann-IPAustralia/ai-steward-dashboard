@@ -12,7 +12,7 @@ const PAGE_SIZE = 12;
  * full analysis is fetched only when a row is expanded, so a source with two
  * hundred archived analyses costs one small index file to display.
  */
-function HistoryTimeline({ entries, loading, error }) {
+function HistoryTimeline({ entries, loading, error, kind }) {
   const [visible, setVisible] = useState(PAGE_SIZE);
   const [expanded, setExpanded] = useState(null);
   const [detail, setDetail] = useState({});
@@ -65,7 +65,7 @@ function HistoryTimeline({ entries, loading, error }) {
                   {entry.verdict && VERDICT_LABELS[entry.verdict] && !material && (
                     <span className="verdict-chip">{VERDICT_LABELS[entry.verdict]}</span>
                   )}
-                  {material && <PriorityBadge priority={entry.priority} />}
+                  {material && <PriorityBadge priority={entry.priority} kind={kind} />}
                   <Icon name="chevron-down" size={15} className="timeline-chevron" />
                 </span>
               </button>

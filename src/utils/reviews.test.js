@@ -35,6 +35,11 @@ describe('the review queue', () => {
     expect(done).toEqual([]);
   });
 
+  test('an adoption register is never queued for review', () => {
+    const register = set('register', '2026-09-23T00:00:00Z', { kind: 'adoption' });
+    expect(reviewQueue([...sets, register], {}, { now: NOW }).pending.map((s) => s.file_id)).toEqual(['recent', 'older']);
+  });
+
   test('a reviewed change moves out of the queue, and undo puts it back', () => {
     const reviewed = setReviewed({}, sets[0], true, NOW);
     expect(reviewQueue(sets, reviewed, { now: NOW }).pending.map((s) => s.file_id)).toEqual(['older']);

@@ -96,19 +96,30 @@ defines a named policy set, a category, and one or more URLs (optionally with a 
 selector to target the relevant part of the page). The current sets cover:
 
 - **Australian Government** — the DTA's Policy for the responsible use of AI in
-  government (v2.0), AI hub, AI technical standard, agentic AI addendum, AI impact
-  assessment tool and register of Commonwealth AI transparency statements; PSPF policy
-  advisories; OAIC guidance on commercially available AI products; National Archives
-  AI Policy; ACSC Information Security Manual (ISM)
+  government (v2.0, with its standards for accountability and transparency statements),
+  AI hub, AI technical standard, agentic AI addendum and AI impact assessment tool; PSPF
+  policy advisories; OAIC guidance on commercially available AI products; National
+  Archives AI Policy; ACSC Information Security Manual (ISM)
+- **Across government** — the register of Commonwealth AI transparency statements,
+  tracked as an adoption signal (`"kind": "adoption"`) rather than a policy change
 - **State Government** — NSW Government AI Guidance
-- **Private Sector** — Google, Anthropic, Perplexity, and Midjourney legal policies;
-  the enterprise and API terms that govern agency use of foundation models: OpenAI
-  (Services Agreement, service terms, enterprise privacy, usage policies, API data
-  controls), Microsoft (Enterprise AI Services Code of Conduct, Foundry and Microsoft
-  365 Copilot data privacy), AWS (Service Terms §50 AI Services covering Bedrock,
-  Responsible AI Policy, Bedrock data protection), Anthropic (Commercial Terms, API
-  data retention), Google (Gemini API terms and abuse monitoring, Generative AI
-  Prohibited Use Policy, Vertex AI data governance) and Perplexity (API terms)
+- **Private Sector** — each provider's consumer terms and, separately, the enterprise
+  and API terms that govern agency use:
+  - OpenAI — Terms of Use and Privacy Policy; Services Agreement, service terms,
+    enterprise privacy, usage policies and API data controls
+  - Microsoft — Services Agreement, Copilot terms and the AI section of the Privacy
+    Statement; Enterprise AI Services Code of Conduct, Foundry and Microsoft 365
+    Copilot data privacy
+  - Google — Terms of Service, Generative AI terms, Gemini Apps Privacy Notice,
+    Privacy Policy and AI principles; Gemini API terms and abuse monitoring,
+    Generative AI Prohibited Use Policy, Vertex AI data governance and the Workspace
+    generative AI privacy hub
+  - Anthropic — Consumer Terms, Usage Policy and Privacy Policy; Commercial Terms and
+    API data retention
+  - Perplexity — Terms of Service, Privacy Policy and AUP; Enterprise and API terms
+  - AWS (no consumer AI product) — Customer Agreement, Acceptable Use Policy, Service
+    Terms §50 AI Services (Bedrock), Responsible AI Policy and Bedrock data protection
+  - Midjourney — Terms of Service and Privacy Policy (no enterprise offering)
 
 News and incident feeds are configured in [`news_sources.json`](news_sources.json):
 ABC News and Guardian Australia's AI coverage, SBS News, The Canberra Times, The

@@ -186,6 +186,14 @@ def validate_policy_sets(policy_sets: list) -> list:
         if not all(isinstance(u, dict) and u.get("url") for u in urls):
             log.warning("Skipping policy_sets[%d] (%s): malformed url entry", i, name)
             continue
+        if ps.get("kind", llm.POLICY) not in llm.SET_KINDS:
+            log.warning(
+                "Skipping policy_sets[%d] (%s): 'kind' must be one of %s",
+                i,
+                name,
+                ", ".join(llm.SET_KINDS),
+            )
+            continue
         seen_names.add(name)
         valid.append(ps)
     return valid
@@ -487,6 +495,7 @@ def process_policy_set(
     entry: Dict[str, Any] = {
         "hash": rollup_hash([documents[u].get("hash", "") for u in sorted(documents)]),
         "category": policy_set["category"],
+        "kind": policy_set.get("kind", llm.POLICY),
         "urls": policy_set["urls"],
         "file_id": file_id,
         "last_checked": timestamp,
@@ -590,6 +599,7 @@ def process_policy_set(
         model=cfg.model,
         changed_documents=changed_labels,
         tags=unique_tags,
+        kind=policy_set.get("kind", llm.POLICY),
     )
 
     run_log.record(

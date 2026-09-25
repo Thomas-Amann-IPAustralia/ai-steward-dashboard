@@ -33,6 +33,14 @@ export const daysSince = (isoDate, now = Date.now()) => {
   return Math.floor((now - parsed.getTime()) / (24 * 60 * 60 * 1000));
 };
 
+/**
+ * An adoption set is a register of what other agencies have published — the
+ * Commonwealth's list of AI transparency statements. Its changes are worth
+ * keeping up with but bind nobody, so they are shown as updates: never rated
+ * for risk and never queued for review.
+ */
+export const isAdoption = (set) => set?.kind === 'adoption';
+
 export const VERDICT_LABELS = {
   material_change: 'Material change',
   no_material_change: 'No material change',

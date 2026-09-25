@@ -420,6 +420,15 @@ If you touch `steward/validation.py`, `steward/content.py`, or
    - `category` groups sets in the sidebar. Reuse an existing one (`"Australian
      Government"`, `"State Government"`, `"Private Sector"`) unless you're
      genuinely introducing a new grouping.
+   - `kind` (optional) — `"policy"` (the default) for terms, guidance and
+     policy that bind the reader; `"adoption"` for a register of what other
+     agencies have published, such as the Commonwealth's list of AI
+     transparency statements. An adoption set's changes go to the model with
+     a prompt about uptake across government (who was added, removed or
+     renamed) rather than rights and obligations, are always stored as `low`
+     priority, and on the dashboard are badged "Adoption update", kept out of
+     the review queue and shown under "Across government" on the overview and
+     in the weekly briefing. Any other value skips the set with a warning.
    - `keywords` (optional) — names that identify this provider or agency in
      the news (`["Anthropic", "Claude"]`). A news item or incident matching
      one is linked to the set and listed on its page. All-caps terms match
