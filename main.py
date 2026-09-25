@@ -817,7 +817,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     save_json_file(current_hashes, HASHES_FILE)
     run_log.flush(cfg.retention.run_log_days)
     report["activity_days"] = ACTIVITY_DAYS
-    report["activity"] = runlog.activity_summary(runlog.load_records(days=ACTIVITY_DAYS))
+    recent_records = runlog.load_records(days=ACTIVITY_DAYS)
+    report["activity"] = runlog.activity_summary(recent_records)
+    report["activity_daily"] = runlog.daily_summary(recent_records)
     health.write_report(report)
     if health.write_alert(report):
         log.warning("Health alerts raised: %d — see %s", len(report["alerts"]), health.ALERT_FILE)

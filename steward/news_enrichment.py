@@ -81,7 +81,7 @@ another item in ITEMS of the same kind, that story's id; otherwise "". Two items
 same broad subject are not the same story.
 
 Relevance rubric:
-3 = Act on it. Australian Government (Commonwealth, state or territory) AI policy, guidance, \
+3 = Highly relevant. Australian Government (Commonwealth, state or territory) AI policy, guidance, \
 legislation, inquiries or procurement; the DTA and digital.gov.au, the OAIC and the Privacy \
 Act, ASD/ACSC and the ISM, the National Archives, the APSC; AI incidents in Australia or \
 involving Australian government systems or data.

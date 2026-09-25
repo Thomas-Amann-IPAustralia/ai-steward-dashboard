@@ -349,6 +349,27 @@ class ActivityShowsTheFilteringAtWork(unittest.TestCase):
         self.assertEqual(counts["rejected"], 1)
         self.assertEqual((counts["analysed"], counts["declined"], counts["material"]), (1, 1, 0))
 
+    def test_each_day_is_counted_on_its_own(self):
+        records = [
+            {"run_id": "r1", "set_name": "S", "timestamp": "2026-09-23T10:00:00+10:00", "outcome": "unchanged"},
+            {"run_id": "r1", "set_name": "S", "timestamp": "2026-09-23T10:00:00+10:00", "outcome": "suspect_scrape"},
+            {"run_id": "r2", "set_name": "S", "timestamp": "2026-09-24T10:00:00+10:00", "outcome": "changed"},
+            {"run_id": "r2", "set_name": "S", "timestamp": "2026-09-24T10:00:00+10:00", "outcome": "analysed",
+             "llm_called": True, "verdict": "material_change"},
+            {"run_id": "r2", "set_name": "T", "timestamp": "2026-09-24T10:00:00+10:00", "outcome": "fetch_failed"},
+            {"run_id": "r2", "set_name": "T", "outcome": "unchanged"},
+        ]
+        daily = runlog.daily_summary(records)
+        self.assertEqual(
+            daily["S"],
+            [
+                {"date": "2026-09-23", "checks": 2, "unchanged": 1, "rejected": 1},
+                {"date": "2026-09-24", "checks": 1, "changed": 1, "analysed": 1, "material": 1},
+            ],
+        )
+        # An undated record cannot be placed on a day, so it is left out.
+        self.assertEqual(daily["T"], [{"date": "2026-09-24", "checks": 1, "failed": 1}])
+
 
 if __name__ == "__main__":
     unittest.main()

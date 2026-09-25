@@ -254,7 +254,7 @@ def keyword_relevance(
 ) -> Tuple[int, str]:
     """A 0–3 score and a one-line reason, from vocabulary alone.
 
-    The same four bands the model is given: 3 act on it, 2 directly relevant
+    The same four bands the model is given: 3 highly relevant, 2 directly relevant
     context, 1 worth knowing, 0 skip.
     """
     ai = ai_focused or kind == KIND_INCIDENT or bool(matches(vocab.ai, text))
