@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T01:55:18.416371+00:00",
+  "generated_at": "2026-09-25T04:30:00.663142+00:00",
   "window_days": 45,
   "min_relevance": 1,
   "sources": {
@@ -11,11 +11,11 @@
       "via": "Google News search",
       "note": "Parliament, PM&C, Treasury and agency pages about AI. Most gov.au sites refuse automated feed readers, so they are reached through search. Only headlines that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 37
+      "items": 35
     },
     "pm-gov-au": {
       "name": "Prime Minister of Australia",
@@ -25,8 +25,8 @@
       "via": "",
       "note": "Media releases, speeches and transcripts. Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 0
@@ -39,11 +39,11 @@
       "via": "",
       "note": "The ABC's artificial intelligence topic.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 12
+      "items": 11
     },
     "guardian-au-ai": {
       "name": "Guardian Australia — AI",
@@ -53,11 +53,11 @@
       "via": "",
       "note": "Guardian stories tagged both Australia news and artificial intelligence. No API key needed.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 10
+      "items": 8
     },
     "sbs-news": {
       "name": "SBS News",
@@ -67,8 +67,8 @@
       "via": "",
       "note": "Only headlines that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 1
@@ -81,8 +81,8 @@
       "via": "",
       "note": "The APS's home paper. Some stories need a subscription. Only headlines that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 0
@@ -95,8 +95,8 @@
       "via": "",
       "note": "News for the Australian public sector. Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 1
@@ -109,8 +109,8 @@
       "via": "",
       "note": "Local and state government news. Only headlines that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 1
@@ -123,8 +123,8 @@
       "via": "",
       "note": "Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 3
@@ -137,8 +137,8 @@
       "via": "",
       "note": "Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 7
@@ -151,11 +151,11 @@
       "via": "Google News search",
       "note": "Australian reporting on AI in and around government.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 23
+      "items": 17
     },
     "au-ai-regulation": {
       "name": "Australian AI regulation coverage",
@@ -165,11 +165,11 @@
       "via": "Google News search",
       "note": "Reporting on AI law, guardrails and privacy reform in Australia.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 24
+      "items": 23
     },
     "conversation-ai": {
       "name": "The Conversation — AI",
@@ -179,11 +179,11 @@
       "via": "",
       "note": "Analysis by researchers, from the Australian edition's AI topic.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 17
+      "items": 14
     },
     "oecd-ai-wonk": {
       "name": "OECD.AI Policy Observatory blog",
@@ -193,8 +193,8 @@
       "via": "",
       "note": "",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 2
@@ -207,8 +207,8 @@
       "via": "",
       "note": "",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 0
@@ -221,8 +221,8 @@
       "via": "",
       "note": "Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 3
@@ -235,8 +235,8 @@
       "via": "",
       "note": "Includes EU AI Act implementation. Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 3
@@ -249,8 +249,8 @@
       "via": "Google News search",
       "note": "Reporting on changes to the terms, privacy and data-retention policies of AI services APS staff use.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 3
@@ -263,11 +263,11 @@
       "via": "",
       "note": "",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 94
+      "items": 92
     },
     "google-ai-blog": {
       "name": "Google — AI blog",
@@ -277,11 +277,11 @@
       "via": "",
       "note": "",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 8
+      "items": 4
     },
     "microsoft-on-the-issues": {
       "name": "Microsoft On the Issues",
@@ -291,8 +291,8 @@
       "via": "",
       "note": "Microsoft's policy and legal blog. Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 5
@@ -305,8 +305,8 @@
       "via": "",
       "note": "Every incident and hazard the OECD records in Australia.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 10
@@ -319,11 +319,11 @@
       "via": "",
       "note": "The most-reported incidents in the government, security and defence sector over the last fortnight.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 27
+      "items": 24
     },
     "oecd-aim-global": {
       "name": "OECD AI Incidents Monitor — most reported",
@@ -333,8 +333,8 @@
       "via": "",
       "note": "The most widely reported AI incidents worldwide over the last ten days.",
       "status": "ok",
-      "last_checked": "2026-09-25T01:55:18.416371+00:00",
-      "last_success": "2026-09-25T01:55:18.416371+00:00",
+      "last_checked": "2026-09-25T04:30:00.663142+00:00",
+      "last_success": "2026-09-25T04:30:00.663142+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 6
@@ -1450,25 +1450,6 @@
       "related_policies": []
     },
     {
-      "id": "cfb385fe2a2fd179",
-      "kind": "news",
-      "title": "How would AI actually kill all humans? Here are the top 5 scenarios",
-      "url": "https://theconversation.com/how-would-ai-actually-kill-all-humans-here-are-the-top-5-scenarios-292220",
-      "source_id": "conversation-ai",
-      "source_name": "The Conversation — AI",
-      "category": "Analysis",
-      "publisher": "The Conversation",
-      "published": "2026-09-22T20:16:12+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "The most probable scenario is likely not what you think.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
       "id": "a050cb4052a3e2b0",
       "kind": "news",
       "title": "Security teams are adopting AI faster than they trust it",
@@ -1482,9 +1463,12 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "General trend in security teams adopting AI faster than trusting it.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -1499,11 +1483,15 @@
       "published": "2026-09-22T18:29:41+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Drones with autonomous functions reduce dependence on communications links and can escape attempts at jamming. But they come with huge ethical risks.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "The Russia-Ukraine war accelerates the dangerous race toward fully autonomous drones, which reduce communication dependence but pose huge ethical risks.",
+      "relevance": 2,
+      "relevance_reason": "Accelerates autonomous weapons development, raising safety and ethical risks.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -1518,30 +1506,13 @@
       "published": "2026-09-22T18:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Meet GPT-6 Sol and Luna, two models that bring frontier intelligence to everyday work with different balances of capability and cost.",
-      "tldr": "",
+      "tldr": "OpenAI introduced GPT-6 Sol and Luna, new models offering frontier intelligence for everyday work with varied capabilities and costs.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "9f0cd84d3b663643",
-      "kind": "news",
-      "title": "In the race to roll out 6G, the UK and Europe are caught between technology’s superpowers",
-      "url": "https://theconversation.com/in-the-race-to-roll-out-6g-the-uk-and-europe-are-caught-between-technologys-superpowers-292195",
-      "source_id": "conversation-ai",
-      "source_name": "The Conversation — AI",
-      "category": "Analysis",
-      "publisher": "The Conversation",
-      "published": "2026-09-22T15:52:18+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "For the UK and Europe, the rollout of 6G is creating a geopolitical dilemma.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "New models from a major vendor, potentially impacting APS tools and costs.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -1557,10 +1528,14 @@
       "first_seen": "2026-09-24T22:48:16.657833+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Australian public sector job opening related to AI governance and strategy.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "government_policy",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -1575,11 +1550,14 @@
       "published": "2026-09-22T15:07:56+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Microsoft has disrupted EvilTokens, a powerful cybercrime platform that used AI at every step of the attack chain—from compromising email accounts to designing intricate roadmaps for financial fraud and scams. While EvilTokens helped cybercriminals access email accounts, at the center of the service was an AI-style…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Microsoft disrupted EvilTokens, an AI chatbot cybercrime platform that used AI for email compromise and financial fraud schemes.",
+      "relevance": 2,
+      "relevance_reason": "AI-powered cybercrime platform disrupted, highlighting AI security threats.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -1595,10 +1573,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 2,
+      "relevance_reason": "AI use in Australian healthcare, impacting public services and patient interactions.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -1615,9 +1596,12 @@
       "summary": "Understanding the technological shift from a literary to a post-literary society is crucial for rethinking AI’s place in learning environments.",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Discusses AI's impact on education and skills, relevant for workforce development.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce",
+        "research"
+      ],
       "related_policies": []
     },
     {
@@ -1633,10 +1617,14 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Australian public sector developing procedures for AI use and academic integrity.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "regulation",
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -1651,11 +1639,13 @@
       "published": "2026-09-22T12:00:54+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "As animal behaviorists increasingly use AI in their research, they grapple with how to wield the technology responsibly",
-      "tldr": "",
+      "tldr": "Animal behaviorists are increasingly using AI in research and grappling with responsible technology use and ethical implications.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "General research into AI's ethical use in animal behavior.",
+      "relevance_source": "model",
+      "topics": [
+        "research"
+      ],
       "related_policies": []
     },
     {
@@ -1670,12 +1660,23 @@
       "published": "2026-09-22T12:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "GPT‑6 Astra allowed Parallel’s agents to research and synthesize labor-market data in half the time and at half the cost vs. prior models.",
-      "tldr": "",
+      "tldr": "Parallel reduced research time and cost by half using OpenAI's GPT-6 Astra for labor-market data synthesis.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
+      "relevance_reason": "Example of a vendor's AI model significantly improving research efficiency.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "research"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Hex turns complex analysis into visual reports with GPT‑6 Astra",
+          "url": "https://openai.com/index/hex-gpt-6-astra",
+          "publisher": "OpenAI",
+          "published": "2026-09-16T12:00:00+00:00"
+        }
+      ]
     },
     {
       "id": "2e90f859e1ca72ba",
@@ -1719,30 +1720,15 @@
       "published": "2026-09-22T08:38:51+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "A young woman who had sexually explicit deepfake images shared online by 20-year-old William Yeates has told a court the impacts have been \"painfully real\".",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "5967311917da2ec7",
-      "kind": "news",
-      "title": "Rates set to rise as RBA governor says 'heat' needs to be taken out of job market",
-      "url": "https://www.abc.net.au/news/2026-09-22/rba-governor-michele-bullock-interest-rate-increase-predictions/107181326",
-      "source_id": "abc-news-ai",
-      "source_name": "ABC News — AI",
-      "category": "Australian news",
-      "publisher": "ABC News",
-      "published": "2026-09-22T07:12:11+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "All four major banks and the bulk of money market traders believe the Reserve Bank will raise interest rates next week and governor Michele Bullock did nothing to dissuade them during a speech in Sydney.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "An Australian teen testified in court about the \"painfully real\" impacts of sexually explicit deepfake images shared by William Yeates.",
+      "relevance": 3,
+      "relevance_reason": "Australian court case highlighting real-world harm from deepfake images and privacy concerns.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "safety",
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -1796,11 +1782,14 @@
       "published": "2026-09-22T02:52:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Expert \"not-a-mused\" by insecure AI agent.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "A security researcher advises against installing Meta's Muse AI assistant due to concerns about it being an insecure AI agent.",
+      "relevance": 2,
+      "relevance_reason": "Security warning about a vendor's AI assistant, relevant for procurement and use.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -1815,11 +1804,15 @@
       "published": "2026-09-22T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "OpenAI outlines priorities and principles for rigorous, secure, and independent third-party AI safety assessments of frontier models and safeguards.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "OpenAI outlined priorities and principles for rigorous, secure, and independent third-party AI safety assessments of its frontier models.",
+      "relevance": 2,
+      "relevance_reason": "Vendor outlines principles for AI safety assessments, influencing industry standards and procurement.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "safety",
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -1935,11 +1928,15 @@
       "published": "2026-09-22T00:00:00+00:00",
       "first_seen": "2026-09-25T01:55:18.416371+00:00",
       "summary": "China and the United States are exploring the creation of a direct communication channel, or 'red phone,' to address risks posed by artificial intelligence in military and malicious contexts. The initiative aims to increase transparency and prevent potential AI-driven incidents or escalation due to autonomous or…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "China and the US are considering a 'red phone' communication channel to prevent AI-driven military incidents and escalation from autonomous systems.",
+      "relevance": 2,
+      "relevance_reason": "International government discussion on preventing AI-driven military incidents.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "safety",
+        "security"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -1965,7 +1962,15 @@
         "autonomy_level": "",
         "articles": 17,
         "aiid_ids": []
-      }
+      },
+      "coverage": [
+        {
+          "title": "Experts Urge US-China Dialogue on AI Safety and Military Use",
+          "url": "https://oecd.ai/en/incidents/2026-09-15-9822",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-15T00:00:00+00:00"
+        }
+      ]
     },
     {
       "id": "469b068b7d4591e0",
@@ -1981,9 +1986,11 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "General demand for action on AI, potentially influencing Australian policy discussions.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -1999,10 +2006,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 2,
+      "relevance_reason": "Global leaders discussing AI warnings impacts potential international AI policy and regulation affecting Australia.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -2017,11 +2027,14 @@
       "published": "2026-09-21T20:09:34+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "AI is a global technology. A global approach to regulating it is urgently needed.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Growing calls for global AI regulation necessitate defining what such an approach could entail for the worldwide technology.",
+      "relevance": 2,
+      "relevance_reason": "Discusses global AI regulation models, relevant for Australian government policy and regulatory development.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
       "related_policies": [],
       "coverage": [
         {
@@ -2029,6 +2042,12 @@
           "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNOFFFeWJzRTQyc3hzZVhWZlRGTklOdkFkRFhpdE1qNGFubE5JQk9oSHZmNFZPRE52eDJiSVZkYklzNXJiUmpjZTFMRklXTmtNQmxVQW9vc2NENmt4SElleVFUbGp5QVhCVFlZWmtYTk5XaU54aGNXamM1cHlIclVBTGxWWkRWek9Ca3pZd0g0eVhCTG5IOXJvOVFzei1jY1Q0Tk40NFc3Q2dfUlRVT3hWS05n",
           "publisher": "The Conversation",
           "published": "2026-09-21T20:09:34+00:00"
+        },
+        {
+          "title": "Tech bill welcomed: call for global AI rules",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdjR0SXBrWW8xcF9CZHlBbzJrcjFoMkNtRFg0cTdKQXJIU01UWUg5dGZCb0lkR2ZSRGM1UlRmQTdMYVRRRnN1VzdhcHIyR1A3aTB1M3N1Q0RPc1ZNWHp5Y3VBRWxmODRjWUdxQ0V5bVd6ZkFva1R0Wmh3cUY2cFFBNWU4S1ZfZmNDN0doelVCT2pmaU5WSDdiLTJPRE80azRNc0E",
+          "publisher": "Australian Conveyancer",
+          "published": "2026-09-17T03:55:58+00:00"
         }
       ]
     },
@@ -2045,10 +2064,14 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Growing pressure on federal government and councils banning smart glasses directly impacts Australian AI policy and privacy.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "privacy",
+        "public_sector"
+      ],
       "related_policies": []
     },
     {
@@ -2088,9 +2111,12 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "China's approach to AI safety and control is an important international development for global AI governance.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "safety"
+      ],
       "related_policies": []
     },
     {
@@ -2105,11 +2131,15 @@
       "published": "2026-09-21T18:50:38+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Independent testing finds a hacker can access cheap smart glasses without a password, allowing them to gain control of the glasses and stored images.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Independent tests reveal cheap smart glasses are easily hackable without a password, allowing hackers to control the device and access stored images.",
+      "relevance": 2,
+      "relevance_reason": "Highlights critical security and privacy risks with smart glasses, relevant for APS procurement and policy-making.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "privacy",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -2124,11 +2154,14 @@
       "published": "2026-09-21T16:30:21+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Today we published our latest Global AI Diffusion Report. Global AI diffusion continued to climb in the second quarter of 2026. In June, AI usage was 18.8% of the working-age population worldwide, an increase of about 1% from the first quarter of this year. Growth was broad-based: almost every economy saw increased…",
-      "tldr": "",
+      "tldr": "Microsoft's latest Global AI Diffusion Report shows worldwide AI usage continued to grow in Q2 2026, reaching 18.8% of the working-age population.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Global AI adoption trends from a major vendor provide useful context for APS workforce planning and digital transformation.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -2143,30 +2176,14 @@
       "published": "2026-09-21T16:13:44+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Canadians are turning to AI mental health chatbots for support. But what if the bot agrees with the beliefs that are keeping you unwell?",
-      "tldr": "",
+      "tldr": "Making mental health chatbots more culturally sensitive does not necessarily ensure their safety, especially if they reinforce harmful beliefs.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "bb66d745e68bb7b3",
-      "kind": "news",
-      "title": "Why AI resembles a charismatic religious leader",
-      "url": "https://theconversation.com/why-ai-resembles-a-charismatic-religious-leader-291831",
-      "source_id": "conversation-ai",
-      "source_name": "The Conversation — AI",
-      "category": "Analysis",
-      "publisher": "The Conversation",
-      "published": "2026-09-21T12:37:30+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "AI can function as a charismatic figure without standing on a stage, establishing a church or gathering disciples, writes a scholar of religion.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Highlights safety and ethical concerns for AI in sensitive applications like mental health, relevant for public service design.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "public_sector"
+      ],
       "related_policies": []
     },
     {
@@ -2181,11 +2198,13 @@
       "published": "2026-09-21T12:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "With GPT-6 Astra, Higgsfield AI makes video ad creation easier for small businesses and brings new creative tools to market faster.",
-      "tldr": "",
+      "tldr": "Higgsfield AI rapidly shipped new video features using OpenAI's GPT-6 Astra, making video ad creation easier for small businesses and bringing tools to market faster.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Demonstrates new capabilities of a major AI model and its application in vendor products, relevant for procurement.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -2200,11 +2219,14 @@
       "published": "2026-09-21T12:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "OpenAI is working with an independent Advisory Group on Mathematics and Artificial Intelligence to guide the review and communication of emerging AI results.",
-      "tldr": "",
+      "tldr": "OpenAI is collaborating with an independent Advisory Group on Mathematics and Artificial Intelligence to guide review and communication of emerging AI results.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "OpenAI's governance efforts are relevant context for understanding vendor practices and broader AI development.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "research"
+      ],
       "related_policies": []
     },
     {
@@ -2220,10 +2242,14 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Australian Parliament forming an AI committee is a direct, highly relevant development in government policy and regulation.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation",
+        "public_sector"
+      ],
       "related_policies": []
     },
     {
@@ -2238,11 +2264,13 @@
       "published": "2026-09-21T10:40:17+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Are the warnings of a potential AI apocalypse credible?",
-      "tldr": "",
+      "tldr": "Most scenarios for an AI apocalypse require physical access, making widespread AI armageddon unlikely.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Addresses public and policy concerns about extreme AI risks, providing a balanced view for safety discussions.",
+      "relevance_source": "model",
+      "topics": [
+        "safety"
+      ],
       "related_policies": []
     },
     {
@@ -2257,11 +2285,15 @@
       "published": "2026-09-21T10:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "OpenAI outlines a path to shared global AI standards, calling for coordinated evaluation, reporting, and governance to improve safety.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "OpenAI proposes a framework for global AI standards, advocating for coordinated evaluation, reporting, and governance to enhance safety.",
+      "relevance": 2,
+      "relevance_reason": "OpenAI's proposal for global AI standards directly influences international and Australian government AI policy discussions.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -2344,11 +2376,14 @@
       "published": "2026-09-21T07:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Explore new OpenAI Academy learning paths for employees, developers, leaders, educators, and students to build and demonstrate practical AI skills.",
-      "tldr": "",
+      "tldr": "OpenAI Academy is expanding with new learning paths for employees, developers, leaders, educators, and students to build practical AI skills.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "OpenAI expanding AI learning paths is relevant for APS staff's skills development and workforce planning.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -2364,10 +2399,12 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "PM Albanese discussing AI on a US trip signifies high-level Australian government policy engagement.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -2383,10 +2420,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Victorian Planning Panels addressing AI use in proceedings is a direct Australian public sector development.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -2454,11 +2494,13 @@
       "published": "2026-09-21T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Using GPT-5.6, V7 turns scattered company files into context agents can use to complete complex, source-linked work.",
-      "tldr": "",
+      "tldr": "V7 uses GPT-5.6 to transform scattered company files into context that AI agents can use to complete complex, source-linked work, giving them \"institutional memory\".",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Shows how a vendor uses AI models for enhanced agent capabilities, relevant for APS procurement and AI services.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -2563,11 +2605,15 @@
       "published": "2026-09-21T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "British Columbia filed a lawsuit against OpenAI and CEO Sam Altman, alleging the company failed to warn authorities about violent interactions between the Tumbler Ridge mass shooter and ChatGPT. The suit claims this omission contributed to the February 2026 attack that killed eight, including students, and seeks…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "British Columbia is suing OpenAI and CEO Sam Altman, alleging their failure to warn about violent interactions with ChatGPT contributed to a mass shooting.",
+      "relevance": 2,
+      "relevance_reason": "Lawsuit against a major AI vendor over an AI-related safety incident is highly relevant for public sector AI governance.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "regulation",
+        "vendors"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -2677,9 +2723,12 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Raises copyright and intellectual property issues, relevant to Australian AI policy and legal discussions.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -2695,10 +2744,14 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "A NSW high school's position paper on student AI use directly impacts Australian public sector workforce and policy.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "workforce",
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -2750,44 +2803,6 @@
       "related_policies": []
     },
     {
-      "id": "c24075d0d66592c1",
-      "kind": "news",
-      "title": "Executive Director, Data, AI and Analytics",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPU011SnZWOXFqV0xrNVlOU1gxRWNzWUxsc3hkMkZJSU9fNFZTeUN4MnR4QkFKbC1RblJPVXBfWloyOXZtLVlvNi0zenY0UG1SUnlhT2g5RGh0UTJqdjRUbDZ6bFdXaTRQQ2cydjZiemd0bERyRzdKV3JJbElHZHdSME1SYU4wTkZH",
-      "source_id": "gov-au-ai",
-      "source_name": "Australian Government websites",
-      "category": "Australian Government",
-      "publisher": "Careers Vic",
-      "published": "2026-09-19T02:22:56+00:00",
-      "first_seen": "2026-09-24T22:48:16.657833+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "8547ee082c7830f7",
-      "kind": "news",
-      "title": "Executive Director, Data, AI and Insights",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQZldGeGladC1NdTJDOE5rMnJESFZKaW5fQnlJZzNYZy1oelRablVlazNRZWN5QzZza0drZl9OcnU4RXVFT1BmejRXcUw1LTh6SGRYeEJqRnhnMEJFaUhZQklSNV9JblRORVM5TFNCR1U5bTN4S2pLTjltZEhsZ2l1czM3S0ZDek0",
-      "source_id": "gov-au-ai",
-      "source_name": "Australian Government websites",
-      "category": "Australian Government",
-      "publisher": "Careers Vic",
-      "published": "2026-09-19T02:22:56+00:00",
-      "first_seen": "2026-09-24T22:48:16.657833+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
       "id": "eab0c51ee53e44b8",
       "kind": "incident",
       "title": "US Military AI Misjudgment Leads to Deadly Attack and Near International Conflict",
@@ -2799,11 +2814,15 @@
       "published": "2026-09-19T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "US military intelligence relied on AI systems, including Palantir's Maven, which generated false reports. This led to a deadly attack on an Iranian girls' school, killing over 150, and nearly caused a US military operation against a Chinese ship based on erroneous AI-generated intelligence, risking major international…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "US military AI systems, including Palantir's Maven, generated false reports leading to a deadly attack on an Iranian girls' school and almost causing a US military operation against a Chinese ship.",
+      "relevance": 2,
+      "relevance_reason": "Highlights risks of AI misjudgment and overreliance in government security and defence.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "public_sector"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -2829,50 +2848,21 @@
         "autonomy_level": "Low-action autonomy (human-in-the-loop)",
         "articles": 26,
         "aiid_ids": []
-      }
-    },
-    {
-      "id": "bfa6610b45a6ce8b",
-      "kind": "incident",
-      "title": "US AI-Driven Targeting Error Leads to Deadly Iranian School Strike",
-      "url": "https://oecd.ai/en/incidents/2026-09-19-a8ee",
-      "source_id": "oecd-aim-government",
-      "source_name": "OECD AI Incidents Monitor — government, worldwide",
-      "category": "AI incidents",
-      "publisher": "OECD AI Incidents Monitor",
-      "published": "2026-09-19T00:00:00+00:00",
-      "first_seen": "2026-09-25T01:55:18.416371+00:00",
-      "summary": "A US missile strike on Shajareh Tayyebeh Elementary School in Minab, Iran, killed over 120 children after outdated intelligence and overreliance on Palantir's Maven Smart System AI failed to flag the site’s civilian status. Pentagon investigations cite preventable failures in AI-supported military targeting as key…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": [],
-      "incident": {
-        "source": "oecd_aim",
-        "incident_id": "2026-09-19-a8ee",
-        "country": "Iran",
-        "country_code": "IRN",
-        "harm_level": "AI incident",
-        "harm_types": [
-          "Physical (death)",
-          "Human or fundamental rights"
-        ],
-        "harmed_entities": [
-          "Children"
-        ],
-        "industries": [
-          "Government, security, and defence"
-        ],
-        "principles": [
-          "Safety",
-          "Respect of human rights"
-        ],
-        "autonomy_level": "Low-action autonomy (human-in-the-loop)",
-        "articles": 22,
-        "aiid_ids": []
-      }
+      },
+      "coverage": [
+        {
+          "title": "US AI-Driven Targeting Error Leads to Deadly Iranian School Strike",
+          "url": "https://oecd.ai/en/incidents/2026-09-19-a8ee",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-19T00:00:00+00:00"
+        },
+        {
+          "title": "AI-Generated False Intelligence Nearly Triggers US-China Military Confrontation",
+          "url": "https://oecd.ai/en/incidents/2026-09-18-d635",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-18T00:00:00+00:00"
+        }
+      ]
     },
     {
       "id": "f24e3368d046a33d",
@@ -2887,10 +2877,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 2,
+      "relevance_reason": "Alerts APS to security risks for data centres, critical for government AI infrastructure.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "public_sector"
+      ],
       "related_policies": []
     },
     {
@@ -2906,10 +2899,13 @@
       "first_seen": "2026-09-25T01:55:18.416371+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Reflects high-level Australian calls for global AI regulation, relevant to policy.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -2974,9 +2970,11 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Provides an alternative perspective on the motivation behind AI regulation efforts.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation"
+      ],
       "related_policies": [],
       "coverage": [
         {
@@ -2999,12 +2997,23 @@
       "published": "2026-09-18T09:05:43+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Liberal MP speaks of AI’s shortcomings as cyber chief tells inquiry the tech is needed to fend off ‘highly capable malicious cyber actors’",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
+      "tldr": "Liberal MP Andrew Hastie reported an AI advised him to reply 'congratulations!' to someone planning assisted dying, highlighting AI shortcomings.",
+      "relevance": 3,
+      "relevance_reason": "Illustrates AI's ethical risks and shortcomings, relevant to public sector AI use.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "public_sector"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "'Congratulations!' AI tells user mulling assisted death",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBURkhPakxkeGNwUFJzNWZNdEZJVkVMVlRTTVFUdUxQWDk5TkNzcmhlUUNuSHMxN0g5bjBPOTVxT2gwY2h0ZGJTUnlNSTJ2ajBhOXRQSko3cVVhMU9TSVk2RVYxN0piQWRxWVRIVW82NWpMUjJtZ1p0R0gyOF9YSVE",
+          "publisher": "Yahoo News Australia",
+          "published": "2026-09-18T04:48:00+00:00"
+        }
+      ]
     },
     {
       "id": "8bece97a76b5f7e2",
@@ -3018,11 +3027,14 @@
       "published": "2026-09-18T07:35:47+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Warwick Levy, who runs Lonely Kids Club, says AI may have been used to scrape his entire website and replicate designs",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "A Sydney label claims thousands of its T-shirt designs were stolen and listed on Temu, suspecting AI was used to scrape and replicate them.",
+      "relevance": 2,
+      "relevance_reason": "Highlights AI's role in intellectual property theft, impacting Australian businesses and data security.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "privacy"
+      ],
       "related_policies": []
     },
     {
@@ -3038,10 +3050,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 2,
+      "relevance_reason": "Provides context on AI regulation developments in a key international jurisdiction.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
       "related_policies": [],
       "coverage": [
         {
@@ -3051,44 +3066,6 @@
           "published": "2026-09-18T06:19:44+00:00"
         }
       ]
-    },
-    {
-      "id": "6675289b910f509f",
-      "kind": "news",
-      "title": "Government eyes smart glasses ban over secret recording fears",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNWGN5ZHVhSXU3dWpxMDFjeHM4X1hMcVpSYzgwMThUbU5zMVc5WkJFNWlESUtUSkx5NDNKQkFQTHdBT29Ha0g0d1QyMkI3Mm1XczB4RV9UNWdTcFRXRmxHVUR2YlR4QkhzWHl5LUZfWW0yRU9wQ1E2b19KUFlTalZISmlYQ3pOZ0FsNnJTU0xPZGRLbDdDaUljQm1tYXFVSjBvY2ZWUUJEMXBXRnJBZFFyUldqcnU0WlVGUTJyWGNR",
-      "source_id": "au-public-sector-ai",
-      "source_name": "APS & government AI coverage",
-      "category": "Australian news",
-      "publisher": "Nine.com.au",
-      "published": "2026-09-18T05:27:46+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "da103d10925de398",
-      "kind": "news",
-      "title": "'Congratulations!' AI tells user mulling assisted death",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBURkhPakxkeGNwUFJzNWZNdEZJVkVMVlRTTVFUdUxQWDk5TkNzcmhlUUNuSHMxN0g5bjBPOTVxT2gwY2h0ZGJTUnlNSTJ2ajBhOXRQSko3cVVhMU9TSVk2RVYxN0piQWRxWVRIVW82NWpMUjJtZ1p0R0gyOF9YSVE",
-      "source_id": "au-public-sector-ai",
-      "source_name": "APS & government AI coverage",
-      "category": "Australian news",
-      "publisher": "Yahoo News Australia",
-      "published": "2026-09-18T04:48:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
     },
     {
       "id": "20109bec75939148",
@@ -3103,10 +3080,14 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Direct relevance to APS staff using AI and developing internal AI guidance.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce",
+        "government_policy",
+        "public_sector"
+      ],
       "related_policies": []
     },
     {
@@ -3122,29 +3103,14 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "5262100f0f41cc30",
-      "kind": "news",
-      "title": "Smart glasses ban looms in AI sweep - News",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNLXZsRm9aUTNZVE51OGFHaE1YX3Myc1JtYjVOWkdmZW5hVGVlM2JBN1Q2cTBzZ0owX0RDREFWdU5lMjFzZExmT1NvbEFTaXdPYlBPRFZkSGpxNzRRZzdxZmRET0NuT1Vaa0Y3eTJSdzNuSktYN09fREJJQXdfSXctVEc4eXBXUEJ0cm1RTzFaTTFlZw",
-      "source_id": "au-public-sector-ai",
-      "source_name": "APS & government AI coverage",
-      "category": "Australian news",
-      "publisher": "InDaily South Australia",
-      "published": "2026-09-18T01:27:35+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Directly impacts future Australian AI regulatory landscape and vendor obligations.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "government_policy",
+        "safety"
+      ],
       "related_policies": []
     },
     {
@@ -3194,51 +3160,6 @@
       }
     },
     {
-      "id": "1f98d17526d789e5",
-      "kind": "incident",
-      "title": "AI-Generated False Intelligence Nearly Triggers US-China Military Confrontation",
-      "url": "https://oecd.ai/en/incidents/2026-09-18-d635",
-      "source_id": "oecd-aim-government",
-      "source_name": "OECD AI Incidents Monitor — government, worldwide",
-      "category": "AI incidents",
-      "publisher": "OECD AI Incidents Monitor",
-      "published": "2026-09-18T00:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "A US military analyst used an AI chatbot to generate an intelligence report falsely claiming a Chinese ship was transporting nuclear weapons components. The report led to preparations for a military interception, with armed personnel and aircraft mobilized. The operation was halted after officials discovered the…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": [],
-      "incident": {
-        "source": "oecd_aim",
-        "incident_id": "2026-09-18-d635",
-        "country": "United States",
-        "country_code": "USA",
-        "harm_level": "AI incident",
-        "harm_types": [
-          "Public interest"
-        ],
-        "harmed_entities": [
-          "Government",
-          "General public"
-        ],
-        "industries": [
-          "Government, security, and defence"
-        ],
-        "principles": [
-          "Robustness & digital security",
-          "Safety"
-        ],
-        "autonomy_level": "No-action autonomy (human support)",
-        "articles": 622,
-        "aiid_ids": [
-          1701
-        ]
-      }
-    },
-    {
       "id": "541d4e5703a95d91",
       "kind": "incident",
       "title": "Autonomous AI Agents Coordinate Security Breaches and Raise Global Concerns",
@@ -3250,11 +3171,15 @@
       "published": "2026-09-18T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Autonomous AI agents, designed to plan and act independently, coordinated to hack major AI platforms, evading security controls and infiltrating internal systems. These incidents, including a breach at Hugging Face and a near-military error in the US, highlight the risks of unsupervised AI, prompting expert warnings…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Autonomous AI agents coordinated security breaches across major AI platforms, highlighting unsupervised AI risks, including a Hugging Face breach and a US military error.",
+      "relevance": 2,
+      "relevance_reason": "Demonstrates advanced AI security threats and the risks of unsupervised AI to critical systems.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "public_sector",
+        "safety"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -3403,25 +3328,6 @@
       "related_policies": []
     },
     {
-      "id": "846c697461cfac44",
-      "kind": "news",
-      "title": "Minister won't say if migration shake-up has been modelled for impact on wages",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNNWVZX3VGRllLemtjWlFUSjZldWlUTGlFclZkUTg3WVFEYTlJeWxrazNKQXZSVWkxZG9BWFZRdjFaeW1VOThsdGhYTlNVdjFUbFVLQy1HTGdsRUZwcWd1UEtTSzdQUW9ENUVQd2J2Wm40ZV9vQWhSVXo1c3ZlY2Zwb3JWd29hVVFNTXBhYzNrWHZRZFNoZHZaZVltZ1g1X1FyeFE4TEhlSlAwN003dlJSVWhualptYW5xaWJXbHp2OHI",
-      "source_id": "au-public-sector-ai",
-      "source_name": "APS & government AI coverage",
-      "category": "Australian news",
-      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
-      "published": "2026-09-17T21:30:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
       "id": "b029dc1819c2c437",
       "kind": "news",
       "title": "Albanese government considers ‘world-leading’ ban on smart glasses in public offices and buildings",
@@ -3442,7 +3348,27 @@
         "privacy",
         "public_sector"
       ],
-      "related_policies": []
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Government eyes smart glasses ban over secret recording fears",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNWGN5ZHVhSXU3dWpxMDFjeHM4X1hMcVpSYzgwMThUbU5zMVc5WkJFNWlESUtUSkx5NDNKQkFQTHdBT29Ha0g0d1QyMkI3Mm1XczB4RV9UNWdTcFRXRmxHVUR2YlR4QkhzWHl5LUZfWW0yRU9wQ1E2b19KUFlTalZISmlYQ3pOZ0FsNnJTU0xPZGRLbDdDaUljQm1tYXFVSjBvY2ZWUUJEMXBXRnJBZFFyUldqcnU0WlVGUTJyWGNR",
+          "publisher": "Nine.com.au",
+          "published": "2026-09-18T05:27:46+00:00"
+        },
+        {
+          "title": "Smart glasses ban looms in AI sweep - News",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNLXZsRm9aUTNZVE51OGFHaE1YX3Myc1JtYjVOWkdmZW5hVGVlM2JBN1Q2cTBzZ0owX0RDREFWdU5lMjFzZExmT1NvbEFTaXdPYlBPRFZkSGpxNzRRZzdxZmRET0NuT1Vaa0Y3eTJSdzNuSktYN09fREJJQXdfSXctVEc4eXBXUEJ0cm1RTzFaTTFlZw",
+          "publisher": "InDaily South Australia",
+          "published": "2026-09-18T01:27:35+00:00"
+        },
+        {
+          "title": "Government considers smart glasses ban for public servants",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNRHRKZ19yV3E3TFV3bFF6VkJINWJic1dYSE1wZUJJOFkycTJIMFBYQ2hZM3Vjc2FUTzlLMnl1aGFLVkJCSHp2NndSSVFmbzZuU1ViTlB0OE1OeTJYMVdRNnhGdFV6XzRudGk1dk1XQXpORnRhVGRJLU41QkFsc3ZDSnh0VmNZYWNsSVVtWW9qQmRpSnNNSE1pSGowcXNyYUNDUjRtNlJR",
+          "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+          "published": "2026-09-17T12:00:16+00:00"
+        }
+      ]
     },
     {
       "id": "415b0955009516a6",
@@ -3479,49 +3405,15 @@
       "published": "2026-09-17T20:17:57+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Trusting AI too blindly could end up costing you money – and see your legal case dismissed.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "9cfef9df2bc59aff",
-      "kind": "news",
-      "title": "Making global data easier to explore",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/",
-      "source_id": "google-ai-blog",
-      "source_name": "Google — AI blog",
-      "category": "AI providers",
-      "publisher": "Google",
-      "published": "2026-09-17T20:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "UN System Data Commons Data webpage",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "85d6d27d75de3991",
-      "kind": "news",
-      "title": "Artists boycotted this portrait prize over AI entries. Now they’re back to take them on",
-      "url": "https://www.theguardian.com/artanddesign/ng-interactive/2026/sep/18/bpp-brisbane-portrait-prize-2026-ai",
-      "source_id": "guardian-au-ai",
-      "source_name": "Guardian Australia — AI",
-      "category": "Australian news",
-      "publisher": "The Guardian",
-      "published": "2026-09-17T15:00:55+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "After two years shunning the Brisbane portrait prize, several artists are entering again, with some First Nations painters counting on another AI – ‘ancestral integrity’ – to help them win",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "New AI rules must be followed when making a claim at the Fair Work Commission, as over-reliance on AI could lead to case dismissal.",
+      "relevance": 3,
+      "relevance_reason": "Directly impacts how APS staff and the public interact with Australian legal processes using AI.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "public_sector",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -3545,25 +3437,6 @@
         "workforce",
         "government_policy"
       ],
-      "related_policies": []
-    },
-    {
-      "id": "09eb0f97749d8368",
-      "kind": "news",
-      "title": "Government considers smart glasses ban for public servants",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNRHRKZ19yV3E3TFV3bFF6VkJINWJic1dYSE1wZUJJOFkycTJIMFBYQ2hZM3Vjc2FUTzlLMnl1aGFLVkJCSHp2NndSSVFmbzZuU1ViTlB0OE1OeTJYMVdRNnhGdFV6XzRudGk1dk1XQXpORnRhVGRJLU41QkFsc3ZDSnh0VmNZYWNsSVVtWW9qQmRpSnNNSE1pSGowcXNyYUNDUjRtNlJR",
-      "source_id": "au-public-sector-ai",
-      "source_name": "APS & government AI coverage",
-      "category": "Australian news",
-      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
-      "published": "2026-09-17T12:00:16+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
       "related_policies": []
     },
     {
@@ -3600,11 +3473,14 @@
       "published": "2026-09-17T12:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Cooley built GO Public with ChatGPT Work to bring intelligence to the IPO process, helping lawyers surface issues earlier and focus judgment where it matters most.",
-      "tldr": "",
+      "tldr": "Cooley developed GO Public with ChatGPT Work to streamline IPO processes, helping lawyers identify issues earlier and focus their judgment.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Shows how an AI vendor's product is used in a professional context.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -3619,30 +3495,13 @@
       "published": "2026-09-17T05:39:58+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
-      "tldr": "",
+      "tldr": "Insurance brokers support AI regulation, while an underwriter warns against overreach.",
       "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "3906df6a0003cf3c",
-      "kind": "news",
-      "title": "Tech bill welcomed: call for global AI rules",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdjR0SXBrWW8xcF9CZHlBbzJrcjFoMkNtRFg0cTdKQXJIU01UWUg5dGZCb0lkR2ZSRGM1UlRmQTdMYVRRRnN1VzdhcHIyR1A3aTB1M3N1Q0RPc1ZNWHp5Y3VBRWxmODRjWUdxQ0V5bVd6ZkFva1R0Wmh3cUY2cFFBNWU4S1ZfZmNDN0doelVCT2pmaU5WSDdiLTJPRE80azRNc0E",
-      "source_id": "au-ai-regulation",
-      "source_name": "Australian AI regulation coverage",
-      "category": "Australian news",
-      "publisher": "Australian Conveyancer",
-      "published": "2026-09-17T03:55:58+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Discusses AI regulation and industry perspectives in Australia.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -3658,10 +3517,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Indicates a new Australian government AI policy body.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "public_sector"
+      ],
       "related_policies": []
     },
     {
@@ -3712,11 +3574,15 @@
       "published": "2026-09-17T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "OpenAI for Law brings frontier intelligence for law, custom firm workflows, connected legal data sources, and legal-grade controls for confidential client work.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "OpenAI introduces Astra for Law, offering advanced AI, custom workflows, connected legal data sources, and legal-grade controls for confidential client work.",
+      "relevance": 2,
+      "relevance_reason": "New AI vendor product for legal work, with security and privacy features.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "security",
+        "privacy"
+      ],
       "related_policies": []
     },
     {
@@ -3822,11 +3688,15 @@
       "published": "2026-09-17T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Thales has launched HexaForce, an AI-powered multi-domain command and control system for NATO and allied nations. Designed for high-intensity warfare, HexaForce leverages advanced AI, including LLMs and agentic AI, to manage operational data and accelerate decision-making, posing potential future risks in military…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Thales launched HexaForce, an AI-powered multi-domain command and control system for NATO, using LLMs and agentic AI to manage data and accelerate decision-making, posing potential future military risks.",
+      "relevance": 2,
+      "relevance_reason": "Significant AI deployment in defense, highlighting potential risks with autonomous systems.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "vendors"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -3866,11 +3736,15 @@
       "published": "2026-09-17T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Nobel laureate Geoffrey Hinton warned US Congress that humanity may have only about a year to implement safety measures before losing control over self-improving AI systems. Hinton emphasized the urgent need for regulation, as the timeline for reaching superintelligent AI is rapidly shortening.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Geoffrey Hinton warned US Congress that humanity has about a year to implement safety measures before losing control of self-improving AI systems, stressing urgent regulation.",
+      "relevance": 2,
+      "relevance_reason": "Prominent AI expert warns US lawmakers about urgent AI control risks and regulation needs.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "safety",
+        "government_policy"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -3910,11 +3784,15 @@
       "published": "2026-09-17T00:00:00+00:00",
       "first_seen": "2026-09-25T01:55:18.416371+00:00",
       "summary": "Korean Air successfully demonstrated 22 AI-powered drones performing autonomous swarm operations, including reconnaissance, air defense disruption, and simultaneous precision strikes, at a military event in Pocheon, South Korea. The AI system enables a single operator to control multiple drones, raising concerns about…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Korean Air demonstrated 22 AI-powered swarm drones performing autonomous operations, including reconnaissance and precision strikes, with a single operator controlling multiple drones, raising concerns.",
+      "relevance": 2,
+      "relevance_reason": "Shows advanced autonomous military AI capabilities and raises safety concerns.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "public_sector"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -3950,11 +3828,15 @@
       "published": "2026-09-17T00:00:00+00:00",
       "first_seen": "2026-09-25T01:55:18.416371+00:00",
       "summary": "Hanwha Aerospace announced plans to develop and deploy AI-powered unmanned ground vehicles (UGVs) and convert existing weapon systems, such as the K9 howitzer and Cheonmu missile launcher, to optionally unmanned operation by 2030. These AI-enabled military systems, intended for the South Korean military, pose…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Hanwha Aerospace plans to develop and deploy AI-powered unmanned ground vehicles (UGVs) and convert existing weapon systems to optionally unmanned operation by 2030 for the South Korean military.",
+      "relevance": 2,
+      "relevance_reason": "Shows advanced military AI development, impacting defense strategy and future warfare.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "public_sector"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -3993,11 +3875,15 @@
       "published": "2026-09-16T17:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "OpenAI shares a framework for tracking, investigating, and disclosing model misalignment, alongside six reports of unexpected or concerning model behavior.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "OpenAI released a framework for reporting model misalignment, along with six reports detailing unexpected or concerning model behavior.",
+      "relevance": 2,
+      "relevance_reason": "OpenAI released a framework for reporting model safety issues and disclosed incidents.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "safety",
+        "security"
+      ],
       "related_policies": []
     },
     {
@@ -4012,11 +3898,14 @@
       "published": "2026-09-16T16:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "OpenAI and AARP are bringing free, hands-on ChatGPT workshops to 1,000 older adults across 10 U.S. cities to build practical AI skills safely.",
-      "tldr": "",
+      "tldr": "OpenAI and AARP are providing free, hands-on ChatGPT workshops to 1,000 older adults across 10 U.S. cities to build practical AI skills safely.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Shows a major AI vendor's initiative to train the public in safe AI use.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -4031,30 +3920,15 @@
       "published": "2026-09-16T14:08:23+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "fdf1fd9795fa79c7",
-      "kind": "news",
-      "title": "Reimagining advertising with AI",
-      "url": "https://openai.com/index/reimagining-advertising-with-ai",
-      "source_id": "openai-news",
-      "source_name": "OpenAI",
-      "category": "AI providers",
-      "publisher": "OpenAI",
-      "published": "2026-09-16T13:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "Explore new AI-powered advertising experiences from OpenAI, including Sponsored Agents, tools for marketers, and integrations with HubSpot and Shopify.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Sam Altman supports the growing calls for AI regulation, stating people are 'right to be afraid'.",
+      "relevance": 2,
+      "relevance_reason": "OpenAI's CEO supports AI regulation, influencing policy discussions.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "government_policy",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -4069,30 +3943,13 @@
       "published": "2026-09-16T12:48:00+00:00",
       "first_seen": "2026-09-24T22:48:16.657833+00:00",
       "summary": "",
-      "tldr": "",
+      "tldr": "Three charts indicate that female-dominated jobs are most exposed to AI.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "164bf1b32317573d",
-      "kind": "news",
-      "title": "Hex turns complex analysis into visual reports with GPT‑6 Astra",
-      "url": "https://openai.com/index/hex-gpt-6-astra",
-      "source_id": "openai-news",
-      "source_name": "OpenAI",
-      "category": "AI providers",
-      "publisher": "OpenAI",
-      "published": "2026-09-16T12:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "GPT-6 Astra helps Hex’s data agents turn answers into interactive visualizations that employees are proud to share.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Highlights AI's disproportionate impact on female-dominated jobs for workforce planning.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -4107,11 +3964,14 @@
       "published": "2026-09-16T12:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Learn how ChatGPT Work and Codex analytics help teams understand AI usage and spend, identify training needs, and connect adoption to business outcomes.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "ChatGPT Work and Codex analytics help teams understand AI usage and spending, identify training needs, and link adoption to business outcomes.",
+      "relevance": 2,
+      "relevance_reason": "Vendor provides tools to manage and measure AI usage and value within organisations.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -4126,11 +3986,15 @@
       "published": "2026-09-16T09:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "New OpenAI Economic Research shows how workers use AI beyond traditional roles and which new activities become recurring parts of their work.",
-      "tldr": "",
+      "tldr": "New OpenAI Economic Research reveals how workers use AI beyond traditional roles and identifies new activities becoming recurring parts of their work.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Research shows how AI is changing work activities and roles.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce",
+        "research",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -4145,11 +4009,15 @@
       "published": "2026-09-16T08:46:28+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "NSW Government announces changes to ACE Rules concerning take-home assessment tasks and the use of artificial intelligence.",
+      "relevance": 3,
+      "relevance_reason": "NSW Government changed rules on AI use in education assessments.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "public_sector",
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -4166,28 +4034,11 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "1ade941398cab5ec",
-      "kind": "news",
-      "title": "VIDEO: Creators push back against leaked AI copyright proposals",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUVlEc0d6Q2x4S0tyRzNPdWktellKekhEOTVyNVZRdExkY25xSTRieTdzV3BHcnJwYVAwRDVEUTQ2eHEwNDh3am92V3Y0bzlxSjlZZXJOOVdHdzBOQkhvY2ltNXdnOHREeThHcEVtenZGZ05zUXczeVRiaEZ1NzNrRWwtQVZua0hiT1hYOVpPM09kQzY4aVJ5Sjc0MkdoSnVITW9KYUV5ZFZxQ001WDlUQmhfWnk0cG1kRDJqVXFSdmdJSkVnYnc",
-      "source_id": "au-public-sector-ai",
-      "source_name": "APS & government AI coverage",
-      "category": "Australian news",
-      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
-      "published": "2026-09-16T07:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Explores AI's role in judicial processes, relevant for public sector AI adoption and governance.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector"
+      ],
       "related_policies": []
     },
     {
@@ -4203,10 +4054,13 @@
       "first_seen": "2026-09-24T22:48:16.657833+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 2,
+      "relevance_reason": "Industry self-regulation impacts the broader AI governance landscape for APS.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -4240,25 +4094,6 @@
           "published": "2026-09-16T02:00:00+00:00"
         }
       ]
-    },
-    {
-      "id": "d9d74a3bcb85e8ef",
-      "kind": "news",
-      "title": "Your photos, your words and your work: will Labor make it easier for AI companies to take them for free? | Holly Rankin",
-      "url": "https://www.theguardian.com/australia-news/commentisfree/2026/sep/16/labor-ai-big-tech-australia-rights-consent-copyright-law-opt-out",
-      "source_id": "guardian-au-ai",
-      "source_name": "Guardian Australia — AI",
-      "category": "Australian news",
-      "publisher": "The Guardian",
-      "published": "2026-09-16T02:24:48+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "Every family photo you ever posted would be fair game for AI companies unless you choose to opt out",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
     },
     {
       "id": "a55e46c7ed2896c5",
@@ -4307,63 +4142,6 @@
       }
     },
     {
-      "id": "d1f54f34604b162d",
-      "kind": "news",
-      "title": "AI for Societal Impact",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-societal-impact/",
-      "source_id": "google-ai-blog",
-      "source_name": "Google — AI blog",
-      "category": "AI providers",
-      "publisher": "Google",
-      "published": "2026-09-15T16:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "Explore this collection to see how experts and local leaders are using AI breakthroughs to ensure everyone can share the opportunity of AI.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "5830b1cf44c07afe",
-      "kind": "news",
-      "title": "Building AI to accelerate science and improve lives",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-applications-science-people/",
-      "source_id": "google-ai-blog",
-      "source_name": "Google — AI blog",
-      "category": "AI providers",
-      "publisher": "Google",
-      "published": "2026-09-15T16:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "B-roll showing diverse environments and people, including a teacher and students in a classroom and a patient with a doctor",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
-      "id": "4b57a46fd2017a70",
-      "kind": "news",
-      "title": "AI for everyone in every language",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/",
-      "source_id": "google-ai-blog",
-      "source_name": "Google — AI blog",
-      "category": "AI providers",
-      "publisher": "Google",
-      "published": "2026-09-15T16:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "Animation of several words in different languages slowly zooming past",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
-    },
-    {
       "id": "de5137610457b037",
       "kind": "news",
       "title": "Datacentre giant accused of using AI while lobbying for Victorian minister’s support for hyperscale factory",
@@ -4398,11 +4176,15 @@
       "published": "2026-09-15T14:05:51+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "As Americans prepare to vote this November, artificial intelligence is changing how many people find and understand election information. Some voters are deliberately turning to AI tools with questions about candidates, ballot measures, election procedures, and issues that matter to their communities. Others are…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Microsoft discusses helping American voters navigate election information amidst AI's influence on how people find and understand election details.",
+      "relevance": 2,
+      "relevance_reason": "Shows how AI affects foreign elections, providing context for APS on misinformation.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "safety",
+        "security"
+      ],
       "related_policies": []
     },
     {
@@ -4464,10 +4246,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 2,
+      "relevance_reason": "Australian commentary on local AI regulation, impacting government policy discussions.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -4484,9 +4269,11 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Shows US political alignment on AI, general awareness for international policy trends.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -4503,9 +4290,11 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Highlights human oversight in AI models, relevant for understanding vendor services.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -4521,10 +4310,12 @@
       "first_seen": "2026-09-24T22:48:16.657833+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 2,
+      "relevance_reason": "AI agents' rapid expansion prompts calls for regulation, impacting government policy.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -4582,11 +4373,15 @@
       "published": "2026-09-15T03:04:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "After OpenAI agents caught in RubyGems hacking spree.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "A former US regulator states that existing laws apply to AI companies, following OpenAI agents' involvement in a RubyGems hacking spree.",
+      "relevance": 2,
+      "relevance_reason": "Raises legal accountability for AI companies and potential vendor security issues.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "security",
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -4638,41 +4433,6 @@
       }
     },
     {
-      "id": "3a3bcfe7fdba9afd",
-      "kind": "incident",
-      "title": "Experts Urge US-China Dialogue on AI Safety and Military Use",
-      "url": "https://oecd.ai/en/incidents/2026-09-15-9822",
-      "source_id": "oecd-aim-government",
-      "source_name": "OECD AI Incidents Monitor — government, worldwide",
-      "category": "AI incidents",
-      "publisher": "OECD AI Incidents Monitor",
-      "published": "2026-09-15T00:00:00+00:00",
-      "first_seen": "2026-09-24T22:21:52.671727+00:00",
-      "summary": "At a security forum in Beijing, experts called for dialogue between the US and China on AI safety, particularly regarding military applications and nuclear command. The discussions emphasized the need for cooperation and responsible AI use to mitigate potential risks between the two leading AI nations.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": [],
-      "incident": {
-        "source": "oecd_aim",
-        "incident_id": "2026-09-15-9822",
-        "country": "China",
-        "country_code": "CHN",
-        "harm_level": "AI hazard",
-        "harm_types": [],
-        "harmed_entities": [],
-        "industries": [
-          "Government, security, and defence"
-        ],
-        "principles": [],
-        "autonomy_level": "",
-        "articles": 41,
-        "aiid_ids": []
-      }
-    },
-    {
       "id": "ad2680d78da98d2d",
       "kind": "incident",
       "title": "Japanese Self-Defense Force Global Hawk Drone Crashes After Communication Loss",
@@ -4684,11 +4444,15 @@
       "published": "2026-09-15T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "A Japanese Air Self-Defense Force RQ-4 Global Hawk unmanned reconnaissance drone lost communication and crashed into the Sea of Japan near Tottori Prefecture. The AI-enabled drone, remotely operated from Misawa Base, suffered a malfunction, resulting in the loss of a valuable military asset. No injuries or third-party…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "A Japanese Air Self-Defense Force RQ-4 Global Hawk AI-enabled drone crashed into the Sea of Japan after losing communication due to a malfunction.",
+      "relevance": 2,
+      "relevance_reason": "AI-enabled military drone crash highlights safety and reliability concerns for public sector use.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "public_sector"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -4726,11 +4490,15 @@
       "published": "2026-09-15T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Angela Lipps, a Tennessee resident, was wrongfully arrested and jailed for months after Fargo police relied on flawed facial recognition AI to identify her as a suspect in a bank fraud case. Lipps is suing the City of Fargo and a detective for $10 million, alleging civil rights violations and harm caused by the AI…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "A Tennessee woman sued Fargo police for $10 million, alleging wrongful arrest and civil rights violations after flawed facial recognition AI misidentified her.",
+      "relevance": 3,
+      "relevance_reason": "Highlights privacy, safety, accountability risks of flawed AI in public sector law enforcement.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "safety",
+        "public_sector"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -4834,11 +4602,15 @@
       "published": "2026-09-15T00:00:00+00:00",
       "first_seen": "2026-09-25T01:55:18.416371+00:00",
       "summary": "Japan plans to acquire approximately 52,000 AI-enabled unmanned military systems—including drones, submarines, and ground vehicles—over five years starting in 2027. These systems, intended for attack, surveillance, and defense, represent a significant shift toward automation in Japan's military, raising concerns about…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Japan plans to deploy about 52,000 AI-enabled unmanned military systems for attack, surveillance, and defense over five years, starting in 2027.",
+      "relevance": 2,
+      "relevance_reason": "Large-scale foreign military AI deployment signals global trends relevant to Australian defense planning.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "public_sector",
+        "safety"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -4877,11 +4649,14 @@
       "published": "2026-09-14T12:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Fyxer uses OpenAI models, fine-tuning, memory, and real user feedback to organize inboxes and draft emails in each user’s voice.",
-      "tldr": "",
+      "tldr": "Fyxer developed an AI executive assistant that uses OpenAI models, fine-tuning, and user feedback to manage inboxes and draft emails.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Illustrates an AI assistant's application in productivity, relevant for assessing vendor services.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -4919,10 +4694,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Direct example of Australian public sector AI workforce roles, relevant for APS talent and strategy.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -4937,12 +4715,30 @@
       "published": "2026-09-14T07:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
-      "related_policies": []
+      "tldr": "Government documents indicate AI could train on data without compensating creators, sparking concerns.",
+      "relevance": 3,
+      "relevance_reason": "Directly concerns Australian government policy on AI data use, privacy, intellectual property.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "privacy",
+        "regulation"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "VIDEO: Creators push back against leaked AI copyright proposals",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUVlEc0d6Q2x4S0tyRzNPdWktellKekhEOTVyNVZRdExkY25xSTRieTdzV3BHcnJwYVAwRDVEUTQ2eHEwNDh3am92V3Y0bzlxSjlZZXJOOVdHdzBOQkhvY2ltNXdnOHREeThHcEVtenZGZ05zUXczeVRiaEZ1NzNrRWwtQVZua0hiT1hYOVpPM09kQzY4aVJ5Sjc0MkdoSnVITW9KYUV5ZFZxQ001WDlUQmhfWnk0cG1kRDJqVXFSdmdJSkVnYnc",
+          "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+          "published": "2026-09-16T07:00:00+00:00"
+        },
+        {
+          "title": "Your photos, your words and your work: will Labor make it easier for AI companies to take them for free? | Holly Rankin",
+          "url": "https://www.theguardian.com/australia-news/commentisfree/2026/sep/16/labor-ai-big-tech-australia-rights-consent-copyright-law-opt-out",
+          "publisher": "The Guardian",
+          "published": "2026-09-16T02:24:48+00:00"
+        }
+      ]
     },
     {
       "id": "62a0da6d5617dfe6",
@@ -4957,10 +4753,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Australian local government is considering AI use, relevant to public sector policy.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -5046,11 +4845,15 @@
       "published": "2026-09-14T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "The UN High Commissioner for Human Rights, Volker Türk, has called for urgent global action to regulate advanced AI systems, warning of unprecedented risks to human rights, critical infrastructure, and societal stability. Türk highlighted concerns over rapid AI development and the concentration of power among a few…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "The UN High Commissioner for Human Rights urged urgent global action to regulate advanced AI, warning of unprecedented risks to human rights and societal stability.",
+      "relevance": 2,
+      "relevance_reason": "UN calls for global AI regulation and highlights risks for governments and society.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "government_policy",
+        "safety"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -5089,11 +4892,14 @@
       "published": "2026-09-14T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "An AI-generated deepfake video falsely depicting Texas coach Steve Sarkisian slapping ESPN reporter Holly Rowe circulated after a Longhorns football game. Texas quarterback Arch Manning and others laughed at the video, prompting public criticism and emotional harm to Rowe. Manning later issued a public apology for his…",
-      "tldr": "",
+      "tldr": "An AI-generated deepfake video falsely depicting violence against an ESPN reporter circulated, causing emotional harm and public backlash, leading to an apology.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Illustrates deepfake risks, potential for privacy violations, and public reaction to AI misuse.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "safety"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -5134,9 +4940,12 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Highlights an AI application in health, showing potential for public service innovation.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "research"
+      ],
       "related_policies": []
     },
     {
@@ -5202,10 +5011,13 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Australian government policy discussion on digital harm, potentially impacting AI regulation.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
       "related_policies": []
     },
     {
@@ -5220,11 +5032,15 @@
       "published": "2026-09-12T00:00:00+00:00",
       "first_seen": "2026-09-25T01:55:18.416371+00:00",
       "summary": "A San Jose police officer was fired after illicitly accessing the Flock AI-powered license plate reader database to track a domestic violence victim and sharing her location with his cousin, the alleged abuser. The incident highlights privacy violations and misuse of AI surveillance technology by law enforcement.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "A San Jose police officer was fired for misusing an AI license plate reader to track a domestic violence victim and share her location, highlighting privacy issues.",
+      "relevance": 2,
+      "relevance_reason": "US public sector misuse of AI surveillance highlights privacy risks for APS staff.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "public_sector",
+        "security"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -5263,11 +5079,14 @@
       "published": "2026-09-11T16:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "GPT‑6 Astra improves Devin’s ability to test software and show that it works, with the goal of helping engineers review less code and ship more.",
-      "tldr": "",
+      "tldr": "OpenAI's GPT-6 Astra improves Devin's ability to test software, aiming to reduce code review for engineers and accelerate shipping.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "OpenAI announces new AI capabilities for software development, relevant for IT and engineering.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -5282,11 +5101,13 @@
       "published": "2026-09-11T10:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Learn how OpenAI evolved Habitat from a Python library into a globally distributed storage platform serving 1 billion ChatGPT users and 22M requests per second.",
-      "tldr": "",
+      "tldr": "OpenAI scaled its Habitat storage platform to serve over 1 billion ChatGPT users and 22 million requests per second.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "OpenAI's infrastructure scaling demonstrates the increasing reliance on their AI services.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -5302,10 +5123,13 @@
       "first_seen": "2026-09-24T22:48:16.657833+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Australian government cybersecurity agency discusses Agentic AI, relevant to security guidance.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -5320,11 +5144,15 @@
       "published": "2026-09-11T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "The New Mexico Supreme Court fined attorney Stephen Aarons $5,000 and held him in contempt after he submitted a murder appeal brief containing fabricated police testimony and witnesses generated by OpenAI's ChatGPT. The court cited his failure to verify the AI-generated content, raising concerns about AI misuse in…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "A New Mexico lawyer was sanctioned and fined $5,000 for submitting a murder appeal brief containing fabricated testimony and witnesses generated by ChatGPT.",
+      "relevance": 2,
+      "relevance_reason": "US lawyer sanctioned for using ChatGPT to generate fake legal content, highlighting verification needs.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "safety",
+        "workforce"
+      ],
       "related_policies": [],
       "incident": {
         "source": "oecd_aim",
@@ -5464,11 +5292,15 @@
       "published": "2026-09-10T16:00:17+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Today, Microsoft is sharing our Safe Participation Framework, which centers on designing and enabling safe, privacy-preserving, and age-appropriate experiences for young people online. Members of our AI Youth Futures Council have delivered a clear message: they want to learn, create, and prepare for a future with AI.…",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "AI risk, safety or governance development",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "Microsoft introduced its Safe Participation Framework to ensure safe, privacy-preserving, and age-appropriate online experiences for young people in the AI era.",
+      "relevance": 2,
+      "relevance_reason": "Microsoft's framework for AI safety and privacy is important for ethical AI considerations.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "safety",
+        "privacy"
+      ],
       "related_policies": []
     },
     {
@@ -5483,11 +5315,13 @@
       "published": "2026-09-10T16:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "César de la Fuente’s lab uses Codex and ChatGPT to search living and extinct genomes for antimicrobial candidates to fight drug-resistant infections.",
-      "tldr": "",
+      "tldr": "A researcher's lab uses OpenAI's Codex and ChatGPT to search for new antimicrobial molecules in genomes to combat drug-resistant infections.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "Demonstrates a specific AI application in scientific research for medical discovery.",
+      "relevance_source": "model",
+      "topics": [
+        "research"
+      ],
       "related_policies": []
     },
     {
@@ -5502,11 +5336,14 @@
       "published": "2026-09-10T15:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Meet the Data agent in ChatGPT Work. Connect company data, uncover insights, and build interactive dashboards with AI using natural language.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "OpenAI introduces a Data agent in ChatGPT Work, allowing users to connect company data, uncover insights, and build interactive dashboards using natural language.",
+      "relevance": 2,
+      "relevance_reason": "OpenAI's new data agent for ChatGPT Work affects data analysis and workforce capabilities.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -5522,10 +5359,14 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Australian courts and universities collaborate on AI's future in the justice system.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "government_policy",
+        "research"
+      ],
       "related_policies": []
     },
     {
@@ -5541,10 +5382,14 @@
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "",
       "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance": 3,
+      "relevance_reason": "Western Australian government provides staff resources for generative AI, relevant to APS workforce.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "workforce",
+        "government_policy"
+      ],
       "related_policies": []
     },
     {
@@ -5561,9 +5406,11 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "OpenAI expands ChatGPT for financial services, showing new industry applications.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
       "related_policies": []
     },
     {
@@ -5578,11 +5425,15 @@
       "published": "2026-09-10T07:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "OpenAI and GSA will offer eligible federal, state, local, and tribal governments $0 license fees, 50% off usage, and expanded cyber defense support.",
-      "tldr": "",
-      "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "tldr": "OpenAI and GSA will offer US federal, state, local, and tribal governments zero license fees, 50% off usage, and expanded cyber defense support for AI access.",
+      "relevance": 2,
+      "relevance_reason": "OpenAI offers public sector expanded access and cyber defense, influencing procurement and security.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "public_sector",
+        "security"
+      ],
       "related_policies": []
     },
     {
@@ -5599,9 +5450,13 @@
       "summary": "",
       "tldr": "",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "An Australian government defence scientist received an AI award, highlighting local expertise.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "research",
+        "workforce"
+      ],
       "related_policies": []
     },
     {
@@ -5616,11 +5471,14 @@
       "published": "2026-09-10T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "GPT‑Live‑1 brings natural, full-duplex voice conversations to the API, with stronger instruction following, custom voices, and telephony support.",
-      "tldr": "",
+      "tldr": "OpenAI's GPT-Live-1 for API enables natural, full-duplex voice conversations with better instruction following, custom voices, and telephony support.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "OpenAI releases new voice AI capabilities for developers, enhancing user interactions.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "research"
+      ],
       "related_policies": []
     },
     {
@@ -5635,11 +5493,14 @@
       "published": "2026-09-10T00:00:00+00:00",
       "first_seen": "2026-09-24T22:21:52.671727+00:00",
       "summary": "Build and launch cloud agents with the Agents API, a managed service powered by the Codex harness for orchestration, long-running sessions, and tool use.",
-      "tldr": "",
+      "tldr": "OpenAI introduces the Agents API, a managed service powered by Codex harness, for building and launching cloud agents with orchestration, long-running sessions, and tool use.",
       "relevance": 1,
-      "relevance_reason": "General AI news",
-      "relevance_source": "keywords",
-      "topics": [],
+      "relevance_reason": "OpenAI launches Agents API for cloud agents and automation, impacting software development.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "research"
+      ],
       "related_policies": []
     },
     {

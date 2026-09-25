@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T01:55:17.824418+00:00",
+  "generated_at": "2026-09-25T04:30:00.051105+00:00",
   "overall": "failing",
   "error_rate": 0.2105,
   "sources": {
@@ -8,14 +8,14 @@
       "status": "failing",
       "last_success": null,
       "days_since_success": null,
-      "consecutive_failures": 45,
+      "consecutive_failures": 46,
       "documents_total": 4,
       "documents_failing": 4,
       "failing": [
         {
           "url": "https://www.digital.gov.au/policy/ai/implementation",
           "label": "Implementation",
-          "consecutive_failures": 45,
+          "consecutive_failures": 46,
           "last_success": null,
           "last_error": "too_short: 256 chars is below the 500 char minimum",
           "status": "failing"
@@ -23,7 +23,7 @@
         {
           "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
           "label": "Enable And Prepare",
-          "consecutive_failures": 45,
+          "consecutive_failures": 46,
           "last_success": null,
           "last_error": "too_short: 256 chars is below the 500 char minimum",
           "status": "failing"
@@ -31,7 +31,7 @@
         {
           "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
           "label": "Engage Responsibly",
-          "consecutive_failures": 45,
+          "consecutive_failures": 46,
           "last_success": null,
           "last_error": "too_short: 256 chars is below the 500 char minimum",
           "status": "failing"
@@ -39,7 +39,7 @@
         {
           "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
           "label": "Evolve And Integrate",
-          "consecutive_failures": 45,
+          "consecutive_failures": 46,
           "last_success": null,
           "last_error": "too_short: 256 chars is below the 500 char minimum",
           "status": "failing"
@@ -49,7 +49,7 @@
     "National Archives of Australia - AI Policy": {
       "file_id": "National_Archives_of_Australia_-_AI_Policy",
       "status": "ok",
-      "last_success": "2026-09-25T11:54:00.510107+10:00",
+      "last_success": "2026-09-25T14:28:41.290287+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 1,
@@ -59,7 +59,7 @@
     "Google AI Policies": {
       "file_id": "Google_AI_Policies",
       "status": "ok",
-      "last_success": "2026-09-25T11:54:35.819967+10:00",
+      "last_success": "2026-09-25T14:29:16.288592+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 2,
@@ -69,7 +69,7 @@
     "Anthropic Legal Policies": {
       "file_id": "Anthropic_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-09-25T11:54:36.393148+10:00",
+      "last_success": "2026-09-25T14:29:16.760415+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -79,7 +79,7 @@
     "Perplexity AI Legal Policies": {
       "file_id": "Perplexity_AI_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-09-25T11:54:37.406020+10:00",
+      "last_success": "2026-09-25T14:29:17.543295+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -89,7 +89,7 @@
     "Midjourney Legal Policies": {
       "file_id": "Midjourney_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-09-25T11:54:39.420501+10:00",
+      "last_success": "2026-09-25T14:29:19.306427+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 2,
@@ -99,7 +99,7 @@
     "ACSC Information Security Manual (ISM)": {
       "file_id": "ACSC_Information_Security_Manual_ISM",
       "status": "ok",
-      "last_success": "2026-09-25T11:54:39.681620+10:00",
+      "last_success": "2026-09-25T14:29:19.889009+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 1,
@@ -109,7 +109,7 @@
     "NSW Government AI Guidance": {
       "file_id": "NSW_Government_AI_Guidance",
       "status": "ok",
-      "last_success": "2026-09-25T11:55:13.513883+10:00",
+      "last_success": "2026-09-25T14:29:54.587138+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -122,7 +122,7 @@
       "kind": "source_failing",
       "set_name": "Digital.gov.au AI Policy",
       "url": "https://www.digital.gov.au/policy/ai/implementation",
-      "consecutive_failures": 45,
+      "consecutive_failures": 46,
       "last_success": null,
       "detail": "too_short: 256 chars is below the 500 char minimum"
     },
@@ -130,7 +130,7 @@
       "kind": "source_failing",
       "set_name": "Digital.gov.au AI Policy",
       "url": "https://www.digital.gov.au/policy/ai/enable-and-prepare",
-      "consecutive_failures": 45,
+      "consecutive_failures": 46,
       "last_success": null,
       "detail": "too_short: 256 chars is below the 500 char minimum"
     },
@@ -138,7 +138,7 @@
       "kind": "source_failing",
       "set_name": "Digital.gov.au AI Policy",
       "url": "https://www.digital.gov.au/policy/ai/engage-responsibly",
-      "consecutive_failures": 45,
+      "consecutive_failures": 46,
       "last_success": null,
       "detail": "too_short: 256 chars is below the 500 char minimum"
     },
@@ -146,7 +146,7 @@
       "kind": "source_failing",
       "set_name": "Digital.gov.au AI Policy",
       "url": "https://www.digital.gov.au/policy/ai/evolve-and-integrate",
-      "consecutive_failures": 45,
+      "consecutive_failures": 46,
       "last_success": null,
       "detail": "too_short: 256 chars is below the 500 char minimum"
     }
@@ -154,14 +154,14 @@
   "activity_days": 30,
   "activity": {
     "Digital.gov.au AI Policy": {
-      "runs": 31,
-      "checks": 124,
+      "runs": 32,
+      "checks": 128,
       "unchanged": 0,
       "changed": 0,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
-      "rejected": 124,
+      "rejected": 128,
       "failed": 0,
       "baseline": 0,
       "analysed": 0,
@@ -169,9 +169,9 @@
       "declined": 0
     },
     "National Archives of Australia - AI Policy": {
-      "runs": 31,
-      "checks": 31,
-      "unchanged": 15,
+      "runs": 32,
+      "checks": 32,
+      "unchanged": 16,
       "changed": 0,
       "filtered": 0,
       "cosmetic": 0,
@@ -184,9 +184,9 @@
       "declined": 0
     },
     "Google AI Policies": {
-      "runs": 31,
-      "checks": 62,
-      "unchanged": 56,
+      "runs": 32,
+      "checks": 64,
+      "unchanged": 58,
       "changed": 4,
       "filtered": 0,
       "cosmetic": 0,
@@ -199,9 +199,9 @@
       "declined": 3
     },
     "Anthropic Legal Policies": {
-      "runs": 31,
-      "checks": 93,
-      "unchanged": 88,
+      "runs": 32,
+      "checks": 96,
+      "unchanged": 91,
       "changed": 2,
       "filtered": 0,
       "cosmetic": 0,
@@ -214,9 +214,9 @@
       "declined": 0
     },
     "Perplexity AI Legal Policies": {
-      "runs": 31,
-      "checks": 93,
-      "unchanged": 90,
+      "runs": 32,
+      "checks": 96,
+      "unchanged": 93,
       "changed": 0,
       "filtered": 0,
       "cosmetic": 0,
@@ -229,9 +229,9 @@
       "declined": 0
     },
     "Midjourney Legal Policies": {
-      "runs": 31,
-      "checks": 62,
-      "unchanged": 59,
+      "runs": 32,
+      "checks": 64,
+      "unchanged": 61,
       "changed": 1,
       "filtered": 0,
       "cosmetic": 0,
@@ -244,9 +244,9 @@
       "declined": 0
     },
     "ACSC Information Security Manual (ISM)": {
-      "runs": 31,
-      "checks": 31,
-      "unchanged": 29,
+      "runs": 32,
+      "checks": 32,
+      "unchanged": 30,
       "changed": 1,
       "filtered": 0,
       "cosmetic": 0,
@@ -259,9 +259,9 @@
       "declined": 1
     },
     "NSW Government AI Guidance": {
-      "runs": 31,
-      "checks": 93,
-      "unchanged": 60,
+      "runs": 32,
+      "checks": 96,
+      "unchanged": 63,
       "changed": 1,
       "filtered": 0,
       "cosmetic": 0,
@@ -423,8 +423,8 @@
       },
       {
         "date": "2026-09-25",
-        "checks": 8,
-        "rejected": 8
+        "checks": 12,
+        "rejected": 12
       }
     ],
     "National Archives of Australia - AI Policy": [
@@ -575,9 +575,9 @@
       },
       {
         "date": "2026-09-25",
-        "checks": 2,
+        "checks": 3,
         "baseline": 1,
-        "unchanged": 1
+        "unchanged": 2
       }
     ],
     "Google AI Policies": [
@@ -738,9 +738,9 @@
       },
       {
         "date": "2026-09-25",
-        "checks": 4,
+        "checks": 6,
         "baseline": 2,
-        "unchanged": 2
+        "unchanged": 4
       }
     ],
     "Anthropic Legal Policies": [
@@ -895,9 +895,9 @@
       },
       {
         "date": "2026-09-25",
-        "checks": 6,
+        "checks": 9,
         "baseline": 3,
-        "unchanged": 3
+        "unchanged": 6
       }
     ],
     "Perplexity AI Legal Policies": [
@@ -1048,9 +1048,9 @@
       },
       {
         "date": "2026-09-25",
-        "checks": 6,
+        "checks": 9,
         "baseline": 3,
-        "unchanged": 3
+        "unchanged": 6
       }
     ],
     "Midjourney Legal Policies": [
@@ -1204,9 +1204,9 @@
       },
       {
         "date": "2026-09-25",
-        "checks": 4,
+        "checks": 6,
         "baseline": 2,
-        "unchanged": 2
+        "unchanged": 4
       }
     ],
     "ACSC Information Security Manual (ISM)": [
@@ -1359,9 +1359,9 @@
       },
       {
         "date": "2026-09-25",
-        "checks": 2,
+        "checks": 3,
         "baseline": 1,
-        "unchanged": 1
+        "unchanged": 2
       }
     ],
     "NSW Government AI Guidance": [
@@ -1544,9 +1544,9 @@
       },
       {
         "date": "2026-09-25",
-        "checks": 6,
+        "checks": 9,
         "baseline": 3,
-        "unchanged": 3
+        "unchanged": 6
       }
     ]
   }
