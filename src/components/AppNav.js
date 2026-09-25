@@ -7,6 +7,7 @@ const NAV = [
   { to: '/policies', label: 'Policy watch', icon: 'policy', countKey: 'review', section: /^\/polic(y|ies)\b/ },
   { to: '/news', label: 'News', icon: 'news', countKey: 'news' },
   { to: '/incidents', label: 'AI incidents', icon: 'incident', countKey: 'incidents' },
+  { to: '/transparency', label: 'Transparency', icon: 'eye', countKey: 'transparency' },
   { to: '/sources', label: 'Sources', icon: 'sources' },
 ];
 
@@ -14,13 +15,14 @@ const COUNT_LABELS = {
   review: (n) => `${n} policy change${n === 1 ? '' : 's'} to review`,
   news: (n) => `${n} new since your last visit`,
   incidents: (n) => `${n} new since your last visit`,
+  transparency: (n) => `${n} statement update${n === 1 ? '' : 's'} since your last visit`,
 };
 
 /**
  * The app's navigation: the sections, a search launcher, and a live status
  * line saying whether every source is actually being read. Policy watch
  * carries the only count that asks for action — changes still to review —
- * so it is styled as one; News and AI incidents only say what is new.
+ * so it is styled as one; the other sections only say what is new.
  */
 function AppNav({ counts = {}, status, darkMode, onToggleDarkMode, onOpenSearch, onOpenAbout, open, onClose }) {
   const { pathname } = useLocation();

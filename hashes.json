@@ -2032,49 +2032,6 @@
         },
         "status": "ok"
     },
-    "Commonwealth AI Transparency Statement Register": {
-        "hash": "df67f408b9671f63d068650b6313f6deb7b8d0358f521cf42ecb4db3eaf1d438",
-        "category": "Australian Government",
-        "kind": "adoption",
-        "urls": [
-            {
-                "url": "https://www.digital.gov.au/policy/ai/list-of-transparency-statements",
-                "selector": "article",
-                "label": "Register of transparency statements"
-            }
-        ],
-        "file_id": "Commonwealth_AI_Transparency_Statement_Register",
-        "last_checked": "2026-09-25T21:42:14.373216+10:00",
-        "last_amended": "2026-09-25T21:42:14.373216+10:00",
-        "last_priority": "low",
-        "last_verdict": "no_material_change",
-        "last_change": null,
-        "last_review": null,
-        "schema_failures": 0,
-        "consecutive_failures": 0,
-        "last_success": "2026-09-25T21:42:14.373216+10:00",
-        "documents": {
-            "https://www.digital.gov.au/policy/ai/list-of-transparency-statements": {
-                "doc_id": "policy-ai-list-of-transparency-statements-5c43fa7a",
-                "label": "Register of transparency statements",
-                "last_checked": "2026-09-25T21:42:14.373216+10:00",
-                "consecutive_failures": 0,
-                "http_status": null,
-                "fetch_ms": 33719,
-                "hash": "908a80c6d7acd94be353163de4692049e87efc4254b91de7ae6e2c5ead89c7b3",
-                "length": 7246,
-                "etag": null,
-                "last_modified": null,
-                "extractor": "selenium+trafilatura",
-                "pipeline_version": 3,
-                "last_success": "2026-09-25T21:42:14.373216+10:00",
-                "last_error": "",
-                "status": "new",
-                "last_changed": "2026-09-25T21:42:14.373216+10:00"
-            }
-        },
-        "status": "ok"
-    },
     "PSPF AI Policy Advisories": {
         "hash": "8dcf64221edcfca9fd7ee5c55ec6987326cadf5c37962d1ccd1d0e81e3af9c79",
         "category": "Australian Government",

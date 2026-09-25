@@ -73,14 +73,25 @@ keyword relevance scoring, links to the monitored policies, and repeats folded �
 all before one batched Gemini pass that writes a TLDR, refines the score and folds
 the remaining repeat coverage of the same story. See [`BACKEND.md`](BACKEND.md#news-and-ai-incidents).
 
-**Dashboard (`src/`)** — A React single-page app with five views: an **Overview**
+**AI transparency statements (`transparency_watch.py`)** — The DTA's central register
+of AI transparency statements is read for its list of agencies, so an agency joining,
+leaving or moving its statement is found by comparing lists, with no model call. Each
+statement is then monitored as its own source through the same gates as a policy, and
+the statements that genuinely changed go to Gemini in one batched call that says what
+the agency now says differently about its AI use. See
+[`BACKEND.md`](BACKEND.md#ai-transparency-statements).
+
+**Dashboard (`src/`)** — A React single-page app with six views: an **Overview**
 briefing (a one-paragraph summary of what's new since your last visit, a **review
 queue** of material policy changes that you mark off as you read them, a timeline of
 every source's changes, top news and Australian incidents, and a copyable weekly
-briefing); **Policy watch** (every source on one timeline, then per policy: the
+briefing); **Policy watch** (filterable to government or private-sector policies;
+every source on one timeline, then per policy: the
 diff with changed words highlighted, which document changed, a month of daily checks,
 the change history, related news); **News** and **AI incidents** (filterable,
-shareable views with a per-day chart); and **Sources** (every source's daily read
+shareable views with a per-day chart); **Transparency** (every agency's AI
+transparency statement by portfolio, what changed in each, who joined or left the
+register, and which statements are dated over a year ago); and **Sources** (every source's daily read
 status, and a funnel of how many would-be changes were filtered). Policy changes are
 the only thing the dashboard asks anyone to act on; news relevance is shown as a
 quiet signal, never as a call to action. Press Ctrl/⌘+K anywhere to search it all.
@@ -100,8 +111,6 @@ selector to target the relevant part of the page). The current sets cover:
   AI hub, AI technical standard, agentic AI addendum and AI impact assessment tool; PSPF
   policy advisories; OAIC guidance on commercially available AI products; National
   Archives AI Policy; ACSC Information Security Manual (ISM)
-- **Across government** — the register of Commonwealth AI transparency statements,
-  tracked as an adoption signal (`"kind": "adoption"`) rather than a policy change
 - **State Government** — NSW Government AI Guidance
 - **Private Sector** — each provider's consumer terms and, separately, the enterprise
   and API terms that govern agency use:
@@ -145,6 +154,7 @@ To monitor a new policy source, add an entry to `policy_sets.json`:
 
 ```
 main.py              # Orchestrator: sequences the gates, keeps per-document state
+transparency_watch.py # Orchestrator for AI transparency statements
 news_watch.py        # Orchestrator for the news and incident feed
 steward/             # The gates themselves
   config.py          #   steward_config.yaml, loaded and validated at startup
@@ -159,6 +169,7 @@ steward/             # The gates themselves
   feeds.py           #   RSS/Atom parsing and the OECD AIM API
   news.py            #   news gates: window, dedupe, AI gate, relevance, cross-links
   news_enrichment.py #   the batched model pass over news items
+  transparency.py    #   the register parser, statement dates, the batched summary
 steward_config.yaml  # Thresholds, watchlist, news vocabulary — validated, fail-fast
 policy_sets.json     # Configuration of monitored policy sources
 news_sources.json    # Configuration of news and incident feeds
@@ -171,6 +182,7 @@ diffs/               # Unified diff behind the most recent analysis per set
 analysis/            # Latest AI analysis (JSON) per policy set
 logs/                # Archived snapshots, diffs and analyses of past versions
 news/                # feed.json (what the app reads), archive/, state.json
+transparency/        # statements.json and events.json (what the app reads), snapshots/, diffs/
 tests/               # Pipeline tests (stdlib unittest, no network or API key)
 requirements.txt     # Python dependencies
 src/                 # React dashboard (components, hooks, utils)
@@ -195,7 +207,8 @@ pip install -r requirements.txt
 
 # Configure your environment (see .env.example)
 export GEMINI_API_KEY="your-api-key"
-# Optional proxy for sites with bot detection:
+# Optional proxy; not needed for the sites monitored today (hosts that refuse
+# plain HTTP are read in a browser, or from the Internet Archive as a last resort):
 # export PROXY_HOST=... PROXY_PORT=... PROXY_USER=... PROXY_PASS=...
 
 # Run a check
@@ -204,8 +217,12 @@ python main.py
 # Run every gate and report what would happen, changing nothing on disk
 python main.py --dry-run
 
-# Limit the run to one policy set (skips the news feed)
+# Limit the run to one policy set (skips the transparency statements and news)
 python main.py --only "Anthropic Legal Policies"
+
+# Refresh just the transparency statements, or dry-run them
+python transparency_watch.py
+python transparency_watch.py --dry-run
 
 # Refresh just the news and incident feed, or dry-run one feed
 python news_watch.py
@@ -258,7 +275,8 @@ Two GitHub Actions workflows live in `.github/workflows/`:
 
 - **`update_checker.yml`** — Runs daily at midnight UTC (and on manual dispatch or
   pushes to `main` that touch app/config files). It installs Chrome and
-  dependencies, runs the pipeline tests, runs `main.py` and then `news_watch.py`,
+  dependencies, runs the pipeline tests, runs `main.py`, `transparency_watch.py`
+  and `news_watch.py`,
   commits any changes,
   opens or updates a `source-health` issue when a source is failing, builds the
   React app, and deploys it to GitHub Pages. Requires the `GEMINI_API_KEY` secret

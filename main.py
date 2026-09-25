@@ -186,14 +186,6 @@ def validate_policy_sets(policy_sets: list) -> list:
         if not all(isinstance(u, dict) and u.get("url") for u in urls):
             log.warning("Skipping policy_sets[%d] (%s): malformed url entry", i, name)
             continue
-        if ps.get("kind", llm.POLICY) not in llm.SET_KINDS:
-            log.warning(
-                "Skipping policy_sets[%d] (%s): 'kind' must be one of %s",
-                i,
-                name,
-                ", ".join(llm.SET_KINDS),
-            )
-            continue
         seen_names.add(name)
         valid.append(ps)
     return valid
@@ -253,23 +245,30 @@ def process_document(
     prior: dict,
     cfg,
     timestamp: str,
+    session: Optional[fetching.FetchSession] = None,
+    stored_text: Optional[str] = None,
 ) -> Tuple[dict, str, Optional[diffing.DiffResult], str]:
     """Run one document through every gate.
 
-    Returns (record, outcome, diff_or_None, current_text).
+    `stored_text` is the baseline to compare against; by default it is read
+    from the policy set's snapshot. Nothing is written here — the caller
+    decides what to keep. Returns (record, outcome, diff_or_None,
+    current_text).
     """
     url = url_data["url"]
     doc_id = prior.get("doc_id") or content.document_id(url)
     label = content.document_label(url_data)
-    stored_text = read_text(document_snapshot_path(file_id, doc_id))
+    if stored_text is None:
+        stored_text = read_text(document_snapshot_path(file_id, doc_id))
 
     record = dict(prior)
     record.update({"doc_id": doc_id, "label": label, "last_checked": timestamp})
     record.setdefault("consecutive_failures", 0)
 
-    result = fetching.fetch_document(url_data, prior, cfg, policy_set)
+    result = fetching.fetch_document(url_data, prior, cfg, policy_set, session=session)
     record["http_status"] = result.http_status
     record["fetch_ms"] = result.duration_ms
+    record.update(fetch_route_fields(result, prior, timestamp))
 
     # Stage 1 — the metadata probe answered it.
     if result.status == fetching.NOT_MODIFIED:
@@ -409,6 +408,28 @@ def process_document(
     return record, DOC_CHANGED, diff, normalised
 
 
+def fetch_route_fields(result: fetching.FetchResult, prior: dict, timestamp: str) -> dict:
+    """How the document was reached, kept so the next run can go straight there.
+
+    `plain_blocked_at` is when a plain GET was last refused: refreshed when it
+    is refused again, cleared when plain HTTP works, and carried unchanged
+    when plain HTTP was skipped because the host was already known to refuse
+    it — so it ages out and plain HTTP is retried after
+    `fetch.blocked_host_recheck_days`.
+    """
+    fields: Dict[str, Any] = {}
+    if result.route:
+        fields["route"] = result.route
+    fields["archived_at"] = result.archived_at
+    if result.plain_blocked is True:
+        fields["plain_blocked_at"] = timestamp
+    elif result.plain_blocked is False:
+        fields["plain_blocked_at"] = None
+    else:
+        fields["plain_blocked_at"] = prior.get("plain_blocked_at")
+    return fields
+
+
 def _is_plausible_capture(text: str, cfg) -> bool:
     """Whether stored text passes the absolute checks a fresh capture must."""
     return validate_capture(
@@ -439,6 +460,7 @@ def process_policy_set(
     cfg,
     run_log: runlog.RunLog,
     dry_run: bool,
+    session: Optional[fetching.FetchSession] = None,
 ) -> dict:
     set_name = policy_set["setName"]
     file_id = slugify_set_name(set_name)
@@ -459,7 +481,7 @@ def process_policy_set(
     for url_data in policy_set["urls"]:
         url = url_data["url"]
         record, outcome, diff, text = process_document(
-            url_data, policy_set, file_id, prior_documents.get(url, {}), cfg, timestamp
+            url_data, policy_set, file_id, prior_documents.get(url, {}), cfg, timestamp, session
         )
         documents[url] = record
         outcomes[url] = outcome
@@ -495,7 +517,6 @@ def process_policy_set(
     entry: Dict[str, Any] = {
         "hash": rollup_hash([documents[u].get("hash", "") for u in sorted(documents)]),
         "category": policy_set["category"],
-        "kind": policy_set.get("kind", llm.POLICY),
         "urls": policy_set["urls"],
         "file_id": file_id,
         "last_checked": timestamp,
@@ -599,7 +620,6 @@ def process_policy_set(
         model=cfg.model,
         changed_documents=changed_labels,
         tags=unique_tags,
-        kind=policy_set.get("kind", llm.POLICY),
     )
 
     run_log.record(
@@ -701,6 +721,17 @@ def process_policy_set(
     return entry
 
 
+def stored_documents(hashes: Dict[str, Any]) -> List[Tuple[str, dict]]:
+    """Every (url, record) pair held in hashes.json."""
+    return [
+        (url, record)
+        for entry in hashes.values()
+        if isinstance(entry, dict)
+        for url, record in (entry.get("documents") or {}).items()
+        if isinstance(record, dict)
+    ]
+
+
 def _stamp(timestamp: str) -> str:
     try:
         return datetime.fromisoformat(timestamp).strftime("%Y%m%d_%H%M%S")
@@ -756,12 +787,17 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
         action="append",
         default=None,
         metavar="SET_NAME",
-        help="Limit the run to the named policy set. Repeatable. Implies --skip-news.",
+        help="Limit the run to the named policy set. Repeatable. Implies --skip-news and --skip-transparency.",
     )
     parser.add_argument(
         "--skip-news",
         action="store_true",
-        help="Check the policy sets only; leave the news and incident feed alone.",
+        help="Leave the news and incident feed alone.",
+    )
+    parser.add_argument(
+        "--skip-transparency",
+        action="store_true",
+        help="Leave the AI transparency statements alone.",
     )
     return parser.parse_args(argv)
 
@@ -785,6 +821,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         log.error("%s must contain a JSON array. Exiting.", POLICY_SETS_FILE)
         return 1
 
+    configured_names = {ps.get("setName") for ps in policy_sets if isinstance(ps, dict)}
     policy_sets = validate_policy_sets(policy_sets)
     if args.only:
         wanted = set(args.only)
@@ -801,28 +838,36 @@ def main(argv: Optional[List[str]] = None) -> int:
     run_log = runlog.RunLog(run_id)
     log.info("Run %s starting — %d policy set(s)%s", run_id, len(policy_sets), " [dry-run]" if args.dry_run else "")
 
+    session = fetching.FetchSession.remembering(
+        stored_documents(previous_hashes), cfg.fetch.blocked_host_recheck_days
+    )
     current_hashes: Dict[str, Any] = {}
-    for policy_set in policy_sets:
-        set_name = policy_set["setName"]
-        try:
-            current_hashes[set_name] = process_policy_set(
-                policy_set, previous_hashes.get(set_name, {}), cfg, run_log, args.dry_run
-            )
-        except Exception as exc:  # noqa: BLE001 — one bad source must not lose the run
-            log.exception("Unhandled error processing '%s': %s", set_name, exc)
-            if set_name in previous_hashes:
-                current_hashes[set_name] = previous_hashes[set_name]
+    try:
+        for policy_set in policy_sets:
+            set_name = policy_set["setName"]
+            try:
+                current_hashes[set_name] = process_policy_set(
+                    policy_set, previous_hashes.get(set_name, {}), cfg, run_log, args.dry_run, session
+                )
+            except Exception as exc:  # noqa: BLE001 — one bad source must not lose the run
+                log.exception("Unhandled error processing '%s': %s", set_name, exc)
+                if set_name in previous_hashes:
+                    current_hashes[set_name] = previous_hashes[set_name]
+    finally:
+        session.close()
 
-    # Sets that were skipped this run keep their stored state rather than
-    # vanishing from the dashboard.
+    # Sets that were skipped this run (--only, or a malformed entry) keep
+    # their stored state rather than vanishing from the dashboard. A set
+    # removed from policy_sets.json is dropped.
     for set_name, entry in previous_hashes.items():
-        current_hashes.setdefault(set_name, entry)
+        if set_name in configured_names:
+            current_hashes.setdefault(set_name, entry)
 
     report = health.build_report(current_hashes, cfg, runlog.error_rate(run_log.records))
 
     if args.dry_run:
         _report_dry_run(run_log, report)
-        return _run_news(cfg, args)
+        return _run_streams(cfg, args)
 
     save_json_file(current_hashes, HASHES_FILE)
     run_log.flush(cfg.retention.run_log_days)
@@ -853,24 +898,36 @@ def main(argv: Optional[List[str]] = None) -> int:
         totals["output_tokens"],
         report["overall"],
     )
-    return _run_news(cfg, args)
+    return _run_streams(cfg, args)
 
 
-def _run_news(cfg, args: argparse.Namespace) -> int:
-    """The news and incident feed, after the policy check.
+def _run_streams(cfg, args: argparse.Namespace) -> int:
+    """The transparency statements and the news feed, after the policy check.
 
-    Imported here rather than at the top so a policy-only run never loads it,
-    and isolated so a failure there cannot touch what the policy run wrote.
+    Imported here rather than at the top so a policy-only run never loads
+    them, and isolated so a failure in one cannot touch what the policy run
+    or the other stream wrote.
     """
-    if args.skip_news or args.only:
+    if args.only:
         return 0
-    try:
-        import news_watch
+    status = 0
+    if not args.skip_transparency:
+        try:
+            import transparency_watch
 
-        return news_watch.run(cfg, dry_run=args.dry_run)
-    except Exception as exc:  # noqa: BLE001 — the policy results are already saved
-        log.exception("News run failed: %s", exc)
-        return 1
+            status = max(status, transparency_watch.run(cfg, dry_run=args.dry_run))
+        except Exception as exc:  # noqa: BLE001 — the policy results are already saved
+            log.exception("Transparency run failed: %s", exc)
+            status = 1
+    if not args.skip_news:
+        try:
+            import news_watch
+
+            status = max(status, news_watch.run(cfg, dry_run=args.dry_run))
+        except Exception as exc:  # noqa: BLE001 — the policy results are already saved
+            log.exception("News run failed: %s", exc)
+            status = 1
+    return status
 
 
 def _report_dry_run(run_log: runlog.RunLog, report: Dict[str, Any]) -> None:

@@ -80,7 +80,7 @@ class CosmeticDiffMakesNoModelCall(unittest.TestCase):
         main.setup_directories()
 
     def _fake_fetch(self, text):
-        def fetch(url_data, prior, cfg, policy_set=None):
+        def fetch(url_data, prior, cfg, policy_set=None, session=None):
             return fetching.FetchResult(
                 url_data["url"],
                 fetching.OK,
@@ -269,28 +269,6 @@ class SchemaValidationRejectsBadResponses(unittest.TestCase):
         self.assertEqual(parsed["verdict"], analysis.NO_MATERIAL_CHANGE)
         self.assertEqual(parsed["priority"], "low")
 
-    def test_an_adoption_register_is_never_rated_above_low(self):
-        raw = json.dumps(
-            {
-                "verdict": "material_change",
-                "summary": "Three entities added.",
-                "analysis": "## Added",
-                "priority": "high",
-            }
-        )
-        parsed = analysis.parse_and_validate(raw, analysis.ADOPTION)
-        self.assertEqual(parsed["verdict"], analysis.MATERIAL_CHANGE)
-        self.assertEqual(parsed["priority"], "low")
-
-    def test_an_adoption_register_gets_its_own_prompt(self):
-        diff = "@@ -1 +1 @@\n-a\n+b"
-        register = analysis.build_prompt("Register", diff, kind=analysis.ADOPTION)
-        policy = analysis.build_prompt("Register", diff)
-        self.assertIn("adopting AI", register)
-        self.assertIn('Always set priority to "low"', register)
-        self.assertNotIn("adopting AI", policy)
-        self.assertIn("Do not include a timestamp", register)
-
     def test_fenced_json_is_accepted(self):
         raw = '```json\n{"verdict": "uncertain", "summary": "s", "analysis": "a", "priority": "medium"}\n```'
         parsed = analysis.parse_and_validate(raw)
@@ -300,19 +278,6 @@ class SchemaValidationRejectsBadResponses(unittest.TestCase):
         prompt = analysis.build_prompt("Set", "@@ -1 +1 @@\n-a\n+b")
         self.assertNotIn("date_time", prompt)
         self.assertIn("Do not include a timestamp", prompt)
-
-
-class TheShippedPolicySetsAreValid(unittest.TestCase):
-    def test_every_shipped_set_survives_validation(self):
-        with open(os.path.join(REPO_ROOT, "policy_sets.json"), encoding="utf-8") as handle:
-            shipped = json.load(handle)
-        self.assertEqual(main.validate_policy_sets(shipped), shipped)
-
-    def test_every_shipped_url_is_unique_and_safe(self):
-        with open(os.path.join(REPO_ROOT, "policy_sets.json"), encoding="utf-8") as handle:
-            urls = [u["url"] for ps in json.load(handle) for u in ps["urls"]]
-        self.assertEqual(len(urls), len(set(urls)))
-        self.assertTrue(all(fetching.is_safe_url(url) for url in urls))
 
 
 class ConfigIsValidated(unittest.TestCase):

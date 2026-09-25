@@ -13,13 +13,16 @@ import PoliciesOverview from './components/PoliciesOverview';
 import PolicyDetail from './components/PolicyDetail';
 import PolicyLayout from './components/PolicyLayout';
 import SourcesView from './components/SourcesView';
+import TransparencyView from './components/TransparencyView';
 import { useNews } from './hooks/useNews';
 import { usePolicySets } from './hooks/usePolicySets';
 import { ReviewsProvider, useReviews } from './hooks/useReviews';
 import { ToastProvider } from './hooks/useToast';
+import { useTransparency } from './hooks/useTransparency';
 import { REPO_URL, timestampOf } from './utils/constants';
 import { formatAgo, isAustralianIncident, isNew } from './utils/news';
 import { reviewQueue } from './utils/reviews';
+import { isNewEvent, isNotable } from './utils/transparency';
 import { recordVisit } from './utils/visits';
 
 const initialDarkMode = () => {
@@ -64,6 +67,7 @@ function systemStatusOf(policySets, health) {
 function AppFrame({ darkMode, setDarkMode, since }) {
   const { policySets, health, loading, error } = usePolicySets();
   const news = useNews();
+  const transparency = useTransparency();
   const { reviewed } = useReviews();
   const { pathname } = useLocation();
   const [navOpen, setNavOpen] = useState(false);
@@ -100,8 +104,11 @@ function AppFrame({ darkMode, setDarkMode, since }) {
       review: reviewQueue(policySets, reviewed).pending.length,
       news: since ? items.filter((item) => item.kind === 'news' && item.relevance >= 2 && isNew(item, since)).length : 0,
       incidents: since ? items.filter((item) => isAustralianIncident(item) && isNew(item, since)).length : 0,
+      transparency: since
+        ? transparency.data.events.filter((event) => isNotable(event) && isNewEvent(event, since)).length
+        : 0,
     };
-  }, [since, news.feed.items, policySets, reviewed]);
+  }, [since, news.feed.items, policySets, reviewed, transparency.data.events]);
 
   const status = useMemo(() => systemStatusOf(policySets, health), [policySets, health]);
   const toggleTheme = useCallback(() => setDarkMode((value) => !value), [setDarkMode]);
@@ -151,7 +158,16 @@ function AppFrame({ darkMode, setDarkMode, since }) {
         <Routes>
           <Route
             path="/"
-            element={<DashboardHome policySets={policySets} health={health} feed={news.feed} since={since} loading={loading} />}
+            element={
+              <DashboardHome
+                policySets={policySets}
+                health={health}
+                feed={news.feed}
+                transparency={transparency.data}
+                since={since}
+                loading={loading}
+              />
+            }
           />
           <Route element={<PolicyLayout {...policyProps} />}>
             <Route
@@ -162,6 +178,17 @@ function AppFrame({ darkMode, setDarkMode, since }) {
           <Route path="/policies" element={<PoliciesOverview {...policyProps} />} />
           <Route path="/news" element={<NewsFeed {...feedProps} />} />
           <Route path="/incidents" element={<IncidentsView {...feedProps} />} />
+          <Route
+            path="/transparency"
+            element={
+              <TransparencyView
+                data={transparency.data}
+                loading={transparency.loading}
+                error={transparency.error}
+                since={since}
+              />
+            }
+          />
           <Route path="/sources" element={<SourcesView policySets={policySets} health={health} feed={news.feed} />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
@@ -172,6 +199,7 @@ function AppFrame({ darkMode, setDarkMode, since }) {
         onClose={() => setPaletteOpen(false)}
         policySets={policySets}
         feed={news.feed}
+        statements={transparency.data.statements}
         actions={actions}
       />
       {aboutOpen && <AboutModal onClose={() => setAboutOpen(false)} />}

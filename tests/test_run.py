@@ -79,7 +79,7 @@ class RunHarness(unittest.TestCase):
 
     # --- Stubs ---
 
-    def _fetch(self, url_data, prior, cfg, policy_set=None):
+    def _fetch(self, url_data, prior, cfg, policy_set=None, session=None):
         url = url_data["url"]
         if url not in self.responses:
             return fetching.FetchResult(url, fetching.FAILED, error="no fixture registered")
@@ -90,16 +90,13 @@ class RunHarness(unittest.TestCase):
             url, fetching.OK, text=text, extractor=fetching.EXTRACTOR_TRAFILATURA
         )
 
-    def _analyse(
-        self, set_name, diff_text, *, model, changed_documents=(), tags=(), kind=llm.POLICY, client=None
-    ):
+    def _analyse(self, set_name, diff_text, *, model, changed_documents=(), tags=(), client=None):
         self.llm_calls.append(
             {
                 "set_name": set_name,
                 "diff": diff_text,
                 "changed_documents": list(changed_documents),
                 "tags": list(tags),
-                "kind": kind,
             }
         )
         return llm.AnalysisOutcome(
@@ -298,36 +295,6 @@ class AGenuineChangeStillGetsThrough(RunHarness):
         self.assertEqual(self.llm_calls, [])
         self.assertEqual(entry, self.previous)
         self.assertFalse(os.path.exists(main.diff_path(FILE_ID)))
-
-
-class AnAdoptionRegisterIsDescribedNotRated(RunHarness):
-    """The transparency-statement register records what other agencies do; a
-    change to it is analysed for adoption, not rated as a risk to the reader."""
-
-    def setUp(self):
-        super().setUp()
-        self.seventh = archived("7aug")
-        self.previous = self.seed_from(self.seventh)
-        edited = self.seventh[AUP].replace(
-            "Acceptable Use Policy", "Acceptable Use Policy\n\nIP Australia", 1
-        )
-        self.responses = {TOS: self.seventh[TOS], PRIVACY: self.seventh[PRIVACY], AUP: edited}
-        self.register = dict(PERPLEXITY_SET, kind=llm.ADOPTION)
-
-    def test_the_model_is_told_the_set_is_an_adoption_register(self):
-        entry = main.process_policy_set(self.register, self.previous, self.cfg, runlog.RunLog("test"), False)
-        self.assertEqual(len(self.llm_calls), 1)
-        self.assertEqual(self.llm_calls[0]["kind"], llm.ADOPTION)
-        self.assertEqual(entry["kind"], llm.ADOPTION)
-
-    def test_an_ordinary_set_is_recorded_as_a_policy(self):
-        entry, _ = self.run_set(self.previous)
-        self.assertEqual(self.llm_calls[0]["kind"], llm.POLICY)
-        self.assertEqual(entry["kind"], llm.POLICY)
-
-    def test_an_unknown_kind_is_skipped(self):
-        typo = dict(PERPLEXITY_SET, kind="adoptoin")
-        self.assertEqual(main.validate_policy_sets([typo, PERPLEXITY_SET]), [PERPLEXITY_SET])
 
 
 class TheModelIsAllowedToDecline(RunHarness):

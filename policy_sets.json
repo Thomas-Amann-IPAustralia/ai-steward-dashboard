@@ -503,22 +503,6 @@
     ]
   },
   {
-    "setName": "Commonwealth AI Transparency Statement Register",
-    "category": "Australian Government",
-    "kind": "adoption",
-    "keywords": [
-      "AI transparency statement",
-      "AI transparency statements"
-    ],
-    "urls": [
-      {
-        "url": "https://www.digital.gov.au/policy/ai/list-of-transparency-statements",
-        "selector": "article",
-        "label": "Register of transparency statements"
-      }
-    ]
-  },
-  {
     "setName": "PSPF AI Policy Advisories",
     "category": "Australian Government",
     "keywords": [

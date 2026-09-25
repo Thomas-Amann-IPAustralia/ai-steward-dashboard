@@ -1,5 +1,7 @@
 beautifulsoup4==4.12.3
 google-genai==1.29.0
+# Text of documents published as PDF, such as some AI transparency statements.
+pypdf==6.19.0
 PyYAML>=6.0,<7
 requests==2.32.3
 trafilatura==2.0.0

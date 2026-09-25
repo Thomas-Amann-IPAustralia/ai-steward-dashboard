@@ -10,6 +10,8 @@ import {
   PRIORITY_DESCRIPTIONS,
   PRIORITY_ORDER,
   primaryUrl,
+  sectorOf,
+  SECTORS,
   timestampOf,
 } from '../utils/constants';
 import { isReviewed, reviewQueue } from '../utils/reviews';
@@ -49,6 +51,7 @@ function PoliciesOverview({ policySets, health, loading }) {
   const query = params.get('q') || '';
   const priority = params.get('priority') || '';
   const sort = params.get('sort') || 'recent';
+  const sector = params.get('sector') || '';
 
   const update = (key, value, fallback = '') => {
     const next = new URLSearchParams(params);
@@ -64,9 +67,26 @@ function PoliciesOverview({ policySets, health, loading }) {
     [policySets, reviewed]
   );
 
+  const sectorCounts = useMemo(
+    () =>
+      policySets.reduce((counts, set) => {
+        const key = sectorOf(set);
+        if (key) counts[key] = (counts[key] || 0) + 1;
+        return counts;
+      }, {}),
+    [policySets]
+  );
+
+  // The sector narrows everything on the page, the timeline included; the
+  // search and priority only narrow the cards.
+  const inSector = useMemo(
+    () => (sector ? policySets.filter((set) => sectorOf(set) === sector) : policySets),
+    [policySets, sector]
+  );
+
   const sets = useMemo(() => {
     const term = query.toLowerCase();
-    return policySets
+    return inSector
       .map((set) => ({ ...set, _health: healthSources[set.setName]?.status || set.status || 'ok' }))
       .filter((set) => !term || `${set.setName} ${set.category} ${primaryUrl(set)}`.toLowerCase().includes(term))
       .filter((set) => !priority || (set.last_priority || '').toLowerCase() === priority)
@@ -77,7 +97,7 @@ function PoliciesOverview({ policySets, health, loading }) {
         }
         return timestampOf(b.last_amended) - timestampOf(a.last_amended);
       });
-  }, [policySets, healthSources, query, priority, sort]);
+  }, [inSector, healthSources, query, priority, sort]);
 
   return (
     <div className="page policies-page">
@@ -125,11 +145,24 @@ function PoliciesOverview({ policySets, health, loading }) {
         {history.error ? (
           <p className="muted">{history.error}</p>
         ) : (
-          <ChangeTimeline policySets={policySets} entries={history.entries} days={range} />
+          <ChangeTimeline policySets={inSector} entries={history.entries} days={range} />
         )}
       </section>
 
       <div className="toolbar" role="search">
+        <div className="segmented" role="group" aria-label="Sector">
+          {[{ value: '', label: 'All' }, ...SECTORS].map((option) => (
+            <button
+              key={option.value || 'all'}
+              type="button"
+              aria-pressed={sector === option.value}
+              onClick={() => update('sector', option.value)}
+            >
+              {option.label}
+              <span className="chip-count">{option.value ? sectorCounts[option.value] || 0 : policySets.length}</span>
+            </button>
+          ))}
+        </div>
         <label className="input-with-icon grow">
           <Icon name="search" size={16} />
           <input
@@ -175,7 +208,7 @@ function PoliciesOverview({ policySets, health, loading }) {
           <span className="empty-icon"><Icon name="search" size={20} /></span>
           <div>
             <strong>No policies match</strong>
-            <p>Try a different search or priority.</p>
+            <p>Try a different sector, search or priority.</p>
           </div>
         </div>
       )}
@@ -187,7 +220,10 @@ function PoliciesOverview({ policySets, health, loading }) {
           const done = !pending && isReviewed(reviewed, set);
           return (
             <li key={set.file_id}>
-              <Link className={`policy-card${pending ? ' pending' : ''}`} to={`/policy/${set.file_id}`}>
+              <Link
+                className={`policy-card${pending ? ' pending' : ''}`}
+                to={{ pathname: `/policy/${set.file_id}`, search: sector ? `?sector=${sector}` : '' }}
+              >
                 <div className="policy-card-head">
                   <Lettermark url={primaryUrl(set)} name={set.setName} size={36} />
                   <div className="policy-card-title">
@@ -203,7 +239,7 @@ function PoliciesOverview({ policySets, health, loading }) {
                 </p>
                 {daily && <SourceStrip daily={daily[set.setName]} label={set.setName} />}
                 <div className="policy-card-foot">
-                  <PriorityBadge priority={set.last_priority} date={set.last_amended} kind={set.kind} />
+                  <PriorityBadge priority={set.last_priority} date={set.last_amended} />
                   <span className="foot-meta">
                     {set.last_amended ? `Changed ${formatRelative(set.last_amended)}` : 'Never changed'}
                   </span>

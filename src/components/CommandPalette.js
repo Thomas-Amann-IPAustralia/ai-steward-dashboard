@@ -10,10 +10,11 @@ const PAGES = [
   { label: 'Policy watch', to: '/policies', icon: 'policy', keywords: 'policies terms changes review' },
   { label: 'News', to: '/news', icon: 'news', keywords: 'stories feed' },
   { label: 'AI incidents', to: '/incidents', icon: 'incident', keywords: 'oecd harm hazard' },
+  { label: 'Transparency statements', to: '/transparency', icon: 'eye', keywords: 'agencies register dta adoption' },
   { label: 'Sources', to: '/sources', icon: 'sources', keywords: 'feeds health status filtering' },
 ];
 
-const GROUP_LIMITS = { Pages: 5, Policies: 8, News: 6, Incidents: 4, Actions: 4 };
+const GROUP_LIMITS = { Pages: 6, Policies: 8, Statements: 6, News: 6, Incidents: 4, Actions: 4 };
 
 /** Every word of the query appears somewhere in the entry. */
 const matches = (entry, words) => words.every((word) => entry.haystack.includes(word));
@@ -26,11 +27,12 @@ const rank = (entry, query) => {
 };
 
 /**
- * Search everything the dashboard knows — pages, monitored policies, news
- * and incidents — and jump to it from the keyboard. Opened with Ctrl/⌘+K or
+ * Search everything the dashboard knows — pages, monitored policies,
+ * agencies' transparency statements, news and incidents — and jump to it
+ * from the keyboard. Opened with Ctrl/⌘+K or
  * "/". News and incidents open the original in a new tab, as everywhere else.
  */
-function CommandPalette({ open, onClose, policySets, feed, actions = [] }) {
+function CommandPalette({ open, onClose, policySets, feed, statements = [], actions = [] }) {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
@@ -58,20 +60,30 @@ function CommandPalette({ open, onClose, policySets, feed, actions = [] }) {
       href: item.url,
       keywords: `${item.tldr || ''} ${item.summary || ''}`,
     }));
+    const statementEntries = statements.map((statement) => ({
+      group: 'Statements',
+      label: statement.agency,
+      sub: statement.last_change
+        ? `AI transparency statement · changed ${formatRelative(statement.last_change.timestamp)}`
+        : 'AI transparency statement',
+      icon: 'eye',
+      to: `/transparency?q=${encodeURIComponent(statement.agency)}`,
+      keywords: `${statement.portfolio} ${statement.url}`,
+    }));
     const actionEntries = actions.map((action) => ({ group: 'Actions', ...action }));
     const pageEntries = PAGES.map((page) => ({ group: 'Pages', ...page }));
-    return [...pageEntries, ...policyEntries, ...itemEntries, ...actionEntries].map((entry) => ({
+    return [...pageEntries, ...policyEntries, ...statementEntries, ...itemEntries, ...actionEntries].map((entry) => ({
       ...entry,
       haystack: `${entry.label} ${entry.sub || ''} ${entry.keywords || ''}`.toLowerCase(),
     }));
-  }, [policySets, feed, actions]);
+  }, [policySets, feed, statements, actions]);
 
   const groups = useMemo(() => {
     const q = query.trim().toLowerCase();
     const words = q.split(/\s+/).filter(Boolean);
     const pool = q
       ? entries.filter((entry) => matches(entry, words))
-      : entries.filter((entry) => entry.group !== 'News' && entry.group !== 'Incidents');
+      : entries.filter((entry) => !['News', 'Incidents', 'Statements'].includes(entry.group));
     const byGroup = {};
     pool.forEach((entry) => {
       (byGroup[entry.group] = byGroup[entry.group] || []).push(entry);

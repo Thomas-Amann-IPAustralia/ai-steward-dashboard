@@ -8,13 +8,16 @@ AI Steward Dashboard: a one-stop, scheduled dashboard for Australian Public
 Servants. It watches a curated list of GenAI/AI-policy web pages, detects real
 content changes and has Gemini summarise and prioritise each one; alongside
 that it gathers AI news and OECD AI Incidents Monitor records, filtered and
-ranked for relevance to APS work. Everything is published as a static React
-dashboard on GitHub Pages. Two halves:
+ranked for relevance to APS work, and follows every Commonwealth agency's AI
+transparency statement. Everything is published as a static React dashboard
+on GitHub Pages. Two halves:
 
-- **Backend** — two Python orchestrators over the pure modules in `steward/`:
-  `main.py` fetches, validates, diffs and analyses policy pages
+- **Backend** — three Python orchestrators over the pure modules in
+  `steward/`: `main.py` fetches, validates, diffs and analyses policy pages
   (`hashes.json`, `health.json`, `history.json`, `snapshots/`, `diffs/`,
-  `analysis/`, `logs/`), and `news_watch.py` builds the news and incident feed
+  `analysis/`, `logs/`), `transparency_watch.py` reads the DTA's register of
+  AI transparency statements and monitors each statement as its own source
+  (`transparency/`), and `news_watch.py` builds the news and incident feed
   (`news/`). There is no database and no server — the committed files *are*
   the datastore.
 - **Frontend** (`src/`) — a Create React App single-page app that fetches
@@ -23,8 +26,8 @@ dashboard on GitHub Pages. Two halves:
 
 Full pipeline documentation, including how to add a new monitored source or
 news feed, lives in **[`BACKEND.md`](BACKEND.md)**. Read it before touching
-anything in `steward/`, `main.py`, `news_watch.py`, `policy_sets.json` or
-`news_sources.json`.
+anything in `steward/`, `main.py`, `transparency_watch.py`, `news_watch.py`,
+`policy_sets.json` or `news_sources.json`.
 
 ## Commands
 
@@ -35,7 +38,8 @@ export GEMINI_API_KEY=...                       # required except for --dry-run
 python main.py                                  # policies, then the news feed
 python main.py --dry-run                        # run every gate, write nothing
 python main.py --only "Anthropic Legal Policies" # one policy set (repeatable; skips news)
-python main.py --skip-news                      # policies only (what CI runs)
+python main.py --skip-news --skip-transparency  # policies only (what CI runs)
+python transparency_watch.py [--dry-run] [--only STATEMENT_ID] [--no-summary]  # transparency statements only
 python news_watch.py [--dry-run] [--only FEED_ID] [--no-enrich]  # news and incidents only
 python -m unittest discover -s tests -v          # pipeline tests — no network/browser/API key
 
@@ -48,7 +52,7 @@ npm test -- --watchAll=false
 
 `npm start` alone will show an empty/broken dashboard unless the data files
 (`hashes.json`, `health.json`, `history.json`, `analysis/`, `diffs/`,
-`snapshots/`, `news/feed.json`) are present at the repo root — CRA serves the public root, and
+`snapshots/`, `news/feed.json`, `transparency/statements.json`) are present at the repo root — CRA serves the public root, and
 these files are fetched from there at runtime, not bundled.
 
 ## Architecture in one paragraph
@@ -75,10 +79,21 @@ full gate-by-gate walkthrough.
 
 - **`steward/` modules are pure and side-effect-light by design** — each one
   (`fetching`, `content`, `validation`, `diffing`, `analysis`, `health`,
-  `history`, `runlog`, `feeds`, `news`, `news_enrichment`) is independently
-  unit-testable without network, a browser, or `GEMINI_API_KEY`. Keep it that
-  way; `main.py` and `news_watch.py` are the only places that read/write files
-  and orchestrate.
+  `history`, `runlog`, `feeds`, `news`, `news_enrichment`, `transparency`) is
+  independently unit-testable without network, a browser, or
+  `GEMINI_API_KEY`. Keep it that way; `main.py`, `transparency_watch.py` and
+  `news_watch.py` are the only places that read/write files and orchestrate.
+- **AI transparency statements are their own stream, not a policy set.**
+  What agencies say about their own AI use binds nobody, so it never joins
+  the review queue and is never rated for priority. Register changes (who
+  joined, left or moved) are list comparisons and must stay free of model
+  calls; a register read that finds far fewer links than are held is a
+  failed read, never mass withdrawal (`register_is_plausible`).
+- **Blocked hosts are reached without the proxy.** Some gov.au hosts refuse
+  plain HTTP clients but let a browser through; `fetching.FetchSession`
+  remembers them (`plain_blocked_at`) and shares one browser per run, and the
+  Internet Archive's availability API is the last resort — only a capture
+  newer than the last successful read is used. Keep the proxy optional.
 - **`diffing.canonical` is for comparison only** — it folds case, quotes,
   dashes, link decoration and whitespace so the cosmetic gate can compare
   wording. Never store or display its output, and don't widen it to fold
@@ -111,7 +126,8 @@ full gate-by-gate walkthrough.
   content change is always analysed, whether or not it matches anything on
   the watchlist. Do not wire it into a skip/veto path.
 - **`hashes.json`, `health.json`, `history.json`, `runs.jsonl`, `snapshots/`,
-  `diffs/`, `analysis/`, `logs/`, `news/` are pipeline output, not source.** They're
+  `diffs/`, `analysis/`, `logs/`, `news/`, `transparency/` are pipeline output,
+  not source.** They're
   committed so GitHub Pages has something to serve and so history survives
   between runs, but they're regenerated by `main.py` / the workflow — don't
   hand-edit them except to fix a specific corrupted entry, and never hand-craft
@@ -146,6 +162,8 @@ full gate-by-gate walkthrough.
 | `steward/health.py` | Per-source health status and GitHub-issue alert body |
 | `steward/history.py` | Builds `history.json` from `logs/` |
 | `steward/runlog.py` | Appends `runs.jsonl`; per-set activity summary for `health.json` |
+| `transparency_watch.py` | Orchestrator for AI transparency statements — writes `transparency/` |
+| `steward/transparency.py` | Register parser and plausibility guard, register events, statement dates, batched summary call |
 | `news_watch.py` | Orchestrator for the news/incident feed — writes `news/` |
 | `steward/feeds.py` | RSS/Atom parsing (stdlib), OECD AI Incidents Monitor API |
 | `steward/news.py` | News gates: window, canonical ids, AI gate, relevance, cross-links, story folding |
@@ -154,7 +172,7 @@ full gate-by-gate walkthrough.
 | `news_sources.json` | **The list of news and incident feeds — edit this to add one** |
 | `steward_config.yaml` | Thresholds, watchlist, model name, retention |
 | `tests/` | stdlib `unittest`, no network/browser/API key |
-| `src/` | React dashboard (Overview, Policy watch, News, AI incidents, Sources); `src/hooks/*` fetch the pipeline's output JSON; charts are plain HTML in `src/components/charts.js`, styled by the tokens in `src/App.css` |
+| `src/` | React dashboard (Overview, Policy watch, News, AI incidents, Transparency, Sources); `src/hooks/*` fetch the pipeline's output JSON; charts are plain HTML in `src/components/charts.js`, styled by the tokens in `src/App.css` |
 | `.github/workflows/update_checker.yml` | Daily run → commit → build → deploy to Pages |
 
 ## Adding a new monitored source
