@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T11:43:28.115504+00:00",
+  "generated_at": "2026-09-25T13:32:31.524957+00:00",
   "window_days": 45,
   "min_relevance": 1,
   "sources": {
@@ -11,8 +11,8 @@
       "via": "Google News search",
       "note": "Parliament, PM&C, Treasury and agency pages about AI. Most gov.au sites refuse automated feed readers, so they are reached through search. Only headlines that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 37
@@ -25,8 +25,8 @@
       "via": "",
       "note": "Media releases, speeches and transcripts. Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 0
@@ -39,8 +39,8 @@
       "via": "",
       "note": "The ABC's artificial intelligence topic.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 11
@@ -53,8 +53,8 @@
       "via": "",
       "note": "Guardian stories tagged both Australia news and artificial intelligence. No API key needed.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 9
@@ -67,8 +67,8 @@
       "via": "",
       "note": "Only headlines that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 1
@@ -81,8 +81,8 @@
       "via": "",
       "note": "The APS's home paper. Some stories need a subscription. Only headlines that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 0
@@ -95,8 +95,8 @@
       "via": "",
       "note": "News for the Australian public sector. Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 1
@@ -109,8 +109,8 @@
       "via": "",
       "note": "Local and state government news. Only headlines that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 1
@@ -123,8 +123,8 @@
       "via": "",
       "note": "Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 3
@@ -137,8 +137,8 @@
       "via": "",
       "note": "Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 7
@@ -151,11 +151,11 @@
       "via": "Google News search",
       "note": "Australian reporting on AI in and around government.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 20
+      "items": 21
     },
     "au-ai-regulation": {
       "name": "Australian AI regulation coverage",
@@ -165,11 +165,11 @@
       "via": "Google News search",
       "note": "Reporting on AI law, guardrails and privacy reform in Australia.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
-      "items": 36
+      "items": 38
     },
     "conversation-ai": {
       "name": "The Conversation — AI",
@@ -179,8 +179,8 @@
       "via": "",
       "note": "Analysis by researchers, from the Australian edition's AI topic.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 15
@@ -193,8 +193,8 @@
       "via": "",
       "note": "",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 2
@@ -207,8 +207,8 @@
       "via": "",
       "note": "",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 0
@@ -221,8 +221,8 @@
       "via": "",
       "note": "Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 3
@@ -235,8 +235,8 @@
       "via": "",
       "note": "Includes EU AI Act implementation. Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 3
@@ -249,8 +249,8 @@
       "via": "Google News search",
       "note": "Reporting on changes to the terms, privacy and data-retention policies of AI services APS staff use.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 3
@@ -263,8 +263,8 @@
       "via": "",
       "note": "",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 90
@@ -277,8 +277,8 @@
       "via": "",
       "note": "",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 4
@@ -291,8 +291,8 @@
       "via": "",
       "note": "Microsoft's policy and legal blog. Only items that mention AI are kept.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 5
@@ -305,8 +305,8 @@
       "via": "",
       "note": "Every incident and hazard the OECD records in Australia.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 15
@@ -319,8 +319,8 @@
       "via": "",
       "note": "The most-reported incidents in the government, security and defence sector over the last fortnight.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 26
@@ -333,14 +333,36 @@
       "via": "",
       "note": "The most widely reported AI incidents worldwide over the last ten days.",
       "status": "ok",
-      "last_checked": "2026-09-25T11:43:28.115504+00:00",
-      "last_success": "2026-09-25T11:43:28.115504+00:00",
+      "last_checked": "2026-09-25T13:32:31.524957+00:00",
+      "last_success": "2026-09-25T13:32:31.524957+00:00",
       "consecutive_failures": 0,
       "last_error": "",
       "items": 6
     }
   },
   "items": [
+    {
+      "id": "9846a9fbf15a434d",
+      "kind": "news",
+      "title": "Australia probes OpenAI over AI agent health site breach",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQNUV0Tk9maEEta2dEUE9zbXg1NVRpMW9LZlFjeGFnUG9SV3dkNW1zSm96V0otLWx2WjV6UHR6aHc5WFVUMVNGMndRb2FqSzQ3VDZ2QTdXdGlwRlh4M21RWXlvUnQzTXQ0RlV5R0FwZGpnQTdwT3ZELXZjcUx6bG5SX19kblhxRHg1R2t3a2NReTJsbWFWQWkwTDZWMHpTaFZlc1czN3FRazJGQU51UlNtVDFiVktrdw",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "thepaypers.com",
+      "published": "2026-09-25T13:15:11+00:00",
+      "first_seen": "2026-09-25T13:32:31.524957+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ]
+    },
     {
       "id": "fe619f9984293835",
       "kind": "news",
@@ -569,6 +591,25 @@
       "tldr": "",
       "relevance": 2,
       "relevance_reason": "AI regulation or government policy elsewhere",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "2fdf106309d3860e",
+      "kind": "news",
+      "title": "Australian PM warns in UN speech about the ‘furious pace’ of AI after security breach",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNZ2JBWXpIY0JLX3BubURTeG51WWRlSGhhTmVkdjhfZEItMklHeHd6WV9zdDV0ZzVKbk5Bb1FOTnBWNzM4dU1WYnlUM0NEbkpEXzExRm5KblRpYVgxQ25uVFhoSHVYRkx1TTdTMUdyemtnOTJGQWM1Wk1TZWtsbFhKS1Y3d3VpV3pST2c",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "Politico",
+      "published": "2026-09-25T02:00:00+00:00",
+      "first_seen": "2026-09-25T13:32:31.524957+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
       "relevance_source": "keywords",
       "topics": [],
       "related_policies": []
@@ -1694,6 +1735,25 @@
         "privacy",
         "public_sector"
       ],
+      "related_policies": []
+    },
+    {
+      "id": "63ed19de6624c200",
+      "kind": "news",
+      "title": "US criticises Australia's proposed algorithm opt-out laws as 'censorship'",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBJMjNLRkZiZXF2aVBjQzFzcFVZRXEzcUQ4Ty1MWkdEV2NIMExYZ052cnY0T1VWS3laSDhaU19wTEpIdXNYVWRVSldaVjJsMGo5NnEtUHZfR3FRTUE",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "bbc.com",
+      "published": "2026-09-23T01:35:56+00:00",
+      "first_seen": "2026-09-25T13:32:31.524957+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
       "related_policies": []
     },
     {

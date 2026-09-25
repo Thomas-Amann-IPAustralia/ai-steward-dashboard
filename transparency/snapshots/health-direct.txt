@@ -1,0 +1,86 @@
+Artificial Intelligence Transparency Statement
+Effective as of June 2026
+Introduction
+At Healthdirect Australia, we are committed to delivering virtual and digital health services that meet consumer care needs and contribute to a sustainable health system. Healthdirect relies on technology to support over 85 million interactions with the community every year. This includes the safe and responsible use of artificial intelligence (AI).
+The aim of this Statement is to be transparent about how we use AI, and how we go about ensuring it is safe.
+In this Statement, we describe:
+- why we use AI
+- how we use AI
+- how we ensure quality and safety
+- the different types of AI
+Services covered by this statement
+While we do not use AI across all our services, this Transparency Statement covers our approach to considering and using AI across our operations, which includes:
+- Helpline services
+- healthdirect helpline (also known as 1800MEDICARE, and NURSE-ON-CALL helpline in Victoria)
+- 1800MEDICARE (GP)
+- Pregnancy, Birth and Baby
+- health alert lines
+- Digital services
+- healthdirect website
+- Pregnancy, Birth and Baby website
+- Digital products (available in some of our digital services)
+- User account
+- Symptom Checker
+- Service Finder
+- Question Builder
+- BMI calculator
+- National digital infrastructure
+- National Health Services Directory (NHSD)
+Why does Healthdirect use AI?
+To improve quality and safety
+Healthdirect has a strong history of using technology to provide Australians with high quality advice and information. AI presents an opportunity, along with other new technologies, to help us achieve our mission. We are committed to helping Australians actively manage and improve their health by providing trusted information and virtual services anywhere and at any time.
+The AI tools we use inform the health advice we give to consumers every day by drawing on a large knowledge base of evidence that is clinically validated by qualified people. This means advice is reliable and consistent, contributing to the quality and safety of advice we provide.
+To increase our productivity
+AI provides opportunities for us to be more productive in how we provide virtual health services. This means we can support the growing number of Australians who need access to free, 24/7 health advice and connection to care.
+As Healthdirect is government and taxpayer funded, finding efficiencies in our day-to-day work contributes to a sustainable health system. We are also aware of pressures on the Australian healthcare workforce. We seek to use technology including AI to reduce the time spent by our healthcare professionals on administrative and manual processes. This ensures they spend their time on the highest value work such as engaging with consumers.
+How do we use AI?
+Healthdirect uses AI for the following purposes.
+Service delivery
+- To support the decision-making of our nurses who provide advice to consumers on the healthdirect helpline, also known as 1800MEDICARE, and NURSE-ON-CALL helpline in Victoria (using Infermedica triage tool).
+- To make tailored recommendations as to what healthcare you should seek when using the healthdirect Symptom Checker (using Infermedica triage tool). Recommendations are responsive to the information you have provided about yourself, and your health concern.
+- To analyse and improve service delivery quality and efficiency (using Microsoft CoPilot and Claude Enterprise).
+- To translate some information on our website into languages other than English (using Google Translate).
+- To assist the GPs on 1800MEDICARE (GP) to record details about the consultation in our system by using an AI-scribe (using either Heidi or Lyrebird)
+Visual content generation
+- We sometimes use generative AI technologies to produce visual content, such as illustrations and graphics, that may appear in our reports and on our websites (using Adobe Firefly).
+- All AI-generated visuals are reviewed by humans to make sure they meet our standards for accuracy, appropriateness and alignment with our brand values. We remain committed to the transparent use of AI in all aspects of our creative and operational processes.
+Corporate and enabling activities
+- To assist with how the large volume of information published on our websites is organised and referenced.
+- To write software routines that automate data management activities before testing and assurance by our technical team (using Microsoft Copilot and AWS Kiro).
+This classification of how we use AI is based on guidelines developed by the Commonwealth of Australia’s Digital Transformation Agency. More information is available here: digital.gov.au/policy/ai/resources/use-classification
+You can read more about the AI software and systems we use in our Quality and safety of Healthdirect’s triage service statement.
+Where you may interact with AI without human assistance
+Healthdirect provides a self-help health tool called the Symptom Checker. The system that powers the Symptom Checker uses AI to compute and recommend the most appropriate healthcare for you. This AI uses a probabilistic model to make recommendations. The model is based on expert clinical knowledge and a large database of empirical evidence that is constantly monitored and managed by qualified professionals both within Healthdirect and our technology partner Infermedica.
+You do not have to enter personally identifiable information into the Symptom Checker. This means the AI does not store, or use, your personal information as part of the model.
+The healthcare recommendations the AI can compute are restricted to the rules of the probability model. These are defined by qualified clinical experts and technologists. It does not use generative AI.
+Healthdirect monitors the performance of the Symptom Checker, and our Clinical Governance team are actively involved in its management to ensure it meets national quality and safety standards.
+The Healthdirect website may use AI to translate content for people who speak languages other than English. Translated information is general only, is not a substitute for professional advice, and may contain errors and inaccuracies. Every translated page seeks feedback from the consumer on whether the translation is clear and easy to understand.
+To manage this risk, Healthdirect regularly undertakes quality assurance measures, including considering consumer feedback, targeted reviews of translations, and regular monitoring and reporting. Where we identify issues we will address these and may disable translations in line with Healthdirect’s clinical and content governance processes.
+Ensuring quality and safety of healthcare
+Healthdirect’s Clinical Governance and Quality Framework applies to all consumer health and health related services provided, managed or commissioned by Healthdirect. The Framework aligns with national quality standards and ensures that our services are evidence-based, high quality and safe. This includes governance of the technology we use within our healthcare services, including AI.
+Under Healthdirect’s Clinical Governance and Quality Framework we maintain robust, integrated safety and quality systems to actively manage and improve our services.
+Under the auspices of the Clinical Governance and Quality Framework, we apply quality assurance methodologies that are specific to uses of AI before we use them. More information on how we did this for the system supporting our Symptom Checker is available here: about.healthdirect.gov.au/evaluations
+Future use of AI
+In the future, Healthdirect will consider the use of AI to:
+- Improve service accessibility, for example through language translation on our phone line.
+- Simplify and summarise health information to make it easier for consumers to understand and follow our advice, both in Healthdirect controlled interfaces and outside (such as in commercially offered AI assistants).
+- Continue to improve our own workplace productivity.
+Definitions
+What is AI?
+AI is the ability of a computer system to perform tasks that would normally require human intelligence, such as learning, reasoning, and making decisions. There are different types of AI.
+Probabilistic AI
+This type of AI follows human-coded rules based on expert knowledge and real-world experience to reach conclusions and produce outputs such as recommendations.
+Machine Learning AI
+This type of AI self-learns patterns from large sets of data, then compares input it receives with that trained knowledge to produce outputs such as predictions, classifications, or recommendations.
+Generative AI (‘Gen’ AI)
+This type of AI is a field based on machine learning that can create new content, such as text, images, voice, video and code by learning from data patterns and predicting a response to requests.
+How to contact us about our use of AI
+You can contact our Chief Insights Officer as follows:
+Email: info@healthdirect.org.au
+Postal address:
+Chief Insights Officer
+Healthdirect Australia
+PO Box K411
+Haymarket NSW 1240
+Australia
+Last reviewed: June 2026

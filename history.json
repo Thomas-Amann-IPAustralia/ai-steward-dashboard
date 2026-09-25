@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T11:43:27.548154+00:00",
+  "generated_at": "2026-09-25T13:11:57.732290+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -1726,15 +1726,6 @@
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-25T11:52:26",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20250925_115226_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20250925_115226_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The main change is the addition of a comprehensive \"Perplexity Terms of Service\" document.  This document details user rights and responsibilities, payment and subscription terms, intellectual property rights, disclaimers, limitations of liability, and a mandatory arbitration clause with a class action waiver.  The previously existing Privacy Policy and Acceptable Use Policy remain largely unchanged, though the Terms of Service clarifies some aspects of data usage and acceptable behavior previously mentioned in these policies.  Specifically, the Terms of Service adds details about the use of user input and AI generated output, as well as the purchase of products and services through the platform.",
         "changed_documents": []
       }
     ]

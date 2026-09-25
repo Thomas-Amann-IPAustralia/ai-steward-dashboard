@@ -1,0 +1,79 @@
+The Australian Federal Police (AFP) defends and protects Australia and Australia’s future from domestic and global security threats. The AFP is responsible for enforcing Commonwealth criminal law, contributing to combating complex, transnational, serious and organised crime impacting Australia's national security and protecting Commonwealth interests from criminal activity in Australia and overseas. The AFP also provides policing services to the Australian Capital Territory (ACT) and Australian external territories.
+The AFP operates in a highly complex and rapidly evolving criminal environment and must remain agile and responsive to the evolving threats and opportunities. AI technologies present new threats and challenges for law enforcement across various crime types and the national security domain. Criminals are already exploiting AI to commit crimes at an unprecedented speed and scale.
+The AFP is committed to adopting new technologies responsibly, upholding the principles of policing and public safety, founded on strong community trust and enduring partnerships with our external partners. From the early use of forensic science to the implementation of advanced communication systems, the AFP has leveraged technology to enhance its capabilities and better serve the community. The AFP's approach to AI is no different, as it seeks to harness the benefits of AI while safeguarding the community and upholding the highest standards of accountability and governance.
+This AI Transparency Statement outlines the AFP’s approach to AI adoption, detailing the principles we adhere to and the actions we take to meet our operational needs while balancing legal, ethical, privacy, and operational risks and benefits.
+Definitional Statement
+For the purpose of this AI Transparency Statement, AI is defined as a machine-based system that imitates human intelligence, enabling them to emulate human thoughts and action. An AI system applies techniques to learn and solve problems, thereby informing and augmenting decision-making and actions.
+Machine learning involves using data to train and refine identifying patterns including trends and anomalies. This can assist in identifying or interpreting relevant content. This is different to traditionally programmatic software which generally follows a set of hard-coded rules.
+Examples include transcription, language translation and generative and conversational AI.
+Heuristics, decision trees, and rules-based systems involve more traditional approaches to artificial intelligence that rely on predefined rules and logic to mimic human thinking or reasoning.
+Examples include rules-based business process automation.
+Organisational Obligations for Responsible use of AI
+The AFP is committed to the Australia New Zealand Responsible and Ethical Artificial Intelligence Framework that has been agreed by all Australian and New Zealand Police Commissioners. The AFP has operationalised the framework by incorporating AI assessments into the existing technology governance process, which already includes assessments relating to the design, security, legality and information management of technology used, or proposed to be used by the AFP. ANZPAA AI Principles include:
+Transparency
+Human Oversight
+Proportionality and Justifiability
+Explainability
+Fairness
+Reliability
+Accountability
+Skills and Knowledge
+Privacy and Security
+Human-led approach to AI
+AI is a useful tool to assist AFP appointees to quickly identify relevant information among data holdings, and will not replace the requirement for a human to remain accountable for decisions that impact and affect individuals.
+AI is a technology that supports data-driven decision-making and process automation. The AFP recognises policing is a human and societal contract that will always require human judgement and interaction.
+It is for this reason the AFP is taking a human-led approach to AI adoption, and throughout the AI lifecycle. AI will assist human decision makers in assessing the best course of action and this means responsibility will always remain with an individual AFP appointee.
+Capability Protection
+In an increasingly complex criminal and national security environment, the AFP’s ability to deliver operational outcomes is dependent on the effective and sustainable use of our capabilities. Many of these capabilities rely on methodologies, tradecraft, relationships and technology which can be irreparably damaged through broader exposure. In accordance with long established policing principles, the AFP is committed to transparency regarding the use of AI systems without compromising technical methodology and operational objectives.
+There are sensitive capabilities where knowledge is strictly guarded and compartmentalised for authorised individuals with an identified need-to-know. These capabilities are usually reserved for imminent threats to life, serious crimes, or national security matters. Public knowledge of these capabilities is likely to impair the AFP’s ability to effectively perform our functions. For this reason, the exact knowledge of the methodologies or technologies (including specific technical details of the AI models used to build the capability) will remain protected.
+The AFP has legislative protections for sensitive law enforcement information (for example secrecy offences in the Criminal Code 1995 (Cth), provisions under the National Security Information (Criminal and Civil Proceedings) Act 2004 in relation to the disclosure of sensitive information, and exemptions in the Privacy Act1988 (Cth) and Freedom of Information Act 1982 (Cth)).
+The AFP will continue to remain accountable through reporting to existing oversight bodies to ensure our use of technology is aligned with and adheres to relevant legislation and legal obligations.
+As part of their functions, oversight bodies such as the Office of the Commonwealth Ombudsman, Inspector General of Intelligence and Security, Office of the Australian Information Commissioner and Independent National Security Legislation Monitor all have access to classified and otherwise sensitive information.
+AFP’s Use of AI
+The AFP is resolute in its commitment to understand and engage with both the threats and opportunities of AI. The AFP acknowledges the importance of integrating AI into our operational framework to effectively fulfil our mandate of safeguarding public safety and combating criminal activities.
+The use of AI helps address the challenges of processing large volumes of data, a task that is becoming increasingly critical in law enforcement. Given the immense volumes of data, it is not humanly possible to manage these tasks efficiently without the assistance of AI.
+Managed correctly, investments in AI will be critical to our organisational capabilities, allowing us to respond to a changing and increasing threat environment that aims to harm Australian’s way of life. AI offers the AFP opportunities to:
+create operational efficiencies in information management and analytics.
+improve situational awareness to inform better human decision making.
+minimise physical and psychological risks to AFP capabilities and members, such as the need to review large amounts of Child Abuse Material (CAM).
+A detailed list of all the AFP’s AI use cases cannot be made public, consistent with the need to protect sensitive capability (as per section 5).
+Annexure 1 outlines the AFP’s AI capabilities that can be publicly disclosed, noting the AFP’s commitment to transparency without compromising technical methodology and operational objectives.
+AI safety and governance
+The AFP is committed to using technology lawfully and appropriately, and to comply with privacy obligations and other legislative restrictions. This requires strong governance frameworks capable of steering the responsible use of AI while maintaining the public trust.
+The Australia New Zealand Responsible and Ethical AI Framework, endorsed by all Australian and New Zealand Police Commissioners, serves as a foundational framework for the ethical, transparent, and effective use of AI in policing.
+The AFP has:
+Published a National Guideline (NG) on New Information and Communication Technology and Enhancements which serves as an overarching governance instrument to ensure mandatory compliance with AFP governance on acquiring technology.
+Established a Responsible Technology Committee (RTC), to strengthen the AFP’s governance to appropriately balance the legal, ethical, privacy and operational risks and benefits in the use of information technology systems (ICT) within the AFP
+Enhanced management and procedures relating to Privacy Threshold Assessments (PTAs), including submission and processing requirements. PTAs are a triage step to assess if a Privacy Impact Assessment (PIA) is required and are conducted for relevant AI projects that handle personal information.
+Continued to undertake PIAs for all high privacy risk projects involving any new or changed ways of handling personal information that is likely to have a significant impact on the privacy of individuals, including relevant AI projects.
+Accountable Official
+The Manager Technology Strategy and Data (MTSD) was appointed as the Accountable Official in December 2024.
+Transparency Statement
+This statement will be reviewed annually and will remain consistent with any changes to our approach to AI.
+Annexure 1: Use of AI by the AFP
+The AFP’s current application of AI has been focused on exploring opportunities to enrich data to enhance human efficiency when processing large amounts of data.
+The AFP’s use of AI does not replace human monitoring, and machine-produced material must be subject to human review before it can be used in any operational decision making. The AFP will not replace the requirement for a person to remain accountable for any decision that impacts on the rights of individuals.
+The AI capabilities that can be publicly disclosed are listed below. Detailed descriptions and specific use cases can’t be published to protect sensitive AFP capability (as per section 5). This approach ensures transparency without compromising technical methodology and operational objectives.
+Table A
+Capability
+AI Type
+Status
+Audio Transcription
+Natural Language Processing (NLP)
+In production, operational use
+Language Translation
+Natural Language Processing (NLP)
+In production, operational use
+Optical Character Recognition (OCR)
+Computer Vision
+In production, operational use
+Object Recognition
+Computer Vision
+In production, limited operational use
+Autonomous 3D Mapping
+Computer Vision
+In production, limited operational use
+Large Language Model (text-to-text)
+Natural Language Processing
+In production, limited general use, jurisdictional restriction applies
+The AFP acknowledges that differences may exist in the use and assurance of AI across Australian state and territory policing jurisdictions. In particular, the AFP recognises the ACT AI Assurance Framework is underpinned by ACT-specific legislation, including the Human Rights Act 2004, Information Privacy Act 2014, and Public Sector Management Act 1994. These differ from the Commonwealth laws that form the basis of the National Framework and may result in jurisdictional variations in AI governance and implementation.
