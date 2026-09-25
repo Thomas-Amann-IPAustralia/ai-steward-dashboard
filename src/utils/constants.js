@@ -77,13 +77,23 @@ export const revertedAfterChange = (set) => {
  * The one-line summary of a set's most recent badged change.
  *
  * `last_review` moves on every analysis, badged or not — including a
- * re-baseline — so it is only used when it describes that same change.
+ * re-baseline — so it is only used when it describes that same change. The
+ * set's latest analysis file, when the caller has it, is used on the same
+ * terms: only if it was written for the change the set is badged with.
  */
-export const changeSummaryOf = (set) => {
+export const changeSummaryOf = (set, analysis = null) => {
   if (set?.last_change?.summary) return set.last_change.summary;
   const review = set?.last_review;
   if (review?.summary && review.timestamp && review.timestamp === set?.last_amended) {
     return review.summary;
+  }
+  if (
+    analysis?.summary &&
+    analysis.verdict !== 'no_material_change' &&
+    timestampOf(analysis.date_time) &&
+    timestampOf(analysis.date_time) === timestampOf(set?.last_amended)
+  ) {
+    return analysis.summary;
   }
   return null;
 };

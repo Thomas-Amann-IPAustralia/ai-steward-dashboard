@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { act } from 'react';
 import { createRoot } from 'react-dom/client';
-import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import NewsFeed from './NewsFeed';
 
@@ -78,7 +77,7 @@ test('opens on the relevant items, with Everything one click away', () => {
   expect(container.textContent).toContain('A model got slightly faster');
 });
 
-test('an "act on it" story leads, linking to the original in a new tab', () => {
+test('a highly relevant story leads, linking to the original in a new tab', () => {
   render();
   const lead = container.querySelector('.top-story');
   const link = lead.querySelector('.top-story-title a');
@@ -86,6 +85,28 @@ test('an "act on it" story leads, linking to the original in a new tab', () => {
   expect(link.getAttribute('target')).toBe('_blank');
   expect(link.getAttribute('rel')).toContain('noopener');
   expect(lead.querySelector('.top-story-blurb').textContent).toBe('Written by the model.');
+});
+
+test('news is never labelled as something to act on', () => {
+  render('/news?show=all');
+  expect(container.textContent).not.toMatch(/act on/i);
+  const signal = container.querySelector('.top-story .signal');
+  expect(signal.textContent).toBe('Highly relevant');
+  expect(signal.getAttribute('title')).toMatch(/^Highly relevant:/);
+});
+
+test('selecting a day on the pulse chart reads just that day, and the filter clears it', () => {
+  render('/news?show=all');
+  const days = [...container.querySelectorAll('.pulse-card button.col')];
+  const today = days[days.length - 1];
+  expect(today.disabled).toBe(false);
+  act(() => today.click());
+  expect(container.querySelector('.active-filter').textContent).toContain('Today');
+  expect(container.querySelector('.top-story')).toBeNull();
+  expect(container.querySelectorAll('.news-row')).toHaveLength(2);
+
+  act(() => container.querySelector('.active-filter').click());
+  expect(container.querySelector('.active-filter')).toBeNull();
 });
 
 test('searching lists every match as a row, without lead stories', () => {

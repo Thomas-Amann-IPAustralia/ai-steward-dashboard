@@ -74,11 +74,16 @@ all before one batched Gemini pass that writes a TLDR, refines the score and fol
 the remaining repeat coverage of the same story. See [`BACKEND.md`](BACKEND.md#news-and-ai-incidents).
 
 **Dashboard (`src/`)** — A React single-page app with five views: an **Overview**
-briefing (what's new since your last visit, what needs attention, a month of policy
-changes, top news and Australian incidents, and a copyable weekly briefing);
-**Policy watch** (the diff first, which document changed, the change history, related
-news); **News** and **AI incidents** (filterable, shareable views); and **Sources**
-(every source's health, and how many false changes were filtered).
+briefing (a one-paragraph summary of what's new since your last visit, a **review
+queue** of material policy changes that you mark off as you read them, a timeline of
+every source's changes, top news and Australian incidents, and a copyable weekly
+briefing); **Policy watch** (every source on one timeline, then per policy: the
+diff with changed words highlighted, which document changed, a month of daily checks,
+the change history, related news); **News** and **AI incidents** (filterable,
+shareable views with a per-day chart); and **Sources** (every source's daily read
+status, and a funnel of how many would-be changes were filtered). Policy changes are
+the only thing the dashboard asks anyone to act on; news relevance is shown as a
+quiet signal, never as a call to action. Press Ctrl/⌘+K anywhere to search it all.
 
 The whole pipeline is orchestrated by GitHub Actions, which runs the monitor daily,
 commits any new snapshots, diffs and analyses, rebuilds the React app, and deploys

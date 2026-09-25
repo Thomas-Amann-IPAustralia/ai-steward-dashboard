@@ -1,30 +1,43 @@
 import React, { useState, useMemo } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { formatDate, formatRelative, primaryUrl, timestampOf } from '../utils/constants';
+import { Link, useLocation } from 'react-router-dom';
+import { useReviews } from '../hooks/useReviews';
+import { formatRelative, primaryUrl, timestampOf } from '../utils/constants';
+import { reviewQueue } from '../utils/reviews';
+import Icon from './Icon';
 import Lettermark from './Lettermark';
 import PriorityBadge from './PriorityBadge';
 import { HealthPill } from './SourceHealth';
 
 const SORT_OPTIONS = [
   { value: 'name', label: 'Name' },
-  { value: 'lastAmended', label: 'Last Amended' },
-  { value: 'lastChecked', label: 'Last Checked' },
+  { value: 'lastAmended', label: 'Last amended' },
+  { value: 'lastChecked', label: 'Last checked' },
   { value: 'health', label: 'Needs attention' },
 ];
 
 const PRIORITY_FILTERS = ['all', 'critical', 'high', 'medium', 'low'];
 const HEALTH_RANK = { failing: 0, degraded: 1, ok: 2 };
 
+/**
+ * The list beside an open policy: every monitored set, searchable, sortable
+ * and filterable by priority, grouped by category. A set with a change still
+ * to review carries a dot, so the queue can be worked through from here.
+ */
 function Sidebar({ policySets, health, loading, error }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [filterPriority, setFilterPriority] = useState('all');
-  const navigate = useNavigate();
   const location = useLocation();
+  const { reviewed } = useReviews();
 
   const currentFileId = location.pathname.startsWith('/policy/')
     ? decodeURIComponent(location.pathname.split('/policy/')[1])
     : null;
+
+  const pendingIds = useMemo(
+    () => new Set(reviewQueue(policySets, reviewed).pending.map((set) => set.file_id)),
+    [policySets, reviewed]
+  );
 
   const groupedSets = useMemo(() => {
     const healthSources = health?.sources || {};
@@ -44,9 +57,7 @@ function Sidebar({ policySets, health, loading, error }) {
     }
 
     if (filterPriority !== 'all') {
-      decorated = decorated.filter(
-        (set) => (set.last_priority || '').toLowerCase() === filterPriority
-      );
+      decorated = decorated.filter((set) => (set.last_priority || '').toLowerCase() === filterPriority);
     }
 
     decorated.sort((a, b) => {
@@ -71,102 +82,96 @@ function Sidebar({ policySets, health, loading, error }) {
     };
   }, [policySets, health, searchTerm, sortBy, filterPriority]);
 
-  const handleSelect = (policySet) => navigate(`/policy/${policySet.file_id}`);
-
   return (
-    <nav className="sidebar" aria-label="Policy sets navigation">
-      <div className="sidebar-controls">
-        <input
-          type="search"
-          className="search-bar"
-          placeholder="Search policies..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          aria-label="Search policies"
-        />
-        <div className="sidebar-control-row">
-          <select
-            className="sort-select"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            aria-label="Sort by"
-          >
-            {SORT_OPTIONS.map((opt) => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
-            ))}
-          </select>
+    <nav className="list-panel" aria-label="Monitored policies">
+      <div className="list-panel-controls">
+        <label className="input-with-icon">
+          <Icon name="search" size={15} />
+          <input
+            type="search"
+            placeholder="Search policies…"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            aria-label="Search policies"
+          />
+        </label>
+        <div className="list-panel-row">
+          <label className="select-wrap small">
+            <span className="visually-hidden">Sort by</span>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              {SORT_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>Sort: {opt.label}</option>
+              ))}
+            </select>
+            <Icon name="chevron-down" size={13} />
+          </label>
         </div>
-        <div className="filter-chips" role="group" aria-label="Filter by priority">
+        <div className="chip-row tight" role="group" aria-label="Filter by priority">
           {PRIORITY_FILTERS.map((p) => (
             <button
               key={p}
               type="button"
-              className={`filter-chip ${filterPriority === p ? 'active' : ''}`}
+              className={`filter-chip small${filterPriority === p ? ' active' : ''}`}
               onClick={() => setFilterPriority(p)}
               aria-pressed={filterPriority === p}
             >
+              {p !== 'all' && <span className={`chip-dot p-${p}`} aria-hidden="true" />}
               {p === 'all' ? 'All' : p.charAt(0).toUpperCase() + p.slice(1)}
             </button>
           ))}
         </div>
       </div>
 
-      <div aria-live="polite">
-        {loading && policySets.length === 0 && (
-          <div className="loading-message">Loading policies...</div>
-        )}
-        {error && <div className="error-message" role="alert">{error}</div>}
+      <div className="list-panel-body" aria-live="polite">
+        {loading && policySets.length === 0 && <div className="skeleton skeleton-list" />}
+        {error && <div className="callout callout-critical" role="alert">{error}</div>}
         {!loading && !error && groupedSets.list.length === 0 && (
-          <div className="placeholder sidebar-placeholder">
-            {policySets.length === 0
-              ? 'No valid policies found to display.'
-              : 'No policies match your search or filter.'}
-          </div>
+          <p className="muted list-empty">
+            {policySets.length === 0 ? 'No valid policies found to display.' : 'No policies match your search or filter.'}
+          </p>
         )}
-      </div>
 
-      {Object.keys(groupedSets.byCategory).sort().map((category) => (
-        <div key={category} className="category-group">
-          <h2>{category}</h2>
-          <ul>
-            {groupedSets.byCategory[category].map((policySet) => (
-              <li
-                key={policySet.setName}
-                className={currentFileId === policySet.file_id ? 'active' : ''}
-                onClick={() => handleSelect(policySet)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    handleSelect(policySet);
-                  }
-                }}
-                tabIndex={0}
-                role="button"
-                aria-current={currentFileId === policySet.file_id ? 'page' : undefined}
-              >
-                <div className="page-item">
-                  <div className="page-title">
-                    <Lettermark url={primaryUrl(policySet)} name={policySet.setName} />
-                    <span className="page-title-name">{policySet.setName}</span>
-                    <PriorityBadge
-                      priority={policySet.last_priority}
-                      date={policySet.last_amended}
-                    />
-                    <HealthPill status={policySet._health} />
-                  </div>
-                  <div className="page-meta">
-                    <span>
-                      <strong>Last amended:</strong>{' '}
-                      {policySet.last_amended ? formatRelative(policySet.last_amended) : 'N/A'}
-                    </span>
-                    <span>Last checked: {formatDate(policySet.last_checked)}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+        {Object.keys(groupedSets.byCategory)
+          .sort()
+          .map((category) => (
+            <div key={category} className="list-group">
+              <h2 className="list-group-label">{category}</h2>
+              <ul>
+                {groupedSets.byCategory[category].map((policySet) => {
+                  const active = currentFileId === policySet.file_id;
+                  return (
+                    <li key={policySet.setName}>
+                      <Link
+                        to={`/policy/${policySet.file_id}`}
+                        className={`list-row${active ? ' active' : ''}`}
+                        aria-current={active ? 'page' : undefined}
+                      >
+                        <Lettermark url={primaryUrl(policySet)} name={policySet.setName} size={28} />
+                        <span className="list-row-main">
+                          <span className="list-row-title">
+                            <span className="list-row-name">{policySet.setName}</span>
+                            {pendingIds.has(policySet.file_id) && (
+                              <span className="review-dot" title="Change to review">
+                                <span className="visually-hidden">Change to review</span>
+                              </span>
+                            )}
+                          </span>
+                          <span className="list-row-meta">
+                            <PriorityBadge priority={policySet.last_priority} date={policySet.last_amended} />
+                            <HealthPill status={policySet._health} />
+                            <span className="list-row-time">
+                              {policySet.last_amended ? formatRelative(policySet.last_amended) : 'No change'}
+                            </span>
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+      </div>
     </nav>
   );
 }

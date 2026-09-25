@@ -2,7 +2,7 @@ import React from 'react';
 import { hostOf } from '../utils/constants';
 
 /**
- * A lettermark chip in place of a favicon.
+ * A lettermark tile in place of a favicon.
  *
  * The previous implementation called google.com/s2/favicons on every render.
  * From a tool aimed at public servants that is a third-party request which
@@ -14,11 +14,12 @@ import { hostOf } from '../utils/constants';
  */
 
 const PALETTE = [
-  '#00529B', '#0f766e', '#7c3aed', '#b45309',
-  '#be123c', '#15803d', '#0369a1', '#7e22ce',
+  '#3056d3', '#0f8a7e', '#7c3aed', '#c2410c',
+  '#be185d', '#15803d', '#0369a1', '#9333ea',
 ];
 
-const colorFor = (seed) => {
+/** A stable colour for a name, so a source or outlet is always the same tile. */
+export const colorFor = (seed) => {
   let hash = 0;
   for (let i = 0; i < seed.length; i += 1) {
     hash = (hash * 31 + seed.charCodeAt(i)) % 100000;
@@ -35,10 +36,11 @@ function Lettermark({ url, name, size = 18 }) {
     <span
       className="lettermark"
       style={{
-        backgroundColor: colorFor(seed),
+        '--mark': colorFor(seed),
         width: size,
         height: size,
-        fontSize: Math.round(size * 0.55),
+        fontSize: Math.round(size * 0.5),
+        borderRadius: Math.max(4, Math.round(size * 0.28)),
       }}
       title={host || undefined}
       aria-hidden="true"
