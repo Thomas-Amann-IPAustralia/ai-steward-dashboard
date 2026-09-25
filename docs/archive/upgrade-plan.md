@@ -20,7 +20,7 @@ the plan itself scopes it as self-contained. Everything else is done.
 | A3 Stamp the timestamp in code | Done | `main.py`, `date_time` removed from the prompt |
 | A4 Validate, retry once, allow declining | Done | `steward/analysis.py` |
 | A5 Make a broken source visible | Done | `health.json`, sidebar and briefing |
-| A6 Close the live bugs | Done | see `BUG_REPORT.md` |
+| A6 Close the live bugs | Done | see [`bug-report.md`](bug-report.md) |
 | B1 Probe before fetching | Done | conditional GET in `steward/fetching.py` |
 | B2 requests + trafilatura by default | Done | Selenium reserved for `"render": true` |
 | B3 Normalise before hashing | Done | `steward/content.py`, idempotent |
@@ -157,7 +157,7 @@ Remove `date_time` from the prompt schema (`main.py:236-263`) and set it from `d
 **A5 — Make a broken source visible. (M)**
 When every fetch fails, `main.py:389-393` copies the previous entry forward and the UI shows nothing unusual. A steward cannot distinguish *"stable since February"* from *"has not been successfully read since February"* — and the second is a silent false negative on exactly the risk this tool exists to cover. Add `status`, `consecutive_failures` and `last_success` per source, and render a warning state in the sidebar and on the home page. Highest trust-per-hour change in this document.
 
-**A6 — Close the remaining live bugs from `BUG_REPORT.md`. (S)**
+**A6 — Close the remaining live bugs from [`bug-report.md`](bug-report.md). (S)**
 Still open and now load-bearing: BUG-01 (`main.py:427`, argument order), BUG-02 (`DashboardHome.js:78` and `Sidebar.js:128`, unguarded `urls[0]`), BUG-05 (`main.py:180`, empty string treated as content — a contributor to A1's failure mode), BUG-06 (`constants.js:14-28`, no `Invalid Date` check — why the 2024 timestamp renders unchallenged), BUG-09 (`DashboardHome.js:72`, Space key).
 
 ### B. The filtration funnel

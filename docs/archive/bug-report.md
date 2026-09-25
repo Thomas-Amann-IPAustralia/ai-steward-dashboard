@@ -5,7 +5,7 @@
 **Stack:** React 18 (JavaScript) + Python 3.11 (requests/trafilatura, Selenium fallback, Google Gemini API)
 
 > **Status update — 13 August 2026.** All fifteen findings have been addressed as
-> part of the upgrade described in [`UPGRADE_PLAN.md`](UPGRADE_PLAN.md). Line
+> part of the upgrade described in [`upgrade-plan.md`](upgrade-plan.md). Line
 > references below point at the pre-upgrade code and are kept for the record;
 > see the status column in [Findings summary](#findings-summary) for where each
 > fix now lives. BUG-01 was closed by removing the mis-passed parameter rather

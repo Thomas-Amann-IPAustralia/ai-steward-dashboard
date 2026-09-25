@@ -1,7 +1,7 @@
 # Security and good-practice review: follow-up
 
 Date: 25 September 2026 · Scope: `main` at `2e2ce41`, compared with the first
-review ([`SECURITY_REVIEW.md`](SECURITY_REVIEW.md), taken at `bb46a03`).
+review ([`security-review.md`](security-review.md), taken at `bb46a03`).
 
 Since that review, 37 source and documentation files have changed (+4,523 / −147
 lines). The main additions are:
@@ -18,6 +18,43 @@ This follow-up re-checks the twelve original findings against the current
 code, repository settings and dependencies. It also looks for new risks
 introduced by those changes, and assesses the project against the practices
 you would expect from an experienced team.
+
+## Remediation status
+
+Updated after the fixes on branch `claude/vibrant-lamport-ufk94i`. The
+findings below are kept as written, as the record of what was found.
+
+| # | Status | What was done, or what is left |
+|---|---|---|
+| 1 | **Fixed in code; one setting left** | The workflow is split into `collect` (read-only token, no persisted credentials, no cache, the only job with secrets), `publish` (checks the output with `steward/publish.py`, then commits), `site`, `alert` and `report`. Chrome keeps its sandbox and falls back only where it cannot start one. **Left:** move the secrets into the `pipeline` environment and rotate them. |
+| 2 | **Needs settings** | CODEOWNERS added. The publish job can push as a GitHub App, so `main` can require pull requests and checks. **Left:** the ruleset, the App, deleting stale branches. |
+| 3 | Fixed | All three prompts fence third-party text, and the fence cannot be closed early (`analysis.fence_safe`). Model Markdown renders without links or images (`SafeMarkdown`). |
+| 4 | Fixed, except the Vite move | Actions pinned by SHA at current majors, `npm ci` only, hash-pinned Python lock, `requests` 2.34.2, webdriver-manager replaced by Selenium Manager, `react-scripts` moved to `devDependencies`, React Router 7 (no runtime advisories left), Node 24, Dependabot, audits in CI. **Deferred:** Create React App → Vite. `selenium-stealth` stays until N4 is decided. |
+| 5 | Fixed | A `postbuild` step adds a hash-based CSP and a referrer policy to the built page. Checked in Chromium on every route: no violations. |
+| 6 | Fixed | Chrome gets the proxy through a local relay (`steward/proxyrelay.py`). All stored error text goes through `web.describe_error`. |
+| 7 | Fixed | Bodies streamed with a size cap and total deadline (`steward/web.py`). Feeds parsed with `defusedxml`. |
+| 8 | Fixed | `permissions: contents: write`, Node 24, `--package-lock-only --ignore-scripts`. |
+| 9 | Fixed | Both validators refuse non-http(s) URLs. Every external link in the dashboard goes through `safeHref`. |
+| 10 | Fixed | Remote text in the issue table is shown as code. |
+| 11 | **Needs settings** | Confirm the tier, restrict the key, add a budget alert, rotate it. |
+| 12 | Fixed | Every request and every redirect hop is refused if its host resolves to a non-public address; a render that lands on one is discarded. |
+| N1 | Fixed | Host allowlist (`.gov.au` plus named exceptions), `max_new_statements`, and the public-address check. |
+| N2 | Fixed | Each statement fails alone. `extract_pdf_text` catches every pypdf error and reads at most 300 pages. |
+| N3 | Partly fixed | A capture of a different URL is refused, and a change seen only in an archive capture is recorded as such (`archived_documents`). Holding such changes for confirmation is not done; it would change what the dashboard shows. |
+| N4 | **Your decision** | Unchanged. |
+| G1 | Fixed; one setting left | `ci.yml` runs on every pull request. **Left:** make `python` and `frontend` required checks. |
+| G2 | Fixed | Separate concurrency groups; site-only changes redeploy without re-reading sources. |
+| G3 | Fixed | `steward/store.py`: atomic writes, and a corrupt state file stops the run. |
+| G4 | Fixed | `steward/monitor.py` holds the shared gates; the watchers no longer import `main`. `process_policy_set` is split. `mypy` is clean and runs in CI. |
+| G5 | Fixed, except the Vite move | Node 24 in CI, `engines`, dev dependencies separated, lockfiles. |
+| G6 | Fixed | `.gitignore` rewritten for this repository. |
+| G7 | Fixed | `history.build_index` skips failed API calls. `history.json` is regenerated on the next run. |
+| G8 | Mostly fixed | One issue, a comment only when the failing set changes, closed on recovery, accurate footer. **Not done:** register health in the alert. |
+| G9 | Deferred | A `data` branch is still the cleaner design. The App path lets `main` be protected without it. |
+| G10 | Fixed | `ruff` and `mypy` configured and in CI. Docs moved under `docs/`. `SECURITY.md`, CODEOWNERS and Dependabot added. |
+
+Also added: the tests now fail any test that reaches the network
+(`tests/offline.py`). It caught two tests that were quietly doing DNS lookups.
 
 ## Summary
 
@@ -98,7 +135,7 @@ code:
 ## Original findings: what changed
 
 Only what is new since the first review is covered here. The original
-descriptions and fixes in `SECURITY_REVIEW.md` still apply unchanged.
+descriptions and fixes in `security-review.md` still apply unchanged.
 
 ### 1. Over-privileged CI job: exposure is now much larger
 

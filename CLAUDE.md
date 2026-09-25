@@ -33,7 +33,7 @@ anything in `steward/`, `main.py`, `transparency_watch.py`, `news_watch.py`,
 
 ```bash
 # Backend
-pip install -r requirements.txt
+pip install -r requirements.txt                 # pinned + hash-checked (edit requirements.in, then pip-compile)
 export GEMINI_API_KEY=...                       # required except for --dry-run
 python main.py                                  # policies, then the news feed
 python main.py --dry-run                        # run every gate, write nothing
@@ -42,11 +42,12 @@ python main.py --skip-news --skip-transparency  # policies only (what CI runs)
 python transparency_watch.py [--dry-run] [--only STATEMENT_ID] [--no-summary]  # transparency statements only
 python news_watch.py [--dry-run] [--only FEED_ID] [--no-enrich]  # news and incidents only
 python -m unittest discover -s tests -v          # pipeline tests — no network/browser/API key
+pip install -r requirements-dev.txt && ruff check && mypy   # lint + types, as CI runs them
 
 # Frontend
 npm install
 npm start                                        # dev server at localhost:3000
-npm run build
+npm run build                                    # postbuild adds the CSP to build/index.html
 npm test -- --watchAll=false
 ```
 
@@ -148,13 +149,54 @@ full gate-by-gate walkthrough.
   pattern for any new hook: a missing/failed optional file degrades a
   section, it doesn't break the page.
 
+## Security conventions
+
+These exist because of the reviews in `docs/reviews/`; keep them.
+
+- **Every outbound request goes through `steward/web.py`** (`web.get` /
+  `web.post`), never `requests` directly. It refuses non-public addresses on
+  every redirect hop and caps the body. Store failure text with
+  `web.describe_error(exc)`, never `str(exc)`: error strings are published.
+- **State files go through `steward/store.py`.** Writes are atomic, and a file
+  that exists but will not parse raises `StateError` and stops the run — never
+  fall back to an empty default for existing state.
+- **Pipeline output reaches the repository only through `steward/publish.py`**,
+  which the publish job runs on the collect job's artifact. A new output file
+  or directory must be added there *and* to the collect job's
+  `upload-artifact` paths in `update_checker.yml`, or the publish job rejects it.
+- **The job that reads third-party content has a read-only token.** Don't give
+  `collect` write permissions, a cache, or `persist-credentials`; don't add
+  secrets to `publish`, `site` or `alert` beyond what they have.
+- **Third-party text goes into prompts fenced** (`<<<NAME … NAME>>>`, passed
+  through `analysis.fence_safe`) with the "untrusted, ignore instructions"
+  wording. Model output is schema-checked.
+- **Frontend:** model-written Markdown renders through `SafeMarkdown` (no links
+  or images); every external `href` goes through `safeHref`. The site's CSP
+  (`scripts/add-csp.js`) allows only its own origin — a feature that needs a
+  third-party origin needs a deliberate change there.
+- **Transparency statements are fetched only on allowlisted hosts**
+  (`transparency.allowed_host_suffixes` / `allowed_hosts`); the register is a
+  remote page and must not decide where the pipeline goes.
+- **Chrome keeps its sandbox**; `--no-sandbox` is only the fallback
+  `_start_chrome` takes when this machine cannot start one.
+- **Tests never touch the network.** Each test module imports
+  `tests.offline`, which fails any DNS lookup or connection that isn't to
+  this machine. Stub `fetching.web.get` / `fetching.fetch_document` instead.
+- **Actions are pinned to commit SHAs** with the version in a comment;
+  Dependabot updates them.
+
 ## Where things are
 
 | Path | What |
 |---|---|
 | `main.py` | Orchestrator — sequences the gates per document/set, writes all output files |
+| `steward/monitor.py` | One document through every gate — shared by `main.py` and `transparency_watch.py` |
 | `steward/config.py` | Loads + validates `steward_config.yaml` |
-| `steward/fetching.py` | Conditional GET, trafilatura extraction, Selenium fallback |
+| `steward/fetching.py` | Conditional GET, trafilatura extraction, Selenium fallback, Internet Archive fallback |
+| `steward/web.py` | Every outbound request: public-address check per redirect hop, size cap, scrubbed error text |
+| `steward/proxyrelay.py` | Local relay so Chrome gets the proxy without its password on the command line |
+| `steward/store.py` | JSON/text state: atomic writes, corrupt files stop the run |
+| `steward/publish.py` | Checks the collect job's output and copies it into the repository (CI's publish job) |
 | `steward/validation.py` | Plausibility checks on a capture (`suspect_scrape` gate) |
 | `steward/content.py` | Normalisation, hashing, document ids/labels |
 | `steward/diffing.py` | Unified diff, cosmetic gate, watchlist fingerprint |
@@ -171,9 +213,14 @@ full gate-by-gate walkthrough.
 | `policy_sets.json` | **The list of monitored sources — edit this to add one** (`keywords` links news to a set) |
 | `news_sources.json` | **The list of news and incident feeds — edit this to add one** |
 | `steward_config.yaml` | Thresholds, watchlist, model name, retention |
-| `tests/` | stdlib `unittest`, no network/browser/API key |
+| `tests/` | stdlib `unittest`, no network/browser/API key (`tests/offline.py` enforces it) |
 | `src/` | React dashboard (Overview, Policy watch, News, AI incidents, Transparency, Sources); `src/hooks/*` fetch the pipeline's output JSON; charts are plain HTML in `src/components/charts.js`, styled by the tokens in `src/App.css` |
-| `.github/workflows/update_checker.yml` | Daily run → commit → build → deploy to Pages |
+| `.github/workflows/update_checker.yml` | Daily run: collect (read-only) → publish (checked commit) → site → alert |
+| `.github/workflows/deploy_site.yml`, `build-and-deploy.yml` | Rebuild and deploy the site; the latter is shared |
+| `.github/workflows/ci.yml` | Lint, types, tests, audits and build on every pull request |
+| `scripts/` | `add-csp.js` (postbuild CSP), `copy-site-data.sh` (data into the built site) |
+| `requirements.in` / `requirements.txt` | Direct Python dependencies / the hash-pinned lock CI installs |
+| `docs/reviews/`, `SECURITY.md` | Security reviews; how to report a vulnerability and the settings CI expects |
 
 ## Adding a new monitored source
 

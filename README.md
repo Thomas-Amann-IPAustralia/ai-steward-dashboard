@@ -158,7 +158,12 @@ transparency_watch.py # Orchestrator for AI transparency statements
 news_watch.py        # Orchestrator for the news and incident feed
 steward/             # The gates themselves
   config.py          #   steward_config.yaml, loaded and validated at startup
+  monitor.py         #   one document through every gate (shared by both monitors)
   fetching.py        #   conditional GET, trafilatura, Selenium fallback
+  web.py             #   public-address check, size caps, scrubbed error text
+  proxyrelay.py      #   gives Chrome the proxy without its password
+  store.py           #   atomic writes; a corrupt state file stops the run
+  publish.py         #   the gate between the collect job and the repository
   validation.py      #   plausibility checks on a capture
   content.py         #   normalisation, hashing, document ids and labels
   diffing.py         #   unified diff, cosmetic gate, significance fingerprint
@@ -183,10 +188,14 @@ analysis/            # Latest AI analysis (JSON) per policy set
 logs/                # Archived snapshots, diffs and analyses of past versions
 news/                # feed.json (what the app reads), archive/, state.json
 transparency/        # statements.json and events.json (what the app reads), snapshots/, diffs/
-tests/               # Pipeline tests (stdlib unittest, no network or API key)
-requirements.txt     # Python dependencies
+tests/               # Pipeline tests (stdlib unittest; any network use fails the test)
+requirements.in      # Python dependencies, as edited by people
+requirements.txt     # ...pinned with hashes by pip-compile; what CI installs
+requirements-dev.*   # ruff, mypy and pip-audit, pinned the same way
+scripts/             # Build helpers: the site's CSP, copying data into the site
 src/                 # React dashboard (components, hooks, utils)
 public/              # Static assets for the React app
+docs/                # Security reviews and archived plans
 .github/workflows/   # GitHub Actions automation
 ```
 
@@ -195,14 +204,15 @@ public/              # Static assets for the React app
 ### Prerequisites
 
 - Python 3.11+
-- Node.js 20+
+- Node.js 22+ (CI uses 24)
 - Google Chrome — only needed for sources marked `"render": true`
 - A Google Gemini API key
 
 ### Backend (scraper + analysis)
 
 ```bash
-# Install Python dependencies
+# Install Python dependencies (pinned and hash-checked; on a platform whose
+# wheels differ from Linux, `pip install -r requirements.in` instead)
 pip install -r requirements.txt
 
 # Configure your environment (see .env.example)
@@ -230,6 +240,10 @@ python news_watch.py --dry-run --only oecd-aim-australia
 
 # Run the pipeline tests (no network, no browser, no API key needed)
 python -m unittest discover -s tests
+
+# The checks CI runs on every pull request
+pip install -r requirements-dev.txt
+ruff check && mypy && pip-audit --require-hashes --disable-pip -r requirements.txt
 ```
 
 The script updates `hashes.json`, `health.json`, `history.json` and `runs.jsonl`,
@@ -271,18 +285,27 @@ npm test -- --watchAll=false
 
 ## Automation
 
-Two GitHub Actions workflows live in `.github/workflows/`:
+The GitHub Actions workflows in `.github/workflows/` give each job only the
+access it needs, and pin every action to a commit SHA:
 
-- **`update_checker.yml`** — Runs daily at midnight UTC (and on manual dispatch or
-  pushes to `main` that touch app/config files). It installs Chrome and
-  dependencies, runs the pipeline tests, runs `main.py`, `transparency_watch.py`
-  and `news_watch.py`,
-  commits any changes,
-  opens or updates a `source-health` issue when a source is failing, builds the
-  React app, and deploys it to GitHub Pages. Requires the `GEMINI_API_KEY` secret
-  (and optional `PROXY_*` secrets).
+- **`update_checker.yml`** — Runs daily at midnight UTC (and on manual dispatch,
+  or a push to `main` that changes what is monitored). A `collect` job with a
+  read-only token runs the tests, `main.py`, `transparency_watch.py` and
+  `news_watch.py`; a `publish` job checks that output with `steward/publish.py`
+  and commits it; the site is then rebuilt and deployed, and the `source-health`
+  issue is opened, updated or closed. Needs the `GEMINI_API_KEY` secret (and the
+  optional `PROXY_*` secrets), ideally held in the `pipeline` environment.
+- **`deploy_site.yml`** — Rebuilds and deploys the dashboard when its own code
+  changes, without re-reading any source.
+- **`build-and-deploy.yml`** — The build and Pages deployment both of the above
+  use.
+- **`ci.yml`** — Lint, type-check, tests, dependency audits and a production
+  build on every pull request.
 - **`generate_lockfile.yml`** — A manual helper that regenerates
-  `package-lock.json`.
+  `package-lock.json` without running any package's install scripts.
+
+See [`SECURITY.md`](SECURITY.md) for how to report a vulnerability and the
+repository settings the workflows expect.
 
 ## License
 

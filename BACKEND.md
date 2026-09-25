@@ -50,7 +50,7 @@ conditional responses).
 If the probe didn't return 304, the page is downloaded and turned into plain
 text:
 
-- **Default path**: `requests.get(...)` for the HTML, then
+- **Default path**: `web.get(...)` (`steward/web.py`) for the HTML, then
   `trafilatura.extract(...)` to pull the readable content and discard
   navigation/boilerplate. If the URL has a `"selector"` in `policy_sets.json`,
   BeautifulSoup narrows the HTML to that CSS selector first and trafilatura
@@ -90,7 +90,33 @@ text:
   and `archived_at`, and the dashboard says the page was read from the
   archive. Set `fetch.archive_fallback: false` to turn it off.
 - **PDFs**: a response that is a PDF (by `Content-Type` or its `%PDF-`
-  magic) is read with `pypdf` rather than trafilatura.
+  magic) is read with `pypdf` rather than trafilatura. At most 300 pages are
+  read, and any parser failure makes the text empty (a failed fetch), never
+  an exception that could stop the run.
+
+Every request, on every route, goes through `steward/web.py`:
+
+- **Public addresses only.** A URL whose host resolves to a loopback,
+  private, link-local or otherwise non-public address is refused before a
+  connection is made, and redirects are followed one hop at a time so each
+  hop is checked the same way. A render that ends up on such an address is
+  discarded. Whatever such a request returned would otherwise be committed
+  to a public repository.
+- **A size cap.** Bodies are streamed and abandoned past
+  `fetch.max_response_mb` (measured after decompression), with a total read
+  deadline, so a broken or hostile server cannot exhaust the runner.
+- **Scrubbed error text.** `last_error` and friends are published in
+  `hashes.json`, `health.json` and `transparency/statements.json`, so they
+  are built with `web.describe_error`, which removes credentials in URLs and
+  the values of the proxy and API secrets, and bounds the length.
+
+Chrome runs **with its sandbox**. Where it cannot start with one (as root in
+a container, or where the kernel forbids it), `_start_chrome` falls back to
+`--no-sandbox` before any page is loaded and logs a warning (and a GitHub
+Actions annotation). The chromedriver comes from Selenium Manager, which
+matches it to the installed Chrome. A proxied browser is pointed at a local
+relay (`steward/proxyrelay.py`) that adds the proxy's credentials, so the
+password never appears on Chrome's command line.
 
 Every attempt is retried up to `fetch.max_retries` times with
 `fetch.retry_delay_seconds` between attempts, escalating from direct→proxy
@@ -345,7 +371,8 @@ fallback to a default for a key that's present but wrong. Sections:
   `disable_conditional_get`, the `User-Agent` string,
   `blocked_host_recheck_days` (how long a host that refused plain HTTP is
   sent straight to the browser; 0 turns it off), `archive_fallback` and
-  `archive_max_age_days` (the Internet Archive fallback).
+  `archive_max_age_days` (the Internet Archive fallback), `max_response_mb`
+  (the most of one response that is read).
 - **`validation`** — `min_length`, `shrink_ratio`, `growth_ratio`,
   `failure_signatures` (block-page substrings).
 - **`normalisation`** — `noise_patterns` (global regexes, kept empty on
@@ -370,8 +397,10 @@ fallback to a default for a key that's present but wrong. Sections:
   lists `ai_terms`, `australia_terms`, `government_terms`, `policy_terms`,
   `risk_terms` used by the AI gate and the keyword scorer.
 - **`transparency`** — `enabled`, `register_url` / `register_selector`,
-  `min_statements` and `keep_ratio` (the plausibility floor for a register
-  read), `fetch_timeout_seconds` (plain-HTTP wait per agency site),
+  `min_statements`, `keep_ratio` and `max_new_statements` (the plausibility
+  bounds for a register read), `allowed_host_suffixes` / `allowed_hosts`
+  (where a statement may be fetched from), `fetch_timeout_seconds`
+  (plain-HTTP wait per agency site),
   `summarise` / `summary_batch_size` / `max_diff_chars` (the model pass),
   `event_days`.
 
@@ -399,9 +428,12 @@ change.
 
 `main.py` writes `health.json` for the frontend every run, and writes
 `health_alert.md` only when `report["alerts"]` is non-empty (and deletes it
-otherwise). The workflow (`.github/workflows/update_checker.yml`) turns that
-file into a GitHub issue labelled `source-health`, updating the existing open
-issue with a comment rather than opening a duplicate. **A source in this
+otherwise). The workflow's `alert` job keeps one open GitHub issue labelled
+`source-health`: it is opened when sources start failing, gets a comment only
+when the set of failing sources changes (its body is refreshed silently
+otherwise), and is closed when every source reads normally again. Remote
+error text in the table is shown as code, so it cannot mention anyone or
+render a link. **A source in this
 state is not reporting "no changes" — the dashboard is reporting nothing
 about it at all**, which is the exact failure mode this alerting exists to
 surface (see `steward/health.py`'s module docstring for the incident that
@@ -740,16 +772,24 @@ and appears on the overview as "Across government".
 2. **Plausibility**: a register read with fewer than `min_statements` links,
    or fewer than `keep_ratio` of the list already held, is rejected — a block
    page or a redesign must never read as most of the Commonwealth
-   withdrawing. The held list is kept and every statement is still checked.
+   withdrawing. So is one listing more than `max_new_statements` agencies
+   never seen before: every new link is a site the run will visit. The held
+   list is kept and every statement is still checked.
+   **Allowlist**: the register is a remote page, so it does not get to decide
+   where the pipeline goes. A statement is fetched only if its host ends in
+   one of `allowed_host_suffixes` (`.gov.au`) or is named in `allowed_hosts`;
+   any other is listed with an error naming its host until someone adds it.
 3. **Register events** are worked out by comparing the two lists
    (`added`, `removed`, `relinked`) — no model call. The first read is a
    baseline and records no events.
-4. **Each statement** goes through `main.process_document` — the same probe,
+4. **Each statement** goes through `monitor.check_document` — the same probe,
    validation, normalisation, revert check, diff and cosmetic gate as a
    policy document — with its baseline in `transparency/snapshots/`. Plain
    GETs use the shorter `fetch_timeout_seconds` and one attempt; the run's
    `FetchSession` sends agency hosts that refuse plain HTTP straight to the
-   browser. A statement published as PDF is read with `pypdf`.
+   browser. A statement published as PDF is read with `pypdf`. Anything that
+   goes wrong with one statement fails that statement alone; the others are
+   still checked and saved.
 5. **The model** sees only statements that genuinely changed, batched
    (`summary_batch_size` per call), each as agency name plus diff, fenced as
    untrusted data. It returns `material_change` (use cases, tools, public
@@ -781,21 +821,51 @@ nothing is lost meanwhile.
 ## Automation (GitHub Actions)
 
 `.github/workflows/update_checker.yml` runs daily at 00:00 UTC (also on
-manual dispatch, and on pushes to `main` touching frontend/config files). In
-order: install deps → run the pipeline tests → install Chrome (for the
-Selenium fallback) → run `main.py --skip-news --skip-transparency` → run
-`transparency_watch.py` → run `news_watch.py` (each `continue-on-error`, so
-one failing never stops the others' output being committed) → commit and
-push any changed data files (including `news/` and `transparency/`) →
-open/update a `source-health` issue if `health_alert.md` exists → build the
-React app → copy the data files into `build/` (only archived *analyses*, not
-archived *snapshots*, ship to `build/logs/`; `news/state.json` and
-`transparency/snapshots/` are not shipped) → deploy to GitHub Pages →
-finally, fail the job if any pipeline step exited non-zero, so a failure is
-still red without holding back the deploy.
+manual dispatch, and on pushes to `main` that change `policy_sets.json`,
+`news_sources.json` or `steward_config.yaml`). It is split into jobs so that
+the one reading third-party content holds no token that can change the
+repository or the site:
+
+1. **collect** (read-only token; the only job with `GEMINI_API_KEY` and the
+   `PROXY_*` secrets, via the `pipeline` environment): install the
+   hash-pinned dependencies → run the pipeline tests → install Chrome → run
+   `main.py --skip-news --skip-transparency`, `transparency_watch.py` and
+   `news_watch.py` (each `continue-on-error`, so one failing never stops the
+   others' output being published) → upload the output as an artifact.
+2. **publish** (`contents: write`; runs no third-party code): check the
+   artifact with `python -m steward.publish` — only the pipeline's own files,
+   in the shapes it writes them, no links, size-capped — copy it in, commit
+   and push. With a GitHub App configured (`DATA_PUBLISHER_CLIENT_ID`
+   variable and `DATA_PUBLISHER_PRIVATE_KEY` secret in the `data-publish`
+   environment), the push is made as the App, which a ruleset on `main` can
+   let through while requiring pull requests of everyone else.
+3. **site** (`build-and-deploy.yml`): `npm ci` → frontend tests → build
+   (the `postbuild` script adds the Content-Security-Policy) →
+   `scripts/copy-site-data.sh` (only archived *analyses*, not archived
+   *snapshots*, ship to `build/logs/`; `news/state.json` and
+   `transparency/snapshots/` are not shipped) → deploy to Pages.
+4. **alert**: open, update or close the `source-health` issue.
+5. **report**: fail the run if any pipeline step or job failed, so a failure
+   is still red without holding back the publish and deploy.
+
+`deploy_site.yml` rebuilds and deploys the site when its own code changes,
+without re-reading any source. `ci.yml` runs lint (`ruff`), types (`mypy`),
+both test suites, `pip-audit`, `npm audit --omit=dev` and a production build
+on every pull request. Every action is pinned to a commit SHA, and Dependabot
+(`.github/dependabot.yml`) raises weekly updates for them, pip and npm.
 
 Run locally, `python main.py` does all three in turn; `--skip-news` and
 `--skip-transparency` leave those streams out, and `--only` implies both.
 
 `.github/workflows/generate_lockfile.yml` is a manual-dispatch-only helper
-that regenerates `package-lock.json`.
+that regenerates `package-lock.json` with `--package-lock-only
+--ignore-scripts`, so no package's install script runs in a job that can
+push.
+
+Python dependencies are edited in `requirements.in` and compiled into the
+hash-pinned `requirements.txt` that CI installs with `--require-hashes`:
+
+```bash
+pip install pip-tools
+pip-compile --generate-hashes --strip-extras --output-file=requirements.txt requirements.in
+```

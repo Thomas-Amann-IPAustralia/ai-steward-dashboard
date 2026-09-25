@@ -6,10 +6,11 @@ React dashboard (`src/`, `public/`), the GitHub Actions workflows, the
 dependencies, and the repository settings visible through the GitHub API.
 
 > **Status update (25 September 2026, at `2e2ce41`).** None of these findings
-> has been fixed yet. Finding 1's exposure has grown: Chrome now renders 107
+> had been fixed at that point; the follow-up's "Remediation status" table
+> now records what has been. Finding 1's exposure has grown: Chrome now renders 107
 > documents a day instead of 2. The transparency stream added four new
 > findings, and good-practice gaps were also reviewed. See
-> [`SECURITY_REVIEW_FOLLOWUP.md`](SECURITY_REVIEW_FOLLOWUP.md), whose action
+> [`security-review-followup.md`](security-review-followup.md), whose action
 > plan replaces the one below.
 
 ## Summary
