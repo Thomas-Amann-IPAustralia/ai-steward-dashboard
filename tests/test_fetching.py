@@ -10,12 +10,12 @@ already held.
 
 from __future__ import annotations
 
+from tests import offline  # noqa: F401 — no test may use the network
 import unittest
 from datetime import datetime, timedelta, timezone
 from unittest import mock
 
-import main
-from steward import fetching
+from steward import fetching, monitor
 from steward.config import load_config
 
 PAGE = "Policy text that is long enough to be a real document. " * 20
@@ -77,7 +77,7 @@ class HostMemory(unittest.TestCase):
         second = fetching.fetch_document({"url": "https://www.digital.gov.au/b"}, {}, self.cfg, session=session)
         other = fetching.fetch_document({"url": "https://www.oaic.gov.au/c"}, {}, self.cfg, session=session)
 
-        self.assertTrue(first.ok and second.ok)
+        self.assertTrue(first.ok and second.ok and other.ok)
         self.assertTrue(first.plain_blocked)
         self.assertIsNone(second.plain_blocked, "plain HTTP was not tried, so nothing new is known")
         self.assertEqual(
@@ -146,9 +146,9 @@ class SessionSeeding(unittest.TestCase):
         answered = fetching.FetchResult("u", fetching.OK, text=PAGE, route=fetching.ROUTE_PLAIN, plain_blocked=False)
         now = "2026-09-25T00:00:00+10:00"
 
-        self.assertEqual(main.fetch_route_fields(skipped, prior, now)["plain_blocked_at"], prior["plain_blocked_at"])
-        self.assertEqual(main.fetch_route_fields(refused, prior, now)["plain_blocked_at"], now)
-        self.assertIsNone(main.fetch_route_fields(answered, prior, now)["plain_blocked_at"])
+        self.assertEqual(monitor.fetch_route_fields(skipped, prior, now)["plain_blocked_at"], prior["plain_blocked_at"])
+        self.assertEqual(monitor.fetch_route_fields(refused, prior, now)["plain_blocked_at"], now)
+        self.assertIsNone(monitor.fetch_route_fields(answered, prior, now)["plain_blocked_at"])
 
 
 class FakeDriver:
@@ -182,6 +182,7 @@ class OneBrowserPerRun(unittest.TestCase):
         for patcher in (
             mock.patch.object(fetching, "initialize_driver", launch),
             mock.patch.object(fetching.time, "sleep", lambda _: None),
+            mock.patch.object(fetching.web, "is_public_host", lambda host: True),
         ):
             patcher.start()
             self.addCleanup(patcher.stop)
@@ -222,19 +223,18 @@ class ArchiveFallback(unittest.TestCase):
         self.cfg = cfg(archive_fallback=True, archive_max_age_days=30)
         self.requested = []
 
-    def _archive(self, captured: datetime):
+    def _archive(self, captured: datetime, of: str = "http://www.digital.gov.au/a/"):
         stamp = captured.strftime("%Y%m%d%H%M%S")
         html = f"<html><body><article><p>{PAGE}</p></article></body></html>"
 
-        def get(url, params=None, headers=None, timeout=None):
+        def get(url, params=None, headers=None, timeout=None, max_bytes=None):
             self.requested.append(url)
             if url == fetching.ARCHIVE_AVAILABILITY_API:
-                return ArchiveResponse(
-                    {"archived_snapshots": {"closest": {"available": True, "status": "200", "timestamp": stamp}}}
-                )
+                closest = {"available": True, "status": "200", "timestamp": stamp, "url": of}
+                return ArchiveResponse({"archived_snapshots": {"closest": closest}})
             return ArchiveResponse(text=html)
 
-        patcher = mock.patch.object(fetching.requests, "get", get)
+        patcher = mock.patch.object(fetching.web, "get", get)
         patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -263,6 +263,14 @@ class ArchiveFallback(unittest.TestCase):
         result = fetching._archive_fetch({"url": "https://www.digital.gov.au/a"}, {}, self.cfg)
         self.assertFalse(result.ok)
         self.assertIn("too old", result.error)
+
+    def test_a_capture_of_a_different_page_is_refused(self):
+        now = datetime.now(timezone.utc)
+        self._archive(now - timedelta(days=1), of="https://www.digital.gov.au/")
+        result = fetching._archive_fetch({"url": "https://www.digital.gov.au/a"}, {}, self.cfg)
+        self.assertFalse(result.ok)
+        self.assertIn("different URL", result.error)
+        self.assertEqual(len(self.requested), 1, "the page itself is never downloaded")
 
     def test_it_is_only_asked_once_every_live_route_has_failed(self):
         routes = Routes(plain="hang", render=None)

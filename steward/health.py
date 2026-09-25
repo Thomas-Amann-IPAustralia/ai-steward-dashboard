@@ -154,6 +154,22 @@ def write_report(report: Dict[str, Any], path: str = HEALTH_FILE) -> None:
         json.dump(report, handle, indent=2, ensure_ascii=False)
 
 
+def _cell(value: Any) -> str:
+    """Plain table-cell text: one line, pipes escaped."""
+    text = " ".join(str(value or "").split())
+    return text.replace("|", "\\|") or "—"
+
+
+def _code(value: Any) -> str:
+    """Untrusted text as an inline code span in a table cell.
+
+    Error details carry text from remote servers. In a code span an `@name`
+    does not ping anyone, a link is not clickable and HTML is not rendered.
+    """
+    text = " ".join(str(value or "").split()).replace("`", "'")
+    return f"`{text.replace('|', chr(92) + '|')}`" if text else "—"
+
+
 def render_alert_markdown(report: Dict[str, Any]) -> str:
     """Issue body for the alerting step. Empty string when nothing is wrong."""
     alerts = report.get("alerts", [])
@@ -172,10 +188,10 @@ def render_alert_markdown(report: Dict[str, Any]) -> str:
     for alert in alerts:
         lines.append(
             "| {set_name} | {url} | {kind} — {detail} | {failures} | {last_success} |".format(
-                set_name=alert.get("set_name") or "—",
-                url=alert.get("url") or "—",
+                set_name=_cell(alert.get("set_name")),
+                url=_code(alert.get("url")),
                 kind=alert.get("kind"),
-                detail=(alert.get("detail") or "").replace("|", "\\|") or "—",
+                detail=_code(alert.get("detail")),
                 failures=alert.get("consecutive_failures") or 0,
                 last_success=alert.get("last_success") or "never",
             )

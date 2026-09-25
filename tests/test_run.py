@@ -11,6 +11,7 @@ logs/ — the same files that produced the two false criticals.
 
 from __future__ import annotations
 
+from tests import offline  # noqa: F401 — no test may use the network
 import json
 import os
 import sys
@@ -20,7 +21,7 @@ import unittest
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import main
-from steward import PIPELINE_VERSION, analysis as llm, content, fetching, health, runlog
+from steward import PIPELINE_VERSION, analysis as llm, content, fetching, health, monitor, runlog, store
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGS = os.path.join(REPO_ROOT, "logs")
@@ -124,7 +125,7 @@ class RunHarness(unittest.TestCase):
         for url in (TOS, PRIVACY, AUP):
             text = self.normalised(url, sections)
             doc_id = content.document_id(url)
-            main.write_text(main.document_snapshot_path(FILE_ID, doc_id), text)
+            store.write_text(main.document_snapshot_path(FILE_ID, doc_id), text)
             documents[url] = {
                 "doc_id": doc_id,
                 "label": content.document_label({"url": url}),
@@ -133,7 +134,7 @@ class RunHarness(unittest.TestCase):
                 "pipeline_version": PIPELINE_VERSION,
                 "consecutive_failures": 0,
                 "last_success": "2026-08-07T12:56:53+10:00",
-                "status": main.DOC_UNCHANGED,
+                "status": monitor.DOC_UNCHANGED,
             }
         main._write_aggregate(
             FILE_ID, [(url, self.normalised(url, sections)) for url in (TOS, PRIVACY, AUP)]
@@ -184,7 +185,7 @@ class TheEighthOfAugustProducesNoAlert(RunHarness):
     def test_the_bad_capture_does_not_overwrite_the_stored_snapshot(self):
         entry, _ = self.run_set(self.previous)
         doc_id = content.document_id(TOS)
-        stored = main.read_text(main.document_snapshot_path(FILE_ID, doc_id))
+        stored = store.read_text(main.document_snapshot_path(FILE_ID, doc_id))
         self.assertEqual(
             content.content_hash(stored), self.previous["documents"][TOS]["hash"]
         )
@@ -193,16 +194,16 @@ class TheEighthOfAugustProducesNoAlert(RunHarness):
     def test_the_failure_is_recorded_rather_than_swallowed(self):
         entry, log = self.run_set(self.previous)
         tos = entry["documents"][TOS]
-        self.assertEqual(tos["status"], main.DOC_SUSPECT)
+        self.assertEqual(tos["status"], monitor.DOC_SUSPECT)
         self.assertEqual(tos["consecutive_failures"], 1)
         self.assertIn("block_page", tos["last_error"])
         self.assertEqual(entry["status"], health.DEGRADED)
-        self.assertEqual(log.counts_by_outcome()[main.DOC_SUSPECT], 1)
+        self.assertEqual(log.counts_by_outcome()[monitor.DOC_SUSPECT], 1)
 
     def test_the_sibling_documents_are_reported_as_unchanged(self):
         entry, _ = self.run_set(self.previous)
         for url in (PRIVACY, AUP):
-            self.assertEqual(entry["documents"][url]["status"], main.DOC_UNCHANGED)
+            self.assertEqual(entry["documents"][url]["status"], monitor.DOC_UNCHANGED)
             self.assertEqual(entry["documents"][url]["consecutive_failures"], 0)
 
     def test_the_ninth_of_august_restoration_is_also_a_non_event(self):
@@ -213,7 +214,7 @@ class TheEighthOfAugustProducesNoAlert(RunHarness):
         restored, _ = self.run_set(entry)
 
         self.assertEqual(self.llm_calls, [])
-        self.assertEqual(restored["documents"][TOS]["status"], main.DOC_UNCHANGED)
+        self.assertEqual(restored["documents"][TOS]["status"], monitor.DOC_UNCHANGED)
         self.assertEqual(restored["last_amended"], self.previous["last_amended"])
         self.assertEqual(restored["status"], health.OK)
         self.assertEqual(restored["consecutive_failures"], 0)
@@ -267,14 +268,14 @@ class AGenuineChangeStillGetsThrough(RunHarness):
         self.assertNotEqual(entry["last_amended"], self.previous["last_amended"])
 
         self.assertTrue(os.path.exists(main.diff_path(FILE_ID)))
-        stored = json.loads(main.read_text(main.analysis_path(FILE_ID)))
+        stored = json.loads(store.read_text(main.analysis_path(FILE_ID)))
         self.assertEqual(stored["changed_documents"], ["Aup"])
         self.assertEqual(stored["date_time"], entry["last_amended"])
         self.assertNotIn("Unknown", stored.values())
 
     def test_the_timestamp_comes_from_the_code_not_the_model(self):
         entry, _ = self.run_set(self.previous)
-        stored = json.loads(main.read_text(main.analysis_path(FILE_ID)))
+        stored = json.loads(store.read_text(main.analysis_path(FILE_ID)))
         # The live Perplexity analysis was stamped 2024-05-16 because the model
         # was asked for the time and invented one.
         self.assertTrue(stored["date_time"].startswith(entry["last_checked"][:4]))
@@ -324,16 +325,16 @@ class TheModelIsAllowedToDecline(RunHarness):
         self.llm_calls.clear()
         again, _ = self.run_set(entry)
         self.assertEqual(self.llm_calls, [], "the same diff must not be paid for twice")
-        self.assertEqual(again["documents"][AUP]["status"], main.DOC_UNCHANGED)
+        self.assertEqual(again["documents"][AUP]["status"], monitor.DOC_UNCHANGED)
 
     def test_the_previous_material_analysis_is_not_overwritten(self):
-        main.save_json_file(
+        store.save_json(
             {"verdict": "material_change", "summary": "A real change.", "analysis": "x",
              "priority": "critical", "date_time": "2026-07-15T00:00:00+10:00"},
             main.analysis_path(FILE_ID),
         )
         self.run_set(self.previous)
-        stored = json.loads(main.read_text(main.analysis_path(FILE_ID)))
+        stored = json.loads(store.read_text(main.analysis_path(FILE_ID)))
         self.assertEqual(stored["summary"], "A real change.")
 
 
@@ -389,7 +390,7 @@ class MigratingFromTheLegacyFormat(RunHarness):
         self.assertEqual(entry["last_amended"], self.previous["last_amended"])
         self.assertEqual(entry["last_priority"], "critical")
         for url in (TOS, PRIVACY, AUP):
-            self.assertEqual(entry["documents"][url]["status"], main.DOC_REBASELINED)
+            self.assertEqual(entry["documents"][url]["status"], monitor.DOC_REBASELINED)
             self.assertEqual(entry["documents"][url]["pipeline_version"], PIPELINE_VERSION)
 
     def test_the_run_after_the_migration_compares_normally(self):
@@ -398,7 +399,7 @@ class MigratingFromTheLegacyFormat(RunHarness):
         again, _ = self.run_set(entry)
         self.assertEqual(self.llm_calls, [])
         for url in (TOS, PRIVACY, AUP):
-            self.assertEqual(again["documents"][url]["status"], main.DOC_UNCHANGED)
+            self.assertEqual(again["documents"][url]["status"], monitor.DOC_UNCHANGED)
 
     def test_a_real_change_after_migration_is_detected(self):
         entry, _ = self.run_set(self.previous)
@@ -420,8 +421,8 @@ class ProbeShortCircuitsWhenNothingMoved(RunHarness):
         entry, log = self.run_set(self.previous)
         self.assertEqual(self.llm_calls, [])
         for url in (TOS, PRIVACY, AUP):
-            self.assertEqual(entry["documents"][url]["status"], main.DOC_NOT_MODIFIED)
-        self.assertEqual(log.counts_by_outcome()[main.DOC_NOT_MODIFIED], 3)
+            self.assertEqual(entry["documents"][url]["status"], monitor.DOC_NOT_MODIFIED)
+        self.assertEqual(log.counts_by_outcome()[monitor.DOC_NOT_MODIFIED], 3)
         self.assertEqual(entry["status"], health.OK)
 
 
@@ -438,7 +439,7 @@ class EveryDocumentFailing(RunHarness):
         self.assertEqual(entry["last_amended"], self.previous["last_amended"])
         self.assertEqual(entry["consecutive_failures"], 1)
         for url in (TOS, PRIVACY, AUP):
-            self.assertEqual(entry["documents"][url]["status"], main.DOC_FETCH_FAILED)
+            self.assertEqual(entry["documents"][url]["status"], monitor.DOC_FETCH_FAILED)
 
     def test_last_success_stops_advancing(self):
         entry, _ = self.run_set(self.previous)

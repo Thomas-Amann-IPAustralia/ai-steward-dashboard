@@ -16,6 +16,7 @@ using the text from the runs that produced them:
 
 from __future__ import annotations
 
+from tests import offline  # noqa: F401 — no test may use the network
 import os
 import sys
 import tempfile
@@ -24,7 +25,7 @@ import unittest
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import main
-from steward import PIPELINE_VERSION, analysis as llm, config, content, diffing, fetching, runlog
+from steward import PIPELINE_VERSION, analysis as llm, config, content, diffing, fetching, monitor, runlog, store
 from steward.validation import BLOCK_PAGE, validate_capture
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -154,7 +155,7 @@ class _DocumentHarness(unittest.TestCase):
 
     def seed(self, text: str, **extra) -> dict:
         normalised = content.normalise(text)
-        main.write_text(main.document_snapshot_path(self.file_id, self.doc_id), normalised)
+        store.write_text(main.document_snapshot_path(self.file_id, self.doc_id), normalised)
         prior = {
             "doc_id": self.doc_id,
             "hash": content.content_hash(normalised),
@@ -170,8 +171,8 @@ class _DocumentHarness(unittest.TestCase):
         record, outcome, diff, text = main.process_document(
             {"url": URL}, {}, self.file_id, prior, self.cfg, "2026-09-24T14:17:20+10:00"
         )
-        if outcome in main._BASELINE_OUTCOMES:
-            main.write_text(main.document_snapshot_path(self.file_id, self.doc_id), text)
+        if outcome in monitor.BASELINE_OUTCOMES:
+            store.write_text(main.document_snapshot_path(self.file_id, self.doc_id), text)
         return record, outcome, diff
 
 
@@ -179,7 +180,7 @@ class CosmeticChangesStopBeforeTheModel(_DocumentHarness):
     def test_the_24_september_google_diff_is_recorded_as_cosmetic(self):
         prior = self.seed(f"{FILLER}\n{GOOGLE_STORED}")
         record, outcome, diff = self.process(prior, f"{FILLER}\n{GOOGLE_CURRENT}")
-        self.assertEqual(outcome, main.DOC_COSMETIC)
+        self.assertEqual(outcome, monitor.DOC_COSMETIC)
         self.assertIsNone(diff)
         self.assertGreater(record["cosmetic_lines"], 0)
 
@@ -187,7 +188,7 @@ class CosmeticChangesStopBeforeTheModel(_DocumentHarness):
         prior = self.seed(f"{FILLER}\n{GOOGLE_STORED}")
         record, _, _ = self.process(prior, f"{FILLER}\n{GOOGLE_CURRENT}")
         again, outcome, _ = self.process(record, f"{FILLER}\n{GOOGLE_CURRENT}")
-        self.assertEqual(outcome, main.DOC_UNCHANGED)
+        self.assertEqual(outcome, monitor.DOC_UNCHANGED)
 
 
 class FlipFlopsAreRecordedNotReanalysed(_DocumentHarness):
@@ -197,15 +198,15 @@ class FlipFlopsAreRecordedNotReanalysed(_DocumentHarness):
 
         prior = self.seed(version_a)
         record, outcome, diff = self.process(prior, version_b)
-        self.assertEqual(outcome, main.DOC_CHANGED)
+        self.assertEqual(outcome, monitor.DOC_CHANGED)
         self.assertIsNotNone(diff)
 
         record, outcome, diff = self.process(record, version_a)
-        self.assertEqual(outcome, main.DOC_REVERTED)
+        self.assertEqual(outcome, monitor.DOC_REVERTED)
         self.assertIsNone(diff, "a revert must not be analysed again")
 
         record, outcome, diff = self.process(record, version_b)
-        self.assertEqual(outcome, main.DOC_REVERTED, "the flip back is a revert too")
+        self.assertEqual(outcome, monitor.DOC_REVERTED, "the flip back is a revert too")
 
     def test_memory_is_bounded(self):
         prior = self.seed(f"{FILLER}\nv0")
@@ -243,7 +244,7 @@ class APoisonedBaselineCanRecover(_DocumentHarness):
         # page would have been rejected as growing 50-fold, forever.
         prior = self.seed(CHROME_ERROR)
         record, outcome, diff = self.process(prior, FILLER)
-        self.assertEqual(outcome, main.DOC_REBASELINED)
+        self.assertEqual(outcome, monitor.DOC_REBASELINED)
         self.assertEqual(record["rebaseline_reason"], "stored baseline was not a valid capture")
         self.assertIsNone(diff)
 

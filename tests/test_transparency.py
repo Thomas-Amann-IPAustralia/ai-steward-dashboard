@@ -9,13 +9,14 @@ the agencies the register named on 25 September 2026.
 
 from __future__ import annotations
 
+from tests import offline  # noqa: F401 — no test may use the network
 import os
 import tempfile
 import unittest
 from datetime import date
 
 import transparency_watch
-from steward import fetching, transparency
+from steward import fetching, store, transparency
 from steward.config import load_config
 
 REGISTER_URL = "https://www.digital.gov.au/policy/ai/list-of-transparency-statements"
@@ -156,21 +157,64 @@ class TheRegisterIsReadAsAList(unittest.TestCase):
 
 
 class AShortReadNeverRemovesAgencies(unittest.TestCase):
-    def statements(self, n):
-        return [transparency.Statement(f"a{i}", f"A{i}", "P", transparency.MANDATORY, f"https://a{i}.gov.au") for i in range(n)]
+    def statements(self, n, start=0):
+        return [
+            transparency.Statement(f"a{i}", f"A{i}", "P", transparency.MANDATORY, f"https://a{i}.gov.au")
+            for i in range(start, start + n)
+        ]
+
+    def held(self, n):
+        return {f"a{i}" for i in range(n)}
+
+    def plausible(self, current, held_ids):
+        return transparency.register_is_plausible(current, held_ids, min_statements=50, keep_ratio=0.8, max_new=25)
 
     def test_a_block_page_is_rejected(self):
-        ok, why = transparency.register_is_plausible([], 0, min_statements=50, keep_ratio=0.8)
+        ok, why = self.plausible([], set())
         self.assertFalse(ok)
         self.assertIn("fewer than the 50", why)
 
     def test_a_half_rendered_page_is_rejected(self):
-        ok, _ = transparency.register_is_plausible(self.statements(60), 140, min_statements=50, keep_ratio=0.8)
+        ok, _ = self.plausible(self.statements(60), self.held(140))
         self.assertFalse(ok)
 
     def test_a_few_agencies_leaving_is_accepted(self):
-        ok, _ = transparency.register_is_plausible(self.statements(136), 140, min_statements=50, keep_ratio=0.8)
+        ok, _ = self.plausible(self.statements(136), self.held(140))
         self.assertTrue(ok)
+
+    def test_a_few_agencies_joining_is_accepted(self):
+        ok, _ = self.plausible(self.statements(145), self.held(140))
+        self.assertTrue(ok)
+
+    def test_a_flood_of_unknown_agencies_is_rejected(self):
+        ok, why = self.plausible(self.statements(140) + self.statements(200, start=1000), self.held(140))
+        self.assertFalse(ok)
+        self.assertIn("200 agencies not listed before", why)
+
+    def test_the_first_read_is_not_limited(self):
+        ok, _ = self.plausible(self.statements(140), set())
+        self.assertTrue(ok)
+
+
+class HostAllowlist(unittest.TestCase):
+    def allowed(self, url):
+        return transparency.host_allowed(url, [".gov.au"], {"www.csiro.au"})
+
+    def test_commonwealth_hosts_are_allowed(self):
+        self.assertTrue(self.allowed("https://www.ipaustralia.gov.au/about-us/ai-transparency-statement"))
+
+    def test_named_exceptions_are_allowed(self):
+        self.assertTrue(self.allowed("https://www.csiro.au/en/about/Policies/Artificial-Intelligence-Statement"))
+
+    def test_lookalike_and_internal_hosts_are_not(self):
+        for url in (
+            "https://gov.au.attacker.example/statement",
+            "https://attackergov.au/statement",
+            "https://csiro.au/statement",
+            "http://169.254.169.254/latest/meta-data/",
+            "http://localhost:8080/",
+        ):
+            self.assertFalse(self.allowed(url), url)
 
 
 class RegisterEvents(unittest.TestCase):
@@ -298,10 +342,10 @@ class Run(unittest.TestCase):
         return outcome
 
     def held(self):
-        return transparency_watch.load_json(transparency_watch.STATEMENTS_FILE, {})
+        return store.load_json(transparency_watch.STATEMENTS_FILE, {})
 
     def events(self):
-        return transparency_watch.load_json(transparency_watch.EVENTS_FILE, [])
+        return store.load_json(transparency_watch.EVENTS_FILE, [])
 
     def test_the_first_run_is_a_baseline(self):
         self.assertEqual(transparency_watch.run(self.cfg), 0)
@@ -330,7 +374,7 @@ class Run(unittest.TestCase):
         self.assertEqual((event["type"], event["agency"]), (transparency.UPDATED, "IP Australia"))
         ip = next(s for s in self.held()["statements"] if s["id"] == "ip-australia")
         self.assertEqual(ip["last_change"]["summary"], "Added a use case.")
-        self.assertIn("prior art", transparency_watch.read_text(transparency_watch.snapshot_path("ip-australia")))
+        self.assertIn("prior art", store.read_text(transparency_watch.snapshot_path("ip-australia")))
         self.assertTrue(os.path.exists(transparency_watch.diff_path("ip-australia")))
 
     def test_a_reformatted_statement_costs_nothing(self):
@@ -344,12 +388,12 @@ class Run(unittest.TestCase):
     def test_an_unsummarised_change_waits_for_the_next_run(self):
         transparency_watch.run(self.cfg)
         url = "https://www.ipaustralia.gov.au/about-us/ai-transparency-statement"
-        before = transparency_watch.read_text(transparency_watch.snapshot_path("ip-australia"))
+        before = store.read_text(transparency_watch.snapshot_path("ip-australia"))
         self.pages[url] = self.pages[url].replace("every six months", "every quarter")
         self.summary_results = {}
         transparency_watch.run(self.cfg)
 
-        self.assertEqual(transparency_watch.read_text(transparency_watch.snapshot_path("ip-australia")), before)
+        self.assertEqual(store.read_text(transparency_watch.snapshot_path("ip-australia")), before)
         ip = next(s for s in self.held()["statements"] if s["id"] == "ip-australia")
         self.assertEqual(ip["document"]["status"], "analysis_pending")
 
@@ -388,6 +432,50 @@ class Run(unittest.TestCase):
         self.assertEqual(held["register"]["consecutive_failures"], 1)
         self.assertIn("rejected", held["register"]["last_error"])
         self.assertEqual(self.events(), [])
+
+    def test_a_statement_that_breaks_the_parser_fails_alone(self):
+        transparency_watch.run(self.cfg)
+        broken = "https://www.ipaustralia.gov.au/about-us/ai-transparency-statement"
+        fetch = self._fetch
+
+        def fetch_raising(url_data, prior, cfg, policy_set=None, session=None):
+            if url_data["url"] == broken:
+                raise RuntimeError("the PDF parser gave up")
+            return fetch(url_data, prior, cfg, policy_set, session)
+
+        fetching.fetch_document = fetch_raising
+        self.assertEqual(transparency_watch.run(self.cfg), 0)
+
+        held = {s["id"]: s for s in self.held()["statements"]}
+        self.assertEqual(len(held), 5, "every other statement is still recorded")
+        ip = held["ip-australia"]
+        self.assertEqual(ip["document"]["status"], "fetch_failed")
+        self.assertEqual(ip["document"]["consecutive_failures"], 1)
+        self.assertIn("RuntimeError", ip["document"]["last_error"])
+        self.assertTrue(os.path.exists(transparency_watch.snapshot_path("ip-australia")), "the baseline is kept")
+        self.assertTrue(all(s["document"]["status"] != "fetch_failed" for sid, s in held.items() if sid != "ip-australia"))
+
+    def test_a_statement_off_the_allowlist_is_listed_but_never_fetched(self):
+        self.cfg.transparency.allowed_hosts = []
+        self.register_html = self.register_html.replace(
+            '<li><a href="https://www.asio.gov.au/ai">Australian Security Intelligence Organisation</a></li>',
+            '<li><a href="https://www.asio.gov.au/ai">Australian Security Intelligence Organisation</a></li>'
+            '<li><a href="https://statements.example.com/ai">Example Agency</a></li>',
+        )
+        fetched = []
+        fetch = self._fetch
+
+        def recording(url_data, prior, cfg, policy_set=None, session=None):
+            fetched.append(url_data["url"])
+            return fetch(url_data, prior, cfg, policy_set, session)
+
+        fetching.fetch_document = recording
+        transparency_watch.run(self.cfg)
+
+        self.assertNotIn("https://statements.example.com/ai", fetched)
+        example = next(s for s in self.held()["statements"] if s["id"] == "example-agency")
+        self.assertEqual(example["document"]["status"], "fetch_failed")
+        self.assertIn("statements.example.com", example["document"]["last_error"])
 
     def test_a_dry_run_writes_nothing(self):
         transparency_watch.run(self.cfg, dry_run=True)

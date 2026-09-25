@@ -10,6 +10,7 @@ anything but plain, bounded text.
 
 from __future__ import annotations
 
+from tests import offline  # noqa: F401 — no test may use the network
 import json
 import os
 import sys
@@ -20,7 +21,7 @@ from datetime import datetime, timedelta, timezone
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import news_watch
-from steward import config, content, feeds, news, news_enrichment
+from steward import config, content, feeds, news, news_enrichment, store
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NOW = datetime(2026, 9, 24, 6, 0, tzinfo=timezone.utc)
@@ -105,6 +106,21 @@ class FeedsParse(unittest.TestCase):
         bomb = b'<?xml version="1.0"?><!DOCTYPE r [<!ENTITY a "aaaa">]><rss><channel/></rss>'
         with self.assertRaises(feeds.FeedParseError):
             feeds.parse_feed(bomb)
+
+    def test_an_entity_declared_after_padding_is_refused_too(self):
+        padding = b"<!-- " + b"x" * 8192 + b" -->"
+        bomb = b'<?xml version="1.0"?>' + padding + b'<!DOCTYPE r [<!ENTITY a "aaaa">]><rss><channel/></rss>'
+        with self.assertRaises(feeds.FeedParseError):
+            feeds.parse_feed(bomb)
+
+    def test_an_old_rss_doctype_without_entities_is_read(self):
+        feed = RSS.replace(
+            b"<rss ",
+            b'<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" '
+            b'"http://my.netscape.com/publish/formats/rss-0.91.dtd">\n<rss ',
+            1,
+        )
+        self.assertEqual(len(feeds.parse_feed(feed)), len(feeds.parse_feed(RSS)))
 
     def test_html_is_not_a_feed(self):
         with self.assertRaises(feeds.FeedParseError):
@@ -234,7 +250,9 @@ class TheGatesFilterNoise(unittest.TestCase):
 
     def test_keyword_relevance_bands(self):
         v = vocab()
-        score = lambda text, **kw: news.keyword_relevance(text, v, kind=kw.pop("kind", "news"), related=kw.pop("related", []), **kw)[0]
+        def score(text, **kw):
+            return news.keyword_relevance(text, v, kind=kw.pop("kind", "news"), related=kw.pop("related", []), **kw)[0]
+
         self.assertEqual(score("Australian Government releases AI policy for agencies"), 3)
         self.assertEqual(score("AI incident at a hospital", kind="incident", country_code="AUS"), 3)
         self.assertEqual(score("EU AI Act guidance published by the Commission's AI Office agency"), 2)
@@ -454,7 +472,7 @@ class TheRunWritesAWindowedFeed(unittest.TestCase):
         self.run_news()
         feed = read_json(news_watch.FEED_FILE)
         feed["items"][0]["published"] = "2026-01-15T00:00:00+00:00"
-        news_watch.save_json(feed, news_watch.FEED_FILE)
+        store.save_json(feed, news_watch.FEED_FILE)
         self.run_news()
         feed = read_json(news_watch.FEED_FILE)
         self.assertEqual(feed["items"], [])

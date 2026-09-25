@@ -1,0 +1,23 @@
+# Direct dependencies of the pipeline. Edit this file, then regenerate the
+# pinned, hash-checked requirements.txt that CI installs:
+#
+#     pip install pip-tools
+#     pip-compile --generate-hashes --strip-extras --output-file=requirements.txt requirements.in
+#
+# (Dependabot does both steps itself when it bumps a version here.)
+
+beautifulsoup4==4.12.3
+# Feed XML is parsed with entity declarations refused anywhere in the document.
+defusedxml==0.7.1
+google-genai==1.29.0
+# Text of documents published as PDF, such as some AI transparency statements.
+pypdf==6.19.0
+PyYAML>=6.0,<7
+requests==2.34.2
+trafilatura==2.0.0
+# Selenium is the fallback path only: URLs marked "render": true in
+# policy_sets.json, salvaging a plain fetch that came back unusable, and the
+# hosts that refuse plain HTTP clients. Its bundled Selenium Manager supplies a
+# chromedriver matching the installed Chrome.
+selenium==4.25.0
+selenium-stealth==1.0.6

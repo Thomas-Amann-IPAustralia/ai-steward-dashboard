@@ -23,6 +23,12 @@ remembers those hosts, so only the first document on one pays for finding
 out, and it keeps one browser open for the whole run rather than launching
 one per page. When every live route fails, the Internet Archive's
 availability API is asked for a capture newer than the one already held.
+
+Every request goes through `web`, which refuses non-public addresses (on
+every redirect hop too) and caps how much of a body is read. Chrome keeps its
+sandbox wherever it can start with one: with more than half the monitored
+documents now read through the browser, a renderer bug on any of those sites
+must not reach the runner.
 """
 
 from __future__ import annotations
@@ -41,6 +47,7 @@ import requests
 import trafilatura
 from bs4 import BeautifulSoup
 
+from . import web
 from .content import fold_for_matching
 
 log = logging.getLogger(__name__)
@@ -63,6 +70,16 @@ ROUTE_RENDER = "render"
 ROUTE_ARCHIVE = "archive"
 
 ARCHIVE_AVAILABILITY_API = "https://archive.org/wayback/available"
+# The availability API answers with a few hundred bytes of JSON.
+ARCHIVE_API_MAX_BYTES = 1024 * 1024
+
+# A statement or policy longer than this is not what the pipeline is for, and
+# pypdf's time grows with it.
+MAX_PDF_PAGES = 300
+
+# Set once Chrome has failed to start with its sandbox in this process, so
+# later launches go straight to the fallback instead of failing again.
+_sandbox_unavailable = False
 
 
 @dataclass
@@ -86,6 +103,9 @@ class FetchResult:
     plain_blocked: Optional[bool] = None
     # For an archive read, when the Internet Archive captured the page.
     archived_at: Optional[str] = None
+    # The request was refused before or while reading it (a non-public
+    # address, a body over the cap): no other route should try it.
+    refused: bool = False
 
     @property
     def ok(self) -> bool:
@@ -171,7 +191,8 @@ class FetchSession:
             stagger = zlib.crc32(host.encode("utf-8")) % recheck_days
             if stamp < now - timedelta(days=recheck_days + stagger):
                 continue
-            if host not in blocked or stamp > _parse_time(blocked[host]):
+            held = _parse_time(blocked.get(host))
+            if held is None or stamp > held:
                 blocked[host] = record["plain_blocked_at"]
         return cls(blocked)
 
@@ -194,10 +215,7 @@ class FetchSession:
         """Drop a browser that has errored; the next render starts a fresh one."""
         driver, self._driver = self._driver, None
         if driver is not None:
-            try:
-                driver.quit()
-            except Exception:  # noqa: BLE001
-                pass
+            quit_driver(driver)
 
     def close(self) -> None:
         self.discard_driver()
@@ -251,17 +269,24 @@ def extract_text(html: str, url: str, selector: Optional[str] = None) -> tuple[s
 
 
 def extract_pdf_text(data: bytes) -> str:
-    """Text of a PDF, page by page. Empty if the file cannot be read."""
+    """Text of a PDF, page by page. Empty if the file cannot be read.
+
+    An agency's PDF is untrusted input, and pypdf raises more than its
+    PdfReadError on a malformed one (ParseError, LimitReachedError and other
+    PyPdfError subclasses, and plain Python errors from deep inside), so every
+    failure is caught: one bad file must fail one document, not the run.
+    """
     from io import BytesIO
 
     from pypdf import PdfReader
-    from pypdf.errors import PdfReadError
+    from pypdf.errors import PyPdfError
 
     try:
         reader = PdfReader(BytesIO(data))
-        return "\n".join((page.extract_text() or "") for page in reader.pages)
-    except (PdfReadError, ValueError, KeyError, OSError) as exc:
-        log.warning("    Could not read PDF: %s", exc)
+        pages = reader.pages[:MAX_PDF_PAGES]
+        return "\n".join((page.extract_text() or "") for page in pages)
+    except (PyPdfError, ValueError, KeyError, TypeError, AttributeError, IndexError, RecursionError, OSError) as exc:
+        log.warning("    Could not read PDF: %s", web.describe_error(exc))
         return ""
 
 
@@ -304,15 +329,17 @@ def _http_fetch(url_data: dict, prior: dict, cfg, use_proxy: bool) -> FetchResul
         return FetchResult(url, FAILED, error="proxy requested but credentials incomplete")
 
     try:
-        response = requests.get(
+        response = web.get(
             url,
             headers=_conditional_headers(prior, cfg),
             timeout=cfg.fetch.timeout_seconds,
             proxies=proxies,
-            allow_redirects=True,
+            max_bytes=cfg.fetch.max_response_mb * 1024 * 1024,
         )
+    except (web.UnsafeDestination, web.ResponseTooLarge) as exc:
+        return FetchResult(url, FAILED, error=web.describe_error(exc), refused=True)
     except requests.RequestException as exc:
-        return FetchResult(url, FAILED, error=f"{type(exc).__name__}: {exc}")
+        return FetchResult(url, FAILED, error=web.describe_error(exc))
 
     etag = response.headers.get("ETag")
     last_modified = response.headers.get("Last-Modified")
@@ -370,15 +397,18 @@ def _archive_fetch(url_data: dict, prior: dict, cfg) -> FetchResult:
     datacenter client is, so it can see a page this run could not. Only a
     capture taken after this document's last successful read is accepted:
     an older one could only report a change backwards. The capture must also
-    be within `fetch.archive_max_age_days`.
+    be within `fetch.archive_max_age_days`, and of this page: the archive
+    matches loosely (http or https, with or without www, a redirect's target)
+    and a capture of a neighbouring URL is not this document.
     """
     url = url_data["url"]
     try:
-        response = requests.get(
+        response = web.get(
             ARCHIVE_AVAILABILITY_API,
             params={"url": url},
             headers={"User-Agent": cfg.fetch.user_agent},
             timeout=cfg.fetch.timeout_seconds,
+            max_bytes=ARCHIVE_API_MAX_BYTES,
         )
         response.raise_for_status()
         closest = (response.json().get("archived_snapshots") or {}).get("closest") or {}
@@ -388,6 +418,8 @@ def _archive_fetch(url_data: dict, prior: dict, cfg) -> FetchResult:
     captured = _parse_archive_timestamp(closest.get("timestamp"))
     if not closest.get("available") or str(closest.get("status")) != "200" or captured is None:
         return FetchResult(url, FAILED, error="no archived copy")
+    if not _same_page(str(closest.get("url") or ""), url):
+        return FetchResult(url, FAILED, error="the archive's closest capture is of a different URL")
 
     now = datetime.now(timezone.utc)
     if captured < now - timedelta(days=cfg.fetch.archive_max_age_days):
@@ -398,10 +430,11 @@ def _archive_fetch(url_data: dict, prior: dict, cfg) -> FetchResult:
 
     stamp = closest["timestamp"]
     try:
-        page = requests.get(
+        page = web.get(
             f"https://web.archive.org/web/{stamp}id_/{url}",
             headers={"User-Agent": cfg.fetch.user_agent},
             timeout=cfg.fetch.timeout_seconds,
+            max_bytes=cfg.fetch.max_response_mb * 1024 * 1024,
         )
     except requests.RequestException as exc:
         return FetchResult(url, FAILED, error=f"archive read failed: {type(exc).__name__}")
@@ -425,6 +458,19 @@ def _archive_fetch(url_data: dict, prior: dict, cfg) -> FetchResult:
     )
 
 
+def _same_page(captured: str, requested: str) -> bool:
+    """Whether an archive capture's URL is the requested page, allowing for
+    the scheme, a leading www., a trailing slash and letter case."""
+
+    def key(url: str) -> tuple:
+        parsed = urlparse(url)
+        host = (parsed.hostname or "").lower()
+        host = host[4:] if host.startswith("www.") else host
+        return host, (parsed.path.rstrip("/") or "/").lower(), parsed.query.lower()
+
+    return bool(captured) and key(captured) == key(requested)
+
+
 def _parse_archive_timestamp(value) -> Optional[datetime]:
     try:
         return datetime.strptime(str(value), "%Y%m%d%H%M%S").replace(tzinfo=timezone.utc)
@@ -443,6 +489,8 @@ def _selenium_fetch(url_data: dict, cfg, use_proxy: bool, session: Optional[Fetc
     own, since the proxy is a launch option.
     """
     url = url_data["url"]
+    if not web.is_allowed_destination(url):
+        return FetchResult(url, FAILED, error="refused: not a public http(s) address")
 
     try:
         from selenium.common.exceptions import TimeoutException, WebDriverException
@@ -453,7 +501,7 @@ def _selenium_fetch(url_data: dict, cfg, use_proxy: bool, session: Optional[Fetc
         return FetchResult(url, FAILED, error=f"Selenium unavailable: {exc}")
 
     shared = session is not None and not use_proxy
-    driver = session.driver(cfg) if shared else initialize_driver(cfg, with_proxy=use_proxy)
+    driver = session.driver(cfg) if shared and session is not None else initialize_driver(cfg, with_proxy=use_proxy)
     if driver is None:
         return FetchResult(url, FAILED, error="could not start WebDriver")
 
@@ -468,35 +516,36 @@ def _selenium_fetch(url_data: dict, cfg, use_proxy: bool, session: Optional[Fetc
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 2);")
         time.sleep(random.uniform(0.4, 0.9))
 
+        # The page may have sent the browser somewhere else; what it ended up
+        # showing is only kept if that is somewhere the run may go.
+        landed = getattr(driver, "current_url", "") or url
+        try:
+            web.check_destination(landed)
+        except web.UnsafeDestination as exc:
+            return FetchResult(url, FAILED, error=f"browser ended on a page it may not keep ({exc})")
+
         html = driver.page_source
         text, _ = extract_text(html, url, url_data.get("selector"))
         return FetchResult(url, OK, text=text, extractor=EXTRACTOR_SELENIUM, html=html, route=ROUTE_RENDER)
     except TimeoutException:
         return FetchResult(url, FAILED, error="timed out waiting for page body")
     except WebDriverException as exc:
-        if shared:
+        if shared and session is not None:
             session.discard_driver()
         return FetchResult(url, FAILED, error=f"{type(exc).__name__}")
     except Exception as exc:  # noqa: BLE001 — a scrape must not kill the run
-        return FetchResult(url, FAILED, error=f"{type(exc).__name__}: {exc}")
+        return FetchResult(url, FAILED, error=web.describe_error(exc))
     finally:
         if not shared:
-            try:
-                driver.quit()
-            except Exception:  # noqa: BLE001
-                pass
+            quit_driver(driver)
 
 
-def initialize_driver(cfg, with_proxy: bool = False):
+def _chrome_options(cfg, *, sandbox: bool, proxy_server: Optional[str] = None):
     from selenium import webdriver
-    from selenium.webdriver.chrome.service import Service as ChromeService
-    from selenium_stealth import stealth
-    from webdriver_manager.chrome import ChromeDriverManager
 
     options = webdriver.ChromeOptions()
     for argument in (
         "--headless=new",
-        "--no-sandbox",
         "--disable-dev-shm-usage",
         "--disable-blink-features=AutomationControlled",
         "--disable-gpu",
@@ -504,23 +553,82 @@ def initialize_driver(cfg, with_proxy: bool = False):
         "--lang=en-US,en;q=0.9",
     ):
         options.add_argument(argument)
+    if not sandbox:
+        options.add_argument("--no-sandbox")
+    if proxy_server:
+        options.add_argument(f"--proxy-server=http://{proxy_server}")
     options.add_argument(f"user-agent={cfg.fetch.user_agent}")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option("useAutomationExtension", False)
+    return options
 
+
+def _start_chrome(cfg, proxy_server: Optional[str]):
+    """Chrome with its sandbox if this machine allows one, else without.
+
+    The sandbox is what stands between a renderer bug on a monitored page and
+    the runner. GitHub's hosted runners allow it. Chrome refuses it when run
+    as root (as in many containers), and some kernels forbid the namespaces
+    it needs; there, starting without it keeps the documents readable, and
+    the warning makes the gap visible rather than silent. The choice is made
+    before any page is loaded, so no page can influence it.
+    """
+    from selenium import webdriver
+    from selenium.common.exceptions import WebDriverException
+
+    # Selenium Manager otherwise prefers any chromedriver already on PATH,
+    # even one built for a different Chrome (GitHub's runners ship one, and
+    # the workflow then upgrades Chrome), which fails every render.
+    os.environ.setdefault("SE_SKIP_DRIVER_IN_PATH", "true")
+
+    global _sandbox_unavailable
+    if _sandbox_unavailable:
+        return webdriver.Chrome(options=_chrome_options(cfg, sandbox=False, proxy_server=proxy_server))
+
+    # Twice, so one flaky launch cannot switch the sandbox off for the run.
+    failure = ""
+    for _ in range(2):
+        try:
+            return webdriver.Chrome(options=_chrome_options(cfg, sandbox=True, proxy_server=proxy_server))
+        except WebDriverException as exc:
+            failure = web.describe_error(exc)
+
+    # Only concluded once Chrome starts without it; if it cannot start at
+    # all, that raises here and the sandbox is tried again next launch.
+    driver = webdriver.Chrome(options=_chrome_options(cfg, sandbox=False, proxy_server=proxy_server))
+    _sandbox_unavailable = True
+    message = "Chrome could not start with its sandbox, so pages are rendered without it"
+    log.warning("%s (%s)", message, failure)
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        print(f"::warning title=Chrome sandbox::{message}.", flush=True)
+    return driver
+
+
+def initialize_driver(cfg, with_proxy: bool = False):
+    """A headless Chrome, or None if one cannot be started.
+
+    The driver binary comes from Selenium Manager, which ships with Selenium
+    and matches it to the installed Chrome. A proxied browser is given a
+    local relay rather than the proxy's credentials (see proxyrelay).
+    """
+    from selenium_stealth import stealth
+
+    from .proxyrelay import ProxyRelay
+
+    relay = None
     if with_proxy:
         host, port, user, password = (
             os.environ.get(k)
             for k in ("PROXY_HOST", "PROXY_PORT", "PROXY_USER", "PROXY_PASS")
         )
-        if not all([host, port, user, password]):
+        if not (host and port and user and password):
             log.warning("Proxy requested but credentials incomplete")
             return None
-        options.add_argument(f"--proxy-server=http://{user}:{password}@{host}:{port}")
+        relay = ProxyRelay(host, int(port), user, password)
 
     try:
-        service = ChromeService(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
+        driver = _start_chrome(cfg, relay.start() if relay else None)
+        driver._steward_relay = relay
         stealth(
             driver,
             languages=["en-US", "en"],
@@ -532,8 +640,21 @@ def initialize_driver(cfg, with_proxy: bool = False):
         )
         return driver
     except Exception as exc:  # noqa: BLE001
-        log.error("Failed to initialize WebDriver: %s", exc)
+        log.error("Failed to initialize WebDriver: %s", web.describe_error(exc))
+        if relay is not None:
+            relay.close()
         return None
+
+
+def quit_driver(driver) -> None:
+    """Close a browser and the proxy relay it was given, if any."""
+    try:
+        driver.quit()
+    except Exception:  # noqa: BLE001
+        pass
+    relay = getattr(driver, "_steward_relay", None)
+    if relay is not None:
+        relay.close()
 
 
 # --- Orchestration ---------------------------------------------------------
@@ -546,6 +667,8 @@ _RENDERABLE_STATUSES = {401, 403, 405, 406, 429}
 
 def _worth_rendering(result: FetchResult) -> bool:
     """Whether a failed plain fetch is worth spending a browser launch on."""
+    if result.refused:
+        return False
     status = result.http_status
     if status is None:
         return True  # a network-level failure; a different route may work

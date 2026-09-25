@@ -15,18 +15,40 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import json
 import logging
 import os
 import shutil
 import sys
 import uuid
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
-from steward import PIPELINE_VERSION, analysis as llm, content, diffing, fetching, health, history, runlog
+from steward import (
+    PIPELINE_VERSION,
+    analysis as llm,
+    configure_logging,
+    content,
+    diffing,
+    fetching,
+    health,
+    history,
+    monitor,
+    runlog,
+    store,
+    web,
+)
 from steward.config import ConfigError, load_config
-from steward.validation import validate_capture
+from steward.monitor import (
+    BASELINE_OUTCOMES,
+    DOC_CHANGED,
+    DOC_FETCH_FAILED,
+    DOC_NEW,
+    DOC_REBASELINED,
+    DOC_REVERTED,
+    DOC_SUSPECT,
+    HEALTHY_OUTCOMES,
+)
 
 # --- Paths -----------------------------------------------------------------
 
@@ -42,38 +64,10 @@ AEST_TZ = timezone(timedelta(hours=10))
 # Window for the per-source activity summary shown on the dashboard.
 ACTIVITY_DAYS = 30
 
-# Per-document outcomes recorded in hashes.json and runs.jsonl.
-DOC_UNCHANGED = "unchanged"
-DOC_NOT_MODIFIED = "not_modified"
-DOC_CHANGED = "changed"
-DOC_NEW = "new"
-DOC_REBASELINED = "rebaselined"
-DOC_SUSPECT = "suspect_scrape"
-DOC_FETCH_FAILED = "fetch_failed"
-# The text moved but said nothing new: re-typeset, re-wrapped, re-linked.
-DOC_COSMETIC = "cosmetic"
-# The text returned to a version already seen — the flip-flop a CDN serving
-# two variants, or an A/B test, produces day after day.
-DOC_REVERTED = "reverted"
+# hashes.json and the analysis files have always been written with this
+# indent; keeping it keeps their diffs readable.
+JSON_INDENT = 4
 
-_HEALTHY_OUTCOMES = {
-    DOC_UNCHANGED,
-    DOC_NOT_MODIFIED,
-    DOC_CHANGED,
-    DOC_NEW,
-    DOC_REBASELINED,
-    DOC_COSMETIC,
-    DOC_REVERTED,
-}
-# Outcomes whose captured text becomes the stored baseline.
-_BASELINE_OUTCOMES = {DOC_CHANGED, DOC_NEW, DOC_REBASELINED, DOC_COSMETIC, DOC_REVERTED}
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[logging.StreamHandler(sys.stdout)],
-)
 log = logging.getLogger("steward")
 
 
@@ -87,35 +81,6 @@ def setup_directories() -> None:
 
 def slugify_set_name(name: str) -> str:
     return content.set_file_id(name)
-
-
-def load_json_file(path: str, default: Any) -> Any:
-    if not os.path.exists(path):
-        return default
-    try:
-        with open(path, "r", encoding="utf-8") as handle:
-            return json.load(handle)
-    except (OSError, json.JSONDecodeError):
-        log.warning("Failed to read %s, using default", path)
-        return default
-
-
-def save_json_file(data: Any, path: str) -> None:
-    with open(path, "w", encoding="utf-8") as handle:
-        json.dump(data, handle, indent=4, ensure_ascii=False)
-
-
-def read_text(path: str) -> str:
-    if not os.path.exists(path):
-        return ""
-    with open(path, "r", encoding="utf-8") as handle:
-        return handle.read()
-
-
-def write_text(path: str, text: str) -> None:
-    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
-    with open(path, "w", encoding="utf-8") as handle:
-        handle.write(text)
 
 
 def document_snapshot_path(file_id: str, doc_id: str) -> str:
@@ -148,11 +113,7 @@ def archive_previous_version(file_id: str, timestamp: str) -> None:
     passed file_id where a set name was expected; the parameter is gone rather
     than corrected, because introducing set names here would break both.
     """
-    try:
-        stamp = datetime.fromisoformat(timestamp).strftime("%Y%m%d_%H%M%S")
-    except (TypeError, ValueError):
-        stamp = datetime.now(AEST_TZ).strftime("%Y%m%d_%H%M%S")
-
+    stamp = _stamp(timestamp)
     for source, suffix in (
         (analysis_path(file_id), "analysis.json"),
         (aggregate_snapshot_path(file_id), "snapshot.txt"),
@@ -186,6 +147,11 @@ def validate_policy_sets(policy_sets: list) -> list:
         if not all(isinstance(u, dict) and u.get("url") for u in urls):
             log.warning("Skipping policy_sets[%d] (%s): malformed url entry", i, name)
             continue
+        # The dashboard renders these as links, so a javascript: or data: URL
+        # here would become a clickable script, not just a failed fetch.
+        if not all(fetching.is_safe_url(u["url"]) for u in urls):
+            log.warning("Skipping policy_sets[%d] (%s): every url must be http(s)", i, name)
+            continue
         seen_names.add(name)
         valid.append(ps)
     return valid
@@ -202,7 +168,7 @@ def seed_documents_from_legacy(policy_set: dict, file_id: str, cfg) -> Dict[str,
     The aggregate snapshots are still on disk and still sectioned by URL, so
     the per-document baselines can be recovered rather than thrown away.
     """
-    aggregate = read_text(aggregate_snapshot_path(file_id))
+    aggregate = store.read_text(aggregate_snapshot_path(file_id))
     sections = content.split_aggregate(aggregate)
     if not sections:
         return {}
@@ -216,7 +182,7 @@ def seed_documents_from_legacy(policy_set: dict, file_id: str, cfg) -> Dict[str,
         text = content.normalise(sections[url], cfg.noise_patterns_for(content.host_of(url)))
         if not text:
             continue
-        write_text(document_snapshot_path(file_id, doc_id), text)
+        store.write_text(document_snapshot_path(file_id, doc_id), text)
         seeded[url] = {
             "doc_id": doc_id,
             "label": content.document_label(url_data),
@@ -246,212 +212,52 @@ def process_document(
     cfg,
     timestamp: str,
     session: Optional[fetching.FetchSession] = None,
-    stored_text: Optional[str] = None,
 ) -> Tuple[dict, str, Optional[diffing.DiffResult], str]:
-    """Run one document through every gate.
+    """One policy document through every gate, against its stored snapshot.
 
-    `stored_text` is the baseline to compare against; by default it is read
-    from the policy set's snapshot. Nothing is written here — the caller
-    decides what to keep. Returns (record, outcome, diff_or_None,
-    current_text).
+    Nothing is written here — the caller decides what to keep. Returns
+    (record, outcome, diff_or_None, current_text).
     """
-    url = url_data["url"]
-    doc_id = prior.get("doc_id") or content.document_id(url)
-    label = content.document_label(url_data)
-    if stored_text is None:
-        stored_text = read_text(document_snapshot_path(file_id, doc_id))
-
-    record = dict(prior)
-    record.update({"doc_id": doc_id, "label": label, "last_checked": timestamp})
-    record.setdefault("consecutive_failures", 0)
-
-    result = fetching.fetch_document(url_data, prior, cfg, policy_set, session=session)
-    record["http_status"] = result.http_status
-    record["fetch_ms"] = result.duration_ms
-    record.update(fetch_route_fields(result, prior, timestamp))
-
-    # Stage 1 — the metadata probe answered it.
-    if result.status == fetching.NOT_MODIFIED:
-        record.update(
-            {
-                "status": DOC_NOT_MODIFIED,
-                "etag": result.etag or prior.get("etag"),
-                "last_modified": result.last_modified or prior.get("last_modified"),
-                "consecutive_failures": 0,
-                "last_success": timestamp,
-                "last_error": "",
-            }
-        )
-        return record, DOC_NOT_MODIFIED, None, stored_text
-
-    if result.status == fetching.FAILED:
-        record.update(
-            {
-                "status": DOC_FETCH_FAILED,
-                "consecutive_failures": int(prior.get("consecutive_failures", 0)) + 1,
-                "last_error": result.error,
-            }
-        )
-        log.warning("    Fetch failed for %s: %s", url, result.error)
-        return record, DOC_FETCH_FAILED, None, stored_text
-
-    # A stored baseline that is itself a block page or a stub can never be
-    # compared against: the real page would be rejected for "growing" 50-fold
-    # and the source would stay failing forever. Digital.gov.au sat in
-    # exactly that state behind a 347-character Chrome error page.
-    baseline_valid = bool(stored_text) and _is_plausible_capture(stored_text, cfg)
-    prior_length = prior.get("length") if baseline_valid else None
-
-    # Stage 2 pass 1 — normalise, then decide whether this is plausibly the
-    # document at all. A capture that fails validation never overwrites the
-    # stored snapshot and never reaches the model.
-    normalised = content.normalise(result.text, cfg.noise_patterns_for(content.host_of(url)))
-    verdict = validate_capture(
-        normalised,
-        prior_length,
-        min_length=cfg.validation.min_length,
-        shrink_ratio=cfg.validation.shrink_ratio,
-        growth_ratio=cfg.validation.growth_ratio,
-        failure_signatures=cfg.validation.failure_signatures,
+    doc_id = prior.get("doc_id") or content.document_id(url_data["url"])
+    return monitor.check_document(
+        url_data,
+        prior,
+        cfg,
+        timestamp,
+        stored_text=store.read_text(document_snapshot_path(file_id, doc_id)),
+        policy_set=policy_set,
+        session=session,
     )
-    if not verdict.ok:
-        record.update(
-            {
-                "status": DOC_SUSPECT,
-                "consecutive_failures": int(prior.get("consecutive_failures", 0)) + 1,
-                "last_error": f"{verdict.reason}: {verdict.detail}",
-                "suspect_length": len(normalised),
-            }
-        )
-        log.warning("    Rejected capture of %s — %s (%s)", url, verdict.reason, verdict.detail)
-        return record, DOC_SUSPECT, None, stored_text
-
-    new_hash = content.content_hash(normalised)
-    record.update(
-        {
-            "hash": new_hash,
-            "length": len(normalised),
-            "etag": result.etag,
-            "last_modified": result.last_modified,
-            "extractor": result.extractor,
-            "pipeline_version": PIPELINE_VERSION,
-            "consecutive_failures": 0,
-            "last_success": timestamp,
-            "last_error": "",
-        }
-    )
-
-    # First time this document has ever been read.
-    if not prior.get("hash"):
-        record["status"] = DOC_NEW
-        record["last_changed"] = timestamp
-        return record, DOC_NEW, None, normalised
-
-    # The extractor or the normalisation rules changed underneath the stored
-    # baseline, so the two are not comparable. Re-baseline and say so, rather
-    # than reporting a change that did not happen.
-    stale_pipeline = int(prior.get("pipeline_version", 0)) != PIPELINE_VERSION
-    if stale_pipeline or not baseline_valid:
-        if stale_pipeline:
-            reason = "extraction pipeline changed"
-        elif stored_text:
-            reason = "stored baseline was not a valid capture"
-        else:
-            reason = "stored snapshot missing"
-        log.info("    Re-baselining %s (%s)", label, reason)
-        record["status"] = DOC_REBASELINED
-        record["rebaseline_reason"] = reason
-        # Versions recorded under different rules are not comparable either.
-        record["previous_hashes"] = []
-        return record, DOC_REBASELINED, None, normalised
-
-    if new_hash == prior.get("hash"):
-        record["status"] = DOC_UNCHANGED
-        return record, DOC_UNCHANGED, None, normalised
-
-    remembered = [h for h in prior.get("previous_hashes") or [] if h]
-    record["previous_hashes"] = _remember(prior.get("hash"), remembered, new_hash, cfg.diff.revert_memory)
-
-    # Back to a version already seen. Analysing it again would re-report a
-    # change the steward has already been shown, in reverse, every time the
-    # source flips — so it is recorded, not analysed.
-    if new_hash in remembered:
-        log.info("    %s returned to a previously seen version — not re-analysed", label)
-        record["status"] = DOC_REVERTED
-        record["last_changed"] = timestamp
-        return record, DOC_REVERTED, None, normalised
-
-    # Stage 2 pass 2 — the diff, and the cosmetic gate.
-    diff = diffing.compute_diff(
-        stored_text,
-        normalised,
-        label=label,
-        context_lines=cfg.diff.context_lines,
-        max_chars=cfg.diff.max_diff_chars,
-        watchlist=cfg.fingerprint.watchlist,
-    )
-    if diff.is_empty:
-        log.info(
-            "    %s: %d line(s) moved, none substantively — cosmetic, no analysis",
-            label,
-            diff.cosmetic_lines,
-        )
-        record["status"] = DOC_COSMETIC
-        record["cosmetic_lines"] = diff.cosmetic_lines
-        return record, DOC_COSMETIC, None, normalised
-
-    record["status"] = DOC_CHANGED
-    record["last_changed"] = timestamp
-    record["diff_added"] = diff.added
-    record["diff_removed"] = diff.removed
-    record["cosmetic_lines"] = diff.cosmetic_lines
-    return record, DOC_CHANGED, diff, normalised
-
-
-def fetch_route_fields(result: fetching.FetchResult, prior: dict, timestamp: str) -> dict:
-    """How the document was reached, kept so the next run can go straight there.
-
-    `plain_blocked_at` is when a plain GET was last refused: refreshed when it
-    is refused again, cleared when plain HTTP works, and carried unchanged
-    when plain HTTP was skipped because the host was already known to refuse
-    it — so it ages out and plain HTTP is retried after
-    `fetch.blocked_host_recheck_days`.
-    """
-    fields: Dict[str, Any] = {}
-    if result.route:
-        fields["route"] = result.route
-    fields["archived_at"] = result.archived_at
-    if result.plain_blocked is True:
-        fields["plain_blocked_at"] = timestamp
-    elif result.plain_blocked is False:
-        fields["plain_blocked_at"] = None
-    else:
-        fields["plain_blocked_at"] = prior.get("plain_blocked_at")
-    return fields
-
-
-def _is_plausible_capture(text: str, cfg) -> bool:
-    """Whether stored text passes the absolute checks a fresh capture must."""
-    return validate_capture(
-        text,
-        None,
-        min_length=cfg.validation.min_length,
-        shrink_ratio=cfg.validation.shrink_ratio,
-        growth_ratio=cfg.validation.growth_ratio,
-        failure_signatures=cfg.validation.failure_signatures,
-    ).ok
-
-
-def _remember(current: Optional[str], remembered: List[str], incoming: str, limit: int) -> List[str]:
-    """Most-recent-first hashes this document has held, excluding the new one."""
-    if limit <= 0:
-        return []
-    history_ = [current] if current else []
-    history_.extend(h for h in remembered if h != current)
-    return [h for h in history_ if h != incoming][:limit]
 
 
 # --- Per-set processing ----------------------------------------------------
+
+
+@dataclass
+class SetCheck:
+    """What checking every document in one set found."""
+
+    documents: Dict[str, dict] = field(default_factory=dict)
+    outcomes: Dict[str, str] = field(default_factory=dict)
+    sections: List[Tuple[str, str]] = field(default_factory=list)
+    changed: List[Tuple[str, diffing.DiffResult]] = field(default_factory=list)
+    tags: List[str] = field(default_factory=list)
+    texts_to_write: List[Tuple[str, str]] = field(default_factory=list)
+
+    @property
+    def all_ok(self) -> bool:
+        return all(outcome in HEALTHY_OUTCOMES for outcome in self.outcomes.values())
+
+    @property
+    def any_failed(self) -> bool:
+        return any(outcome in (DOC_FETCH_FAILED, DOC_SUSPECT) for outcome in self.outcomes.values())
+
+    @property
+    def readable(self) -> bool:
+        return any(outcome in HEALTHY_OUTCOMES for outcome in self.outcomes.values())
+
+    def labels_with(self, outcome: str) -> List[str]:
+        return [self.documents[url]["label"] for url, o in self.outcomes.items() if o == outcome]
 
 
 def process_policy_set(
@@ -471,27 +277,75 @@ def process_policy_set(
     if not prior_documents and previous_entry.get("hash"):
         prior_documents = seed_documents_from_legacy(policy_set, file_id, cfg)
 
-    documents: Dict[str, dict] = {}
-    sections: List[Tuple[str, str]] = []
-    changed: List[Tuple[str, diffing.DiffResult]] = []
-    outcomes: Dict[str, str] = {}
-    tags: List[str] = []
-    texts_to_write: List[Tuple[str, str]] = []
+    check = _check_documents(policy_set, file_id, prior_documents, cfg, timestamp, run_log, session)
 
+    entry: Dict[str, Any] = {
+        "hash": rollup_hash([check.documents[u].get("hash", "") for u in sorted(check.documents)]),
+        "category": policy_set["category"],
+        "urls": policy_set["urls"],
+        "file_id": file_id,
+        "last_checked": timestamp,
+        "last_amended": previous_entry.get("last_amended"),
+        "last_priority": previous_entry.get("last_priority"),
+        "last_verdict": previous_entry.get("last_verdict"),
+        "last_change": previous_entry.get("last_change"),
+        "last_review": previous_entry.get("last_review"),
+        "schema_failures": int(previous_entry.get("schema_failures", 0) or 0),
+        "consecutive_failures": (
+            int(previous_entry.get("consecutive_failures", 0) or 0) + 1 if check.any_failed else 0
+        ),
+        "last_success": timestamp if check.all_ok else previous_entry.get("last_success"),
+        "documents": check.documents,
+    }
+    entry["status"] = health.set_status(check.documents, cfg.health.consecutive_failure_threshold)
+
+    if not check.readable:
+        log.warning("  No document in '%s' could be read — carrying the previous state forward", set_name)
+        return entry
+
+    # Nothing survived to the diff stage: either genuinely unchanged, or a
+    # re-baseline, or a first capture. None of those is a policy amendment.
+    if not check.changed:
+        if dry_run:
+            if check.texts_to_write:
+                log.info("  [dry-run] Would record %d baseline(s)", len(check.texts_to_write))
+            return previous_entry or entry
+        _record_baselines(set_name, file_id, previous_entry, entry, check, timestamp)
+        return entry
+
+    return _analyse_change(set_name, file_id, previous_entry, prior_documents, entry, check, cfg, run_log, dry_run, timestamp)
+
+
+def _check_documents(
+    policy_set: dict,
+    file_id: str,
+    prior_documents: Dict[str, dict],
+    cfg,
+    timestamp: str,
+    run_log: runlog.RunLog,
+    session: Optional[fetching.FetchSession],
+) -> SetCheck:
+    set_name = policy_set["setName"]
+    check = SetCheck()
     for url_data in policy_set["urls"]:
         url = url_data["url"]
-        record, outcome, diff, text = process_document(
-            url_data, policy_set, file_id, prior_documents.get(url, {}), cfg, timestamp, session
-        )
-        documents[url] = record
-        outcomes[url] = outcome
-        sections.append((url, text))
+        prior = prior_documents.get(url, {})
+        try:
+            record, outcome, diff, text = process_document(url_data, policy_set, file_id, prior, cfg, timestamp, session)
+        except Exception as exc:  # noqa: BLE001 — one broken page must not cost the rest of the set
+            log.exception("    Unhandled error checking %s", url)
+            record = monitor.failed_document(url_data, prior, timestamp, web.describe_error(exc))
+            outcome, diff = DOC_FETCH_FAILED, None
+            text = store.read_text(document_snapshot_path(file_id, record["doc_id"]))
+        check.documents[url] = record
+        check.outcomes[url] = outcome
+        check.sections.append((url, text))
 
-        if outcome in _BASELINE_OUTCOMES:
-            texts_to_write.append((document_snapshot_path(file_id, record["doc_id"]), text))
+        if outcome in BASELINE_OUTCOMES:
+            check.texts_to_write.append((document_snapshot_path(file_id, record["doc_id"]), text))
         if diff is not None:
-            changed.append((record["label"], diff))
-            tags.extend(diff.tags)
+            check.changed.append((record["label"], diff))
+            check.tags.extend(diff.tags)
 
         run_log.record(
             timestamp=timestamp,
@@ -509,98 +363,82 @@ def process_policy_set(
             fetch_ms=record.get("fetch_ms", 0),
             llm_called=False,
         )
+    return check
 
-    all_ok = all(outcome in _HEALTHY_OUTCOMES for outcome in outcomes.values())
-    any_failed = any(outcome in (DOC_FETCH_FAILED, DOC_SUSPECT) for outcome in outcomes.values())
-    readable = [url for url, outcome in outcomes.items() if outcome in _HEALTHY_OUTCOMES]
 
-    entry: Dict[str, Any] = {
-        "hash": rollup_hash([documents[u].get("hash", "") for u in sorted(documents)]),
-        "category": policy_set["category"],
-        "urls": policy_set["urls"],
-        "file_id": file_id,
-        "last_checked": timestamp,
-        "last_amended": previous_entry.get("last_amended"),
-        "last_priority": previous_entry.get("last_priority"),
-        "last_verdict": previous_entry.get("last_verdict"),
-        "last_change": previous_entry.get("last_change"),
-        "last_review": previous_entry.get("last_review"),
-        "schema_failures": int(previous_entry.get("schema_failures", 0) or 0),
-        "consecutive_failures": (
-            int(previous_entry.get("consecutive_failures", 0) or 0) + 1 if any_failed else 0
-        ),
-        "last_success": timestamp if all_ok else previous_entry.get("last_success"),
-        "documents": documents,
-    }
-    entry["status"] = health.set_status(documents, cfg.health.consecutive_failure_threshold)
+def _record_baselines(
+    set_name: str, file_id: str, previous_entry: dict, entry: Dict[str, Any], check: SetCheck, timestamp: str
+) -> None:
+    """Store new baselines and say why nothing was analysed."""
+    _commit_texts(check.texts_to_write)
+    _write_aggregate(file_id, check.sections)
+    new_docs = check.labels_with(DOC_NEW)
+    rebaselined = check.labels_with(DOC_REBASELINED)
+    reverted = check.labels_with(DOC_REVERTED)
 
-    if not readable:
-        log.warning("  No document in '%s' could be read — carrying the previous state forward", set_name)
-        return entry
-
-    # Nothing survived to the diff stage: either genuinely unchanged, or a
-    # re-baseline, or a first capture. None of those is a policy amendment.
-    if not changed:
-        if dry_run:
-            if texts_to_write:
-                log.info("  [dry-run] Would record %d baseline(s)", len(texts_to_write))
-            return previous_entry or entry
-        _commit_texts(texts_to_write)
-        _write_aggregate(file_id, sections)
-        new_docs = [documents[u]["label"] for u, o in outcomes.items() if o == DOC_NEW]
-        rebaselined = [documents[u]["label"] for u, o in outcomes.items() if o == DOC_REBASELINED]
-        reverted = [documents[u]["label"] for u, o in outcomes.items() if o == DOC_REVERTED]
-
-        if new_docs and not previous_entry.get("hash"):
-            log.info("  First scan for '%s'", set_name)
-            entry["last_amended"] = timestamp
-            entry["last_priority"] = "low"
-            entry["last_verdict"] = llm.NO_MATERIAL_CHANGE
-            save_json_file(
-                {
-                    "verdict": llm.NO_MATERIAL_CHANGE,
-                    "summary": "Initial snapshot captured.",
-                    "analysis": (
-                        f"This is the first time the '{set_name}' policy set has been "
-                        "monitored. Future runs will compare against this baseline."
-                    ),
-                    "priority": "low",
-                    "date_time": timestamp,
-                    "changed_documents": [],
-                },
-                analysis_path(file_id),
-            )
-        elif reverted:
-            noted = ", ".join(reverted)
-            log.info("  '%s': %s returned to a previously seen version", set_name, noted)
-            entry["last_review"] = {
-                "timestamp": timestamp,
-                "verdict": "reverted",
-                "summary": (
-                    f"{noted} returned to a version already recorded, so it was not "
-                    "re-analysed. A source that alternates like this is usually serving "
-                    "two variants rather than being amended."
+    if new_docs and not previous_entry.get("hash"):
+        log.info("  First scan for '%s'", set_name)
+        entry["last_amended"] = timestamp
+        entry["last_priority"] = "low"
+        entry["last_verdict"] = llm.NO_MATERIAL_CHANGE
+        store.save_json(
+            {
+                "verdict": llm.NO_MATERIAL_CHANGE,
+                "summary": "Initial snapshot captured.",
+                "analysis": (
+                    f"This is the first time the '{set_name}' policy set has been "
+                    "monitored. Future runs will compare against this baseline."
                 ),
-                "changed_documents": reverted,
-            }
-        elif new_docs or rebaselined:
-            noted = ", ".join(new_docs + rebaselined)
-            log.info("  Baselines recorded for '%s' (%s) — no change reported", set_name, noted)
-            entry["last_review"] = {
-                "timestamp": timestamp,
-                "verdict": "rebaselined",
-                "summary": f"Baseline re-recorded for: {noted}. No change reported.",
-            }
-        else:
-            log.info("  No changes detected for '%s'", set_name)
-        return entry
+                "priority": "low",
+                "date_time": timestamp,
+                "changed_documents": [],
+            },
+            analysis_path(file_id),
+            indent=JSON_INDENT,
+        )
+    elif reverted:
+        noted = ", ".join(reverted)
+        log.info("  '%s': %s returned to a previously seen version", set_name, noted)
+        entry["last_review"] = {
+            "timestamp": timestamp,
+            "verdict": "reverted",
+            "summary": (
+                f"{noted} returned to a version already recorded, so it was not "
+                "re-analysed. A source that alternates like this is usually serving "
+                "two variants rather than being amended."
+            ),
+            "changed_documents": reverted,
+        }
+    elif new_docs or rebaselined:
+        noted = ", ".join(new_docs + rebaselined)
+        log.info("  Baselines recorded for '%s' (%s) — no change reported", set_name, noted)
+        entry["last_review"] = {
+            "timestamp": timestamp,
+            "verdict": "rebaselined",
+            "summary": f"Baseline re-recorded for: {noted}. No change reported.",
+        }
+    else:
+        log.info("  No changes detected for '%s'", set_name)
 
-    # Stage 3 — one diff artefact, one model call.
-    combined_diff = diffing.combine_diffs(changed)
-    changed_labels = [label for label, _ in changed]
-    unique_tags = sorted(set(tags))
-    total_added = sum(d.added for _, d in changed)
-    total_removed = sum(d.removed for _, d in changed)
+
+def _analyse_change(
+    set_name: str,
+    file_id: str,
+    previous_entry: dict,
+    prior_documents: Dict[str, dict],
+    entry: Dict[str, Any],
+    check: SetCheck,
+    cfg,
+    run_log: runlog.RunLog,
+    dry_run: bool,
+    timestamp: str,
+) -> dict:
+    """Stage 3 — one diff artefact, one model call, and what to keep."""
+    combined_diff = diffing.combine_diffs(check.changed)
+    changed_labels = [label for label, _ in check.changed]
+    unique_tags = sorted(set(check.tags))
+    total_added = sum(d.added for _, d in check.changed)
+    total_removed = sum(d.removed for _, d in check.changed)
 
     log.info(
         "  Change detected in %s (+%d / -%d lines)%s",
@@ -614,7 +452,7 @@ def process_policy_set(
         log.info("  [dry-run] Skipping analysis and leaving stored state untouched")
         return previous_entry or entry
 
-    outcome = llm.analyse_change(
+    analysis = llm.analyse_change(
         set_name,
         combined_diff,
         model=cfg.model,
@@ -628,40 +466,49 @@ def process_policy_set(
         file_id=file_id,
         url="",
         label="(policy set)",
-        outcome="analysed" if outcome.ok else ("api_unavailable" if outcome.unavailable else "schema_failed"),
+        outcome="analysed" if analysis.ok else ("api_unavailable" if analysis.unavailable else "schema_failed"),
         diff_added=total_added,
         diff_removed=total_removed,
         tags=unique_tags,
         llm_called=True,
-        llm_attempts=outcome.attempts,
-        prompt_tokens=outcome.prompt_tokens,
-        output_tokens=outcome.output_tokens,
-        verdict=(outcome.result or {}).get("verdict"),
-        priority=(outcome.result or {}).get("priority"),
-        error=outcome.error,
+        llm_attempts=analysis.attempts,
+        prompt_tokens=analysis.prompt_tokens,
+        output_tokens=analysis.output_tokens,
+        verdict=(analysis.result or {}).get("verdict"),
+        priority=(analysis.result or {}).get("priority"),
+        error=analysis.error,
     )
 
-    if not outcome.ok:
+    if analysis.result is None:
         # Nothing is stored: the stored snapshot stays put so the same diff is
         # retried next run rather than being silently lost. An overloaded
         # model is not the model misbehaving, so only a real schema failure
         # counts towards the schema alert.
-        if outcome.unavailable:
+        if analysis.unavailable:
             log.error("  Model unavailable for '%s' — the change will be retried next run", set_name)
         else:
             log.error("  Analysis of '%s' failed schema validation twice — skipping", set_name)
             entry["schema_failures"] = entry["schema_failures"] + 1
         entry["hash"] = previous_entry.get("hash", entry["hash"])
-        entry["documents"] = _revert_changed_documents(documents, prior_documents, outcomes)
+        entry["documents"] = _revert_changed_documents(check.documents, prior_documents, check.outcomes)
         return entry
 
     entry["schema_failures"] = 0
-    result = outcome.result
+    result = analysis.result
     verdict = result["verdict"]
 
-    _commit_texts(texts_to_write)
-    _write_aggregate(file_id, sections)
-    write_text(diff_path(file_id), combined_diff)
+    _commit_texts(check.texts_to_write)
+    _write_aggregate(file_id, check.sections)
+    store.write_text(diff_path(file_id), combined_diff)
+
+    # Where the changed text came from, when it was not the live page, so a
+    # change first seen in an Internet Archive capture can be told apart.
+    archived = sorted(
+        check.documents[url]["label"]
+        for url, outcome in check.outcomes.items()
+        if outcome == DOC_CHANGED and check.documents[url].get("route") == fetching.ROUTE_ARCHIVE
+    )
+    provenance = {"archived_documents": archived} if archived else {}
 
     change_record = {
         "timestamp": timestamp,
@@ -671,6 +518,7 @@ def process_policy_set(
         "added": total_added,
         "removed": total_removed,
         "tags": unique_tags,
+        **provenance,
     }
 
     if verdict == llm.NO_MATERIAL_CHANGE:
@@ -685,14 +533,15 @@ def process_policy_set(
             "changed_documents": changed_labels,
         }
         archive_previous_version(file_id, timestamp)
-        save_json_file(
-            {**result, "date_time": timestamp, "changed_documents": changed_labels},
+        store.save_json(
+            {**result, "date_time": timestamp, "changed_documents": changed_labels, **provenance},
             os.path.join(LOG_DIR, f"{file_id}_{_stamp(timestamp)}_analysis.json"),
+            indent=JSON_INDENT,
         )
         return entry
 
     archive_previous_version(file_id, previous_entry.get("last_checked") or timestamp)
-    save_json_file(
+    store.save_json(
         {
             "verdict": verdict,
             "summary": result["summary"],
@@ -703,8 +552,10 @@ def process_policy_set(
             "changed_documents": changed_labels,
             "diff_stats": {"added": total_added, "removed": total_removed},
             "fingerprint": unique_tags,
+            **provenance,
         },
         analysis_path(file_id),
+        indent=JSON_INDENT,
     )
 
     entry["last_amended"] = timestamp
@@ -741,12 +592,12 @@ def _stamp(timestamp: str) -> str:
 
 def _commit_texts(pending: List[Tuple[str, str]]) -> None:
     for path, text in pending:
-        write_text(path, text)
+        store.write_text(path, text)
 
 
 def _write_aggregate(file_id: str, sections: List[Tuple[str, str]]) -> None:
     """The combined snapshot the detail page still offers as a disclosure."""
-    write_text(aggregate_snapshot_path(file_id), content.build_aggregate(sections))
+    store.write_text(aggregate_snapshot_path(file_id), content.build_aggregate(sections))
 
 
 def _revert_changed_documents(
@@ -803,6 +654,7 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
 
 
 def main(argv: Optional[List[str]] = None) -> int:
+    configure_logging()
     args = parse_args(argv)
     setup_directories()
 
@@ -816,7 +668,15 @@ def main(argv: Optional[List[str]] = None) -> int:
         log.error("GEMINI_API_KEY is not set. Exiting.")
         return 1
 
-    policy_sets = load_json_file(POLICY_SETS_FILE, [])
+    try:
+        return run(cfg, args)
+    except store.StateError as exc:
+        log.error("Stopping without writing anything: %s", exc)
+        return 1
+
+
+def run(cfg, args: argparse.Namespace) -> int:
+    policy_sets = store.load_json(POLICY_SETS_FILE, [])
     if not isinstance(policy_sets, list):
         log.error("%s must contain a JSON array. Exiting.", POLICY_SETS_FILE)
         return 1
@@ -830,9 +690,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         log.error("No valid policy sets to check. Exiting.")
         return 1
 
-    previous_hashes = load_json_file(HASHES_FILE, {})
+    previous_hashes = store.load_json(HASHES_FILE, {})
     if not isinstance(previous_hashes, dict):
-        previous_hashes = {}
+        raise store.StateError(f"{HASHES_FILE} must contain a JSON object")
 
     run_id = uuid.uuid4().hex[:12]
     run_log = runlog.RunLog(run_id)
@@ -869,7 +729,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         _report_dry_run(run_log, report)
         return _run_streams(cfg, args)
 
-    save_json_file(current_hashes, HASHES_FILE)
+    store.save_json(current_hashes, HASHES_FILE, indent=JSON_INDENT)
     run_log.flush(cfg.retention.run_log_days)
     report["activity_days"] = ACTIVITY_DAYS
     recent_records = runlog.load_records(days=ACTIVITY_DAYS)
@@ -878,8 +738,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     health.write_report(report)
     if health.write_alert(report):
         log.warning("Health alerts raised: %d — see %s", len(report["alerts"]), health.ALERT_FILE)
-    elif os.path.exists(health.ALERT_FILE):
-        os.remove(health.ALERT_FILE)
+    else:
+        store.remove(health.ALERT_FILE)
 
     pruned = history.prune(LOG_DIR, cfg.retention.log_days)
     if pruned:

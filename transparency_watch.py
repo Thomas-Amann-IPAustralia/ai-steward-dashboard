@@ -28,15 +28,15 @@ Outputs:
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 import os
 import sys
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
+from urllib.parse import urlparse
 
-from steward import fetching, health, transparency
+from steward import configure_logging, diffing, fetching, health, monitor, store, transparency, web
 from steward.config import ConfigError, load_config
 
 TRANSPARENCY_DIR = "transparency"
@@ -53,50 +53,12 @@ log = logging.getLogger("steward.transparency")
 # --- Files -----------------------------------------------------------------------
 
 
-def load_json(path: str, default: Any) -> Any:
-    if not os.path.exists(path):
-        return default
-    try:
-        with open(path, "r", encoding="utf-8") as handle:
-            return json.load(handle)
-    except (OSError, json.JSONDecodeError):
-        log.warning("Failed to read %s, using default", path)
-        return default
-
-
-def save_json(data: Any, path: str) -> None:
-    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
-    tmp = f"{path}.tmp"
-    with open(tmp, "w", encoding="utf-8") as handle:
-        json.dump(data, handle, indent=2, ensure_ascii=False)
-        handle.write("\n")
-    os.replace(tmp, path)
-
-
-def read_text(path: str) -> str:
-    if not os.path.exists(path):
-        return ""
-    with open(path, "r", encoding="utf-8") as handle:
-        return handle.read()
-
-
-def write_text(path: str, text: str) -> None:
-    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
-    with open(path, "w", encoding="utf-8") as handle:
-        handle.write(text)
-
-
 def snapshot_path(statement_id: str) -> str:
     return os.path.join(SNAPSHOT_DIR, f"{statement_id}.txt")
 
 
 def diff_path(statement_id: str) -> str:
     return os.path.join(DIFF_DIR, f"{statement_id}.diff")
-
-
-def remove_file(path: str) -> None:
-    if os.path.exists(path):
-        os.remove(path)
 
 
 def held_documents(held: dict) -> List[Tuple[str, dict]]:
@@ -119,11 +81,9 @@ def read_register(
 ) -> Tuple[dict, List[dict], List[dict]]:
     """The register's record, the statements it lists, and what moved.
 
-    When the register cannot be read, or reads implausibly short, the list
-    already held is kept and monitoring of each statement carries on.
+    When the register cannot be read, or reads implausibly, the list already
+    held is kept and monitoring of each statement carries on.
     """
-    import main  # the per-document route bookkeeping is shared with the policy monitor
-
     tcfg = cfg.transparency
     url = tcfg.register_url
     prior_doc = held_register.get("document") if held_register.get("url") == url else {}
@@ -134,7 +94,7 @@ def read_register(
     )
     document = {
         **{key: prior_doc.get(key) for key in ("etag", "last_modified")},
-        **main.fetch_route_fields(result, prior_doc, timestamp),
+        **monitor.fetch_route_fields(result, prior_doc, timestamp),
         "http_status": result.http_status,
         "fetch_ms": result.duration_ms,
     }
@@ -154,7 +114,11 @@ def read_register(
     elif result.ok and result.html:
         parsed = transparency.parse_register(result.html, url, tcfg.register_selector)
         plausible, why = transparency.register_is_plausible(
-            parsed, len(held_list), min_statements=tcfg.min_statements, keep_ratio=tcfg.keep_ratio
+            parsed,
+            {entry["id"] for entry in held_list},
+            min_statements=tcfg.min_statements,
+            keep_ratio=tcfg.keep_ratio,
+            max_new=tcfg.max_new_statements,
         )
         if plausible:
             listed = [statement.as_dict() for statement in parsed]
@@ -194,16 +158,15 @@ def run(
     only: Optional[Sequence[str]] = None,
     summarise: bool = True,
 ) -> int:
-    import main  # process_document holds the gates every document goes through
-
     tcfg = cfg.transparency
     if not tcfg.enabled:
         log.info("Transparency statements are disabled in the config")
         return 0
 
     timestamp = datetime.now(AEST_TZ).isoformat()
-    held = load_json(STATEMENTS_FILE, {})
-    held = held if isinstance(held, dict) else {}
+    held = store.load_json(STATEMENTS_FILE, {})
+    if not isinstance(held, dict):
+        raise store.StateError(f"{STATEMENTS_FILE} must contain a JSON object")
     held_statements = {
         entry["id"]: entry
         for entry in held.get("statements") or []
@@ -243,19 +206,10 @@ def run(
             # A statement at a new address starts a new baseline.
             relinked = bool(prior_entry) and prior_entry.get("url") != listing["url"]
             prior_doc = {} if relinked or not prior_entry else prior_entry.get("document") or {}
-            stored = "" if relinked else read_text(snapshot_path(sid))
+            stored = "" if relinked else store.read_text(snapshot_path(sid))
 
             log.info("  %s", listing["agency"])
-            record, outcome, diff, text = main.process_document(
-                {"url": listing["url"], "label": listing["agency"]},
-                {},
-                TRANSPARENCY_DIR,
-                prior_doc,
-                statement_cfg,
-                timestamp,
-                session,
-                stored_text=stored,
-            )
+            record, outcome, diff, text = check_statement(listing, prior_doc, stored, statement_cfg, timestamp, session)
             entry = {
                 **listing,
                 "first_seen": prior_entry.get("first_seen") or timestamp,
@@ -266,10 +220,10 @@ def run(
             entry["status"] = health.document_status(record, threshold)
             statements[sid] = entry
 
-            if outcome == main.DOC_CHANGED:
+            if outcome == monitor.DOC_CHANGED and diff is not None:
                 changes.append({"id": sid, "agency": listing["agency"], "diff": diff.text[: tcfg.max_diff_chars]})
                 pending[sid] = (text, diff, prior_doc)
-            elif outcome in main._BASELINE_OUTCOMES:
+            elif outcome in monitor.BASELINE_OUTCOMES:
                 texts[sid] = text
     finally:
         session.close()
@@ -277,15 +231,15 @@ def run(
     diffs: Dict[str, str] = {}
     results: Dict[str, dict] = {}
     if changes and not dry_run and summarise and tcfg.summarise:
-        outcome = transparency.summarise(changes, model=cfg.model, batch_size=tcfg.summary_batch_size)
-        results = outcome.results
+        summary = transparency.summarise(changes, model=cfg.model, batch_size=tcfg.summary_batch_size)
+        results = summary.results
         log.info(
             "  Summarised %d of %d changed statement(s) in %d call(s), %d prompt / %d output tokens",
             len(results),
             len(changes),
-            outcome.calls,
-            outcome.prompt_tokens,
-            outcome.output_tokens,
+            summary.calls,
+            summary.prompt_tokens,
+            summary.output_tokens,
         )
     elif changes:
         log.info("  %d statement(s) changed; not summarised this run", len(changes))
@@ -331,14 +285,14 @@ def run(
         return 0
 
     for sid, text in texts.items():
-        write_text(snapshot_path(sid), text)
+        store.write_text(snapshot_path(sid), text)
     for sid, text in diffs.items():
-        write_text(diff_path(sid), text)
+        store.write_text(diff_path(sid), text)
     for sid in removed:
-        remove_file(snapshot_path(sid))
-        remove_file(diff_path(sid))
+        store.remove(snapshot_path(sid))
+        store.remove(diff_path(sid))
 
-    save_json(
+    store.save_json(
         {
             "generated_at": timestamp,
             "register": register,
@@ -349,7 +303,7 @@ def run(
         },
         STATEMENTS_FILE,
     )
-    save_json(prune_events(events + load_json(EVENTS_FILE, []), tcfg.event_days), EVENTS_FILE)
+    store.save_json(prune_events(events + store.load_json(EVENTS_FILE, []), tcfg.event_days), EVENTS_FILE)
 
     failing = sum(1 for entry in statements.values() if entry.get("status") == health.FAILING)
     log.info(
@@ -364,6 +318,35 @@ def run(
         entry.get("document", {}).get("last_success") == timestamp for entry in statements.values()
     )
     return 0 if readable else 1
+
+
+def check_statement(
+    listing: dict, prior_doc: dict, stored: str, cfg, timestamp: str, session
+) -> Tuple[dict, str, Optional[diffing.DiffResult], str]:
+    """One statement through the gates, never raising.
+
+    A host that is not on the allowlist is not visited at all. Anything that
+    goes wrong reading one agency's page — a PDF the parser chokes on, a
+    browser crash — fails that statement alone and the run carries on, as a
+    fetch failure does.
+    """
+    url_data = {"url": listing["url"], "label": listing["agency"]}
+    tcfg = cfg.transparency
+    if not transparency.host_allowed(listing["url"], tcfg.allowed_host_suffixes, set(tcfg.allowed_hosts)):
+        host = urlparse(listing["url"]).hostname or listing["url"]
+        error = f"not fetched: {host} is not in transparency.allowed_hosts in steward_config.yaml"
+        log.warning("    %s", error)
+        return monitor.failed_document(url_data, prior_doc, timestamp, error), monitor.DOC_FETCH_FAILED, None, stored
+    try:
+        return monitor.check_document(url_data, prior_doc, cfg, timestamp, stored_text=stored, session=session)
+    except Exception as exc:  # noqa: BLE001 — one agency's page must not cost the other statements
+        log.exception("    Unhandled error checking %s", listing["url"])
+        return (
+            monitor.failed_document(url_data, prior_doc, timestamp, web.describe_error(exc)),
+            monitor.DOC_FETCH_FAILED,
+            None,
+            stored,
+        )
 
 
 def prune_events(events: List[dict], days: int, now: Optional[datetime] = None) -> List[dict]:
@@ -417,12 +400,7 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
 
 
 def main(argv: Optional[List[str]] = None) -> int:
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-        handlers=[logging.StreamHandler(sys.stdout)],
-    )
+    configure_logging()
     args = parse_args(argv)
     try:
         cfg = load_config(args.config)
@@ -431,7 +409,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 1
     if not args.no_summary and not args.dry_run and not os.environ.get("GEMINI_API_KEY"):
         log.warning("GEMINI_API_KEY is not set — changed statements will wait for the next run")
-    return run(cfg, dry_run=args.dry_run, only=args.only, summarise=not args.no_summary)
+    try:
+        return run(cfg, dry_run=args.dry_run, only=args.only, summarise=not args.no_summary)
+    except store.StateError as exc:
+        log.error("Stopping without writing anything: %s", exc)
+        return 1
 
 
 if __name__ == "__main__":

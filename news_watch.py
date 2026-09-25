@@ -24,7 +24,6 @@ Outputs:
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 import os
 import re
@@ -32,7 +31,7 @@ import sys
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional, Sequence
 
-from steward import content, feeds, health, news, news_enrichment
+from steward import configure_logging, content, feeds, health, news, news_enrichment, store
 from steward.config import ConfigError, load_config
 from steward.fetching import is_safe_url
 
@@ -55,27 +54,7 @@ log = logging.getLogger("steward.news")
 _SOURCE_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,60}$")
 
 
-# --- Files -----------------------------------------------------------------------
-
-
-def load_json(path: str, default: Any) -> Any:
-    if not os.path.exists(path):
-        return default
-    try:
-        with open(path, "r", encoding="utf-8") as handle:
-            return json.load(handle)
-    except (OSError, json.JSONDecodeError):
-        log.warning("Failed to read %s, using default", path)
-        return default
-
-
-def save_json(data: Any, path: str) -> None:
-    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
-    tmp = f"{path}.tmp"
-    with open(tmp, "w", encoding="utf-8") as handle:
-        json.dump(data, handle, indent=2, ensure_ascii=False)
-        handle.write("\n")
-    os.replace(tmp, path)
+# --- Sources ---------------------------------------------------------------------
 
 
 def validate_sources(sources: Any) -> List[dict]:
@@ -114,6 +93,11 @@ def validate_sources(sources: Any) -> List[dict]:
         if source["type"] == feeds.TYPE_OECD_AIM and not isinstance(source.get("query"), dict):
             log.warning("Skipping %s (%s): an oecd_aim source needs a 'query' object", where, source_id)
             continue
+        # The homepage is only ever a link on the Sources page, so a bad one
+        # costs the link, not the source.
+        if source.get("homepage") and not is_safe_url(source["homepage"]):
+            log.warning("Ignoring %s (%s) 'homepage': must be an http(s) URL", where, source_id)
+            source = {**source, "homepage": ""}
         seen.add(source_id)
         valid.append(source)
     return valid
@@ -128,7 +112,7 @@ def append_to_archive(items: Sequence[dict], dry_run: bool) -> int:
     written = 0
     for month, month_items in by_month.items():
         path = os.path.join(ARCHIVE_DIR, f"{month}.json")
-        archive = load_json(path, {"month": month, "items": []})
+        archive = store.load_json(path, {"month": month, "items": []})
         held = {item["id"] for item in archive.get("items", [])}
         fresh = [item for item in month_items if item["id"] not in held]
         if not fresh:
@@ -138,7 +122,7 @@ def append_to_archive(items: Sequence[dict], dry_run: bool) -> int:
         )
         written += len(fresh)
         if not dry_run:
-            save_json(archive, path)
+            store.save_json(archive, path)
     return written
 
 
@@ -172,7 +156,7 @@ def run(cfg, *, dry_run: bool = False, only: Optional[Sequence[str]] = None, enr
         log.info("News feed disabled in config — skipping")
         return 0
 
-    all_sources = validate_sources(load_json(SOURCES_FILE, []))
+    all_sources = validate_sources(store.load_json(SOURCES_FILE, []))
     sources = [s for s in all_sources if not only or s["id"] in set(only)]
     if not sources:
         log.error("No valid news sources to check.")
@@ -181,13 +165,13 @@ def run(cfg, *, dry_run: bool = False, only: Optional[Sequence[str]] = None, enr
     now = news.utc_now()
     timestamp = now.isoformat()
     vocab = news.Vocabulary.from_config(news_cfg)
-    policy_sets = [ps for ps in load_json(POLICY_SETS_FILE, []) if isinstance(ps, dict) and ps.get("setName")]
+    policy_sets = [ps for ps in store.load_json(POLICY_SETS_FILE, []) if isinstance(ps, dict) and ps.get("setName")]
     links = news.policy_links(policy_sets, content.set_file_id)
 
-    state = load_json(STATE_FILE, {})
+    state = store.load_json(STATE_FILE, {})
     source_state: Dict[str, dict] = state.get("sources", {})
     seen: Dict[str, str] = state.get("seen", {})
-    feed = load_json(FEED_FILE, {})
+    feed = store.load_json(FEED_FILE, {})
     existing: List[dict] = [i for i in feed.get("items", []) if isinstance(i, dict) and i.get("id")]
     held = {item["id"]: item for item in existing}
 
@@ -381,8 +365,8 @@ def run(cfg, *, dry_run: bool = False, only: Optional[Sequence[str]] = None, enr
         log.info("Nothing was written to disk.")
         return 0 if fetched_ok else 1
 
-    save_json(output, FEED_FILE)
-    save_json(
+    store.save_json(output, FEED_FILE)
+    store.save_json(
         {
             "sources": {k: v for k, v in source_state.items() if k in known_ids},
             "seen": news.prune_seen(seen, now=now, keep_days=news_cfg.window_days + SEEN_GRACE_DAYS),
@@ -420,12 +404,7 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
 
 
 def main(argv: Optional[List[str]] = None) -> int:
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-        handlers=[logging.StreamHandler(sys.stdout)],
-    )
+    configure_logging()
     args = parse_args(argv)
     try:
         cfg = load_config(args.config)
@@ -434,7 +413,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 1
     if not args.no_enrich and not args.dry_run and not os.environ.get("GEMINI_API_KEY"):
         log.warning("GEMINI_API_KEY is not set — items will keep their keyword scores")
-    return run(cfg, dry_run=args.dry_run, only=args.only, enrich=not args.no_enrich)
+    try:
+        return run(cfg, dry_run=args.dry_run, only=args.only, enrich=not args.no_enrich)
+    except store.StateError as exc:
+        log.error("Stopping without writing anything: %s", exc)
+        return 1
 
 
 if __name__ == "__main__":

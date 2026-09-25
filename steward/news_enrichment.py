@@ -23,7 +23,7 @@ import time
 from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Sequence
 
-from . import analysis
+from . import analysis, web
 from .news import TOPICS
 
 log = logging.getLogger(__name__)
@@ -141,11 +141,18 @@ def context_payload(item: dict) -> dict:
     return {"id": item["id"], "kind": item.get("kind"), "headline": item.get("title", "")}
 
 
+_FENCES = ("ITEMS", "EARLIER")
+
+
 def build_prompt(items: Sequence[dict], vendors: Sequence[str] = (), earlier: Sequence[dict] = ()) -> str:
     vendor_note = f" (especially {', '.join(vendors)})" if vendors else ""
     return PROMPT_TEMPLATE.format(
-        items=json.dumps([prompt_payload(item) for item in items], ensure_ascii=False, indent=1),
-        earlier=json.dumps([context_payload(item) for item in earlier], ensure_ascii=False, indent=1),
+        items=analysis.fence_safe(
+            json.dumps([prompt_payload(item) for item in items], ensure_ascii=False, indent=1), *_FENCES
+        ),
+        earlier=analysis.fence_safe(
+            json.dumps([context_payload(item) for item in earlier], ensure_ascii=False, indent=1), *_FENCES
+        ),
         topics=", ".join(TOPICS),
         vendors=vendor_note,
     )
@@ -178,10 +185,13 @@ def parse_and_validate(
         relevance = entry.get("relevance")
         if isinstance(relevance, bool) or not isinstance(relevance, int) or not 0 <= relevance <= 3:
             continue
-        tldr = entry.get("tldr") if isinstance(entry.get("tldr"), str) else ""
-        reason = entry.get("reason") if isinstance(entry.get("reason"), str) else ""
+        tldr = entry.get("tldr")
+        tldr = tldr if isinstance(tldr, str) else ""
+        reason = entry.get("reason")
+        reason = reason if isinstance(reason, str) else ""
         topics = [t for t in entry.get("topics") or [] if t in TOPICS][:3]
-        same = entry.get("same_story_as") if isinstance(entry.get("same_story_as"), str) else ""
+        same = entry.get("same_story_as")
+        same = same if isinstance(same, str) else ""
         if same not in linkable or same == entry["id"]:
             same = ""
         results[entry["id"]] = {
@@ -237,7 +247,7 @@ def enrich(
             try:
                 response = analysis.generate_json(client, model, text, RESPONSE_SCHEMA, sleep=sleep)
             except Exception as exc:  # noqa: BLE001 — enrichment must never break ingestion
-                last_error = f"{type(exc).__name__}: {exc}"
+                last_error = web.describe_error(exc)
                 if analysis.is_transient(exc):
                     model_down = True
                     break

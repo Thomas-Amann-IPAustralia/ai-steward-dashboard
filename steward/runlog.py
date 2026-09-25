@@ -124,7 +124,7 @@ def activity_summary(records: Iterable[Dict[str, Any]]) -> Dict[str, Dict[str, i
             continue
         counts = summary.setdefault(set_name, dict.fromkeys(_ACTIVITY_KEYS, 0))
         runs.setdefault(set_name, set()).add(entry.get("run_id"))
-        outcome = entry.get("outcome")
+        outcome = str(entry.get("outcome") or "")
         if entry.get("llm_called"):
             if outcome == "analysed":
                 counts["analysed"] += 1

@@ -28,7 +28,10 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
 
 import requests
+from defusedxml import DefusedXmlException
+from defusedxml.ElementTree import fromstring as parse_xml
 
+from . import web
 from .fetching import is_safe_url
 
 log = logging.getLogger(__name__)
@@ -161,15 +164,17 @@ class FeedParseError(ValueError):
 
 
 def parse_feed(body: bytes) -> List[FeedEntry]:
-    """Entries from an RSS 2.0, RSS 1.0 or Atom document."""
-    head = body[:4096].lower()
-    # Entity declarations are how XML bombs and external-entity reads start,
-    # and no news feed needs one.
-    if b"<!entity" in head:
-        raise FeedParseError("document declares entities; refused")
+    """Entries from an RSS 2.0, RSS 1.0 or Atom document.
 
+    Entity declarations are how XML bombs and external-entity reads start,
+    and no news feed needs one, so defusedxml refuses any document that
+    declares one — anywhere in it, not only near the top. A plain DOCTYPE,
+    which old RSS 0.91 feeds still carry, is allowed.
+    """
     try:
-        root = ET.fromstring(body)
+        root = parse_xml(body)
+    except DefusedXmlException as exc:
+        raise FeedParseError(f"document declares entities; refused ({type(exc).__name__})") from exc
     except ET.ParseError as exc:
         raise FeedParseError(f"not well-formed XML ({exc})") from exc
 
@@ -236,9 +241,13 @@ def fetch_rss(source: dict, state: dict, *, timeout: int, user_agent: str) -> Fe
         return done(FeedResult(source["id"], FAILED, error="unsafe or malformed URL, refused"))
 
     try:
-        response = requests.get(url, headers=_conditional_headers(state, user_agent), timeout=timeout)
+        response = web.get(
+            url, headers=_conditional_headers(state, user_agent), timeout=timeout, max_bytes=MAX_FEED_BYTES
+        )
+    except web.ResponseTooLarge:
+        return done(FeedResult(source["id"], FAILED, error="feed too large"))
     except requests.RequestException as exc:
-        return done(FeedResult(source["id"], FAILED, error=f"{type(exc).__name__}: {exc}"))
+        return done(FeedResult(source["id"], FAILED, error=web.describe_error(exc)))
 
     if response.status_code == 304:
         return done(
@@ -256,9 +265,6 @@ def fetch_rss(source: dict, state: dict, *, timeout: int, user_agent: str) -> Fe
                 source["id"], FAILED, http_status=response.status_code, error=f"HTTP {response.status_code}"
             )
         )
-    if len(response.content) > MAX_FEED_BYTES:
-        return done(FeedResult(source["id"], FAILED, http_status=response.status_code, error="feed too large"))
-
     try:
         entries = parse_feed(response.content)
     except FeedParseError as exc:
@@ -316,8 +322,10 @@ def aim_entry(incident: dict) -> Optional[FeedEntry]:
     if not incident_id or not title or not re.fullmatch(r"[\w-]+", incident_id):
         return None
 
-    properties = incident.get("properties") if isinstance(incident.get("properties"), dict) else {}
-    location = incident.get("location") if isinstance(incident.get("location"), dict) else {}
+    properties = incident.get("properties")
+    properties = properties if isinstance(properties, dict) else {}
+    location = incident.get("location")
+    location = location if isinstance(location, dict) else {}
     harm_levels = _as_list(properties.get("harm_levels"))
 
     return FeedEntry(
@@ -354,14 +362,15 @@ def fetch_oecd_aim(source: dict, *, timeout: int, user_agent: str, today: Option
         return result
 
     try:
-        response = requests.post(
+        response = web.post(
             OECD_AIM_ENDPOINT,
             json=body,
             headers={"User-Agent": user_agent, "Accept": "application/json"},
             timeout=timeout,
+            max_bytes=MAX_FEED_BYTES,
         )
     except requests.RequestException as exc:
-        return done(FeedResult(source["id"], FAILED, error=f"{type(exc).__name__}: {exc}"))
+        return done(FeedResult(source["id"], FAILED, error=web.describe_error(exc)))
 
     if response.status_code >= 400:
         return done(

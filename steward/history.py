@@ -7,6 +7,12 @@ timeline into a rendering job over data already collected.
 
 Filenames are `{file_id}_{YYYYmmdd}_{HHMMSS}_analysis.json`, matching the 500+
 archives already on disk.
+
+Before September 2026 a failed model call was written to disk as if it were an
+analysis: summary "Analysis failed.", the API's error text as the analysis,
+and priority "medium". Ninety-five such files survive in the archive; they
+are left on disk but kept out of the index, so the timeline never counts an
+outage as a medium-priority policy change.
 """
 
 from __future__ import annotations
@@ -17,6 +23,8 @@ import os
 import re
 from datetime import datetime, timedelta
 from typing import Any, Dict, List
+
+from . import store
 
 log = logging.getLogger(__name__)
 
@@ -29,6 +37,14 @@ def _parse_stamp(stamp: str) -> str | None:
         return datetime.strptime(stamp, "%Y%m%d_%H%M%S").isoformat()
     except ValueError:
         return None
+
+
+def is_failed_call(analysis: Any) -> bool:
+    """Whether an archived analysis is really a failed API call."""
+    if not isinstance(analysis, dict):
+        return False
+    text = analysis.get("analysis")
+    return analysis.get("summary") == "Analysis failed." or (isinstance(text, str) and text.startswith("API error:"))
 
 
 def build_index(log_dir: str, known_file_ids: set[str] | None = None) -> Dict[str, Any]:
@@ -72,6 +88,8 @@ def build_index(log_dir: str, known_file_ids: set[str] | None = None) -> Dict[st
         except (OSError, json.JSONDecodeError):
             analysis = {}
 
+        if is_failed_call(analysis):
+            continue
         if isinstance(analysis, dict):
             record["priority"] = analysis.get("priority")
             record["verdict"] = analysis.get("verdict")
@@ -90,8 +108,7 @@ def build_index(log_dir: str, known_file_ids: set[str] | None = None) -> Dict[st
 
 
 def write_index(index: Dict[str, Any], path: str = HISTORY_FILE) -> None:
-    with open(path, "w", encoding="utf-8") as handle:
-        json.dump(index, handle, indent=2, ensure_ascii=False)
+    store.save_json(index, path)
     total = sum(len(v) for v in index.get("entries", {}).values())
     log.info("History index: %d archived analyses across %d sources", total, len(index.get("entries", {})))
 

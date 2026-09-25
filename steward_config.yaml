@@ -30,6 +30,10 @@ fetch:
   # successful read and no older than archive_max_age_days.
   archive_fallback: true
   archive_max_age_days: 30
+  # Most megabytes of one response that are read, measured after
+  # decompression. A larger body is abandoned and counted as a failed fetch,
+  # so a broken or hostile server cannot exhaust the runner's memory.
+  max_response_mb: 20
   user_agent: >-
     Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
     (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
@@ -141,9 +145,22 @@ transparency:
   register_selector: article
   # A register read that finds fewer statement links than min_statements, or
   # fewer than keep_ratio of the list already held, is treated as a failed
-  # read (a block page or a redesign), never as agencies withdrawing.
+  # read (a block page or a redesign), never as agencies withdrawing. One that
+  # lists more than max_new_statements agencies never seen before is rejected
+  # too: a real update adds a handful, and every new link is a site the run
+  # will visit.
   min_statements: 50
   keep_ratio: 0.8
+  max_new_statements: 25
+  # Which sites a statement may be fetched from. The register is a remote
+  # page, so without this whoever can edit it decides where the pipeline goes.
+  # A statement on any other host is listed on the dashboard with an error
+  # naming its host, and is fetched once that host is added below.
+  allowed_host_suffixes:
+    - .gov.au
+  allowed_hosts:
+    - agrifutures.com.au
+    - www.csiro.au
   # Seconds a plain GET to an agency's site may take before the browser is
   # tried. Shorter than fetch.timeout_seconds because there are ~140 sites.
   fetch_timeout_seconds: 12

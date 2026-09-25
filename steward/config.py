@@ -16,6 +16,10 @@ import yaml
 
 CONFIG_FILE = "steward_config.yaml"
 
+_HOST = re.compile(r"^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+$")
+# At least two labels, so a bare ".au" cannot open a whole country.
+_HOST_SUFFIX = re.compile(r"^\.[a-z0-9-]+\.[a-z0-9.-]*[a-z0-9]$")
+
 
 class ConfigError(ValueError):
     """Raised when steward_config.yaml is missing, malformed or out of range."""
@@ -35,6 +39,9 @@ class FetchConfig:
     # Internet Archive, and how old a capture may be to be used.
     archive_fallback: bool = True
     archive_max_age_days: int = 30
+    # Most megabytes of one response that are read (after decompression);
+    # anything larger is abandoned as a failed fetch.
+    max_response_mb: int = 20
     user_agent: str = (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
@@ -108,9 +115,17 @@ class TransparencyConfig:
     register_url: str = "https://www.digital.gov.au/policy/ai/list-of-transparency-statements"
     register_selector: str = "article"
     # A register read that finds fewer statement links than this, or fewer
-    # than keep_ratio of the list already held, is rejected.
+    # than keep_ratio of the list already held, or more than
+    # max_new_statements agencies it has never listed before, is rejected.
     min_statements: int = 50
     keep_ratio: float = 0.8
+    max_new_statements: int = 25
+    # The register is a remote page, so which sites a run visits is decided
+    # by whoever can edit it. A statement is only fetched on a host ending in
+    # one of these suffixes or named in allowed_hosts; any other is listed
+    # with an error until someone adds its host here.
+    allowed_host_suffixes: List[str] = field(default_factory=lambda: [".gov.au"])
+    allowed_hosts: List[str] = field(default_factory=list)
     # Seconds a plain GET to an agency's site may take before the browser is
     # tried; shorter than fetch.timeout_seconds because there are ~140 sites.
     fetch_timeout_seconds: int = 12
@@ -248,6 +263,7 @@ def validate(cfg: StewardConfig) -> StewardConfig:
         1 <= f.archive_max_age_days <= 365,
         "fetch.archive_max_age_days: must be between 1 and 365",
     )
+    _check(1 <= f.max_response_mb <= 200, "fetch.max_response_mb: must be between 1 and 200")
 
     v = cfg.validation
     _check(v.min_length >= 0, "validation.min_length: must not be negative")
@@ -295,6 +311,17 @@ def validate(cfg: StewardConfig) -> StewardConfig:
     _check(t.register_url.startswith("https://"), "transparency.register_url: must be an https URL")
     _check(t.min_statements >= 1, "transparency.min_statements: must be at least 1")
     _check(0 < t.keep_ratio <= 1, "transparency.keep_ratio: must be greater than 0 and at most 1")
+    _check(t.max_new_statements >= 1, "transparency.max_new_statements: must be at least 1")
+    for i, suffix in enumerate(t.allowed_host_suffixes):
+        _check(
+            bool(_HOST_SUFFIX.match(suffix)),
+            f"transparency.allowed_host_suffixes[{i}]: must be a lower-case domain suffix starting with a dot, like .gov.au",
+        )
+    for i, host in enumerate(t.allowed_hosts):
+        _check(
+            bool(_HOST.match(host)),
+            f"transparency.allowed_hosts[{i}]: must be a lower-case host name, like www.csiro.au (no scheme or path)",
+        )
     _check(t.fetch_timeout_seconds > 0, "transparency.fetch_timeout_seconds: must be greater than 0")
     _check(1 <= t.summary_batch_size <= 30, "transparency.summary_batch_size: must be between 1 and 30")
     _check(t.max_diff_chars >= 500, "transparency.max_diff_chars: must be at least 500")

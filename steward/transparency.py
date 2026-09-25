@@ -26,12 +26,12 @@ import re
 import time
 from dataclasses import dataclass, field
 from datetime import date
-from typing import Callable, Dict, List, Optional, Sequence
-from urllib.parse import urldefrag, urljoin
+from typing import Callable, Collection, Dict, List, Optional, Sequence
+from urllib.parse import urldefrag, urljoin, urlparse
 
 from bs4 import BeautifulSoup, Tag
 
-from . import analysis
+from . import analysis, web
 from .fetching import is_safe_url
 
 log = logging.getLogger(__name__)
@@ -218,7 +218,12 @@ def parse_register(html: str, base_url: str, selector: Optional[str] = None) -> 
 
 
 def register_is_plausible(
-    current: Sequence[Statement], previous_count: int, *, min_statements: int, keep_ratio: float
+    current: Sequence[Statement],
+    held_ids: Collection[str],
+    *,
+    min_statements: int,
+    keep_ratio: float,
+    max_new: int,
 ) -> tuple[bool, str]:
     """Whether a parsed register can replace the one held.
 
@@ -227,13 +232,29 @@ def register_is_plausible(
     Accepting that would report most of the Commonwealth as having withdrawn
     its statement, so the stored list is kept instead and the read counted as
     a failure.
+
+    The opposite is refused too. A real update adds a handful of agencies,
+    and every new link is a site the run will visit, so a page that suddenly
+    lists dozens of agencies never seen before — a compromised or vandalised
+    register, or a parser reading the wrong part of a redesigned page — is
+    held for a person to look at rather than followed.
     """
     count = len(current)
     if count < min_statements:
         return False, f"found {count} statement link(s), fewer than the {min_statements} expected"
-    if previous_count and count < previous_count * keep_ratio:
-        return False, f"found {count} statement link(s) against {previous_count} held"
+    if held_ids and count < len(held_ids) * keep_ratio:
+        return False, f"found {count} statement link(s) against {len(held_ids)} held"
+    if held_ids:
+        new = sum(1 for statement in current if statement.id not in held_ids)
+        if new > max_new:
+            return False, f"found {new} agencies not listed before, more than the {max_new} allowed in one read"
     return True, ""
+
+
+def host_allowed(url: str, suffixes: Sequence[str], hosts: Collection[str]) -> bool:
+    """Whether a statement's host is one the run may visit."""
+    host = (urlparse(url).hostname or "").lower()
+    return bool(host) and (host in hosts or any(host.endswith(suffix) for suffix in suffixes))
 
 
 def register_events(previous: Sequence[dict], current: Sequence[Statement]) -> List[dict]:
@@ -418,7 +439,7 @@ def _truncate_words(text: str, limit: int) -> str:
 def build_prompt(changes: Sequence[dict]) -> str:
     payload = [{"id": c["id"], "agency": c["agency"], "diff": c["diff"]} for c in changes]
     return PROMPT_TEMPLATE.format(
-        changes=json.dumps(payload, ensure_ascii=False, indent=1),
+        changes=analysis.fence_safe(json.dumps(payload, ensure_ascii=False, indent=1), "CHANGES"),
         material=MATERIAL_CHANGE,
         no_material=NO_MATERIAL_CHANGE,
     )
@@ -445,7 +466,8 @@ def parse_and_validate(raw_text: str, expected_ids: Sequence[str]) -> Dict[str, 
         if not isinstance(entry, dict) or entry.get("id") not in expected:
             continue
         verdict = entry.get("verdict")
-        summary = entry.get("summary") if isinstance(entry.get("summary"), str) else ""
+        summary = entry.get("summary")
+        summary = summary if isinstance(summary, str) else ""
         if verdict not in VERDICTS or not summary.strip():
             continue
         results[entry["id"]] = {"verdict": verdict, "summary": _truncate_words(summary, SUMMARY_MAX_WORDS)}
@@ -490,7 +512,7 @@ def summarise(
             try:
                 response = analysis.generate_json(client, model, text, RESPONSE_SCHEMA, sleep=sleep)
             except Exception as exc:  # noqa: BLE001 — a failed call leaves the change for next run
-                last_error = f"{type(exc).__name__}: {exc}"
+                last_error = web.describe_error(exc)
                 if analysis.is_transient(exc):
                     model_down = True
                     break
