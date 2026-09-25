@@ -1,27 +1,34 @@
+# Regenerate package-lock.json from package.json, on demand.
+#
+# --package-lock-only resolves versions without installing anything, so no
+# package's install script runs in a job that can push.
 name: 'Generate package-lock.json'
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   create-lockfile:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '18'
-      
-      - name: Install dependencies and generate lockfile
-        run: npm install
-      
-      - name: Commit and push lockfile
+          node-version: '24'
+          package-manager-cache: false
+
+      - name: Resolve dependencies into the lockfile
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+      - name: Commit and push
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add package-lock.json
-          git commit -m "Generate package-lock.json" || exit 0
+          git commit -m "Regenerate package-lock.json" || exit 0
           git push

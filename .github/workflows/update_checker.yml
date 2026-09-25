@@ -1,248 +1,302 @@
-# .github/workflows/update_checker.yml
+# The daily pipeline: read every source, publish what changed, rebuild the site.
+#
+# Split into jobs so that the one that reads third-party content — rendering
+# other people's JavaScript in Chrome, parsing their HTML, PDFs and feeds —
+# holds no token that can change the repository or the site:
+#
+#   collect  reads the sources; read-only token, the only job with the Gemini
+#            key and proxy secrets; hands its output on as an artifact
+#   publish  checks that output (steward/publish.py) and commits it; runs no
+#            third-party code
+#   site     rebuilds and deploys the dashboard (build-and-deploy.yml)
+#   alert    opens, updates or closes the source-health issue
+#   report   marks the run red if any pipeline step failed
+#
+# Every action is pinned to a full commit SHA; Dependabot keeps them current.
 name: Check for Updates, Build, and Deploy
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC
+    - cron: '0 0 * * *' # Daily at midnight UTC
   push:
-    branches:
-      - main
+    branches: [main]
+    # A change to what is monitored is picked up straight away. Changes to the
+    # site alone are deployed by deploy_site.yml without re-reading anything.
     paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'package-lock.json'
       - 'policy_sets.json'
       - 'news_sources.json'
       - 'steward_config.yaml'
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-  issues: write
+permissions: {}
 
+# One pipeline run at a time, and a new one waits rather than cancelling a run
+# that has already paid for its model calls.
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  group: steward-pipeline
+  cancel-in-progress: false
 
 jobs:
-  check-and-build:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    # Holds GEMINI_API_KEY and the PROXY_* secrets once they are moved out of
+    # the repository-wide secrets; no other job refers to it.
+    environment: pipeline
+    outputs:
+      policy: ${{ steps.policy.outcome }}
+      transparency: ${{ steps.transparency.outcome }}
+      news: ${{ steps.news.outcome }}
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+      # No dependency cache here: this job runs third-party code, and a cache
+      # it saved would be restored into the next run.
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11'
 
-    - name: Cache pip dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+      - name: Install Python dependencies (hash-checked)
+        run: python -m pip install --require-hashes --no-deps -r requirements.txt
 
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      # The gates that stop false alerts are only worth having if they are
+      # checked. These run without a network, a browser or an API key.
+      - name: Run pipeline tests
+        run: python -m unittest discover -s tests
 
-    # The gates that stop false alerts are only worth having if they are
-    # checked. These run without a network, a browser or an API key.
-    - name: Run pipeline tests
-      run: python -m unittest discover -s tests -v
+      # Chrome renders the pages that need it: URLs marked "render": true,
+      # plain fetches that came back unusable, and hosts that refuse plain
+      # HTTP clients. It runs with its sandbox (steward/fetching.py).
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
-    # Chrome is the fallback path only — URLs marked "render": true in
-    # policy_sets.json, salvaging a plain fetch that came back unusable, and
-    # the gov.au hosts that refuse plain HTTP clients.
-    - name: Install Google Chrome
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
+      - name: Check policy sources
+        id: policy
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PROXY_HOST: ${{ secrets.PROXY_HOST }}
+          PROXY_PORT: ${{ secrets.PROXY_PORT }}
+          PROXY_USER: ${{ secrets.PROXY_USER }}
+          PROXY_PASS: ${{ secrets.PROXY_PASS }}
+        run: python main.py --skip-news --skip-transparency
 
-    - name: Run update script
-      id: run_script
-      continue-on-error: true
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        PROXY_HOST: ${{ secrets.PROXY_HOST }}
-        PROXY_PORT: ${{ secrets.PROXY_PORT }}
-        PROXY_USER: ${{ secrets.PROXY_USER }}
-        PROXY_PASS: ${{ secrets.PROXY_PASS }}
-      run: python main.py --skip-news --skip-transparency
+      # Its own step, so the register or an agency's site being down cannot
+      # hold back the policy results.
+      - name: Refresh AI transparency statements
+        id: transparency
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python transparency_watch.py
 
-    # Its own step for the same reason as the news: the register or an
-    # agency's site being down must not hold back the policy results.
-    - name: Refresh AI transparency statements
-      id: run_transparency
-      continue-on-error: true
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      run: python transparency_watch.py
+      # Its own step, so a news source being down cannot hold back the rest.
+      - name: Refresh news and AI incidents
+        id: news
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python news_watch.py
 
-    # Its own step, so a news source being down can never stop the policy
-    # results from being committed and deployed.
-    - name: Refresh news and AI incidents
-      id: run_news
-      continue-on-error: true
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      run: python news_watch.py
+      # Keep these paths in step with steward/publish.py, which refuses
+      # anything else.
+      - name: Hand the output to the publish job
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: pipeline-output
+          path: |
+            hashes.json
+            health.json
+            history.json
+            runs.jsonl
+            analysis/
+            diffs/
+            snapshots/
+            logs/
+            news/
+            transparency/
+          if-no-files-found: error
+          retention-days: 7
 
-    - name: Commit and push if changed
-      id: commit_push
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        mkdir -p analysis snapshots diffs logs news transparency
-        git add analysis/ snapshots/ diffs/ news/ transparency/ policy_sets.json
-        for f in hashes.json health.json history.json runs.jsonl; do
-          if [ -f "$f" ]; then git add "$f"; fi
-        done
-        git add -f logs/
+      - name: Prepare the health alert
+        if: ${{ !cancelled() }}
+        env:
+          POLICY_OUTCOME: ${{ steps.policy.outcome }}
+        run: |
+          mkdir -p alert
+          if [ -f health_alert.md ]; then
+            cp health_alert.md alert/
+            echo alert > alert/state
+          elif [ "$POLICY_OUTCOME" = "success" ]; then
+            echo healthy > alert/state
+          else
+            echo unknown > alert/state
+          fi
 
-        if git diff --staged --quiet; then
-          echo "No content changes detected by the script."
-          echo "changes_detected=false" >> $GITHUB_OUTPUT
-        else
-          git commit -m "Update content snapshots and analysis [$(date +'%Y-%m-%d %H:%M:%S UTC')]"
-          git pull --rebase
-          git push
-          echo "Content changes committed and pushed."
-          echo "changes_detected=true" >> $GITHUB_OUTPUT
-        fi
+      - name: Hand the alert to the alert job
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: health-alert
+          path: alert/
+          retention-days: 7
 
-    # Silent failure was the default: a source could rot unnoticed for months
-    # while the dashboard kept showing its last known state as if it were
-    # current. One issue per degraded run, reusing the run's own health report.
-    - name: Raise a health issue
-      if: hashFiles('health_alert.md') != ''
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const fs = require('fs');
-          const body = fs.readFileSync('health_alert.md', 'utf8');
-          const title = `Steward health: sources need attention (${new Date().toISOString().slice(0, 10)})`;
+  publish:
+    needs: collect
+    if: ${{ !cancelled() && needs.collect.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    # Holds the optional GitHub App key; see "Pushing past the main-branch
+    # ruleset" in SECURITY.md.
+    environment: data-publish
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      # With an App configured, the data commit is pushed as the App, which a
+      # ruleset on main can allow while requiring pull requests of everyone
+      # else. Without one, the workflow's own token is used, as before.
+      - name: Get the data publisher's token
+        id: app
+        if: ${{ vars.DATA_PUBLISHER_CLIENT_ID != '' }}
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.DATA_PUBLISHER_CLIENT_ID }}
+          private-key: ${{ secrets.DATA_PUBLISHER_PRIVATE_KEY }}
+          permission-contents: write
 
-          const existing = await github.rest.issues.listForRepo({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            state: 'open',
-            labels: 'source-health',
-          });
+      # Credentials are kept for the push at the end. Nothing this job runs
+      # comes from outside the repository. Full history, so the data commit
+      # can be rebased onto anything merged while the sources were read.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          token: ${{ steps.app.outputs.token || github.token }}
+          fetch-depth: 0
 
-          const footer = '\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_';
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: pipeline-output
+          path: ${{ runner.temp }}/pipeline-output
 
-          if (existing.data.length > 0) {
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: existing.data[0].number,
-              body: body + footer,
-            });
-          } else {
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              body: body + footer,
-              labels: ['source-health'],
-            });
-          }
+      - name: Check the output and copy it into place
+        run: python3 -m steward.publish "$RUNNER_TEMP/pipeline-output" .
 
-    - name: Setup Node.js
-      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
+      - name: Commit and push if changed
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A -- hashes.json health.json history.json runs.jsonl analysis diffs snapshots logs news transparency
+          if git diff --cached --quiet; then
+            echo "No content changes detected by the pipeline."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Update content snapshots and analysis [$(date -u +'%Y-%m-%d %H:%M:%S UTC')]"
+            git pull --rebase
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          fi
 
-    - name: Install Node.js dependencies
-      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
-      run: |
-        npm ci || (echo "npm ci failed, falling back to npm install" && npm install)
+  # Rebuilt when the data changed, and on a push of changed config even if it
+  # did not: the site serves policy_sets.json itself.
+  site:
+    needs: publish
+    if: ${{ !cancelled() && needs.publish.result == 'success' && (needs.publish.outputs.changed == 'true' || github.event_name == 'push') }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/build-and-deploy.yml
+    with:
+      ref: ${{ needs.publish.outputs.sha || github.sha }}
 
-    - name: Run frontend tests
-      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
-      run: npm test -- --watchAll=false --passWithNoTests
-      env:
-        CI: true
+  alert:
+    needs: collect
+    if: ${{ !cancelled() && needs.collect.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: health-alert
+          path: alert
 
-    - name: Build React app
-      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
-      run: npm run build
-      env:
-        CI: true
-        GENERATE_SOURCEMAP: false
+      # One issue while sources are failing. A comment is added only when the
+      # set of failing sources changes, and the issue is closed when they
+      # recover — rather than a comment every day that nobody reads.
+      - name: Open, update or close the source-health issue
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require('fs');
+            const crypto = require('crypto');
+            const state = fs.readFileSync('alert/state', 'utf8').trim();
+            const { owner, repo } = context.repo;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const footer = `\n\n---\n_Raised by the [steward workflow](${runUrl})._`;
+            const open = (await github.rest.issues.listForRepo({ owner, repo, state: 'open', labels: 'source-health' })).data;
+            const issue = open[0];
 
-    - name: Copy data files to build directory
-      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
-      run: |
-        echo "Copying data files to build directory..."
-        mkdir -p build/analysis build/snapshots build/diffs build/logs build/news build/transparency/diffs
-        cp hashes.json build/
-        cp policy_sets.json build/
-        for f in health.json history.json; do
-          if [ -f "$f" ]; then cp "$f" build/; fi
-        done
-        cp -r analysis/. build/analysis/ 2>/dev/null || echo "No analysis files to copy"
-        cp -r snapshots/. build/snapshots/ 2>/dev/null || echo "No snapshot files to copy"
-        cp -r diffs/. build/diffs/ 2>/dev/null || echo "No diff files to copy"
-        # The feed and its monthly archive ship; state.json (validators and
-        # seen ids) is the pipeline's working memory, not something to serve.
-        cp -r news/. build/news/ 2>/dev/null || echo "No news files to copy"
-        rm -f build/news/state.json
-        # The statements' current text stays in the repository; the page
-        # needs their state, the events and the latest diff of each.
-        for f in statements.json events.json; do
-          if [ -f "transparency/$f" ]; then cp "transparency/$f" build/transparency/; fi
-        done
-        cp -r transparency/diffs/. build/transparency/diffs/ 2>/dev/null || echo "No transparency diffs to copy"
-        # Only the archived analyses ship, not the archived snapshots. The
-        # timeline reads history.json and fetches an analysis on demand; the
-        # snapshots were ~13 MB of the ~14 MB and nothing ever fetched them.
-        find logs -maxdepth 1 -name '*_analysis.json' -exec cp {} build/logs/ \; 2>/dev/null || true
-        find logs -maxdepth 1 -name '*_diff.txt' -exec cp {} build/logs/ \; 2>/dev/null || true
-        du -sh build/logs || true
+            if (state === 'healthy') {
+              if (issue) {
+                await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: `Every source is reading normally again.${footer}` });
+                await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: 'closed', state_reason: 'completed' });
+              }
+              return;
+            }
+            if (state !== 'alert') return;
 
-    - name: Setup Pages
-      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
-      uses: actions/configure-pages@v4
+            const report = fs.readFileSync('alert/health_alert.md', 'utf8');
+            // What is failing, without the line that changes every run.
+            const signature = crypto.createHash('sha256')
+              .update(report.split('\n').filter((line) => !line.startsWith('Generated:')).join('\n'))
+              .digest('hex').slice(0, 16);
+            const marker = `<!-- steward-alert:${signature} -->`;
+            const body = `${marker}\n${report}${footer}`;
 
-    - name: Upload artifact
-      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: './build'
+            if (!issue) {
+              const title = `Steward health: sources need attention (${new Date().toISOString().slice(0, 10)})`;
+              await github.rest.issues.create({ owner, repo, title, body, labels: ['source-health'] });
+            } else if (!(issue.body || '').includes(marker)) {
+              await github.rest.issues.update({ owner, repo, issue_number: issue.number, body });
+              await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: `The sources needing attention have changed:\n\n${report}${footer}` });
+            } else {
+              await github.rest.issues.update({ owner, repo, issue_number: issue.number, body });
+            }
 
-    - name: Deploy to GitHub Pages
-      if: steps.commit_push.outputs.changes_detected == 'true' || github.event_name == 'push'
-      id: deployment
-      uses: actions/deploy-pages@v4
-
-    # Last, so a failure still marks the run red without holding back the
-    # deploy of whatever the other steps did produce.
-    - name: Fail the run if a pipeline step failed
-      if: steps.run_script.outcome == 'failure' || steps.run_transparency.outcome == 'failure' || steps.run_news.outcome == 'failure'
-      run: |
-        if [ "${{ steps.run_script.outcome }}" = "failure" ]; then
-          echo "::error::main.py exited non-zero. Artefacts produced before the failure were still committed."
-        fi
-        if [ "${{ steps.run_transparency.outcome }}" = "failure" ]; then
-          echo "::error::transparency_watch.py exited non-zero — neither the register nor any statement could be read, or the run crashed."
-        fi
-        if [ "${{ steps.run_news.outcome }}" = "failure" ]; then
-          echo "::error::news_watch.py exited non-zero — no news source could be read, or the run crashed."
-        fi
-        exit 1
+  # Last, so a failure still marks the run red without holding back the
+  # publish and deploy of whatever the other steps did produce.
+  report:
+    needs: [collect, publish, site]
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    permissions: {}
+    steps:
+      - name: Fail the run if a pipeline step failed
+        env:
+          COLLECT: ${{ needs.collect.result }}
+          POLICY: ${{ needs.collect.outputs.policy }}
+          TRANSPARENCY: ${{ needs.collect.outputs.transparency }}
+          NEWS: ${{ needs.collect.outputs.news }}
+          PUBLISH: ${{ needs.publish.result }}
+          SITE: ${{ needs.site.result }}
+        run: |
+          status=0
+          if [ "$COLLECT" != "success" ]; then echo "::error::The collect job did not finish ($COLLECT)."; status=1; fi
+          if [ "$POLICY" = "failure" ]; then echo "::error::main.py exited non-zero. Artefacts produced before the failure were still published."; status=1; fi
+          if [ "$TRANSPARENCY" = "failure" ]; then echo "::error::transparency_watch.py exited non-zero — neither the register nor any statement could be read, or the run crashed."; status=1; fi
+          if [ "$NEWS" = "failure" ]; then echo "::error::news_watch.py exited non-zero — no news source could be read, or the run crashed."; status=1; fi
+          if [ "$PUBLISH" = "failure" ]; then echo "::error::The publish job failed — see its log for any output the gate rejected."; status=1; fi
+          if [ "$SITE" = "failure" ]; then echo "::error::Building or deploying the site failed."; status=1; fi
+          exit $status

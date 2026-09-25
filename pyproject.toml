@@ -1,0 +1,19 @@
+# Tool settings only. The pipeline runs as scripts (main.py, news_watch.py,
+# transparency_watch.py); nothing here is installed as a package.
+
+[tool.ruff]
+target-version = "py311"
+extend-exclude = ["node_modules", "build"]
+
+[tool.ruff.lint]
+# pycodestyle errors, pyflakes and bugbear. Long lines are wrapped by
+# judgement rather than by a counter.
+select = ["E", "F", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["main.py", "news_watch.py", "transparency_watch.py", "steward"]
+# selenium-stealth, trafilatura and google-genai's optional parts ship no
+# type information; their calls are checked at the boundary instead.
+ignore_missing_imports = true

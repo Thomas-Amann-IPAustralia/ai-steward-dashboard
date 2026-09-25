@@ -1,0 +1,26 @@
+# Redeploy the dashboard when its own code changes. Nothing is re-read from
+# the monitored sources; the site is rebuilt around the data already on main.
+name: Deploy site
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions: {}
+
+jobs:
+  site:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/build-and-deploy.yml
+    with:
+      ref: ${{ github.sha }}

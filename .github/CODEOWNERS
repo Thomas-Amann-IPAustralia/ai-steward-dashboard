@@ -1,0 +1,17 @@
+# Who reviews what. Everything belongs to the maintainer today; the paths
+# after the first line are the ones that decide what CI runs, what the
+# pipeline fetches and what the public site serves, listed so that ownership
+# of them stays explicit if more people join.
+*                         @Thomas-Amann-IPAustralia
+
+/.github/                 @Thomas-Amann-IPAustralia
+/scripts/                 @Thomas-Amann-IPAustralia
+/public/                  @Thomas-Amann-IPAustralia
+/src/                     @Thomas-Amann-IPAustralia
+/package.json             @Thomas-Amann-IPAustralia
+/package-lock.json        @Thomas-Amann-IPAustralia
+/requirements*.in         @Thomas-Amann-IPAustralia
+/requirements*.txt        @Thomas-Amann-IPAustralia
+/policy_sets.json         @Thomas-Amann-IPAustralia
+/news_sources.json        @Thomas-Amann-IPAustralia
+/steward_config.yaml      @Thomas-Amann-IPAustralia

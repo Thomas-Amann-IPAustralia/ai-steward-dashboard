@@ -1,0 +1,74 @@
+# Build the dashboard, add the pipeline's data, and deploy it to GitHub Pages.
+# Called by update_checker.yml after new data is published, and by
+# deploy_site.yml when the site's own code changes.
+name: Build and deploy the site
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: The commit to build.
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.ref }}
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+          cache: npm
+
+      # Exactly what package-lock.json says, or fail: a lockfile mismatch
+      # must never become a fresh, unreviewed dependency resolution.
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run frontend tests
+        run: npm test -- --watchAll=false
+        env:
+          CI: true
+
+      # postbuild (scripts/add-csp.js) adds the Content-Security-Policy.
+      - name: Build the dashboard
+        run: npm run build
+        env:
+          CI: true
+          GENERATE_SOURCEMAP: false
+
+      - name: Copy the pipeline's data into the site
+        run: scripts/copy-site-data.sh build
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Deployments queue rather than cancel each other, so a newer build always
+    # lands last.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

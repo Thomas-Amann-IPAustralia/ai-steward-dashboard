@@ -1,0 +1,9 @@
+# Checks run in CI and before a push. Regenerate the pinned file with:
+#
+#     pip-compile --generate-hashes --strip-extras --allow-unsafe --output-file=requirements-dev.txt requirements-dev.in
+#
+# --allow-unsafe pins pip itself, which pip-audit depends on.
+
+mypy==2.3.1
+pip-audit==2.10.1
+ruff==0.16.9
