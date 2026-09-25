@@ -193,16 +193,6 @@
       "documents_failing": 0,
       "failing": []
     },
-    "Commonwealth AI Transparency Statement Register": {
-      "file_id": "Commonwealth_AI_Transparency_Statement_Register",
-      "status": "ok",
-      "last_success": "2026-09-25T21:42:14.373216+10:00",
-      "days_since_success": 0,
-      "consecutive_failures": 0,
-      "documents_total": 1,
-      "documents_failing": 0,
-      "failing": []
-    },
     "PSPF AI Policy Advisories": {
       "file_id": "PSPF_AI_Policy_Advisories",
       "status": "ok",
@@ -533,21 +523,6 @@
       "rejected": 0,
       "failed": 0,
       "baseline": 3,
-      "analysed": 0,
-      "material": 0,
-      "declined": 0
-    },
-    "Commonwealth AI Transparency Statement Register": {
-      "runs": 1,
-      "checks": 1,
-      "unchanged": 0,
-      "changed": 0,
-      "filtered": 0,
-      "cosmetic": 0,
-      "reverted": 0,
-      "rejected": 0,
-      "failed": 0,
-      "baseline": 1,
       "analysed": 0,
       "material": 0,
       "declined": 0
@@ -1941,13 +1916,6 @@
         "date": "2026-09-25",
         "checks": 3,
         "baseline": 3
-      }
-    ],
-    "Commonwealth AI Transparency Statement Register": [
-      {
-        "date": "2026-09-25",
-        "checks": 1,
-        "baseline": 1
       }
     ],
     "PSPF AI Policy Advisories": [

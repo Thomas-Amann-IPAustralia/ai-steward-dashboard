@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useReviews } from '../hooks/useReviews';
-import { formatRelative, primaryUrl, timestampOf } from '../utils/constants';
+import { formatRelative, primaryUrl, sectorOf, SECTORS, timestampOf } from '../utils/constants';
 import { reviewQueue } from '../utils/reviews';
 import Icon from './Icon';
 import Lettermark from './Lettermark';
@@ -20,7 +20,7 @@ const HEALTH_RANK = { failing: 0, degraded: 1, ok: 2 };
 
 /**
  * The list beside an open policy: every monitored set, searchable, sortable
- * and filterable by priority, grouped by category. A set with a change still
+ * and filterable by sector and priority, grouped by category. A set with a change still
  * to review carries a dot, so the queue can be worked through from here.
  */
 function Sidebar({ policySets, health, loading, error }) {
@@ -28,6 +28,9 @@ function Sidebar({ policySets, health, loading, error }) {
   const [sortBy, setSortBy] = useState('name');
   const [filterPriority, setFilterPriority] = useState('all');
   const location = useLocation();
+  // Opened from a filtered Policy watch, the list starts on the same sector.
+  const [searchParams] = useSearchParams();
+  const [sector, setSector] = useState(() => searchParams.get('sector') || '');
   const { reviewed } = useReviews();
 
   const currentFileId = location.pathname.startsWith('/policy/')
@@ -56,6 +59,10 @@ function Sidebar({ policySets, health, loading, error }) {
       decorated = decorated.filter((set) => set.setName.toLowerCase().includes(term));
     }
 
+    if (sector) {
+      decorated = decorated.filter((set) => sectorOf(set) === sector);
+    }
+
     if (filterPriority !== 'all') {
       decorated = decorated.filter((set) => (set.last_priority || '').toLowerCase() === filterPriority);
     }
@@ -80,7 +87,7 @@ function Sidebar({ policySets, health, loading, error }) {
         return acc;
       }, {}),
     };
-  }, [policySets, health, searchTerm, sortBy, filterPriority]);
+  }, [policySets, health, searchTerm, sortBy, filterPriority, sector]);
 
   return (
     <nav className="list-panel" aria-label="Monitored policies">
@@ -106,6 +113,18 @@ function Sidebar({ policySets, health, loading, error }) {
             <Icon name="chevron-down" size={13} />
           </label>
         </div>
+        <div className="segmented small" role="group" aria-label="Filter by sector">
+          {[{ value: '', label: 'All' }, ...SECTORS].map((option) => (
+            <button
+              key={option.value || 'all'}
+              type="button"
+              aria-pressed={sector === option.value}
+              onClick={() => setSector(option.value)}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
         <div className="chip-row tight" role="group" aria-label="Filter by priority">
           {PRIORITY_FILTERS.map((p) => (
             <button
@@ -127,7 +146,7 @@ function Sidebar({ policySets, health, loading, error }) {
         {error && <div className="callout callout-critical" role="alert">{error}</div>}
         {!loading && !error && groupedSets.list.length === 0 && (
           <p className="muted list-empty">
-            {policySets.length === 0 ? 'No valid policies found to display.' : 'No policies match your search or filter.'}
+            {policySets.length === 0 ? 'No valid policies found to display.' : 'No policies match your search or filters.'}
           </p>
         )}
 
@@ -157,7 +176,7 @@ function Sidebar({ policySets, health, loading, error }) {
                             )}
                           </span>
                           <span className="list-row-meta">
-                            <PriorityBadge priority={policySet.last_priority} date={policySet.last_amended} kind={policySet.kind} />
+                            <PriorityBadge priority={policySet.last_priority} date={policySet.last_amended} />
                             <HealthPill status={policySet._health} />
                             <span className="list-row-time">
                               {policySet.last_amended ? formatRelative(policySet.last_amended) : 'No change'}

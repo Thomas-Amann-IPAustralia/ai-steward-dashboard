@@ -62,16 +62,41 @@ text:
   rendering problem, so a browser is not launched to re-read it). Selenium is
   imported lazily inside `_selenium_fetch` specifically so a run where every
   source is static HTML never pays for the import or a browser launch.
+- **Hosts that refuse plain HTTP**: several gov.au hosts (digital.gov.au,
+  naa.gov.au, cyber.gov.au, protectivesecurity.gov.au) sit behind a bot
+  manager that lets Chrome through but holds a `requests` connection open
+  until `fetch.timeout_seconds` expires. On 25 September 2026 that was 31
+  documents at 30 seconds each — 15 of the run's 18 minutes. A
+  `FetchSession`, created once per run, remembers such hosts: when a plain
+  GET is refused and the browser then succeeds, the document's
+  `plain_blocked_at` is stamped, and later documents on that host (in this
+  run, and in runs within `fetch.blocked_host_recheck_days`) go straight to
+  the browser. Each host's re-check is staggered by a few days so that
+  hosts first seen together are not all re-probed on the same day. The
+  session also keeps **one** Chrome open for the whole run instead of
+  launching one per page.
 - **Proxy retry**: if `PROXY_HOST`/`PROXY_PORT`/`PROXY_USER`/`PROXY_PASS` are
   set in the environment, a direct attempt that fails is retried through the
   proxy. `"force_proxy": true` on a URL or policy set skips straight to the
-  proxy (useful for a source with known bot-detection that always blocks
-  direct requests).
+  proxy. The proxy is optional: the 25 September run used it for none of
+  its 76 documents.
+- **Internet Archive fallback**: when every live route has failed, the
+  Wayback Machine's availability API
+  (`https://archive.org/wayback/available?url=…`) is asked for its newest
+  capture, and the capture's original bytes (the `id_` form) are extracted
+  like a live page. It is used only if it was captured after the document's
+  last successful read and within `fetch.archive_max_age_days`, so it can
+  never report a change backwards. The record carries `route: "archive"`
+  and `archived_at`, and the dashboard says the page was read from the
+  archive. Set `fetch.archive_fallback: false` to turn it off.
+- **PDFs**: a response that is a PDF (by `Content-Type` or its `%PDF-`
+  magic) is read with `pypdf` rather than trafilatura.
 
 Every attempt is retried up to `fetch.max_retries` times with
 `fetch.retry_delay_seconds` between attempts, escalating from direct→proxy
-and plain→rendered as needed. See `fetch_document`'s docstring for the exact
-order.
+and plain→rendered as needed, then to the archive. Each document records the
+`route` that produced its text (`plain`, `render` or `archive`). See
+`fetch_document`'s docstring for the exact order.
 
 ### 3. Validate (`steward/validation.py`)
 
@@ -252,6 +277,10 @@ these directly over HTTP from the deployed site — there's no API layer.
 | `news/feed.json` | `news_watch.py` | frontend | News and incident items inside the window, plus per-feed health |
 | `news/archive/YYYY-MM.json` | `news_watch.py` | — | Items that aged out of the window, by month published |
 | `news/state.json` | `news_watch.py` | `news_watch.py` (next run) | Per-feed ETag/Last-Modified and ids already seen; not deployed |
+| `transparency/statements.json` | `transparency_watch.py` | frontend, `transparency_watch.py` (next run) | The register's state and every statement's: agency, portfolio, mandatory/voluntary, URL, the date it gives itself, last change, per-document fetch record |
+| `transparency/events.json` | `transparency_watch.py` | frontend | Agencies joining, leaving or moving on the register; statements updated or reworded — newest first, kept `transparency.event_days` |
+| `transparency/snapshots/<id>.txt` | `transparency_watch.py` | `transparency_watch.py` (next run's diff base) | Each statement's current normalised text; not deployed |
+| `transparency/diffs/<id>.diff` | `transparency_watch.py` | frontend | The diff behind a statement's most recent summarised change |
 
 `file_id` is `slugify_set_name(setName)` — the policy set name with
 everything except letters/digits/hyphens collapsed to underscores
@@ -313,7 +342,10 @@ fallback to a default for a key that's present but wrong. Sections:
 - **`model`** — the Gemini model name used for analysis (e.g.
   `gemini-2.5-flash`).
 - **`fetch`** — timeouts, retry count/delay, Selenium page-load timeout,
-  `disable_conditional_get`, the `User-Agent` string.
+  `disable_conditional_get`, the `User-Agent` string,
+  `blocked_host_recheck_days` (how long a host that refused plain HTTP is
+  sent straight to the browser; 0 turns it off), `archive_fallback` and
+  `archive_max_age_days` (the Internet Archive fallback).
 - **`validation`** — `min_length`, `shrink_ratio`, `growth_ratio`,
   `failure_signatures` (block-page substrings).
 - **`normalisation`** — `noise_patterns` (global regexes, kept empty on
@@ -337,6 +369,11 @@ fallback to a default for a key that's present but wrong. Sections:
   live blogs, podcasts and similar, validated at startup), and the vocabulary
   lists `ai_terms`, `australia_terms`, `government_terms`, `policy_terms`,
   `risk_terms` used by the AI gate and the keyword scorer.
+- **`transparency`** — `enabled`, `register_url` / `register_selector`,
+  `min_statements` and `keep_ratio` (the plausibility floor for a register
+  read), `fetch_timeout_seconds` (plain-HTTP wait per agency site),
+  `summarise` / `summary_batch_size` / `max_diff_chars` (the model pass),
+  `event_days`.
 
 ## Health and alerting (`steward/health.py`)
 
@@ -376,13 +413,18 @@ motivated it).
 python -m unittest discover -s tests -v
 ```
 
-`tests/test_pipeline.py`, `tests/test_run.py`, `tests/test_filtering.py` and
-`tests/test_news.py` are stdlib `unittest`, need no network, browser, or
+`tests/test_pipeline.py`, `tests/test_run.py`, `tests/test_filtering.py`,
+`tests/test_news.py`, `tests/test_fetching.py` and `tests/test_transparency.py`
+are stdlib `unittest`, need no network, browser, or
 `GEMINI_API_KEY`, and run in CI before `main.py` is even invoked.
 `test_filtering.py` pins the September 2026 false changes (the charset
 flip-flop, em-dash spacing, a link gaining `https://`, the poisoned
 digital.gov.au baseline, a 503 spent as a schema retry); `test_news.py` pins
-the news gates and the model contract. They're not a coverage exercise — several pin a specific
+the news gates and the model contract; `test_fetching.py` pins the
+blocked-host memory, the shared browser and the archive fallback's
+newer-than-held rule; `test_transparency.py` pins the register parser against
+five page layouts, the guard that stops a short read removing agencies, and a
+statement change reaching the model alone. They're not a coverage exercise — several pin a specific
 production incident so it can't silently reoccur, most notably: normalisation
 idempotency, the cosmetic-diff gate producing no model call, the size-delta
 guard rejecting a real archived block-page capture
@@ -420,15 +462,10 @@ If you touch `steward/validation.py`, `steward/content.py`, or
    - `category` groups sets in the sidebar. Reuse an existing one (`"Australian
      Government"`, `"State Government"`, `"Private Sector"`) unless you're
      genuinely introducing a new grouping.
-   - `kind` (optional) — `"policy"` (the default) for terms, guidance and
-     policy that bind the reader; `"adoption"` for a register of what other
-     agencies have published, such as the Commonwealth's list of AI
-     transparency statements. An adoption set's changes go to the model with
-     a prompt about uptake across government (who was added, removed or
-     renamed) rather than rights and obligations, are always stored as `low`
-     priority, and on the dashboard are badged "Adoption update", kept out of
-     the review queue and shown under "Across government" on the overview and
-     in the weekly briefing. Any other value skips the set with a warning.
+   - A policy set is for terms, guidance and policy that bind the reader.
+     What other agencies publish about themselves — AI transparency
+     statements — is its own stream (see
+     [AI transparency statements](#ai-transparency-statements)), not a set.
    - `keywords` (optional) — names that identify this provider or agency in
      the news (`["Anthropic", "Claude"]`). A news item or incident matching
      one is linked to the set and listed on its page. All-caps terms match
@@ -680,23 +717,85 @@ negative the policy alerting exists to catch.
    count, what was dropped and why, and the scores of the first items.
 3. Commit; the next scheduled run ingests and enriches it.
 
+## AI transparency statements
+
+`transparency_watch.py` keeps the dashboard's third stream: what Commonwealth
+agencies say about their own use of AI. It is neither a policy that binds the
+reader nor an incident, so it has its own tab, stays out of the review queue,
+and appears on the overview as "Across government".
+
+    register -> links -> each statement through the policy gates
+             -> one batched model call for the statements that changed
+
+1. **The register** (`transparency.register_url`, the DTA's central register)
+   is fetched like any document, but read for its **links**:
+   `steward/transparency.py:parse_register` walks the page once, tracking the
+   "Mandatory statements" / "Voluntary statements" section and the portfolio
+   (from headings, accordion controls, bold labels, nested lists or a table's
+   portfolio column), and takes each link that is an entry — a list item or
+   table cell, or a paragraph that is nothing but links — as one agency's
+   statement. Links in explanatory prose are not agencies. Each statement's
+   id is its agency name slugged, so a statement moving address is
+   `relinked`, not removed and added.
+2. **Plausibility**: a register read with fewer than `min_statements` links,
+   or fewer than `keep_ratio` of the list already held, is rejected — a block
+   page or a redesign must never read as most of the Commonwealth
+   withdrawing. The held list is kept and every statement is still checked.
+3. **Register events** are worked out by comparing the two lists
+   (`added`, `removed`, `relinked`) — no model call. The first read is a
+   baseline and records no events.
+4. **Each statement** goes through `main.process_document` — the same probe,
+   validation, normalisation, revert check, diff and cosmetic gate as a
+   policy document — with its baseline in `transparency/snapshots/`. Plain
+   GETs use the shorter `fetch_timeout_seconds` and one attempt; the run's
+   `FetchSession` sends agency hosts that refuse plain HTTP straight to the
+   browser. A statement published as PDF is read with `pypdf`.
+5. **The model** sees only statements that genuinely changed, batched
+   (`summary_batch_size` per call), each as agency name plus diff, fenced as
+   untrusted data. It returns `material_change` (use cases, tools, public
+   interaction, governance or the accountable official changed) or
+   `no_material_change` (dates, contacts, wording), and a summary of at most
+   35 words. Returned ids must be ones that were sent. A change it could not
+   summarise is not stored, so it is retried next run. Events are `updated`
+   or `reworded` accordingly; the dashboard hides `reworded` by default.
+6. **Statement dates**: `statement_date` takes the latest date on a line that
+   says what it is ("last updated", "reviewed", "published", "effective"…)
+   or the line after one, ignoring future dates. The dashboard flags a
+   statement dated more than a year ago as a prompt to look, not a finding.
+
+```bash
+python transparency_watch.py --dry-run          # read the register and every statement; write nothing
+python transparency_watch.py --only ip-australia # one statement (the register is always read)
+python transparency_watch.py --no-summary       # changes wait for the next run
+```
+
+`main.py` runs it after the policies unless `--skip-transparency` (or
+`--only`) is given.
+
+The register's markup was not captured when the parser was written:
+digital.gov.au refuses non-browser clients, and the stored snapshot kept its
+text but not its links. If the first run logs `register read rejected`, run
+the dry run above and adjust `parse_register` against the real page;
+nothing is lost meanwhile.
+
 ## Automation (GitHub Actions)
 
 `.github/workflows/update_checker.yml` runs daily at 00:00 UTC (also on
 manual dispatch, and on pushes to `main` touching frontend/config files). In
 order: install deps → run the pipeline tests → install Chrome (for the
-Selenium fallback) → run `main.py --skip-news` → run `news_watch.py` (each
-`continue-on-error`, so one failing never stops the other's output being
-committed) → commit and push any changed data files (including `news/`) →
+Selenium fallback) → run `main.py --skip-news --skip-transparency` → run
+`transparency_watch.py` → run `news_watch.py` (each `continue-on-error`, so
+one failing never stops the others' output being committed) → commit and
+push any changed data files (including `news/` and `transparency/`) →
 open/update a `source-health` issue if `health_alert.md` exists → build the
 React app → copy the data files into `build/` (only archived *analyses*, not
-archived *snapshots*, ship to `build/logs/`; `news/state.json` is not
-shipped) → deploy to GitHub Pages → finally, fail the job if either pipeline
-step exited non-zero, so a failure is still red without holding back the
-deploy.
+archived *snapshots*, ship to `build/logs/`; `news/state.json` and
+`transparency/snapshots/` are not shipped) → deploy to GitHub Pages →
+finally, fail the job if any pipeline step exited non-zero, so a failure is
+still red without holding back the deploy.
 
-Run locally, `python main.py` does both halves in turn; `--skip-news` limits
-it to policies, and `--only` implies `--skip-news`.
+Run locally, `python main.py` does all three in turn; `--skip-news` and
+`--skip-transparency` leave those streams out, and `--only` implies both.
 
 `.github/workflows/generate_lockfile.yml` is a manual-dispatch-only helper
 that regenerates `package-lock.json`.

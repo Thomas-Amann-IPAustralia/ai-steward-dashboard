@@ -34,12 +34,21 @@ export const daysSince = (isoDate, now = Date.now()) => {
 };
 
 /**
- * An adoption set is a register of what other agencies have published — the
- * Commonwealth's list of AI transparency statements. Its changes are worth
- * keeping up with but bind nobody, so they are shown as updates: never rated
- * for risk and never queued for review.
+ * Whose policy a set is: government (Commonwealth or state) or the private
+ * sector, read from the category policy_sets.json gives it. Anything else —
+ * a category added later — is left out of both filters rather than guessed.
  */
-export const isAdoption = (set) => set?.kind === 'adoption';
+export const SECTORS = [
+  { value: 'government', label: 'Government' },
+  { value: 'private', label: 'Private sector' },
+];
+
+export const sectorOf = (set) => {
+  const category = (set?.category || '').toLowerCase();
+  if (category.includes('government')) return 'government';
+  if (category.includes('private')) return 'private';
+  return null;
+};
 
 export const VERDICT_LABELS = {
   material_change: 'Material change',

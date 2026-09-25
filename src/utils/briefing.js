@@ -1,5 +1,6 @@
 import { changeSummaryOf, formatDay, HEALTH_LABELS, VERDICT_LABELS } from './constants';
 import { blurbOf } from './news';
+import { EVENT_LABELS } from './transparency';
 
 export const SITE_URL = 'https://thomas-amann-ipaustralia.github.io/ai-steward-dashboard';
 
@@ -8,13 +9,13 @@ export const SITE_URL = 'https://thomas-amann-ipaustralia.github.io/ai-steward-d
  *
  * Stewards forward this sort of thing to their team. One button beats a
  * copy-paste job, and it is a fraction of the work of a PDF export. It covers
- * the monitored policies first, then what other agencies have published, then
- * the news and incidents worth passing on.
+ * the monitored policies first, then what agencies' transparency statements
+ * say has changed, then the news and incidents worth passing on.
  */
 export function buildBriefing({
   recentChanges = [],
-  adoptionUpdates = [],
   failingSources = [],
+  governmentEvents = [],
   stableCount = 0,
   topNews = [],
   incidents = [],
@@ -55,16 +56,13 @@ export function buildBriefing({
     });
   }
 
-  if (adoptionUpdates.length > 0) {
+  if (governmentEvents.length > 0) {
     lines.push('## Across government', '');
-    adoptionUpdates.forEach((update) => {
-      lines.push(`### ${update.setName} — updated ${formatDay(update.last_amended)}`);
-      const summary = changeSummaryOf(update);
-      if (summary) {
-        lines.push('', summary);
-      }
-      lines.push('', `${SITE_URL}/#/policy/${update.file_id}`, '');
+    governmentEvents.forEach((event) => {
+      const label = EVENT_LABELS[event.type] || event.type;
+      lines.push(`- **${event.agency}** — ${label.toLowerCase()} (${formatDay(event.timestamp)})` + (event.summary ? `: ${event.summary}` : ''));
     });
+    lines.push('', `${SITE_URL}/#/transparency`, '');
   }
 
   lines.push(

@@ -30,18 +30,6 @@ const policySets = [
     last_amended: daysAgo(90),
     last_priority: 'low',
   },
-  {
-    setName: 'Commonwealth AI Transparency Statement Register',
-    file_id: 'Commonwealth_AI_Transparency_Statement_Register',
-    category: 'Australian Government',
-    kind: 'adoption',
-    urls: [{ url: 'https://www.digital.gov.au/policy/ai/list-of-transparency-statements' }],
-    last_checked: daysAgo(0),
-    last_amended: daysAgo(2),
-    last_priority: 'low',
-    last_verdict: 'material_change',
-    last_change: { summary: 'Three entities were added to the register.', changed_documents: ['Register'] },
-  },
 ];
 
 const feed = {
@@ -80,13 +68,35 @@ afterEach(() => {
   container.remove();
 });
 
+const transparency = {
+  statements: [{ id: 'ip-australia', agency: 'IP Australia', obligation: 'mandatory', url: 'https://www.ipaustralia.gov.au/ai' }],
+  events: [
+    {
+      type: 'updated',
+      timestamp: daysAgo(2),
+      id: 'ip-australia',
+      agency: 'IP Australia',
+      summary: 'Added AI-assisted prior-art search for patent examiners.',
+    },
+    { type: 'reworded', timestamp: daysAgo(1), id: 'ato', agency: 'Australian Taxation Office', summary: 'Contact email updated.' },
+    { type: 'added', timestamp: daysAgo(60), id: 'old', agency: 'Old Agency' },
+  ],
+};
+
 const render = async () => {
   await act(async () => {
     root.render(
       <ToastProvider>
         <ReviewsProvider>
           <MemoryRouter>
-            <DashboardHome policySets={policySets} health={null} feed={feed} since={null} loading={false} />
+            <DashboardHome
+              policySets={policySets}
+              health={null}
+              feed={feed}
+              transparency={transparency}
+              since={null}
+              loading={false}
+            />
           </MemoryRouter>
         </ReviewsProvider>
       </ToastProvider>
@@ -120,21 +130,19 @@ test('marking a change reviewed empties the queue, remembers it, and can be undo
   expect(container.querySelector('#review-queue .review-list').textContent).toContain('Anthropic Legal Policies');
 });
 
-test('an adoption register is shown across government, not queued for review', async () => {
-  await render();
-  const queue = container.querySelector('#review-queue');
-  expect(queue.textContent).not.toContain('Transparency Statement Register');
-
-  const across = container.querySelector('[aria-labelledby="adoption-title"]');
-  expect(across.textContent).toContain('Commonwealth AI Transparency Statement Register');
-  expect(across.textContent).toContain('Three entities were added to the register.');
-  expect(across.textContent).toContain('Adoption update');
-  expect(across.textContent).not.toMatch(/Mark reviewed|priority/i);
-});
-
 test('news is offered to read, never to review', async () => {
   await render();
   const stories = [...container.querySelectorAll('.card')].find((card) => card.textContent.includes('Top stories'));
   expect(stories.textContent).toContain('Agency publishes AI transparency statement');
   expect(stories.textContent).not.toMatch(/act on|review/i);
+});
+
+test('what agencies say about their AI use is shown across government, never queued for review', async () => {
+  await render();
+  const across = container.querySelector('[aria-labelledby="government-title"]');
+  expect(across.textContent).toContain('IP Australia');
+  expect(across.textContent).toContain('Added AI-assisted prior-art search');
+  expect(across.textContent).not.toContain('Australian Taxation Office');
+  expect(across.textContent).not.toContain('Old Agency');
+  expect(container.querySelector('#review-queue').textContent).not.toContain('IP Australia');
 });

@@ -53,6 +53,14 @@ function AboutModal({ onClose }) {
           “nothing material changed”. If it says so, the policy is not badged.
         </p>
 
+        <h3>Transparency statements</h3>
+        <p>
+          Commonwealth agencies publish AI transparency statements saying how they use AI, and the DTA keeps a
+          central register of them. The register is read for its list of agencies, so an agency joining, leaving or
+          moving its statement is spotted without an AI model. Each statement is then read and compared on its own,
+          through the same checks as a policy; when one changes, the model summarises what the agency now says
+          differently about its AI use. These are for awareness — they never join your review queue.
+        </p>
         <h3>News and AI incidents</h3>
         <p>
           News comes from Australian government sites, public-sector and technology media, overseas
@@ -66,7 +74,7 @@ function AboutModal({ onClose }) {
 
         <h3>What it can't do</h3>
         <ul>
-          <li>It reads only the pages listed. Some government sites block automated readers; they are reached through search where possible, and any source not being read is flagged, never shown as “unchanged”.</li>
+          <li>It reads only the pages listed. Some government sites refuse automated readers; those pages are read in a real browser, or failing that from the Internet Archive's most recent copy (and marked as such), and any source not being read is flagged, never shown as “unchanged”.</li>
           <li>AI summaries and ratings can be wrong. Check the diff or the original before acting, and use 👍/👎 on an analysis to say whether it helped.</li>
           <li>It is not legal advice and not an official Australian Government product.</li>
         </ul>

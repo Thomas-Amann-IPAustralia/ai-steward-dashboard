@@ -13,6 +13,16 @@ replaces the hand-maintained tag blacklist that was a standing source of
 nav-and-whitespace noise. Selenium is reserved for URLs marked
 `"render": true` in policy_sets.json, and for salvaging a plain fetch that
 came back unusable.
+
+Some hosts refuse plain HTTP clients outright. Several gov.au sites sit
+behind a bot manager that lets a real browser through but holds a `requests`
+connection open until it times out: on 25 September 2026 that was 31
+documents on four hosts, each spending the full 30-second timeout before
+Chrome read it in about five, or 15 of the run's 18 minutes. A FetchSession
+remembers those hosts, so only the first document on one pays for finding
+out, and it keeps one browser open for the whole run rather than launching
+one per page. When every live route fails, the Internet Archive's
+availability API is asked for a capture newer than the one already held.
 """
 
 from __future__ import annotations
@@ -21,8 +31,10 @@ import logging
 import os
 import random
 import time
+import zlib
 from dataclasses import dataclass, field
-from typing import Optional
+from datetime import datetime, timedelta, timezone
+from typing import Iterable, Optional, Tuple
 from urllib.parse import urlparse
 
 import requests
@@ -43,6 +55,14 @@ FAILED = "failed"
 EXTRACTOR_TRAFILATURA = "trafilatura"
 EXTRACTOR_SELECTOR = "selector+trafilatura"
 EXTRACTOR_SELENIUM = "selenium+trafilatura"
+EXTRACTOR_PDF = "pypdf"
+
+# Which route produced the text.
+ROUTE_PLAIN = "plain"
+ROUTE_RENDER = "render"
+ROUTE_ARCHIVE = "archive"
+
+ARCHIVE_AVAILABILITY_API = "https://archive.org/wayback/available"
 
 
 @dataclass
@@ -58,6 +78,14 @@ class FetchResult:
     attempts: int = 0
     duration_ms: int = 0
     notes: list[str] = field(default_factory=list)
+    # The page as fetched, for a caller that needs its links. Never stored.
+    html: str = ""
+    route: str = ""
+    # True when a plain GET was refused and a browser was needed; False when
+    # plain HTTP worked; None when plain HTTP was not tried this time.
+    plain_blocked: Optional[bool] = None
+    # For an archive read, when the Internet Archive captured the page.
+    archived_at: Optional[str] = None
 
     @property
     def ok(self) -> bool:
@@ -102,6 +130,89 @@ def _proxies() -> Optional[dict]:
     return {"http": endpoint, "https": endpoint}
 
 
+# --- Session ---------------------------------------------------------------
+
+
+class FetchSession:
+    """What one run has learned about reaching each host, plus its browser.
+
+    `blocked_hosts` maps a host to when a plain GET there was last refused.
+    A document on one of those hosts goes straight to the browser. The
+    orchestrator seeds it from the documents' stored `plain_blocked_at`, and
+    entries older than `fetch.blocked_host_recheck_days` are left out so a
+    host that stops refusing plain clients is noticed within a week or two.
+    Each host's re-check is pushed back by a fixed, host-derived number of
+    days (up to the recheck period again), so a hundred hosts first seen on
+    the same day do not all pay for a plain-HTTP timeout on the same day.
+    """
+
+    def __init__(self, blocked_hosts: Optional[dict] = None):
+        self.blocked_hosts: dict = dict(blocked_hosts or {})
+        self._driver = None
+        self._driver_failed = False
+
+    @classmethod
+    def remembering(
+        cls,
+        documents: Iterable[Tuple[str, dict]],
+        recheck_days: int,
+        now: Optional[datetime] = None,
+    ) -> "FetchSession":
+        """A session that already knows which hosts refused plain HTTP recently."""
+        if recheck_days <= 0:
+            return cls()
+        now = now or datetime.now(timezone.utc)
+        blocked: dict = {}
+        for url, record in documents:
+            stamp = _parse_time((record or {}).get("plain_blocked_at"))
+            host = urlparse(url).hostname
+            if not stamp or not host:
+                continue
+            stagger = zlib.crc32(host.encode("utf-8")) % recheck_days
+            if stamp < now - timedelta(days=recheck_days + stagger):
+                continue
+            if host not in blocked or stamp > _parse_time(blocked[host]):
+                blocked[host] = record["plain_blocked_at"]
+        return cls(blocked)
+
+    def is_blocked(self, url: str) -> bool:
+        return urlparse(url).hostname in self.blocked_hosts
+
+    def mark_blocked(self, url: str, when: str) -> None:
+        host = urlparse(url).hostname
+        if host:
+            self.blocked_hosts[host] = when
+
+    def driver(self, cfg):
+        """The run's browser, started on first use. None if it cannot start."""
+        if self._driver is None and not self._driver_failed:
+            self._driver = initialize_driver(cfg)
+            self._driver_failed = self._driver is None
+        return self._driver
+
+    def discard_driver(self) -> None:
+        """Drop a browser that has errored; the next render starts a fresh one."""
+        driver, self._driver = self._driver, None
+        if driver is not None:
+            try:
+                driver.quit()
+            except Exception:  # noqa: BLE001
+                pass
+
+    def close(self) -> None:
+        self.discard_driver()
+
+
+def _parse_time(value) -> Optional[datetime]:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(value))
+    except ValueError:
+        return None
+    return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+
+
 # --- Extraction ------------------------------------------------------------
 
 
@@ -137,6 +248,26 @@ def extract_text(html: str, url: str, selector: Optional[str] = None) -> tuple[s
         url=url,
     )
     return (text or ""), EXTRACTOR_TRAFILATURA
+
+
+def extract_pdf_text(data: bytes) -> str:
+    """Text of a PDF, page by page. Empty if the file cannot be read."""
+    from io import BytesIO
+
+    from pypdf import PdfReader
+    from pypdf.errors import PdfReadError
+
+    try:
+        reader = PdfReader(BytesIO(data))
+        return "\n".join((page.extract_text() or "") for page in reader.pages)
+    except (PdfReadError, ValueError, KeyError, OSError) as exc:
+        log.warning("    Could not read PDF: %s", exc)
+        return ""
+
+
+def _is_pdf(response) -> bool:
+    content_type = (response.headers.get("Content-Type", "") or "").lower()
+    return "application/pdf" in content_type or (response.content or b"")[:5] == b"%PDF-"
 
 
 # --- Plain HTTP path -------------------------------------------------------
@@ -200,6 +331,18 @@ def _http_fetch(url_data: dict, prior: dict, cfg, use_proxy: bool) -> FetchResul
             url, FAILED, http_status=response.status_code, error=f"HTTP {response.status_code}"
         )
 
+    if _is_pdf(response):
+        return FetchResult(
+            url,
+            OK,
+            text=extract_pdf_text(response.content),
+            etag=etag,
+            last_modified=last_modified,
+            http_status=response.status_code,
+            extractor=EXTRACTOR_PDF,
+            route=ROUTE_PLAIN,
+        )
+
     html = decode_body(response)
     text, extractor = extract_text(html, url, url_data.get("selector"))
     return FetchResult(
@@ -210,15 +353,95 @@ def _http_fetch(url_data: dict, prior: dict, cfg, use_proxy: bool) -> FetchResul
         last_modified=last_modified,
         http_status=response.status_code,
         extractor=extractor,
+        html=html,
+        route=ROUTE_PLAIN,
     )
+
+
+# --- Internet Archive path -------------------------------------------------
+
+
+def _archive_fetch(url_data: dict, prior: dict, cfg) -> FetchResult:
+    """The newest Internet Archive capture, if it is newer than what we hold.
+
+    Uses the Wayback Machine's availability API, then reads the capture's
+    original bytes (the `id_` form, without the archive's toolbar). The
+    archive fetches pages on its own schedule and is not blocked the way a
+    datacenter client is, so it can see a page this run could not. Only a
+    capture taken after this document's last successful read is accepted:
+    an older one could only report a change backwards. The capture must also
+    be within `fetch.archive_max_age_days`.
+    """
+    url = url_data["url"]
+    try:
+        response = requests.get(
+            ARCHIVE_AVAILABILITY_API,
+            params={"url": url},
+            headers={"User-Agent": cfg.fetch.user_agent},
+            timeout=cfg.fetch.timeout_seconds,
+        )
+        response.raise_for_status()
+        closest = (response.json().get("archived_snapshots") or {}).get("closest") or {}
+    except (requests.RequestException, ValueError) as exc:
+        return FetchResult(url, FAILED, error=f"archive lookup failed: {type(exc).__name__}")
+
+    captured = _parse_archive_timestamp(closest.get("timestamp"))
+    if not closest.get("available") or str(closest.get("status")) != "200" or captured is None:
+        return FetchResult(url, FAILED, error="no archived copy")
+
+    now = datetime.now(timezone.utc)
+    if captured < now - timedelta(days=cfg.fetch.archive_max_age_days):
+        return FetchResult(url, FAILED, error=f"archived copy is from {captured.date()}, too old to use")
+    last_success = _parse_time(prior.get("last_success"))
+    if last_success and captured <= last_success:
+        return FetchResult(url, FAILED, error=f"archived copy ({captured.date()}) is no newer than the last read")
+
+    stamp = closest["timestamp"]
+    try:
+        page = requests.get(
+            f"https://web.archive.org/web/{stamp}id_/{url}",
+            headers={"User-Agent": cfg.fetch.user_agent},
+            timeout=cfg.fetch.timeout_seconds,
+        )
+    except requests.RequestException as exc:
+        return FetchResult(url, FAILED, error=f"archive read failed: {type(exc).__name__}")
+    if page.status_code >= 400:
+        return FetchResult(url, FAILED, http_status=page.status_code, error=f"archive read failed: HTTP {page.status_code}")
+
+    if _is_pdf(page):
+        html, text, extractor = "", extract_pdf_text(page.content), EXTRACTOR_PDF
+    else:
+        html = decode_body(page)
+        text, extractor = extract_text(html, url, url_data.get("selector"))
+    return FetchResult(
+        url,
+        OK,
+        text=text,
+        http_status=page.status_code,
+        extractor=extractor,
+        html=html,
+        route=ROUTE_ARCHIVE,
+        archived_at=captured.isoformat(),
+    )
+
+
+def _parse_archive_timestamp(value) -> Optional[datetime]:
+    try:
+        return datetime.strptime(str(value), "%Y%m%d%H%M%S").replace(tzinfo=timezone.utc)
+    except (TypeError, ValueError):
+        return None
 
 
 # --- Selenium path ---------------------------------------------------------
 
 
-def _selenium_fetch(url_data: dict, cfg, use_proxy: bool) -> FetchResult:
+def _selenium_fetch(url_data: dict, cfg, use_proxy: bool, session: Optional[FetchSession] = None) -> FetchResult:
     """Render with headless Chrome. Imported lazily — a run where every URL
-    is static should never pay for the Selenium import, let alone a browser."""
+    is static should never pay for the Selenium import, let alone a browser.
+
+    Direct renders share the session's browser; a proxied render gets its
+    own, since the proxy is a launch option.
+    """
     url = url_data["url"]
 
     try:
@@ -229,7 +452,8 @@ def _selenium_fetch(url_data: dict, cfg, use_proxy: bool) -> FetchResult:
     except ImportError as exc:
         return FetchResult(url, FAILED, error=f"Selenium unavailable: {exc}")
 
-    driver = initialize_driver(cfg, with_proxy=use_proxy)
+    shared = session is not None and not use_proxy
+    driver = session.driver(cfg) if shared else initialize_driver(cfg, with_proxy=use_proxy)
     if driver is None:
         return FetchResult(url, FAILED, error="could not start WebDriver")
 
@@ -246,18 +470,21 @@ def _selenium_fetch(url_data: dict, cfg, use_proxy: bool) -> FetchResult:
 
         html = driver.page_source
         text, _ = extract_text(html, url, url_data.get("selector"))
-        return FetchResult(url, OK, text=text, extractor=EXTRACTOR_SELENIUM)
+        return FetchResult(url, OK, text=text, extractor=EXTRACTOR_SELENIUM, html=html, route=ROUTE_RENDER)
     except TimeoutException:
         return FetchResult(url, FAILED, error="timed out waiting for page body")
     except WebDriverException as exc:
+        if shared:
+            session.discard_driver()
         return FetchResult(url, FAILED, error=f"{type(exc).__name__}")
     except Exception as exc:  # noqa: BLE001 — a scrape must not kill the run
         return FetchResult(url, FAILED, error=f"{type(exc).__name__}: {exc}")
     finally:
-        try:
-            driver.quit()
-        except Exception:  # noqa: BLE001
-            pass
+        if not shared:
+            try:
+                driver.quit()
+            except Exception:  # noqa: BLE001
+                pass
 
 
 def initialize_driver(cfg, with_proxy: bool = False):
@@ -332,14 +559,37 @@ def _looks_like_block_page(text: str, cfg) -> bool:
     return any(fold_for_matching(sig) in folded for sig in cfg.validation.failure_signatures)
 
 
-def fetch_document(url_data: dict, prior: dict, cfg, policy_set: Optional[dict] = None) -> FetchResult:
+def fetch_document(
+    url_data: dict,
+    prior: dict,
+    cfg,
+    policy_set: Optional[dict] = None,
+    session: Optional[FetchSession] = None,
+) -> FetchResult:
     """Fetch one document, escalating only as far as it has to.
 
     Order: conditional plain GET -> Selenium (if the page needs rendering or
-    the plain fetch was unusable) -> the same two through the proxy.
+    the plain fetch was unusable) -> the same two through the proxy -> the
+    newest Internet Archive capture. A host the session knows refuses plain
+    HTTP skips straight to the browser.
+
+    Without a session a throwaway one is used, so the browser is closed on
+    return; pass the run's session to keep it open between documents.
     """
+    if session is None:
+        session = FetchSession()
+        try:
+            return fetch_document(url_data, prior, cfg, policy_set, session)
+        finally:
+            session.close()
+
     url = url_data["url"]
     started = time.monotonic()
+
+    def done(result: FetchResult, attempts: int) -> FetchResult:
+        result.attempts = attempts
+        result.duration_ms = int((time.monotonic() - started) * 1000)
+        return result
 
     if not is_safe_url(url):
         return FetchResult(url, FAILED, error="unsafe or malformed URL, refused")
@@ -347,6 +597,7 @@ def fetch_document(url_data: dict, prior: dict, cfg, policy_set: Optional[dict] 
     policy_set = policy_set or {}
     needs_render = bool(url_data.get("render") or policy_set.get("render"))
     force_proxy = bool(url_data.get("force_proxy") or policy_set.get("force_proxy"))
+    known_blocked = session.is_blocked(url)
 
     result = FetchResult(url, FAILED, error="not attempted")
     attempts = 0
@@ -358,19 +609,22 @@ def fetch_document(url_data: dict, prior: dict, cfg, policy_set: Optional[dict] 
 
             attempts += 1
             route = "proxy" if use_proxy else "direct"
+            plain_refused = False
 
-            if not needs_render:
+            if known_blocked and not use_proxy:
+                # Its plain GET would only hang until the timeout, as it did
+                # recently; the browser is what reads this host.
+                log.info("    [%s] %s refuses plain clients — rendering", route, urlparse(url).hostname)
+            elif not needs_render:
                 log.info("    [%s] conditional GET %s", route, url)
                 result = _http_fetch(url_data, prior, cfg, use_proxy)
                 if result.status == NOT_MODIFIED:
                     log.info("    [%s] 304 Not Modified — nothing to do", route)
-                    result.attempts = attempts
-                    result.duration_ms = int((time.monotonic() - started) * 1000)
-                    return result
+                    result.plain_blocked = False
+                    return done(result, attempts)
                 if result.ok and result.text.strip() and not _looks_like_block_page(result.text, cfg):
-                    result.attempts = attempts
-                    result.duration_ms = int((time.monotonic() - started) * 1000)
-                    return result
+                    result.plain_blocked = False
+                    return done(result, attempts)
                 if result.ok:
                     result.notes.append("plain fetch returned unusable text, rendering")
                 elif not _worth_rendering(result):
@@ -378,25 +632,27 @@ def fetch_document(url_data: dict, prior: dict, cfg, policy_set: Optional[dict] 
                     # browser to re-read it costs ~20s and learns nothing.
                     log.warning("    [%s] %s — not worth rendering", route, result.error)
                     continue
+                plain_refused = True
             else:
                 # A cheap conditional probe still saves the browser launch.
                 probe = _http_fetch({"url": url}, prior, cfg, use_proxy)
                 if probe.status == NOT_MODIFIED:
                     log.info("    [%s] 304 Not Modified — no render needed", route)
-                    probe.attempts = attempts
-                    probe.duration_ms = int((time.monotonic() - started) * 1000)
-                    return probe
+                    probe.plain_blocked = False
+                    return done(probe, attempts)
+                plain_refused = probe.status == FAILED and _worth_rendering(probe)
 
             log.info("    [%s] rendering %s", route, url)
-            rendered = _selenium_fetch(url_data, cfg, use_proxy)
+            rendered = _selenium_fetch(url_data, cfg, use_proxy, session)
             if rendered.ok and rendered.text.strip():
                 # Carry validators forward from the probe so the next run can
                 # still short-circuit on a 304.
                 rendered.etag = result.etag or prior.get("etag")
                 rendered.last_modified = result.last_modified or prior.get("last_modified")
-                rendered.attempts = attempts
-                rendered.duration_ms = int((time.monotonic() - started) * 1000)
-                return rendered
+                if plain_refused and not use_proxy:
+                    rendered.plain_blocked = True
+                    session.mark_blocked(url, datetime.now(timezone.utc).isoformat())
+                return done(rendered, attempts)
             result = rendered if rendered.error else result
 
         if attempt < cfg.fetch.max_retries:
@@ -409,8 +665,14 @@ def fetch_document(url_data: dict, prior: dict, cfg, policy_set: Optional[dict] 
             )
             time.sleep(cfg.fetch.retry_delay_seconds)
 
-    result.attempts = attempts
-    result.duration_ms = int((time.monotonic() - started) * 1000)
+    if cfg.fetch.archive_fallback:
+        archived = _archive_fetch(url_data, prior, cfg)
+        if archived.ok and archived.text.strip() and not _looks_like_block_page(archived.text, cfg):
+            log.info("    Read %s from the Internet Archive capture of %s", url, archived.archived_at)
+            archived.notes.append(f"live routes failed: {result.error}")
+            return done(archived, attempts + 1)
+        log.info("    No usable archive copy of %s: %s", url, archived.error)
+
     if result.status != FAILED:
         result.status = FAILED
-    return result
+    return done(result, attempts)

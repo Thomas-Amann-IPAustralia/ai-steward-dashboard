@@ -9,7 +9,6 @@ import {
   formatDate,
   formatRelative,
   formatShortDay,
-  isAdoption,
   primaryUrl,
   PRIORITY_ORDER,
   revertedAfterChange,
@@ -19,6 +18,7 @@ import { buildBriefing, copyToClipboard } from '../utils/briefing';
 import { isAustralianIncident, isNew, rankItems, withinDays } from '../utils/news';
 import { reviewQueue, REVIEW_WINDOW_DAYS } from '../utils/reviews';
 import { dailySeries, dayTime, weeklySeries } from '../utils/series';
+import { EVENT_LABELS, eventsWithin, isNewEvent, isNotable } from '../utils/transparency';
 import ChangeTimeline from './ChangeTimeline';
 import { Meter, StackedColumns } from './charts';
 import { FeedCard, NewBadge } from './FeedCards';
@@ -181,44 +181,37 @@ function ReviewItem({ set, summary, since, onToggle, done = false }) {
   );
 }
 
-/** A register of what other agencies have published: read for awareness, never reviewed. */
-function AdoptionItem({ set, summary, since }) {
-  const fresh = since && timestampOf(set.last_amended) > since;
+/**
+ * The overview: one page that answers "what do I need to know?".
+ *
+ * A steward acts on one thing here — a material change to a monitored
+ * policy — so those lead as a review queue that empties as they are read.
+ * News and incidents are for awareness and follow it. The briefing sentence
+ * says the same in words, and the tiles and the activity chart show the shape
+ * of it at a glance.
+ */
+/** One agency's statement changing, or the register changing, as a line on the overview. */
+function GovernmentItem({ event, since }) {
   return (
-    <li className="review-item">
-      <Lettermark url={primaryUrl(set)} name={set.setName} size={36} />
+    <li className="review-item event-item">
+      <span className={`event-type event-${event.type}`}>{EVENT_LABELS[event.type] || event.type}</span>
       <div className="review-main">
         <div className="review-head">
-          <Link className="review-name" to={`/policy/${set.file_id}`}>{set.setName}</Link>
-          {fresh && <NewBadge />}
-          <PriorityBadge priority={set.last_priority} date={set.last_amended} kind={set.kind} />
-          <HealthPill status={set.health?.status} />
+          <Link className="review-name" to={`/transparency?q=${encodeURIComponent(event.agency)}`}>{event.agency}</Link>
+          {isNewEvent(event, since) && <NewBadge />}
         </div>
-        <p className="review-summary">
-          {summary || (set.last_amended ? 'No summary recorded for the last update.' : 'No update recorded yet.')}
-        </p>
+        {event.summary && <p className="review-summary">{event.summary}</p>}
         <div className="review-meta">
-          <span>
-            <Icon name="clock" size={13} />{' '}
-            {set.last_amended ? `Updated ${formatRelative(set.last_amended)}` : `Checked ${formatRelative(set.last_checked)}`}
-          </span>
+          <span><Icon name="clock" size={13} /> {formatRelative(event.timestamp)}</span>
         </div>
       </div>
     </li>
   );
 }
 
-/**
- * The overview: one page that answers "what do I need to know?".
- *
- * A steward acts on one thing here — a material change to a monitored
- * policy — so those lead as a review queue that empties as they are read.
- * News, incidents and what other agencies are doing are for awareness and
- * follow it. The briefing sentence
- * says the same in words, and the tiles and the activity chart show the shape
- * of it at a glance.
- */
-function DashboardHome({ policySets, health, feed, since, loading }) {
+const NO_TRANSPARENCY = { statements: [], events: [] };
+
+function DashboardHome({ policySets, health, feed, transparency = NO_TRANSPARENCY, since, loading }) {
   const { reviewed, markReviewed } = useReviews();
   const toast = useToast();
   const history = useHistoryIndex();
@@ -249,8 +242,6 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
         .filter((set) => timestampOf(set.last_amended) > now - days * DAY_MS && set.last_verdict !== 'no_material_change')
         .sort((a, b) => timestampOf(b.last_amended) - timestampOf(a.last_amended));
 
-    // Adoption registers count as changed (they are not "unchanged"), but they
-    // are reported on their own rather than as policy changes.
     const recentIds = new Set(changedWithin(RECENT_DAYS).map((set) => set.file_id));
     const stable = withHealth.filter((set) => !recentIds.has(set.file_id) && set.health.status === 'ok');
     const { pending, done } = reviewQueue(withHealth, reviewed, { now });
@@ -259,9 +250,8 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
     const news = items.filter((item) => item.kind === 'news');
     const relevantNews = news.filter((item) => item.relevance >= 2);
     const auIncidents = items.filter(isAustralianIncident);
-    const weekAll = changedWithin(BRIEFING_DAYS);
-    const weekChanges = weekAll.filter((set) => !isAdoption(set));
-    const weekIds = new Set(weekAll.map((set) => set.file_id));
+    const weekChanges = changedWithin(BRIEFING_DAYS);
+    const weekIds = new Set(weekChanges.map((set) => set.file_id));
 
     return {
       failingSources,
@@ -277,10 +267,6 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
       localIncidents: rankItems(withinDays(auIncidents, RECENT_DAYS)).slice(0, 4),
       lastScan: withHealth.reduce((latest, set) => Math.max(latest, timestampOf(set.last_checked)), 0),
       weekChanges,
-      weekAdoption: weekAll.filter(isAdoption),
-      adoption: withHealth
-        .filter(isAdoption)
-        .sort((a, b) => timestampOf(b.last_amended) - timestampOf(a.last_amended)),
       weekStable: withHealth.filter((set) => !weekIds.has(set.file_id) && set.health.status === 'ok').length,
       newNews: relevantNews.filter((item) => isNew(item, since)).length,
       newIncidents: auIncidents.filter((item) => isNew(item, since)).length,
@@ -290,8 +276,10 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
       weekNews: rankItems(withinDays(news, BRIEFING_DAYS).filter((item) => item.relevance >= 3)).slice(0, 8),
       newsSeries: dailySeries(relevantNews, { days: 14, now, seriesOf: (item) => item.relevance }),
       incidentSeries: weeklySeries(auIncidents, { weeks: 8, now, seriesOf: () => 'incident' }),
+      government: eventsWithin((transparency.events || []).filter(isNotable), RECENT_DAYS, now).slice(0, 5),
+      weekGovernment: eventsWithin((transparency.events || []).filter(isNotable), BRIEFING_DAYS, now),
     };
-  }, [policySets, health, feed, since, reviewed]);
+  }, [policySets, health, feed, transparency, since, reviewed]);
 
   const policyNames = useMemo(
     () => Object.fromEntries(policySets.map((set) => [set.file_id, set.setName])),
@@ -308,10 +296,7 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
           last_change: { ...set.last_change, summary: summaryOf(set) },
         })),
         failingSources: brief.failingSources,
-        adoptionUpdates: brief.weekAdoption.map((set) => ({
-          ...set,
-          last_change: { ...set.last_change, summary: summaryOf(set) },
-        })),
+        governmentEvents: brief.weekGovernment,
         stableCount: brief.weekStable,
         topNews: brief.weekNews,
         incidents: brief.weekIncidents,
@@ -592,21 +577,33 @@ function DashboardHome({ policySets, health, feed, since, loading }) {
             </ul>
           </section>
 
-          {brief.adoption.length > 0 && (
-            <section className="card" aria-labelledby="adoption-title">
-              <div className="card-head">
-                <div>
-                  <h2 id="adoption-title">Across government</h2>
-                  <p className="card-sub">How other agencies are adopting AI. For awareness — nothing here needs review.</p>
-                </div>
+          <section className="card" aria-labelledby="government-title">
+            <div className="card-head">
+              <div>
+                <h2 id="government-title">Across government</h2>
+                <p className="card-sub">
+                  What agencies say about their own AI use, from their AI transparency statements. For awareness —
+                  nothing here needs review.
+                </p>
               </div>
+              <Link to="/transparency" className="card-link">
+                All statements <Icon name="arrow-right" size={14} />
+              </Link>
+            </div>
+            {brief.government.length === 0 ? (
+              <p className="muted">
+                {transparency.statements?.length
+                  ? `No agency changed its statement or the register in the last ${RECENT_DAYS} days.`
+                  : 'The transparency statements have not been read yet.'}
+              </p>
+            ) : (
               <ul className="review-list">
-                {brief.adoption.map((set) => (
-                  <AdoptionItem key={set.file_id} set={set} summary={summaryOf(set)} since={since} />
+                {brief.government.map((event) => (
+                  <GovernmentItem key={`${event.timestamp}-${event.type}-${event.id}`} event={event} since={since} />
                 ))}
               </ul>
-            </section>
-          )}
+            )}
+          </section>
 
           <section className="card" aria-labelledby="news-title">
             <div className="card-head">

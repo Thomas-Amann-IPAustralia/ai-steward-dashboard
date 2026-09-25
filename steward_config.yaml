@@ -18,6 +18,18 @@ fetch:
   page_load_timeout: 25
   # Set true to skip the cheap conditional GET and always download the body.
   disable_conditional_get: false
+  # Some hosts (digital.gov.au, naa.gov.au, cyber.gov.au and
+  # protectivesecurity.gov.au among them) let a browser through but hold a
+  # plain HTTP client until it times out. Once a host has done that, its
+  # documents go straight to the browser for this many days before plain
+  # HTTP is tried there again. 0 turns this off.
+  blocked_host_recheck_days: 7
+  # When no live route can read a document, ask the Internet Archive's
+  # availability API (archive.org/wayback/available) for its newest capture.
+  # A capture is used only if it is newer than the document's last
+  # successful read and no older than archive_max_age_days.
+  archive_fallback: true
+  archive_max_age_days: 30
   user_agent: >-
     Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
     (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
@@ -120,6 +132,29 @@ retention:
   log_days: 365
   # Days of per-source records kept in runs.jsonl.
   run_log_days: 90
+
+transparency:
+  # AI transparency statements (transparency_watch.py). The DTA's register is
+  # read for its links; each linked statement is then monitored on its own.
+  enabled: true
+  register_url: https://www.digital.gov.au/policy/ai/list-of-transparency-statements
+  register_selector: article
+  # A register read that finds fewer statement links than min_statements, or
+  # fewer than keep_ratio of the list already held, is treated as a failed
+  # read (a block page or a redesign), never as agencies withdrawing.
+  min_statements: 50
+  keep_ratio: 0.8
+  # Seconds a plain GET to an agency's site may take before the browser is
+  # tried. Shorter than fetch.timeout_seconds because there are ~140 sites.
+  fetch_timeout_seconds: 12
+  # Have the model say what changed in a statement, in batches of this many.
+  # Without it (or without GEMINI_API_KEY) a change waits for the next run.
+  summarise: true
+  summary_batch_size: 10
+  # Most characters of one statement's diff shown to the model.
+  max_diff_chars: 8000
+  # Days register and statement events are kept in transparency/events.json.
+  event_days: 365
 
 news:
   # The news and AI-incident feed (news_sources.json lists the sources).

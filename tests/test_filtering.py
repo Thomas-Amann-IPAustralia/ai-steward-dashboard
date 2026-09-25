@@ -144,7 +144,7 @@ class _DocumentHarness(unittest.TestCase):
 
         self.capture = ""
         original = fetching.fetch_document
-        fetching.fetch_document = lambda url_data, prior, cfg, policy_set=None: fetching.FetchResult(
+        fetching.fetch_document = lambda url_data, prior, cfg, policy_set=None, session=None: fetching.FetchResult(
             url_data["url"], fetching.OK, text=self.capture, extractor=fetching.EXTRACTOR_TRAFILATURA
         )
         self.addCleanup(setattr, fetching, "fetch_document", original)

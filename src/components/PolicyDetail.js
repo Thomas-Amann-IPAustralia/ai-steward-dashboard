@@ -8,10 +8,10 @@ import { useToast } from '../hooks/useToast';
 import {
   DOCUMENT_STATES,
   formatDate,
+  formatDay,
   formatRelative,
   HEALTH_LABELS,
   hostOf,
-  isAdoption,
   primaryUrl,
   REPO_URL,
   timestampOf,
@@ -122,11 +122,8 @@ function PolicyDetail({ policySets, health, feed, since }) {
   const review = policySet.last_review;
   const declined = ['no_material_change', 'rebaselined', 'reverted'].includes(review?.verdict);
   const status = sourceHealth?.status || policySet.status || 'ok';
-  const adoption = isAdoption(policySet);
   const reviewable =
-    !adoption &&
-    hasMaterialChange(policySet) &&
-    timestampOf(policySet.last_amended) > Date.now() - REVIEW_WINDOW_DAYS * DAY_MS;
+    hasMaterialChange(policySet) && timestampOf(policySet.last_amended) > Date.now() - REVIEW_WINDOW_DAYS * DAY_MS;
   const done = isReviewed(reviewed, policySet);
   const host = hostOf(primaryUrl(policySet));
   const counts = health?.activity?.[policySet.setName];
@@ -194,17 +191,9 @@ function PolicyDetail({ policySets, health, feed, since }) {
           </dd>
         </div>
         <div>
-          <dt>{adoption ? 'Latest update' : 'Latest priority'}</dt>
+          <dt>Latest priority</dt>
           <dd>
-            {policySet.last_priority ? (
-              <PriorityBadge
-                priority={policySet.last_priority}
-                date={adoption ? undefined : policySet.last_amended}
-                kind={policySet.kind}
-              />
-            ) : (
-              '—'
-            )}
+            {policySet.last_priority ? <PriorityBadge priority={policySet.last_priority} date={policySet.last_amended} /> : '—'}
           </dd>
         </div>
         <div>
@@ -254,7 +243,7 @@ function PolicyDetail({ policySets, health, feed, since }) {
               <p className="card-sub">{formatDate(analysis.date_time)}</p>
             </div>
             <div className="analysis-meta">
-              <PriorityBadge priority={analysis.priority} kind={policySet.kind} solid />
+              <PriorityBadge priority={analysis.priority} solid />
               {verdict && VERDICT_LABELS[verdict] && <span className="verdict-chip">{VERDICT_LABELS[verdict]}</span>}
             </div>
           </div>
@@ -340,6 +329,12 @@ function PolicyDetail({ policySets, health, feed, since }) {
                     {urlObj.url}
                   </a>
                   {record.last_error && <span className="document-error">{record.last_error}</span>}
+                  {record.route === 'archive' && record.archived_at && (
+                    <span className="document-note">
+                      The site refused every direct read, so this was read from the Internet Archive's copy of{' '}
+                      {formatDay(record.archived_at)}.
+                    </span>
+                  )}
                 </div>
                 <span className={`document-state state-${state}`}>
                   {DOCUMENT_STATES[state] || state.replace(/_/g, ' ')}
@@ -378,12 +373,7 @@ function PolicyDetail({ policySets, health, feed, since }) {
             <p className="card-sub">Every archived analysis for this set. Open one to read it in full.</p>
           </div>
         </div>
-        <HistoryTimeline
-          entries={historyState.entries}
-          loading={historyState.loading}
-          error={historyState.error}
-          kind={policySet.kind}
-        />
+        <HistoryTimeline entries={historyState.entries} loading={historyState.loading} error={historyState.error} />
       </section>
 
       <details className="card snapshot-disclosure">

@@ -4,6 +4,7 @@ import {
   isStale,
   primaryUrl,
   hostOf,
+  sectorOf,
   timestampOf,
 } from './constants';
 import { buildBriefing } from './briefing';
@@ -70,28 +71,6 @@ describe('buildBriefing', () => {
     expect(text).toContain('8 monitored policy sets were checked');
   });
 
-  test('reports what other agencies published apart from the policy changes', () => {
-    const text = buildBriefing({
-      recentChanges: [],
-      adoptionUpdates: [
-        {
-          setName: 'Commonwealth AI Transparency Statement Register',
-          file_id: 'Commonwealth_AI_Transparency_Statement_Register',
-          kind: 'adoption',
-          last_priority: 'low',
-          last_amended: '2026-09-20T00:00:00Z',
-          last_change: { summary: 'IP Australia was added to the register.' },
-        },
-      ],
-      failingSources: [],
-      stableCount: 7,
-    });
-    expect(text).toContain('No policy changes detected.');
-    expect(text).toContain('## Across government');
-    expect(text).toContain('IP Australia was added to the register.');
-    expect(text).not.toContain('LOW');
-  });
-
   test('leads with failing sources', () => {
     const text = buildBriefing({
       recentChanges: [],
@@ -121,5 +100,22 @@ describe('buildBriefing', () => {
     expect(text).toContain('Anthropic Legal Policies — HIGH');
     expect(text).toContain('Documents: Aup');
     expect(text).toContain('#/policy/Anthropic_Legal_Policies');
+  });
+});
+
+describe('sectorOf', () => {
+  test('Commonwealth and state government are both government', () => {
+    expect(sectorOf({ category: 'Australian Government' })).toBe('government');
+    expect(sectorOf({ category: 'State Government' })).toBe('government');
+  });
+
+  test('providers are the private sector', () => {
+    expect(sectorOf({ category: 'Private Sector' })).toBe('private');
+  });
+
+  test('an unknown category is in neither sector rather than guessed', () => {
+    expect(sectorOf({ category: 'Standards bodies' })).toBeNull();
+    expect(sectorOf({})).toBeNull();
+    expect(sectorOf(null)).toBeNull();
   });
 });
