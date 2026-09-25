@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { formatDate, formatShortDay } from '../utils/constants';
+import { formatDate, formatShortDay, safeHref } from '../utils/constants';
 import {
   blurbOf,
   formatAgo,
@@ -49,7 +49,7 @@ export function NewBadge() {
 function ExternalTitle({ item, as: Tag = 'h3', className = 'feed-title' }) {
   return (
     <Tag className={className}>
-      <a href={item.url} target="_blank" rel="noopener noreferrer">
+      <a href={safeHref(item.url)} target="_blank" rel="noopener noreferrer">
         {item.title}
         <span className="visually-hidden"> (opens in a new tab)</span>
       </a>
@@ -92,7 +92,7 @@ function CoverageList({ entries }) {
     <ul className="coverage-list">
       {entries.map((entry) => (
         <li key={entry.url}>
-          <a href={entry.url} target="_blank" rel="noopener noreferrer">
+          <a href={safeHref(entry.url)} target="_blank" rel="noopener noreferrer">
             {entry.title}
           </a>{' '}
           <span className="coverage-publisher">— {entry.publisher}</span>

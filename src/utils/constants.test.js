@@ -4,6 +4,7 @@ import {
   isStale,
   primaryUrl,
   hostOf,
+  safeHref,
   sectorOf,
   timestampOf,
 } from './constants';
@@ -117,5 +118,24 @@ describe('sectorOf', () => {
     expect(sectorOf({ category: 'Standards bodies' })).toBeNull();
     expect(sectorOf({})).toBeNull();
     expect(sectorOf(null)).toBeNull();
+  });
+});
+
+describe('safeHref', () => {
+  test('keeps http and https links exactly as given', () => {
+    expect(safeHref('https://www.anthropic.com/legal/aup')).toBe('https://www.anthropic.com/legal/aup');
+    expect(safeHref('http://example.gov.au/a?b=1#c')).toBe('http://example.gov.au/a?b=1#c');
+  });
+
+  test('drops anything that could run or read locally', () => {
+    ['javascript:alert(1)', ' JavaScript:alert(1)', 'data:text/html,<script>x</script>', 'file:///etc/passwd', 'vbscript:x'].forEach((url) => {
+      expect(safeHref(url)).toBeUndefined();
+    });
+  });
+
+  test('drops what is not a URL at all', () => {
+    [undefined, null, '', 'not a url', { url: 'https://x' }].forEach((value) => {
+      expect(safeHref(value)).toBeUndefined();
+    });
   });
 });

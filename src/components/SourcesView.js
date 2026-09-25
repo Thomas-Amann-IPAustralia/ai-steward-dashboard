@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { formatRelative, HEALTH_LABELS, primaryUrl } from '../utils/constants';
+import { formatRelative, HEALTH_LABELS, primaryUrl, safeHref } from '../utils/constants';
 import { DAY_STATUS_LABELS } from '../utils/series';
 import Icon from './Icon';
 import Lettermark from './Lettermark';
@@ -236,7 +236,7 @@ function SourcesView({ policySets, health, feed }) {
                   <tr key={id}>
                     <th scope="row">
                       {source.homepage ? (
-                        <a href={source.homepage} target="_blank" rel="noopener noreferrer">{source.name}</a>
+                        <a href={safeHref(source.homepage)} target="_blank" rel="noopener noreferrer">{source.name}</a>
                       ) : (
                         source.name
                       )}

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { BASE_URL, fetchWithTimeout, formatDay, formatRelative } from '../utils/constants';
+import { BASE_URL, fetchWithTimeout, formatDay, formatRelative, safeHref } from '../utils/constants';
 import {
   DATED_AFTER_DAYS,
   EVENT_LABELS,
@@ -71,7 +71,7 @@ function StatementItem({ statement, since, now }) {
       <Lettermark url={statement.url} name={statement.agency} size={32} />
       <div className="review-main">
         <div className="review-head">
-          <a className="review-name" href={statement.url} target="_blank" rel="noopener noreferrer">
+          <a className="review-name" href={safeHref(statement.url)} target="_blank" rel="noopener noreferrer">
             {statement.agency}
             <Icon name="external" size={13} className="inline-icon" />
           </a>
@@ -134,7 +134,7 @@ function EventItem({ event, since }) {
       <span className={`event-type event-${event.type}`}>{EVENT_LABELS[event.type] || event.type}</span>
       <div className="review-main">
         <div className="review-head">
-          <a className="review-name" href={event.url} target="_blank" rel="noopener noreferrer">
+          <a className="review-name" href={safeHref(event.url)} target="_blank" rel="noopener noreferrer">
             {event.agency}
           </a>
           {isNewEvent(event, since) && <NewBadge />}
@@ -221,7 +221,7 @@ function TransparencyView({ data, loading, error, since }) {
           <h1>How agencies say they use AI</h1>
           <p className="page-sub">
             Every statement linked from the DTA's{' '}
-            <a href={register?.url || 'https://www.digital.gov.au/policy/ai/list-of-transparency-statements'} target="_blank" rel="noopener noreferrer">
+            <a href={safeHref(register?.url) || 'https://www.digital.gov.au/policy/ai/list-of-transparency-statements'} target="_blank" rel="noopener noreferrer">
               central register of AI transparency statements
             </a>
             , read every day and compared on its own

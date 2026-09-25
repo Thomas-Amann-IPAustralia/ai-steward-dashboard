@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
 import { BASE_URL, fetchWithTimeout, formatDay, VERDICT_LABELS } from '../utils/constants';
 import { isMaterialEntry } from '../utils/series';
 import Icon from './Icon';
 import PriorityBadge from './PriorityBadge';
+import SafeMarkdown from './SafeMarkdown';
 
 const PAGE_SIZE = 12;
 
@@ -76,7 +76,7 @@ function HistoryTimeline({ entries, loading, error }) {
                     <p className="timeline-documents">Changed: {entry.changed_documents.join(', ')}</p>
                   )}
                   {loaded?.error && <p>The archived analysis could not be loaded.</p>}
-                  {loaded && !loaded.error && <ReactMarkdown>{loaded.analysis || ''}</ReactMarkdown>}
+                  {loaded && !loaded.error && <SafeMarkdown>{loaded.analysis}</SafeMarkdown>}
                   {!loaded && <div className="skeleton skeleton-lines" />}
                 </div>
               )}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
 import { usePolicyDetail } from '../hooks/usePolicyDetail';
 import { useHistory } from '../hooks/useHistory';
 import { useReviews } from '../hooks/useReviews';
@@ -14,6 +13,7 @@ import {
   hostOf,
   primaryUrl,
   REPO_URL,
+  safeHref,
   timestampOf,
   VERDICT_LABELS,
 } from '../utils/constants';
@@ -26,6 +26,7 @@ import Icon from './Icon';
 import Lettermark from './Lettermark';
 import SourceStrip from './SourceStrip';
 import PriorityBadge from './PriorityBadge';
+import SafeMarkdown from './SafeMarkdown';
 import { SourceHealthNotice } from './SourceHealth';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -157,7 +158,7 @@ function PolicyDetail({ policySets, health, feed, since }) {
             {host && (
               <>
                 {' · '}
-                <a href={primaryUrl(policySet)} target="_blank" rel="noopener noreferrer" className="subtle-link">
+                <a href={safeHref(primaryUrl(policySet))} target="_blank" rel="noopener noreferrer" className="subtle-link">
                   {host} <Icon name="external" size={12} />
                 </a>
               </>
@@ -280,7 +281,7 @@ function PolicyDetail({ policySets, health, feed, since }) {
               Detailed analysis
             </summary>
             <div className="analysis-content prose">
-              <ReactMarkdown>{analysis.analysis || ''}</ReactMarkdown>
+              <SafeMarkdown>{analysis.analysis}</SafeMarkdown>
             </div>
           </details>
 
@@ -325,7 +326,7 @@ function PolicyDetail({ policySets, health, feed, since }) {
                 <Icon name="file" size={16} className="document-icon" />
                 <div className="document-main">
                   <span className="document-label">{label}</span>
-                  <a href={urlObj.url} target="_blank" rel="noopener noreferrer" className="document-url">
+                  <a href={safeHref(urlObj.url)} target="_blank" rel="noopener noreferrer" className="document-url">
                     {urlObj.url}
                   </a>
                   {record.last_error && <span className="document-error">{record.last_error}</span>}

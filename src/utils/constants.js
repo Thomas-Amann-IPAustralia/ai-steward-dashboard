@@ -2,6 +2,24 @@ export const BASE_URL = process.env.PUBLIC_URL || '/ai-steward-dashboard';
 
 export const REPO_URL = 'https://github.com/Thomas-Amann-IPAustralia/ai-steward-dashboard';
 
+/**
+ * An external link's href, or undefined unless it is plain http(s).
+ *
+ * Every URL the dashboard links to comes from a data file, and React renders
+ * a `javascript:` href as a working link (it only warns). The pipeline
+ * validates schemes too; this is the check at the point of use, so one bad
+ * entry becomes an unlinked label rather than a script.
+ */
+export const safeHref = (url) => {
+  if (typeof url !== 'string') return undefined;
+  try {
+    const { protocol } = new URL(url);
+    return protocol === 'http:' || protocol === 'https:' ? url : undefined;
+  } catch {
+    return undefined;
+  }
+};
+
 export const PRIORITY_COLORS = {
   critical: '#dc2626',
   high: '#ea580c',

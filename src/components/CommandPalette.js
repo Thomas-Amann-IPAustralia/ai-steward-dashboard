@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { formatRelative, primaryUrl, timestampOf } from '../utils/constants';
+import { formatRelative, primaryUrl, safeHref, timestampOf } from '../utils/constants';
 import { publisherOf, rankItems } from '../utils/news';
 import Icon from './Icon';
 import Lettermark from './Lettermark';
@@ -57,7 +57,7 @@ function CommandPalette({ open, onClose, policySets, feed, statements = [], acti
       label: item.title,
       sub: item.kind === 'incident' ? item.incident?.country || 'OECD AI Incidents Monitor' : publisherOf(item),
       icon: item.kind === 'incident' ? 'incident' : 'news',
-      href: item.url,
+      href: safeHref(item.url),
       keywords: `${item.tldr || ''} ${item.summary || ''}`,
     }));
     const statementEntries = statements.map((statement) => ({
