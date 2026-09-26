@@ -2,6 +2,25 @@
   "month": "2026-08",
   "items": [
     {
+      "id": "0b394aea08fa30dd",
+      "kind": "news",
+      "title": "How RingCentral builds AI-native work from engineering to ops",
+      "url": "https://openai.com/index/ringcentral",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-08-12T00:00:00+00:00",
+      "first_seen": "2026-09-25T01:55:18.416371+00:00",
+      "summary": "See how RingCentral uses ChatGPT Work and Codex to accelerate AI product development and centralize operational intelligence across engineering and operations.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
       "id": "c995d7a1020b2380",
       "kind": "news",
       "title": "Daybreak models are now available on AWS",
