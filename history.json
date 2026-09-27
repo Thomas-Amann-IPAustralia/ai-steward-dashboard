@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T04:32:43.519278+00:00",
+  "generated_at": "2026-09-27T04:50:40.108570+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -168,15 +168,6 @@
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-26T11:51:22",
-        "analysis_path": "logs/Anthropic_Legal_Policies_20250926_115122_analysis.json",
-        "snapshot_path": "logs/Anthropic_Legal_Policies_20250926_115122_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "Anthropic updated its legal policies, effective September 28, 2025, or upon user acknowledgement.  Key changes include clarifying user data usage for model training (with an opt-out option), adding a 7-day cancellation period for subscriptions in certain regions (Brazil, Mexico, South Korea, and Taiwan),  and prohibiting the use of services for financial advice related to securities.",
         "changed_documents": []
       }
     ],
