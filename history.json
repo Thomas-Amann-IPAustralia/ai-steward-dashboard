@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T04:52:47.771365+00:00",
+  "generated_at": "2026-09-29T05:18:09.002712+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -686,15 +686,6 @@
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-09-28T11:59:56",
-        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250928_115956_analysis.json",
-        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20250928_115956_snapshot.txt",
-        "priority": "low",
-        "verdict": null,
-        "summary": "The National Archives of Australia's AI Policy document underwent a minor revision.  The changes primarily involve the removal of a temporary announcement regarding system maintenance from the webpage. The core content of the policy regarding AI record management remains unchanged.",
         "changed_documents": []
       }
     ],
