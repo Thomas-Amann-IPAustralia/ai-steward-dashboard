@@ -2,6 +2,54 @@
   "month": "2026-08",
   "items": [
     {
+      "id": "825f774db2911daf",
+      "kind": "incident",
+      "title": "Australian Supermarkets' Facial Recognition Trials Raise Privacy Concerns",
+      "url": "https://oecd.ai/en/incidents/2026-08-16-fc43",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-08-16T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Coles and Woolworths, Australia's largest supermarket chains, have conducted limited trials of AI-based facial recognition technology to address retail crime and staff safety. While no customer data was used and no deployment decision has been made, privacy advocates warn of potential future harms if the technology is…",
+      "tldr": "Australian supermarkets Coles and Woolworths trialed AI facial recognition for retail crime and staff safety. Privacy advocates express concerns about potential future harms, despite no customer data use yet.",
+      "relevance": 3,
+      "relevance_reason": "Raises privacy and ethical concerns about AI deployment by major Australian businesses.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "safety",
+        "regulation"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-08-16-fc43",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Psychological"
+        ],
+        "harmed_entities": [
+          "Consumers",
+          "General public"
+        ],
+        "industries": [
+          "Consumer services"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "Medium-action autonomy (human-on-the-loop)",
+        "articles": 18,
+        "aiid_ids": []
+      }
+    },
+    {
       "id": "8a8670d57f1959b1",
       "kind": "news",
       "title": "The builder’s guide to GPT‑5.6",
