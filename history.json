@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T05:08:29.619168+00:00",
+  "generated_at": "2026-10-03T04:51:52.281636+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -48,15 +48,6 @@
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-10-02T11:50:12",
-        "analysis_path": "logs/ACSC_Information_Security_Manual_ISM_20251002_115012_analysis.json",
-        "snapshot_path": "logs/ACSC_Information_Security_Manual_ISM_20251002_115012_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "Minor changes detected in the ACSC Information Security Manual (ISM) webpage.  The only discernible difference is a reduction in the size of the main Information Security Manual PDF file (from 2.27MB to 2.17MB), while the System Security Plan Annex template saw a 1KB decrease.  All other content remains identical.",
         "changed_documents": []
       }
     ],
@@ -674,15 +665,6 @@
         "timestamp": "2025-11-10T12:04:07",
         "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251110_120407_analysis.json",
         "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251110_120407_snapshot.txt",
-        "priority": "medium",
-        "verdict": null,
-        "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-10-02T11:49:00",
-        "analysis_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251002_114900_analysis.json",
-        "snapshot_path": "logs/National_Archives_of_Australia_-_AI_Policy_20251002_114900_snapshot.txt",
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
