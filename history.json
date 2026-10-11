@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T05:24:05.929228+00:00",
+  "generated_at": "2026-10-11T05:15:01.082352+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -1660,15 +1660,6 @@
         "timestamp": "2025-10-11T11:48:00",
         "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251011_114800_analysis.json",
         "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251011_114800_snapshot.txt",
-        "priority": "medium",
-        "verdict": null,
-        "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-10-10T11:52:05",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251010_115205_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251010_115205_snapshot.txt",
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
