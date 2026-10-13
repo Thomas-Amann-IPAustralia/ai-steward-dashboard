@@ -2,6 +2,52 @@
   "month": "2026-08",
   "items": [
     {
+      "id": "7847417a4996f93d",
+      "kind": "news",
+      "title": "Royal Commission into Artificial Intelligence",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1XNXlMcE0zUnprMHdwclpjYmZEeDhRalIycTAwcFJONEVFU2hXTXVtZ1c1YVctRmxNOXN2TnRPZ1paUndSQk56aTh1clhVWDNsYkhnLV9HUzN6QmZTTEZEWVRLMDV0c0VaSXJqdWFvbHQwUUUy",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Office for AI",
+      "published": "2026-08-29T00:24:57+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Royal Commission into Artificial Intelligence",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1EZDMyQ0RKZWZ4bE5YN3RuWU5vX1kxWjNQXy1BcUpzNlZucWRjazJmQmMzQ0Z6SEh6V1MtNVFIa3FNNHlLNml0UHV4YXFOX0hfekE",
+          "publisher": "royalcommissionai.sa.gov.au",
+          "published": "2026-10-01T03:37:25+00:00"
+        }
+      ]
+    },
+    {
+      "id": "5a9708aacda44529",
+      "kind": "news",
+      "title": "Our decision on Cursor following its acquisition by SpaceX",
+      "url": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-08-28T06:00:00+00:00",
+      "first_seen": "2026-09-24T22:48:16.657833+00:00",
+      "summary": "Our decision to wind down our contract providing OpenAI models to Cursor following its acquisition by SpaceX.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
       "id": "8ccc7342ed0d4fdd",
       "kind": "news",
       "title": "Supporting Thailand’s next generation of AI startups",
