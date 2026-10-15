@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T04:27:12.704810+00:00",
+  "generated_at": "2026-10-15T04:11:10.168912+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -316,15 +316,6 @@
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-10-14T11:51:45",
-        "analysis_path": "logs/Google_AI_Policies_20251014_115145_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20251014_115145_snapshot.txt",
-        "priority": "Low",
-        "verdict": null,
-        "summary": "The Google AI Policies document remains largely unchanged, with the most significant difference being an increase in the number of language options available on the main Google Terms of Service page.  The AI Principles document is unchanged.",
         "changed_documents": []
       }
     ],
