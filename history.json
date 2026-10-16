@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T04:11:10.168912+00:00",
+  "generated_at": "2026-10-16T04:05:52.241037+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -304,15 +304,6 @@
         "timestamp": "2025-10-30T12:01:02",
         "analysis_path": "logs/Google_AI_Policies_20251030_120102_analysis.json",
         "snapshot_path": "logs/Google_AI_Policies_20251030_120102_snapshot.txt",
-        "priority": "medium",
-        "verdict": null,
-        "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-10-15T11:55:02",
-        "analysis_path": "logs/Google_AI_Policies_20251015_115502_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20251015_115502_snapshot.txt",
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
@@ -1624,15 +1615,6 @@
         "timestamp": "2025-10-16T11:54:18",
         "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251016_115418_analysis.json",
         "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251016_115418_snapshot.txt",
-        "priority": "medium",
-        "verdict": null,
-        "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-10-15T11:55:46",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251015_115546_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251015_115546_snapshot.txt",
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
