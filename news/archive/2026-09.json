@@ -2,6 +2,398 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "8df7dd03aa44c0c6",
+      "kind": "news",
+      "title": "Build more natural voice experiences with GPT‑Live‑1 in the API",
+      "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-10T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "GPT‑Live‑1 brings natural, full-duplex voice conversations to the API, with stronger instruction following, custom voices, and telephony support.",
+      "tldr": "OpenAI's GPT-Live-1 for API enables natural, full-duplex voice conversations with better instruction following, custom voices, and telephony support.",
+      "relevance": 1,
+      "relevance_reason": "OpenAI releases new voice AI capabilities for developers, enhancing user interactions.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "research"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "7f90324f310e0eda",
+      "kind": "news",
+      "title": "Introducing the Agents API",
+      "url": "https://openai.com/index/introducing-the-agents-api",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-10T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Build and launch cloud agents with the Agents API, a managed service powered by the Codex harness for orchestration, long-running sessions, and tool use.",
+      "tldr": "OpenAI introduces the Agents API, a managed service powered by Codex harness, for building and launching cloud agents with orchestration, long-running sessions, and tool use.",
+      "relevance": 1,
+      "relevance_reason": "OpenAI launches Agents API for cloud agents and automation, impacting software development.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "research"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "3abe54e1a1626b03",
+      "kind": "incident",
+      "title": "Anthropic Blocks Malicious Use of AI for Weapons and Bioweapons Development",
+      "url": "https://oecd.ai/en/incidents/2026-09-10-5e42",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-10T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Anthropic reported it blocked multiple attempts by bad actors, including scientists and state-linked groups, to misuse its AI models for developing biological weapons, missile guidance systems, and cyberattacks. The company enhanced safeguards after detecting these threats, which included a Yemen-based cell using AI…",
+      "tldr": "Anthropic blocked multiple attempts by bad actors, including state-linked groups, to misuse its AI for developing bioweapons, missile guidance systems, and cyberattacks.",
+      "relevance": 2,
+      "relevance_reason": "Highlights critical security risks and the potential for AI misuse by hostile state-linked actors.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "safety",
+        "vendors"
+      ],
+      "related_policies": [
+        "Anthropic_Legal_Policies"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-10-5e42",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [],
+        "harmed_entities": [],
+        "industries": [
+          "Government, security, and defence",
+          "Digital security"
+        ],
+        "principles": [
+          "Safety",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "No-action autonomy (human support)",
+        "articles": 686,
+        "aiid_ids": []
+      },
+      "coverage": [
+        {
+          "title": "Yemeni Cell Uses AI to Develop Missile Guidance Software",
+          "url": "https://oecd.ai/en/incidents/2026-09-11-2c21",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-11T00:00:00+00:00"
+        },
+        {
+          "title": "Anthropic Reports Misuse of Claude AI for Surveillance, Weapons, and Disinformation",
+          "url": "https://oecd.ai/en/incidents/2026-09-11-c338",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-11T00:00:00+00:00"
+        },
+        {
+          "title": "Anthropic AI Misused for Espionage, Surveillance, and Weapon Development by State Actors",
+          "url": "https://oecd.ai/en/incidents/2026-09-11-b131",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-11T00:00:00+00:00"
+        },
+        {
+          "title": "Anthropic's Claude AI Used by Adversaries for Military and Espionage Operations",
+          "url": "https://oecd.ai/en/incidents/2026-09-11-c586",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-11T00:00:00+00:00"
+        },
+        {
+          "title": "Anthropic AI Misused for Bioweapons, Cyberattacks, and Military Research",
+          "url": "https://oecd.ai/en/incidents/2026-09-11-57f4",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-11T00:00:00+00:00"
+        },
+        {
+          "title": "Anthropic Blocks Malicious Use and Data Theft of Claude AI by State-Linked Actors",
+          "url": "https://oecd.ai/en/incidents/2026-09-10-99bf",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-10T00:00:00+00:00"
+        },
+        {
+          "title": "Anthropic Detects Misuse of AI for Biological Weapons Development",
+          "url": "https://oecd.ai/en/incidents/2026-09-10-785e",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-10T00:00:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "8bd549b0847061f8",
+      "kind": "incident",
+      "title": "Israeli AI-Driven Targeting in Gaza Exposed in Venice Documentary",
+      "url": "https://oecd.ai/en/incidents/2026-09-10-f3e3",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-10T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "The documentary 'NAZA', premiered at the Venice Film Festival, features testimonies from Israeli military and intelligence personnel detailing the use of AI systems to identify bombing targets in Gaza. These AI-enabled operations resulted in mass civilian deaths and injuries, highlighting direct harm caused by AI in…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-10-f3e3",
+        "country": "Israel",
+        "country_code": "ISR",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Physical (death)",
+          "Physical (injury)"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Respect of human rights",
+          "Accountability"
+        ],
+        "autonomy_level": "Medium-action autonomy (human-on-the-loop)",
+        "articles": 148,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "865e67b3ea3f7614",
+      "kind": "incident",
+      "title": "Argentine Teen Uses ChatGPT to Plan School Attack, FBI Alert Triggers Police Raid",
+      "url": "https://oecd.ai/en/incidents/2026-09-10-1de6",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-10T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "A 15-year-old in Quilmes, Argentina, used ChatGPT to plan a potential school attack, prompting an FBI alert and a police investigation. Authorities raided the teen's home, seizing tactical gear and devices. No harm occurred, but the AI-assisted planning posed a credible threat, leading to preventive action.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-10-1de6",
+        "country": "Argentina",
+        "country_code": "ARG",
+        "harm_level": "AI hazard",
+        "harm_types": [],
+        "harmed_entities": [],
+        "industries": [
+          "Education and training",
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "No-action autonomy (human support)",
+        "articles": 75,
+        "aiid_ids": [
+          1688
+        ]
+      }
+    },
+    {
+      "id": "9845b5b4401677be",
+      "kind": "incident",
+      "title": "Bipartisan AI Safety Bill Gains Momentum Amid Insider Warnings",
+      "url": "https://oecd.ai/en/incidents/2026-09-10-2878",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-10T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Following dire warnings from AI insiders about existential risks, U.S. lawmakers, including Senators Klobuchar, Cruz, and Thune, are advancing a bipartisan AI safety bill. The legislation aims to establish guardrails against catastrophic AI threats, with input from industry and advocacy groups, reflecting heightened…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-10-2878",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Accountability"
+        ],
+        "autonomy_level": "",
+        "articles": 41,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "2a97fd550115ff5c",
+      "kind": "incident",
+      "title": "Taiwan and US Firms Partner to Produce AI-Enabled Unmanned Surface Vessels",
+      "url": "https://oecd.ai/en/incidents/2026-09-10-39b6",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-10T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Taiwan's CSBC Corporation and US company Havoc have partnered to produce autonomous unmanned surface vessels in Taiwan, integrating advanced AI autonomy with local shipbuilding. The initiative, aligned with US-Taiwan defense cooperation, aims to strengthen Taiwan's defense industry but raises potential future risks…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-10-39b6",
+        "country": "Chinese Taipei",
+        "country_code": "TWN",
+        "harm_level": "AI hazard",
+        "harm_types": [],
+        "harmed_entities": [],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Accountability"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 26,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "e45e0d5b136aa655",
+      "kind": "news",
+      "title": "Paul Christiano joins OpenAI Foundation Board",
+      "url": "https://openai.com/index/paul-christiano-joins-openai-foundation-board",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-09T17:00:00+00:00",
+      "first_seen": "2026-09-24T22:48:16.657833+00:00",
+      "summary": "Paul Christiano joins the OpenAI Foundation Board and its Safety and Security Committee, bringing experience in AI alignment, safety, and standards.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "a71bb558651755d7",
+      "kind": "news",
+      "title": "Recreating a 70-year love story frame by frame",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film/",
+      "source_id": "google-ai-blog",
+      "source_name": "Google — AI blog",
+      "category": "AI providers",
+      "publisher": "Google",
+      "published": "2026-09-09T16:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "An elderly couple sitting in a movie theater. Overlayed are \"Teulluride Film Festival\" and \"Love, Rendered\"",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "53e371fd888a81c7",
+      "kind": "news",
+      "title": "The AI policy window is open. We need to act.",
+      "url": "https://openai.com/index/ai-policy-window",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-09T13:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Chris Lehane argues that stronger AI capabilities require stronger safety evidence, shared standards, and durable policy action while the policy window remains open.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "df0d35eb9fdc0737",
+      "kind": "news",
+      "title": "GPT-6 Astra: The next generation in intelligence for work",
+      "url": "https://openai.com/index/gpt-6-astra-next-generation-work",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-09T11:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Meet GPT-6 Astra, OpenAI’s most capable model for business, with advanced reasoning, computer use, and stronger writing and design judgment.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "6a5b7e441446b545",
+      "kind": "news",
+      "title": "Scientist recognised for contributions to AI",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOWl9FeHA1Y3FPRnlNdTU0S3JxYmNKbHhtUWFPSEYxSEpCZlowZEEwYlFiRExzaFJFcXdtUUhDR3V6c2tOZXJuYXA0RmV3ZlhpeVpvTGtOeXpacGNMbUQ2UWlHWGkxd2Z4eWZxZm93WE8tQTk5cHd2ZVlvQ3F2eEVZV3g1WkI1QVBHbFVqOWd6QV9nQndvMmpn",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "defence.gov.au",
+      "published": "2026-09-09T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
       "id": "ffd2efbd08b1b855",
       "kind": "news",
       "title": "How GPT-5.6 Sol helps run quantum computing experiments",
