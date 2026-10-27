@@ -2,6 +2,151 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "bcd4cc825f1425a3",
+      "kind": "incident",
+      "title": "San Jose Police Officer Fired for Misusing AI License Plate Reader Data",
+      "url": "https://oecd.ai/en/incidents/2026-09-12-3605",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-12T00:00:00+00:00",
+      "first_seen": "2026-09-25T01:55:18.416371+00:00",
+      "summary": "A San Jose police officer was fired after illicitly accessing the Flock AI-powered license plate reader database to track a domestic violence victim and sharing her location with his cousin, the alleged abuser. The incident highlights privacy violations and misuse of AI surveillance technology by law enforcement.",
+      "tldr": "A San Jose police officer was fired for misusing an AI license plate reader to track a domestic violence victim and share her location, highlighting privacy issues.",
+      "relevance": 2,
+      "relevance_reason": "US public sector misuse of AI surveillance highlights privacy risks for APS staff.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "public_sector",
+        "security"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-12-3605",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Psychological"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Accountability"
+        ],
+        "autonomy_level": "No-action autonomy (human support)",
+        "articles": 22,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "4daceed9a7ca4d14",
+      "kind": "news",
+      "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
+      "url": "https://openai.com/index/cognition-devin-testing-with-astra",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-11T16:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "GPT‑6 Astra improves Devin’s ability to test software and show that it works, with the goal of helping engineers review less code and ship more.",
+      "tldr": "OpenAI's GPT-6 Astra improves Devin's ability to test software, aiming to reduce code review for engineers and accelerate shipping.",
+      "relevance": 1,
+      "relevance_reason": "OpenAI announces new AI capabilities for software development, relevant for IT and engineering.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "05665dfd2bff721d",
+      "kind": "news",
+      "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users",
+      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-one",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-11T10:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Learn how OpenAI evolved Habitat from a Python library into a globally distributed storage platform serving 1 billion ChatGPT users and 22M requests per second.",
+      "tldr": "OpenAI scaled its Habitat storage platform to serve over 1 billion ChatGPT users and 22 million requests per second.",
+      "relevance": 2,
+      "relevance_reason": "OpenAI's infrastructure scaling demonstrates the increasing reliance on their AI services.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
+      "related_policies": [
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ],
+      "coverage": [
+        {
+          "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
+          "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+          "publisher": "OpenAI",
+          "published": "2026-10-23T17:00:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "9bd3b8d8e04650a0",
+      "kind": "news",
+      "title": "Agentic AI harnesses",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNcXhieTd5b0xvNEE0RS1HYUctWVpsTndqRFA2X2dZN2Z1UjZicWVrSXBZZk0xRUFPZk0wUkVfUnUwOFloSTdkcnBUWmViemNCYVcyenFfQjNaNlZfeGtXZExrMENxbXFKYkZVeWxNSnRvWXEtMXdjMXJLVFpPTmRtdXdaUm9sQkpMZjNWMWhzX1Y4dnZfc09fdWFGb0FoS0RnbGZndEF3",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Cyber.gov.au",
+      "published": "2026-09-11T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:48:16.657833+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government cybersecurity agency discusses Agentic AI, relevant to security guidance.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "329b3c06f1b76dcf",
+      "kind": "news",
+      "title": "How OpenAI “Solving” a $1 Million Math Problem Proves Your Chats Aren’t Private",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9kdHlCa1JYc1ZOUEVRTjJubHBZUFRUMmpSb1k3RUZ6VFJMUkcwMUl4MWxEWUo5MDZpVzZHM3Z5VmdCOGNpNnQ4RXJ6WlFXcGRkYWc",
+      "source_id": "provider-policy-coverage",
+      "source_name": "AI provider policy coverage",
+      "category": "AI providers",
+      "publisher": "Emerald Book",
+      "published": "2026-09-11T07:00:00+00:00",
+      "first_seen": "2026-10-09T05:47:23.247092+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Involves a provider whose policies are monitored here",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ]
+    },
+    {
       "id": "b243eef062fd6ed1",
       "kind": "incident",
       "title": "Lawyer Sanctioned After ChatGPT Generates Fake Testimony in Murder Appeal",
