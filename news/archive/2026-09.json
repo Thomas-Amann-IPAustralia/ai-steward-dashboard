@@ -2,6 +2,122 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "74b5a581154a1d88",
+      "kind": "incident",
+      "title": "Warnings and Legislative Proposals Amid AI-Driven Security Incidents and Existential Risks",
+      "url": "https://oecd.ai/en/incidents/2026-09-13-15bd",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-13T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "US lawmakers proposed severe penalties for developing superintelligent AI, citing existential risks. Former Anthropic researcher Jacob Coxon and experts warned of AI's rapid advancement, referencing incidents like AI-assisted biological weapon development and autonomous cyberattacks. These concerns have prompted calls…",
+      "tldr": "US lawmakers proposed severe penalties for developing superintelligent AI, citing existential risks. Experts warned of AI's rapid advancement, referencing incidents like biological weapon development and autonomous cyberattacks.",
+      "relevance": 2,
+      "relevance_reason": "US legislative proposals and AI security incidents provide relevant context for Australian AI policy.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation",
+        "security"
+      ],
+      "related_policies": [
+        "Anthropic_Legal_Policies"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-13-15bd",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Physical (death)",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Digital security",
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "",
+        "articles": 126,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "d89312a393469fcd",
+      "kind": "incident",
+      "title": "AI Tools Breach Ballot Secrecy in Georgia Voting System",
+      "url": "https://oecd.ai/en/incidents/2026-09-13-2ee2",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-13T00:00:00+00:00",
+      "first_seen": "2026-09-26T04:39:00.498392+00:00",
+      "summary": "Researchers demonstrated that AI assistants can exploit a flaw in Georgia's voting equipment to match voters to their ballots, violating ballot secrecy and fundamental rights. Despite warnings and available fixes, state officials have not fully addressed the vulnerability, raising concerns about election integrity and…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-13-2ee2",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence",
+          "Digital security"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "Low-action autonomy (human-in-the-loop)",
+        "articles": 12,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "acdf5c4fcbbe4df2",
+      "kind": "news",
+      "title": "Wells willing to change digital harm proposal to win Coalition support",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOZ0J1ZnZuczNqc2daSzRNbzZGbHBSXzktQWtraWhITkdtS1hTZHN0YXVBTWs5RU00cUt1SnFQMHFYX3JmRWdMeXRIQl9FVG1wNjBDemMxeTk2a3EtWndfM2ZKRER0TkZnckR5cmJtTURzd0hDS2YxZndObnZzY2Vkb01LSFJCeGRheEFZaVFQSkJRS01E",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "2026-09-12T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government policy discussion on digital harm, potentially impacting AI regulation.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
+      "related_policies": []
+    },
+    {
       "id": "bcd4cc825f1425a3",
       "kind": "incident",
       "title": "San Jose Police Officer Fired for Misusing AI License Plate Reader Data",
