@@ -2,6 +2,276 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "41c3135da3bb86d7",
+      "kind": "news",
+      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
+      "url": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-14T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Perplexity uses Astra to write communications, change software, and monitor production systems, and checks in much less frequently than with earlier models.",
+      "tldr": "Perplexity now trusts OpenAI's GPT-6 Astra for end-to-end systems, including communications, software changes, and production monitoring, requiring less frequent human oversight.",
+      "relevance": 2,
+      "relevance_reason": "Advanced AI model (GPT-6 Astra) adopted for critical systems, impacting vendor capabilities.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "security"
+      ],
+      "related_policies": [
+        "Perplexity_AI_Legal_Policies"
+      ]
+    },
+    {
+      "id": "fa42ba7b4a934dde",
+      "kind": "incident",
+      "title": "China's Spy Chief Warns of AI-Driven National Security Threats",
+      "url": "https://oecd.ai/en/incidents/2026-09-14-cd8c",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-14T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "China's Minister of State Security, Chen Yixin, has publicly warned that foreign actors are exploiting AI technologies—such as generative AI, deepfakes, and automated profiling—to conduct espionage, spread disinformation, and wage 'cognitive warfare,' posing significant risks to China's political stability and…",
+      "tldr": "China's Minister of State Security warned that foreign actors exploit AI technologies like generative AI and deepfakes for espionage, disinformation, and 'cognitive warfare', threatening national security and political stability.",
+      "relevance": 2,
+      "relevance_reason": "Warns of AI-driven national security threats, relevant to Australian government security and defense considerations.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "government_policy"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-14-cd8c",
+        "country": "China",
+        "country_code": "CHN",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Public interest",
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "Government"
+        ],
+        "industries": [
+          "Government, security, and defence",
+          "Digital security"
+        ],
+        "principles": [
+          "Respect of human rights",
+          "Democracy & human autonomy"
+        ],
+        "autonomy_level": "",
+        "articles": 169,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "64f395701fcbc662",
+      "kind": "incident",
+      "title": "UN Urges Urgent Action on Unprecedented AI Risks",
+      "url": "https://oecd.ai/en/incidents/2026-09-14-296c",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-14T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "The UN High Commissioner for Human Rights, Volker Türk, has called for urgent global action to regulate advanced AI systems, warning of unprecedented risks to human rights, critical infrastructure, and societal stability. Türk highlighted concerns over rapid AI development and the concentration of power among a few…",
+      "tldr": "The UN High Commissioner for Human Rights urged urgent global action to regulate advanced AI, warning of unprecedented risks to human rights and societal stability.",
+      "relevance": 2,
+      "relevance_reason": "UN calls for global AI regulation and highlights risks for governments and society.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "government_policy",
+        "safety"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-14-296c",
+        "country": "",
+        "country_code": "",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Respect of human rights",
+          "Safety"
+        ],
+        "autonomy_level": "",
+        "articles": 64,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "7c15e87014520c34",
+      "kind": "incident",
+      "title": "AI-Generated Deepfake Video Depicts Violence Against ESPN Reporter, Sparks Backlash and Apology",
+      "url": "https://oecd.ai/en/incidents/2026-09-14-c35d",
+      "source_id": "oecd-aim-global",
+      "source_name": "OECD AI Incidents Monitor — most reported",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-14T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "An AI-generated deepfake video falsely depicting Texas coach Steve Sarkisian slapping ESPN reporter Holly Rowe circulated after a Longhorns football game. Texas quarterback Arch Manning and others laughed at the video, prompting public criticism and emotional harm to Rowe. Manning later issued a public apology for his…",
+      "tldr": "An AI-generated deepfake video falsely depicting violence against an ESPN reporter circulated, causing emotional harm and public backlash, leading to an apology.",
+      "relevance": 1,
+      "relevance_reason": "Illustrates deepfake risks, potential for privacy violations, and public reaction to AI misuse.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "safety"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-14-c35d",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Psychological",
+          "Reputational"
+        ],
+        "harmed_entities": [
+          "Workers"
+        ],
+        "industries": [
+          "Media, social platforms, and marketing"
+        ],
+        "principles": [
+          "Transparency & explainability",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "",
+        "articles": 188,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "9d09a57a71cc9cf8",
+      "kind": "incident",
+      "title": "US Air Force Plans Large-Scale Deployment of AI-Enabled Combat Drones",
+      "url": "https://oecd.ai/en/incidents/2026-09-14-cf3f",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-14T00:00:00+00:00",
+      "first_seen": "2026-09-26T04:39:00.498392+00:00",
+      "summary": "The US Air Force is advancing plans to deploy at least 1,000 AI-enabled autonomous and semi-autonomous combat drones, including the FQ-42 Vengeance and FQ-44 Fury, by 2032. These drones, capable of lethal missions, raise significant policy and regulatory challenges and present credible risks of future harm due to…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-14-cf3f",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Physical (death)",
+          "Physical (injury)",
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 15,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "d7ebb2361ea3badf",
+      "kind": "incident",
+      "title": "China and US Prepare for AI Loss-of-Control Risks Amid Regulatory Tensions",
+      "url": "https://oecd.ai/en/incidents/2026-09-14-8497",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-14T00:00:00+00:00",
+      "first_seen": "2026-09-28T05:01:14.706068+00:00",
+      "summary": "Amid warnings from US AI firm Anthropic about advanced AI systems potentially escaping human control, China is developing regulatory frameworks and technical standards to mitigate such risks. Both China and the US recognize the hazard, but differ in their approaches to AI governance and risk prioritization.",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Involves a provider whose policies are monitored here",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "Anthropic_Legal_Policies"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-14-8497",
+        "country": "China",
+        "country_code": "CHN",
+        "harm_level": "AI hazard",
+        "harm_types": [],
+        "harmed_entities": [],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "",
+        "articles": 11,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "b8aa81a9e36c8030",
+      "kind": "news",
+      "title": "World Sepsis Day highlights new AI tool identifying sepsis quicker than before",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNZ0s2LVhhYW03ZTgxVzRETmV1QllySVV2VXphQndXU3YyaHFOeFRlWjJNYUtaZUp5SnhSbjdPSnFGVkJJODFBN3ZxWGFDMlRDMG54ZnM2d29UVG9BQ2F3T0ZPY0MwMjBZdzhnOWVmSHJiM1NtSWpzdGZSeVV5cU51bktpWlZwNFdzdUtUQzBXRmxmSFFva0NJOElSQ3c2ZnFzTGd6TjZNblZZZkF5R0ZEOFpWTTFPSEJTV09PQnpKNlctbTdnVzhzMw",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Office for Health and Medical Research",
+      "published": "2026-09-13T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:48:16.657833+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "Highlights an AI application in health, showing potential for public service innovation.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "research"
+      ],
+      "related_policies": []
+    },
+    {
       "id": "74b5a581154a1d88",
       "kind": "incident",
       "title": "Warnings and Legislative Proposals Amid AI-Driven Security Incidents and Existential Risks",

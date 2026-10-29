@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-28T05:06:53.535874+00:00",
+  "generated_at": "2026-10-29T05:19:08.180460+00:00",
   "overall": "failing",
   "error_rate": 0.1098,
   "sources": {
     "Digital.gov.au AI Policy": {
       "file_id": "Digital_gov_au_AI_Policy",
       "status": "ok",
-      "last_success": "2026-10-28T15:04:45.787000+10:00",
+      "last_success": "2026-10-29T15:17:05.744769+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 7,
@@ -16,7 +16,7 @@
     "National Archives of Australia - AI Policy": {
       "file_id": "National_Archives_of_Australia_-_AI_Policy",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:20.575426+10:00",
+      "last_success": "2026-10-29T15:17:27.869801+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 1,
@@ -26,7 +26,7 @@
     "Google AI Policies": {
       "file_id": "Google_AI_Policies",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:24.871926+10:00",
+      "last_success": "2026-10-29T15:17:32.355369+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 5,
@@ -36,7 +36,7 @@
     "Anthropic Legal Policies": {
       "file_id": "Anthropic_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:27.048407+10:00",
+      "last_success": "2026-10-29T15:17:34.551221+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -46,7 +46,7 @@
     "Perplexity AI Legal Policies": {
       "file_id": "Perplexity_AI_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:28.107330+10:00",
+      "last_success": "2026-10-29T15:17:35.671225+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -56,7 +56,7 @@
     "Midjourney Legal Policies": {
       "file_id": "Midjourney_Legal_Policies",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:30.157209+10:00",
+      "last_success": "2026-10-29T15:17:38.088424+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 2,
@@ -66,7 +66,7 @@
     "OpenAI Consumer Terms": {
       "file_id": "OpenAI_Consumer_Terms",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:30.762375+10:00",
+      "last_success": "2026-10-29T15:17:38.725796+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 2,
@@ -76,7 +76,7 @@
     "OpenAI Enterprise and API Terms": {
       "file_id": "OpenAI_Enterprise_and_API_Terms",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:31.554796+10:00",
+      "last_success": "2026-10-29T15:17:39.234810+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 5,
@@ -87,7 +87,7 @@
       "file_id": "Microsoft_Consumer_AI_Terms",
       "status": "ok",
       "last_success": "2026-10-10T15:22:15.031405+10:00",
-      "days_since_success": 17,
+      "days_since_success": 18,
       "consecutive_failures": 0,
       "documents_total": 3,
       "documents_failing": 0,
@@ -96,7 +96,7 @@
     "Microsoft Enterprise AI Terms": {
       "file_id": "Microsoft_Enterprise_AI_Terms",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:40.071397+10:00",
+      "last_success": "2026-10-29T15:17:47.995778+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -106,7 +106,7 @@
     "AWS Bedrock Terms": {
       "file_id": "AWS_Bedrock_Terms",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:40.928568+10:00",
+      "last_success": "2026-10-29T15:17:48.807133+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 5,
@@ -116,7 +116,7 @@
     "Anthropic API and Commercial Terms": {
       "file_id": "Anthropic_API_and_Commercial_Terms",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:41.519821+10:00",
+      "last_success": "2026-10-29T15:17:49.527456+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -126,7 +126,7 @@
     "Google Enterprise and API AI Terms": {
       "file_id": "Google_Enterprise_and_API_AI_Terms",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:42.819175+10:00",
+      "last_success": "2026-10-29T15:17:50.605312+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 5,
@@ -136,7 +136,7 @@
     "Perplexity Enterprise and API Terms": {
       "file_id": "Perplexity_Enterprise_and_API_Terms",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:48.047727+10:00",
+      "last_success": "2026-10-29T15:17:58.028127+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 2,
@@ -147,15 +147,15 @@
       "file_id": "ACSC_Information_Security_Manual_ISM",
       "status": "failing",
       "last_success": "2026-10-06T15:53:36.631489+10:00",
-      "days_since_success": 21,
-      "consecutive_failures": 22,
+      "days_since_success": 22,
+      "consecutive_failures": 23,
       "documents_total": 1,
       "documents_failing": 1,
       "failing": [
         {
           "url": "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism",
           "label": "Ism",
-          "consecutive_failures": 22,
+          "consecutive_failures": 23,
           "last_success": "2026-10-06T15:53:36.631489+10:00",
           "last_error": "too_short: 426 chars is below the 500 char minimum",
           "status": "failing"
@@ -165,7 +165,7 @@
     "DTA AI Hub": {
       "file_id": "DTA_AI_Hub",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:53.824605+10:00",
+      "last_success": "2026-10-29T15:18:03.937543+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 1,
@@ -175,7 +175,7 @@
     "DTA AI Technical Standard": {
       "file_id": "DTA_AI_Technical_Standard",
       "status": "ok",
-      "last_success": "2026-10-28T15:05:56.580324+10:00",
+      "last_success": "2026-10-29T15:18:07.601951+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 6,
@@ -185,7 +185,7 @@
     "DTA Agentic AI Addendum": {
       "file_id": "DTA_Agentic_AI_Addendum",
       "status": "ok",
-      "last_success": "2026-10-28T15:06:12.972096+10:00",
+      "last_success": "2026-10-29T15:18:24.904432+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 10,
@@ -195,7 +195,7 @@
     "DTA AI Impact Assessment Tool": {
       "file_id": "DTA_AI_Impact_Assessment_Tool",
       "status": "ok",
-      "last_success": "2026-10-28T15:06:37.229429+10:00",
+      "last_success": "2026-10-29T15:18:50.080320+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -205,7 +205,7 @@
     "PSPF AI Policy Advisories": {
       "file_id": "PSPF_AI_Policy_Advisories",
       "status": "ok",
-      "last_success": "2026-10-28T15:06:46.022131+10:00",
+      "last_success": "2026-10-29T15:19:00.076210+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 1,
@@ -215,7 +215,7 @@
     "OAIC Commercial AI Privacy Guidance": {
       "file_id": "OAIC_Commercial_AI_Privacy_Guidance",
       "status": "ok",
-      "last_success": "2026-10-28T15:06:49.252378+10:00",
+      "last_success": "2026-10-29T15:19:04.263198+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 1,
@@ -225,7 +225,7 @@
     "NSW Government AI Guidance": {
       "file_id": "NSW_Government_AI_Guidance",
       "status": "ok",
-      "last_success": "2026-10-28T15:06:50.173408+10:00",
+      "last_success": "2026-10-29T15:19:05.630064+10:00",
       "days_since_success": 0,
       "consecutive_failures": 0,
       "documents_total": 3,
@@ -238,40 +238,40 @@
       "kind": "schema_failures",
       "set_name": "Digital.gov.au AI Policy",
       "url": "",
-      "consecutive_failures": 12,
-      "last_success": "2026-10-28T15:04:45.787000+10:00",
+      "consecutive_failures": 13,
+      "last_success": "2026-10-29T15:17:05.744769+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
       "kind": "schema_failures",
       "set_name": "Google AI Policies",
       "url": "",
-      "consecutive_failures": 27,
-      "last_success": "2026-10-28T15:05:24.871926+10:00",
+      "consecutive_failures": 28,
+      "last_success": "2026-10-29T15:17:32.355369+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
       "kind": "schema_failures",
       "set_name": "Anthropic Legal Policies",
       "url": "",
-      "consecutive_failures": 20,
-      "last_success": "2026-10-28T15:05:27.048407+10:00",
+      "consecutive_failures": 21,
+      "last_success": "2026-10-29T15:17:34.551221+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
       "kind": "schema_failures",
       "set_name": "Perplexity AI Legal Policies",
       "url": "",
-      "consecutive_failures": 9,
-      "last_success": "2026-10-28T15:05:28.107330+10:00",
+      "consecutive_failures": 10,
+      "last_success": "2026-10-29T15:17:35.671225+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
       "kind": "schema_failures",
       "set_name": "OpenAI Enterprise and API Terms",
       "url": "",
-      "consecutive_failures": 29,
-      "last_success": "2026-10-28T15:05:31.554796+10:00",
+      "consecutive_failures": 30,
+      "last_success": "2026-10-29T15:17:39.234810+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
@@ -287,38 +287,38 @@
       "set_name": "AWS Bedrock Terms",
       "url": "",
       "consecutive_failures": 8,
-      "last_success": "2026-10-28T15:05:40.928568+10:00",
+      "last_success": "2026-10-29T15:17:48.807133+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
       "kind": "schema_failures",
       "set_name": "Anthropic API and Commercial Terms",
       "url": "",
-      "consecutive_failures": 28,
-      "last_success": "2026-10-28T15:05:41.519821+10:00",
+      "consecutive_failures": 29,
+      "last_success": "2026-10-29T15:17:49.527456+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
       "kind": "schema_failures",
       "set_name": "Google Enterprise and API AI Terms",
       "url": "",
-      "consecutive_failures": 30,
-      "last_success": "2026-10-28T15:05:42.819175+10:00",
+      "consecutive_failures": 31,
+      "last_success": "2026-10-29T15:17:50.605312+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
       "kind": "schema_failures",
       "set_name": "Perplexity Enterprise and API Terms",
       "url": "",
-      "consecutive_failures": 3,
-      "last_success": "2026-10-28T15:05:48.047727+10:00",
+      "consecutive_failures": 4,
+      "last_success": "2026-10-29T15:17:58.028127+10:00",
       "detail": "the model returned an invalid response on consecutive runs"
     },
     {
       "kind": "source_failing",
       "set_name": "ACSC Information Security Manual (ISM)",
       "url": "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism",
-      "consecutive_failures": 22,
+      "consecutive_failures": 23,
       "last_success": "2026-10-06T15:53:36.631489+10:00",
       "detail": "too_short: 426 chars is below the 500 char minimum"
     }
@@ -328,8 +328,8 @@
     "Digital.gov.au AI Policy": {
       "runs": 30,
       "checks": 210,
-      "unchanged": 173,
-      "changed": 36,
+      "unchanged": 169,
+      "changed": 40,
       "filtered": 1,
       "cosmetic": 1,
       "reverted": 0,
@@ -358,8 +358,8 @@
     "Google AI Policies": {
       "runs": 30,
       "checks": 150,
-      "unchanged": 101,
-      "changed": 49,
+      "unchanged": 99,
+      "changed": 51,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
@@ -373,8 +373,8 @@
     "Anthropic Legal Policies": {
       "runs": 30,
       "checks": 90,
-      "unchanged": 54,
-      "changed": 36,
+      "unchanged": 51,
+      "changed": 39,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
@@ -388,8 +388,8 @@
     "Perplexity AI Legal Policies": {
       "runs": 30,
       "checks": 90,
-      "unchanged": 75,
-      "changed": 15,
+      "unchanged": 72,
+      "changed": 18,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
@@ -433,8 +433,8 @@
     "OpenAI Enterprise and API Terms": {
       "runs": 30,
       "checks": 150,
-      "unchanged": 85,
-      "changed": 65,
+      "unchanged": 82,
+      "changed": 68,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
@@ -447,9 +447,9 @@
     },
     "Microsoft Consumer AI Terms": {
       "runs": 30,
-      "checks": 72,
-      "unchanged": 43,
-      "changed": 29,
+      "checks": 71,
+      "unchanged": 41,
+      "changed": 30,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
@@ -493,8 +493,8 @@
     "Anthropic API and Commercial Terms": {
       "runs": 30,
       "checks": 90,
-      "unchanged": 54,
-      "changed": 36,
+      "unchanged": 52,
+      "changed": 38,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
@@ -508,8 +508,8 @@
     "Google Enterprise and API AI Terms": {
       "runs": 30,
       "checks": 150,
-      "unchanged": 97,
-      "changed": 53,
+      "unchanged": 96,
+      "changed": 54,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
@@ -523,8 +523,8 @@
     "Perplexity Enterprise and API Terms": {
       "runs": 30,
       "checks": 60,
-      "unchanged": 54,
-      "changed": 6,
+      "unchanged": 52,
+      "changed": 8,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
@@ -538,12 +538,12 @@
     "ACSC Information Security Manual (ISM)": {
       "runs": 30,
       "checks": 30,
-      "unchanged": 8,
+      "unchanged": 7,
       "changed": 0,
       "filtered": 0,
       "cosmetic": 0,
       "reverted": 0,
-      "rejected": 22,
+      "rejected": 23,
       "failed": 0,
       "baseline": 0,
       "analysed": 0,
@@ -658,11 +658,6 @@
   },
   "activity_daily": {
     "Digital.gov.au AI Policy": [
-      {
-        "date": "2026-09-29",
-        "checks": 7,
-        "unchanged": 7
-      },
       {
         "date": "2026-09-30",
         "checks": 7,
@@ -821,14 +816,15 @@
         "checks": 7,
         "changed": 4,
         "unchanged": 3
+      },
+      {
+        "date": "2026-10-29",
+        "checks": 7,
+        "changed": 4,
+        "unchanged": 3
       }
     ],
     "National Archives of Australia - AI Policy": [
-      {
-        "date": "2026-09-29",
-        "checks": 1,
-        "unchanged": 1
-      },
       {
         "date": "2026-09-30",
         "checks": 1,
@@ -971,17 +967,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 1,
+        "unchanged": 1
+      },
+      {
+        "date": "2026-10-29",
         "checks": 1,
         "unchanged": 1
       }
     ],
     "Google AI Policies": [
       {
-        "date": "2026-09-29",
-        "checks": 5,
-        "unchanged": 5
-      },
-      {
         "date": "2026-09-30",
         "checks": 5,
         "unchanged": 5
@@ -1149,6 +1145,12 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 5,
+        "unchanged": 3,
+        "changed": 2
+      },
+      {
+        "date": "2026-10-29",
         "checks": 5,
         "unchanged": 3,
         "changed": 2
@@ -1156,11 +1158,6 @@
     ],
     "Anthropic Legal Policies": [
       {
-        "date": "2026-09-29",
-        "checks": 3,
-        "unchanged": 3
-      },
-      {
         "date": "2026-09-30",
         "checks": 3,
         "unchanged": 3
@@ -1314,17 +1311,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 3,
+        "changed": 3
+      },
+      {
+        "date": "2026-10-29",
         "checks": 3,
         "changed": 3
       }
     ],
     "Perplexity AI Legal Policies": [
       {
-        "date": "2026-09-29",
-        "checks": 3,
-        "unchanged": 3
-      },
-      {
         "date": "2026-09-30",
         "checks": 3,
         "unchanged": 3
@@ -1472,17 +1469,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 3,
+        "changed": 3
+      },
+      {
+        "date": "2026-10-29",
         "checks": 3,
         "changed": 3
       }
     ],
     "Midjourney Legal Policies": [
       {
-        "date": "2026-09-29",
-        "checks": 2,
-        "unchanged": 2
-      },
-      {
         "date": "2026-09-30",
         "checks": 2,
         "unchanged": 2
@@ -1624,17 +1621,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 2,
+        "unchanged": 2
+      },
+      {
+        "date": "2026-10-29",
         "checks": 2,
         "unchanged": 2
       }
     ],
     "OpenAI Consumer Terms": [
       {
-        "date": "2026-09-29",
-        "checks": 2,
-        "unchanged": 2
-      },
-      {
         "date": "2026-09-30",
         "checks": 2,
         "unchanged": 2
@@ -1776,17 +1773,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 2,
+        "unchanged": 2
+      },
+      {
+        "date": "2026-10-29",
         "checks": 2,
         "unchanged": 2
       }
     ],
     "OpenAI Enterprise and API Terms": [
       {
-        "date": "2026-09-29",
-        "checks": 5,
-        "unchanged": 5
-      },
-      {
         "date": "2026-09-30",
         "checks": 5,
         "unchanged": 3,
@@ -1956,6 +1953,12 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 5,
+        "unchanged": 2,
+        "changed": 3
+      },
+      {
+        "date": "2026-10-29",
         "checks": 5,
         "unchanged": 2,
         "changed": 3
@@ -1963,11 +1966,6 @@
     ],
     "Microsoft Consumer AI Terms": [
       {
-        "date": "2026-09-29",
-        "checks": 3,
-        "unchanged": 3
-      },
-      {
         "date": "2026-09-30",
         "checks": 3,
         "changed": 1,
@@ -2137,6 +2135,12 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 2,
+        "changed": 1,
+        "unchanged": 1
+      },
+      {
+        "date": "2026-10-29",
         "checks": 2,
         "changed": 1,
         "unchanged": 1
@@ -2144,11 +2148,6 @@
     ],
     "Microsoft Enterprise AI Terms": [
       {
-        "date": "2026-09-29",
-        "checks": 3,
-        "unchanged": 3
-      },
-      {
         "date": "2026-09-30",
         "checks": 3,
         "unchanged": 3
@@ -2290,17 +2289,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 3,
+        "unchanged": 3
+      },
+      {
+        "date": "2026-10-29",
         "checks": 3,
         "unchanged": 3
       }
     ],
     "AWS Bedrock Terms": [
       {
-        "date": "2026-09-29",
-        "checks": 5,
-        "unchanged": 5
-      },
-      {
         "date": "2026-09-30",
         "checks": 5,
         "unchanged": 5
@@ -2450,17 +2449,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 5,
+        "unchanged": 5
+      },
+      {
+        "date": "2026-10-29",
         "checks": 5,
         "unchanged": 5
       }
     ],
     "Anthropic API and Commercial Terms": [
       {
-        "date": "2026-09-29",
-        "checks": 3,
-        "unchanged": 3
-      },
-      {
         "date": "2026-09-30",
         "checks": 3,
         "unchanged": 3
@@ -2629,6 +2628,12 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 3,
+        "changed": 2,
+        "unchanged": 1
+      },
+      {
+        "date": "2026-10-29",
         "checks": 3,
         "changed": 2,
         "unchanged": 1
@@ -2636,12 +2641,6 @@
     ],
     "Google Enterprise and API AI Terms": [
       {
-        "date": "2026-09-29",
-        "checks": 5,
-        "unchanged": 4,
-        "changed": 1
-      },
-      {
         "date": "2026-09-30",
         "checks": 5,
         "unchanged": 4,
@@ -2811,6 +2810,12 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 5,
+        "unchanged": 3,
+        "changed": 2
+      },
+      {
+        "date": "2026-10-29",
         "checks": 5,
         "unchanged": 3,
         "changed": 2
@@ -2818,11 +2823,6 @@
     ],
     "Perplexity Enterprise and API Terms": [
       {
-        "date": "2026-09-29",
-        "checks": 2,
-        "unchanged": 2
-      },
-      {
         "date": "2026-09-30",
         "checks": 2,
         "unchanged": 2
@@ -2964,17 +2964,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 2,
+        "changed": 2
+      },
+      {
+        "date": "2026-10-29",
         "checks": 2,
         "changed": 2
       }
     ],
     "ACSC Information Security Manual (ISM)": [
       {
-        "date": "2026-09-29",
-        "checks": 1,
-        "unchanged": 1
-      },
-      {
         "date": "2026-09-30",
         "checks": 1,
         "unchanged": 1
@@ -3116,17 +3116,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 1,
+        "rejected": 1
+      },
+      {
+        "date": "2026-10-29",
         "checks": 1,
         "rejected": 1
       }
     ],
     "DTA AI Hub": [
       {
-        "date": "2026-09-29",
-        "checks": 1,
-        "unchanged": 1
-      },
-      {
         "date": "2026-09-30",
         "checks": 1,
         "unchanged": 1
@@ -3268,17 +3268,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 1,
+        "unchanged": 1
+      },
+      {
+        "date": "2026-10-29",
         "checks": 1,
         "unchanged": 1
       }
     ],
     "DTA AI Technical Standard": [
       {
-        "date": "2026-09-29",
-        "checks": 6,
-        "unchanged": 6
-      },
-      {
         "date": "2026-09-30",
         "checks": 6,
         "unchanged": 6
@@ -3420,17 +3420,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 6,
+        "unchanged": 6
+      },
+      {
+        "date": "2026-10-29",
         "checks": 6,
         "unchanged": 6
       }
     ],
     "DTA Agentic AI Addendum": [
       {
-        "date": "2026-09-29",
-        "checks": 10,
-        "unchanged": 10
-      },
-      {
         "date": "2026-09-30",
         "checks": 10,
         "unchanged": 10
@@ -3572,17 +3572,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 10,
+        "unchanged": 10
+      },
+      {
+        "date": "2026-10-29",
         "checks": 10,
         "unchanged": 10
       }
     ],
     "DTA AI Impact Assessment Tool": [
       {
-        "date": "2026-09-29",
-        "checks": 3,
-        "unchanged": 3
-      },
-      {
         "date": "2026-09-30",
         "checks": 3,
         "unchanged": 3
@@ -3724,17 +3724,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 3,
+        "unchanged": 3
+      },
+      {
+        "date": "2026-10-29",
         "checks": 3,
         "unchanged": 3
       }
     ],
     "PSPF AI Policy Advisories": [
       {
-        "date": "2026-09-29",
-        "checks": 1,
-        "unchanged": 1
-      },
-      {
         "date": "2026-09-30",
         "checks": 1,
         "unchanged": 1
@@ -3876,17 +3876,17 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 1,
+        "unchanged": 1
+      },
+      {
+        "date": "2026-10-29",
         "checks": 1,
         "unchanged": 1
       }
     ],
     "OAIC Commercial AI Privacy Guidance": [
       {
-        "date": "2026-09-29",
-        "checks": 1,
-        "unchanged": 1
-      },
-      {
         "date": "2026-09-30",
         "checks": 1,
         "unchanged": 1
@@ -4030,14 +4030,14 @@
         "date": "2026-10-28",
         "checks": 1,
         "unchanged": 1
+      },
+      {
+        "date": "2026-10-29",
+        "checks": 1,
+        "unchanged": 1
       }
     ],
     "NSW Government AI Guidance": [
-      {
-        "date": "2026-09-29",
-        "checks": 3,
-        "unchanged": 3
-      },
       {
         "date": "2026-09-30",
         "checks": 3,
@@ -4183,6 +4183,11 @@
       },
       {
         "date": "2026-10-28",
+        "checks": 3,
+        "unchanged": 3
+      },
+      {
+        "date": "2026-10-29",
         "checks": 3,
         "unchanged": 3
       }
