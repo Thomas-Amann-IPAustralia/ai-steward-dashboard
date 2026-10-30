@@ -2,6 +2,507 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "c0c5114a76548c64",
+      "kind": "news",
+      "title": "Former US regulator says AI companies not exempt from current law",
+      "url": "https://www.itnews.com.au/news/former-us-regulator-says-ai-companies-not-exempt-from-current-law-628913",
+      "source_id": "itnews-security",
+      "source_name": "iTnews — Security",
+      "category": "Australian news",
+      "publisher": "iTnews",
+      "published": "2026-09-15T03:04:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "After OpenAI agents caught in RubyGems hacking spree.",
+      "tldr": "A former US regulator states that existing laws apply to AI companies, following OpenAI agents' involvement in a RubyGems hacking spree.",
+      "relevance": 2,
+      "relevance_reason": "Raises legal accountability for AI companies and potential vendor security issues.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "security",
+        "vendors"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "878114ab923ddcf7",
+      "kind": "incident",
+      "title": "ANZ CEO Warns of AI Risks and Potential Job Cuts Amid Global Concerns",
+      "url": "https://oecd.ai/en/incidents/2026-09-15-1cb1",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-15T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "ANZ Bank CEO Nuno Matos warned of unpredictable risks from rapid AI adoption, including possible large-scale job cuts and societal destabilization. Citing concerns from AI leaders like Elon Musk, Dario Amodei, and Sam Altman, Matos emphasized the need for caution and potential regulation as AI's risks outpace…",
+      "tldr": "ANZ CEO Nuno Matos warned of unpredictable AI risks, including potential large-scale job cuts and societal destabilization, urging caution and regulation as AI risks outpace benefits.",
+      "relevance": 2,
+      "relevance_reason": "An Australian CEO warns of AI's societal and workforce impact, informing public sector planning.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce",
+        "regulation",
+        "safety"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-15-1cb1",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Economic/Property",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "Workers",
+          "General public"
+        ],
+        "industries": [
+          "Financial and insurance services"
+        ],
+        "principles": [
+          "Safety",
+          "Accountability"
+        ],
+        "autonomy_level": "",
+        "articles": 6,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "ad2680d78da98d2d",
+      "kind": "incident",
+      "title": "Japanese Self-Defense Force Global Hawk Drone Crashes After Communication Loss",
+      "url": "https://oecd.ai/en/incidents/2026-09-15-a90a",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-15T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "A Japanese Air Self-Defense Force RQ-4 Global Hawk unmanned reconnaissance drone lost communication and crashed into the Sea of Japan near Tottori Prefecture. The AI-enabled drone, remotely operated from Misawa Base, suffered a malfunction, resulting in the loss of a valuable military asset. No injuries or third-party…",
+      "tldr": "A Japanese Air Self-Defense Force RQ-4 Global Hawk AI-enabled drone crashed into the Sea of Japan after losing communication due to a malfunction.",
+      "relevance": 2,
+      "relevance_reason": "AI-enabled military drone crash highlights safety and reliability concerns for public sector use.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "public_sector"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-15-a90a",
+        "country": "Japan",
+        "country_code": "JPN",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Economic/Property"
+        ],
+        "harmed_entities": [
+          "Government"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Robustness & digital security",
+          "Safety"
+        ],
+        "autonomy_level": "",
+        "articles": 29,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "1685f8d634f8abfb",
+      "kind": "incident",
+      "title": "Tennessee Woman Sues Fargo Police Over Wrongful AI-Driven Arrest",
+      "url": "https://oecd.ai/en/incidents/2026-09-15-e52c",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-15T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Angela Lipps, a Tennessee resident, was wrongfully arrested and jailed for months after Fargo police relied on flawed facial recognition AI to identify her as a suspect in a bank fraud case. Lipps is suing the City of Fargo and a detective for $10 million, alleging civil rights violations and harm caused by the AI…",
+      "tldr": "A Tennessee woman sued Fargo police for $10 million, alleging wrongful arrest and civil rights violations after flawed facial recognition AI misidentified her.",
+      "relevance": 3,
+      "relevance_reason": "Highlights privacy, safety, accountability risks of flawed AI in public sector law enforcement.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "safety",
+        "public_sector"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-15-e52c",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Psychological"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Accountability",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "Low-action autonomy (human-in-the-loop)",
+        "articles": 27,
+        "aiid_ids": [
+          1416
+        ]
+      }
+    },
+    {
+      "id": "a990b69a0fc7a230",
+      "kind": "incident",
+      "title": "Former Google DeepMind and Anthropic Researchers Warn of Catastrophic AI Risks",
+      "url": "https://oecd.ai/en/incidents/2026-09-15-8e43",
+      "source_id": "oecd-aim-global",
+      "source_name": "OECD AI Incidents Monitor — most reported",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-15T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Former Google DeepMind engineer Bilal Chughtai and ex-Anthropic staffers have publicly warned that advanced AI could potentially cause human extinction if not properly controlled. Their resignations and statements highlight growing concerns within the AI industry about existential risks and the urgent need for…",
+      "tldr": "Former Google DeepMind and Anthropic researchers publicly warned that advanced AI poses catastrophic risks, potentially causing human extinction if not controlled, highlighting industry concerns about existential risks.",
+      "relevance": 2,
+      "relevance_reason": "Industry experts warn of advanced AI's existential risks, informing policy and safety research.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "research",
+        "regulation"
+      ],
+      "related_policies": [
+        "Google_AI_Policies",
+        "Anthropic_Legal_Policies"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-15-8e43",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Physical (death)"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "General or personal use"
+        ],
+        "principles": [
+          "Safety",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "",
+        "articles": 224,
+        "aiid_ids": []
+      },
+      "coverage": [
+        {
+          "title": "Debate Intensifies Over Existential Risks of Artificial Intelligence",
+          "url": "https://oecd.ai/en/incidents/2026-09-11-a4f2",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-11T00:00:00+00:00"
+        },
+        {
+          "title": "AI Industry Leaders Warn of Risks, Call for Slowing AI Development",
+          "url": "https://oecd.ai/en/incidents/2026-09-11-ce80",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-11T00:00:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "8b9ca8a16cf12e50",
+      "kind": "incident",
+      "title": "Japan Plans Massive Deployment of AI-Enabled Unmanned Military Systems",
+      "url": "https://oecd.ai/en/incidents/2026-09-15-fd7e",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-15T00:00:00+00:00",
+      "first_seen": "2026-09-25T01:55:18.416371+00:00",
+      "summary": "Japan plans to acquire approximately 52,000 AI-enabled unmanned military systems—including drones, submarines, and ground vehicles—over five years starting in 2027. These systems, intended for attack, surveillance, and defense, represent a significant shift toward automation in Japan's military, raising concerns about…",
+      "tldr": "Japan plans to deploy about 52,000 AI-enabled unmanned military systems for attack, surveillance, and defense over five years, starting in 2027.",
+      "relevance": 2,
+      "relevance_reason": "Large-scale foreign military AI deployment signals global trends relevant to Australian defense planning.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "public_sector",
+        "safety"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-15-fd7e",
+        "country": "Japan",
+        "country_code": "JPN",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Physical (death)",
+          "Physical (injury)"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Respect of human rights",
+          "Democracy & human autonomy"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 27,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "57a51b0990226d94",
+      "kind": "incident",
+      "title": "Widespread Undisclosed Use of AI in Brazilian Political Campaigns Spreads Disinformation",
+      "url": "https://oecd.ai/en/incidents/2026-09-15-d7d1",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-15T00:00:00+00:00",
+      "first_seen": "2026-09-26T04:39:00.498392+00:00",
+      "summary": "A study by Data Privacy Brasil and Aláfia Lab found that nearly two-thirds of AI-generated political content during Brazil's 2026 pre-campaign period was not labeled as required by electoral law. Many posts, including deepfakes and disinformation, were shared by anonymous users and political figures, notably Flávio…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-15-d7d1",
+        "country": "Brazil",
+        "country_code": "BRA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence",
+          "Media, social platforms, and marketing"
+        ],
+        "principles": [
+          "Transparency & explainability",
+          "Democracy & human autonomy"
+        ],
+        "autonomy_level": "",
+        "articles": 17,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "1aed82830d351845",
+      "kind": "incident",
+      "title": "Development of AI-Enabled Autonomous Combat Aircraft and Drones in China and the US",
+      "url": "https://oecd.ai/en/incidents/2026-09-15-a03d",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-15T00:00:00+00:00",
+      "first_seen": "2026-09-26T04:39:00.498392+00:00",
+      "summary": "China and the US are advancing sixth-generation fighter jets and AI-enabled unmanned drones with autonomous flight, navigation, and coordinated combat capabilities. These systems, still in development and testing, pose potential future risks due to their autonomous and lethal functions, but no harm has yet occurred.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-15-a03d",
+        "country": "China",
+        "country_code": "CHN",
+        "harm_level": "AI hazard",
+        "harm_types": [],
+        "harmed_entities": [],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Accountability"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 13,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "9797903aa20acb1c",
+      "kind": "news",
+      "title": "How Fyxer built an AI executive assistant people trust",
+      "url": "https://openai.com/index/fyxer",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-14T12:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Fyxer uses OpenAI models, fine-tuning, memory, and real user feedback to organize inboxes and draft emails in each user’s voice.",
+      "tldr": "Fyxer developed an AI executive assistant that uses OpenAI models, fine-tuning, and user feedback to manage inboxes and draft emails.",
+      "relevance": 1,
+      "relevance_reason": "Illustrates an AI assistant's application in productivity, relevant for assessing vendor services.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "ec8cd04298c6412f",
+      "kind": "news",
+      "title": "Australian AI advocates dismiss doomsday fears, saying it’s time to accelerate",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOam9MT3I5cVQ5aTZzQmJ6OWxWMmlTQzBXbHByeGZFWlpkMWlISmFySHVCSjZuRlV1OVVINmVDUG9va0pILWs5alhXTUVkdmJNSnRmOU9sQVd3Wks1ZThaY1NibmpXN2YyQWxyeGJfMmVxanVndDFFZURNTGV1cTRkdW51cllBamlhVjdJTHgzdU1RZnd2eUtQdXI0NVN2ZXYxdHZkXzB5Y2w4MVhrNU9kejB2dFcwbGFmNWt0OS1jN1VKenZHV0c4dzNTbmd5VFZpdUdibzJ0OUo3X1g1LVRXNmZ6eXg4aHYz",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "Startup Daily",
+      "published": "2026-09-14T11:03:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "Australian AI advocates dismiss doomsday fears, instead arguing for accelerating AI development.",
+      "relevance": 1,
+      "relevance_reason": "Provides a counter-narrative to AI doomsday fears from Australian advocates, relevant to policy debates.",
+      "relevance_source": "model",
+      "topics": [
+        "research",
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "91664cefd829c5cd",
+      "kind": "news",
+      "title": "Artificial Intelligence Specialist - Agriculture, Database Administration, Development and Programming, Electronic Evidence, Field Implementation Officers, Help Desk/Support Services, Management and Supervision, Network and Server Management, Product",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5nbnFXZS1heklIaVVadWdyVXZxV0J6UmwyN1NCclFIZ0w0djNMbmkxMVhFY193clphV1RuVVZGOGNreDJmakIySC1HWndSN3pkMk1rZzQ3dS1TVEVYUlF3N1lpbTZMQ3ViRmNKYmlXeG5McnlfV3Z4U3E4MVJEUQ",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "I Work For NSW",
+      "published": "2026-09-14T10:45:42+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Direct example of Australian public sector AI workforce roles, relevant for APS talent and strategy.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "workforce"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "7e1f07de51fae723",
+      "kind": "news",
+      "title": "Government documents reveal AI could train on data without paying creators",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPN1J2RlN4dDJIQ1g3Zm85V2N5NmJjUjF6Z2RZRTBYQTRFQWVEYmQzWTNYeVYzWi1vYXp1eU1ZQXN2TVc4YlZGYkZKWjBvSTBaLXdjOVU3bGNiZ1kyUTJ1SUxMTHBtSVpZYjJYSGJ5cXhxNlpNelFRaXJSYmwzU2R2THhiUTJVbEM5VmJ6MDRnNW1GMTNMWVBBSm1USFdxMllrZmc",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "2026-09-14T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "Government documents indicate AI could train on data without compensating creators, sparking concerns.",
+      "relevance": 3,
+      "relevance_reason": "Directly concerns Australian government policy on AI data use, privacy, intellectual property.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "privacy",
+        "regulation"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "VIDEO: Creators push back against leaked AI copyright proposals",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUVlEc0d6Q2x4S0tyRzNPdWktellKekhEOTVyNVZRdExkY25xSTRieTdzV3BHcnJwYVAwRDVEUTQ2eHEwNDh3am92V3Y0bzlxSjlZZXJOOVdHdzBOQkhvY2ltNXdnOHREeThHcEVtenZGZ05zUXczeVRiaEZ1NzNrRWwtQVZua0hiT1hYOVpPM09kQzY4aVJ5Sjc0MkdoSnVITW9KYUV5ZFZxQ001WDlUQmhfWnk0cG1kRDJqVXFSdmdJSkVnYnc",
+          "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+          "published": "2026-09-16T07:00:00+00:00"
+        },
+        {
+          "title": "Your photos, your words and your work: will Labor make it easier for AI companies to take them for free? | Holly Rankin",
+          "url": "https://www.theguardian.com/australia-news/commentisfree/2026/sep/16/labor-ai-big-tech-australia-rights-consent-copyright-law-opt-out",
+          "publisher": "The Guardian",
+          "published": "2026-09-16T02:24:48+00:00"
+        }
+      ]
+    },
+    {
+      "id": "f9f5fff0197aabb2",
+      "kind": "news",
+      "title": "Senior Research Fellow AI Digital Innovation",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMjRnMWpIVi1PWWVPOFdrM05fdTNVUjJReUxWdUhyOFd5Vi05blY3eVpsRzJ5dnVSQlU5TDNVZThqSHhXaVJ2QUdJWE4zSHZhdU8zc3ZVeHdwd0g1a211bld0cmJmVjFNeDd2b3hqVE9GcmpRdlZ0aHVMWmc3Y0tWTDNUc1E4Y0VVdkpVTmFn",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Careers Vic",
+      "published": "2026-09-14T07:00:00+00:00",
+      "first_seen": "2026-09-30T05:12:18.854623+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "62a0da6d5617dfe6",
+      "kind": "news",
+      "title": "Use of Artificial Intelligence (AI)",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPOFVwcUE0RHo5ZFh0OGdrYmN0dTVJcXB0em8yYTNIUVI4d0t1RWtydFU2VkZ5OWFJR29nVE5mM2g0cTRURTdYQmQ1eWV1eUtxWkRxNnZyQlVwdi1uVXNWaFIwUkFNRk8xZU93Q05ZNjVKeldxSDdDNncwU3BtWEM1VzFyMWRPR0xTbFA4eHZuU2V2Zw",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Campaspe Shire Council",
+      "published": "2026-09-14T06:39:52+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian local government is considering AI use, relevant to public sector policy.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
       "id": "41c3135da3bb86d7",
       "kind": "news",
       "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
