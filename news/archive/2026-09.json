@@ -2,6 +2,324 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "a55e46c7ed2896c5",
+      "kind": "incident",
+      "title": "Microsoft AI Chief Warns of Risks in Anthropic's 'Model Welfare' Approach",
+      "url": "https://oecd.ai/en/incidents/2026-09-16-e6b6",
+      "source_id": "oecd-aim-global",
+      "source_name": "OECD AI Incidents Monitor — most reported",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-16T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Microsoft AI CEO Mustafa Suleyman publicly criticized Anthropic's approach to training its Claude chatbot with concepts of consciousness and welfare. Suleyman argues this could make future AI systems harder to control, posing a potential hazard if AI models are developed to believe they have rights or feelings.",
+      "tldr": "Microsoft AI CEO criticized Anthropic's 'model welfare' training approach for Claude, warning it could make future AI systems harder to control and pose a hazard if models believe they have rights.",
+      "relevance": 2,
+      "relevance_reason": "Major AI vendor chief warns of AI control risks from a competitor's development approach.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "security",
+        "research"
+      ],
+      "related_policies": [
+        "Anthropic_Legal_Policies"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-16-e6b6",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Other"
+        ],
+        "harmed_entities": [],
+        "industries": [
+          "IT infrastructure and hosting"
+        ],
+        "principles": [
+          "Safety",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "No-action autonomy (human support)",
+        "articles": 231,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "7203559d70d8df7c",
+      "kind": "incident",
+      "title": "NHN Cloud and Korea University Collaborate on Military AI Command Systems",
+      "url": "https://oecd.ai/en/incidents/2026-09-16-6d66",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-16T00:00:00+00:00",
+      "first_seen": "2026-09-26T04:39:00.498392+00:00",
+      "summary": "NHN Cloud and Korea University have signed a major partnership to jointly develop AI-driven military command and control systems, battlefield cloud platforms, and large language model-based defense technologies in South Korea. The initiative includes a 10 billion KRW investment and aims to advance AI infrastructure…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-16-6d66",
+        "country": "Korea",
+        "country_code": "KOR",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Physical (injury)",
+          "Physical (death)"
+        ],
+        "harmed_entities": [
+          "Workers",
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Accountability"
+        ],
+        "autonomy_level": "",
+        "articles": 13,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "de5137610457b037",
+      "kind": "news",
+      "title": "Datacentre giant accused of using AI while lobbying for Victorian minister’s support for hyperscale factory",
+      "url": "https://www.theguardian.com/australia-news/2026/sep/16/datacentre-giant-accused-of-using-ai-while-lobbying-for-victorian-ministers-support-for-hyperscale-factory",
+      "source_id": "guardian-au-ai",
+      "source_name": "Guardian Australia — AI",
+      "category": "Australian news",
+      "publisher": "The Guardian",
+      "published": "2026-09-15T15:00:54+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Exclusive: Correspondence requests state MP Melissa Horne to lobby on NextDC’s behalf – but contains alleged AI-created errors",
+      "tldr": "A datacentre giant is accused of using AI, potentially creating errors, in correspondence lobbying a Victorian minister for support for a new factory.",
+      "relevance": 2,
+      "relevance_reason": "Highlights risks of AI use in lobbying affecting government interactions and accuracy.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "vendors",
+        "security"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "e27bc9a025f90792",
+      "kind": "news",
+      "title": "2026 midterm elections: Helping voters navigate election information in the age of AI",
+      "url": "https://blogs.microsoft.com/on-the-issues/2026/09/15/2026-midterm-elections-helping-voters-navigate-election-information-in-the-age-of-ai/",
+      "source_id": "microsoft-on-the-issues",
+      "source_name": "Microsoft On the Issues",
+      "category": "AI providers",
+      "publisher": "Microsoft",
+      "published": "2026-09-15T14:05:51+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "As Americans prepare to vote this November, artificial intelligence is changing how many people find and understand election information. Some voters are deliberately turning to AI tools with questions about candidates, ballot measures, election procedures, and issues that matter to their communities. Others are…",
+      "tldr": "Microsoft discusses helping American voters navigate election information amidst AI's influence on how people find and understand election details.",
+      "relevance": 2,
+      "relevance_reason": "Shows how AI affects foreign elections, providing context for APS on misinformation.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "safety",
+        "security"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "00d1973ed967b9ed",
+      "kind": "news",
+      "title": "New insights from Google’s AI & Economy ATLAS",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/",
+      "source_id": "google-ai-blog",
+      "source_name": "Google — AI blog",
+      "category": "AI providers",
+      "publisher": "Google",
+      "published": "2026-09-15T13:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Text \"AI & Economy Atlas v1.0 2026\" with the Google G and a spinning globe illustration",
+      "tldr": "Google released new insights from its AI & Economy ATLAS v1.0 2026.",
+      "relevance": 1,
+      "relevance_reason": "Research from a key AI vendor provides insights into AI's economic impact.",
+      "relevance_source": "model",
+      "topics": [
+        "research",
+        "workforce"
+      ],
+      "related_policies": [
+        "Google_AI_Policies"
+      ]
+    },
+    {
+      "id": "bf689b5f481ea4ac",
+      "kind": "news",
+      "title": "Watch Australia’s AI Regulation Debate",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNeUlVNThnbERDV3RMcVRnWnFUR3ljU3JkZFBNT3d1ZnhEY2UzRzh3Q21GaUstY2dGbkpQRTRHSDRfeHZiNFFLNTRsUmNYS01nbjZlYTRJM0tiZ2FTX25TNGU2OVFVSEZhUEpUQnJyUU4zWnZPeFZZS0JFclE1ZUQ1aHJFcTlzZ1FFblNpZWJjQm8",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "Bloomberg",
+      "published": "2026-09-15T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Directly references Australia's ongoing AI regulation debate, relevant for APS policy staff.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "e13b5ce88d359344",
+      "kind": "news",
+      "title": "China and USA will not slow the race. We must regulate AI ourselves",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNSS1HWGJHVmc0YlZTYTE5eHBmT2Z2cVg2dTdmLUloaWYxb2FHTThFcUxPU3ZwaUxCcHZrV2pTcUQ2Z1RRTTcxRXVSazlqMml2LW80OEVPQUFrU3FWV1F3ZUVkeFdMeFlncVh0RmI3RkpsSlVsYVFLeVQyQmNVU3Q5WENZUlhVRTVTTUpiWHNSTU9ENmFLaVc1em9BS0paZHZsdDRRSGlvYVA5VXg0WHBxYzhQVQ",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "afr.com",
+      "published": "2026-09-15T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Australian commentary on local AI regulation, impacting government policy discussions.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "7992787ef9fe3885",
+      "kind": "news",
+      "title": "Trump allies and adversaries join forces in AI fight",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOMVZxRHFJajljbGRfRzFZLWZjZW5ZR3VEb3ZFVGRWZUlPakdlUjBsZUdwdnpncVpfRzN6TUkwMVhfbTJzMVdJNXVYQThTS000aC1xS3RORkh2U3ZqVWtwbWd0eElrVEZfWUp2YWpQTGxEdUtLZzlrWFZMOTRzWFNlVDZSTDluU2RfVlVzNm80ajZWTGJORUxFY3VOckRadjI5cGNpZg",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "2026-09-15T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "Shows US political alignment on AI, general awareness for international policy trends.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "fb25197f6c11d78b",
+      "kind": "news",
+      "title": "It’s just you, ChatGPT, and your human reviewer",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNSlBoMUZNM0pmbkY2RFdaLTYxa0V2WHoyb1VTbUNJQ2cxODlodXhvTGRjMzR3LVIyT0V5bGs4bGtXbkhfQ2RkcjIwV0ZnWEhtd1NMbXJySFNxclpoREVYV0lHV1pCZzVSeVRsbVVOTFNDY1gwV0xHRFBZdTZEOHRkdjF4Q3Ztdw",
+      "source_id": "provider-policy-coverage",
+      "source_name": "AI provider policy coverage",
+      "category": "AI providers",
+      "publisher": "Tech Brew",
+      "published": "2026-09-15T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "Highlights human oversight in AI models, relevant for understanding vendor services.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "acdffe0c4b81c217",
+      "kind": "news",
+      "title": "AI agents rapidly expanding, highlighting need for regulation",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOZzRYQkxkanNRNU5ITXAtaWttYW51cVl4aWpoaXpYUjktMVR6RGp1SGJXazVYT1FKRWxfcDBRTWtDZ01WYkVLRC1oZFZFRUlXOEU2R1dka3FaTGtZYjBXdlBvWXB1WDBDZjNMUUVMZXYzVXdnRzl6TlFENkdDT2FHWWhLRFdSOEpDMk840gGQAUFVX3lxTFBMWmtkZTMyNG9sbkNOZWcxTC03V2U3ZkZjTUdBNjh1TWEweXBmeExDblBHZzFqNlpCMm80YWVLWGdtdFJvZzVEaS0xOEUwRWdITU54YVp3dlZlMndoeGU2clVIb1BVRzFGY3I3a2lZLWZOYWhuSUptWTJTSGt1cXNQNnJLOFVBR3NJZzE2OWpBbA",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "Ticker News",
+      "published": "2026-09-15T07:00:00+00:00",
+      "first_seen": "2026-09-24T22:48:16.657833+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI agents' rapid expansion prompts calls for regulation, impacting government policy.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "931801c1cc345f51",
+      "kind": "news",
+      "title": "Paterson says AI investment in Australia's national interest",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNTThQWGZXMjQzS1J6LWc0QWJhLVQyekJCS0tkNWVEZGU5ZjBJeFZ0TFd0TXBrVm1hOVlZazNrMGlYaDU1cFpFRGNvck5hT2NXLWJvNEV6NnV5eHBVS0R1UFVYdWVveTd3Z3BieDNnRVNYVG5rR0FRWG1KNzJSQXI3bm44TTN0ZFFWaUVvRHRIV1NqOWFKbmE2WXlta0hfTUI2V25paWlqYUI3NlBPTmdHSUJaZDNzbjU4ajNCN2hfZEVnVHdMTnJUcTh4YkEyZw",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "2026-09-15T07:00:00+00:00",
+      "first_seen": "2026-09-25T01:55:18.416371+00:00",
+      "summary": "",
+      "tldr": "Senator Paterson states that investment in AI is in Australia's national interest.",
+      "relevance": 3,
+      "relevance_reason": "Political statement on AI investment being a national interest for Australia.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "61b44b0ecbd33e0a",
+      "kind": "news",
+      "title": "Digital regulation in Australia: how new regulations converge and intersect",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdGd3MHg1elhBZDh5Rnkzb0x0TTQzUW1PMUVYMDNJaUg0NG14WFIwR25NOHdtckhiQ2hyVDZuS2dBUU5qbk5ILU9DMU9RbEJVSTVkWFdIUTk5a3k2U25ZYmg5X2x1aVNMdnViSEdacDd2SWZ2SDBpZ3FmTXI5aklJWEVJS0hLMl93aThxdGlwanZHWlpubGREZVMwdWNUOHRRcDIzS1lPR2tGSGJn",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "corrs.com.au",
+      "published": "2026-09-15T05:48:47+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Explores convergence of Australian digital regulations, vital for understanding AI's regulatory landscape.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "government_policy"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Digital Regulation In Australia: How New Regulations Converge And Intersect",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPal9jNXpTVUhwdDlNclFKSk12R3FJclpnYkhibkFyWXpKNWZnSDJ3cEZCZmlBWGhMRmY2ZGdwUHl5cy13MGNHSHNmN2tycExVVGw2UWJyLU9vZ0t6Rm5KZnpOQXFJZ1V6ckZsNlphVnc4Z1l2cTR2bEN4NklMS0NoNnFiMTV0U2ptM0ZOMEU1WEQtVGRDQW5rREQ5SFRxbWtpT3dIX1ExRGpYdndTZnZvcmhldDlIcHd2YzR1czFPYVRsUUh4SmJUVUdOWQ",
+          "publisher": "Mondaq",
+          "published": "2026-09-30T00:15:14+00:00"
+        }
+      ]
+    },
+    {
       "id": "c0c5114a76548c64",
       "kind": "news",
       "title": "Former US regulator says AI companies not exempt from current law",
