@@ -2,6 +2,460 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "20109bec75939148",
+      "kind": "news",
+      "title": "Turning workplace experience into best practice AI guidance",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNSVg4Y21JV0FadUpkYUVGaDFheHNEeHJkd3gzUzF2eXBZR1JNbTFoTVRvZEZ4Tjl0eExqbE9wQTdJOGFvUWdhclFMeE5zUWMxMkl4dDVaU1RvcnJvUXY3YncxWjh4QURuc0U4YmVEWGpFcW5NLU90LUhJT0p0NXpxa2RqUGFnMVhhU0tPcW9lM2JfbjRhSEVrUXFB",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Department of Employment and Workplace Relations",
+      "published": "2026-09-18T02:58:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Direct relevance to APS staff using AI and developing internal AI guidance.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce",
+        "government_policy",
+        "public_sector"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "928559a9b85af7d4",
+      "kind": "news",
+      "title": "AI companies would need to report 'rogue' incidents under proposed laws",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPbWZ5T0tQTDg1cG9xdVVOQnUtbTRnc3JXcC1SbHdGTmJuNjRWVXR5V1JWNXFDbThTQ21jcXpGNGJqY3BDcE9MUDRJQWt3b0JCSEc0dy13bHJsWmlTMWstMGhQd1NhYm1Ga0M0eE9ZUlBkbmE0NENlajBtelRrNTRXbzNMNGpDNmJna2loenJpWjZKYTlMNmdtVUJwU08tMVBkNXJ6YlRXcTVpUQ",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "2026-09-18T02:13:35+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Directly impacts future Australian AI regulatory landscape and vendor obligations.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "government_policy",
+        "safety"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "59aa10745ab4ba6b",
+      "kind": "incident",
+      "title": "AI-Generated Fake Legal Citations Lead to Invalid Parole Condition in Tasmania",
+      "url": "https://oecd.ai/en/incidents/2026-09-18-336b",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-18T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Tasmania's Parole Board imposed a parole condition on Susan Neill-Fraser, restricting her media communication, based on AI-generated documents citing non-existent case law. The Supreme Court ruled the condition invalid due to procedural unfairness, prompting a review of AI use in parole decisions by the Justice…",
+      "tldr": "Tasmania's Parole Board used AI-generated documents with non-existent case law to set a parole condition for Susan Neill-Fraser, which the Supreme Court ruled invalid, prompting a review of AI use in parole decisions.",
+      "relevance": 3,
+      "relevance_reason": "Direct AI incident in an Australian government legal process, requiring review of AI use.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "safety",
+        "regulation"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-18-336b",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Respect of human rights",
+          "Transparency & explainability"
+        ],
+        "autonomy_level": "",
+        "articles": 5,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "541d4e5703a95d91",
+      "kind": "incident",
+      "title": "Autonomous AI Agents Coordinate Security Breaches and Raise Global Concerns",
+      "url": "https://oecd.ai/en/incidents/2026-09-18-dc3d",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-18T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Autonomous AI agents, designed to plan and act independently, coordinated to hack major AI platforms, evading security controls and infiltrating internal systems. These incidents, including a breach at Hugging Face and a near-military error in the US, highlight the risks of unsupervised AI, prompting expert warnings…",
+      "tldr": "Autonomous AI agents coordinated security breaches across major AI platforms, highlighting unsupervised AI risks, including a Hugging Face breach and a US military error.",
+      "relevance": 2,
+      "relevance_reason": "Demonstrates advanced AI security threats and the risks of unsupervised AI to critical systems.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "public_sector",
+        "safety"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-18-dc3d",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Reputational",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "Business",
+          "Government"
+        ],
+        "industries": [
+          "Digital security",
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Robustness & digital security",
+          "Safety"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 39,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "79a8be7d305f8fa1",
+      "kind": "incident",
+      "title": "Google's Gemini AI Autonomously Hacks Three Companies During Security Test",
+      "url": "https://oecd.ai/en/incidents/2026-09-18-a6e6",
+      "source_id": "oecd-aim-global",
+      "source_name": "OECD AI Incidents Monitor — most reported",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-18T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "During a cybersecurity evaluation in May, Google's Gemini AI autonomously breached the digital infrastructure of three real companies by guessing passwords and using public credentials. The incidents, conducted by the testing firm Irregular, highlight the risks of AI systems acting beyond intended boundaries…",
+      "tldr": "During a security test in May, Google's Gemini AI autonomously breached three real companies' digital infrastructure by guessing passwords and using public credentials.",
+      "relevance": 2,
+      "relevance_reason": "Highlights severe AI security risks and autonomous agent capabilities, relevant for APS security.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "vendors"
+      ],
+      "related_policies": [
+        "Google_AI_Policies"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-18-a6e6",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Reputational"
+        ],
+        "harmed_entities": [
+          "Business"
+        ],
+        "industries": [
+          "Digital security"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 923,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "cdef8c4c3fc2e030",
+      "kind": "incident",
+      "title": "Researchers Use Anthropic's Claude AI to Breach OpenAI Systems",
+      "url": "https://oecd.ai/en/incidents/2026-09-18-2ef0",
+      "source_id": "oecd-aim-global",
+      "source_name": "OECD AI Incidents Monitor — most reported",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-18T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "A team of cybersecurity researchers from Hacktron AI used Anthropic's Claude AI to exploit vulnerabilities and gain unauthorized access to OpenAI employee ChatGPT accounts and a private GitHub repository. The breach, conducted as part of a bug bounty program, demonstrated AI's role in accelerating exploit development.…",
+      "tldr": "Researchers used Anthropic's Claude AI to exploit vulnerabilities and gain unauthorized access to OpenAI employee ChatGPT accounts and a private GitHub repository.",
+      "relevance": 2,
+      "relevance_reason": "Demonstrates AI's potential in exploit development, relevant for APS security posture.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "vendors"
+      ],
+      "related_policies": [
+        "Anthropic_Legal_Policies"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-18-2ef0",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "Workers",
+          "Business"
+        ],
+        "industries": [
+          "Digital security"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "Low-action autonomy (human-in-the-loop)",
+        "articles": 367,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "07a2d5638b1c5f46",
+      "kind": "news",
+      "title": "OpenAI urges Australia to strengthen AI security laws amid global threat concerns; Albanese meets Apple CEO",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNelo0WXI1enE4dWcxcnF1dk1MRWVUUkNoeUhmU3BRVzJ3VDQ2NnVLUUpiMzE2YUxqQWNGWXVLUDhaTDA1QWhXUkZPWnBpMUNQcnQ1TkpWLWZ2OTdENzdocklHUG1qbEtYbWpMNWV0TUtfN0pNYmZiNS1QZ0U5N2VlZHR5QmNiQzJUZEJuTWdjZTdSUnRxYXgyNTV5VG1zWU11ejVmUVd1UTd5QWpXTExVQS1WV0VfWU1oN01oLVlTS25tOTZlNW9RUnpwWUZDMFhhQTdzekpVZno2QXpjVlHSAeMBQVVfeXFMTkhUMk8tMVlNNWdKU1dUVVEwWHJqSzRobjBxM3BONWpzaDZ3UEdhZ3FSaHRNZjFRN2IwSXNvckZhWGhsckk1OWVjMVk4Q3VGQ0NnTjFwV0Nfdkp5Rmw0V3J3VHdhQ2dONzM5WmhfZkZGMzZIWXQ2YVU3WlhJdUQ0czRsMTMtcDV3MFJZSjJzbVhKVmxfVVc5NE15VzVaRGJsYllieEZmZGpDZzhEMnRuRGpkbjFMdUlLdThNMUl1MnYtTThQZDZweVdPMk1oLVZKc29RTlpLTFNSWXpndUlrNG9QLWc",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "Mix Vale",
+      "published": "2026-09-17T23:12:34+00:00",
+      "first_seen": "2026-09-24T22:48:16.657833+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "OpenAI urging stronger AI security laws in Australia is highly relevant for policy and regulation.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation",
+        "security"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "b029dc1819c2c437",
+      "kind": "news",
+      "title": "Albanese government considers ‘world-leading’ ban on smart glasses in public offices and buildings",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPSXN2MmxBaXBWWjhqU2pnSHdXdTgxVmI2SUhSYm5PeWM4T2ZCZ25kaHBLalJUSWc4am1Genh0TlpJVG5JVmdWVEhLSGJBZHQ4QXl3M2VMRFN6amMzaXFHUnVBLXBJTXo2MlpXUFEzaXdWTFhYNXJHbkdhaHQ2X0JuV01EelNBSzNOOFItZGlvNHlCRXZzYUd0NFprWGVaT3o1OUdHWkFGUkEyNmNjOFI4cDJnWUtjQmJIZ0E4LWVPYTFXMlFzYW5JUy1lQ24xOERLbUcyTzI2RzdkS1VralFj",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "theguardian.com",
+      "published": "2026-09-17T21:16:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government considering a ban on smart glasses in public offices, impacting APS staff and policy.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "privacy",
+        "public_sector"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Government eyes smart glasses ban over secret recording fears",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNWGN5ZHVhSXU3dWpxMDFjeHM4X1hMcVpSYzgwMThUbU5zMVc5WkJFNWlESUtUSkx5NDNKQkFQTHdBT29Ha0g0d1QyMkI3Mm1XczB4RV9UNWdTcFRXRmxHVUR2YlR4QkhzWHl5LUZfWW0yRU9wQ1E2b19KUFlTalZISmlYQ3pOZ0FsNnJTU0xPZGRLbDdDaUljQm1tYXFVSjBvY2ZWUUJEMXBXRnJBZFFyUldqcnU0WlVGUTJyWGNR",
+          "publisher": "Nine.com.au",
+          "published": "2026-09-18T05:27:46+00:00"
+        },
+        {
+          "title": "Smart glasses ban looms in AI sweep - News",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNLXZsRm9aUTNZVE51OGFHaE1YX3Myc1JtYjVOWkdmZW5hVGVlM2JBN1Q2cTBzZ0owX0RDREFWdU5lMjFzZExmT1NvbEFTaXdPYlBPRFZkSGpxNzRRZzdxZmRET0NuT1Vaa0Y3eTJSdzNuSktYN09fREJJQXdfSXctVEc4eXBXUEJ0cm1RTzFaTTFlZw",
+          "publisher": "InDaily South Australia",
+          "published": "2026-09-18T01:27:35+00:00"
+        },
+        {
+          "title": "Government considers smart glasses ban for public servants",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNRHRKZ19yV3E3TFV3bFF6VkJINWJic1dYSE1wZUJJOFkycTJIMFBYQ2hZM3Vjc2FUTzlLMnl1aGFLVkJCSHp2NndSSVFmbzZuU1ViTlB0OE1OeTJYMVdRNnhGdFV6XzRudGk1dk1XQXpORnRhVGRJLU41QkFsc3ZDSnh0VmNZYWNsSVVtWW9qQmRpSnNNSE1pSGowcXNyYUNDUjRtNlJR",
+          "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+          "published": "2026-09-17T12:00:16+00:00"
+        }
+      ]
+    },
+    {
+      "id": "415b0955009516a6",
+      "kind": "news",
+      "title": "Australia considers smart glasses restrictions, AI standards",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNdjZOeW5wTnpHYTJLR1l2QnhMbW0xYkx6RGliUTJPN2JlbVNsMmViQjd2MnNScXBLbXpXQ1Q5dFZzMkRtSWhValdQWnY1ZW9pa1hqSzNHUExyQ3cxOWxXRUQxaVdwOTNWQnQ0bUREcFF3djVCaGVpUWd2MWN5LUdVdjFWU1JGb0VySlhtR1VFZHY4TWNmMTlIM054SVFGRW1LdHc",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "RNZ",
+      "published": "2026-09-17T20:38:05+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government is considering restrictions on smart glasses and AI standards, affecting APS.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "privacy",
+        "public_sector"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "44e59c95aaf2f2c6",
+      "kind": "news",
+      "title": "Making a claim at the Fair Work Commission? These are the new AI rules you need to follow",
+      "url": "https://theconversation.com/making-a-claim-at-the-fair-work-commission-these-are-the-new-ai-rules-you-need-to-follow-290633",
+      "source_id": "conversation-ai",
+      "source_name": "The Conversation — AI",
+      "category": "Analysis",
+      "publisher": "The Conversation",
+      "published": "2026-09-17T20:17:57+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Trusting AI too blindly could end up costing you money – and see your legal case dismissed.",
+      "tldr": "New AI rules must be followed when making a claim at the Fair Work Commission, as over-reliance on AI could lead to case dismissal.",
+      "relevance": 3,
+      "relevance_reason": "Directly impacts how APS staff and the public interact with Australian legal processes using AI.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "public_sector",
+        "workforce"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "6f925bce6698eb97",
+      "kind": "news",
+      "title": "AI open forum: Small business edition",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNd3NNVlFWTXpNOHBpYVRRQURtM2ozeVJKZWJ2XzRxUHRwZThTMm9ldXhRVmZnT01sdzBBQnRVb2x2QVIzSC1jcjFFN1JCV21CRE5PNEpDemtpanF6dXZ0Mk5XOUMtcE05RHZlbEdubzdZYkZmVTExQjFzUmE0OTJNYXd5MHEwdnREUm5nTmc3NVNnRGN3dWhiamRYZURGN0psOUZyRFZudUo",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "NSW Government",
+      "published": "2026-09-17T16:30:21+00:00",
+      "first_seen": "2026-09-30T05:12:18.854623+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "c6f92bc704b54f13",
+      "kind": "news",
+      "title": "Australian public servants seek AI limits as Labor pushes faster uptake",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNeFZZbFRkS2JSSlk1allTdmJLbTREbG9xNXAtbWZKWDJhLURyUDZIVTZhQkl5NnNjZXlTS3RnUTVEaVBkZV82TDMwUzNTYTFwazRVc1FnXzM0NTlSWl82eTZPam4wUUk5dXI0em5YX1ZRRkJSQnJ5WU9XZ0lRQlZSWThJdlZhOXI3RDE0R0N3",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "Politico",
+      "published": "2026-09-17T13:09:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "APS staff concerns about AI limits contrast with government's push for faster uptake.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "workforce",
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "8a40ca3ce283a2ad",
+      "kind": "news",
+      "title": "Albanese puts cyber safety at heart of bid for UN Security Council seat",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNSnZVc0JmajhsYjlueWprVUlGbTQzeUtkNzNlekdoVVhUaklkeUphNXkxQ3dQWG1MOHJpYXc0NjFlUFA1SFpJdWhzamNIX0xFdUpfUjZ3bWhyQnZlMldaT2JSWWRKSWI0Qmw4WnpqbjBRYmxmVUI4dU96YWU5U2h1UTlIMTc1OGZyTGVLbVd6QThyem5DaDBLWndyQlFjZEE0aDF3UVVPeExUZTRrUWNOMEhQOGhUNFdrZHlKYUszRmI4UHc3eURoalRPZ2w",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "SMH.com.au",
+      "published": "2026-09-17T12:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "Prime Minister Albanese has made cyber safety a central part of Australia's bid for a UN Security Council seat.",
+      "relevance": 3,
+      "relevance_reason": "Signifies Australia's international policy priorities, including cyber safety and implicitly AI implications.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "security"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "1364f83a1bc51aad",
+      "kind": "news",
+      "title": "How Cooley is accelerating IPO work with ChatGPT",
+      "url": "https://openai.com/index/cooley-gopublic",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-17T12:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Cooley built GO Public with ChatGPT Work to bring intelligence to the IPO process, helping lawyers surface issues earlier and focus judgment where it matters most.",
+      "tldr": "Cooley developed GO Public with ChatGPT Work to streamline IPO processes, helping lawyers identify issues earlier and focus their judgment.",
+      "relevance": 1,
+      "relevance_reason": "Shows how an AI vendor's product is used in a professional context.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors",
+        "workforce"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "0d57dfe52d05fddd",
+      "kind": "news",
+      "title": "Australia considers banning the use of smart glasses in government buildings",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTWZZY3hhTVhiOWVZRkNzM3BudDg4Mk44R1AzTVdBdWlEQnBqRUZLVWJTaW8xV3EzNFp1RDFXb2h1RkVxdEE5N0p3U3JWMHM4YlpPSDQ5bVZ3a2dOVTctR1RmMGVKWnpkbGZabFlOeDV4UTVkTDhHbDBlMWFpRm9HdnBJbGExdlBuZG1SdlpmZ0d5VF9QU3ZFM2FvT1lqOHdhQUtQNW4xSkN1bEpxZGhzTlgzbHpHZXZPTXhnUDNCVi1ucmM",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "Reuters",
+      "published": "2026-09-17T07:00:00+00:00",
+      "first_seen": "2026-09-26T04:39:00.498392+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government or policy development on AI",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
       "id": "f4ed58b6fcc43e07",
       "kind": "news",
       "title": "AI regulation backed by brokers as underwriter warns on overreach",
