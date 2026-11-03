@@ -2,6 +2,344 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "eab0c51ee53e44b8",
+      "kind": "incident",
+      "title": "US Military AI Misjudgment Leads to Deadly Attack and Near International Conflict",
+      "url": "https://oecd.ai/en/incidents/2026-09-19-36d5",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-19T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "US military intelligence relied on AI systems, including Palantir's Maven, which generated false reports. This led to a deadly attack on an Iranian girls' school, killing over 150, and nearly caused a US military operation against a Chinese ship based on erroneous AI-generated intelligence, risking major international…",
+      "tldr": "US military AI systems, including Palantir's Maven, generated false reports leading to a deadly attack on an Iranian girls' school and almost causing a US military operation against a Chinese ship.",
+      "relevance": 2,
+      "relevance_reason": "Highlights risks of AI misjudgment and overreliance in government security and defence.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "public_sector"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-19-36d5",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Physical (death)",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "Children",
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "Low-action autonomy (human-in-the-loop)",
+        "articles": 26,
+        "aiid_ids": []
+      },
+      "coverage": [
+        {
+          "title": "US AI-Driven Targeting Error Leads to Deadly Iranian School Strike",
+          "url": "https://oecd.ai/en/incidents/2026-09-19-a8ee",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-19T00:00:00+00:00"
+        },
+        {
+          "title": "AI-Generated False Intelligence Nearly Triggers US-China Military Confrontation",
+          "url": "https://oecd.ai/en/incidents/2026-09-18-d635",
+          "publisher": "OECD AI Incidents Monitor",
+          "published": "2026-09-18T00:00:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "f24e3368d046a33d",
+      "kind": "news",
+      "title": "Data centres a wartime target, defence AI chief warns",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOT0hDN2VOVXJxdTg2dTRPc0RIa3BuaTk2bzdrODdRbzZnVHZhb2VqcWItLUtoeTZuYmp6QUNlenNjdml3bUhrcGZnX0dWaXNHSU01aml6ajNqV2x2dFlURGpGdDhLZUVTcEs0MG5NcTBPa09NWnR2dWxuRklva3Zqd2FBbmRHWUk",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "Michael West Media",
+      "published": "2026-09-18T23:45:58+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Alerts APS to security risks for data centres, critical for government AI infrastructure.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "public_sector"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Data centres a wartime target, defence AI chief warns",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNVmlmRmxGWUJMbTJORlVJWjNXWHQ2dW1lYld5WEIyazhZT1Nmak9NTFd4X19EemdmODlIbmJ0UkVVY1hVRncyTVNHaWY1d0pndU1sT1NEVDM4Zk5zT0dWT0VJT29sdzFkT0xTQUg2MDdhczRsd1U2X1NqUnhtVm9pY0x3",
+          "publisher": "au.news.yahoo.com",
+          "published": "2026-09-18T17:30:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "6b647a98765723ae",
+      "kind": "news",
+      "title": "Kevin Rudd calls for urgent intergovernmental regulation of AI",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOc2wyLU5XdGszS25kTkViVmlYdFNRckNsVURNSGhXaEsxYWZ2cHV0OVR6dW14UmhIQ2FxQjhRa0xLNEtRSVYzVUJkVUQyRTNXZXhVWGYwVzNBQi1Wd3pnTldrWm83TmNmZnRMNUxpSXVHY205RTJuci1sNXJ5TGRQTGxYUkVzOFd5V1ZEM3lB",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "2026-09-18T21:10:00+00:00",
+      "first_seen": "2026-09-25T01:55:18.416371+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Reflects high-level Australian calls for global AI regulation, relevant to policy.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "daf8f49a4af3fb95",
+      "kind": "news",
+      "title": "‘Congratulations!’ AI tells user mulling assisted death",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNV3VqbUFreVNMOUh6NGpKY0tjbHlJdTNGWHBfYWdOdUhzMVRUd21lbXU4SUw3TmhiRVo1LXVlREE3WlZ6SksyT2U0MUQ1SWVvZzQ3RUJXc3FtM1c4OUIzbmtRYWNBbmcwRjlHM2hGWV9oU21JWFBLNk5mVGVQQmpuejFJdFhCQQ",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "Michael West Media",
+      "published": "2026-09-18T18:30:35+00:00",
+      "first_seen": "2026-09-26T04:39:00.498392+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "'Congratulations!' AI tells user mulling assisted death",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPUDRxbDRhQjdBY0duM0haNmpNVy1tZ0FMUFZxakxlNmNoM3VrNmdXcVJMaVNlTjJUVmV5eWlLMFJPRGVoU1JhTmR1MVMxMXVoTFVidV85Y25EYkl6NVRZdlRZRWlrTmF3UWhQLTI3b1p2a2FNbDF6ZlhhZURYRDJESWR2RVRZU0E5TG5wMXRfZFpSRXJEc2pSdjBLZWNObjBfcEE",
+          "publisher": "The Canberra Times",
+          "published": "2026-09-18T05:03:25+00:00"
+        }
+      ]
+    },
+    {
+      "id": "320c8428326565c7",
+      "kind": "news",
+      "title": "How to know if you can trust an AI’s answer to your question",
+      "url": "https://theconversation.com/how-to-know-if-you-can-trust-an-ais-answer-to-your-question-289201",
+      "source_id": "conversation-ai",
+      "source_name": "The Conversation — AI",
+      "category": "Analysis",
+      "publisher": "The Conversation",
+      "published": "2026-09-18T12:37:18+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "One Google response asked for my medical history. Another answered a personal health question without asking who I was. Both replies came across as authoritative advice.",
+      "tldr": "An article highlights how Google's AI provided inconsistent and authoritative-sounding medical advice without asking for personal context.",
+      "relevance": 1,
+      "relevance_reason": "Provides general guidance on evaluating AI trust, relevant for APS staff using AI tools.",
+      "relevance_source": "model",
+      "topics": [
+        "workforce",
+        "safety",
+        "research"
+      ],
+      "related_policies": [
+        "Google_AI_Policies"
+      ]
+    },
+    {
+      "id": "f4323cbb8658a6d6",
+      "kind": "news",
+      "title": "Introducing the Australian Youth Safety Blueprint",
+      "url": "https://openai.com/index/australian-youth-safety-blueprint",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-18T12:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "OpenAI introduces the Australian Youth Safety Blueprint, a six-pillar roadmap for safer AI experiences that protect and empower young people.",
+      "tldr": "OpenAI introduced the Australian Youth Safety Blueprint, a six-pillar roadmap for safer AI experiences that protect and empower young people.",
+      "relevance": 2,
+      "relevance_reason": "OpenAI's Australian safety blueprint offers insights into vendor approaches and policy directions.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation",
+        "safety"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "57475a21f8897e17",
+      "kind": "news",
+      "title": "Vance calls AI regulation push a ‘Trojan horse’",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNQm1nVzN0RkhLb1BuMzhoQUdHcXJ1SjhJWE1VTzI0VXVqWUxWMDJxLVZtTC1CZ2gzaWx5WFZyLWd1QWNCXzhBNmlyT3RJdXRRUzU1MjZIR2pPR0prSmxjTTVROFZfbllMUkxsbEl5S29BTWthclRRRWkyRWNBVXpiajViNEdHRnA1eGtkRU5zYlB2UHhTY3FxQTJQdE9zOWVFZjhaQzlyOGJXZUVjcEFzblloMXhUSVBsWG93aTdJZw",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "The Australian",
+      "published": "2026-09-18T11:07:48+00:00",
+      "first_seen": "2026-09-24T22:48:16.657833+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "Provides an alternative perspective on the motivation behind AI regulation efforts.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Vance calls AI regulation push a ‘Trojan horse’",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNeWlscFJ6NXQxdFpVb19GM2ZQU2ZKT09zRW5PanpJNlZ0SnpqRm94NDBzYzFmWXBuVFpkTjBYSWlWVDNEdEhSWFEyX0g0ZjVEZ3VweDh6QnVYcFRfOGJydUR0bDhJRGlIMU5uRFpBU1VlOGo4M0RmY3NOVVNTUHdUR3RSdm8yVUxiTEt5bmNqbmhkOHV2ZTE2aFdMQlNFYzJqN1JGcUgtdFRzcUxkTlZFWGlSdWfSAboBQVVfeXFMTV8xN3IxU3hnbi14SnJoYlQtR0NyRWJjZFE0NVdFWU9rTEJBZmE4ZHdiRDh0QzRsa3B3bUNrT3NEZEJyNDFjc1RIM1Y5ZzhxMEF4Q05uQkFXMUJFUmdQbzE5dVAwM2Z2NzNjS1FIR2E5bHpNeG45VV84bE50RW84NWVqMUZMVGFYTVdjYmlSZHdqdlBTaEdnejhyZE1yODF5R19xWkFacFpneFgwWFBJWDRqRXJxR3pRNkVR",
+          "publisher": "News.com.au",
+          "published": "2026-09-18T11:07:48+00:00"
+        }
+      ]
+    },
+    {
+      "id": "ca9a31690684e3c2",
+      "kind": "news",
+      "title": "Andrew Hastie says AI advised him to reply ‘congratulations!’ to man who planned to end life with assisted dying",
+      "url": "https://www.theguardian.com/technology/2026/sep/18/andrew-hastie-says-ai-advised-him-to-reply-congratulations-to-man-who-planned-to-end-life-with-assisted-dying",
+      "source_id": "guardian-au-ai",
+      "source_name": "Guardian Australia — AI",
+      "category": "Australian news",
+      "publisher": "The Guardian",
+      "published": "2026-09-18T09:05:43+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Liberal MP speaks of AI’s shortcomings as cyber chief tells inquiry the tech is needed to fend off ‘highly capable malicious cyber actors’",
+      "tldr": "Liberal MP Andrew Hastie reported an AI advised him to reply 'congratulations!' to someone planning assisted dying, highlighting AI shortcomings.",
+      "relevance": 3,
+      "relevance_reason": "Illustrates AI's ethical risks and shortcomings, relevant to public sector AI use.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "public_sector"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "'Congratulations!' AI tells user mulling assisted death",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBURkhPakxkeGNwUFJzNWZNdEZJVkVMVlRTTVFUdUxQWDk5TkNzcmhlUUNuSHMxN0g5bjBPOTVxT2gwY2h0ZGJTUnlNSTJ2ajBhOXRQSko3cVVhMU9TSVk2RVYxN0piQWRxWVRIVW82NWpMUjJtZ1p0R0gyOF9YSVE",
+          "publisher": "Yahoo News Australia",
+          "published": "2026-09-18T04:48:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "8bece97a76b5f7e2",
+      "kind": "news",
+      "title": "‘Brutal’: thousands of T-shirt designs stolen and listed on Temu, Sydney label claims",
+      "url": "https://www.theguardian.com/australia-news/2026/sep/18/ai-copyright-t-shirt-designs-stolen-temu-sydney-clothing-label-lonely-kids-club",
+      "source_id": "guardian-au-ai",
+      "source_name": "Guardian Australia — AI",
+      "category": "Australian news",
+      "publisher": "The Guardian",
+      "published": "2026-09-18T07:35:47+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Warwick Levy, who runs Lonely Kids Club, says AI may have been used to scrape his entire website and replicate designs",
+      "tldr": "A Sydney label claims thousands of its T-shirt designs were stolen and listed on Temu, suspecting AI was used to scrape and replicate them.",
+      "relevance": 2,
+      "relevance_reason": "Highlights AI's role in intellectual property theft, impacting Australian businesses and data security.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "privacy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "01160cd3dae1a85f",
+      "kind": "news",
+      "title": "Western Australian Artificial Intelligence Advisory Board",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOUXYyUHY0TUwxWjM4RVpKMzBOTGhGX1JxZ2ZWOUNndXBxSm9MdGdNMlB3V0IzTUJtdklQeGZmd3VzVUozTUVSY1FyMlgwYlNWdDJZRDkyamFWaEVrNnZBODFTc1ZsYmk5ZUpZRS1Pb0Y5WmRrUWVtOWdyazV3cXlNQ1kyN0Q5ZDJyT0lJSkkzWnNDY3FqOVZ1WGM3RDNYYTZqUU1lOVktQ05PMHBuQ0tjMFhJVWpoUXhpUU9KQTZIZ3hUUU03VE85UDJIakF5Wi1hNGMwQll4NUt2MndsbWc5ZTRKbWgyWXpnYzNZYTBrQlA",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Western Australian Government",
+      "published": "2026-09-18T07:00:00+00:00",
+      "first_seen": "2026-10-03T05:05:57.497008+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "778d8b4f7c8572a5",
+      "kind": "news",
+      "title": "Joint Select Committee on Artificial Intelligence PUBLIC HEARING Friday 18 September 2026 Committee Room 1S4 Parliament House, C",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOQjlvbTJBUGs5aURfeUQ1OGlrWGhndjB1MzJtS1VPbjVGVWRCWGxhb1R5dk45STJVNVhqdDVMSEhBRFNxbFV3NE5Td3Y1bGpqbHdyT3VqYld3UWNLczdTOUFpcXhmY2RhRnBsNG9md01RdFZyaWNhNWh1N0t2enR6TA",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Parliament of Australia",
+      "published": "2026-09-18T07:00:00+00:00",
+      "first_seen": "2026-10-06T06:04:46.860630+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "0665a9ba1248e421",
+      "kind": "news",
+      "title": "Inside America’s growing political battle over AI regulation",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOb09YNVI5WnNOMHVWZUt3aHBmUHJDM183bUx2ZndzN0IybzNlamcybDJXZmRySGZyYW1LOWRDQlV4anVoN3BFYlFhMmk0cGxZcXp5aF94aVpKTG1tSFZEVjA2OUt5LWV6MWN5UFVoTVNub3JneWpKYU5xa2FNc3QtNF9yRHFGaTRkTU9rRGNnV21uZUNqQTd4NWZOTjVHODRlZmxoRUpMSFpRY0NENlBpSnB2WUNMdmpaWlczdE1sbUxvNVV2bkpB0gHMAUFVX3lxTE9MU0pobTZHY0F2Yk1oLUxiZEg4d29yNnY3TDZRV1pSYzBEd21VcGJ3cDE2Y3VZblZtMTlBN19hQ1NIUmFsbmNqNFhTVVJ3T2JPaG45N3pJY2VxeVNzVTBTcEQ5akVTX3VjczRITVY4QURHVGRNbEt5LW5wSG9HZ1BsTkk5NGhuOU01Q2tjdkZnY2J1NHRMbDVVYXduQklYQzVqUl96OG1ScjdVRS05Q05yQVdKSHpwMlJQUjhIYkc0T0Zpdmo4OGVpcmVxbg",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "News.com.au",
+      "published": "2026-09-18T06:19:44+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Provides context on AI regulation developments in a key international jurisdiction.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Inside America’s growing political battle over AI regulation",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNN2ZUMVVlelN5UWgxZFBaVm5EaHJLdFlWSHZod2NiT3VhNGpMa3BsVDJqOTRBMk1xamhxUkFrM2dXTDRZQ0ZZeDk5UkRUWDVlNHlkeWE3T0JxTGNJOEIyNDdFVUYtalpjQ1lFRnRmdFRVWGs2WEhCYTBVZzlHMWluR0EtRmVzcEh6Yy1fOGNpYVk2VFZacjJKcjJTcUEzUm1JVVZ2ZmFwTlRfWkZUWnNhQXZ0V21kYlVpZmxQeHA2MkNXbWlfczMzT1lpVFVxeDI4bEE",
+          "publisher": "The Australian",
+          "published": "2026-09-18T06:19:44+00:00"
+        }
+      ]
+    },
+    {
       "id": "20109bec75939148",
       "kind": "news",
       "title": "Turning workplace experience into best practice AI guidance",
