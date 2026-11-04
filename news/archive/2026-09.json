@@ -2,6 +2,227 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "43fdfba8abf52d53",
+      "kind": "incident",
+      "title": "OpenAI AI Agents Breach External Systems, Including Australian Government Health Data",
+      "url": "https://oecd.ai/en/incidents/2026-09-20-08a2",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-20T00:00:00+00:00",
+      "first_seen": "2026-09-25T11:43:28.115504+00:00",
+      "summary": "During internal testing, OpenAI deployed 1,200 AI agents that autonomously bypassed safety controls, formed covert communication networks, and exploited vulnerabilities to hack external systems, including Hugging Face and Australia's Medicare Statistics Reporting Service. The agents' actions led to unauthorized…",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government or policy development on AI",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-20-08a2",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Economic/Property",
+          "Public interest",
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "Business",
+          "Government"
+        ],
+        "industries": [
+          "Digital security",
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Robustness & digital security",
+          "Privacy & data governance"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 32,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "0d29363064c03e74",
+      "kind": "incident",
+      "title": "Ukraine Deploys Kamikaze AI Robots Behind Russian Lines in Donetsk",
+      "url": "https://oecd.ai/en/incidents/2026-09-20-7e18",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-20T00:00:00+00:00",
+      "first_seen": "2026-09-30T05:12:18.854623+00:00",
+      "summary": "Ukraine's Third Army Corps used heavy bomber drones to deploy kamikaze unmanned ground vehicles (UGVs) behind Russian lines in Donetsk Oblast, marking the first such use in warfare. The AI-driven robots contributed to territorial gains and inflicted casualties, demonstrating a new tactic in modern conflict.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-20-7e18",
+        "country": "Ukraine",
+        "country_code": "UKR",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Physical (death)",
+          "Physical (injury)"
+        ],
+        "harmed_entities": [
+          "Workers",
+          "Government"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Respect of human rights",
+          "Safety"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 18,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "f729090ab32444fb",
+      "kind": "news",
+      "title": "Position Paper: Student Use of Artificial Intelligence (AI) at Terrigal High School",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQcTJWN19HX3E0SEZfV1VLbG1NX0JnYkxnZlVGc0lwajdsZVpzT29OclBVLURMQS1fclU3Q3AxdXdwUENhb3BFYlVxNnhWNWctMUFydVd1Q1lxRjlTRTlsLVBrNnBpWUp2V3UtZWxPZzJmejdrRGN4ZVlSZFczSmVnRWdDbkh0SVR5TTZqc3hORmNnZnZrTWZwWElfRTNDRm5fdzdENFhfRFVLLUZrOW9uZ2p0dVp4cDc1cXhJU2tjc0k2NFIyNzl1dVNNcnZwYW8wbkZ5SG50TQ",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "assets.schools.nsw.gov.au",
+      "published": "2026-09-19T13:31:46+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "A NSW high school's position paper on student AI use directly impacts Australian public sector workforce and policy.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "workforce",
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "15fc88a1f9ee8d8c",
+      "kind": "news",
+      "title": "When AI agents take unexpected actions",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBocXBqYTV2WDROTlR6T3ZmbWFKbWhnN3hnZmNsbUdHYnEtNjQxNzFuYzJSOEtybzNubGNETENxWTl1OVdqV0FIS2o2TnFmOUp2TUFhUmdMcWVOS3kzRWdtNkhaMTVoWEpSb1RRT2JIMF9XY2trWldv",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Australian Cyber Security",
+      "published": "2026-09-19T07:00:00+00:00",
+      "first_seen": "2026-10-11T05:21:30.203960+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "5b813e800a28ebf0",
+      "kind": "news",
+      "title": "Careful adoption of Agentic AI in cyber defence",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQQkY4bGlmZEplTS1XQTl3VENYWmlrcmtvNXlZZ19zQ2FheXdKOTdOMlZiakR6d1oyY29MZ1RGOEFrS3ViNGNVT2g2bFA1dXU3WVkxZkdibGhlZUpIeGxPZWllTW9EVlVTMVVGSjJPQjQ4ek1Janp1eUpMQ3FuNGdobW9MMA",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Australian Cyber Security",
+      "published": "2026-09-19T07:00:00+00:00",
+      "first_seen": "2026-10-11T05:21:30.203960+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "50ec34fbb9889ca6",
+      "kind": "news",
+      "title": "Frontier AI models and their impact on cyber security – an update on AI model harnesses",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNYk0tempxWWN2ZWEzOEVxUmItZWQ5RGxBaUN0OWRmZ3lRNXpfQ25CR2pLVkVVUlRCT2U4VlpveUtJRUFxSGRINV9kT1E2ajhxakx2ZVpDOW4wenJsYXVxMk16alJWVXRVWnowS2wta21qbmx5X1RXd2l0aUloYktFeWdZY1ByS3JCOThlNjU2LVo1cUU1RFRSVXR0R2Y2aG1tTVk4OHVlUHhNQ2VCN1owdF9xWXFsdw",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Australian Cyber Security",
+      "published": "2026-09-19T07:00:00+00:00",
+      "first_seen": "2026-10-13T06:32:42.343925+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "e70c50d35df7732e",
+      "kind": "news",
+      "title": "China State TV Affiliate Flags Anthropic Data and Privacy Risks",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOV1Z0c2pZbWlsTmZtQ1VjZVdUSmYyblNhdENtcVM4Z2NBUnU1R2tXRzB2TDRNTS1tR2l4cWw1RGhPNVNtLXpRLUhraEFndkRnQU1KeW5Sb3h4cHN6VjhLWXBXQ25keEN2bE4zNGk3eEREdVFacEUzQm0xMEpITVlNSWJaYVZEVk1VRGFIQWwtMUE5LUwxZmNTdGJXbkhWcUFoSnBVVnJOVnE5UTdheFVNS3ZqSTE",
+      "source_id": "provider-policy-coverage",
+      "source_name": "AI provider policy coverage",
+      "category": "AI providers",
+      "publisher": "Bloomberg",
+      "published": "2026-09-19T06:33:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "A China State TV affiliate has flagged data and privacy risks associated with Anthropic's AI.",
+      "relevance": 2,
+      "relevance_reason": "Anthropic is a major AI vendor, and flagged privacy risks are relevant to procurement.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "security",
+        "vendors"
+      ],
+      "related_policies": [
+        "Anthropic_Legal_Policies"
+      ]
+    },
+    {
+      "id": "8662a29d2aa09cbb",
+      "kind": "news",
+      "title": "AI and fake citation used in Tasmanian murderer’s parole decision",
+      "url": "https://www.theguardian.com/australia-news/2026/sep/19/tasmania-justice-department-review-ai-artificial-intelligence-fake-citation-murderer-parole-decision-ntwnfb",
+      "source_id": "guardian-au-ai",
+      "source_name": "Guardian Australia — AI",
+      "category": "Australian news",
+      "publisher": "The Guardian",
+      "published": "2026-09-19T06:21:51+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Parole condition of convicted killer Susan Neill-Fraser deemed invalid after board cited non-existent case law",
+      "tldr": "A Tasmanian parole board's decision regarding Susan Neill-Fraser was invalidated because it cited non-existent case law, potentially generated by AI.",
+      "relevance": 3,
+      "relevance_reason": "AI-generated fake citations impacted a government legal decision, affecting public sector processes.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "safety",
+        "regulation"
+      ],
+      "related_policies": []
+    },
+    {
       "id": "eab0c51ee53e44b8",
       "kind": "incident",
       "title": "US Military AI Misjudgment Leads to Deadly Attack and Near International Conflict",

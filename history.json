@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T06:10:12.239174+00:00",
+  "generated_at": "2026-11-04T05:48:26.959821+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -286,15 +286,6 @@
         "timestamp": "2025-11-25T12:00:50",
         "analysis_path": "logs/Google_AI_Policies_20251125_120050_analysis.json",
         "snapshot_path": "logs/Google_AI_Policies_20251125_120050_snapshot.txt",
-        "priority": "medium",
-        "verdict": null,
-        "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-11-03T12:03:00",
-        "analysis_path": "logs/Google_AI_Policies_20251103_120300_analysis.json",
-        "snapshot_path": "logs/Google_AI_Policies_20251103_120300_snapshot.txt",
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
