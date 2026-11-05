@@ -2,6 +2,439 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "43ed729b3491554c",
+      "kind": "news",
+      "title": "She’s Apples for Albo on US trip to talk social media, algorithms and AI",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOVVliOFRJazRSTVoyb0JpTHA4Z0VmdnR4ZmJHYWhGcm96OGJRUS0tODBnSG5iYzFYVm9RNnhMcVNURGZURnhUMENfZGl3MlpNeUt1TXJwbGlQeXZDV1BVVlpVdmVQeXdZSUxpV0NoU1EzWDZFNk5aNDJ5WWg4Ri1CQ3hLRWNheEx5NnNDRXg4ZVhuZjVoUkhYWnhyTkNBLTNEXzkwMU9WNFYzWlF4XzdmQmc3WnA1eTRYWld3VFo3anZsMkVlNU0wTzBvXzdMa3VhOUNJNjNSbUpmX3l5Zk0zNw",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "Startup Daily",
+      "published": "2026-09-21T05:57:09+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "PM Albanese discussing AI on a US trip signifies high-level Australian government policy engagement.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "5200476d848b7e55",
+      "kind": "news",
+      "title": "Use of Artificial Intelligence in PPV proceedings",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNbzhvZ1U2NmV3b05PVXRSbWpUZDV4N1BkbXluWWk3TnRKeU1iMzYybHgwMG1WR2h0VW5yem5EVGlYcEdpN1hHeHdqREhtUDlLOVNQMDgtVUNwWVBncmR1WEZKcUYtcnhXTktoR0dKOHdDcHp0NGhPR2lPX0k1eHJzaFRpZ3IyV2pHbXV5cXBvd0dBb09ONWZqc2JEN1NRRDFvTngxWlNQTExrb1Uz",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "planningpanels.vic.gov.au",
+      "published": "2026-09-21T05:29:27+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Victorian Planning Panels addressing AI use in proceedings is a direct Australian public sector development.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "government_policy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "b97132524179c0c5",
+      "kind": "news",
+      "title": "Tim Cook Praises Australia’s Social Media Rules as ‘World-Leading’",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPbGx2S0Nqcl9jb19MaV9JejU0ZnItcEZmU0F6cm5hM3JYUkYzM2lrNGp4S1YtZ0pCMmZDQkNVdlhVUmN3bDdjRUo5YS1qNlhoeFBINVlFNG96MzRZTW9PZzJCdlZMcDdjMjFhcWRSbVIyWlg1X1Q4enlxcU5weFdFOFVVVWluTEVrN0ZJQmY5bEtFMVdBSkFIc2l6aUVaT0RBT2dBdkZwa2FUS1ppM0I4YURTUTFZQQ",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "Tech Times",
+      "published": "2026-09-21T04:45:46+00:00",
+      "first_seen": "2026-09-24T22:48:16.657833+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "A major tech vendor praises Australian social media regulation, which may influence related AI policy.",
+      "relevance_source": "model",
+      "topics": [
+        "regulation",
+        "vendors"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "3c641a273a14919d",
+      "kind": "news",
+      "title": "More Australians will be dying than being born in 40 years as major report predicts future of lower growth",
+      "url": "https://www.theguardian.com/australia-news/2026/sep/21/jim-chalmers-intergenerational-report-2026-deaths-outnumber-births-australia2060s",
+      "source_id": "guardian-au-ai",
+      "source_name": "Guardian Australia — AI",
+      "category": "Australian news",
+      "publisher": "The Guardian",
+      "published": "2026-09-21T02:30:32+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Seventh intergenerational report also outlines how Australia is on the brink of an uncertain age of artificial intelligence",
+      "tldr": "Australia's Seventh Intergenerational Report predicts lower growth, more deaths than births in 40 years, and outlines an uncertain future with AI.",
+      "relevance": 3,
+      "relevance_reason": "Key government report details long-term demographic and AI-driven economic shifts for Australia.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "workforce",
+        "research"
+      ],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "Intergenerational Report says AI will be ‘a defining influence’ on Australia’s economy over next 40 years",
+          "url": "https://theconversation.com/intergenerational-report-says-ai-will-be-a-defining-influence-on-australias-economy-over-next-40-years-291996",
+          "publisher": "The Conversation",
+          "published": "2026-09-21T02:39:23+00:00"
+        }
+      ]
+    },
+    {
+      "id": "463abc7ed6dc63b8",
+      "kind": "news",
+      "title": "How V7 gives AI agents institutional memory",
+      "url": "https://openai.com/index/v7",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-09-21T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Using GPT-5.6, V7 turns scattered company files into context agents can use to complete complex, source-linked work.",
+      "tldr": "V7 uses GPT-5.6 to transform scattered company files into context that AI agents can use to complete complex, source-linked work, giving them \"institutional memory\".",
+      "relevance": 1,
+      "relevance_reason": "Shows how a vendor uses AI models for enhanced agent capabilities, relevant for APS procurement and AI services.",
+      "relevance_source": "model",
+      "topics": [
+        "vendors"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "fefcfd9469690b92",
+      "kind": "incident",
+      "title": "Facial Recognition Trial by WA Police Leads to Arrests and Raises Ethical Concerns",
+      "url": "https://oecd.ai/en/incidents/2026-09-21-ee85",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-21T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "The Western Australian Police Force trialed live facial recognition technology, scanning over 900,000 faces and making 79 arrests, including engaging with registered sex offenders. The system generated eight incorrect alerts, raising concerns about privacy, wrongful identification, and ethical implications of AI use…",
+      "tldr": "WA Police trialled live facial recognition, scanning over 900,000 faces and making 79 arrests. The system generated 8 incorrect alerts, raising privacy and ethical concerns.",
+      "relevance": 3,
+      "relevance_reason": "Concerns public sector AI use, privacy, and potential for error in Australia.",
+      "relevance_source": "model",
+      "topics": [
+        "privacy",
+        "public_sector",
+        "safety"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-21-ee85",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Reputational",
+          "Psychological"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Fairness"
+        ],
+        "autonomy_level": "Medium-action autonomy (human-on-the-loop)",
+        "articles": 5,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "c61d55aca44232a4",
+      "kind": "incident",
+      "title": "First Torpedo Test from Autonomous Undersea Drone by UK and US Raises AI Weapon Risks",
+      "url": "https://oecd.ai/en/incidents/2026-09-21-cdcc",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-21T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "The UK and US, as part of the AUKUS alliance with Australia, have for the first time test-fired a torpedo from an autonomous undersea drone in UK waters. While no harm occurred, the deployment of AI-powered lethal weapons highlights significant future risks associated with autonomous military systems.",
+      "tldr": "The UK and US, under AUKUS with Australia, test-fired a torpedo from an autonomous undersea drone. This highlights risks of AI-powered lethal autonomous military systems.",
+      "relevance": 3,
+      "relevance_reason": "Directly relevant to Australia's defence alliances and AI weapon risks.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "security",
+        "government_policy"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-21-cdcc",
+        "country": "United Kingdom",
+        "country_code": "GBR",
+        "harm_level": "AI hazard",
+        "harm_types": [],
+        "harmed_entities": [],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 41,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "c9fb2ae4b762818a",
+      "kind": "incident",
+      "title": "British Columbia Sues OpenAI Over AI's Role in Tumbler Ridge Mass Shooting",
+      "url": "https://oecd.ai/en/incidents/2026-09-21-2a05",
+      "source_id": "oecd-aim-global",
+      "source_name": "OECD AI Incidents Monitor — most reported",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-21T00:00:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "British Columbia filed a lawsuit against OpenAI and CEO Sam Altman, alleging the company failed to warn authorities about violent interactions between the Tumbler Ridge mass shooter and ChatGPT. The suit claims this omission contributed to the February 2026 attack that killed eight, including students, and seeks…",
+      "tldr": "British Columbia is suing OpenAI and CEO Sam Altman, alleging their failure to warn about violent interactions with ChatGPT contributed to a mass shooting.",
+      "relevance": 2,
+      "relevance_reason": "Lawsuit against a major AI vendor over an AI-related safety incident is highly relevant for public sector AI governance.",
+      "relevance_source": "model",
+      "topics": [
+        "safety",
+        "regulation",
+        "vendors"
+      ],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-21-2a05",
+        "country": "Canada",
+        "country_code": "CAN",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Physical (death)"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Consumer services"
+        ],
+        "principles": [
+          "Accountability",
+          "Safety"
+        ],
+        "autonomy_level": "No-action autonomy (human support)",
+        "articles": 184,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "2bfb6748410052b2",
+      "kind": "incident",
+      "title": "Australia Considers Regulating AI Smart Glasses Amid Privacy Concerns",
+      "url": "https://oecd.ai/en/incidents/2026-09-21-8c37",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-21T00:00:00+00:00",
+      "first_seen": "2026-09-25T11:43:28.115504+00:00",
+      "summary": "Australia's government is considering regulations on AI-enabled smart glasses in public spaces due to privacy and harassment concerns. Studies show a high risk of misuse, prompting bans in some venues. Meta is expanding its AI smart glasses market, intensifying global debate over their societal impact.",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government or policy development on AI",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-21-8c37",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Psychological",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Consumer products"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "Medium-action autonomy (human-on-the-loop)",
+        "articles": 3,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "3cb6ea77f987195a",
+      "kind": "incident",
+      "title": "Bill Gates Warns of Catastrophic AI Risks, Calls for Federal Regulation",
+      "url": "https://oecd.ai/en/incidents/2026-09-21-d86b",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-21T00:00:00+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "Bill Gates, Microsoft co-founder, warned that artificial intelligence could potentially cause up to a billion deaths if misused, emphasizing the urgent need for strict federal regulation. He argued that self-regulation by tech companies is insufficient, highlighting the existential risks posed by powerful AI tools in…",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Involves a provider whose policies are monitored here",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "Microsoft_Enterprise_AI_Terms"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-21-d86b",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Physical (death)"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Accountability",
+          "Safety"
+        ],
+        "autonomy_level": "",
+        "articles": 1115,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "ac57227e3e147ba5",
+      "kind": "news",
+      "title": "ASD says prompt injection in AI cannot be fixed",
+      "url": "https://www.itnews.com.au/news/asd-says-prompt-injection-in-ai-cannot-be-fixed-629019",
+      "source_id": "itnews-security",
+      "source_name": "iTnews — Security",
+      "category": "Australian news",
+      "publisher": "iTnews",
+      "published": "2026-09-20T20:25:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Urges harness controls.",
+      "tldr": "ASD states that AI prompt injection cannot be fixed and advises implementing \"harness controls\".",
+      "relevance": 3,
+      "relevance_reason": "ASD's guidance on an unfixable AI security vulnerability is critical for public sector use.",
+      "relevance_source": "model",
+      "topics": [
+        "security",
+        "government_policy",
+        "public_sector"
+      ],
+      "related_policies": [
+        "ACSC_Information_Security_Manual_ISM"
+      ]
+    },
+    {
+      "id": "1a78c8c68afd4f11",
+      "kind": "news",
+      "title": "Anglicare Victoria secures its AI adoption",
+      "url": "https://www.itnews.com.au/news/anglicare-victoria-secures-its-ai-adoption-629020",
+      "source_id": "itnews-security",
+      "source_name": "iTnews — Security",
+      "category": "Australian news",
+      "publisher": "iTnews",
+      "published": "2026-09-20T20:12:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "Podcast: Director of IT Services Dean Mills.",
+      "tldr": "Anglicare Victoria has focused on securing its adoption of AI.",
+      "relevance": 1,
+      "relevance_reason": "Provides an example of an Australian organization securing its AI adoption, relevant for best practices.",
+      "relevance_source": "model",
+      "topics": [
+        "public_sector",
+        "security"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "cf8a30bafd985ccf",
+      "kind": "news",
+      "title": "Australia, the Land of Bluey, Tim-Tams, and Kylie Minogue: Not Having Those Pervert Glasses, Seeks to Pass \"World Leading\" Ban on Them",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1NWFdTb09aNFFCMGNrR3JYOGVjVWxyZmdmckRGQWYzaWg2ejlYQ3dVeUhDdlo3ekdrX1FJT0J4bk1TNDV1OGl1UnJfbEIySnFUWGhzdXRtV3ljTkJhY3RhTlhvUzFQSDNUOHFnOXJ0OFc",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "Futurism",
+      "published": "2026-09-20T18:01:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government considering a ban on smart glasses, impacting public sector use.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation",
+        "privacy"
+      ],
+      "related_policies": []
+    },
+    {
+      "id": "74331d1f1c2b3845",
+      "kind": "news",
+      "title": "AI firms spend billions – but won’t pay creators",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOOWFFTWhZbXpoUDM3ZnJudWJyd2JGeG8tLXByalVySTduSm1NRlBWQ1dLWnVRT0Jqd091MHFsOC1QOTRVZDN2bDZOY3ZtYVR6bVl4VEdFckhKNlYzcFJ2RHlsTldTQkNKb053NHZaWGYwTlhrM3hYcE5LNWVpWTRWSEViT3FEWjgyNy1uRGNTZC1wblBpd3hJTElRU0hrSVB5SlV5ek9mMlJ5R082dC15bTNiT0tNRDgzbDF1VUdPRTdaUlpkQzFfdHR4OEhMNnNXYUhIVFZmNGR3UFpPY2xLM2NhV2pRcGYyYlVBOWZDZWYwUXVwQU5PX0ZqUUlydG9HWlE",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "The Australian",
+      "published": "2026-09-20T09:55:00+00:00",
+      "first_seen": "2026-09-24T22:21:52.671727+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "Raises copyright and intellectual property issues, relevant to Australian AI policy and legal discussions.",
+      "relevance_source": "model",
+      "topics": [
+        "government_policy",
+        "regulation"
+      ],
+      "related_policies": []
+    },
+    {
       "id": "43fdfba8abf52d53",
       "kind": "incident",
       "title": "OpenAI AI Agents Breach External Systems, Including Australian Government Health Data",
