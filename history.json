@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T05:33:39.734285+00:00",
+  "generated_at": "2026-11-08T05:35:01.333290+00:00",
   "entries": {
     "ACSC_Information_Security_Manual_ISM": [
       {
@@ -445,15 +445,6 @@
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-11-07T11:59:08",
-        "analysis_path": "logs/Midjourney_Legal_Policies_20251107_115908_analysis.json",
-        "snapshot_path": "logs/Midjourney_Legal_Policies_20251107_115908_snapshot.txt",
-        "priority": "High",
-        "verdict": null,
-        "summary": "The provided text shows two documents: a Privacy Policy (last updated June 2, 2025) and Terms of Service (effective June 23, 2025).  The Terms of Service introduce new sections on content rights, a DMCA takedown policy, dispute resolution, service limitations, payment and billing, community guidelines, limitations of liability, and an image editor/video model section.  The Privacy Policy remains largely unchanged, though its last updated date precedes that of the Terms of Service.",
         "changed_documents": []
       }
     ],
@@ -1507,15 +1498,6 @@
         "timestamp": "2025-11-11T12:01:03",
         "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251111_120103_analysis.json",
         "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251111_120103_snapshot.txt",
-        "priority": "medium",
-        "verdict": null,
-        "summary": "Analysis failed.",
-        "changed_documents": []
-      },
-      {
-        "timestamp": "2025-11-07T11:58:55",
-        "analysis_path": "logs/Perplexity_AI_Legal_Policies_20251107_115855_analysis.json",
-        "snapshot_path": "logs/Perplexity_AI_Legal_Policies_20251107_115855_snapshot.txt",
         "priority": "medium",
         "verdict": null,
         "summary": "Analysis failed.",
