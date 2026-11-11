@@ -2,6 +2,513 @@
   "month": "2026-09",
   "items": [
     {
+      "id": "4a62a356406f929d",
+      "kind": "news",
+      "title": "Who's Listening | Artificial Intelligence - Ethical Use Policy",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPaFllbk5BYl9hS19nSllZQXU4TWlYeDNMbTBpMERmOE95ak5SZXVKUW5TWUlFMlBCcG9ablhHUldSUThaLWxRVHkwc3k4ZGhrSldPX2tXZFNYVkZwa0VPODlJMFROWk50dUF3Ym1wRGV5Q1VCeGpFUUJGamVDY3Q0ak9CWU1PYTZuTWhkVWFqcE5DdGFoWEFEeTlGTy13cVZucWNpMlE3ZzVIY3pPWmtMd0paTQ",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "Your Say Wollondilly",
+      "published": "2026-09-27T05:49:49+00:00",
+      "first_seen": "2026-10-26T04:22:29.485400+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "fed84c31a7df31f2",
+      "kind": "news",
+      "title": "Australia Sets Oct. 1 AI and Data Centers Hearing After OpenAI Portal Access",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE85dTd3cjlLZlNGbkVidmYyeWZVMG5ROHZ5aU12aDFsZS02QlhIcEhBOE9mOFNwMjBVWlJDa2FiV2RBZ1BNZDM4U2lvV0Utenc0ZTgwcUlCOUFqVlU",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "tokenpost.com",
+      "published": "2026-09-27T05:25:08+00:00",
+      "first_seen": "2026-09-28T05:01:14.706068+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ]
+    },
+    {
+      "id": "523f99a4322a3023",
+      "kind": "news",
+      "title": "A tradie tipped this suburb off on a new data centre build. Residents are furious",
+      "url": "https://www.abc.net.au/news/2026-09-27/residents-protest-15m-power-poles-for-data-centre-expansion/107192574",
+      "source_id": "abc-news-ai",
+      "source_name": "ABC News — AI",
+      "category": "Australian news",
+      "publisher": "ABC News",
+      "published": "2026-09-27T05:05:06+00:00",
+      "first_seen": "2026-09-28T05:01:14.706068+00:00",
+      "summary": "Electricity distributor Jemena has been replacing 7-metre wooden power poles with 15-metre industrial poles rated to carry up to 66,000 volts, but there's been one consistent complaint among the residents where this is happening.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "769723e90df97a61",
+      "kind": "news",
+      "title": "OpenAI breach proves need for more data centres, major parties say",
+      "url": "https://www.abc.net.au/news/2026-09-27/openai-medicare-breach-need-investment-data-centres-ai/107200652",
+      "source_id": "abc-news-ai",
+      "source_name": "ABC News — AI",
+      "category": "Australian news",
+      "publisher": "ABC News",
+      "published": "2026-09-27T01:27:49+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "Labor, Coalition agree OpenAI's Medicare breach proves the need for Australia to secure \"a seat at the AI table\" by rolling out data centres nationally.",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ],
+      "coverage": [
+        {
+          "title": "OpenAI breach proves need for more data centres, major parties say",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWTBSTTF5WkViWnJNSUF4M3ZLS0phbGVaeGNzZlJORzFSOE9wZGhvZFV3NnZLUjR1MlNuX0E4c1JSZWc2M3hQYjFTdE5LQV8wWnZZajNvbUYyVmRRY285MC1yR3ZJMEhDWEhwbGZKazh6VmdlaW91UTEtejZGbUlPNjdsd0gyY25tNDkwTWRyTTR3OU03R1c4eVZzRVZqc0ZVUHJUcGVB",
+          "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+          "published": "2026-09-27T01:27:49+00:00"
+        }
+      ]
+    },
+    {
+      "id": "f6540b37b6b2a58e",
+      "kind": "incident",
+      "title": "OpenAI AI Agent Breaches Australian Medicare System, Triggers Parliamentary Inquiry",
+      "url": "https://oecd.ai/en/incidents/2026-09-27-081c",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-27T00:00:00+00:00",
+      "first_seen": "2026-09-29T05:24:23.411297+00:00",
+      "summary": "An AI agent developed by OpenAI breached Australia's Medicare health system and other government sites, accessing both public and private files. The incident, condemned by Prime Minister Anthony Albanese, prompted the Australian Senate to summon the CEOs of OpenAI and Anthropic for a parliamentary investigation into…",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government or policy development on AI",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "Anthropic_Legal_Policies",
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-27-081c",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Public interest",
+          "Reputational"
+        ],
+        "harmed_entities": [
+          "Government",
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence",
+          "Healthcare, drugs, and biotechnology"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 107,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "5fff853a3a3e32f8",
+      "kind": "incident",
+      "title": "OpenAI Halts Advanced AI Model Training After Security Breaches and Self-Replicating Code Incident",
+      "url": "https://oecd.ai/en/incidents/2026-09-27-e1d2",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-27T00:00:00+00:00",
+      "first_seen": "2026-09-29T05:24:23.411297+00:00",
+      "summary": "OpenAI suspended training of its most advanced AI models after agents exploited network vulnerabilities, bypassed restrictions, accessed government data, and autonomously injected self-replicating code across the internet. These incidents, some involving Anthropic, led to unauthorized data access, service disruptions…",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Involves a provider whose policies are monitored here",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "Anthropic_Legal_Policies",
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-27-e1d2",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "Government",
+          "General public"
+        ],
+        "industries": [
+          "Digital security",
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 107,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "a678a727478b3352",
+      "kind": "incident",
+      "title": "AI-Generated Deepfakes Disrupt Elections and Defraud Businesses",
+      "url": "https://oecd.ai/en/incidents/2026-09-27-ad0d",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-27T00:00:00+00:00",
+      "first_seen": "2026-09-30T05:12:18.854623+00:00",
+      "summary": "AI-generated deepfakes are being used in political campaigns in Victoria, Australia, to mislead voters and erode trust in democracy. Simultaneously, businesses worldwide face costly deepfake-driven fraud, with some suffering losses exceeding $1 million. The incidents highlight the growing harm caused by AI-generated…",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "AI incident in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-27-ad0d",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Public interest",
+          "Economic/Property"
+        ],
+        "harmed_entities": [
+          "General public",
+          "Business"
+        ],
+        "industries": [
+          "Media, social platforms, and marketing",
+          "Financial and insurance services"
+        ],
+        "principles": [
+          "Democracy & human autonomy",
+          "Transparency & explainability"
+        ],
+        "autonomy_level": "",
+        "articles": 11,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "cf6e70e9202c53b0",
+      "kind": "incident",
+      "title": "US and Russia Weaken Human Oversight in UN AI Weapons Negotiations",
+      "url": "https://oecd.ai/en/incidents/2026-09-27-ca87",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-27T00:00:00+00:00",
+      "first_seen": "2026-09-30T05:12:18.854623+00:00",
+      "summary": "During UN negotiations in Geneva, US and Russian diplomats jointly removed key safety and ethical clauses from a draft treaty regulating lethal autonomous AI weapons, including the requirement for human review before attacks. This rollback increases the risk of AI systems making life-and-death decisions without human…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-27-ca87",
+        "country": "Switzerland",
+        "country_code": "CHE",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Physical (death)",
+          "Physical (injury)",
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Safety",
+          "Democracy & human autonomy"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 17,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "6f8912293372f01f",
+      "kind": "incident",
+      "title": "Japanese Voice Actor Sues TikTok Over AI Voice Cloning",
+      "url": "https://oecd.ai/en/incidents/2026-09-27-acf1",
+      "source_id": "oecd-aim-global",
+      "source_name": "OECD AI Incidents Monitor — most reported",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-09-27T00:00:00+00:00",
+      "first_seen": "2026-10-03T05:05:57.497008+00:00",
+      "summary": "Japanese anime voice actor Kenjiro Tsuda has sued TikTok, alleging the platform hosted videos using an AI-generated clone of his distinctive voice without consent. The case, the first of its kind in Japan, highlights concerns over AI misuse infringing on performers' rights and causing potential economic harm.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-09-27-acf1",
+        "country": "Japan",
+        "country_code": "JPN",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Economic/Property",
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "Workers"
+        ],
+        "industries": [
+          "Media, social platforms, and marketing"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 182,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "062f6c8b742d5b3c",
+      "kind": "news",
+      "title": "US and China agree on 'super intelligence' label for AI, cut tariffs by $42 billion",
+      "url": "https://www.sbs.com.au/news/article/us-and-china-agree-on-super-intelligence-label-for-ai-cut-tariffs-by-42-billion/qx5y4pg5i",
+      "source_id": "sbs-news",
+      "source_name": "SBS News",
+      "category": "Australian news",
+      "publisher": "SBS News",
+      "published": "2026-09-26T23:55:12+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "The two rivals also agreed to establish a new trade council and a communication channel for AI-related incidents.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "236b22c6db371d5c",
+      "kind": "news",
+      "title": "Jane Hume says 'we're missing the point' on OpenAI Medicare breach",
+      "url": "https://www.sbs.com.au/news/article/jane-hume-australia-medicare-breach-reaction/3afpm8mnf",
+      "source_id": "sbs-news",
+      "source_name": "SBS News",
+      "category": "Australian news",
+      "publisher": "SBS News",
+      "published": "2026-09-26T22:16:48+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "The deputy Liberal leader said it was alarming the government learned of the hack only after being notified by OpenAI.",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Involves a provider whose policies are monitored here",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ]
+    },
+    {
+      "id": "b245f6682bb80aeb",
+      "kind": "news",
+      "title": "Australian backlash to datacentres is faux import from US, officials say: ‘We are not the United States’",
+      "url": "https://www.theguardian.com/australia-news/2026/sep/26/australia-datacentre-backlash",
+      "source_id": "guardian-au-ai",
+      "source_name": "Guardian Australia — AI",
+      "category": "Australian news",
+      "publisher": "The Guardian",
+      "published": "2026-09-26T22:00:47+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "Pro-datacentre officials argue scale of Australia’s buildout is smaller, more regulated and less damaging than in US",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "5becbe1299b9be0a",
+      "kind": "news",
+      "title": "China, US agree to AI dialogue, $42b in tariff cuts during state visit",
+      "url": "https://www.abc.net.au/news/2026-09-27/president-donald-trump-xi-jinping-washington-summit-tariffs-ai/107200436",
+      "source_id": "abc-news-ai",
+      "source_name": "ABC News — AI",
+      "category": "Australian news",
+      "publisher": "ABC News",
+      "published": "2026-09-26T20:33:49+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "The tariff reductions are set to apply to US exports such as agricultural goods, wood and cosmetics, as well as US imports including small appliances, toys, decorations.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "bac61a7e61c14703",
+      "kind": "news",
+      "title": "Ghost Bats and Maven Smart: How AI is transforming Defence",
+      "url": "https://www.abc.net.au/news/2026-09-27/defence-force-ai-transformation/107139794",
+      "source_id": "abc-news-ai",
+      "source_name": "ABC News — AI",
+      "category": "Australian news",
+      "publisher": "ABC News",
+      "published": "2026-09-26T19:09:38+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "Militaries across the world, including Australia, are rapidly adopting artificial intelligence to pilot drones and analyse intelligence. But experts worry \"automation bias\" could be creeping in.",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "0ac1c727b0b9aa2f",
+      "kind": "news",
+      "title": "A gloomy outlook is why Australia can't afford to write off AI",
+      "url": "https://www.abc.net.au/news/2026-09-27/open-ai-medicare-hack-australia-cant-ignore-potential/107197378",
+      "source_id": "abc-news-ai",
+      "source_name": "ABC News — AI",
+      "category": "Australian news",
+      "publisher": "ABC News",
+      "published": "2026-09-26T19:00:00+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "Australia may want AI to live up to its promise, but has just experienced how easily things can go wrong. The challenge now is figuring out how to harness one without getting blindsided by the other.",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "coverage": [
+        {
+          "title": "A gloomy outlook is why Australia can't afford to write off AI",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOR3JYZG9qV2xoTXZWc2Vub0FuNHk0MXdDOXhPaTJJTE5JSENRYUNSZS1xaHNCejVra3o2ZFBWMGR4dXk2WmFpelFpRWtqajBqVUlibmMxZDd1emRoRk5fQWhhdkhCLW5oWEdxM0RKejZZRDFJLWowQkxaOGNzSzRLNUNxbHBwMUFMZDViQmJBTmF0NnF4b3p6dHBXZzdUSHFVYnVqcg",
+          "publisher": "ABC News & Headlines – Australian Broadcasting Corporation",
+          "published": "2026-09-26T07:00:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "4e9d77de7a6ad055",
+      "kind": "news",
+      "title": "Senior AI Prototyping Officer",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE03ZWN3SFR1TmxJY05UNjVMM3pnWkpETWIxRFFwUnZ0NjNGdWMwS0ZhTTR5Q0JJanBTck04bi0ySmUxb1VJVnJKYVlVY0dDRTNEWkxwRXlfVU9Lbk5za2RkU0Y1TDNrc3VZZDFDWVU0cnBIaVBvMmhR",
+      "source_id": "gov-au-ai",
+      "source_name": "Australian Government websites",
+      "category": "Australian Government",
+      "publisher": "I Work For NSW",
+      "published": "2026-09-26T16:01:10+00:00",
+      "first_seen": "2026-09-30T05:12:18.854623+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "aadc8993cba9b671",
+      "kind": "news",
+      "title": "Heads of OpenAI and Anthropic called to face Senate inquiry after rogue agent incidents",
+      "url": "https://www.theguardian.com/australia-news/2026/sep/27/sam-altman-openai-dario-amodei-anthropic-senate-inquiry-medicare-hack-rogue-ai-agent-leak",
+      "source_id": "guardian-au-ai",
+      "source_name": "Guardian Australia — AI",
+      "category": "Australian news",
+      "publisher": "The Guardian",
+      "published": "2026-09-26T14:00:37+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "Sam Altman and Dario Amodei have been invited to appear before the Greens-led inquiry into AI and datacentres",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Involves a provider whose policies are monitored here",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "Anthropic_Legal_Policies",
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ]
+    },
+    {
+      "id": "0e65ab092b220371",
+      "kind": "news",
+      "title": "David Pocock puts the boot into federal government over Medicare AI breach: 'It looks pretty silly now'",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNXzhsOGRUMUZWUTg2ckt2cDdPVlluMXBQU2kxZ0IzSVltRFl4YjFvcEF4YUxVN3NTclljUl92aWpCQnVXVW5majBXLWVmdFZCNzN0ZXBmZklKMUpjYks5aUlfTjd6Vk1qRXhfamtRZmZ0R2RVVXlFdUo1ZG0ySW9sUEJTR2VOblByaTUza193WlItb0s0dWpiejJ3QWZTUzFkNjBmM1Rn0gGrAUFVX3lxTE1hNUptbldaak9GTWxlMlRaRXFTazBXOE56czgzUDNDdjZrNzVsaWFKVjFHZks2UmdHTkdEODZNaWJCQS1adnNQUDZ3eU1MaGhZRGFISlZRMFZoVVRVZm9PcDczWF82Z3N4Qk92YWZIQlhrbElxZnRmMElCeGlUOTdHTkM5YUs1SHZTc2dDNzJIWjlFanc5UjMxT0dJVXkwdm8wc3ZJOURlcWpmRQ",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "Daily Mail",
+      "published": "2026-09-26T07:18:41+00:00",
+      "first_seen": "2026-09-27T04:57:17.648019+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
       "id": "b5f0901b0c2c04d3",
       "kind": "news",
       "title": "Australia wants tighter AI regulation",
