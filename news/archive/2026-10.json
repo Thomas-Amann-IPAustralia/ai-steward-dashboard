@@ -1,0 +1,496 @@
+{
+  "month": "2026-10",
+  "items": [
+    {
+      "id": "c4504e11452b8ecc",
+      "kind": "news",
+      "title": "Meta wants people to use ‘AI agents’ to do daily tasks for them. Here’s why that’s a problem",
+      "url": "https://theconversation.com/meta-wants-people-to-use-ai-agents-to-do-daily-tasks-for-them-heres-why-thats-a-problem-292962",
+      "source_id": "conversation-ai",
+      "source_name": "The Conversation — AI",
+      "category": "Analysis",
+      "publisher": "The Conversation",
+      "published": "2026-10-01T02:49:21+00:00",
+      "first_seen": "2026-10-01T05:27:22.305795+00:00",
+      "summary": "Meta can’t beat its rivals on raw AI capability. With its new Muse agent, it doesn’t need to",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "31828e5644e37d6a",
+      "kind": "news",
+      "title": "Three experts appointed to lead SA's Royal Commission into AI",
+      "url": "https://www.abc.net.au/news/2026-10-01/three-experts-appointed-to-lead-sa-s-royal-commission-into-ai/107215456",
+      "source_id": "abc-news-ai",
+      "source_name": "ABC News — AI",
+      "category": "Australian news",
+      "publisher": "ABC News",
+      "published": "2026-10-01T01:24:46+00:00",
+      "first_seen": "2026-10-01T05:27:22.305795+00:00",
+      "summary": "Three experts leading South Australia's Royal Commission into Artificial Intelligence will begin their work today amid the \"rapid pace\" of changes the technology is already bringing to the workforce.",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI development in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "d24d105df4c13c1b",
+      "kind": "news",
+      "title": "Data centre development focus: the evolving regulatory landscape across Australia",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPMDhWOWhtRFQ2RFNMSndDX2ZCRnRIUzFvT0pmN2ZCTkVMcEVJX2FIbXU5bVA5aHVfbEVJNVRLOTZlNExXLVlRbm9NeVlFVDhsNm9tVzJqeXM1YVFUQWVKaE5vTzIyRUVuQUNSUlA4UzN3Z1hDeW53Y0o0cTJHcTZKM2FmMDBOR3FmZDVHTFlxUEpJTmhOVGRqQjl6QU9WS09XMVlLVTBhTXc4Qm44ZTdsQmlyc2s",
+      "source_id": "au-public-sector-ai",
+      "source_name": "APS & government AI coverage",
+      "category": "Australian news",
+      "publisher": "Johnson Winter Slattery",
+      "published": "2026-10-01T00:39:02+00:00",
+      "first_seen": "2026-10-03T05:05:57.497008+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government or policy development on AI",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "2b911af7840a1878",
+      "kind": "news",
+      "title": "Australian organisations prioritise AI guardrails as security visibility gaps widen",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQRTN6cjI5dUVCZUNsSTFEMTY5UU54b01SeEJLOG1Uc3JPMVVfT1AzMHU1NW1XX3ZZUkhoX0o3QTVoTTRrSllnTWw0SWZxU0Nna2VXa2VOTWp1bjJ2czd4NVFlUThfTUdpNTlqcUMyajhQX2Z0WTduY3ZvVjAyNDJYUWE3WkNuczlYREVHSjdSV2pnUHZRSXd1ZUZiYkZuaVl4TTA0UFpUdE5yZVRVeENTTmZDTFRDbWlpaGhnN1dFSW52RzBNamtsRVJiRQ",
+      "source_id": "au-ai-regulation",
+      "source_name": "Australian AI regulation coverage",
+      "category": "Australian news",
+      "publisher": "iTWire",
+      "published": "2026-10-01T00:02:07+00:00",
+      "first_seen": "2026-10-01T05:27:22.305795+00:00",
+      "summary": "",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "Australian government or policy development on AI",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": []
+    },
+    {
+      "id": "b52517660a1bfcea",
+      "kind": "news",
+      "title": "The Den frees up 10-15 hours a week to grow with ChatGPT Work",
+      "url": "https://openai.com/index/the-den-family-social",
+      "source_id": "openai-news",
+      "source_name": "OpenAI",
+      "category": "AI providers",
+      "publisher": "OpenAI",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-02T05:14:59.339141+00:00",
+      "summary": "As it opens a new location, the social club prepares grant applications in 2 hours instead of 3 days and liquor-license materials in 3 hours instead of 4 days.",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Involves a provider whose policies are monitored here",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "OpenAI_Consumer_Terms"
+      ]
+    },
+    {
+      "id": "b7ba93263fe9e2bd",
+      "kind": "incident",
+      "title": "Widespread Unauthorized AI Access to Sensitive Data in Enterprises",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-48f5",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-03T05:05:57.497008+00:00",
+      "summary": "A Delinea report reveals that in Australia, India, and Singapore, nearly all surveyed enterprises experienced AI tools or agents accessing sensitive data beyond authorized limits, despite having formal AI data access policies. Enforcement and real-time detection of such violations remain weak, leading to significant…",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "AI incident in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-48f5",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "Business"
+        ],
+        "industries": [
+          "Digital security",
+          "IT infrastructure and hosting"
+        ],
+        "principles": [
+          "Privacy & data governance",
+          "Robustness & digital security"
+        ],
+        "autonomy_level": "",
+        "articles": 6,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "412d03fc89be391c",
+      "kind": "incident",
+      "title": "RBA Warns of AI-Driven Financial Risks to Australia",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-16d8",
+      "source_id": "oecd-aim-australia",
+      "source_name": "OECD AI Incidents Monitor — Australia",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-03T05:05:57.497008+00:00",
+      "summary": "The Reserve Bank of Australia warns that while domestic financial risks remain low, global threats—including volatility from AI investment and potential AI-facilitated cyber attacks—could destabilize Australia's economy. The RBA highlights the AI boom as a plausible channel for international financial shocks impacting…",
+      "tldr": "",
+      "relevance": 3,
+      "relevance_reason": "AI incident in Australia",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-16d8",
+        "country": "Australia",
+        "country_code": "AUS",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Economic/Property",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Financial and insurance services",
+          "Digital security"
+        ],
+        "principles": [
+          "Robustness & digital security",
+          "Accountability"
+        ],
+        "autonomy_level": "",
+        "articles": 3,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "a0375a8a0cd77ab9",
+      "kind": "incident",
+      "title": "AI Agents Attempt Unauthorized Access to US and Canadian Government Websites",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-e356",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-03T05:05:57.497008+00:00",
+      "summary": "AI agents, reportedly linked to Google and OpenAI, aggressively attempted to hack US and Canadian government websites, targeting public data repositories. The incidents, identified by research lab Transluce, failed to compromise any data but highlight rising risks of AI-driven cyberattacks against critical…",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "Involves a provider whose policies are monitored here",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [
+        "Google_AI_Policies",
+        "OpenAI_Consumer_Terms",
+        "OpenAI_Enterprise_and_API_Terms"
+      ],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-e356",
+        "country": "Canada",
+        "country_code": "CAN",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "Government"
+        ],
+        "industries": [
+          "Government, security, and defence",
+          "Digital security"
+        ],
+        "principles": [
+          "Robustness & digital security",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 85,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "9c20e4c90a7e35bb",
+      "kind": "incident",
+      "title": "Pentagon Launches Autonomous Warfare Command to Expand AI and Drone Capabilities",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-8fc5",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-03T05:05:57.497008+00:00",
+      "summary": "US Defense Secretary Pete Hegseth announced the creation of the Autonomous Warfare Command, dedicated to developing and deploying AI-driven autonomous systems and drones across the US military. The move reflects a shift toward AI-enabled warfare, raising concerns about future risks and potential harm from autonomous…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-8fc5",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Physical (death)",
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Accountability",
+          "Democracy & human autonomy"
+        ],
+        "autonomy_level": "High-action autonomy (human-out-of-the-loop)",
+        "articles": 52,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "c6718ea642945b38",
+      "kind": "incident",
+      "title": "Trump Consults AI Chatbot Grok Before Military Operation to Capture Maduro",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-6e9a",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-04T05:31:46.766471+00:00",
+      "summary": "In December 2025, U.S. President Donald Trump consulted Grok, an AI chatbot developed by Elon Musk's company, about Venezuelan public reaction to the potential capture of President Nicolás Maduro. The AI's analysis influenced the decision-making process preceding a U.S. military operation that led to Maduro's capture…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-6e9a",
+        "country": "Venezuela",
+        "country_code": "VEN",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "Government",
+          "General public"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Accountability",
+          "Respect of human rights"
+        ],
+        "autonomy_level": "",
+        "articles": 124,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "1b778f821ecedffe",
+      "kind": "incident",
+      "title": "Arizona Court Overturns Sentence Due to AI-Generated Victim Video",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-d6b0",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-04T05:31:46.766471+00:00",
+      "summary": "An Arizona appeals court vacated Gabriel Horcasitas' 10-year manslaughter sentence after finding that an AI-generated video depicting the deceased victim addressing the judge was unreliable and prejudiced the sentencing process. The court ruled the AI video rendered the sentencing fundamentally unfair, requiring a new…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-d6b0",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Human or fundamental rights"
+        ],
+        "harmed_entities": [
+          "Other"
+        ],
+        "industries": [
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Accountability",
+          "Transparency & explainability"
+        ],
+        "autonomy_level": "",
+        "articles": 82,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "d6ce4791a720759c",
+      "kind": "incident",
+      "title": "US Tech Executive Arrested for Smuggling $300M Nvidia AI Chips to China",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-4cc8",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-04T05:31:46.766471+00:00",
+      "summary": "Greg Lui, head of Earthmade Computer in California, was arrested for illegally exporting over $300 million worth of Nvidia AI servers and chips to China via Malaysia and Singapore, violating US export controls. The smuggled hardware could enhance China's AI and military capabilities, posing national security risks.",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "AI risk, safety or governance development",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-4cc8",
+        "country": "United States",
+        "country_code": "USA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "Government",
+          "General public"
+        ],
+        "industries": [
+          "IT infrastructure and hosting",
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Accountability"
+        ],
+        "autonomy_level": "",
+        "articles": 28,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "5870ffe1c520bd5c",
+      "kind": "incident",
+      "title": "AI-Generated Deepfakes Flood Brazilian Election Campaigns Despite Ban",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-d22d",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-04T05:31:46.766471+00:00",
+      "summary": "During Brazil's 2026 general election first round, over 550 AI-generated deepfake videos and images circulated widely on social media, targeting political figures like Lula and Flávio Bolsonaro. Despite legal prohibitions, these manipulated contents misled voters, undermined electoral integrity, and challenged…",
+      "tldr": "",
+      "relevance": 1,
+      "relevance_reason": "General AI news",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-d22d",
+        "country": "Brazil",
+        "country_code": "BRA",
+        "harm_level": "AI incident",
+        "harm_types": [
+          "Reputational",
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "General public",
+          "Other"
+        ],
+        "industries": [
+          "Media, social platforms, and marketing",
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Democracy & human autonomy",
+          "Transparency & explainability"
+        ],
+        "autonomy_level": "",
+        "articles": 21,
+        "aiid_ids": []
+      }
+    },
+    {
+      "id": "6fd009bcab52cd79",
+      "kind": "incident",
+      "title": "UK MI5 Warns of Chinese-Linked AI Research Supporting Espionage",
+      "url": "https://oecd.ai/en/incidents/2026-10-01-7ac6",
+      "source_id": "oecd-aim-government",
+      "source_name": "OECD AI Incidents Monitor — government, worldwide",
+      "category": "AI incidents",
+      "publisher": "OECD AI Incidents Monitor",
+      "published": "2026-10-01T00:00:00+00:00",
+      "first_seen": "2026-10-06T06:04:46.860630+00:00",
+      "summary": "UK intelligence agency MI5 warned that over 100 UK-affiliated researchers participated in AI and cybersecurity projects funded by China's CGTRI, which is closely tied to the Chinese Ministry of State Security. MI5 claims this research has been used to enhance Chinese espionage capabilities, posing national security…",
+      "tldr": "",
+      "relevance": 2,
+      "relevance_reason": "AI incident involving government",
+      "relevance_source": "keywords",
+      "topics": [],
+      "related_policies": [],
+      "incident": {
+        "source": "oecd_aim",
+        "incident_id": "2026-10-01-7ac6",
+        "country": "United Kingdom",
+        "country_code": "GBR",
+        "harm_level": "AI hazard",
+        "harm_types": [
+          "Public interest"
+        ],
+        "harmed_entities": [
+          "Government"
+        ],
+        "industries": [
+          "Digital security",
+          "Government, security, and defence"
+        ],
+        "principles": [
+          "Respect of human rights",
+          "Democracy & human autonomy"
+        ],
+        "autonomy_level": "",
+        "articles": 19,
+        "aiid_ids": []
+      }
+    }
+  ]
+}
