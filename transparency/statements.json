@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-27T17:50:37.077040+10:00",
+  "generated_at": "2026-11-28T17:40:15.250464+10:00",
   "register": {
     "url": "https://www.digital.gov.au/policy/ai/list-of-transparency-statements",
-    "last_checked": "2026-11-27T17:50:37.077040+10:00",
+    "last_checked": "2026-11-28T17:40:15.250464+10:00",
     "last_success": "2026-11-27T17:50:37.077040+10:00",
     "page_updated": "2026-06-23",
-    "consecutive_failures": 0,
-    "last_error": "",
+    "consecutive_failures": 1,
+    "last_error": "register read rejected: found 0 statement link(s), fewer than the 50 expected",
     "document": {
       "etag": null,
       "last_modified": null,
@@ -14,9 +14,9 @@
       "archived_at": null,
       "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
       "http_status": null,
-      "fetch_ms": 33347
+      "fetch_ms": 122668
     },
-    "status": "ok",
+    "status": "degraded",
     "counts": {
       "mandatory": 95,
       "voluntary": 21
@@ -35,10 +35,10 @@
       "document": {
         "doc_id": "y-artificial-intelligence-transparency-statement-04c06de0",
         "label": "Australian Fisheries Management Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 964,
+        "fetch_ms": 774,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -48,7 +48,7 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00",
@@ -68,10 +68,10 @@
       "document": {
         "doc_id": "reporting-obligations-ai-transparency-statement-7cc07524",
         "label": "Department of Agriculture, Fisheries and Forestry",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3944,
+        "fetch_ms": 122302,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -82,11 +82,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "administrative-review-tribunal",
@@ -100,10 +101,10 @@
       "document": {
         "doc_id": "ai-transparency-statement-84d0cdf9",
         "label": "Administrative Review Tribunal",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 16270,
+        "fetch_ms": 2284,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -114,11 +115,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "attorney-generals-department",
@@ -132,10 +134,10 @@
       "document": {
         "doc_id": "t-artificial-intelligence-transparency-statement-ca21c31c",
         "label": "Attorney-General's Department",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3972,
+        "fetch_ms": 122226,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -146,11 +148,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-law-reform-commission",
@@ -164,20 +167,20 @@
       "document": {
         "doc_id": "corporate-information-ai-transparency-statement-488ceca7",
         "label": "Australian Law Reform Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 739,
+        "fetch_ms": 568,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "c005ddbf2adf63b4cff8489e6593e142d22abf563e65316fb7467c75b0d0b8de",
         "length": 5715,
         "etag": null,
-        "last_modified": "Fri, 27 Nov 2026 07:51:36 GMT",
+        "last_modified": "Sat, 28 Nov 2026 07:46:26 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -196,10 +199,10 @@
       "document": {
         "doc_id": "about-corporate-information-ai-statement-eabf187d",
         "label": "Federal Court of Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": null,
-        "fetch_ms": 4434,
+        "fetch_ms": 2636,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -212,7 +215,7 @@
         "last_modified": null,
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_changed": "2026-10-02T15:08:30.234254+10:00"
       },
       "status": "ok"
@@ -229,10 +232,10 @@
       "document": {
         "doc_id": "ai-transparency-statement-d82532f5",
         "label": "National Anti-Corruption Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4149,
+        "fetch_ms": 121979,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -243,15 +246,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 18,
         "diff_removed": 13,
-        "cosmetic_lines": 1
+        "cosmetic_lines": 1,
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "office-of-parliamentary-counsel",
@@ -265,10 +269,10 @@
       "document": {
         "doc_id": "corporate-reporting-corporate-reporting-48a856ea",
         "label": "Office of Parliamentary Counsel",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3197,
+        "fetch_ms": 2181,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -279,15 +283,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 5,
         "diff_removed": 8,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "office-of-the-australian-information-commissioner",
@@ -301,10 +306,10 @@
       "document": {
         "doc_id": "orate-information-oaic-ai-transparency-statement-324e4db8",
         "label": "Office of the Australian Information Commissioner",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 36,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 37,
         "http_status": null,
-        "fetch_ms": 4874,
+        "fetch_ms": 2905,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -315,10 +320,10 @@
         "extractor": "trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-10-22T14:14:14.354105+10:00",
-        "last_error": "grew: 5098 chars is 258% of the stored 1977 chars, above the 250% ceiling",
+        "last_error": "too_short: 330 chars is below the 500 char minimum",
         "status": "suspect_scrape",
         "last_changed": "2026-09-25T23:11:58.323739+10:00",
-        "suspect_length": 5098
+        "suspect_length": 330
       },
       "status": "failing"
     },
@@ -334,10 +339,10 @@
       "document": {
         "doc_id": "about-ai-transparency-statement-e7edbff6",
         "label": "Office of the Commonwealth Ombudsman",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": null,
-        "fetch_ms": 3228,
+        "fetch_ms": 3064,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -350,7 +355,7 @@
         "last_modified": null,
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_changed": "2026-10-02T15:08:30.234254+10:00"
       },
       "status": "ok"
@@ -367,10 +372,10 @@
       "document": {
         "doc_id": "about-us-ai-transparency-statement-6f925fbe",
         "label": "Office of the Director of Public Prosecutions",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 2876,
+        "fetch_ms": 2299,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -381,11 +386,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "office-of-the-inspector-general-of-intelligence-and-security",
@@ -399,10 +405,10 @@
       "document": {
         "doc_id": "resources-reporting-and-accountability-726aad48",
         "label": "Office of the Inspector-General of Intelligence and Security",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 5120,
+        "fetch_ms": 2451,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -413,15 +419,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 471 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 6,
         "diff_removed": 5,
-        "cosmetic_lines": 4
+        "cosmetic_lines": 4,
+        "suspect_length": 471
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "office-of-the-special-investigator",
@@ -435,10 +442,10 @@
       "document": {
         "doc_id": "ible-use-ai-government-ai-transparency-statement-26c35e57",
         "label": "Office of the Special Investigator",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 5600,
+        "fetch_ms": 122085,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -449,11 +456,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-energy-regulator",
@@ -467,10 +475,10 @@
       "document": {
         "doc_id": "s-artificial-intelligence-transparency-statement-f2af0cc4",
         "label": "Australian Energy Regulator",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3228,
+        "fetch_ms": 2082,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -481,15 +489,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 1,
         "diff_removed": 9,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "bureau-of-meteorology",
@@ -503,10 +512,10 @@
       "document": {
         "doc_id": "nce-and-accountability-commitments-and-reporting-7d0c2162",
         "label": "Bureau of Meteorology",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
-        "http_status": 200,
-        "fetch_ms": 658,
+        "http_status": 304,
+        "fetch_ms": 433,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -516,9 +525,9 @@
         "last_modified": "Fri, 27 Nov 2026 00:26:21 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
-        "status": "analysis_pending",
+        "status": "not_modified",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 2,
@@ -539,20 +548,20 @@
       "document": {
         "doc_id": "s-artificial-intelligence-transparency-statement-23e888aa",
         "label": "Clean Energy Regulator",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 281,
+        "fetch_ms": 246,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "74b261c7ae41d053d615bb7dd904b25ad776b4f095b74ff197afa146c467ec6f",
         "length": 8985,
-        "etag": "\"1795765136\"",
-        "last_modified": "Fri, 27 Nov 2026 07:38:56 GMT",
+        "etag": "\"1795831198\"",
+        "last_modified": "Sat, 28 Nov 2026 01:59:58 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -571,10 +580,10 @@
       "document": {
         "doc_id": "artificial-intelligence-transparency-statement-44f81863",
         "label": "Climate Change Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3834,
+        "fetch_ms": 2883,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -585,11 +594,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-climate-change-energy-the-environment-and-water",
@@ -603,10 +613,10 @@
       "document": {
         "doc_id": "nformation-public-data-ai-transparency-statement-01ef7b56",
         "label": "Department of Climate Change, Energy, the Environment and Water",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4503,
+        "fetch_ms": 2915,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -617,11 +627,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "great-barrier-reef-marine-park-authority",
@@ -630,15 +641,15 @@
       "obligation": "mandatory",
       "url": "https://www2.gbrmpa.gov.au/artificial-intelligence-ai-transparency-statement",
       "first_seen": "2026-09-25T23:11:58.323739+10:00",
-      "statement_date": "2026-11-01",
+      "statement_date": "2025-11-01",
       "last_change": null,
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-9bf719cd",
         "label": "Great Barrier Reef Marine Park Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 16573,
+        "fetch_ms": 122446,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -649,15 +660,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 5,
         "diff_removed": 5,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-research-council",
@@ -671,10 +683,10 @@
       "document": {
         "doc_id": "arc-arc-strategies-and-policies-ai-transparency-f0ec682a",
         "label": "Australian Research Council",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3985,
+        "fetch_ms": 2442,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -685,11 +697,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-education",
@@ -698,15 +711,15 @@
       "obligation": "mandatory",
       "url": "https://www.education.gov.au/about-department/corporate-reporting/artificial-intelligence-ai-transparency-statement",
       "first_seen": "2026-09-25T23:11:58.323739+10:00",
-      "statement_date": "2026-10-01",
+      "statement_date": "2026-05-05",
       "last_change": null,
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-4f532692",
         "label": "Department of Education",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 6063,
+        "fetch_ms": 122479,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -717,15 +730,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 54,
         "diff_removed": 28,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "tertiary-education-quality-and-standards-agency",
@@ -739,10 +753,10 @@
       "document": {
         "doc_id": "ing-and-accountability-ai-transparency-statement-ae597dad",
         "label": "Tertiary Education Quality and Standards Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3317,
+        "fetch_ms": 15266,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -753,11 +767,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "asbestos-and-silica-safety-and-eradication-agency",
@@ -771,10 +786,10 @@
       "document": {
         "doc_id": "ai-transparency-statement-6e7066b4",
         "label": "Asbestos and Silica Safety and Eradication Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4945,
+        "fetch_ms": 2281,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -785,11 +800,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-skills-quality-authority-national-vocational-education-and-training-r",
@@ -803,10 +819,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-97e46c2f",
         "label": "Australian Skills Quality Authority (National Vocational Education and Training Regulator)",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4644,
+        "fetch_ms": 3221,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -817,11 +833,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 471 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 471
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-employment-and-workplace-relations",
@@ -835,10 +852,10 @@
       "document": {
         "doc_id": "rporate-reporting-dewr-ai-transparency-statement-94715064",
         "label": "Department of Employment and Workplace Relations",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3338,
+        "fetch_ms": 122133,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -849,11 +866,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "fair-work-commission",
@@ -862,15 +880,15 @@
       "obligation": "mandatory",
       "url": "https://www.fwc.gov.au/about-us/artificial-intelligence-transparency-statement",
       "first_seen": "2026-09-25T23:11:58.323739+10:00",
-      "statement_date": "2026-10-08",
+      "statement_date": "2026-02-03",
       "last_change": null,
       "document": {
         "doc_id": "s-artificial-intelligence-transparency-statement-ce22ae72",
         "label": "Fair Work Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3360,
+        "fetch_ms": 2392,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -881,16 +899,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 338 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 9,
         "diff_removed": 5,
         "cosmetic_lines": 3,
-        "suspect_length": 123
+        "suspect_length": 338
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "office-of-the-fair-work-ombudsman",
@@ -904,10 +922,10 @@
       "document": {
         "doc_id": "responsible-use-of-ai-ai-transparency-statement-d6c51f36",
         "label": "Office of the Fair Work Ombudsman",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4255,
+        "fetch_ms": 122445,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -918,11 +936,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "safe-work-australia",
@@ -936,10 +955,10 @@
       "document": {
         "doc_id": "ications-and-resources-ai-transparency-statement-dd02caaa",
         "label": "Safe Work Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3999,
+        "fetch_ms": 2325,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -950,11 +969,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "seafarers-safety-rehabilitation-and-compensation-authority",
@@ -968,10 +988,10 @@
       "document": {
         "doc_id": "corporate-publications-ai-transparency-statement-8f8d20a9",
         "label": "Seafarers Safety, Rehabilitation and Compensation Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4280,
+        "fetch_ms": 2064,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -982,11 +1002,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-electoral-commission",
@@ -1000,20 +1021,20 @@
       "document": {
         "doc_id": "ications-files-aec-ai-transparency-statement-pdf-f5e7fb20",
         "label": "Australian Electoral Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 304,
-        "fetch_ms": 264,
+        "fetch_ms": 265,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "2a8e0e79b53b2d081d3d62394ef1255bc39e479bc791260ae49a1112a1f6af64",
         "length": 7794,
-        "etag": "\"0f352285e72dd1:0\"",
+        "etag": "W/\"0f352285e72dd1:0\"",
         "last_modified": "Thu, 12 Nov 2026 04:27:42 GMT",
         "extractor": "pypdf",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "not_modified",
         "last_changed": "2026-11-13T16:03:56.728999+10:00",
@@ -1036,10 +1057,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-5a1775cf",
         "label": "Department of Finance",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 15891,
+        "fetch_ms": 2621,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -1050,11 +1071,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "digital-transformation-agency",
@@ -1068,10 +1090,10 @@
       "document": {
         "doc_id": "ai-transparency-statement-dac6a097",
         "label": "Digital Transformation Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3958,
+        "fetch_ms": 2237,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -1082,11 +1104,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "future-fund-management-agency",
@@ -1100,10 +1123,10 @@
       "document": {
         "doc_id": "nformation-parliamentary-and-statutory-reporting-8bd22a6d",
         "label": "Future Fund Management Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1400,
+        "fetch_ms": 2017,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -1113,7 +1136,7 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -1132,16 +1155,16 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-87c9078c",
         "label": "Independent Parliamentary Expenses Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 64,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 65,
         "http_status": null,
-        "fetch_ms": 4634,
+        "fetch_ms": 122646,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
         "status": "suspect_scrape",
-        "last_error": "too_short: 325 chars is below the 500 char minimum",
-        "suspect_length": 325
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "suspect_length": 68
       },
       "status": "failing"
     },
@@ -1157,16 +1180,16 @@
       "document": {
         "doc_id": "s-artificial-intelligence-transparency-statement-efb8f501",
         "label": "Parliamentary Workplace Support Service",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 64,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 65,
         "http_status": null,
-        "fetch_ms": 3694,
+        "fetch_ms": 121846,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
         "status": "suspect_scrape",
-        "last_error": "too_short: 426 chars is below the 500 char minimum",
-        "suspect_length": 426
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "suspect_length": 68
       },
       "status": "failing"
     },
@@ -1182,10 +1205,10 @@
       "document": {
         "doc_id": "d-artificial-intelligence-transparency-statement-c1715a24",
         "label": "Services Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3831,
+        "fetch_ms": 2528,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -1196,11 +1219,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 220 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 220
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-centre-for-international-agricultural-research",
@@ -1214,10 +1238,10 @@
       "document": {
         "doc_id": "artificial-intelligence-1c654975",
         "label": "Australian Centre for International Agricultural Research",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 2,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 3,
         "http_status": null,
-        "fetch_ms": 3226,
+        "fetch_ms": 3418,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -1233,7 +1257,7 @@
         "last_success": "2026-11-25T17:59:12.439366+10:00",
         "last_changed": "2026-10-18T14:03:31.443788+10:00"
       },
-      "status": "degraded"
+      "status": "failing"
     },
     {
       "id": "australian-trade-and-investment-commission-austrade",
@@ -1247,10 +1271,10 @@
       "document": {
         "doc_id": "en-site-information-ai-transparency-a3b78595",
         "label": "Australian Trade and Investment Commission (Austrade)",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4949,
+        "fetch_ms": 2108,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -1261,15 +1285,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 13,
         "diff_removed": 5,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-foreign-affairs-and-trade",
@@ -1283,10 +1308,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-d193d664",
         "label": "Department of Foreign Affairs and Trade",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3728,
+        "fetch_ms": 2269,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -1297,11 +1322,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "aged-care-quality-and-safety-commission",
@@ -1315,10 +1341,10 @@
       "document": {
         "doc_id": "us-corporate-documents-ai-transparency-statement-60f7a2f6",
         "label": "Aged Care Quality and Safety Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 5143,
+        "fetch_ms": 2063,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -1329,11 +1355,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-centre-for-disease-control",
@@ -1347,10 +1374,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-d081a03b",
         "label": "Australian Centre for Disease Control",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 15809,
+        "fetch_ms": 1893,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -1361,11 +1388,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-radiation-protection-and-nuclear-safety-agency",
@@ -1379,10 +1407,10 @@
       "document": {
         "doc_id": "s-artificial-intelligence-transparency-statement-9091caba",
         "label": "Australian Radiation Protection and Nuclear Safety Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 15536,
+        "fetch_ms": 2199,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -1393,11 +1421,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "cancer-australia",
@@ -1411,10 +1440,10 @@
       "document": {
         "doc_id": "about-us-accountability-and-reporting-8fd9ae7f",
         "label": "Cancer Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3614,
+        "fetch_ms": 2098,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -1425,15 +1454,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 7,
         "diff_removed": 0,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-health-disability-and-ageing",
@@ -1447,10 +1477,10 @@
       "document": {
         "doc_id": "orting-our-commitments-ai-transparency-statement-384fa66d",
         "label": "Department of Health, Disability and Ageing",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 2896,
+        "fetch_ms": 2150,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -1461,11 +1491,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "ndis-quality-and-safeguards-commission",
@@ -1479,10 +1510,10 @@
       "document": {
         "doc_id": "about-us-corporate-reports-ai-statement-6ace103a",
         "label": "NDIS Quality and Safeguards Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4946,
+        "fetch_ms": 2285,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -1493,11 +1524,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "national-blood-authority",
@@ -1511,10 +1543,10 @@
       "document": {
         "doc_id": "nbas-ai-transparency-statement-fc767a64",
         "label": "National Blood Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3854,
+        "fetch_ms": 2565,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -1525,11 +1557,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "national-health-funding-body",
@@ -1543,10 +1576,10 @@
       "document": {
         "doc_id": "s-corporate-governance-ai-transparency-statement-d380700c",
         "label": "National Health Funding Body",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 5362,
+        "fetch_ms": 2379,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -1557,11 +1590,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "national-health-and-medical-research-council",
@@ -1575,10 +1609,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-b08b5592",
         "label": "National Health and Medical Research Council",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4661,
+        "fetch_ms": 2449,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -1589,15 +1623,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 50,
         "diff_removed": 11,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "office-of-the-inspector-general-of-aged-care",
@@ -1611,10 +1646,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-1876e39b",
         "label": "Office of the Inspector-General of Aged Care",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 5095,
+        "fetch_ms": 123127,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -1625,11 +1660,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "organ-and-tissue-authority",
@@ -1643,10 +1679,10 @@
       "document": {
         "doc_id": "ai-transparency-statement-b69c6bca",
         "label": "Organ and Tissue Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 17117,
+        "fetch_ms": 121873,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -1657,11 +1693,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "professional-services-review",
@@ -1675,10 +1712,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-d1f3e256",
         "label": "Professional Services Review",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3337,
+        "fetch_ms": 1972,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -1689,11 +1726,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-federal-police",
@@ -1707,23 +1745,23 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-c425efdd",
         "label": "Australian Federal Police",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 697,
+        "fetch_ms": 28,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "4cbe4b9eff8b9c78df6e9352ae2aa17cf7514aeeeb43fc93b5976b08e799b689",
         "length": 11278,
-        "etag": "W/\"1795766134\"",
-        "last_modified": "Fri, 27 Nov 2026 07:55:34 GMT",
+        "etag": "W/\"1795845816\"",
+        "last_modified": "Sat, 28 Nov 2026 06:03:36 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "analysis_pending",
-        "last_changed": "2026-11-27T17:50:37.077040+10:00",
+        "last_changed": "2026-11-28T17:40:15.250464+10:00",
         "previous_hashes": null,
         "diff_added": 35,
         "diff_removed": 39,
@@ -1743,10 +1781,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-b83c0135",
         "label": "Australian Institute of Criminology",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4085,
+        "fetch_ms": 1670,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -1757,11 +1795,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-transaction-reports-and-analysis-centre-austrac",
@@ -1775,10 +1814,10 @@
       "document": {
         "doc_id": "and-accountability-our-ai-transparency-statement-606b6b03",
         "label": "Australian Transaction Reports and Analysis Centre (AUSTRAC)",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4571,
+        "fetch_ms": 121806,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -1789,15 +1828,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 2,
         "diff_removed": 2,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-home-affairs",
@@ -1811,13 +1851,13 @@
       "document": {
         "doc_id": "s-our-service-charters-ai-transparency-statement-2ea23f09",
         "label": "Department of Home Affairs",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
-        "http_status": 200,
-        "fetch_ms": 1033,
-        "route": "plain",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
+        "http_status": null,
+        "fetch_ms": 1985,
+        "route": "render",
         "archived_at": null,
-        "plain_blocked_at": null,
+        "plain_blocked_at": "2026-11-28T17:40:15.250464+10:00",
         "hash": "5f659a66274a586a7b96e9b9b57e23685eab967dbe0e450d76beb0992b4eb38b",
         "length": 877,
         "etag": null,
@@ -1825,11 +1865,12 @@
         "extractor": "trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "block_page: matched failure signature 'Access denied'",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 309
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "national-emergency-management-agency",
@@ -1838,15 +1879,15 @@
       "obligation": "mandatory",
       "url": "https://www.nema.gov.au/about-us/privacy-disclosures",
       "first_seen": "2026-09-25T23:11:58.323739+10:00",
-      "statement_date": "2026-11-09",
+      "statement_date": "2025-09-18",
       "last_change": null,
       "document": {
         "doc_id": "about-us-privacy-disclosures-02fd5b41",
         "label": "National Emergency Management Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 5184,
+        "fetch_ms": 1911,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -1857,15 +1898,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 19,
         "diff_removed": 20,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-industry-science-and-resources",
@@ -1879,10 +1921,10 @@
       "document": {
         "doc_id": "s-artificial-intelligence-transparency-statement-ebe3492a",
         "label": "Department of Industry, Science and Resources",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 18092,
+        "fetch_ms": 122232,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -1893,11 +1935,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "geoscience-australia",
@@ -1911,10 +1954,10 @@
       "document": {
         "doc_id": "ut-corporate-documents-ai-transparency-statement-32df0de2",
         "label": "Geoscience Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1598,
+        "fetch_ms": 1124,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -1924,10 +1967,10 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "analysis_pending",
-        "last_changed": "2026-11-27T17:50:37.077040+10:00",
+        "last_changed": "2026-11-28T17:40:15.250464+10:00",
         "previous_hashes": null,
         "diff_added": 4,
         "diff_removed": 3,
@@ -1947,10 +1990,10 @@
       "document": {
         "doc_id": "about-us-accountability-and-reporting-90b98f1f",
         "label": "IP Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": null,
-        "fetch_ms": 4911,
+        "fetch_ms": 4961,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-24T19:26:34.366249+10:00",
@@ -1960,10 +2003,10 @@
         "last_modified": null,
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "analysis_pending",
-        "last_changed": "2026-11-27T17:50:37.077040+10:00",
+        "last_changed": "2026-11-28T17:40:15.250464+10:00",
         "previous_hashes": null,
         "diff_added": 3,
         "diff_removed": 8,
@@ -1983,10 +2026,10 @@
       "document": {
         "doc_id": "artificial-intelligence-transparency-statement-d9a594cd",
         "label": "Net Zero Economy Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4458,
+        "fetch_ms": 8423,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -1997,11 +2040,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-communications-and-media-authority",
@@ -2015,10 +2059,10 @@
       "document": {
         "doc_id": "planning-and-priorities-cf220453",
         "label": "Australian Communications and Media Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 6437,
+        "fetch_ms": 15920,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -2029,15 +2073,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 11,
         "diff_removed": 2,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-transport-safety-bureau",
@@ -2051,10 +2096,10 @@
       "document": {
         "doc_id": "ai-transparency-statement-852362a2",
         "label": "Australian Transport Safety Bureau",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 16337,
+        "fetch_ms": 2828,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -2065,11 +2110,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-infrastructure-transport-regional-development-communications-and-t",
@@ -2083,10 +2129,10 @@
       "document": {
         "doc_id": "s-artificial-intelligence-transparency-statement-4eb4efd8",
         "label": "Department of Infrastructure, Transport, Regional Development, Communications and the Arts",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 15566,
+        "fetch_ms": 2067,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -2097,11 +2143,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "national-archives-of-australia",
@@ -2115,10 +2162,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-744b0584",
         "label": "National Archives of Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 6380,
+        "fetch_ms": 122673,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -2129,11 +2176,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "national-capital-authority",
@@ -2147,10 +2195,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-d313ffa2",
         "label": "National Capital Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4073,
+        "fetch_ms": 122913,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -2161,11 +2209,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "sport-integrity-australia",
@@ -2179,10 +2228,10 @@
       "document": {
         "doc_id": "about-us-corporate-governance-ai-transparency-554d1f94",
         "label": "Sport Integrity Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 15923,
+        "fetch_ms": 122310,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -2193,11 +2242,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-parliamentary-services",
@@ -2211,10 +2261,10 @@
       "document": {
         "doc_id": "services-publications-ai-transparency-statement-250157a8",
         "label": "Department of Parliamentary Services",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1323,
+        "fetch_ms": 2152,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -2224,7 +2274,7 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00",
@@ -2244,10 +2294,10 @@
       "document": {
         "doc_id": "ments-department-of-the-house-of-representatives-00bea393",
         "label": "Department of the House of Representatives",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1185,
+        "fetch_ms": 2137,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -2257,7 +2307,7 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00",
@@ -2277,10 +2327,10 @@
       "document": {
         "doc_id": "tability-and-reporting-ai-transparency-statement-15c82f40",
         "label": "Department of the Senate",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1232,
+        "fetch_ms": 1924,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -2290,7 +2340,7 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -2309,10 +2359,10 @@
       "document": {
         "doc_id": "nformation-and-privacy-ai-transparency-statement-8940d9a1",
         "label": "Parliamentary Budget Office",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4140,
+        "fetch_ms": 122350,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -2323,11 +2373,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-national-audit-office",
@@ -2341,10 +2392,10 @@
       "document": {
         "doc_id": "s-artificial-intelligence-transparency-statement-bf8a55f1",
         "label": "Australian National Audit Office",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3170,
+        "fetch_ms": 122343,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -2355,11 +2406,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-public-service-commission",
@@ -2373,10 +2425,10 @@
       "document": {
         "doc_id": "lity-and-reporting-transparent-use-ai-commission-409628f6",
         "label": "Australian Public Service Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3822,
+        "fetch_ms": 121567,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -2387,11 +2439,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-the-prime-minister-and-cabinet",
@@ -2405,10 +2458,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-1300329f",
         "label": "Department of the Prime Minister and Cabinet",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": null,
-        "fetch_ms": 4025,
+        "fetch_ms": 3909,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -2418,7 +2471,7 @@
         "last_modified": null,
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -2437,10 +2490,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-9c4d665e",
         "label": "National Indigenous Australians Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1143,
+        "fetch_ms": 1182,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -2450,7 +2503,7 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -2469,10 +2522,10 @@
       "document": {
         "doc_id": "governor-general-transparency-and-accountability-fb566ca5",
         "label": "Office of the Official Secretary to the Governor-General",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3160,
+        "fetch_ms": 1770,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -2483,15 +2536,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 5,
         "diff_removed": 4,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "workplace-gender-equality-agency",
@@ -2505,10 +2559,10 @@
       "document": {
         "doc_id": "about-governance-ai-transparency-statement-89b5e700",
         "label": "Workplace Gender Equality Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": null,
-        "fetch_ms": 3275,
+        "fetch_ms": 4504,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -2518,7 +2572,7 @@
         "last_modified": "Sun, 22 Nov 2026 06:19:07 GMT",
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00",
@@ -2538,10 +2592,10 @@
       "document": {
         "doc_id": "main-policies-ai-transparency-statement-afd42ad1",
         "label": "Australian Institute of Family Studies",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 64,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 65,
         "http_status": null,
-        "fetch_ms": 2507,
+        "fetch_ms": 2118,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -2558,15 +2612,15 @@
       "obligation": "mandatory",
       "url": "https://www.dss.gov.au/doing-business-us/corporate-policies/artificial-intelligence-ai-transparency-statement",
       "first_seen": "2026-09-25T23:11:58.323739+10:00",
-      "statement_date": "2026-10-20",
+      "statement_date": "2026-09-09",
       "last_change": null,
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-74033e81",
         "label": "Department of Social Services",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 17649,
+        "fetch_ms": 122418,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -2577,15 +2631,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 14,
         "diff_removed": 14,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "domestic-family-and-sexual-violence-commission",
@@ -2599,10 +2654,10 @@
       "document": {
         "doc_id": "resources-our-ai-transparency-statement-ace7133b",
         "label": "Domestic, Family and Sexual Violence Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4873,
+        "fetch_ms": 2346,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -2613,11 +2668,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "national-commission-for-aboriginal-and-torres-strait-islander-children-and-young",
@@ -2631,10 +2687,10 @@
       "document": {
         "doc_id": "ds-national-commission-ai-transparency-statement-18d254c6",
         "label": "National Commission for Aboriginal and Torres Strait Islander Children and Young People",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3640,
+        "fetch_ms": 122036,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -2645,11 +2701,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-bureau-of-statistics",
@@ -2663,20 +2720,20 @@
       "document": {
         "doc_id": "legislation-and-policy-ai-transparency-statement-a4bab6ec",
         "label": "Australian Bureau of Statistics",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1201,
+        "fetch_ms": 273,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "bc683d26e23229f731fa42640b4c2f75afd592b77bac1b97c171ca7afe3393d4",
         "length": 3721,
-        "etag": "\"1795766299\"",
-        "last_modified": "Fri, 27 Nov 2026 07:58:19 GMT",
+        "etag": "W/\"1795786255\"",
+        "last_modified": "Fri, 27 Nov 2026 13:30:55 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -2695,10 +2752,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-7d34c66f",
         "label": "Australian Competition and Consumer Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": null,
-        "fetch_ms": 8761,
+        "fetch_ms": 5000,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -2708,7 +2765,7 @@
         "last_modified": "Wed, 25 Nov 2026 08:03:52 GMT",
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -2727,10 +2784,10 @@
       "document": {
         "doc_id": "tability-and-reporting-ai-transparency-statement-0bd7e09d",
         "label": "Australian Financial Security Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3609,
+        "fetch_ms": 1788,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -2741,11 +2798,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-office-of-financial-management",
@@ -2759,10 +2817,10 @@
       "document": {
         "doc_id": "g-artificial-intelligence-transparency-statement-52db42ba",
         "label": "Australian Office of Financial Management",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3965,
+        "fetch_ms": 1716,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -2773,11 +2831,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-prudential-regulation-authority",
@@ -2791,20 +2850,20 @@
       "document": {
         "doc_id": "apras-ai-transparency-statement-14d89dde",
         "label": "Australian Prudential Regulation Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 573,
+        "fetch_ms": 266,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "d15cc2af21d046a3bf42461f9a357a15a0f36f12b9498e2744e2afc6fc843a15",
         "length": 2486,
-        "etag": "\"1795759597\"",
-        "last_modified": "Fri, 27 Nov 2026 06:06:37 GMT",
+        "etag": "\"1795849307\"",
+        "last_modified": "Sat, 28 Nov 2026 07:01:47 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -2823,10 +2882,10 @@
       "document": {
         "doc_id": "g-artificial-intelligence-transparency-statement-a1e5e8a3",
         "label": "Australian Securities and Investments Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 2095,
+        "fetch_ms": 1900,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -2836,7 +2895,7 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -2855,10 +2914,10 @@
       "document": {
         "doc_id": "mation-and-privacy-ato-ai-transparency-statement-7fc40ce3",
         "label": "Australian Taxation Office",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": null,
-        "fetch_ms": 3463,
+        "fetch_ms": 3955,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -2868,7 +2927,7 @@
         "last_modified": null,
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -2887,10 +2946,10 @@
       "document": {
         "doc_id": "g-artificial-intelligence-transparency-statement-4d3028ae",
         "label": "Commonwealth Grants Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3446,
+        "fetch_ms": 2306,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -2901,11 +2960,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-the-treasury",
@@ -2919,10 +2979,10 @@
       "document": {
         "doc_id": "countability-reporting-ai-transparency-statement-6c91ea34",
         "label": "Department of the Treasury",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
-        "http_status": 200,
-        "fetch_ms": 645,
+        "http_status": 304,
+        "fetch_ms": 624,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -2932,9 +2992,9 @@
         "last_modified": "Fri, 27 Nov 2026 04:22:19 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
-        "status": "unchanged",
+        "status": "not_modified",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
       },
       "status": "ok"
@@ -2951,20 +3011,20 @@
       "document": {
         "doc_id": "about-us-corporate-information-a97dc993",
         "label": "Inspector-General of Taxation",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1193,
+        "fetch_ms": 757,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "3b6b4aa1c0580c06a49b0af858acdf34dfeb0ae2b46eac168a7a1892dda8e108",
         "length": 3240,
         "etag": null,
-        "last_modified": "Fri, 27 Nov 2026 07:58:47 GMT",
+        "last_modified": "Sat, 28 Nov 2026 08:30:07 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-11-01T15:32:59.429242+10:00",
@@ -2983,15 +3043,15 @@
       "obligation": "mandatory",
       "url": "https://ncc.gov.au/about/statutory_and_required_reporting",
       "first_seen": "2026-09-25T23:11:58.323739+10:00",
-      "statement_date": "2026-06-30",
+      "statement_date": "2026-02-01",
       "last_change": null,
       "document": {
         "doc_id": "about-statutory-and-required-reporting-68be57c4",
         "label": "National Competition Council",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 7661,
+        "fetch_ms": 42791,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-25T17:59:12.439366+10:00",
@@ -3002,15 +3062,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "block_page: matched failure signature \"This site can't be reached\"",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 5,
         "diff_removed": 5,
-        "cosmetic_lines": 1
+        "cosmetic_lines": 1,
+        "suspect_length": 659
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "office-of-the-auditing-and-assurance-standards-board",
@@ -3024,10 +3085,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-0d5a6508",
         "label": "Office of the Auditing and Assurance Standards Board",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1841,
+        "fetch_ms": 1853,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -3037,10 +3098,10 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "analysis_pending",
-        "last_changed": "2026-11-27T17:50:37.077040+10:00",
+        "last_changed": "2026-11-28T17:40:15.250464+10:00",
         "previous_hashes": null,
         "diff_added": 1,
         "diff_removed": 1,
@@ -3060,10 +3121,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-5e363fb2",
         "label": "Office of the Australian Accounting Standards Board",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1190,
+        "fetch_ms": 1291,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -3073,10 +3134,10 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "analysis_pending",
-        "last_changed": "2026-11-27T17:50:37.077040+10:00",
+        "last_changed": "2026-11-28T17:40:15.250464+10:00",
         "previous_hashes": null,
         "diff_added": 1,
         "diff_removed": 1,
@@ -3096,22 +3157,22 @@
       "document": {
         "doc_id": "ai-transparency-1b260034",
         "label": "Productivity Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
-        "http_status": 200,
-        "fetch_ms": 315,
+        "http_status": 304,
+        "fetch_ms": 90,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "126bfc76eef8beed2f768d5708226681ad44a3c30949229685d9b4f0c936863e",
         "length": 3838,
-        "etag": "W/\"lpeq8th6rm2kqj\"",
+        "etag": "\"lpeq8th6rm2kqj\"",
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
-        "status": "unchanged",
+        "status": "not_modified",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
       },
       "status": "ok"
@@ -3128,10 +3189,10 @@
       "document": {
         "doc_id": "al-australian-mint-ai-transparency-statement-pdf-82911589",
         "label": "Royal Australian Mint",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 304,
-        "fetch_ms": 624,
+        "fetch_ms": 460,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -3141,7 +3202,7 @@
         "last_modified": "Tue, 31 Mar 2026 03:42:37 GMT",
         "extractor": "pypdf",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "not_modified",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -3160,20 +3221,20 @@
       "document": {
         "doc_id": "legal-ai-transparency-statement-448d27ab",
         "label": "AgriFutures Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 2496,
+        "fetch_ms": 2456,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "809dd03c75f7013f5aa9f5641af965431571b910d75bfcb0692a270223b15e10",
         "length": 7169,
-        "etag": "\"47995-1795766340;gz\"",
+        "etag": "\"65199-1795854654;gz\"",
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -3192,26 +3253,26 @@
       "document": {
         "doc_id": "tability-and-reporting-ai-transparency-statement-c98c5478",
         "label": "Murray-Darling Basin Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 4,
-        "http_status": 202,
-        "fetch_ms": 264,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 0,
+        "http_status": 200,
+        "fetch_ms": 1505,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
-        "status": "suspect_scrape",
-        "last_error": "too_short: 157 chars is below the 500 char minimum",
+        "status": "unchanged",
+        "last_error": "",
         "suspect_length": 157,
         "hash": "86a5eecb31adbec76c59a863a3900dfcdfce1d72f9d93fa941171ba751f3277d",
         "length": 3160,
-        "etag": "\"1795360098\"",
-        "last_modified": "Sun, 22 Nov 2026 15:08:18 GMT",
+        "etag": "\"1795796542\"",
+        "last_modified": "Fri, 27 Nov 2026 16:22:22 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-23T17:00:40.857471+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_changed": "2026-11-19T16:57:40.973956+10:00"
       },
-      "status": "failing"
+      "status": "ok"
     },
     {
       "id": "defence-housing-australia",
@@ -3225,10 +3286,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-545a9a67",
         "label": "Defence Housing Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 2795,
+        "fetch_ms": 122149,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -3239,11 +3300,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "defence-and-veterans-service-commission",
@@ -3257,10 +3319,10 @@
       "document": {
         "doc_id": "tability-and-reporting-ai-transparency-statement-3df5e8ad",
         "label": "Defence and Veterans Service Commission",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 6215,
+        "fetch_ms": 1791,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -3271,11 +3333,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "department-of-veterans-affairs",
@@ -3289,10 +3352,10 @@
       "document": {
         "doc_id": "rtificial-intelligence-ai-transparency-statement-91416c59",
         "label": "Department of Veterans' Affairs",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 3538,
+        "fetch_ms": 2433,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-26T17:50:04.042557+10:00",
@@ -3303,15 +3366,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 26,
         "diff_removed": 20,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "comcare",
@@ -3325,10 +3389,10 @@
       "document": {
         "doc_id": "corporate-publications-ai-transparency-statement-61e0b949",
         "label": "Comcare",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 17043,
+        "fetch_ms": 1886,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -3339,11 +3403,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "jobs-and-skills-australia",
@@ -3357,10 +3422,10 @@
       "document": {
         "doc_id": "ai-transparency-statement-36b1c9ea",
         "label": "Jobs and Skills Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 14565,
+        "fetch_ms": 122492,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-27T17:50:37.077040+10:00",
@@ -3371,11 +3436,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-digital-health-agency",
@@ -3389,10 +3455,10 @@
       "document": {
         "doc_id": "g-artificial-intelligence-transparency-statement-08866cf4",
         "label": "Australian Digital Health Agency",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4319,
+        "fetch_ms": 122186,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-23T17:00:40.857471+10:00",
@@ -3403,15 +3469,16 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "analysis_pending",
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
         "last_changed": "2026-11-27T17:50:37.077040+10:00",
         "previous_hashes": null,
         "diff_added": 2,
         "diff_removed": 0,
-        "cosmetic_lines": 0
+        "cosmetic_lines": 0,
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-institute-of-health-and-welfare",
@@ -3425,10 +3492,10 @@
       "document": {
         "doc_id": "bout-us-our-governance-ai-transparency-statement-69c03113",
         "label": "Australian Institute of Health and Welfare",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 64,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 65,
         "http_status": null,
-        "fetch_ms": 3143,
+        "fetch_ms": 2191,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -3450,10 +3517,10 @@
       "document": {
         "doc_id": "corporate-information-ai-transparency-statement-98bf7d67",
         "label": "Food Standards Australia New Zealand",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 22,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 23,
         "http_status": 200,
-        "fetch_ms": 719,
+        "fetch_ms": 676,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -3487,10 +3554,10 @@
       "document": {
         "doc_id": "artificial-intelligence-transparency-statement-06bf0934",
         "label": "Health Direct",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 851,
+        "fetch_ms": 333,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -3500,10 +3567,10 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "analysis_pending",
-        "last_changed": "2026-11-27T17:50:37.077040+10:00",
+        "last_changed": "2026-11-28T17:40:15.250464+10:00",
         "previous_hashes": null,
         "diff_added": 5,
         "diff_removed": 4,
@@ -3523,10 +3590,10 @@
       "document": {
         "doc_id": "automation-and-artificial-intelligence-policy-9f165b8d",
         "label": "Australian Security Intelligence Organisation",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4150,
+        "fetch_ms": 2903,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-18T16:56:00.199926+10:00",
@@ -3537,11 +3604,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "commonwealth-scientific-and-industrial-research-organisation",
@@ -3555,10 +3623,10 @@
       "document": {
         "doc_id": "about-policies-artificial-intelligence-statement-1d46399f",
         "label": "Commonwealth Scientific and Industrial Research Organisation",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": null,
-        "fetch_ms": 5721,
+        "fetch_ms": 6456,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-24T19:26:34.366249+10:00",
@@ -3568,7 +3636,7 @@
         "last_modified": null,
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00",
@@ -3588,10 +3656,10 @@
       "document": {
         "doc_id": "about-ai-transparency-statement-19a58a8b",
         "label": "National Offshore Petroleum Safety and Environmental Management Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 4036,
+        "fetch_ms": 121452,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -3602,11 +3670,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 68 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 68
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "australian-maritime-safety-authority",
@@ -3620,10 +3689,10 @@
       "document": {
         "doc_id": "about-us-who-we-are-ai-transparency-statement-47544515",
         "label": "Australian Maritime Safety Authority",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 2460,
+        "fetch_ms": 1724,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -3633,7 +3702,7 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -3652,10 +3721,10 @@
       "document": {
         "doc_id": "parency-statement-use-artificial-intelligence-ai-a8d406e6",
         "label": "Infrastructure Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 0,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 1,
         "http_status": null,
-        "fetch_ms": 2687,
+        "fetch_ms": 2211,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-22T16:09:23.083350+10:00",
@@ -3666,11 +3735,12 @@
         "extractor": "selenium+trafilatura",
         "pipeline_version": 3,
         "last_success": "2026-11-27T17:50:37.077040+10:00",
-        "last_error": "",
-        "status": "unchanged",
-        "last_changed": "2026-09-25T23:11:58.323739+10:00"
+        "last_error": "too_short: 472 chars is below the 500 char minimum",
+        "status": "suspect_scrape",
+        "last_changed": "2026-09-25T23:11:58.323739+10:00",
+        "suspect_length": 472
       },
-      "status": "ok"
+      "status": "degraded"
     },
     {
       "id": "national-library-of-australia",
@@ -3684,23 +3754,23 @@
       "document": {
         "doc_id": "rategies-artificial-intelligence-ai-transparency-dca75c80",
         "label": "National Library of Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 504,
+        "fetch_ms": 1155,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "0eec7b90d1407a3581bfc1ff071fc1afa23e2d20ca292d11b500d67eb1288f64",
         "length": 3971,
-        "etag": "\"1795765920\"",
-        "last_modified": "Fri, 27 Nov 2026 07:52:00 GMT",
+        "etag": "\"1795855168\"",
+        "last_modified": "Sat, 28 Nov 2026 08:39:28 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "analysis_pending",
-        "last_changed": "2026-11-27T17:50:37.077040+10:00",
+        "last_changed": "2026-11-28T17:40:15.250464+10:00",
         "previous_hashes": null,
         "diff_added": 1,
         "diff_removed": 0,
@@ -3720,10 +3790,10 @@
       "document": {
         "doc_id": "our-organisation-governance-governance-policies-e3ae0c23",
         "label": "Northern Australia Infrastructure Facility",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 916,
+        "fetch_ms": 896,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
@@ -3733,10 +3803,10 @@
         "last_modified": null,
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "analysis_pending",
-        "last_changed": "2026-11-27T17:50:37.077040+10:00",
+        "last_changed": "2026-11-28T17:40:15.250464+10:00",
         "previous_hashes": null,
         "diff_added": 0,
         "diff_removed": 25,
@@ -3756,20 +3826,20 @@
       "document": {
         "doc_id": "ans-policies-and-plans-ai-transparency-statement-fb128199",
         "label": "Old Parliament House",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 1187,
+        "fetch_ms": 41,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "941bca0ee460621d7a685b40876fbf3e1f46da605ea6815f71db5c521272590e",
         "length": 4185,
-        "etag": "\"1795766413-gzip\"",
-        "last_modified": "Fri, 27 Nov 2026 08:00:13 GMT",
+        "etag": "\"1795848175-gzip\"",
+        "last_modified": "Sat, 28 Nov 2026 06:42:55 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
@@ -3788,10 +3858,10 @@
       "document": {
         "doc_id": "ate-documents-policies-ai-transparency-statement-45745497",
         "label": "Screen Australia",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
-        "consecutive_failures": 2,
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
+        "consecutive_failures": 3,
         "http_status": null,
-        "fetch_ms": 3676,
+        "fetch_ms": 2602,
         "route": "render",
         "archived_at": null,
         "plain_blocked_at": "2026-11-21T16:39:58.777300+10:00",
@@ -3807,7 +3877,7 @@
         "last_changed": "2026-09-25T23:11:58.323739+10:00",
         "suspect_length": 341
       },
-      "status": "degraded"
+      "status": "failing"
     },
     {
       "id": "australian-reinsurance-pool-corporation",
@@ -3821,20 +3891,20 @@
       "document": {
         "doc_id": "t-corporate-governance-ai-transparency-statement-9cb5731a",
         "label": "Australian Reinsurance Pool Corporation",
-        "last_checked": "2026-11-27T17:50:37.077040+10:00",
+        "last_checked": "2026-11-28T17:40:15.250464+10:00",
         "consecutive_failures": 0,
         "http_status": 200,
-        "fetch_ms": 478,
+        "fetch_ms": 316,
         "route": "plain",
         "archived_at": null,
         "plain_blocked_at": null,
         "hash": "cb8ec283c122319d94dc38e2fb78d9fd05846fdd8a4ee0fb89da165f1fb3e75b",
         "length": 4083,
         "etag": null,
-        "last_modified": "Fri, 27 Nov 2026 08:00:21 GMT",
+        "last_modified": "Sat, 28 Nov 2026 08:39:33 GMT",
         "extractor": "trafilatura",
         "pipeline_version": 3,
-        "last_success": "2026-11-27T17:50:37.077040+10:00",
+        "last_success": "2026-11-28T17:40:15.250464+10:00",
         "last_error": "",
         "status": "unchanged",
         "last_changed": "2026-09-25T23:11:58.323739+10:00"
